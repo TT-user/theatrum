@@ -7,6 +7,16 @@ Construir a landing page do projeto **Theatrum**, replicando a estrutura, o layo
 
 ---
 
+## Workflow de git (autorização permanente)
+Após concluir cada tarefa/mudança lógica no código (não a cada Edit individual), faça automaticamente:
+1. `git add` dos arquivos relevantes
+2. `git commit` com mensagem descritiva
+3. `git push` direto para `origin/main`
+
+Sem pedir confirmação a cada vez — essa autorização já cobre o fluxo normal de push para main. Só pausar para confirmar em casos fora do padrão: force-push, rebase, reset destrutivo, ou qualquer operação que reescreva histórico já publicado.
+
+---
+
 ## Stack sugerida
 - HTML + CSS + JS vanilla (single page), ou Astro se preferir componentizar
 - Sem frameworks pesados — a página de referência é leve e estática
