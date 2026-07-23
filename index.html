@@ -283,6 +283,12 @@
     .site-nav.is-scrolled{padding:12px 6vw}
     .site-nav.is-scrolled .brand-chip{width:40px;height:40px;font-size:18px}
     .scroll-hint{display:none}
+    .hero-inner{padding-top:clamp(78px,11vh,105px)}
+    .hero-title{margin-top:16px}
+    .hero-sub{margin-top:20px}
+    .kill-line{margin-top:18px}
+    .hero-ctas{margin-top:20px}
+    .hero-note{margin-top:14px}
     .hero .eyebrow{flex-wrap:wrap}
     .type-wrap{flex:0 0 100%;margin-top:7px;min-width:0}
     .type{font-size:9.5px;letter-spacing:0;flex-shrink:0;animation-name:typingM}
@@ -557,7 +563,6 @@
     <li><a href="#como-funciona">Como funciona</a></li>
     <li><a href="#beneficios">Diferença</a></li>
     <li><a href="#sistema">Demonstração</a></li>
-    <li><a href="#avaliacoes">Avaliações</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
@@ -574,7 +579,6 @@
   <a href="#como-funciona">Como funciona</a>
   <a href="#beneficios">Diferença</a>
   <a href="#sistema">Demonstração</a>
-  <a href="#avaliacoes">Avaliações</a>
   <a href="#faq">FAQ</a>
   <a class="mm-cta" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener">Diagnóstico gratuito</a>
 </div>
@@ -2186,7 +2190,8 @@
 </script>
 
 <!-- ============ 7 · AVALIAÇÕES ============ -->
-<section class="sec" id="avaliacoes">
+<!-- oculta por enquanto: sem depoimentos reais ainda, reativar quando houver -->
+<section class="sec" id="avaliacoes" style="display:none">
   <div class="sec-inner">
     <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>avaliações</p>
     <h2 class="rv" style="--d:.08s">Ainda não temos <span class="lm">depoimentos públicos</span> — e não vamos inventar um.</h2>
@@ -2220,7 +2225,7 @@
 <!-- ============ 8 · FAQ ============ -->
 <section class="sec" id="faq">
   <div class="sec-inner">
-    <p class="eyebrow rv" style="justify-content:center"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>perguntas diretas</p>
+    <p class="eyebrow rv" style="justify-content:center"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>perguntas diretas</p>
     <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto">O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
 
     <div class="faq rv" style="--d:.15s">
@@ -2250,7 +2255,7 @@
 
 <!-- ============ 9 · CTA FINAL ============ -->
 <section class="final" id="diagnostico">
-  <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>o próximo passo</p>
+  <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o próximo passo</p>
   <h2 class="rv" style="--d:.08s">Quer saber quanto seu negócio deixa de faturar todo mês?</h2>
   <p class="lead rv" style="--d:.16s">O diagnóstico gratuito mostra os vazamentos do seu negócio e o que o sistema faria com cada um. Sem compromisso, sem enrolação.</p>
   <a class="btn-dark rv" style="--d:.24s" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener">
@@ -2309,7 +2314,7 @@
 
   // destaca no menu a seção visível
   const navAnchors = [...document.querySelectorAll('.nav-links a'), ...document.querySelectorAll('.mobile-menu a[href^="#"]')];
-  const navSections = ['problema','solucao','como-funciona','beneficios','sistema','avaliacoes','faq']
+  const navSections = ['problema','solucao','como-funciona','beneficios','sistema','faq']
     .map(id => document.getElementById(id)).filter(Boolean);
   const setActiveLink = (id) => navAnchors.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
   const navIo = new IntersectionObserver((entries) => {
