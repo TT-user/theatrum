@@ -95,12 +95,15 @@
   .nav-cta{font-weight:600;font-size:14.5px;color:var(--white);text-decoration:none;border:1px solid var(--line);border-radius:40px;padding:11px 22px;transition:.3s;white-space:nowrap}
   .nav-cta:hover{border-color:rgba(227,179,65,.5);color:var(--accent)}
 
-  /* ============ NAV FIXA (site inteiro) ============ */
+  /* ============ NAV FIXA (site inteiro) — some no hero, aparece após a 1ª tela ============ */
   .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
     gap:24px;padding:24px 5vw;background:transparent;border-bottom:1px solid transparent;
-    transition:background .4s ease,padding .4s ease,border-color .4s ease;animation:rise .9s cubic-bezier(.2,.7,.2,1) .2s both}
-  .site-nav.is-scrolled{background:rgba(11,10,8,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    padding:14px 5vw;border-bottom-color:rgba(255,255,255,.08)}
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .45s ease,visibility 0s .45s,background .4s ease,padding .4s ease,border-color .4s ease}
+  .site-nav.is-scrolled{opacity:1;visibility:visible;pointer-events:auto;
+    background:rgba(11,10,8,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    padding:14px 5vw;border-bottom-color:rgba(255,255,255,.08);
+    transition:opacity .45s ease,visibility 0s,background .4s ease,padding .4s ease,border-color .4s ease}
   .site-nav.is-scrolled .brand-chip{width:44px;height:44px;font-size:20px}
   .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
   .nav-links a{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
@@ -875,7 +878,7 @@
 
   #sistema .stage{position:relative; height:680px; width:100%}
   #sistema .panel{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    position:absolute; inset:0; display:flex; align-items:flex-start; justify-content:center;
     opacity:0; transform:translateY(16px) scale(.98); pointer-events:none;
     transition:opacity .5s var(--sys-ease), transform .5s var(--sys-ease);
   }
@@ -2276,11 +2279,11 @@
 </footer>
 
 <script>
-  // nav fixa: fundo sólido ao rolar
+  // nav fixa: escondida no hero, aparece só depois da 1ª tela
   const siteNav = document.getElementById('siteNav');
-  const onNavScroll = () => siteNav.classList.toggle('is-scrolled', window.scrollY > 40);
-  onNavScroll();
-  addEventListener('scroll', onNavScroll, { passive: true });
+  new IntersectionObserver((es) => {
+    es.forEach(e => siteNav.classList.toggle('is-scrolled', !e.isIntersecting));
+  }, { threshold: 0 }).observe(document.querySelector('.hero'));
 
   // menu mobile: abrir/fechar
   const navBurger = document.getElementById('navBurger');
