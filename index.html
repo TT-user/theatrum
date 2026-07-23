@@ -4,13 +4,13 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="theme-color" content="#0B0A08"/>
-<title>Theatrum | Identidade digital para negócios locais</title>
+<title>Theatrum | Identidade digital para negócios em todo o Brasil</title>
 <meta name="description" content="A Theatrum implanta o sistema previsível que transforma quem procura seu negócio em cliente novo todo mês, sem depender de indicação. Diagnóstico gratuito."/>
 <link rel="icon" href="assets/img/logo.jpg"/>
 <meta property="og:type" content="website"/>
 <!-- TROCAR pela URL real quando o domínio estiver definido -->
 <meta property="og:url" content="https://theatrum.com.br/"/>
-<meta property="og:title" content="Theatrum | Identidade digital para negócios locais"/>
+<meta property="og:title" content="Theatrum | Identidade digital para negócios em todo o Brasil"/>
 <meta property="og:description" content="Presença digital não é sorte. É sistema. Diagnóstico gratuito direto no WhatsApp."/>
 <meta property="og:locale" content="pt_BR"/>
 <!-- ===== Google Analytics 4: TROCAR G-XXXXXXXXXX pelo ID real (2 lugares) ===== -->
@@ -117,6 +117,14 @@
   .nav-links a.is-active{color:var(--accent)}
   .nav-links a.is-active::after{width:100%}
   .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+  .lang-toggle{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12px;font-weight:700;
+    letter-spacing:.08em;background:transparent;border:1px solid var(--line);border-radius:40px;padding:8px 14px;
+    cursor:pointer;color:var(--muted);flex-shrink:0;transition:border-color .3s}
+  .lang-toggle:hover{border-color:rgba(227,179,65,.5)}
+  .lt-opt{transition:color .3s}
+  .lt-opt.is-active{color:var(--accent)}
+  .lt-sep{color:var(--line);opacity:.6}
+  .mobile-menu .lang-toggle{margin-bottom:8px}
   .nav-burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;
     cursor:pointer;position:relative;flex-shrink:0;padding:0}
   .nav-burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--white);border-radius:1px;
@@ -153,10 +161,10 @@
   .eyebrow-tag{color:var(--accent);font-weight:700;flex-shrink:0;animation:tagSkew 5s ease-in-out infinite}
   @keyframes tagSkew{0%,88%,100%{transform:skewX(0)}92%{transform:skewX(-9deg)}96%{transform:skewX(5deg)}}
   .type-wrap{display:inline-flex;align-items:center;min-width:0}
-  .type{white-space:nowrap;overflow:hidden;width:0;animation:typing 2s steps(44) 1s forwards}
+  .type{white-space:nowrap;overflow:hidden;width:0;animation:typing 2s steps(var(--tlen,44)) 1s forwards}
   .caret{width:8px;height:15px;background:var(--accent);margin-left:6px;flex-shrink:0;animation:blinkCursor 1s steps(2) infinite}
-  @keyframes typing{to{width:calc(44ch + 6.16em)}}
-  @keyframes typingM{to{width:44ch}}
+  @keyframes typing{to{width:calc(var(--tlen,44) * 1ch + 6.16em)}}
+  @keyframes typingM{to{width:calc(var(--tlen,44) * 1ch)}}
   @keyframes blinkCursor{50%{opacity:0}}
 
   .hero-title{font-family:var(--font-display);font-weight:700;letter-spacing:-.035em;line-height:1.03;
@@ -558,15 +566,18 @@
     <b>Theatrum</b>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#problema">Problema</a></li>
-    <li><a href="#solucao">Solução</a></li>
-    <li><a href="#como-funciona">Como funciona</a></li>
-    <li><a href="#beneficios">Diferença</a></li>
-    <li><a href="#sistema">Demonstração</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#problema" data-en="Problem">Problema</a></li>
+    <li><a href="#solucao" data-en="Solution">Solução</a></li>
+    <li><a href="#como-funciona" data-en="How it works">Como funciona</a></li>
+    <li><a href="#beneficios" data-en="Difference">Diferença</a></li>
+    <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
+    <li><a href="#faq" data-en="FAQ">FAQ</a></li>
   </ul>
   <div class="nav-right">
-    <a class="nav-cta" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener">Diagnóstico gratuito</a>
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language / Trocar idioma">
+      <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
+    </button>
+    <a class="nav-cta" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
     <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -574,13 +585,16 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#problema">Problema</a>
-  <a href="#solucao">Solução</a>
-  <a href="#como-funciona">Como funciona</a>
-  <a href="#beneficios">Diferença</a>
-  <a href="#sistema">Demonstração</a>
-  <a href="#faq">FAQ</a>
-  <a class="mm-cta" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener">Diagnóstico gratuito</a>
+  <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
+    <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
+  </button>
+  <a href="#problema" data-en="Problem">Problema</a>
+  <a href="#solucao" data-en="Solution">Solução</a>
+  <a href="#como-funciona" data-en="How it works">Como funciona</a>
+  <a href="#beneficios" data-en="Difference">Diferença</a>
+  <a href="#sistema" data-en="Demo">Demonstração</a>
+  <a href="#faq" data-en="FAQ">FAQ</a>
+  <a class="mm-cta" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
 </div>
 
 <!-- ============ 1 · HERO ============ -->
@@ -595,10 +609,10 @@
     <p class="eyebrow">
       <span class="eyebrow-bar"></span>
       <span class="eyebrow-tag">[01]</span>
-      <span class="type-wrap"><span class="type">site, google e whatsapp trabalhando por você</span><span class="caret"></span></span>
+      <span class="type-wrap"><span class="type" id="typeText" style="--tlen:44" data-en="site, google and whatsapp working for you">site, google e whatsapp trabalhando por você</span><span class="caret"></span></span>
     </p>
 
-    <h1 class="hero-title">
+    <h1 class="hero-title" data-en='<span class="word" style="--i:0">A</span> <span class="word" style="--i:1"><em class="hero-em">digital<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span> <span class="word" style="--i:2">identity</span> <span class="word" style="--i:3">that</span> <span class="word" style="--i:4">turns</span> <span class="word" style="--i:5">into</span> <span class="word" style="--i:6"><em class="hero-em">new<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span> <span class="word" style="--i:7">clients.</span>'>
       <span class="word" style="--i:0">Uma</span>
       <span class="word" style="--i:1"><em class="hero-em">identidade<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span>
       <span class="word" style="--i:2">digital</span>
@@ -608,31 +622,31 @@
       <span class="word" style="--i:6">novo.</span>
     </h1>
 
-    <p class="hero-sub">A Theatrum não vende post bonito nem promessa vazia. A gente implanta o <b>sistema previsível</b> que transforma quem procura o seu negócio em <b>cliente novo todo mês</b>, sem depender de indicação.</p>
+    <p class="hero-sub" data-en="Theatrum doesn't sell pretty posts or empty promises. We deploy the <b>predictable system</b> that turns whoever searches for your business into a <b>new client every month</b>, anywhere in Brazil, without depending on referrals.">A Theatrum não vende post bonito nem promessa vazia. A gente implanta o <b>sistema previsível</b> que transforma quem procura o seu negócio em <b>cliente novo todo mês</b>, sem depender de indicação.</p>
 
     <div class="kill-line">
-      <span class="kill" style="--k:0">posts soltos</span>
-      <span class="kill" style="--k:1">seguidor parado</span>
-      <span class="kill" style="--k:2">diagnóstico vago</span>
-      <span class="kill-verdict"><span class="status-dot"></span>cliente fechando negócio</span>
+      <span class="kill" style="--k:0" data-en="random posts">posts soltos</span>
+      <span class="kill" style="--k:1" data-en="stalled followers">seguidor parado</span>
+      <span class="kill" style="--k:2" data-en="vague diagnosis">diagnóstico vago</span>
+      <span class="kill-verdict" data-en='<span class="status-dot"></span>client closing the deal'><span class="status-dot"></span>cliente fechando negócio</span>
     </div>
 
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
         Quero meu diagnóstico gratuito
         <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
       </a>
-      <a class="btn btn-secondary" href="#como-funciona"><span class="btn-dot"></span>Como funciona</a>
+      <a class="btn btn-secondary" href="#como-funciona" data-en='<span class="btn-dot"></span>How it works'><span class="btn-dot"></span>Como funciona</a>
     </div>
-    <p class="hero-note">responde em minutos · direto no whatsapp</p>
+    <p class="hero-note" data-en="replies in minutes · straight on whatsapp">responde em minutos · direto no whatsapp</p>
   </div>
 
   <div class="scroll-hint"><span>scroll</span><div class="scroll-track"></div></div>
 
   <div class="hero-proof">
-    <span class="proof" style="--p:0"><i class="ic">✦</i><b>100%</b> focada em negócio local</span>
-    <span class="proof" style="--p:1"><i class="ic">⚡</i><b>resposta em segundos</b> para o seu cliente</span>
-    <span class="proof" style="--p:2"><i class="ic">◎</i>diagnóstico gratuito · <b>sem compromisso</b></span>
+    <span class="proof" style="--p:0" data-en='<i class="ic">✦</i><b>all of Brazil</b> · remote, no borders'><i class="ic">✦</i><b>todo o Brasil</b> · remoto, sem fronteiras</span>
+    <span class="proof" style="--p:1" data-en='<i class="ic">⚡</i><b>replies in seconds</b> to your client'><i class="ic">⚡</i><b>resposta em segundos</b> para o seu cliente</span>
+    <span class="proof" style="--p:2" data-en='<i class="ic">◎</i>free diagnosis · <b>no strings attached</b>'><i class="ic">◎</i>diagnóstico gratuito · <b>sem compromisso</b></span>
   </div>
 </header>
 
@@ -640,35 +654,35 @@
 <section class="strip" aria-label="O que a Theatrum entrega">
   <div class="mq">
     <div class="mq-track">
-      <span class="mq-item">Site profissional <span class="star">✦</span></span>
-      <span class="mq-item">Google Meu Negócio <span class="star">✦</span></span>
-      <span class="mq-item">Google Ads <span class="star">✦</span></span>
-      <span class="mq-item">LinkedIn B2B <span class="star">✦</span></span>
-      <span class="mq-item">SEO + IA <span class="star">✦</span></span>
-      <span class="mq-item">Reativação de clientes <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Professional website <span class="star">✦</span>'>Site profissional <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Google Ads <span class="star">✦</span>'>Google Ads <span class="star">✦</span></span>
+      <span class="mq-item" data-en='LinkedIn B2B <span class="star">✦</span>'>LinkedIn B2B <span class="star">✦</span></span>
+      <span class="mq-item" data-en='SEO + AI <span class="star">✦</span>'>SEO + IA <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Client reactivation <span class="star">✦</span>'>Reativação de clientes <span class="star">✦</span></span>
       <span aria-hidden="true" style="display:contents">
-        <span class="mq-item">Site profissional <span class="star">✦</span></span>
-        <span class="mq-item">Google Meu Negócio <span class="star">✦</span></span>
-        <span class="mq-item">Google Ads <span class="star">✦</span></span>
-        <span class="mq-item">LinkedIn B2B <span class="star">✦</span></span>
-        <span class="mq-item">SEO + IA <span class="star">✦</span></span>
-        <span class="mq-item">Reativação de clientes <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Professional website <span class="star">✦</span>'>Site profissional <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Google Ads <span class="star">✦</span>'>Google Ads <span class="star">✦</span></span>
+        <span class="mq-item" data-en='LinkedIn B2B <span class="star">✦</span>'>LinkedIn B2B <span class="star">✦</span></span>
+        <span class="mq-item" data-en='SEO + AI <span class="star">✦</span>'>SEO + IA <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Client reactivation <span class="star">✦</span>'>Reativação de clientes <span class="star">✦</span></span>
       </span>
     </div>
   </div>
   <div class="mq rev">
     <div class="mq-track">
-      <span class="mq-item">cliente novo <b>todo mês</b> <span class="star">✦</span></span>
-      <span class="mq-item">resposta em <b>segundos</b> <span class="star">✦</span></span>
-      <span class="mq-item"><b>previsível</b> <span class="star">✦</span></span>
-      <span class="mq-item">sem depender de indicação <span class="star">✦</span></span>
-      <span class="mq-item">ia operando <b>24/7</b> <span class="star">✦</span></span>
+      <span class="mq-item" data-en='new client <b>every month</b> <span class="star">✦</span>'>cliente novo <b>todo mês</b> <span class="star">✦</span></span>
+      <span class="mq-item" data-en='replies in <b>seconds</b> <span class="star">✦</span>'>resposta em <b>segundos</b> <span class="star">✦</span></span>
+      <span class="mq-item" data-en='<b>predictable</b> <span class="star">✦</span>'><b>previsível</b> <span class="star">✦</span></span>
+      <span class="mq-item" data-en='no referrals needed <span class="star">✦</span>'>sem depender de indicação <span class="star">✦</span></span>
+      <span class="mq-item" data-en='ai working <b>24/7</b> <span class="star">✦</span>'>ia operando <b>24/7</b> <span class="star">✦</span></span>
       <span aria-hidden="true" style="display:contents">
-        <span class="mq-item">cliente novo <b>todo mês</b> <span class="star">✦</span></span>
-        <span class="mq-item">resposta em <b>segundos</b> <span class="star">✦</span></span>
-        <span class="mq-item"><b>previsível</b> <span class="star">✦</span></span>
-        <span class="mq-item">sem depender de indicação <span class="star">✦</span></span>
-        <span class="mq-item">ia operando <b>24/7</b> <span class="star">✦</span></span>
+        <span class="mq-item" data-en='new client <b>every month</b> <span class="star">✦</span>'>cliente novo <b>todo mês</b> <span class="star">✦</span></span>
+        <span class="mq-item" data-en='replies in <b>seconds</b> <span class="star">✦</span>'>resposta em <b>segundos</b> <span class="star">✦</span></span>
+        <span class="mq-item" data-en='<b>predictable</b> <span class="star">✦</span>'><b>previsível</b> <span class="star">✦</span></span>
+        <span class="mq-item" data-en='no referrals needed <span class="star">✦</span>'>sem depender de indicação <span class="star">✦</span></span>
+        <span class="mq-item" data-en='ai working <b>24/7</b> <span class="star">✦</span>'>ia operando <b>24/7</b> <span class="star">✦</span></span>
       </span>
     </div>
   </div>
@@ -676,40 +690,40 @@
 
 <!-- ============ 3 · O PROBLEMA ============ -->
 <section class="sec" id="problema">
-  <div class="pb-ghost" aria-hidden="true">Problema</div>
+  <div class="pb-ghost" aria-hidden="true" data-en="Problem">Problema</div>
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>o problema</p>
-    <h2 class="rv" style="--d:.08s">Seu negócio faz por merecer.<br>Mas a internet <span class="lm">não mostra isso.</span></h2>
-    <p class="lead rv" style="--d:.16s">Todo dia tem gente na sua cidade procurando o que você vende. Se essa gente não chega até você, é porque o seu negócio tem <b>pelo menos um destes três vazamentos:</b></p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>the problem'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>o problema</p>
+    <h2 class="rv" style="--d:.08s" data-en='Your business deserves better.<br>But the internet <span class="lm">doesn&apos;t show it.</span>'>Seu negócio faz por merecer.<br>Mas a internet <span class="lm">não mostra isso.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Every day, somewhere in Brazil, people are searching for what you sell. If they never reach you, it&apos;s because your business has <b>at least one of these three leaks:</b>'>Todo dia tem gente em algum lugar do Brasil procurando o que você vende. Se essa gente não chega até você, é porque o seu negócio tem <b>pelo menos um destes três vazamentos:</b></p>
 
     <div class="leaks" id="pb-leaks">
       <div class="pb-card" data-i="0" style="opacity:.35;transform:translate(-300px,-90px) rotate(-14deg) scale(.86)">
         <div class="leak in">
           <div class="n">01</div>
-          <h3>Ninguém te acha.</h3>
-          <p>Quem procura seu serviço encontra quem aparece no Google, não quem atende melhor. O cliente fecha com o concorrente <b>sem nem saber que você existe.</b></p>
+          <h3 data-en="Nobody finds you.">Ninguém te acha.</h3>
+          <p data-en='Whoever&apos;s searching for your service finds whoever shows up on Google, not whoever serves them best. The client closes with your competitor <b>without ever knowing you exist.</b>'>Quem procura seu serviço encontra quem aparece no Google, não quem atende melhor. O cliente fecha com o concorrente <b>sem nem saber que você existe.</b></p>
         </div>
       </div>
       <div class="pb-card" data-i="1" style="opacity:.35;transform:translate(0,140px) scale(.86)">
         <div class="leak in">
           <div class="n">02</div>
-          <h3>O cliente esfria.</h3>
-          <p>Ele chamou de manhã. A resposta saiu à noite. Nesse intervalo, ele fechou com quem respondeu primeiro. <b>Interesse tem prazo de validade. E é curto.</b></p>
+          <h3 data-en="The client goes cold.">O cliente esfria.</h3>
+          <p data-en="They reached out in the morning. The reply went out that night. In between, they closed with whoever answered first. <b>Interest has an expiration date. And it&apos;s a short one.</b>">Ele chamou de manhã. A resposta saiu à noite. Nesse intervalo, ele fechou com quem respondeu primeiro. <b>Interesse tem prazo de validade. E é curto.</b></p>
         </div>
       </div>
       <div class="pb-card" data-i="2" style="opacity:.35;transform:translate(300px,-90px) rotate(14deg) scale(.86)">
         <div class="leak in">
           <div class="n">03</div>
-          <h3>Ninguém volta.</h3>
-          <p>Serviço entregue, cliente sumiu. Sem contato, sem reativação. O próximo mês começa <b>do zero</b>, quando podia começar cheio de quem já confia em você.</p>
+          <h3 data-en="Nobody comes back.">Ninguém volta.</h3>
+          <p data-en="Service delivered, client gone. No contact, no reactivation. Next month starts <b>from zero</b>, when it could start full of people who already trust you.">Serviço entregue, cliente sumiu. Sem contato, sem reativação. O próximo mês começa <b>do zero</b>, quando podia começar cheio de quem já confia em você.</p>
         </div>
       </div>
     </div>
 
     <div class="money" id="pb-money">
-      <div class="mcard rv" style="--d:.1s"><div class="lb">mês bom</div><div class="vl up" data-to="42" data-prefix="R$ " data-suffix=" mil">R$ 42 mil</div></div>
-      <div class="mcard down rv" style="--d:.2s"><div class="lb">mês fraco</div><div class="vl up" data-to="19" data-prefix="R$ " data-suffix=" mil">R$ 19 mil</div></div>
-      <div class="mcard note rv" style="--d:.3s"><p>E as contas do negócio? <b>Chegam iguais todo mês.</b> Aluguel, equipe, ferramentas. Quando a receita oscila, quem balança é você.</p></div>
+      <div class="mcard rv" style="--d:.1s"><div class="lb" data-en="good month">mês bom</div><div class="vl up" data-to="42" data-prefix="R$ " data-suffix=" mil" data-suffix-en="k">R$ 42 mil</div></div>
+      <div class="mcard down rv" style="--d:.2s"><div class="lb" data-en="slow month">mês fraco</div><div class="vl up" data-to="19" data-prefix="R$ " data-suffix=" mil" data-suffix-en="k">R$ 19 mil</div></div>
+      <div class="mcard note rv" style="--d:.3s"><p data-en="And the business bills? <b>They show up the same every month.</b> Rent, team, tools. When revenue swings, you&apos;re the one who takes the hit.">E as contas do negócio? <b>Chegam iguais todo mês.</b> Aluguel, equipe, ferramentas. Quando a receita oscila, quem balança é você.</p></div>
     </div>
   </div>
 </section>
@@ -718,9 +732,9 @@
 <section class="sec light" id="solucao">
   <div class="sol-atmos" aria-hidden="true"><span class="sol-glow g1"></span><span class="sol-glow g2"></span><span class="sol-dots"></span></div>
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>a solução</p>
-    <h2 class="rv" style="--d:.08s">Presença digital não é sorte.<br>É <span class="lm">sistema.</span></h2>
-    <p class="lead rv" style="--d:.16s">A Theatrum monta os <b>três motores</b> que fecham os três vazamentos e opera tudo por você, com site, tráfego e IA trabalhando juntos.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>the solution'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>a solução</p>
+    <h2 class="rv" style="--d:.08s" data-en='Digital presence isn&apos;t luck.<br>It&apos;s a <span class="lm">system.</span>'>Presença digital não é sorte.<br>É <span class="lm">sistema.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="Theatrum builds the <b>three engines</b> that close the three leaks and run everything for you, with website, traffic and AI working together.">A Theatrum monta os <b>três motores</b> que fecham os três vazamentos e opera tudo por você, com site, tráfego e IA trabalhando juntos.</p>
 
     <div class="sol-grid">
       <article class="sol-card" data-sr>
@@ -728,10 +742,10 @@
           <div class="sol-ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></div>
           <svg class="sol-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
         </div>
-        <div class="tag2">motor 01</div>
-        <h3>Atrair</h3>
-        <p>Seu negócio na frente de <b>quem já procura</b> o que você vende: site profissional + Google Meu Negócio otimizado + anúncios que transformam clique em contato.</p>
-        <div class="foot2">fecha o vazamento "ninguém te acha"</div>
+        <div class="tag2" data-en="engine 01">motor 01</div>
+        <h3 data-en="Attract">Atrair</h3>
+        <p data-en='Your business in front of <b>whoever&apos;s already looking</b> for what you sell: professional website + optimized Google Business Profile + ads that turn clicks into contacts.'>Seu negócio na frente de <b>quem já procura</b> o que você vende: site profissional + Google Meu Negócio otimizado + anúncios que transformam clique em contato.</p>
+        <div class="foot2" data-en='closes the "nobody finds you" leak'>fecha o vazamento "ninguém te acha"</div>
       </article>
 
       <article class="sol-card" data-sr>
@@ -739,10 +753,10 @@
           <div class="sol-ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></div>
           <svg class="sol-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
         </div>
-        <div class="tag2">motor 02</div>
-        <h3>Converter</h3>
-        <p>Resposta em <b>segundos</b>, a qualquer hora, com IA no WhatsApp do seu negócio. Cada contato vira lead organizado, cada conversa segue o script. <b>Nenhum cliente esquecido.</b></p>
-        <div class="foot2">fecha o vazamento "o cliente esfria"</div>
+        <div class="tag2" data-en="engine 02">motor 02</div>
+        <h3 data-en="Convert">Converter</h3>
+        <p data-en="Replies in <b>seconds</b>, any time, with AI on your business&apos;s WhatsApp. Every contact becomes an organized lead, every conversation follows the script. <b>No client forgotten.</b>">Resposta em <b>segundos</b>, a qualquer hora, com IA no WhatsApp do seu negócio. Cada contato vira lead organizado, cada conversa segue o script. <b>Nenhum cliente esquecido.</b></p>
+        <div class="foot2" data-en='closes the "client goes cold" leak'>fecha o vazamento "o cliente esfria"</div>
       </article>
 
       <article class="sol-card" data-sr>
@@ -750,16 +764,16 @@
           <div class="sol-ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
           <svg class="sol-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
         </div>
-        <div class="tag2">motor 03</div>
-        <h3>Fidelizar</h3>
-        <p>Reativação automática de quem sumiu, lembretes e relacionamento contínuo. Quem já confia em você <b>volta a fechar negócio.</b></p>
-        <div class="foot2">fecha o vazamento "ninguém volta"</div>
+        <div class="tag2" data-en="engine 03">motor 03</div>
+        <h3 data-en="Retain">Fidelizar</h3>
+        <p data-en="Automatic reactivation of whoever disappeared, reminders and ongoing relationship. Whoever already trusts you <b>comes back to close a deal.</b>">Reativação automática de quem sumiu, lembretes e relacionamento contínuo. Quem já confia em você <b>volta a fechar negócio.</b></p>
+        <div class="foot2" data-en='closes the "nobody comes back" leak'>fecha o vazamento "ninguém volta"</div>
       </article>
     </div>
 
     <div class="sol-status" data-sr>
       <span class="status-dot"></span>
-      <p>Os três motores girando juntos = <span class="lm">sua identidade digital completa.</span></p>
+      <p data-en='The three engines running together = <span class="lm">your complete digital identity.</span>'>Os três motores girando juntos = <span class="lm">sua identidade digital completa.</span></p>
     </div>
   </div>
 </section>
@@ -767,29 +781,29 @@
 <!-- ============ 5 · COMO FUNCIONA ============ -->
 <section class="sec" id="como-funciona">
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>como funciona</p>
-    <h2 class="rv" style="--d:.08s">Do diagnóstico à sua<br>identidade digital <span class="lm">no ar.</span></h2>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>how it works'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>como funciona</p>
+    <h2 class="rv" style="--d:.08s" data-en='From diagnosis to your<br>digital identity <span class="lm">live.</span>'>Do diagnóstico à sua<br>identidade digital <span class="lm">no ar.</span></h2>
 
     <div class="steps">
       <div class="step rv" style="--d:.05s">
         <div class="dot">01</div>
-        <h3>Diagnóstico <small>gratuito · sem compromisso</small></h3>
-        <p>A gente analisa a presença digital do seu negócio e mostra exatamente onde estão os vazamentos e quanto eles custam.</p>
+        <h3 data-en='Diagnosis <small>free · no strings attached</small>'>Diagnóstico <small>gratuito · sem compromisso</small></h3>
+        <p data-en="We analyze your business's digital presence and show you exactly where the leaks are and how much they cost.">A gente analisa a presença digital do seu negócio e mostra exatamente onde estão os vazamentos e quanto eles custam.</p>
       </div>
       <div class="step rv" style="--d:.15s">
         <div class="dot">02</div>
-        <h3>Implantação <small>a identidade é montada</small></h3>
-        <p>Site, Google Meu Negócio, anúncios, IA no WhatsApp e automações: tudo construído e conectado para o seu negócio, especificamente.</p>
+        <h3 data-en="Deployment <small>the identity is built</small>">Implantação <small>a identidade é montada</small></h3>
+        <p data-en="Website, Google Business Profile, ads, AI on WhatsApp and automations: all built and connected specifically for your business.">Site, Google Meu Negócio, anúncios, IA no WhatsApp e automações: tudo construído e conectado para o seu negócio, especificamente.</p>
       </div>
       <div class="step rv" style="--d:.25s">
         <div class="dot">03</div>
-        <h3>Operação <small>ia + tráfego rodando</small></h3>
-        <p>O sistema trabalha todos os dias: atrai quem procura, responde em segundos e traz de volta quem sumiu.</p>
+        <h3 data-en="Operation <small>ai + traffic running</small>">Operação <small>ia + tráfego rodando</small></h3>
+        <p data-en="The system works every day: attracts whoever's searching, replies in seconds and brings back whoever disappeared.">O sistema trabalha todos os dias: atrai quem procura, responde em segundos e traz de volta quem sumiu.</p>
       </div>
       <div class="step rv" style="--d:.35s">
         <div class="dot">04</div>
-        <h3>Ajuste fino <small>todo mês</small></h3>
-        <p>Relatório claro de contatos e faturamento (não de curtidas) e otimização contínua do que traz mais retorno.</p>
+        <h3 data-en="Fine-tuning <small>every month</small>">Ajuste fino <small>todo mês</small></h3>
+        <p data-en="Clear reporting on contacts and revenue (not likes), with continuous optimization of whatever brings the best return.">Relatório claro de contatos e faturamento (não de curtidas) e otimização contínua do que traz mais retorno.</p>
       </div>
     </div>
   </div>
@@ -798,34 +812,34 @@
 <!-- ============ 6 · O CONTRASTE ============ -->
 <section class="sec" id="beneficios" style="padding-top:40px">
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>a diferença</p>
-    <h2 class="dif-h">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>the difference'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>a diferença</p>
+    <h2 class="dif-h" data-en='<span class="dif-line"><span class="w">What</span> <span class="w">you</span> <span class="w">get</span></span> <span class="dif-line"><span class="w dif-em">(and what you stop accepting).<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>'>
       <span class="dif-line"><span class="w">O</span> <span class="w">que</span> <span class="w">você</span> <span class="w">recebe</span></span>
       <span class="dif-line"><span class="w dif-em">(e o que para de aceitar).<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
     </h2>
 
     <div class="dif-grid">
       <div class="dif-col dif-bad">
-        <p class="dif-label">✕ agência comum</p>
+        <p class="dif-label" data-en="✕ typical agency">✕ agência comum</p>
         <ul>
-          <li><span class="x">✕</span><span class="tx">Posts bonitos no feed</span></li>
-          <li><span class="x">✕</span><span class="tx">Relatório de curtidas e alcance</span></li>
-          <li><span class="x">✕</span><span class="tx">Resposta ao lead "quando dá"</span></li>
-          <li><span class="x">✕</span><span class="tx">Pacote pronto, igual pra qualquer negócio</span></li>
-          <li><span class="x">✕</span><span class="tx">Você cobrando resultado todo mês</span></li>
+          <li><span class="x">✕</span><span class="tx" data-en="Pretty posts on the feed">Posts bonitos no feed</span></li>
+          <li><span class="x">✕</span><span class="tx" data-en="Reports on likes and reach">Relatório de curtidas e alcance</span></li>
+          <li><span class="x">✕</span><span class="tx" data-en='Replies to leads "whenever there&apos;s time"'>Resposta ao lead "quando dá"</span></li>
+          <li><span class="x">✕</span><span class="tx" data-en="Ready-made package, same for every business">Pacote pronto, igual pra qualquer negócio</span></li>
+          <li><span class="x">✕</span><span class="tx" data-en="You chasing results every month">Você cobrando resultado todo mês</span></li>
         </ul>
       </div>
       <div class="dif-col dif-good">
         <p class="dif-label">✦ theatrum</p>
         <ul>
-          <li><span class="ck">✓</span><span class="tx">Métricas que impactam o <b>caixa</b> <i>(contato, orçamento, faturamento)</i><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx">Fluxo contínuo de <b>clientes novos</b>, todo dia<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx"><b>Controle total</b> de cada etapa do processo<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx"><b>Independência</b> de indicação<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx">Funil <b>previsível</b> e organizado<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx"><b>Acompanhamento</b> da jornada do cliente<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx">Crescimento <b>consistente e escalável</b><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-          <li><span class="ck">✓</span><span class="tx">Reativação trazendo cliente antigo <b>de volta a fechar</b><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='Metrics that hit your <b>cash flow</b> <i>(contacts, quotes, revenue)</i><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>Métricas que impactam o <b>caixa</b> <i>(contato, orçamento, faturamento)</i><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='A steady stream of <b>new clients</b>, every day<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>Fluxo contínuo de <b>clientes novos</b>, todo dia<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='<b>Full control</b> over every step of the process<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'><b>Controle total</b> de cada etapa do processo<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='<b>Independence</b> from referrals<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'><b>Independência</b> de indicação<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='A <b>predictable</b> and organized funnel<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>Funil <b>previsível</b> e organizado<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='<b>Tracking</b> of the client&apos;s journey<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'><b>Acompanhamento</b> da jornada do cliente<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='<b>Consistent and scalable</b> growth<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>Crescimento <b>consistente e escalável</b><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+          <li><span class="ck">✓</span><span class="tx" data-en='Reactivation bringing old clients <b>back to close again</b><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>Reativação trazendo cliente antigo <b>de volta a fechar</b><svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
         </ul>
       </div>
     </div>
@@ -1221,9 +1235,9 @@
 
 <section class="sec light" id="sistema">
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>demonstração</p>
-    <h2 class="rv" style="--d:.08s">Vê o sistema <span class="lm">trabalhando.</span></h2>
-    <p class="lead rv" style="--d:.16s">Não é promessa: é demonstração. Isso tudo fica rodando sozinho quando a Theatrum entra no seu negócio.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>demonstração</p>
+    <h2 class="rv" style="--d:.08s" data-en='See the system <span class="lm">at work.</span>'>Vê o sistema <span class="lm">trabalhando.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="It's not a promise: it's a demonstration. All of this keeps running on its own once Theatrum is in your business.">Não é promessa: é demonstração. Isso tudo fica rodando sozinho quando a Theatrum entra no seu negócio.</p>
 
     <div class="sys-wrap">
       <div class="rv" style="--d:.2s">
@@ -1233,8 +1247,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Topo da busca</span><br>
-              <span class="f-desc">Teu negócio na frente de quem procura. Cliente novo todos os dias.</span>
+              <span class="f-title" data-en="Top of search">Topo da busca</span><br>
+              <span class="f-desc" data-en="Your business in front of whoever's searching. New client every day.">Teu negócio na frente de quem procura. Cliente novo todos os dias.</span>
             </span>
           </button>
 
@@ -1243,8 +1257,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
             </span>
             <span>
-              <span class="f-title">WhatsApp que atende sozinho</span><br>
-              <span class="f-desc">Responde, tira dúvida e agenda. 24h, até fora do horário.</span>
+              <span class="f-title" data-en="WhatsApp that answers itself">WhatsApp que atende sozinho</span><br>
+              <span class="f-desc" data-en="Replies, answers questions and books. 24h, even after hours.">Responde, tira dúvida e agenda. 24h, até fora do horário.</span>
             </span>
           </button>
 
@@ -1253,8 +1267,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 10a8 8 0 0114-4.5M20 14a8 8 0 01-14 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18 2v4h-4M6 22v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Follow-up que recupera dinheiro</span><br>
-              <span class="f-desc">Orçamento parado volta a responder e vira receita.</span>
+              <span class="f-title" data-en="Follow-up that recovers money">Follow-up que recupera dinheiro</span><br>
+              <span class="f-desc" data-en="Stalled quotes start replying again and turn into revenue.">Orçamento parado volta a responder e vira receita.</span>
             </span>
           </button>
 
@@ -1263,8 +1277,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="8.5" cy="13" r="1.1" fill="currentColor"/><circle cx="12" cy="13" r="1.1" fill="currentColor"/><circle cx="15.5" cy="13" r="1.1" fill="currentColor"/><circle cx="8.5" cy="16.5" r="1.1" fill="currentColor"/><circle cx="12" cy="16.5" r="1.1" fill="currentColor"/></svg>
             </span>
             <span>
-              <span class="f-title">O resultado: agenda cheia</span><br>
-              <span class="f-desc">Tudo acima desemboca aqui: a semana lota sozinha.</span>
+              <span class="f-title" data-en="The result: a full calendar">O resultado: agenda cheia</span><br>
+              <span class="f-desc" data-en="Everything above leads here: the week fills up on its own.">Tudo acima desemboca aqui: a semana lota sozinha.</span>
             </span>
           </button>
 
@@ -1273,8 +1287,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8.5 14.5l2.2 2.2 4.6-4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Conteúdo no automático</span><br>
-              <span class="f-desc">Os 30 posts do mês criados e agendados de uma vez.</span>
+              <span class="f-title" data-en="Content on autopilot">Conteúdo no automático</span><br>
+              <span class="f-desc" data-en="The month's 30 posts created and scheduled at once.">Os 30 posts do mês criados e agendados de uma vez.</span>
             </span>
           </button>
 
@@ -1283,8 +1297,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h16l-6.2 7.2v5.3L10.2 20v-7.8L4 5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Leads organizados sozinhos</span><br>
-              <span class="f-desc">Cada conversa vira card e anda sozinha até fechar.</span>
+              <span class="f-title" data-en="Leads organized on their own">Leads organizados sozinhos</span><br>
+              <span class="f-desc" data-en="Every conversation becomes a card and moves itself along until it closes.">Cada conversa vira card e anda sozinha até fechar.</span>
             </span>
           </button>
 
@@ -1293,8 +1307,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 9a6 6 0 10-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 19.5a2.2 2.2 0 004 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Lembretes que evitam falta</span><br>
-              <span class="f-desc">Confirmação automática antes do atendimento. Agenda sem furo.</span>
+              <span class="f-title" data-en="Reminders that prevent no-shows">Lembretes que evitam falta</span><br>
+              <span class="f-desc" data-en="Automatic confirmation before the appointment. No gaps in the calendar.">Confirmação automática antes do atendimento. Agenda sem furo.</span>
             </span>
           </button>
 
@@ -1303,8 +1317,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.8" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
             </span>
             <span>
-              <span class="f-title">Painel de metas</span><br>
-              <span class="f-desc">A meta do mês na tela, andando sozinha.</span>
+              <span class="f-title" data-en="Goals dashboard">Painel de metas</span><br>
+              <span class="f-desc" data-en="The month's target on screen, moving forward on its own.">A meta do mês na tela, andando sozinha.</span>
             </span>
           </button>
 
@@ -1313,8 +1327,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.3-9.6C1.5 8 3.8 4.9 7 4.9c2 0 3.6 1.1 5 2.9 1.4-1.8 3-2.9 5-2.9 3.2 0 5.5 3.1 4.3 6.5C19.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Reativação que traz cliente de volta</span><br>
-              <span class="f-desc">Meses depois do último contato, o sistema chama e ele volta.</span>
+              <span class="f-title" data-en="Reactivation that brings clients back">Reativação que traz cliente de volta</span><br>
+              <span class="f-desc" data-en="Months after the last contact, the system reaches out and they return.">Meses depois do último contato, o sistema chama e ele volta.</span>
             </span>
           </button>
 
@@ -1323,8 +1337,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V14M10 20V9M16 20V4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M20 20H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Faturamento crescendo</span><br>
-              <span class="f-desc">Cada mês maior que o anterior, com recorde registrado.</span>
+              <span class="f-title" data-en="Growing revenue">Faturamento crescendo</span><br>
+              <span class="f-desc" data-en="Every month bigger than the last, with a new record on the board.">Cada mês maior que o anterior, com recorde registrado.</span>
             </span>
           </button>
 
@@ -1333,18 +1347,18 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l5.5-5.5 3.5 3.5L21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
             <span>
-              <span class="f-title">Evolução a longo prazo</span><br>
-              <span class="f-desc">A virada em 12 meses: antes e depois da Theatrum.</span>
+              <span class="f-title" data-en="Long-term evolution">Evolução a longo prazo</span><br>
+              <span class="f-desc" data-en="The 12-month turnaround: before and after Theatrum.">A virada em 12 meses: antes e depois da Theatrum.</span>
             </span>
           </button>
 
-          <button class="more-btn" id="sysMoreBtn">
+          <button class="more-btn" id="sysMoreBtn" data-en='<span class="pl">+</span> see the other 7 demos'>
             <span class="pl">+</span> ver as outras 7 demonstrações
           </button>
         </div>
 
         <div class="sys-ctawrap">
-          <a class="btn btn-primary" href="#diagnostico">Quero isso rodando no meu negócio</a>
+          <a class="btn btn-primary" href="#diagnostico" data-en="I want this running in my business">Quero isso rodando no meu negócio</a>
         </div>
       </div>
 
@@ -1368,32 +1382,38 @@
                 </div>
               </div>
               <div class="chat" id="sysChat">
-                <div class="daychip seq">HOJE</div>
-                <div class="msg in seq">Oi! Vocês atendem sábado?<div class="meta">22:47</div></div>
+                <div class="daychip seq" data-en="TODAY">HOJE</div>
+                <div class="msg in seq" data-en='Hi! Do you work Saturdays?<div class="meta">22:47</div>'>Oi! Vocês atendem sábado?<div class="meta">22:47</div></div>
                 <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq">Atendemos sim! Sábado das 9h às 13h. Quer que eu já reserve um horário pra você?
+                <div class="msg out seq" data-en='Yes, we do! Saturday from 9am to 1pm. Want me to book a time for you?
+                  <div class="meta"><span class="ia">AI</span> 22:47
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Atendemos sim! Sábado das 9h às 13h. Quer que eu já reserve um horário pra você?
                   <div class="meta"><span class="ia">IA</span> 22:47
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div class="msg in seq">Pode ser 10h?<div class="meta">22:48</div></div>
+                <div class="msg in seq" data-en='Could it be 10am?<div class="meta">22:48</div>'>Pode ser 10h?<div class="meta">22:48</div></div>
                 <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq">Fechado: sábado às 10h. Na sexta te mando um lembrete por aqui. 😊
+                <div class="msg out seq" data-en='Done: Saturday at 10am. I&apos;ll send you a reminder here on Friday. 😊
+                  <div class="meta"><span class="ia">AI</span> 22:48
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Fechado: sábado às 10h. Na sexta te mando um lembrete por aqui. 😊
                   <div class="meta"><span class="ia">IA</span> 22:48
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
               </div>
               <div class="inputbar">
-                <div class="field">Mensagem</div>
+                <div class="field" data-en="Message">Mensagem</div>
                 <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
               </div>
             </div>
             <div class="toast" id="sysToast">
               <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <div>
-                <div class="t-title">Sábado, 10h · agendado</div>
-                <div class="t-sub">22h48 · sem você pegar no celular</div>
+                <div class="t-title" data-en="Saturday, 10am · booked">Sábado, 10h · agendado</div>
+                <div class="t-sub" data-en="10:48pm · without you touching your phone">22h48 · sem você pegar no celular</div>
               </div>
             </div>
           </div>
@@ -1416,11 +1436,12 @@
               </div>
               <div class="g-results">
                 <div class="g-first seq">
-                  <span class="rank">TEU SITE</span>
+                  <span class="rank" data-en="YOUR SITE">TEU SITE</span>
                   <div class="r-url">seunegocio.com.br</div>
-                  <div class="r-title">Seu Negócio · atendimento na sua região</div>
-                  <div class="r-desc">Avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
-                  <div class="r-cta">
+                  <div class="r-title" data-en="Your Business · trusted service">Seu Negócio · atendimento na sua região</div>
+                  <div class="r-desc" data-en="No-obligation quote. Book on WhatsApp and leave with everything sorted.">Avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
+                  <div class="r-cta" data-en='<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    top of search results'>
                     <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     no topo das buscas da região
                   </div>
@@ -1437,13 +1458,13 @@
           <div class="window">
             <div class="app-head">
               <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
-              <span class="app-name">Theatrum <span>· Motor de conteúdo</span></span>
-              <span class="live"><i></i> rodando</span>
+              <span class="app-name" data-en='Theatrum <span>· Content engine</span>'>Theatrum <span>· Motor de conteúdo</span></span>
+              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
             <div class="c-body">
               <div class="c-status" id="sysCStatus">
                 <span class="spin"></span>
-                <span class="c-label" id="sysCLabel">Gerando conteúdo do mês…</span>
+                <span class="c-label" id="sysCLabel" data-en="Generating this month's content…">Gerando conteúdo do mês…</span>
                 <span class="c-count" id="sysCCount">0/30</span>
               </div>
               <div class="c-bar"><i id="sysCBar"></i></div>
@@ -1457,56 +1478,56 @@
           <div class="window">
             <div class="app-head">
               <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
-              <span class="app-name">Theatrum <span>· CRM de leads</span></span>
-              <span class="live"><i></i> rodando</span>
+              <span class="app-name" data-en='Theatrum <span>· Lead CRM</span>'>Theatrum <span>· CRM de leads</span></span>
+              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
             <div class="k-body">
               <div class="k-cols">
                 <div class="k-col">
-                  <h5>Novo</h5>
+                  <h5 data-en="New">Novo</h5>
                   <div class="k-stack">
                     <div class="k-lead" data-lead="0">
                       <div class="k-name">Mariana
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="#00a884" stroke-width="2.4" stroke-linejoin="round"/></svg>
                       </div>
-                      <div class="k-sub">Oi! Vocês atend…</div>
+                      <div class="k-sub" data-en="Hi! Do you wor…">Oi! Vocês atend…</div>
                       <span class="tag">WHATSAPP</span>
                     </div>
-                    <div class="k-card ghost"><div class="k-name">Roberto</div><div class="k-sub">Quanto custa o…</div></div>
+                    <div class="k-card ghost"><div class="k-name">Roberto</div><div class="k-sub" data-en="How much does…">Quanto custa o…</div></div>
                   </div>
                 </div>
                 <div class="k-col">
-                  <h5>Conversando</h5>
+                  <h5 data-en="In conversation">Conversando</h5>
                   <div class="k-stack">
                     <div class="k-lead" data-lead="1">
                       <div class="k-name">Mariana</div>
-                      <div class="k-sub">Pode ser 10h?</div>
-                      <span class="tag">IA RESPONDENDO</span>
+                      <div class="k-sub" data-en="Could it be 10am?">Pode ser 10h?</div>
+                      <span class="tag" data-en="AI REPLYING">IA RESPONDENDO</span>
                     </div>
-                    <div class="k-card ghost"><div class="k-name">Ana</div><div class="k-sub">Confirmando hor…</div></div>
+                    <div class="k-card ghost"><div class="k-name">Ana</div><div class="k-sub" data-en="Confirming ti…">Confirmando hor…</div></div>
                   </div>
                 </div>
                 <div class="k-col">
-                  <h5>Agendado</h5>
+                  <h5 data-en="Scheduled">Agendado</h5>
                   <div class="k-stack">
                     <div class="k-lead" data-lead="2">
                       <div class="k-name">Mariana</div>
-                      <div class="k-sub">Sáb, 10h</div>
-                      <span class="tag">LEMBRETE ON</span>
+                      <div class="k-sub" data-en="Sat, 10am">Sáb, 10h</div>
+                      <span class="tag" data-en="REMINDER ON">LEMBRETE ON</span>
                     </div>
-                    <div class="k-card ghost"><div class="k-name">Carlos</div><div class="k-sub">Ter, 14h</div></div>
+                    <div class="k-card ghost"><div class="k-name">Carlos</div><div class="k-sub" data-en="Tue, 2pm">Ter, 14h</div></div>
                   </div>
                 </div>
                 <div class="k-col">
-                  <h5>Fechou</h5>
+                  <h5 data-en="Closed">Fechou</h5>
                   <div class="k-stack">
                     <div class="k-lead" data-lead="3">
                       <div class="k-name">Mariana</div>
-                      <div class="k-sub">1º atendimento ✓</div>
-                      <span class="tag">FECHADO</span>
+                      <div class="k-sub" data-en="1st visit ✓">1º atendimento ✓</div>
+                      <span class="tag" data-en="CLOSED">FECHADO</span>
                     </div>
-                    <div class="k-card ghost"><div class="k-name">Bia</div><div class="k-sub">Pacote mensal</div></div>
-                    <div class="k-card ghost"><div class="k-name">Felipe</div><div class="k-sub">1º atendimento</div></div>
+                    <div class="k-card ghost"><div class="k-name">Bia</div><div class="k-sub" data-en="Monthly package">Pacote mensal</div></div>
+                    <div class="k-card ghost"><div class="k-name">Felipe</div><div class="k-sub" data-en="1st visit">1º atendimento</div></div>
                   </div>
                 </div>
               </div>
@@ -1532,39 +1553,48 @@
                 </div>
               </div>
               <div class="chat" id="sysChatF" style="height:430px">
-                <div class="daychip seq">Há 12 dias</div>
-                <div class="msg out old seq">Seu orçamento ficou em R$ 3.200. Qualquer dúvida me chama! 👋
+                <div class="daychip seq" data-en="12 days ago">Há 12 dias</div>
+                <div class="msg out old seq" data-en='Your quote came to R$ 3,200. Just call if you have any questions! 👋
+                  <div class="meta">14:32
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Seu orçamento ficou em R$ 3.200. Qualquer dúvida me chama! 👋
                   <div class="meta">14:32
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div class="nores seq">visualizado · sem resposta</div>
-                <div class="daychip seq">Hoje</div>
+                <div class="nores seq" data-en="seen · no reply">visualizado · sem resposta</div>
+                <div class="daychip seq" data-en="Today">Hoje</div>
                 <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq">Oi, Carlos! Tudo bem? 😊 Teu orçamento ainda tá reservado aqui. Quer que eu te mande as opções de pagamento?
+                <div class="msg out seq" data-en='Hi, Carlos! How&apos;s it going? 😊 Your quote is still on hold here. Want me to send you the payment options?
+                  <div class="meta"><span class="ia">AI</span> 10:04
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Oi, Carlos! Tudo bem? 😊 Teu orçamento ainda tá reservado aqui. Quer que eu te mande as opções de pagamento?
                   <div class="meta"><span class="ia">IA</span> 10:04
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div class="msg in seq">Pode mandar! Tava vendo isso mesmo<div class="meta">10:11</div></div>
+                <div class="msg in seq" data-en='Sure, send it over! Was just looking at that<div class="meta">10:11</div>'>Pode mandar! Tava vendo isso mesmo<div class="meta">10:11</div></div>
                 <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq">Te mandei 👆 E se quiser já seguro um horário na quinta, sem compromisso.
+                <div class="msg out seq" data-en='Sent 👆 And if you want, I can already hold a slot for Thursday, no obligation.
+                  <div class="meta"><span class="ia">AI</span> 10:11
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Te mandei 👆 E se quiser já seguro um horário na quinta, sem compromisso.
                   <div class="meta"><span class="ia">IA</span> 10:11
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div class="msg in seq">Fechou, quinta pode ser<div class="meta">10:12</div></div>
+                <div class="msg in seq" data-en='Deal, Thursday works<div class="meta">10:12</div>'>Fechou, quinta pode ser<div class="meta">10:12</div></div>
               </div>
               <div class="inputbar">
-                <div class="field">Mensagem</div>
+                <div class="field" data-en="Message">Mensagem</div>
                 <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
               </div>
             </div>
             <div class="toast" id="sysToastF">
               <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <div>
-                <div class="t-title">R$ 3.200 recuperados</div>
-                <div class="t-sub">orçamento parado há 12 dias · no automático</div>
+                <div class="t-title" data-en="R$ 3,200 recovered">R$ 3.200 recuperados</div>
+                <div class="t-sub" data-en="quote stalled for 12 days · fully automatic">orçamento parado há 12 dias · no automático</div>
               </div>
             </div>
           </div>
@@ -1588,30 +1618,36 @@
                 </div>
               </div>
               <div class="chat" id="sysChatL">
-                <div class="daychip seq">Hoje</div>
+                <div class="daychip seq" data-en="Today">Hoje</div>
                 <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq">Bom dia, Júlia! Passando pra lembrar do seu horário hoje às 10h 😊 Tá confirmado?
+                <div class="msg out seq" data-en='Morning, Júlia! Just a reminder about your 10am appointment today 😊 Still on?
+                  <div class="meta"><span class="ia">AI</span> 08:02
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Bom dia, Júlia! Passando pra lembrar do seu horário hoje às 10h 😊 Tá confirmado?
                   <div class="meta"><span class="ia">IA</span> 08:02
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div class="msg in seq">Confirmadíssimo! 👍<div class="meta">08:05</div></div>
-                <div class="msg out seq">Perfeito! Te esperamos lá 😊 Se precisar remarcar, é só me avisar por aqui.
+                <div class="msg in seq" data-en='Confirmed for sure! 👍<div class="meta">08:05</div>'>Confirmadíssimo! 👍<div class="meta">08:05</div></div>
+                <div class="msg out seq" data-en='Perfect! See you there 😊 If you need to reschedule, just let me know here.
+                  <div class="meta"><span class="ia">AI</span> 08:05
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Perfeito! Te esperamos lá 😊 Se precisar remarcar, é só me avisar por aqui.
                   <div class="meta"><span class="ia">IA</span> 08:05
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
               </div>
               <div class="inputbar">
-                <div class="field">Mensagem</div>
+                <div class="field" data-en="Message">Mensagem</div>
                 <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
               </div>
             </div>
             <div class="toast" id="sysToastL">
               <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <div>
-                <div class="t-title">Horário das 10h confirmado</div>
-                <div class="t-sub">lembrete automático · agenda sem furo</div>
+                <div class="t-title" data-en="10am appointment confirmed">Horário das 10h confirmado</div>
+                <div class="t-sub" data-en="automatic reminder · no gaps in the calendar">lembrete automático · agenda sem furo</div>
               </div>
             </div>
           </div>
@@ -1622,12 +1658,12 @@
           <div class="window">
             <div class="app-head">
               <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
-              <span class="app-name">Theatrum <span>· Metas do mês</span></span>
-              <span class="live"><i></i> rodando</span>
+              <span class="app-name" data-en='Theatrum <span>· This month&apos;s goals</span>'>Theatrum <span>· Metas do mês</span></span>
+              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
             <div class="m-body">
               <div class="m-top">
-                <span class="m-name">Faturamento · mês atual</span>
+                <span class="m-name" data-en="Revenue · current month">Faturamento · mês atual</span>
                 <span class="m-pct" id="sysMPct">0%</span>
               </div>
               <div class="m-vals">
@@ -1637,19 +1673,20 @@
               <div class="m-bar"><i id="sysMBar"></i></div>
               <div class="m-sub">
                 <div class="m-row">
-                  <div class="m-row-top"><span class="l">Atendimentos realizados</span><span class="r"><b id="sysMR0">0</b>/55</span></div>
+                  <div class="m-row-top"><span class="l" data-en="Appointments completed">Atendimentos realizados</span><span class="r"><b id="sysMR0">0</b>/55</span></div>
                   <div class="m-bar"><i id="sysMB0"></i></div>
                 </div>
                 <div class="m-row">
-                  <div class="m-row-top"><span class="l">Avaliações no Google</span><span class="r"><b id="sysMR1">0</b>/15</span></div>
+                  <div class="m-row-top"><span class="l" data-en="Google reviews">Avaliações no Google</span><span class="r"><b id="sysMR1">0</b>/15</span></div>
                   <div class="m-bar"><i id="sysMB1"></i></div>
                 </div>
                 <div class="m-row">
-                  <div class="m-row-top"><span class="l">Propostas fechadas</span><span class="r"><b id="sysMR2">0</b>/10</span></div>
+                  <div class="m-row-top"><span class="l" data-en="Proposals closed">Propostas fechadas</span><span class="r"><b id="sysMR2">0</b>/10</span></div>
                   <div class="m-bar"><i id="sysMB2"></i></div>
                 </div>
               </div>
-              <span class="chip-ok" id="sysMChip">
+              <span class="chip-ok" id="sysMChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                on pace to hit the goal'>
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 no ritmo pra bater a meta
               </span>
@@ -1662,12 +1699,13 @@
           <div class="window">
             <div class="app-head">
               <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
-              <span class="app-name">Theatrum <span>· Faturamento</span></span>
-              <span class="live"><i></i> rodando</span>
+              <span class="app-name" data-en='Theatrum <span>· Revenue</span>'>Theatrum <span>· Faturamento</span></span>
+              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
             <div class="f-body">
               <div class="f-chart" id="sysFChart"></div>
-              <span class="chip-ok" id="sysFChip">
+              <span class="chip-ok" id="sysFChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                record: R$ 45k this month'>
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 recorde: R$ 45 mil no mês
               </span>
@@ -1680,11 +1718,11 @@
           <div class="window">
             <div class="app-head">
               <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
-              <span class="app-name">Theatrum <span>· Evolução · 12 meses</span></span>
-              <span class="live"><i></i> rodando</span>
+              <span class="app-name" data-en='Theatrum <span>· Evolution · 12 months</span>'>Theatrum <span>· Evolução · 12 meses</span></span>
+              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
             <div class="e-body">
-              <svg viewBox="0 0 440 232" width="100%" role="img" aria-label="Faturamento dos últimos 12 meses: estável e baixo antes da Theatrum, crescimento contínuo depois">
+              <svg viewBox="0 0 440 232" width="100%" role="img" aria-label="Faturamento dos últimos 12 meses: estável e baixo antes da Theatrum, crescimento contínuo depois" id="sysEChartSvg">
                 <defs>
                   <linearGradient id="sysEGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0" stop-color="#E3B341" stop-opacity=".3"/>
@@ -1692,8 +1730,8 @@
                   </linearGradient>
                 </defs>
                 <line x1="184" y1="20" x2="184" y2="205" stroke="#4a4033" stroke-dasharray="4 5"/>
-                <text class="e-txt" x="176" y="32" text-anchor="end">antes</text>
-                <text class="e-txt lime" x="192" y="32">com a Theatrum</text>
+                <text class="e-txt" x="176" y="32" text-anchor="end" data-en="before">antes</text>
+                <text class="e-txt lime" x="192" y="32" data-en="with Theatrum">com a Theatrum</text>
                 <polygon class="e-area" id="sysEArea" fill="url(#sysEGrad)"
                   points="20,176 56,170 93,179 129,167 165,175 202,155 238,134 275,112 311,91 347,70 384,53 420,38 420,205 20,205"/>
                 <polyline class="e-line" id="sysELine" pathLength="1"
@@ -1701,12 +1739,13 @@
                 <g class="e-end" id="sysEEnd">
                   <circle cx="420" cy="38" r="7" fill="#141210"/>
                   <circle cx="420" cy="38" r="4.5" fill="#E3B341"/>
-                  <text x="412" y="28" text-anchor="end" fill="#F5F5F4" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="13">R$ 58 mil</text>
+                  <text x="412" y="28" text-anchor="end" fill="#F5F5F4" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="13" data-en="R$ 58k">R$ 58 mil</text>
                 </g>
-                <text class="e-txt" x="20" y="226">há 12 meses</text>
-                <text class="e-txt" x="420" y="226" text-anchor="end">hoje</text>
+                <text class="e-txt" x="20" y="226" data-en="12 months ago">há 12 meses</text>
+                <text class="e-txt" x="420" y="226" text-anchor="end" data-en="today">hoje</text>
               </svg>
-              <span class="chip-ok" id="sysEChip">
+              <span class="chip-ok" id="sysEChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                2.4× the revenue in 7 months'>
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 2,4× o faturamento em 7 meses
               </span>
@@ -1719,16 +1758,17 @@
           <div class="window">
             <div class="app-head">
               <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
-              <span class="app-name">Theatrum <span>· Agenda da semana</span></span>
-              <span class="live"><i></i> rodando</span>
+              <span class="app-name" data-en='Theatrum <span>· Week&apos;s schedule</span>'>Theatrum <span>· Agenda da semana</span></span>
+              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
             <div class="a-body">
               <span class="a-status" id="sysAStatus">só 5 horários preenchidos na semana</span>
               <div class="a-days">
-                <span>seg</span><span>ter</span><span>qua</span><span>qui</span><span>sex</span><span>sáb</span>
+                <span data-en="Mon">seg</span><span data-en="Tue">ter</span><span data-en="Wed">qua</span><span data-en="Thu">qui</span><span data-en="Fri">sex</span><span data-en="Sat">sáb</span>
               </div>
               <div class="a-grid" id="sysAGrid"></div>
-              <span class="chip-ok" id="sysAChip">
+              <span class="chip-ok" id="sysAChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                a full week, without you touching your phone'>
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 semana cheia, sem você pegar no celular
               </span>
@@ -1754,30 +1794,36 @@
                 </div>
               </div>
               <div class="chat" id="sysChatR">
-                <div class="daychip seq">6 meses após o último contato</div>
+                <div class="daychip seq" data-en="6 months after the last contact">6 meses após o último contato</div>
                 <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq">Oi, Ana! Tudo bem? 😊 Já faz um tempo desde seu último atendimento! Bora agendar de novo? Tenho quinta às 14h ou sexta às 9h.
+                <div class="msg out seq" data-en='Hi, Ana! How&apos;s it going? 😊 It&apos;s been a while since your last visit! Want to book again? I have Thursday at 2pm or Friday at 9am.
+                  <div class="meta"><span class="ia">AI</span> 16:20
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Oi, Ana! Tudo bem? 😊 Já faz um tempo desde seu último atendimento! Bora agendar de novo? Tenho quinta às 14h ou sexta às 9h.
                   <div class="meta"><span class="ia">IA</span> 16:20
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div class="msg in seq">Nossa, já?? 😅 Sexta às 9h então!<div class="meta">16:34</div></div>
-                <div class="msg out seq">Fechado: sexta às 9h ✨ Te mando um lembrete na véspera.
+                <div class="msg in seq" data-en='Wow, already?? 😅 Friday at 9am then!<div class="meta">16:34</div>'>Nossa, já?? 😅 Sexta às 9h então!<div class="meta">16:34</div></div>
+                <div class="msg out seq" data-en='Done: Friday at 9am ✨ I&apos;ll send you a reminder the day before.
+                  <div class="meta"><span class="ia">AI</span> 16:34
+                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>'>Fechado: sexta às 9h ✨ Te mando um lembrete na véspera.
                   <div class="meta"><span class="ia">IA</span> 16:34
                     <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
               </div>
               <div class="inputbar">
-                <div class="field">Mensagem</div>
+                <div class="field" data-en="Message">Mensagem</div>
                 <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
               </div>
             </div>
             <div class="toast" id="sysToastR">
               <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <div>
-                <div class="t-title">Ana voltou pra agenda</div>
-                <div class="t-sub">reativação automática · sem ninguém precisar ligar</div>
+                <div class="t-title" data-en="Ana is back on the calendar">Ana voltou pra agenda</div>
+                <div class="t-sub" data-en="automatic reactivation · no one had to call">reativação automática · sem ninguém precisar ligar</div>
               </div>
             </div>
           </div>
@@ -1818,12 +1864,12 @@
     if(!await step(500)) return; chip.classList.add('show');
     if(!await step(600)) return; m1.classList.add('show');
     if(!await step(900)) return;
-    waStatus.textContent = 'digitando…'; t1.classList.add('show');
+    waStatus.textContent = typingLabel(); t1.classList.add('show');
     if(!await step(1400)) return;
     t1.classList.remove('show'); waStatus.textContent = 'online'; o1.classList.add('show');
     if(!await step(1700)) return; m2.classList.add('show');
     if(!await step(800)) return;
-    waStatus.textContent = 'digitando…'; t2.classList.add('show');
+    waStatus.textContent = typingLabel(); t2.classList.add('show');
     if(!await step(1200)) return;
     t2.classList.remove('show'); waStatus.textContent = 'online'; o2.classList.add('show');
     if(!await step(800)) return; waToast.classList.add('show');
@@ -1834,7 +1880,7 @@
   const gQuery = document.getElementById('sysGQuery');
   const gCaret = document.getElementById('sysGCaret');
   const gSeq   = [...document.querySelectorAll('#panel-1 .seq')];
-  const QUERY  = 'atendimento perto de mim';
+  function QUERY(){ return document.documentElement.lang === 'en' ? 'service near me' : 'atendimento perto de mim'; }
   function resetGoogle(){
     gQuery.textContent = '';
     gCaret.style.display = '';
@@ -1843,7 +1889,7 @@
   async function playGoogle(g){
     const step = async ms => { await sleep(ms); return g === gen; };
     if(!await step(700)) return;
-    for(const ch of QUERY){
+    for(const ch of QUERY()){
       gQuery.textContent += ch;
       if(!await step(62)) return;
     }
@@ -1875,11 +1921,16 @@
     cGrid.appendChild(t);
   }
   const tiles = [...cGrid.children];
+  function cLabelText(done){
+    const en = document.documentElement.lang === 'en';
+    if (done) return en ? '30 posts created and scheduled ✓' : '30 posts criados e agendados ✓';
+    return en ? "Generating this month's content…" : 'Gerando conteúdo do mês…';
+  }
   function resetContent(){
     tiles.forEach(t => t.classList.remove('filled'));
     cCount.textContent = '0/30';
     cBar.style.width = '0%';
-    cLabel.textContent = 'Gerando conteúdo do mês…';
+    cLabel.textContent = cLabelText(false);
     cStatus.classList.remove('done');
   }
   async function playContent(g){
@@ -1892,7 +1943,7 @@
       if(!await step(110)) return;
     }
     if(!await step(400)) return;
-    cLabel.textContent = '30 posts criados e agendados ✓';
+    cLabel.textContent = cLabelText(true);
     cStatus.classList.add('done');
     await step(2200);
   }
@@ -1928,12 +1979,12 @@
     if(!await step(650)) return; nores.classList.add('show');
     if(!await step(1400)) return; chipHoje.classList.add('show');
     if(!await step(700)) return;
-    fStatus.textContent = 'digitando…'; t1.classList.add('show');
+    fStatus.textContent = typingLabel(); t1.classList.add('show');
     if(!await step(1400)) return;
     t1.classList.remove('show'); fStatus.textContent = 'online'; ia1.classList.add('show');
     if(!await step(1800)) return; in1.classList.add('show');
     if(!await step(800)) return;
-    fStatus.textContent = 'digitando…'; t2.classList.add('show');
+    fStatus.textContent = typingLabel(); t2.classList.add('show');
     if(!await step(1200)) return;
     t2.classList.remove('show'); fStatus.textContent = 'online'; ia2.classList.add('show');
     if(!await step(1500)) return; in2.classList.add('show');
@@ -1955,7 +2006,7 @@
     const step = async ms => { await sleep(ms); return g === gen; };
     if(!await step(500)) return; chip.classList.add('show');
     if(!await step(600)) return;
-    lStatus.textContent = 'digitando…'; t1.classList.add('show');
+    lStatus.textContent = typingLabel(); t1.classList.add('show');
     if(!await step(1300)) return;
     t1.classList.remove('show'); lStatus.textContent = 'online'; ia1.classList.add('show');
     if(!await step(1700)) return; in1.classList.add('show');
@@ -1985,7 +2036,7 @@
     const STEPS = 34;
     for(let i = 1; i <= STEPS; i++){
       const p = 1 - Math.pow(1 - i / STEPS, 3);
-      mVal.textContent = 'R$ ' + Math.round(M_HIT * p).toLocaleString('pt-BR');
+      mVal.textContent = 'R$ ' + Math.round(M_HIT * p).toLocaleString(moneyLocale());
       mPct.textContent = Math.round(M_HIT / M_GOAL * 100 * p) + '%';
       if(!await step(50)) return;
     }
@@ -2070,21 +2121,27 @@
     const j = Math.floor(Math.random() * (i + 1));
     [aOrder[i], aOrder[j]] = [aOrder[j], aOrder[i]];
   }
+  function aStatusText(phase){
+    const en = document.documentElement.lang === 'en';
+    if (phase === 'filling') return en ? 'bookings coming in…' : 'agendamentos entrando…';
+    if (phase === 'full') return en ? '36/36 slots filled' : '36/36 horários preenchidos';
+    return en ? 'only 5 slots filled this week' : 'só 5 horários preenchidos na semana';
+  }
   function resetAgenda(){
     aCells.forEach(c => c.classList.remove('on'));
     aChip.classList.remove('show');
-    aStatus.textContent = 'só 5 horários preenchidos na semana';
+    aStatus.textContent = aStatusText('empty');
   }
   async function playAgenda(g){
     const step = async ms => { await sleep(ms); return g === gen; };
     if(!await step(1400)) return;
-    aStatus.textContent = 'agendamentos entrando…';
+    aStatus.textContent = aStatusText('filling');
     for(const i of aOrder){
       aCells[i].classList.add('on');
       if(!await step(95)) return;
     }
     if(!await step(400)) return;
-    aStatus.textContent = '36/36 horários preenchidos';
+    aStatus.textContent = aStatusText('full');
     aChip.classList.add('show');
     await step(2700);
   }
@@ -2103,7 +2160,7 @@
     const step = async ms => { await sleep(ms); return g === gen; };
     if(!await step(500)) return; chip.classList.add('show');
     if(!await step(800)) return;
-    rStatus.textContent = 'digitando…'; t1.classList.add('show');
+    rStatus.textContent = typingLabel(); t1.classList.add('show');
     if(!await step(1400)) return;
     t1.classList.remove('show'); rStatus.textContent = 'online'; ia1.classList.add('show');
     if(!await step(1900)) return; in1.classList.add('show');
@@ -2142,9 +2199,10 @@
   moreBtn.addEventListener('click', () => {
     expanded = !expanded;
     featWrap.classList.toggle('expanded', expanded);
+    const en = document.documentElement.lang === 'en';
     moreBtn.innerHTML = expanded
-      ? '<span class="pl">−</span> mostrar menos'
-      : '<span class="pl">+</span> ver as outras 7 demonstrações';
+      ? (en ? '<span class="pl">−</span> show less' : '<span class="pl">−</span> mostrar menos')
+      : (en ? '<span class="pl">+</span> see the other 7 demos' : '<span class="pl">+</span> ver as outras 7 demonstrações');
     if(!expanded){
       const cur = +document.querySelector('#sistema .feature.active').dataset.tab;
       if(!VISIBLE.includes(cur)){ reduced ? setActive(VISIBLE[0]) : run(VISIBLE[0]); }
@@ -2154,18 +2212,18 @@
   if(reduced){
     waItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
     waToast.classList.add('show');
-    gQuery.textContent = QUERY;
+    gQuery.textContent = QUERY();
     gSeq.forEach(el => el.classList.add('show'));
     tiles.forEach(t => t.classList.add('filled'));
     cCount.textContent = '30/30'; cBar.style.width = '100%';
-    cLabel.textContent = '30 posts criados e agendados ✓';
+    cLabel.textContent = cLabelText(true);
     cStatus.classList.add('done');
     leads[3].classList.add('on');
     fItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
     fToast.classList.add('show');
     lItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
     lToast.classList.add('show');
-    mVal.textContent = 'R$ ' + M_HIT.toLocaleString('pt-BR');
+    mVal.textContent = 'R$ ' + M_HIT.toLocaleString(moneyLocale());
     mPct.textContent = Math.round(M_HIT / M_GOAL * 100) + '%';
     mBar.style.width = (M_HIT / M_GOAL * 100) + '%';
     mRows.forEach(x => { x.r.textContent = x.v; x.b.style.width = (x.v / x.max * 100) + '%'; });
@@ -2175,7 +2233,7 @@
     eLine.style.strokeDashoffset = '0';
     eArea.classList.add('show'); eEnd.classList.add('show'); eChip.classList.add('show');
     aCells.forEach(c => { if(!c.classList.contains('pre')) c.classList.add('on'); });
-    aStatus.textContent = '36/36 horários preenchidos';
+    aStatus.textContent = aStatusText('full');
     aChip.classList.add('show');
     rItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
     rToast.classList.add('show');
@@ -2225,29 +2283,29 @@
 <!-- ============ 8 · FAQ ============ -->
 <section class="sec" id="faq">
   <div class="sec-inner">
-    <p class="eyebrow rv" style="justify-content:center"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>perguntas diretas</p>
-    <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto">O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
+    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>straight answers'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>perguntas diretas</p>
+    <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto" data-en='What every business owner<br>asks <span class="lm">before closing.</span>'>O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
 
     <div class="faq rv" style="--d:.15s">
       <details>
-        <summary>Quanto custa? <span class="pl">+</span></summary>
-        <div class="ans">Depende do tamanho do negócio e de quais vazamentos precisam ser fechados primeiro. Por isso o caminho começa no <b>diagnóstico gratuito</b>. Você sai dele sabendo exatamente o que seria feito e quanto custaria. Sem compromisso, sem surpresa depois.</div>
+        <summary data-en='How much does it cost? <span class="pl">+</span>'>Quanto custa? <span class="pl">+</span></summary>
+        <div class="ans" data-en="It depends on the size of the business and which leaks need to be closed first. That's why the path starts with the <b>free diagnosis</b>. You leave it knowing exactly what would be done and how much it would cost. No obligation, no surprises later.">Depende do tamanho do negócio e de quais vazamentos precisam ser fechados primeiro. Por isso o caminho começa no <b>diagnóstico gratuito</b>. Você sai dele sabendo exatamente o que seria feito e quanto custaria. Sem compromisso, sem surpresa depois.</div>
       </details>
       <details>
-        <summary>Em quanto tempo vejo resultado? <span class="pl">+</span></summary>
-        <div class="ans">O site e o Google Meu Negócio ficam no ar nas <b>primeiras semanas</b>, e os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês conforme o sistema aprende o que funciona pro seu negócio. Quem promete milagre em 7 dias está vendendo curtida, não resultado.</div>
+        <summary data-en='How soon will I see results? <span class="pl">+</span>'>Em quanto tempo vejo resultado? <span class="pl">+</span></summary>
+        <div class="ans" data-en="The website and Google Business Profile go live in the <b>first few weeks</b>, and the first contacts start arriving as soon as the ads run. Traction grows month by month as the system learns what works for your business. Anyone promising a miracle in 7 days is selling likes, not results.">O site e o Google Meu Negócio ficam no ar nas <b>primeiras semanas</b>, e os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês conforme o sistema aprende o que funciona pro seu negócio. Quem promete milagre em 7 dias está vendendo curtida, não resultado.</div>
       </details>
       <details>
-        <summary>Já contratei agência ou freelancer e me decepcionei. Por que seria diferente? <span class="pl">+</span></summary>
-        <div class="ans">Porque provavelmente entregaram post bonito e relatório de curtida. A Theatrum olha para o <b>crescimento do seu negócio como um todo</b>: site, Google, tráfego e reativação de cliente. Cada entrega existe para mover um desses ponteiros. Se não gera resultado real, a gente nem propõe.</div>
+        <summary data-en='I&apos;ve already hired an agency or freelancer and got burned. Why would this be different? <span class="pl">+</span>'>Já contratei agência ou freelancer e me decepcionei. Por que seria diferente? <span class="pl">+</span></summary>
+        <div class="ans" data-en="Because they probably delivered pretty posts and a likes report. Theatrum looks at your <b>business's growth as a whole</b>: website, Google, traffic and client reactivation. Every deliverable exists to move one of those needles. If it doesn't drive real results, we don't even propose it.">Porque provavelmente entregaram post bonito e relatório de curtida. A Theatrum olha para o <b>crescimento do seu negócio como um todo</b>: site, Google, tráfego e reativação de cliente. Cada entrega existe para mover um desses ponteiros. Se não gera resultado real, a gente nem propõe.</div>
       </details>
       <details>
-        <summary>Atende o meu tipo de negócio? <span class="pl">+</span></summary>
-        <div class="ans">Atendo negócios locais que vendem serviço ou atendimento agendado — clínica, consultório, agência de viagem, escritório, studio, entre outros. Se o seu cliente busca você no Google e fecha por WhatsApp, <b>o sistema se aplica.</b></div>
+        <summary data-en='Do you serve my type of business? <span class="pl">+</span>'>Atende o meu tipo de negócio? <span class="pl">+</span></summary>
+        <div class="ans" data-en='I serve businesses anywhere in Brazil — and also anyone who serves English-speaking clients — that sell a service or scheduled appointments: clinics, offices, travel agencies, studios, and more. If your client searches for you on Google and closes on WhatsApp, <b>the system applies, wherever you are.</b>'>Atendo negócios em qualquer lugar do Brasil — e também quem atende cliente que fala inglês — que vendem serviço ou atendimento agendado: clínica, consultório, agência de viagem, escritório, studio, entre outros. Se o seu cliente busca você no Google e fecha por WhatsApp, <b>o sistema se aplica, esteja você onde estiver.</b></div>
       </details>
       <details>
-        <summary>Trabalho sozinho e não tenho equipe. Consigo tocar isso? <span class="pl">+</span></summary>
-        <div class="ans"><b>Sim</b> — é justamente pra isso que o sistema existe. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
+        <summary data-en='I work alone and don&apos;t have a team. Can I keep up with this? <span class="pl">+</span>'>Trabalho sozinho e não tenho equipe. Consigo tocar isso? <span class="pl">+</span></summary>
+        <div class="ans" data-en="<b>Yes</b> — that's exactly what the system is for. The AI answers WhatsApp, Google Business Profile and ads bring in new clients, and reactivation runs on its own. You get the client ready to close, without having to become a marketing team."><b>Sim</b> — é justamente pra isso que o sistema existe. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
       </details>
     </div>
   </div>
@@ -2255,17 +2313,17 @@
 
 <!-- ============ 9 · CTA FINAL ============ -->
 <section class="final" id="diagnostico">
-  <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o próximo passo</p>
-  <h2 class="rv" style="--d:.08s">Quer saber quanto seu negócio deixa de faturar todo mês?</h2>
-  <p class="lead rv" style="--d:.16s">O diagnóstico gratuito mostra os vazamentos do seu negócio e o que o sistema faria com cada um. Sem compromisso, sem enrolação.</p>
-  <a class="btn-dark rv" style="--d:.24s" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener">
+  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>the next step'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o próximo passo</p>
+  <h2 class="rv" style="--d:.08s" data-en="Want to know how much revenue your business is missing out on every month?">Quer saber quanto seu negócio deixa de faturar todo mês?</h2>
+  <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows your business's leaks and what the system would do about each one. No obligation, no runaround.">O diagnóstico gratuito mostra os vazamentos do seu negócio e o que o sistema faria com cada um. Sem compromisso, sem enrolação.</p>
+  <a class="btn-dark rv" style="--d:.24s" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
     Quero meu diagnóstico gratuito
     <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
-  <div class="mini rv" style="--d:.3s">responde em minutos · direto no whatsapp</div>
+  <div class="mini rv" style="--d:.3s" data-en="replies in minutes · straight on whatsapp">responde em minutos · direto no whatsapp</div>
 </section>
 
-<a class="wa-float" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp: diagnóstico gratuito">
+<a class="wa-float" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp: diagnóstico gratuito" id="waFloatBtn">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.43-9.9 9.88 0 1.74.45 3.44 1.32 4.95L2 22l5.32-1.4a9.87 9.87 0 0 0 4.72 1.2h.01c5.45 0 9.89-4.43 9.89-9.88 0-2.64-1.03-5.12-2.9-6.99A9.82 9.82 0 0 0 12.04 2Zm0 17.98h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.24 8.22Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
 </a>
 
@@ -2280,18 +2338,85 @@
       <a href="#" target="_blank" rel="noopener">Instagram</a>
       <a href="#" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="#top">Voltar ao topo</a>
+      <a href="#top" data-en="Back to top">Voltar ao topo</a>
     </div>
-    <div class="foot-legal">Theatrum · identidade digital para negócios locais. © 2026.</div>
+    <div class="foot-legal" data-en="Theatrum · digital identity for businesses across Brazil. © 2026.">Theatrum · identidade digital para negócios em todo o Brasil. © 2026.</div>
   </div>
 </footer>
 
 <script>
+  // usado pelas simulações de chat (mais abaixo) pra escrever "digitando…"/"typing…" no idioma certo
+  function typingLabel(){ return document.documentElement.lang === 'en' ? 'typing…' : 'digitando…'; }
+  // locale certo pros valores em R$ (separador de milhar . em pt-BR vs , em inglês)
+  function moneyLocale(){ return document.documentElement.lang === 'en' ? 'en-US' : 'pt-BR'; }
+
   // nav fixa: escondida no hero, aparece só depois da 1ª tela
   const siteNav = document.getElementById('siteNav');
   new IntersectionObserver((es) => {
     es.forEach(e => siteNav.classList.toggle('is-scrolled', !e.isIntersecting));
   }, { threshold: 0 }).observe(document.querySelector('.hero'));
+
+  // idioma: PT (padrão) <-> EN, troca innerHTML de tudo que tem data-en
+  (function(){
+    const I18N_TITLE = { pt: document.title, en: 'Theatrum | Digital identity for businesses anywhere in Brazil' };
+    const I18N_DESC = {
+      pt: document.querySelector('meta[name="description"]').content,
+      en: 'Theatrum builds the predictable system that turns anyone searching for your business into a new client every month — anywhere in Brazil, in Portuguese or English, no referrals needed. Free diagnosis.'
+    };
+    const nodes = [...document.querySelectorAll('[data-en]')];
+    nodes.forEach(el => { el.dataset.pt = el.innerHTML; });
+
+    function applyLang(lang){
+      nodes.forEach(el => { el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.pt; });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+      document.title = lang === 'en' ? I18N_TITLE.en : I18N_TITLE.pt;
+      document.querySelector('meta[name="description"]').content = lang === 'en' ? I18N_DESC.en : I18N_DESC.pt;
+      document.querySelectorAll('.lang-toggle').forEach(btn => {
+        btn.querySelectorAll('.lt-opt').forEach(o => o.classList.toggle('is-active', o.dataset.lang === lang));
+      });
+      // reajusta e reinicia a animação de "digitando..." do eyebrow pro novo tamanho de texto
+      const typeEl = document.getElementById('typeText');
+      if (typeEl) {
+        typeEl.style.setProperty('--tlen', typeEl.textContent.length);
+        typeEl.style.animation = 'none';
+        void typeEl.offsetWidth;
+        typeEl.style.removeProperty('animation');
+      }
+      // contadores de R$ (ex.: "42 mil" -> "42k"): ajusta o sufixo e recalcula o texto na hora
+      document.querySelectorAll('[data-suffix-en]').forEach(el => {
+        if (el.dataset.suffixPt === undefined) el.dataset.suffixPt = el.dataset.suffix || '';
+        el.dataset.suffix = lang === 'en' ? el.dataset.suffixEn : el.dataset.suffixPt;
+        if (el.dataset.to !== undefined) {
+          const locale = lang === 'en' ? 'en-US' : 'pt-BR';
+          el.textContent = (el.dataset.prefix || '') + Math.round(Number(el.dataset.to)).toLocaleString(locale) + (el.dataset.suffix || '');
+        }
+      });
+      const eChartSvg = document.getElementById('sysEChartSvg');
+      if (eChartSvg) {
+        eChartSvg.setAttribute('aria-label', lang === 'en'
+          ? 'Revenue over the last 12 months: flat and low before Theatrum, steady growth after'
+          : 'Faturamento dos últimos 12 meses: estável e baixo antes da Theatrum, crescimento contínuo depois');
+      }
+      const waFloatBtn = document.getElementById('waFloatBtn');
+      if (waFloatBtn) {
+        waFloatBtn.setAttribute('aria-label', lang === 'en'
+          ? 'Message on WhatsApp: free diagnosis'
+          : 'Chamar no WhatsApp: diagnóstico gratuito');
+      }
+      try { localStorage.setItem('theatrum-lang', lang); } catch(e){}
+    }
+
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.lang === 'en' ? 'en' : 'pt';
+        applyLang(current === 'en' ? 'pt' : 'en');
+      });
+    });
+
+    let saved = null;
+    try { saved = localStorage.getItem('theatrum-lang'); } catch(e){}
+    if (saved === 'en') applyLang('en');
+  })();
 
   // menu mobile: abrir/fechar
   const navBurger = document.getElementById('navBurger');
@@ -2392,7 +2517,7 @@
   var nums  = Array.prototype.slice.call(document.querySelectorAll('#pb-money .vl'));
   if(!cards.length) return;
 
-  function fmt(el,v){ return (el.dataset.prefix||'') + Math.round(v).toLocaleString('pt-BR') + (el.dataset.suffix||''); }
+  function fmt(el,v){ return (el.dataset.prefix||'') + Math.round(v).toLocaleString(moneyLocale()) + (el.dataset.suffix||''); }
   function finalState(){
     cards.forEach(function(c){ c.style.opacity=''; c.style.transform=''; });
     nums.forEach(function(el){ el.textContent = fmt(el, Number(el.dataset.to)); });
