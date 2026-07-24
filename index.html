@@ -455,9 +455,8 @@
   #beneficios .dif-bad ul{list-style:none;display:flex;flex-direction:column;gap:17px}
   #beneficios .dif-bad li{display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.4;color:var(--muted)}
   #beneficios .dif-bad li .x{color:var(--danger);opacity:.7;flex-shrink:0;font-size:13px}
-  #beneficios .dif-bad li .tx{position:relative}
-  #beneficios .dif-bad li .tx::after{content:"";position:absolute;left:-2px;right:-2px;top:56%;height:2px;background:var(--danger);opacity:.6;transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.6,0,.3,1)}
-  #beneficios .dif-bad li.struck .tx::after{transform:scaleX(1)}
+  #beneficios .dif-bad li .tx{position:relative;background-image:linear-gradient(rgba(214,69,69,.6),rgba(214,69,69,.6));background-repeat:no-repeat;background-position:left 56%;background-size:0% 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .55s cubic-bezier(.6,0,.3,1)}
+  #beneficios .dif-bad li.struck .tx{background-size:100% 2px}
 
   #beneficios .dif-good .dif-label{color:var(--accent)}
   #beneficios .dif-good ul{list-style:none;display:flex;flex-direction:column;gap:22px}
