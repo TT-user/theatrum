@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "node scripts/clean.mjs && astro build",
+    "preview": "astro preview",
+    "deploy": "npm run build && node scripts/copy-dist.mjs"
   },
   "dependencies": {
     "astro": "^5.18.2"
