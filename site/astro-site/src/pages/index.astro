@@ -1,0 +1,88 @@
+---
+import { getCollection } from "astro:content";
+import BlogLayout from "../layouts/BlogLayout.astro";
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
+);
+---
+<BlogLayout title="Blog" description="Artigos do Theatrum sobre identidade digital pra negócios locais.">
+  <h1>Blog</h1>
+  <ul class="post-list">
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`}>
+            <span class="post-date">
+              {post.data.publishedAt.toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </span>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  {posts.length === 0 && <p class="empty">Nenhum post publicado ainda.</p>}
+</BlogLayout>
+
+<style>
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+
+  .post-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .post-list li {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 30px;
+  }
+
+  .post-list a {
+    text-decoration: none;
+    display: block;
+  }
+
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .post-list h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    letter-spacing: -0.02em;
+    margin: 10px 0 8px;
+  }
+
+  .post-list p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .empty {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+</style>

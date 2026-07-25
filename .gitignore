@@ -1,1 +1,6 @@
 MazyOS/
+
+# Astro blog source — build output goes to /blog (tracked, is what Hostinger serves)
+site/astro-site/node_modules/
+site/astro-site/dist/
+site/astro-site/.astro/

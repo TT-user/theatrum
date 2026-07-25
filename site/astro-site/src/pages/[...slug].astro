@@ -1,0 +1,95 @@
+---
+import { getCollection, render } from "astro:content";
+import BlogLayout from "../layouts/BlogLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BlogLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <p class="post-date">
+      {
+        post.data.publishedAt.toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC",
+        })
+      }
+    </p>
+    <h1>{post.data.title}</h1>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BlogLayout>
+
+<style>
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 34px;
+  }
+
+  .content {
+    color: var(--cream);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .content :global(h2) {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+    letter-spacing: -0.02em;
+    margin: 42px 0 16px;
+    color: var(--white);
+  }
+
+  .content :global(h3) {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 30px 0 12px;
+    color: var(--white);
+  }
+
+  .content :global(p) {
+    margin-bottom: 18px;
+    color: var(--muted);
+  }
+
+  .content :global(a) {
+    color: var(--accent);
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    margin: 0 0 18px 22px;
+    color: var(--muted);
+  }
+
+  .content :global(li) {
+    margin-bottom: 8px;
+  }
+</style>

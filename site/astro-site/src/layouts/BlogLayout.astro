@@ -1,0 +1,120 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} — Theatrum</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand">Theatrum</a>
+    <a href="/blog/" class="back-link">← Blog</a>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <p>Theatrum — identidade digital pra negócios locais.</p>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0b0a08;
+    --bg-2: #100e0b;
+    --card: #1a1815;
+    --accent: #e3b341;
+    --accent-soft: #f0d488;
+    --accent2: #8e1f2f;
+    --cream: #f6f1e7;
+    --white: #ffffff;
+    --muted: #a39b8d;
+    --ink: #141210;
+    --line: rgba(255, 255, 255, 0.1);
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 6vw;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header .brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .site-header .back-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.3s;
+  }
+
+  .site-header .back-link:hover {
+    color: var(--accent);
+  }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 6vw 100px;
+  }
+
+  .site-footer {
+    text-align: center;
+    padding: 30px 6vw 50px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+</style>
