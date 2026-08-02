@@ -14,6 +14,16 @@
 
   var LIMPO = new URLSearchParams(location.search).has('limpo');
 
+  /* ---------- camada de proteção ----------
+     Carregada daqui, e não por uma tag em cada página, porque são
+     15 arquivos HTML nas quatro demonstrações e este script já é o
+     ponto único por onde todos passam. O caminho é relativo: as
+     páginas ficam em demos/<demo>/, o arquivo fica um nível acima
+     da pasta demos/. */
+  var protecao = document.createElement('script');
+  protecao.src = '../../_protecao.js';
+  (document.head || document.documentElement).appendChild(protecao);
+
   /* ---------- estilos ---------- */
   var css = document.createElement('style');
   css.textContent = [

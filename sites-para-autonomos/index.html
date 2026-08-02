@@ -31,6 +31,10 @@ gtag('config', 'AW-18362682320');
 gtag('config', 'G-5LHDD8TS0S');
 </script>
 
+<!-- Proteção: seleção de texto, botão direito, arrastar imagem e atalhos
+     do DevTools. Mesmo arquivo usado pelas demonstrações. -->
+<script src="_protecao.js" defer></script>
+
 <title>Site profissional para autônomos | Theatrum</title>
 <meta name="description" content="Site profissional, Google Meu Negócio e campanha para autônomos que vivem de cliente. A partir de R$ 997, no ar em até 7 dias úteis. Diagnóstico gratuito no WhatsApp.">
 <meta property="og:title" content="Seu cliente te procurou no Google. E achou outro.">
@@ -116,16 +120,8 @@ p{color:#C4C0B6}
 .btn-sub{display:block;text-align:center;font-size:.78rem;color:var(--muted);margin-top:11px}
 
 /* ---------- seleção e arrasto ---------- */
-/* o site inteiro se comporta como aplicativo: arrastar rola, não seleciona.
-   Campos de texto e o conteúdo dos demos seguem selecionáveis. */
-body{
-  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
-  -webkit-touch-callout:none;
-}
-input,textarea,select,[contenteditable]{
-  -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
-}
-img,svg{-webkit-user-drag:none;user-drag:none}
+/* Ficava aqui. Foi para _protecao.js, que agora vale para esta página
+   e para as quatro demonstrações a partir de um arquivo só. */
 
 /* ---------- hero ---------- */
 /* preenche a primeira tela: 100vh menos a barra do topo */
@@ -1277,28 +1273,8 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   visivel.observe(palco);
 })();
 
-/* ============================================================
-   Menu de contexto e atalhos de inspeção
-   Isto é um obstáculo, não uma proteção: qualquer pessoa ainda
-   chega ao código pelo menu do navegador ou desligando o JS.
-   Serve para desencorajar cópia casual do layout.
-   ============================================================ */
-(function(){
-  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-  document.addEventListener('dragstart', function(e){
-    if (e.target.tagName === 'IMG' || e.target.tagName === 'SVG') e.preventDefault();
-  });
-  document.addEventListener('keydown', function(e){
-    var k = (e.key || '').toLowerCase();
-    var bloquear =
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) ||
-      (e.metaKey && e.altKey && (k === 'i' || k === 'j' || k === 'c')) ||
-      (e.ctrlKey && k === 'u') ||
-      (e.metaKey && e.altKey && k === 'u');
-    if (bloquear) { e.preventDefault(); e.stopPropagation(); }
-  }, true);
-})();
+/* Menu de contexto e atalhos de inspeção: agora em _protecao.js,
+   carregado no <head>, junto com as demonstrações. */
 
 /* ============================================================
    TRABALHOS — os demos rodam de verdade dentro da página
