@@ -23,7 +23,7 @@ try{
 }catch(e){}
 </script>
 
-<!-- Google tag — uma biblioteca, dois config -->
+<!-- Google tag: uma biblioteca, dois config -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18362682320"></script>
 <script>
 gtag('js', new Date());
@@ -123,49 +123,75 @@ p{color:#C4C0B6}
 .trust{display:flex;align-items:center;gap:12px;margin-top:22px;font-size:.82rem;color:var(--muted)}
 .dot-live{width:8px;height:8px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(63,191,127,.18);flex-shrink:0}
 
-/* ---------- mockup celular animado ---------- */
-.fone-wrap{position:relative;padding-bottom:30px}
-.fone{
-  width:100%;max-width:290px;margin:0 auto;background:#080706;border:1px solid #2A281F;
-  border-radius:30px;padding:12px;box-shadow:0 40px 80px -30px rgba(0,0,0,.95);
+/* ---------- mockup: janela de navegador ---------- */
+.jw-wrap{position:relative;padding-bottom:30px}
+.jw{
+  width:100%;max-width:430px;margin:0 auto;border-radius:14px;overflow:hidden;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.95);border:1px solid #2A281F;
 }
-.fone-tela{
-  background:#0F0E0B;border-radius:20px;overflow:hidden;border:1px solid #1E1C16;
-  height:430px;position:relative;
+/* barra do navegador, clara como navegador de verdade */
+.jw-barra{
+  display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:linear-gradient(180deg,#F2F0EB,#E4E1DA);border-bottom:1px solid #CFCBC2;
 }
-/* as duas telas: busca e site */
+.jw-barra .bolinha{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.jw-barra .b1{background:#FF5F57}
+.jw-barra .b2{background:#FEBC2E}
+.jw-barra .b3{background:#28C840}
+.jw-barra .endereco{
+  flex:1;margin-left:6px;background:#FFF;border:1px solid #D6D2C9;border-radius:20px;
+  padding:5px 14px;font-size:.7rem;color:#5F5B52;text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.jw-tela{background:#0F0E0B;height:428px;position:relative;overflow:hidden}
 .tela{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s ease}
 .tela.on{opacity:1;pointer-events:auto}
 
-.busca{padding:14px 14px 10px;border-bottom:1px solid #1E1C16}
+/* linha do Google + campo de busca */
+.g-linha{display:flex;align-items:center;gap:14px;padding:22px 18px 18px}
+.g-logo{font-weight:700;font-size:1.45rem;letter-spacing:-.02em;user-select:none;flex-shrink:0}
 .busca-campo{
-  background:#1A1813;border:1px solid #2A281F;border-radius:30px;padding:8px 14px;
-  font-size:.74rem;color:#E4E0D6;display:flex;align-items:center;gap:7px;
+  flex:1;min-width:0;background:#161310;border:1px solid #332C22;border-radius:24px;
+  padding:9px 15px;font-size:.82rem;color:#E4E0D6;display:flex;align-items:center;gap:9px;
 }
 .busca-campo .q{white-space:nowrap;overflow:hidden}
-.cursor{
-  display:inline-block;width:1.5px;height:.95em;background:#E4E0D6;
-  animation:pisca 1s steps(1) infinite;
-}
+.cursor{display:inline-block;width:1.5px;height:.95em;background:#E4E0D6;animation:pisca 1s steps(1) infinite}
 @keyframes pisca{50%{opacity:0}}
 
-.res{padding:12px 14px;border-bottom:1px solid #16150F;position:relative}
-.res .tag{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#6E6A5E}
-.res .tit{font-size:.86rem;font-weight:600;color:#8FB4E8;margin:3px 0 2px}
-.res .url{font-size:.66rem;color:#6E6A5E}
-.res.seu{background:linear-gradient(90deg,rgba(217,164,65,.12),transparent);border-left:2px solid var(--ouro)}
-.res.seu .tit{color:var(--ouro-claro)}
-.res.seu .tag{color:var(--ouro)}
-.res .stars{font-size:.66rem;color:var(--ouro);letter-spacing:1px;margin-top:3px}
+/* resultados */
+.g-lista{padding:0 18px;display:flex;flex-direction:column;gap:12px}
+.res{
+  border:1px solid var(--line);border-radius:13px;padding:14px 15px;position:relative;
+  background:#131109;
+}
+.res .url{font-size:.7rem;color:#8AB4F8}
+.res .tit{font-size:.92rem;font-weight:700;color:var(--txt);margin:4px 0 4px;letter-spacing:-.01em}
+.res .desc{font-size:.76rem;color:var(--muted);line-height:1.5}
+.res.seu{
+  border-color:rgba(217,164,65,.55);background:#171006;
+  box-shadow:0 0 0 1px rgba(217,164,65,.12),0 16px 40px rgba(0,0,0,.45);
+}
+.res .selo{
+  position:absolute;top:-10px;right:14px;background:var(--ouro);color:#150F03;
+  border-radius:6px;font-size:.6rem;font-weight:800;letter-spacing:.1em;padding:3px 9px;
+  text-transform:uppercase;
+}
+.res .topo{
+  display:flex;align-items:center;gap:6px;margin-top:9px;
+  font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ouro);
+}
+/* resultados vazios (concorrência) */
+.g-vazio{border:1px solid var(--line);border-radius:13px;padding:15px;background:#121109}
+.g-vazio i{display:block;height:9px;border-radius:5px;background:#2A251D;margin-bottom:9px}
+.g-vazio i:last-child{margin-bottom:0}
 
-/* entrada escalonada dos resultados */
 .sq{opacity:0;transform:translateY(10px)}
 .sq.on{opacity:1;transform:none;transition:opacity .38s ease,transform .38s ease}
 
-/* dedo/toque */
+/* clique */
 .toque{
   position:absolute;width:34px;height:34px;border-radius:50%;
-  border:2px solid var(--ouro);background:rgba(217,164,65,.18);
+  border:2px solid var(--ouro);background:rgba(217,164,65,.2);
   left:50%;top:50%;margin:-17px 0 0 -17px;
   opacity:0;transform:scale(.6);pointer-events:none;z-index:5;
   transition:opacity .25s ease,transform .25s ease;
@@ -175,30 +201,22 @@ p{color:#C4C0B6}
 @keyframes bate{0%{transform:scale(1)}45%{transform:scale(.72)}100%{transform:scale(1)}}
 
 /* tela 2: o site do cliente */
-.mini-topo{
-  display:flex;align-items:center;gap:6px;padding:9px 12px;background:#141209;
-  border-bottom:1px solid #1E1C16;
-}
-.mini-topo .cadeado{width:8px;height:8px;border-radius:2px;border:1.5px solid #6E6A5E;flex-shrink:0}
-.mini-topo .end{
-  font-size:.62rem;color:#8E8A7E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.mini-corpo{padding:16px 14px}
-.mini-marca{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro);font-weight:700}
-.mini-h{font-size:1.02rem;font-weight:800;line-height:1.2;letter-spacing:-.02em;margin:8px 0 7px;color:var(--txt)}
-.mini-p{font-size:.7rem;color:var(--muted);line-height:1.5}
+.mini-corpo{padding:22px 20px}
+.mini-marca{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro);font-weight:800}
+.mini-h{font-size:1.18rem;font-weight:800;line-height:1.2;letter-spacing:-.02em;margin:9px 0 8px;color:var(--txt)}
+.mini-p{font-size:.78rem;color:var(--muted);line-height:1.55}
 .mini-zap{
-  display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;
-  background:#25D366;color:#06301A;border-radius:30px;padding:10px;
-  font-size:.74rem;font-weight:800;position:relative;
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;
+  background:#25D366;color:#06301A;border-radius:30px;padding:12px;
+  font-size:.82rem;font-weight:800;position:relative;
 }
 .mini-zap.chama{animation:chama 1.5s ease infinite}
 @keyframes chama{
   0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}
-  70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}
+  70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}
   100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
 }
-.mini-prova{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:.62rem;color:#6E6A5E}
+.mini-prova{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:.68rem;color:#6E6A5E}
 .mini-prova b{color:var(--ouro)}
 
 /* aviso de conversão */
@@ -218,9 +236,8 @@ p{color:#C4C0B6}
 .aviso .a-tit{font-size:.78rem;font-weight:700;color:var(--txt)}
 .aviso .a-sub{font-size:.66rem;color:var(--muted)}
 
-/* legenda de etapa abaixo do celular */
 .etapa-legenda{
-  text-align:center;margin-top:18px;font-size:.76rem;color:var(--muted);
+  text-align:center;margin-top:18px;font-size:.78rem;color:var(--muted);
   min-height:1.4em;transition:opacity .3s ease;
 }
 .etapa-legenda b{color:var(--ouro-claro);font-weight:700}
@@ -290,11 +307,18 @@ p{color:#C4C0B6}
 .plano li .ck{color:var(--verde);font-weight:800;flex-shrink:0;font-size:.85rem;line-height:1.6}
 .plano li.herda{color:var(--muted)}
 .plano li.herda .ck{color:var(--ouro)}
+/* aviso do Plano 03: amarelo, porque é a informação que evita mal-entendido */
 .nota-verba{
-  margin-top:20px;border:1px solid var(--line);background:var(--bg2);border-radius:12px;
-  padding:16px 18px;font-size:.85rem;color:var(--muted);
+  margin-top:24px;border:1px solid rgba(217,164,65,.45);border-left:4px solid var(--ouro);
+  background:linear-gradient(180deg,rgba(217,164,65,.1),rgba(217,164,65,.03));
+  border-radius:12px;padding:20px 22px;font-size:.9rem;color:#D8D3C6;
 }
-.nota-verba b{color:var(--txt)}
+.nota-verba .aviso-tit{
+  display:flex;align-items:center;gap:9px;margin-bottom:10px;
+  font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro);
+}
+.nota-verba .aviso-tit svg{flex-shrink:0}
+.nota-verba b{color:var(--ouro-claro);font-weight:700}
 
 /* ---------- para quem não é ---------- */
 .duas{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
@@ -321,12 +345,29 @@ p{color:#C4C0B6}
   flex:1;margin-left:6px;background:#131209;border:1px solid #23211A;border-radius:20px;
   padding:4px 12px;font-size:.68rem;color:#6E6A5E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.trabalho figure{margin:0;aspect-ratio:16/10;overflow:hidden;background:#0F0E0B;position:relative}
-.trabalho figure img{
-  width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
-  transition:transform .5s ease;
+/* palco: o print aparece primeiro, o site de verdade entra por cima quando chega a vez */
+.trabalho .palco{
+  position:relative;aspect-ratio:16/10;overflow:hidden;background:#0F0E0B;
+  border-bottom:1px solid var(--line);
 }
-.trabalho:hover figure img{transform:scale(1.03)}
+.trabalho .poster{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  object-fit:cover;object-position:top center;transition:opacity .6s ease;
+}
+.trabalho .palco.vivo .poster{opacity:0;pointer-events:none}
+.trabalho .palco iframe{
+  position:absolute;top:0;left:0;border:0;opacity:0;
+  transform-origin:top left;transition:opacity .6s ease;background:#fff;
+}
+.trabalho .palco.vivo iframe{opacity:1}
+.trabalho .carregando{
+  position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
+  font-size:.68rem;color:var(--muted);background:rgba(11,10,8,.8);
+  border:1px solid var(--line);border-radius:20px;padding:4px 12px;
+  opacity:0;transition:opacity .3s ease;pointer-events:none;
+}
+.trabalho .palco.pedindo .carregando{opacity:1}
+.trabalho .palco.vivo .carregando{opacity:0}
 .trabalho-txt{padding:22px 24px 24px}
 .trabalho-tag{
   display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
@@ -336,9 +377,10 @@ p{color:#C4C0B6}
 .trabalho-txt p{font-size:.88rem;color:var(--muted)}
 .trabalho-ver{
   display:inline-flex;align-items:center;gap:7px;margin-top:14px;
-  font-size:.85rem;font-weight:700;color:var(--ouro-claro);
+  font-size:.85rem;font-weight:700;color:var(--ouro-claro);text-decoration:none;
+  transition:gap .2s ease,color .2s ease;
 }
-.trabalho:hover .trabalho-ver{gap:11px}
+.trabalho-ver:hover{gap:11px;color:var(--ouro)}
 .nota-demo{
   margin-top:24px;border:1px solid var(--line);background:var(--bg2);border-radius:12px;
   padding:16px 18px;font-size:.85rem;color:var(--muted);
@@ -360,7 +402,7 @@ p{color:#C4C0B6}
 .comp p{font-size:.87rem;color:var(--muted)}
 
 /* ---------- FAQ ---------- */
-.faq{max-width:780px;margin:40px auto 0}
+.faq{max-width:820px;margin:36px 0 0}
 details{border-bottom:1px solid var(--line);padding:3px 0}
 summary{cursor:pointer;list-style:none;padding:20px 36px 20px 0;position:relative;font-weight:600;font-size:1rem}
 summary::-webkit-details-marker{display:none}
@@ -414,13 +456,36 @@ footer a{color:var(--muted)}
 @media(max-width:960px){
   .cards3,.etapas,.planos,.compromissos,.trabalhos{grid-template-columns:1fr}
   .hero-grid,.duas{grid-template-columns:1fr;gap:40px}
-  .hero-copy{order:2}.hero-art{order:1}
+  /* o texto vem primeiro: o CTA precisa caber na primeira tela */
+  .hero-copy{order:1}.hero-art{order:2}
   .plano.destaque{order:-1}
 }
 @media(max-width:640px){
   section{padding:58px 0}
   .grid2{grid-template-columns:1fr}
   body{padding-bottom:80px}
+
+  /* hero compacto para o botão aparecer sem rolagem */
+  .hero{padding:26px 0 44px}
+  .hero-grid{gap:30px}
+  .badges{gap:6px;margin-bottom:14px}
+  .badge{font-size:.66rem;padding:5px 10px}
+  h1{font-size:clamp(1.9rem,8vw,2.4rem)}
+  .hero .lead{font-size:.98rem;margin:14px 0 20px!important}
+  .hero .btn{width:100%;padding:16px 24px}
+  .trust{margin-top:16px}
+  .jw{max-width:100%}
+  .jw-tela{height:390px}
+}
+/* telas baixas: comprime mais para o CTA não escapar da primeira dobra */
+@media(max-width:640px) and (max-height:720px){
+  .hero{padding:14px 0 32px}
+  .badges{margin-bottom:10px}
+  .badge{font-size:.62rem;padding:4px 9px}
+  h1{font-size:clamp(1.65rem,6.8vw,2.05rem)}
+  .hero .lead{font-size:.92rem;margin:11px 0 16px!important}
+  .hero .btn{padding:14px 22px}
+  .trust{margin-top:12px}
 }
 </style>
 </head>
@@ -441,7 +506,7 @@ footer a{color:var(--muted)}
         <h1>Seu cliente te procurou no Google.<br><span class="serif">E achou outro.</span></h1>
         <p class="lead" style="margin:20px 0 28px">
           Não porque o outro é melhor. Porque o outro aparece. A Theatrum monta a sua
-          identidade digital — site, Google e caminho até o WhatsApp — para quem procura
+          identidade digital: site, Google e caminho até o WhatsApp, para quem procura
           o seu serviço encontrar você primeiro.
         </p>
         <a class="btn pulse" data-wa="Olá! Quero o diagnóstico gratuito da minha identidade digital.">Quero meu diagnóstico gratuito</a>
@@ -453,57 +518,50 @@ footer a{color:var(--muted)}
       </div>
 
       <div class="hero-art">
-        <div class="fone-wrap">
-          <div class="fone">
-            <div class="fone-tela">
+        <div class="jw-wrap">
+          <div class="jw">
+            <div class="jw-barra">
+              <span class="bolinha b1"></span><span class="bolinha b2"></span><span class="bolinha b3"></span>
+              <span class="endereco" id="heroEndereco">google.com</span>
+            </div>
+
+            <div class="jw-tela">
 
               <!-- TELA 1: busca no Google -->
               <div class="tela on" id="telaBusca">
-                <div class="busca">
-                  <div class="busca-campo">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="#8E8A7E" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="#8E8A7E" stroke-width="2" stroke-linecap="round"/></svg>
+                <div class="g-linha">
+                  <span class="g-logo" aria-label="Google"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
+                  <span class="busca-campo">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="#8E8A7E" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="#8E8A7E" stroke-width="2" stroke-linecap="round"/></svg>
                     <span class="q" id="heroQ"></span><span class="cursor" id="heroCursor"></span>
+                  </span>
+                </div>
+
+                <div class="g-lista">
+                  <div class="res seu sq" id="resAnuncio">
+                    <span class="selo">Teu site</span>
+                    <div class="url">seunegocio.com.br</div>
+                    <div class="tit">Seu Negócio · atendimento na sua região</div>
+                    <div class="desc">Avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
+                    <div class="topo">
+                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5L6.5 12L13 4.5" stroke="#D9A441" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      no topo das buscas da região
+                    </div>
                   </div>
-                </div>
 
-                <div class="res seu sq" id="resAnuncio">
-                  <div class="tag">Anúncio · você</div>
-                  <div class="tit">Seu Nome · Nutricionista em Juiz de Fora</div>
-                  <div class="url">seunome.com.br</div>
-                  <div class="stars">★★★★★ 4,9 · 27 avaliações</div>
-                </div>
-
-                <div class="res sq">
-                  <div class="tag">Anúncio</div>
-                  <div class="tit">Clínica que investe em site</div>
-                  <div class="url">outraclinica.com.br</div>
-                </div>
-
-                <div class="res sq">
-                  <div class="tag">Resultado</div>
-                  <div class="tit">Concorrente com Google atualizado</div>
-                  <div class="url">concorrente.com.br</div>
-                </div>
-
-                <div class="res sq" style="border:none;opacity:.45">
-                  <div class="tag">Página 3</div>
-                  <div class="tit" style="color:#6E6A5E">Seu perfil do Instagram</div>
-                  <div class="url">onde quase ninguém chega</div>
+                  <div class="g-vazio sq"><i style="width:38%"></i><i style="width:72%"></i><i style="width:55%"></i></div>
+                  <div class="g-vazio sq"><i style="width:30%"></i><i style="width:64%"></i><i style="width:48%"></i></div>
                 </div>
               </div>
 
               <!-- TELA 2: o site abrindo -->
               <div class="tela" id="telaSite">
-                <div class="mini-topo">
-                  <span class="cadeado"></span>
-                  <span class="end">seunome.com.br</span>
-                </div>
                 <div class="mini-corpo">
-                  <div class="mini-marca">Seu Nome</div>
-                  <div class="mini-h">Atendimento nutricional em Juiz de Fora</div>
-                  <div class="mini-p">Primeira consulta com avaliação completa. Agende pelo WhatsApp e saia com o plano na mão.</div>
+                  <div class="mini-marca">Seu Negócio</div>
+                  <div class="mini-h">Atendimento na sua região, com hora marcada</div>
+                  <div class="mini-p">Primeira avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
                   <div class="mini-zap" id="miniZap">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8A8.94 8.94 0 0 0 20.9 12.9a8.85 8.85 0 0 0-3.3-6.58Z"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8A8.94 8.94 0 0 0 20.9 12.9a8.85 8.85 0 0 0-3.3-6.58Z"/></svg>
                     Falar no WhatsApp
                   </div>
                   <div class="mini-prova">★★★★★ <b>4,9</b> · 27 avaliações no Google</div>
@@ -518,7 +576,7 @@ footer a{color:var(--muted)}
             <span class="ok">✓</span>
             <div>
               <div class="a-tit">Contato novo no WhatsApp</div>
-              <div class="a-sub">veio da busca · sem você fazer nada</div>
+              <div class="a-sub">veio da busca, sem você fazer nada</div>
             </div>
           </div>
         </div>
@@ -536,7 +594,7 @@ footer a{color:var(--muted)}
     <h2>Você é bom no que faz.<br>O problema é que <span class="serif">ninguém vê isso</span>.</h2>
     <p class="lead" style="margin-top:16px">Se o seu trabalho depende de indicação para o mês fechar, é porque falta uma destas peças:</p>
     <div class="grid2">
-      <div class="item"><span class="x">✕</span><span>Quando alguém procura seu serviço na sua cidade, aparece o concorrente — e você não</span></div>
+      <div class="item"><span class="x">✕</span><span>Quando alguém procura seu serviço na sua cidade, aparece o concorrente, e você não</span></div>
       <div class="item"><span class="x">✕</span><span>Você manda o Instagram como "site", e o cliente rola o feed sem entender o que você faz nem quanto custa</span></div>
       <div class="item"><span class="x">✕</span><span>Não aparece no mapa do Google, então quem busca "perto de mim" nunca te encontra</span></div>
       <div class="item"><span class="x">✕</span><span>Cliente pergunta preço, você explica tudo de novo por mensagem, e ele some</span></div>
@@ -575,7 +633,7 @@ footer a{color:var(--muted)}
       <div class="card">
         <span class="num">02</span>
         <h3>Google Meu Negócio</h3>
-        <p>É o que faz você aparecer no mapa e na busca "perto de mim" — de graça, todo dia.</p>
+        <p>É o que faz você aparecer no mapa e na busca "perto de mim", de graça, todo dia.</p>
         <ul>
           <li>Perfil criado e verificado</li>
           <li>Categorias e serviços corretos</li>
@@ -607,7 +665,7 @@ footer a{color:var(--muted)}
       <div class="etapa">
         <b>01</b>
         <h3>Diagnóstico gratuito</h3>
-        <p>Uma conversa no WhatsApp. Eu olho como o seu negócio aparece hoje e te digo o que falta — mesmo que você não contrate nada.</p>
+        <p>Uma conversa no WhatsApp. Eu olho como o seu negócio aparece hoje e te digo o que falta, mesmo que você não contrate nada.</p>
       </div>
       <div class="etapa">
         <b>02</b>
@@ -628,14 +686,91 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
-<!-- ============ PLANOS ============ -->
-<section id="planos">
+<!-- ============ TRABALHOS ============ -->
+<section id="trabalhos">
   <div class="wrap rv">
-    <div class="center">
-      <span class="eyebrow">Planos</span>
-      <h2>Preço na mesa, sem <span class="serif">"depende"</span>.</h2>
-      <p class="lead" style="margin:16px auto 0">Pagamento único por projeto. Sem mensalidade, sem fidelidade, sem contrato preso.</p>
+    <span class="eyebrow">Trabalhos</span>
+    <h2>Quatro sites que eu já <span class="serif">coloquei no ar</span>.</h2>
+    <p class="lead" style="margin-top:16px">
+      Abra qualquer um e navegue à vontade: role até o fim, abra o FAQ, veja no celular.
+      É o mesmo acabamento que entra no seu, com o seu serviço no lugar.
+    </p>
+
+    <div class="trabalhos">
+
+      <div class="trabalho">
+        <div class="janela"><i></i><i></i><i></i><span>marinabastos.com.br</span></div>
+        <div class="palco" data-demo="demos/nutri-infantil/?limpo=1">
+          <img class="poster" src="demos/_prints/nutri-infantil-desktop.png" alt="Site de nutricionista infantil, com identidade colorida e ilustrada" loading="lazy" width="1440" height="900">
+          <div class="carregando">carregando o site…</div>
+        </div>
+        <div class="trabalho-txt">
+          <span class="trabalho-tag">Nutrição infantil · Rio de Janeiro</span>
+          <h3>Consultório com cara de acolhimento</h3>
+          <p>Público sensível, decisão emocional. Identidade ilustrada, depoimentos de mães em carrossel e WhatsApp presente em toda a rolagem.</p>
+          <a class="trabalho-ver" href="demos/nutri-infantil/" target="_blank" rel="noopener">Abrir em nova aba &rarr;</a>
+        </div>
+      </div>
+
+      <div class="trabalho">
+        <div class="janela"><i></i><i></i><i></i><span>renatasalles.com.br</span></div>
+        <div class="palco" data-demo="demos/nutri-emagrecimento/?limpo=1">
+          <img class="poster" src="demos/_prints/nutri-emagrecimento-desktop.png" alt="Site de nutricionista de emagrecimento, com identidade verde e sóbria" loading="lazy" width="1440" height="900">
+          <div class="carregando">carregando o site…</div>
+        </div>
+        <div class="trabalho-txt">
+          <span class="trabalho-tag">Emagrecimento · Juiz de Fora</span>
+          <h3>Autoridade sem parecer clínica fria</h3>
+          <p>Mercado saturado de promessa. A página vende o método, não o número na balança: processo em 3 etapas, FAQ que derruba objeção e mapa do consultório.</p>
+          <a class="trabalho-ver" href="demos/nutri-emagrecimento/" target="_blank" rel="noopener">Abrir em nova aba &rarr;</a>
+        </div>
+      </div>
+
+      <div class="trabalho">
+        <div class="janela"><i></i><i></i><i></i><span>camilaprado.com</span></div>
+        <div class="palco" data-demo="demos/nutri-clinica/?limpo=1">
+          <img class="poster" src="demos/_prints/nutri-clinica-desktop.png" alt="Site bilíngue de nutricionista em New Jersey" loading="lazy" width="1440" height="900">
+          <div class="carregando">carregando o site…</div>
+        </div>
+        <div class="trabalho-txt">
+          <span class="trabalho-tag">Nutrição clínica · New Jersey, EUA</span>
+          <h3>Site bilíngue, uma página só</h3>
+          <p>Atende brasileiro e americano. Um botão de bandeira troca a página inteira entre inglês e português, sem recarregar e sem duplicar o site.</p>
+          <a class="trabalho-ver" href="demos/nutri-clinica/" target="_blank" rel="noopener">Abrir em nova aba &rarr;</a>
+        </div>
+      </div>
+
+      <div class="trabalho">
+        <div class="janela"><i></i><i></i><i></i><span>ethanreyesrd.com</span></div>
+        <div class="palco" data-demo="demos/nutri-usa/?limpo=1">
+          <img class="poster" src="demos/_prints/nutri-usa-desktop.png" alt="Site de dietitian em Los Angeles, com várias páginas" loading="lazy" width="1440" height="900">
+          <div class="carregando">carregando o site…</div>
+        </div>
+        <div class="trabalho-txt">
+          <span class="trabalho-tag">Dietitian · Los Angeles, EUA</span>
+          <h3>Quatro páginas, não uma landing</h3>
+          <p>Serviços, sobre e contato separados, porque o cliente pesquisa antes de agendar. Aviso de cookies e páginas legais incluídos.</p>
+          <a class="trabalho-ver" href="demos/nutri-usa/" target="_blank" rel="noopener">Abrir em nova aba &rarr;</a>
+        </div>
+      </div>
     </div>
+
+    <div class="nota-demo">
+      <b>Por que as pessoas nas fotos não são reais:</b> estes quatro projetos foram feitos para
+      clientes de verdade. Para expor o trabalho sem expor a vida deles, troquei foto, nome,
+      marca, endereço e telefone por personagens fictícios. O que você está vendo é o layout,
+      a estrutura e o código exatamente como foram entregues. Só a identidade mudou. Os botões
+      de contato estão desligados dentro das demonstrações, por motivo óbvio.
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section class="faixa" id="planos">
+  <div class="wrap rv">
+    <span class="eyebrow">Planos</span>
+    <h2>Preço na mesa, sem <span class="serif">"depende"</span>.</h2>
+    <p class="lead" style="margin-top:16px">Pagamento único por projeto. Sem mensalidade, sem fidelidade, sem contrato preso.</p>
 
     <div class="planos">
 
@@ -654,7 +789,7 @@ footer a{color:var(--muted)}
           <li><span class="ck">✓</span> Duas rodadas de ajuste</li>
           <li><span class="ck">✓</span> No ar em até 7 dias úteis</li>
         </ul>
-        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 01 — Site (R$ 997). Sou ">Quero o Plano 01</a>
+        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 01: Site (R$ 997). Sou ">Quero o Plano 01</a>
       </div>
 
       <div class="plano destaque">
@@ -673,7 +808,7 @@ footer a{color:var(--muted)}
           <li><span class="ck">✓</span> Link pronto para pedir avaliação</li>
           <li><span class="ck">✓</span> Guia de como manter o perfil ativo</li>
         </ul>
-        <a class="btn btn-block pulse" data-wa="Olá! Tenho interesse no Plano 02 — Site + Google Meu Negócio (R$ 1.497). Sou ">Quero o Plano 02</a>
+        <a class="btn btn-block pulse" data-wa="Olá! Tenho interesse no Plano 02: Site + Google Meu Negócio (R$ 1.497). Sou ">Quero o Plano 02</a>
       </div>
 
       <div class="plano">
@@ -691,15 +826,23 @@ footer a{color:var(--muted)}
           <li><span class="ck">✓</span> Medição de conversão instalada</li>
           <li><span class="ck">✓</span> 30 dias de suporte para dúvidas</li>
         </ul>
-        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 03 — Site + Google + Campanha (R$ 2.497). Sou ">Quero o Plano 03</a>
+        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 03: Site + Google + Campanha (R$ 2.497). Sou ">Quero o Plano 03</a>
       </div>
 
     </div>
 
-    <div class="nota-verba">
-      <b>Sobre o Plano 03, para ficar claro desde já:</b> o valor cobre a montagem completa da
-      campanha, não a gestão mensal nem a verba de anúncio. A verba você paga direto ao Google,
-      com o seu cartão, e define quanto quer investir por dia — normalmente entre R$ 20 e R$ 50
+    <div class="nota-verba" role="note">
+      <div class="aviso-tit">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3.5 2.5 20h19L12 3.5Z" stroke="#D9A441" stroke-width="1.9" stroke-linejoin="round"/>
+          <path d="M12 10v4.2" stroke="#D9A441" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="17.2" r="1.1" fill="#D9A441"/>
+        </svg>
+        Sobre o Plano 03
+      </div>
+      Para ficar claro desde já: o valor cobre a montagem completa da campanha,
+      <b>não a gestão mensal nem a verba de anúncio</b>. A verba você paga direto ao Google,
+      com o seu cartão, e define quanto quer investir por dia. Normalmente entre R$ 20 e R$ 50
       para começar. A campanha é entregue rodando e configurada no seu nome: a conta é sua,
       o histórico é seu, e você não fica preso a ninguém.
     </div>
@@ -707,7 +850,7 @@ footer a{color:var(--muted)}
 </section>
 
 <!-- ============ PARA QUEM É / NÃO É ============ -->
-<section class="faixa">
+<section>
   <div class="wrap rv">
     <span class="eyebrow">Antes de você chamar</span>
     <h2>Isso serve para você?</h2>
@@ -736,83 +879,15 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
-<!-- ============ TRABALHOS ============ -->
-<section class="faixa" id="trabalhos">
-  <div class="wrap rv">
-    <span class="eyebrow">Trabalhos</span>
-    <h2>Quatro sites que eu já <span class="serif">coloquei no ar</span>.</h2>
-    <p class="lead" style="margin-top:16px">
-      Abra qualquer um e navegue à vontade: role até o fim, abra o FAQ, veja no celular.
-      É o mesmo acabamento que entra no seu — com o seu serviço no lugar.
-    </p>
-
-    <div class="trabalhos">
-
-      <a class="trabalho" href="demos/nutri-infantil/" target="_blank" rel="noopener">
-        <div class="janela"><i></i><i></i><i></i><span>marinabastos.com.br</span></div>
-        <figure><img src="demos/_prints/nutri-infantil-desktop.png" alt="Site de nutricionista infantil, com identidade colorida e ilustrada" loading="lazy" width="1440" height="900"></figure>
-        <div class="trabalho-txt">
-          <span class="trabalho-tag">Nutrição infantil · Rio de Janeiro</span>
-          <h3>Consultório com cara de acolhimento</h3>
-          <p>Público sensível, decisão emocional. Identidade ilustrada, depoimentos de mães em carrossel e WhatsApp presente em toda a rolagem.</p>
-          <span class="trabalho-ver">Abrir o site &rarr;</span>
-        </div>
-      </a>
-
-      <a class="trabalho" href="demos/nutri-emagrecimento/" target="_blank" rel="noopener">
-        <div class="janela"><i></i><i></i><i></i><span>renatasalles.com.br</span></div>
-        <figure><img src="demos/_prints/nutri-emagrecimento-desktop.png" alt="Site de nutricionista de emagrecimento, com identidade verde e sóbria" loading="lazy" width="1440" height="900"></figure>
-        <div class="trabalho-txt">
-          <span class="trabalho-tag">Emagrecimento · Juiz de Fora</span>
-          <h3>Autoridade sem parecer clínica fria</h3>
-          <p>Mercado saturado de promessa. A página vende o método, não o número na balança: processo em 3 etapas, FAQ que derruba objeção e mapa do consultório.</p>
-          <span class="trabalho-ver">Abrir o site &rarr;</span>
-        </div>
-      </a>
-
-      <a class="trabalho" href="demos/nutri-clinica/" target="_blank" rel="noopener">
-        <div class="janela"><i></i><i></i><i></i><span>camilaprado.com</span></div>
-        <figure><img src="demos/_prints/nutri-clinica-desktop.png" alt="Site bilíngue de nutricionista em New Jersey" loading="lazy" width="1440" height="900"></figure>
-        <div class="trabalho-txt">
-          <span class="trabalho-tag">Nutrição clínica · New Jersey, EUA</span>
-          <h3>Site bilíngue, uma página só</h3>
-          <p>Atende brasileiro e americano. Um botão de bandeira troca a página inteira entre inglês e português, sem recarregar e sem duplicar o site.</p>
-          <span class="trabalho-ver">Abrir o site &rarr;</span>
-        </div>
-      </a>
-
-      <a class="trabalho" href="demos/nutri-usa/" target="_blank" rel="noopener">
-        <div class="janela"><i></i><i></i><i></i><span>ethanreyesrd.com</span></div>
-        <figure><img src="demos/_prints/nutri-usa-desktop.png" alt="Site de dietitian em Los Angeles, com várias páginas" loading="lazy" width="1440" height="900"></figure>
-        <div class="trabalho-txt">
-          <span class="trabalho-tag">Dietitian · Los Angeles, EUA</span>
-          <h3>Quatro páginas, não uma landing</h3>
-          <p>Serviços, sobre e contato separados, porque o cliente pesquisa antes de agendar. Aviso de cookies e páginas legais incluídos.</p>
-          <span class="trabalho-ver">Abrir o site &rarr;</span>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="nota-demo">
-      <b>Por que as pessoas nas fotos não são reais:</b> estes quatro projetos foram feitos para
-      clientes de verdade. Para expor o trabalho sem expor a vida deles, troquei foto, nome,
-      marca, endereço e telefone por personagens fictícios. O que você está vendo é o layout,
-      a estrutura e o código exatamente como foram entregues — só a identidade mudou. Os botões
-      de contato estão desligados dentro das demonstrações, por motivo óbvio.
-    </div>
-  </div>
-</section>
-
 <!-- ============ PROVA ============ -->
-<section id="prova">
+<section class="faixa" id="prova">
   <div class="wrap rv">
     <span class="eyebrow">Prova</span>
     <h2>A página que você está lendo <span class="serif">também é o trabalho</span>.</h2>
     <p class="lead" style="margin-top:16px">
       Além dos quatro sites acima, você está olhando para um quinto exemplo agora: a estrutura,
       os textos, a velocidade, o botão que te leva ao WhatsApp em um toque. É esse nível de
-      acabamento que entra no seu site — com o seu serviço no lugar do meu.
+      acabamento que entra no seu site, com o seu serviço no lugar do meu.
     </p>
 
     <div class="prova">
@@ -820,7 +895,7 @@ footer a{color:var(--muted)}
       <p>
         A Theatrum é nova. Prefiro dizer isso do que encher a página de estrela que ninguém deu.
         Conforme os primeiros clientes entram, esta seção se preenche com nome, profissão, cidade
-        e avaliação real — e você vai poder conferir cada uma.
+        e avaliação real, e você vai poder conferir cada uma.
       </p>
       <p style="margin-top:12px">
         Enquanto isso, o que eu ofereço no lugar de prova social é <strong>risco zero para você
@@ -832,7 +907,7 @@ footer a{color:var(--muted)}
 </section>
 
 <!-- ============ COMPROMISSOS ============ -->
-<section class="faixa">
+<section>
   <div class="wrap rv">
     <span class="eyebrow">Compromissos</span>
     <h2>O que eu garanto por escrito.</h2>
@@ -854,13 +929,14 @@ footer a{color:var(--muted)}
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq">
+<section class="faixa" id="faq">
   <div class="wrap rv">
-    <div class="center"><span class="eyebrow">Perguntas diretas</span><h2>O que todo autônomo pergunta antes de fechar</h2></div>
+    <span class="eyebrow">Perguntas diretas</span>
+    <h2>O que todo autônomo pergunta antes de fechar</h2>
     <div class="faq">
       <details open>
         <summary>Tem mensalidade?</summary>
-        <p>Não. O valor do plano é único, pelo projeto. O que continua sendo pago são o domínio e a hospedagem, que juntos custam algo em torno de R$ 10 a R$ 40 por mês dependendo do provedor — e são pagos por você, direto, no seu nome. Eu não fico no meio dessa cobrança.</p>
+        <p>Não. O valor do plano é único, pelo projeto. O que continua sendo pago são o domínio e a hospedagem, que juntos custam algo em torno de R$ 10 a R$ 40 por mês dependendo do provedor, e são pagos por você, direto, no seu nome. Eu não fico no meio dessa cobrança.</p>
       </details>
       <details>
         <summary>Preciso entender de tecnologia?</summary>
@@ -868,11 +944,11 @@ footer a{color:var(--muted)}
       </details>
       <details>
         <summary>Em quanto tempo fica pronto?</summary>
-        <p>Até 7 dias úteis contados a partir do momento em que você me envia o briefing e o material. O que mais atrasa projeto é material que não chega — por isso o briefing é curto e eu te ajudo a preencher.</p>
+        <p>Até 7 dias úteis contados a partir do momento em que você me envia o briefing e o material. O que mais atrasa projeto é material que não chega. Por isso o briefing é curto e eu te ajudo a preencher.</p>
       </details>
       <details>
         <summary>Quanto tempo até aparecer cliente?</summary>
-        <p>Depende do plano. Com o Google Meu Negócio bem configurado, os primeiros contatos por busca local costumam começar em algumas semanas e crescem com o tempo. Com campanha ativa, os contatos podem chegar nos primeiros dias — mas aí você está pagando por eles. Quem promete cliente garantido em 7 dias sem investimento está vendendo o que não pode entregar.</p>
+        <p>Depende do plano. Com o Google Meu Negócio bem configurado, os primeiros contatos por busca local costumam começar em algumas semanas e crescem com o tempo. Com campanha ativa, os contatos podem chegar nos primeiros dias, mas aí você está pagando por eles. Quem promete cliente garantido em 7 dias sem investimento está vendendo o que não pode entregar.</p>
       </details>
       <details>
         <summary>O que exatamente é a "campanha" do Plano 03?</summary>
@@ -884,7 +960,7 @@ footer a{color:var(--muted)}
       </details>
       <details>
         <summary>E se eu não gostar do site?</summary>
-        <p>Estão inclusas duas rodadas de ajuste antes da publicação, justamente para isso. Nada vai ao ar sem a sua aprovação. Se depois das duas rodadas você ainda achar que não é o que queria, conversamos — e prefiro devolver do que publicar algo que você não vai querer mostrar para ninguém.</p>
+        <p>Estão inclusas duas rodadas de ajuste antes da publicação, justamente para isso. Nada vai ao ar sem a sua aprovação. Se depois das duas rodadas você ainda achar que não é o que queria, conversamos. E prefiro devolver do que publicar algo que você não vai querer mostrar para ninguém.</p>
       </details>
       <details>
         <summary>Você atende só a minha cidade?</summary>
@@ -947,7 +1023,7 @@ footer a{color:var(--muted)}
 
 <script>
 /* ============================================================
-   CONFIGURAÇÃO — só mexa aqui
+   CONFIGURAÇÃO: só mexa aqui
    ============================================================ */
 var WHATSAPP = '5532984762445';
 
@@ -1000,7 +1076,7 @@ var io = new IntersectionObserver(function(entries){
 document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
 /* ============================================================
-   HERO — demonstração animada
+   HERO: demonstração animada
    busca no Google → anúncio aparece → clique → site → WhatsApp
    Mesma mecânica da seção "demonstração" de usetheatrum.com.br:
    contador de geração para cancelar a sequência anterior, revelação
@@ -1017,11 +1093,12 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   var aviso   = document.getElementById('heroAviso');
   var legenda = document.getElementById('heroLegenda');
   var zap     = document.getElementById('miniZap');
+  var endereco= document.getElementById('heroEndereco');
   var anuncio = document.getElementById('resAnuncio');
   var itens   = [].slice.call(tela1.querySelectorAll('.sq'));
   var palco   = tela1.parentNode;
 
-  var BUSCA = 'nutricionista perto de mim';
+  var BUSCA = 'atendimento perto de mim';
   var parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ger = 0;
 
@@ -1045,6 +1122,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     zap.classList.remove('chama');
     tela1.classList.add('on');
     tela2.classList.remove('on');
+    endereco.textContent = 'google.com';
     diz('');
   }
 
@@ -1079,6 +1157,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     if(!await passo(260)) return;
     tela1.classList.remove('on');
     tela2.classList.add('on');
+    endereco.textContent = 'seunegocio.com.br';
     diz('Cai <b>no seu site</b>, não num perfil parado');
 
     if(!await passo(1200)) return;
@@ -1125,6 +1204,60 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     });
   }, { threshold: .3 });
   visivel.observe(palco);
+})();
+
+/* ============================================================
+   TRABALHOS — os demos rodam de verdade dentro da página
+   Cada palco carrega o site só quando entra na tela, renderiza
+   numa viewport de desktop e reduz por transform, para o card
+   mostrar o layout de computador em vez do de celular.
+   ============================================================ */
+(function(){
+  var LARGURA = 1280;                    // viewport que o demo enxerga
+  var palcos  = [].slice.call(document.querySelectorAll('.trabalho .palco'));
+  if(!palcos.length) return;
+
+  function encaixar(palco){
+    var frame = palco.querySelector('iframe');
+    if(!frame) return;
+    var escala = palco.clientWidth / LARGURA;
+    frame.style.width  = LARGURA + 'px';
+    frame.style.height = Math.ceil(palco.clientHeight / escala) + 'px';
+    frame.style.transform = 'scale(' + escala + ')';
+  }
+
+  function montar(palco){
+    if(palco.dataset.pronto) return;
+    palco.dataset.pronto = '1';
+    palco.classList.add('pedindo');
+
+    var frame = document.createElement('iframe');
+    frame.setAttribute('loading','lazy');
+    frame.setAttribute('title','Demonstração de site feito pela Theatrum');
+    /* sem allow-top-navigation: o demo não consegue arrastar a página junto */
+    frame.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups');
+    frame.addEventListener('load', function(){
+      encaixar(palco);
+      palco.classList.remove('pedindo');
+      palco.classList.add('vivo');
+    });
+    palco.appendChild(frame);
+    encaixar(palco);
+    frame.src = palco.dataset.demo;
+  }
+
+  var olho = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ montar(e.target); olho.unobserve(e.target); }
+    });
+  }, { rootMargin: '250px' });          // começa a carregar um pouco antes
+  palcos.forEach(function(p){ olho.observe(p); });
+
+  var t;
+  window.addEventListener('resize', function(){
+    clearTimeout(t);
+    t = setTimeout(function(){ palcos.forEach(encaixar); }, 150);
+  }, { passive:true });
 })();
 
 /* CTA fixo: aparece depois do hero, some na seção de planos e no fechamento */
