@@ -46,7 +46,7 @@ gtag('config', 'G-5LHDD8TS0S');
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -1297,9 +1297,18 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     frame.style.transform = 'scale(' + escala + ')';
   }
 
-  function montar(palco){
-    if(palco.dataset.pronto) return;
-    palco.dataset.pronto = '1';
+  /* Um de cada vez. Quatro sites baixando em paralelo brigam pela mesma
+     banda e travam a rolagem; em fila, o primeiro card fica pronto muito
+     antes e os outros entram enquanto a pessoa lê. */
+  var fila = [], ocupado = false;
+
+  function proximo(){
+    if(ocupado || !fila.length) return;
+    ocupado = true;
+    abrir(fila.shift());
+  }
+
+  function abrir(palco){
     palco.classList.add('pedindo');
 
     var frame = document.createElement('iframe');
@@ -1307,14 +1316,31 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     frame.setAttribute('title','Prévia de site feito pela Theatrum');
     /* sem allow-top-navigation: o demo não consegue arrastar a página junto */
     frame.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups');
-    frame.addEventListener('load', function(){
+
+    var liberado = false;
+    function liberar(){
+      if(liberado) return;              // o iframe dispara load 2x (about:blank)
+      liberado = true;
       encaixar(palco);
       palco.classList.remove('pedindo');
       palco.classList.add('vivo');
-    });
+      ocupado = false;
+      proximo();
+    }
+    frame.addEventListener('load', function(){ if(frame.src) liberar(); });
+    /* se um demo demorar, não trava a fila inteira */
+    setTimeout(liberar, 8000);
+
     palco.appendChild(frame);
     encaixar(palco);
     frame.src = palco.dataset.demo;
+  }
+
+  function montar(palco){
+    if(palco.dataset.pronto) return;
+    palco.dataset.pronto = '1';
+    fila.push(palco);
+    proximo();
   }
 
   var olho = new IntersectionObserver(function(es){

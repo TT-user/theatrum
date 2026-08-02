@@ -1,0 +1,8 @@
+# Vale para tudo dentro de /sites-para-autonomos/demos/.
+#
+# As demonstrações são sites fictícios de nutricionista. Se o Google indexar,
+# elas competem na busca com a própria landing e com clientes reais, e alguém
+# pode cair num "consultório" que não existe vindo direto do Google.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
