@@ -400,6 +400,16 @@ img,svg{-webkit-user-drag:none;user-drag:none}
 }
 .trabalho-txt h3{margin-bottom:7px}
 .trabalho-txt p{font-size:.88rem;color:var(--muted)}
+/* botão de abrir a demonstração, escondido no celular */
+.trabalho-ver{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:transparent;border:1px solid var(--line);border-radius:60px;
+  padding:11px 20px;font-size:.84rem;font-weight:700;color:var(--txt);
+  text-decoration:none;transition:border-color .2s ease,color .2s ease,gap .2s ease;
+}
+.trabalho-ver:hover{border-color:var(--ouro);color:var(--ouro-claro);gap:12px}
+@media(max-width:640px){ .trabalho-ver{display:none} }
+
 /* aviso de que a caixa rola por dentro */
 .trabalho .rola{
   position:absolute;right:10px;bottom:10px;z-index:2;
@@ -743,6 +753,7 @@ footer a{color:var(--muted)}
           <span class="trabalho-tag">Nutrição infantil · Rio de Janeiro</span>
           <h3>Consultório com cara de acolhimento</h3>
           <p>Público sensível, decisão emocional. Identidade ilustrada, depoimentos de mães em carrossel e WhatsApp presente em toda a rolagem.</p>
+          <a class="trabalho-ver" href="demos/nutri-infantil/" target="_blank" rel="noopener">Ver demonstração &rarr;</a>
         </div>
       </div>
 
@@ -757,6 +768,7 @@ footer a{color:var(--muted)}
           <span class="trabalho-tag">Emagrecimento · Juiz de Fora</span>
           <h3>Autoridade sem parecer clínica fria</h3>
           <p>Mercado saturado de promessa. A página vende o método, não o número na balança: processo em 3 etapas, FAQ que derruba objeção e mapa do consultório.</p>
+          <a class="trabalho-ver" href="demos/nutri-emagrecimento/" target="_blank" rel="noopener">Ver demonstração &rarr;</a>
         </div>
       </div>
 
@@ -771,6 +783,7 @@ footer a{color:var(--muted)}
           <span class="trabalho-tag">Nutrição clínica · New Jersey, EUA</span>
           <h3>Site bilíngue, uma página só</h3>
           <p>Atende brasileiro e americano. Um botão de bandeira troca a página inteira entre inglês e português, sem recarregar e sem duplicar o site.</p>
+          <a class="trabalho-ver" href="demos/nutri-clinica/" target="_blank" rel="noopener">Ver demonstração &rarr;</a>
         </div>
       </div>
 
@@ -785,6 +798,7 @@ footer a{color:var(--muted)}
           <span class="trabalho-tag">Dietitian · Los Angeles, EUA</span>
           <h3>Quatro páginas, não uma landing</h3>
           <p>Serviços, sobre e contato separados, porque o cliente pesquisa antes de agendar. Aviso de cookies e páginas legais incluídos.</p>
+          <a class="trabalho-ver" href="demos/nutri-usa/" target="_blank" rel="noopener">Ver demonstração &rarr;</a>
         </div>
       </div>
     </div>
@@ -1290,7 +1304,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
     var frame = document.createElement('iframe');
     frame.setAttribute('loading','lazy');
-    frame.setAttribute('title','Demonstração de site feito pela Theatrum');
+    frame.setAttribute('title','Prévia de site feito pela Theatrum');
     /* sem allow-top-navigation: o demo não consegue arrastar a página junto */
     frame.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups');
     frame.addEventListener('load', function(){

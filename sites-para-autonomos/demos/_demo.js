@@ -22,9 +22,16 @@
     'padding:10px 16px;background:#0B0A08;border-top:1px solid #26241C;',
     'font:600 13px/1.4 Inter,system-ui,-apple-system,sans-serif;color:#9A968A;text-align:center}',
     '.thtr-bar b{color:#F0EEE8;font-weight:700}',
-    '.thtr-bar a{color:#D9A441;text-decoration:none;font-weight:700;',
-    'border:1px solid rgba(217,164,65,.45);border-radius:999px;padding:6px 16px;white-space:nowrap}',
-    '.thtr-bar a:hover{background:rgba(217,164,65,.12)}',
+    '.thtr-bar a{text-decoration:none;font-weight:700;border-radius:999px;',
+    'padding:7px 16px;white-space:nowrap;transition:background .2s ease,border-color .2s ease}',
+    /* voltar é o principal: sai destacado à esquerda */
+    '.thtr-bar .voltar{background:#D9A441;color:#150F03;border:1px solid #D9A441}',
+    '.thtr-bar .voltar:hover{background:#EFC474;border-color:#EFC474}',
+    '.thtr-bar .quero{color:#D9A441;border:1px solid rgba(217,164,65,.45)}',
+    '.thtr-bar .quero:hover{background:rgba(217,164,65,.12)}',
+    /* no celular a barra vira duas linhas e o texto longo sai de cena */
+    '@media(max-width:640px){.thtr-bar{gap:8px;padding:9px 12px}',
+    '.thtr-bar span{display:none}.thtr-bar a{font-size:12px;padding:8px 14px}}',
     '.thtr-toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,14px);',
     'z-index:2147483001;max-width:min(420px,calc(100vw - 32px));',
     'background:#15140F;border:1px solid #26241C;border-radius:14px;padding:16px 20px;',
@@ -51,7 +58,13 @@
     semCookie.textContent =
       '#cookie-banner,.cookie-banner,.lgpd{display:none!important}' +
       /* arrastar dentro do card rola, não seleciona texto */
-      'body{-webkit-user-select:none;-moz-user-select:none;user-select:none}';
+      'body{-webkit-user-select:none;-moz-user-select:none;user-select:none}' +
+      /* prévia: nada aqui dentro responde a clique. A rolagem continua
+         nativa, porque rolar não depende de pointer-events. Para navegar
+         de verdade a pessoa abre a demonstração pelo botão do card. */
+      'a,button,summary,details,input,select,textarea,label,[role="button"],' +
+      '.faq-pergunta,.faq-question,.lang-btn,.menu-toggle,iframe' +
+      '{pointer-events:none!important}';
     document.head.appendChild(semCookie);
 
     var tiraMapa = function () {
@@ -75,9 +88,10 @@
     bar.className = 'thtr-bar';
     /* relativo de propósito: o site é servido numa subpasta do domínio,
        então '../../' aponta para a página de conversão seja qual for o nome dela */
-    bar.innerHTML = '<span><b>Demonstração.</b> Pessoa, marca e contatos são fictícios. ' +
+    bar.innerHTML = '<a class="voltar" href="../../">&larr; Voltar para a Theatrum</a>' +
+                    '<span><b>Demonstração.</b> Pessoa, marca e contatos são fictícios. ' +
                     'O layout é real e foi feito pela Theatrum.</span>' +
-                    '<a href="../../">Quero um assim &rarr;</a>';
+                    '<a class="quero" href="../../#planos">Quero um assim</a>';
     document.body.appendChild(bar);
 
     /* garante que a barra não cubra o rodapé nem botões flutuantes */
