@@ -4,5 +4,18 @@
 # elas competem na busca com a própria landing e com clientes reais, e alguém
 # pode cair num "consultório" que não existe vindo direto do Google.
 <IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex, nofollow"
+  Header always set X-Robots-Tag "noindex, nofollow"
+
+  # A camada de demonstração muda junto com a página. O padrão do servidor
+  # dava 7 dias para .js, e foi isso que segurou uma correção de travamento
+  # do seletor de idioma. "always" porque o set comum não venceu esse padrão.
+  <FilesMatch "\.(js|mjs)$">
+    Header always set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/javascript "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
 </IfModule>
