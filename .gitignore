@@ -4,3 +4,8 @@ MazyOS/
 site/astro-site/node_modules/
 site/astro-site/dist/
 site/astro-site/.astro/
+
+# ferramentas locais de agente (nao fazem parte do site)
+.agents/
+.mcp.json
+skills-lock.json
