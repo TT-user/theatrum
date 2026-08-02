@@ -38,10 +38,15 @@ const TIPOS = {
   '.avif': 'image/avif', '.webp': 'image/webp', '.ico': 'image/x-icon',
 };
 
+/* A raiz é a pasta acima de demos/, não demos/: o _demo.js pede
+   ../../_protecao.js, que mora um nível acima. Com a raiz em demos/
+   esse pedido caía fora da pasta e voltava 404. */
+const RAIZ = path.dirname(AQUI);
+
 const servidor = http.createServer((req, res) => {
   const rel = decodeURIComponent(req.url.split('?')[0]).replace(/^\/+/, '');
-  const alvo = path.join(AQUI, rel);
-  if (!alvo.startsWith(AQUI) || !fs.existsSync(alvo) || fs.statSync(alvo).isDirectory()) {
+  const alvo = path.join(RAIZ, rel);
+  if (!alvo.startsWith(RAIZ) || !fs.existsSync(alvo) || fs.statSync(alvo).isDirectory()) {
     res.writeHead(404).end('nao encontrado');
     return;
   }
@@ -69,7 +74,7 @@ fs.mkdirSync(SAIDA, { recursive: true });
 await new Promise((r) => servidor.listen(PORTA, r));
 
 for (const { slug, pagina } of DEMOS) {
-  const url = `http://localhost:${PORTA}/${slug}/${pagina}?limpo=1`;
+  const url = `http://localhost:${PORTA}/demos/${slug}/${pagina}?limpo=1`;
 
   const desktop = path.join(SAIDA, `${slug}-desktop.png`);
   await capturar(url, desktop, 1440, 900);
