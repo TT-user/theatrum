@@ -119,12 +119,18 @@
   /* ---------- neutraliza os links de contato ---------- */
   var CONTATO = /^(tel:|mailto:|sms:|https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com|signup\.faynutrition\.com|visit\.berrystreet\.co))/i;
 
+  /* Só mexe no link uma vez. Sem estas duas guardas o setAttribute abaixo
+     dispara o MutationObserver, que chama esta função de novo, que chama o
+     setAttribute de novo: laço infinito. Com o seletor de idioma, que
+     reescreve o innerHTML de dezenas de elementos de uma vez, o laço trava
+     a aba. */
   function neutralizar(a) {
+    if (a.dataset.thtrDemo === '1') return;
     var href = a.getAttribute('href') || '';
     if (href !== '#demo-cta' && !CONTATO.test(href)) return;
-    a.setAttribute('href', '#demo-cta');
-    a.removeAttribute('target');
     a.dataset.thtrDemo = '1';
+    if (href !== '#demo-cta') a.setAttribute('href', '#demo-cta');
+    a.removeAttribute('target');
   }
 
   document.querySelectorAll('a[href]').forEach(neutralizar);
