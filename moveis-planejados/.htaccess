@@ -1,0 +1,51 @@
+# Regras válidas SOMENTE para /moveis-planejados/ e suas subpastas.
+# A home e o blog continuam com a configuração que já tinham.
+
+# ---------- cache ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML: curto. A página ainda muda com frequência, e um cache longo aqui
+  # faz correção demorar dias para chegar em quem já visitou.
+  ExpiresByType text/html "access plus 10 minutes"
+
+  # CSS/JS da demonstração: também curtos, pelo mesmo motivo.
+  # (_demo.js estava com 7 dias e segurou uma correção de travamento.)
+  ExpiresByType text/javascript "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 hour"
+
+  # Imagens e fontes: não mudam. Cache longo de verdade.
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # HTML sempre revalida: garante que uma correção publicada apareça já.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+
+  # Os arquivos da camada de demonstração mudam junto com a página.
+  <FilesMatch "^_.*\.(js|mjs)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+
+  # Imagens e ícones são imutáveis na prática.
+  <FilesMatch "\.(webp|jpg|jpeg|png|svg|ico|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+</IfModule>
+
+# O noindex das demonstrações fica em demos/.htaccess, não aqui: uma regra
+# por nome de arquivo neste nível pegaria o index.html da própria landing.
+
+# ---------- compressão ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml
+</IfModule>
