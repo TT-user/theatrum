@@ -487,6 +487,17 @@ footer a{color:var(--muted)}
   border:none;border-radius:8px;padding:10px 18px;font-weight:700;cursor:pointer;
   font-family:inherit;font-size:.85rem;
 }
+/* no desktop vira um cartão discreto no canto, em vez de uma faixa
+   atravessando a tela inteira por cima do conteúdo */
+@media(min-width:641px){
+  .lgpd{
+    right:auto;left:20px;bottom:20px;max-width:340px;
+    padding:15px 16px;border-radius:12px;
+  }
+  .lgpd p{font-size:.78rem;line-height:1.5;margin-bottom:10px}
+  .lgpd .acoes{gap:8px}
+  .lgpd button{padding:8px 15px;font-size:.79rem;border-radius:7px}
+}
 .lgpd .ok{background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));color:#150F03}
 .lgpd .nao{background:transparent;border:1px solid var(--line);color:var(--txt)}
 
