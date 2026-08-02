@@ -35,14 +35,14 @@ gtag('config', 'G-5LHDD8TS0S');
      do DevTools. Mesmo arquivo usado pelas demonstrações. -->
 <script src="_protecao.js" defer></script>
 
-<title>Site profissional para autônomos | Theatrum</title>
-<meta name="description" content="Site profissional, Google Meu Negócio e campanha para autônomos que vivem de cliente. A partir de R$ 997, no ar em até 7 dias úteis. Diagnóstico gratuito no WhatsApp.">
-<meta property="og:title" content="Seu cliente te procurou no Google. E achou outro.">
-<meta property="og:description" content="Site profissional + Google Meu Negócio + campanha para autônomos. A partir de R$ 997.">
+<title>Site para marcenaria e móveis planejados | Theatrum</title>
+<meta name="description" content="Site com portfólio, Google Meu Negócio e campanha para marcenarias e lojas de móveis planejados. A partir de R$ 1.497, no ar em até 7 dias úteis. Diagnóstico gratuito no WhatsApp.">
+<meta property="og:title" content="O cliente pesquisou planejados. E achou a franquia.">
+<meta property="og:description" content="Site com portfólio + Google Meu Negócio + campanha para marcenarias. A partir de R$ 1.497.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta name="theme-color" content="#0B0A08">
-<link rel="canonical" href="https://usetheatrum.com.br/sites-para-autonomos/">
+<link rel="canonical" href="https://usetheatrum.com.br/moveis-planejados/">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
@@ -169,11 +169,13 @@ p{color:#C4C0B6}
 .tela.on{opacity:1;pointer-events:auto}
 
 /* linha do Google + campo de busca */
-.g-linha{display:flex;align-items:center;gap:14px;padding:22px 18px 18px}
-.g-logo{font-weight:700;font-size:1.45rem;letter-spacing:-.02em;user-select:none;flex-shrink:0}
+/* gap e logo menores: "móveis planejados perto de mim" é longo e a busca
+   precisa caber inteira, senão o termo que importa é o que fica cortado */
+.g-linha{display:flex;align-items:center;gap:10px;padding:22px 16px 18px}
+.g-logo{font-weight:700;font-size:1.25rem;letter-spacing:-.02em;user-select:none;flex-shrink:0}
 .busca-campo{
   flex:1;min-width:0;background:#161310;border:1px solid #332C22;border-radius:24px;
-  padding:9px 15px;font-size:.82rem;color:#E4E0D6;display:flex;align-items:center;gap:9px;
+  padding:9px 13px;font-size:.76rem;color:#E4E0D6;display:flex;align-items:center;gap:8px;
 }
 .busca-campo .q{white-space:nowrap;overflow:hidden}
 .cursor{display:inline-block;width:1.5px;height:.95em;background:#E4E0D6;animation:pisca 1s steps(1) infinite}
@@ -317,12 +319,20 @@ p{color:#C4C0B6}
   font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
   padding:5px 14px;border-radius:60px;white-space:nowrap;
 }
+/* o Plano 03 também leva selo, mas contornado: o destaque visual continua
+   sendo o Plano 02, e dois selos dourados sólidos brigariam entre si */
+.plano .selo.selo-rec{
+  background:var(--card);border:1px solid rgba(217,164,65,.55);color:var(--ouro-claro);
+}
 .plano .nome{font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:10px}
 .plano h3{font-size:1.28rem;margin-bottom:6px}
 .plano .desc{font-size:.86rem;color:var(--muted);min-height:42px}
 .plano .preco{font-size:2.5rem;font-weight:900;letter-spacing:-.04em;margin:18px 0 2px}
 .plano .preco small{font-size:1.1rem;font-weight:700;vertical-align:super;margin-right:2px}
 .plano .parc{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+/* o mensal do Plano 03 não pode passar como letra miúda: é ele que
+   diferencia o plano, e esconder recorrência é o que gera cancelamento */
+.plano .parc .mensal{display:block;font-size:1rem;font-weight:800;color:var(--ouro-claro);margin-bottom:3px}
 .plano ul{list-style:none;display:grid;gap:9px;margin-bottom:26px;flex:1}
 .plano li{display:flex;gap:9px;font-size:.89rem;align-items:flex-start;color:#C4C0B6}
 .plano li .ck{color:var(--verde);font-weight:800;flex-shrink:0;font-size:.85rem;line-height:1.6}
@@ -559,23 +569,24 @@ footer a{color:var(--muted)}
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="badges">
-          <span class="badge">Para profissionais autônomos</span>
+          <span class="badge">Para marcenarias e móveis planejados</span>
           <span class="badge">No ar em até 7 dias úteis</span>
-          <span class="badge">A partir de R$ 997</span>
+          <span class="badge">A partir de R$ 1.497</span>
         </div>
-        <h1>Seu cliente te procurou no Google.<br><span class="serif">E achou outro.</span></h1>
+        <h1>O cliente pesquisou planejados.<br><span class="serif">E achou a franquia.</span></h1>
         <p class="lead" style="margin:20px 0 28px">
-          Não porque o outro é melhor. Porque o outro aparece. A Theatrum monta a sua
-          identidade digital: site, Google e caminho até o WhatsApp, para quem procura
-          o seu serviço encontrar você primeiro.
+          Não porque o móvel dela é melhor que o seu. Porque ela aparece e você não.
+          A Theatrum monta a sua vitrine digital: site com o seu portfólio, perfil no
+          Google e caminho até o WhatsApp, para quem está com a planta na mão encontrar
+          a sua marcenaria primeiro.
         </p>
         <span class="cta-bloco">
-          <a class="btn pulse" data-wa="Olá! Quero o diagnóstico gratuito da minha identidade digital.">Quero meu diagnóstico gratuito</a>
+          <a class="btn pulse" data-wa="Olá! Tenho uma marcenaria/loja de planejados e quero o diagnóstico gratuito.">Quero meu diagnóstico gratuito</a>
           <span class="btn-sub">Sem compromisso · direto no WhatsApp</span>
         </span>
         <div class="trust">
           <span class="dot-live"></span>
-          <span>Atendimento remoto para todo o Brasil</span>
+          <span>Atendimento remoto para marcenarias de todo o Brasil</span>
         </div>
       </div>
 
@@ -602,9 +613,9 @@ footer a{color:var(--muted)}
                 <div class="g-lista">
                   <div class="res seu sq" id="resAnuncio">
                     <span class="selo">Teu site</span>
-                    <div class="url">seunegocio.com.br</div>
-                    <div class="tit">Seu Negócio · atendimento na sua região</div>
-                    <div class="desc">Avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
+                    <div class="url">suamarcenaria.com.br</div>
+                    <div class="tit">Sua Marcenaria · planejados sob medida na sua região</div>
+                    <div class="desc">Cozinha, closet e dormitório. Projeto 3D sem compromisso, direto com quem executa.</div>
                     <div class="topo">
                       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5L6.5 12L13 4.5" stroke="#D9A441" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                       no topo das buscas da região
@@ -619,9 +630,9 @@ footer a{color:var(--muted)}
               <!-- TELA 2: o site abrindo -->
               <div class="tela" id="telaSite">
                 <div class="mini-corpo">
-                  <div class="mini-marca">Seu Negócio</div>
-                  <div class="mini-h">Atendimento na sua região, com hora marcada</div>
-                  <div class="mini-p">Primeira avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
+                  <div class="mini-marca">Sua Marcenaria</div>
+                  <div class="mini-h">Cozinha, closet e home office sob medida</div>
+                  <div class="mini-p">Projeto 3D sem compromisso. Você fala com quem executa, não com vendedor de showroom.</div>
                   <div class="mini-zap" id="miniZap">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8A8.94 8.94 0 0 0 20.9 12.9a8.85 8.85 0 0 0-3.3-6.58Z"/></svg>
                     Falar no WhatsApp
@@ -638,7 +649,7 @@ footer a{color:var(--muted)}
             <span class="ok">✓</span>
             <div>
               <div class="a-tit">Contato novo no WhatsApp</div>
-              <div class="a-sub">veio da busca, sem você fazer nada</div>
+              <div class="a-sub">com a planta em anexo, vindo da busca</div>
             </div>
           </div>
         </div>
@@ -653,15 +664,15 @@ footer a{color:var(--muted)}
 <section class="faixa" id="problema">
   <div class="wrap rv">
     <span class="eyebrow">Você se reconhece?</span>
-    <h2>Você é bom no que faz.<br>O problema é que <span class="serif">ninguém vê isso</span>.</h2>
-    <p class="lead" style="margin-top:16px">Se o seu trabalho depende de indicação para o mês fechar, é porque falta uma destas peças:</p>
+    <h2>Seu acabamento é melhor que o da loja grande.<br>O problema é que <span class="serif">ninguém vê isso</span>.</h2>
+    <p class="lead" style="margin-top:16px">Se o mês só fecha quando um arquiteto lembra de você, é porque falta uma destas peças:</p>
     <div class="grid2">
-      <div class="item"><span class="x">✕</span><span>Quando alguém procura seu serviço na sua cidade, aparece o concorrente, e você não</span></div>
-      <div class="item"><span class="x">✕</span><span>Você manda o Instagram como "site", e o cliente rola o feed sem entender o que você faz nem quanto custa</span></div>
-      <div class="item"><span class="x">✕</span><span>Não aparece no mapa do Google, então quem busca "perto de mim" nunca te encontra</span></div>
-      <div class="item"><span class="x">✕</span><span>Cliente pergunta preço, você explica tudo de novo por mensagem, e ele some</span></div>
-      <div class="item"><span class="x">✕</span><span>Mês bom depende de indicação. Mês ruim é quando ninguém indicou</span></div>
-      <div class="item"><span class="x">✕</span><span>Você já pensou em fazer um site, mas parou na primeira orçamento de R$ 5 mil</span></div>
+      <div class="item"><span class="x">✕</span><span>Quem busca "móveis planejados" na sua cidade encontra a franquia do shopping, e a sua marcenaria não aparece em lugar nenhum</span></div>
+      <div class="item"><span class="x">✕</span><span>Seu portfólio está no Instagram, misturado com story de obra, e quem quer ver uma cozinha pronta desiste antes de achar</span></div>
+      <div class="item"><span class="x">✕</span><span>Não aparece no mapa do Google, então quem busca "marcenaria perto de mim" nunca chega até você</span></div>
+      <div class="item"><span class="x">✕</span><span>O WhatsApp enche de "quanto custa uma cozinha?", você monta o orçamento, e a pessoa some</span></div>
+      <div class="item"><span class="x">✕</span><span>Você depende do arquiteto indicar. No mês em que ele indica outro, não entra projeto</span></div>
+      <div class="item"><span class="x">✕</span><span>Do lado de fora, a sua marcenaria e a loja grande parecem iguais. E a grande parece maior</span></div>
     </div>
     <div class="center" style="margin-top:40px">
       <a href="#planos" class="btn btn-ghost">Ver os planos e preços</a>
@@ -675,43 +686,43 @@ footer a{color:var(--muted)}
     <span class="eyebrow">A solução</span>
     <h2>Três peças que trabalham <span class="serif">juntas</span>.</h2>
     <p class="lead" style="margin-top:16px">
-      Site sozinho é cartão de visita parado. Google sozinho não converte. Anúncio sozinho
-      manda gente para lugar nenhum. Juntos, viram um caminho: alguém procura, encontra
-      você, entende o que você faz e chama no WhatsApp.
+      Site sozinho é catálogo parado. Google sozinho não fecha projeto. Anúncio sozinho
+      manda gente para lugar nenhum. Juntos, viram um caminho: alguém procura planejados,
+      encontra a sua marcenaria, vê o que você já executou e chama no WhatsApp.
     </p>
 
     <div class="cards3">
       <div class="card">
         <span class="num">01</span>
-        <h3>Site profissional</h3>
-        <p>O endereço que é seu. Explica o que você faz, para quem, e leva direto ao WhatsApp.</p>
+        <h3>Site com portfólio</h3>
+        <p>O endereço que é seu. Mostra os ambientes que você já entregou e leva direto ao WhatsApp.</p>
         <ul>
+          <li>Portfólio separado por ambiente</li>
           <li>Feito sob medida, não template genérico</li>
-          <li>Rápido e leve no celular</li>
+          <li>Rápido no celular, que é onde o cliente abre</li>
           <li>Botão de WhatsApp em toda a página</li>
-          <li>Domínio próprio configurado</li>
         </ul>
       </div>
       <div class="card">
         <span class="num">02</span>
         <h3>Google Meu Negócio</h3>
-        <p>É o que faz você aparecer no mapa e na busca "perto de mim", de graça, todo dia.</p>
+        <p>É o que coloca a sua marcenaria no mapa quando buscam planejados na região, de graça, todo dia.</p>
         <ul>
           <li>Perfil criado e verificado</li>
-          <li>Categorias e serviços corretos</li>
-          <li>Fotos, horário e área de atendimento</li>
-          <li>Link para pedir avaliação dos clientes</li>
+          <li>Categorias certas de marcenaria e móvel sob medida</li>
+          <li>Fotos dos ambientes e área de atendimento</li>
+          <li>Link para pedir avaliação de quem você já entregou</li>
         </ul>
       </div>
       <div class="card">
         <span class="num">03</span>
-        <h3>Campanha de tráfego</h3>
-        <p>Para quando você quer acelerar: anúncio no Google mostrando você a quem já procura.</p>
+        <h3>Campanha e gestão</h3>
+        <p>Anúncio no Google mostrando a sua marcenaria para quem está pesquisando planejados agora.</p>
         <ul>
-          <li>Campanha montada conforme seu objetivo</li>
-          <li>Palavras-chave e negativas definidas</li>
+          <li>Campanha montada para o ambiente que te dá mais margem</li>
+          <li>Negativas que cortam "móvel usado" e "MDF barato"</li>
           <li>Anúncios escritos e conversão medida</li>
-          <li>Entregue configurada e funcionando</li>
+          <li>No Plano 03, ajustada e relatada por mim todo mês</li>
         </ul>
       </div>
     </div>
@@ -727,22 +738,22 @@ footer a{color:var(--muted)}
       <div class="etapa">
         <b>01</b>
         <h3>Diagnóstico gratuito</h3>
-        <p>Uma conversa no WhatsApp. Eu olho como o seu negócio aparece hoje e te digo o que falta, mesmo que você não contrate nada.</p>
+        <p>Uma conversa no WhatsApp. Eu olho como a sua marcenaria aparece hoje e te digo o que falta, mesmo que você não contrate nada.</p>
       </div>
       <div class="etapa">
         <b>02</b>
         <h3>Briefing de 20 minutos</h3>
-        <p>Você me conta o que faz, para quem, e me manda fotos e textos que já tiver. O resto eu escrevo.</p>
+        <p>Você me conta que ambientes executa e me manda as fotos dos projetos entregues. O resto eu escrevo.</p>
       </div>
       <div class="etapa">
         <b>03</b>
         <h3>Construção</h3>
-        <p>Monto o site, configuro o Google e conecto o WhatsApp. Você aprova antes de publicar.</p>
+        <p>Monto o site, organizo o portfólio por ambiente, configuro o Google e conecto o WhatsApp. Você aprova antes de publicar.</p>
       </div>
       <div class="etapa">
         <b>04</b>
         <h3>No ar e é seu</h3>
-        <p>Publicado no seu domínio, com uma chamada rápida te mostrando como mexer no que for simples.</p>
+        <p>Publicado no seu domínio, com uma chamada rápida te mostrando como subir foto de projeto novo.</p>
       </div>
     </div>
   </div>
@@ -755,8 +766,14 @@ footer a{color:var(--muted)}
     <h2>Quatro sites que eu já <span class="serif">coloquei no ar</span>.</h2>
     <p class="lead" style="margin-top:16px">
       Estes são os sites de verdade, rodando aqui dentro. <b>Role dentro de cada caixa</b> para
-      percorrer a página inteira: o topo, os depoimentos, o FAQ, o rodapé. É o mesmo
-      acabamento que entra no seu, com o seu serviço no lugar.
+      percorrer a página inteira: o topo, o portfólio, os depoimentos, o FAQ, o rodapé.
+    </p>
+    <p class="lead" style="margin-top:14px">
+      <b>Nenhum deles é de marcenaria</b> — são de outro segmento que atendi antes, e eu
+      prefiro te mostrar trabalho real do que uma tela inventada de planejados. O que quero
+      que você olhe é o acabamento, a estrutura e a velocidade, porque é isso que entra no
+      seu. No lugar do consultório entram cozinha, closet e dormitório, com as fotos dos
+      seus projetos.
     </p>
 
     <div class="trabalhos">
@@ -828,6 +845,11 @@ footer a{color:var(--muted)}
       marca, endereço e telefone por personagens fictícios. O que você está vendo é o layout,
       a estrutura e o código exatamente como foram entregues. Só a identidade mudou. Os botões
       de contato estão desligados dentro das demonstrações, por motivo óbvio.
+      <br><br>
+      <b>E por que não tem marcenaria aqui ainda:</b> porque eu estou entrando neste segmento
+      agora e não vou fabricar um projeto falso para parecer que já tenho carteira.
+      Quando o primeiro planejado entrar no ar, ele aparece nesta mesma lista, com o nome
+      real de quem contratou.
     </div>
   </div>
 </section>
@@ -837,63 +859,71 @@ footer a{color:var(--muted)}
   <div class="wrap rv">
     <span class="eyebrow">Planos</span>
     <h2>Preço na mesa, sem <span class="serif">"depende"</span>.</h2>
-    <p class="lead" style="margin-top:16px">Pagamento único por projeto. Sem mensalidade, sem fidelidade, sem contrato preso.</p>
+    <p class="lead" style="margin-top:16px">
+      Os dois primeiros são pagamento único, pelo projeto. O terceiro tem mensalidade,
+      e logo abaixo eu digo exatamente o que ela paga e o que ela não paga.
+    </p>
 
     <div class="planos">
 
       <div class="plano">
         <div class="nome">Plano 01</div>
-        <h3>Site</h3>
-        <p class="desc">Para quem precisa existir na internet com um endereço profissional.</p>
-        <div class="preco"><small>R$</small>997</div>
-        <div class="parc">à vista ou parcelado no cartão</div>
+        <h3>Site com portfólio</h3>
+        <p class="desc">Para a marcenaria que precisa de um portfólio próprio, fora do Instagram.</p>
+        <div class="preco"><small>R$</small>1.497</div>
+        <div class="parc">pagamento único · à vista ou parcelado no cartão</div>
         <ul>
           <li><span class="ck">✓</span> Site de página única, sob medida</li>
-          <li><span class="ck">✓</span> Textos escritos para o seu serviço</li>
+          <li><span class="ck">✓</span> Portfólio dividido por ambiente</li>
+          <li><span class="ck">✓</span> Textos escritos para o que você executa</li>
           <li><span class="ck">✓</span> Otimizado para celular</li>
           <li><span class="ck">✓</span> Botão de WhatsApp integrado</li>
           <li><span class="ck">✓</span> Domínio e hospedagem configurados</li>
           <li><span class="ck">✓</span> Duas rodadas de ajuste</li>
           <li><span class="ck">✓</span> No ar em até 7 dias úteis</li>
         </ul>
-        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 01: Site (R$ 997). Sou ">Quero o Plano 01</a>
+        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 01: Site com portfólio (R$ 1.497). Minha marcenaria fica em ">Quero o Plano 01</a>
       </div>
 
       <div class="plano destaque">
         <div class="selo">Mais escolhido</div>
         <div class="nome">Plano 02</div>
         <h3>Site + Google Meu Negócio</h3>
-        <p class="desc">Para quem quer ser encontrado por quem busca na sua região.</p>
-        <div class="preco"><small>R$</small>1.497</div>
-        <div class="parc">à vista ou parcelado no cartão</div>
+        <p class="desc">Para aparecer no mapa quando buscam planejados na sua região.</p>
+        <div class="preco"><small>R$</small>2.497</div>
+        <div class="parc">pagamento único · à vista ou parcelado no cartão</div>
         <ul>
           <li class="herda"><span class="ck">★</span> Tudo do Plano 01</li>
           <li><span class="ck">✓</span> Perfil do Google Meu Negócio criado e verificado</li>
-          <li><span class="ck">✓</span> Categorias e serviços configurados</li>
-          <li><span class="ck">✓</span> Fotos, horários e área de atendimento</li>
+          <li><span class="ck">✓</span> Categorias de marcenaria e móvel sob medida</li>
+          <li><span class="ck">✓</span> Fotos dos ambientes, horários e área de atendimento</li>
           <li><span class="ck">✓</span> Site conectado ao perfil</li>
           <li><span class="ck">✓</span> Link pronto para pedir avaliação</li>
           <li><span class="ck">✓</span> Guia de como manter o perfil ativo</li>
         </ul>
-        <a class="btn btn-block pulse" data-wa="Olá! Tenho interesse no Plano 02: Site + Google Meu Negócio (R$ 1.497). Sou ">Quero o Plano 02</a>
+        <a class="btn btn-block pulse" data-wa="Olá! Tenho interesse no Plano 02: Site + Google Meu Negócio (R$ 2.497). Minha marcenaria fica em ">Quero o Plano 02</a>
       </div>
 
       <div class="plano">
+        <div class="selo selo-rec">Contato entrando todo mês</div>
         <div class="nome">Plano 03</div>
-        <h3>Site + Google + Campanha</h3>
-        <p class="desc">Para quem não quer esperar o orgânico e precisa de contato agora.</p>
+        <h3>Tudo + gestão mensal</h3>
+        <p class="desc">Para quem quer projeto entrando toda semana e não quer cuidar disso.</p>
         <div class="preco"><small>R$</small>2.497</div>
-        <div class="parc">à vista ou parcelado no cartão</div>
+        <div class="parc">
+          <span class="mensal">+ R$ 1.200 por mês</span>
+          setup único · mensal sem fidelidade
+        </div>
         <ul>
           <li class="herda"><span class="ck">★</span> Tudo do Plano 02</li>
           <li><span class="ck">✓</span> Campanha de Google Ads montada do zero</li>
-          <li><span class="ck">✓</span> Objetivo definido junto com você</li>
-          <li><span class="ck">✓</span> Palavras-chave e lista de negativas</li>
-          <li><span class="ck">✓</span> Anúncios escritos e testados</li>
-          <li><span class="ck">✓</span> Medição de conversão instalada</li>
-          <li><span class="ck">✓</span> 30 dias de suporte para dúvidas</li>
+          <li><span class="ck">✓</span> Gestão mensal: verba, palavras-chave e anúncios ajustados</li>
+          <li><span class="ck">✓</span> Relatório de leads todo mês: quantos entraram, de onde vieram e quanto custou cada um</li>
+          <li><span class="ck">✓</span> Negativas revisadas para cortar curioso e "móvel usado"</li>
+          <li><span class="ck">✓</span> Uma chamada por mês para ler o relatório junto</li>
+          <li><span class="ck">✓</span> Cancela quando quiser, avisando com 30 dias</li>
         </ul>
-        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 03: Site + Google + Campanha (R$ 2.497). Sou ">Quero o Plano 03</a>
+        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 03: gestão mensal (R$ 2.497 de setup + R$ 1.200/mês). Minha marcenaria fica em ">Quero o Plano 03</a>
       </div>
 
     </div>
@@ -905,13 +935,18 @@ footer a{color:var(--muted)}
           <path d="M12 10v4.2" stroke="#D9A441" stroke-width="2" stroke-linecap="round"/>
           <circle cx="12" cy="17.2" r="1.1" fill="#D9A441"/>
         </svg>
-        Sobre o Plano 03
+        Sobre o Plano 03: o que a mensalidade paga e o que ela não paga
       </div>
-      Para ficar claro desde já: o valor cobre a montagem completa da campanha,
-      <b>não a gestão mensal nem a verba de anúncio</b>. A verba você paga direto ao Google,
-      com o seu cartão, e define quanto quer investir por dia. Normalmente entre R$ 20 e R$ 50
-      para começar. A campanha é entregue rodando e configurada no seu nome: a conta é sua,
-      o histórico é seu, e você não fica preso a ninguém.
+      Os R$ 1.200 por mês pagam <b>o meu trabalho de gestão</b>: acompanhar a campanha, ajustar
+      palavra-chave, verba e anúncio, cortar o que está queimando dinheiro e te entregar o
+      relatório de leads. <b>A verba do anúncio é separada e não passa por mim</b> — você paga
+      direto ao Google, no seu cartão, e define o teto. "Móveis planejados" é termo disputado:
+      o clique custa mais que na média, então a verba que faz sentido para a sua cidade a gente
+      define junto no diagnóstico, antes de você assinar qualquer coisa.
+      <br><br>
+      A conta de anúncio, o domínio, o site e o perfil do Google ficam <b>no seu nome</b>.
+      Se um dia você quiser levar embora ou trocar de fornecedor, leva tudo, com o histórico.
+      Não existe fidelidade: para encerrar, basta avisar com 30 dias.
     </div>
   </div>
 </section>
@@ -925,21 +960,21 @@ footer a{color:var(--muted)}
       <div class="box sim">
         <h3>Faz sentido se você</h3>
         <ul>
-          <li><span>✓</span> Trabalha por conta e vive de atender cliente</li>
-          <li><span>✓</span> Atende presencial numa região ou remoto no Brasil todo</li>
-          <li><span>✓</span> Fecha por WhatsApp, conversa ou orçamento</li>
-          <li><span>✓</span> Hoje depende de indicação e quer parar de depender</li>
-          <li><span>✓</span> Quer algo pronto sem precisar aprender a mexer</li>
+          <li><span>✓</span> Tem marcenaria própria ou loja de móveis planejados</li>
+          <li><span>✓</span> Executa cozinha, closet, dormitório ou corporativo sob medida</li>
+          <li><span>✓</span> Fecha por projeto e orçamento, não por preço de tabela</li>
+          <li><span>✓</span> Hoje depende de indicação de arquiteto e quer parar de depender</li>
+          <li><span>✓</span> Tem foto dos ambientes que já entregou, mesmo que de celular</li>
         </ul>
       </div>
       <div class="box nao">
         <h3>Não faz sentido se você</h3>
         <ul>
-          <li><span>✕</span> Quer uma loja virtual com carrinho e estoque</li>
+          <li><span>✕</span> Quer loja virtual com carrinho para vender móvel pronto</li>
           <li><span>✕</span> Procura só posts para Instagram</li>
-          <li><span>✕</span> Espera cliente entrando na primeira semana sem investir em anúncio</li>
+          <li><span>✕</span> Espera projeto fechado na primeira semana sem investir em anúncio</li>
           <li><span>✕</span> Quer o mais barato possível, independente do resultado</li>
-          <li><span>✕</span> Vende produto físico com entrega e logística</li>
+          <li><span>✕</span> Ainda não entregou nenhum ambiente para mostrar</li>
         </ul>
       </div>
     </div>
@@ -954,15 +989,15 @@ footer a{color:var(--muted)}
     <p class="lead" style="margin-top:16px">
       Além dos quatro sites acima, você está olhando para um quinto exemplo agora: a estrutura,
       os textos, a velocidade, o botão que te leva ao WhatsApp em um toque. É esse nível de
-      acabamento que entra no seu site, com o seu serviço no lugar do meu.
+      acabamento que entra no seu site, com os seus ambientes no lugar do meu texto.
     </p>
 
     <div class="prova">
       <h3>Sobre depoimentos: ainda não tenho, e não vou inventar</h3>
       <p>
         A Theatrum é nova. Prefiro dizer isso do que encher a página de estrela que ninguém deu.
-        Conforme os primeiros clientes entram, esta seção se preenche com nome, profissão, cidade
-        e avaliação real, e você vai poder conferir cada uma.
+        Conforme as primeiras marcenarias entram, esta seção se preenche com nome, cidade e
+        avaliação real, e você vai poder conferir cada uma.
       </p>
       <p style="margin-top:12px">
         Enquanto isso, o que eu ofereço no lugar de prova social é <strong>risco zero para você
@@ -989,7 +1024,7 @@ footer a{color:var(--muted)}
       </div>
       <div class="comp">
         <b>100% seu</b>
-        <p>Domínio, site, conta do Google e campanha ficam no seu nome. Se um dia quiser trocar de fornecedor, leva tudo com você.</p>
+        <p>Domínio, site, perfil do Google e conta de anúncio ficam no seu nome, inclusive no plano mensal. Se um dia quiser trocar de fornecedor, leva tudo com o histórico.</p>
       </div>
     </div>
   </div>
@@ -999,31 +1034,43 @@ footer a{color:var(--muted)}
 <section class="faixa" id="faq">
   <div class="wrap rv">
     <span class="eyebrow">Perguntas diretas</span>
-    <h2>O que todo autônomo pergunta antes de fechar</h2>
+    <h2>O que todo dono de marcenaria pergunta antes de fechar</h2>
     <div class="faq">
       <details open>
         <summary>Tem mensalidade?</summary>
-        <p>Não. O valor do plano é único, pelo projeto. O que continua sendo pago são o domínio e a hospedagem, que juntos custam algo em torno de R$ 10 a R$ 40 por mês dependendo do provedor, e são pagos por você, direto, no seu nome. Eu não fico no meio dessa cobrança.</p>
+        <p>Nos Planos 01 e 02, não: você paga uma vez, pelo projeto. No Plano 03 tem, e é proposital: são R$ 1.200 por mês pela gestão da campanha e pelo relatório de leads. Campanha de anúncio não é coisa que se entrega e abandona — sem alguém olhando toda semana, ela queima verba em busca errada. Se você não quer mensalidade, fique no Plano 02: ele funciona sozinho, só é mais lento.</p>
       </details>
       <details>
-        <summary>Preciso entender de tecnologia?</summary>
-        <p>Não. Você me manda fotos, me conta o que faz, e eu monto tudo. Na entrega, faço uma chamada rápida mostrando como trocar um texto ou uma foto, se você quiser mexer. Se não quiser, também está tudo bem.</p>
+        <summary>O que eu recebo, na prática, por R$ 1.200 por mês?</summary>
+        <p>Revisão da campanha ao longo do mês: verba redistribuída para o que está trazendo contato, palavras-chave novas, termos negativos cortando curioso, anúncios reescritos e testados. No fim do mês, um relatório dizendo quantos contatos entraram, de quais buscas vieram e quanto custou cada um, mais uma chamada para lermos juntos. Se em algum mês não houver o que ajustar, eu digo isso no relatório em vez de inventar serviço.</p>
       </details>
       <details>
-        <summary>Em quanto tempo fica pronto?</summary>
-        <p>Até 7 dias úteis contados a partir do momento em que você me envia o briefing e o material. O que mais atrasa projeto é material que não chega. Por isso o briefing é curto e eu te ajudo a preencher.</p>
+        <summary>A verba do anúncio está inclusa na mensalidade?</summary>
+        <p>Não, e é importante você entender essa separação antes de assinar. A mensalidade é o meu trabalho. A verba você paga direto ao Google, no seu cartão, e é você quem define o teto. "Móveis planejados" é um dos termos mais disputados da sua região, então o clique custa mais que na média. No diagnóstico eu levanto o cenário da sua cidade e a gente define um valor que faça sentido antes de você se comprometer com qualquer coisa.</p>
+      </details>
+      <details>
+        <summary>Posso cancelar a mensalidade?</summary>
+        <p>Pode, a qualquer momento, avisando com 30 dias. Não tem fidelidade nem multa. O site, o domínio, o perfil do Google e a conta de anúncio ficam no seu nome desde o primeiro dia: se você sair, leva tudo junto, com o histórico da campanha. Prefiro que você fique porque está entrando projeto, não porque assinou um contrato que prende.</p>
+      </details>
+      <details>
+        <summary>Não tenho foto boa dos meus projetos. Resolve?</summary>
+        <p>Foto de celular bem tirada resolve, e a maioria das marcenarias já tem no WhatsApp sem se dar conta. Eu te mando um guia curto de como fotografar o ambiente entregue: luz, ângulo e o que tirar de cena. Se não houver nada aproveitável, a gente monta o site com o que dá e você vai substituindo conforme entrega os próximos. O que eu não faço é encher o seu portfólio com render de banco de imagem, porque o cliente reconhece e desconfia.</p>
       </details>
       <details>
         <summary>Quanto tempo até aparecer cliente?</summary>
-        <p>Depende do plano. Com o Google Meu Negócio bem configurado, os primeiros contatos por busca local costumam começar em algumas semanas e crescem com o tempo. Com campanha ativa, os contatos podem chegar nos primeiros dias, mas aí você está pagando por eles. Quem promete cliente garantido em 7 dias sem investimento está vendendo o que não pode entregar.</p>
+        <p>Planejados tem ciclo longo: entre o primeiro contato e a assinatura costumam passar semanas, porque é uma compra cara e decidida a dois. Com o Google Meu Negócio bem configurado, os primeiros contatos por busca local costumam começar em algumas semanas. Com campanha ativa, os contatos chegam nos primeiros dias, mas aí você está pagando por eles. Quem te promete cozinha fechada em 7 dias está vendendo o que não pode entregar.</p>
       </details>
       <details>
-        <summary>O que exatamente é a "campanha" do Plano 03?</summary>
-        <p>É uma campanha de Google Ads montada do zero para o seu objetivo: escolha de palavras-chave, lista de termos negativos para não jogar dinheiro fora, escrita dos anúncios, configuração de orçamento e instalação da medição de conversão. Entrego rodando, na sua conta. Não inclui gestão mensal contínua nem a verba paga ao Google.</p>
+        <summary>Preciso entender de tecnologia?</summary>
+        <p>Não. Você me manda as fotos dos ambientes, me conta o que executa, e eu monto tudo. Na entrega, faço uma chamada rápida mostrando como subir a foto de um projeto novo, se você quiser mexer. Se não quiser, também está tudo bem.</p>
+      </details>
+      <details>
+        <summary>Em quanto tempo fica pronto?</summary>
+        <p>Até 7 dias úteis contados a partir do momento em que você me envia o briefing e as fotos. O que mais atrasa projeto é material que não chega. Por isso o briefing é curto e eu te ajudo a preencher.</p>
       </details>
       <details>
         <summary>Posso começar pelo Plano 01 e subir depois?</summary>
-        <p>Pode, e é o caminho que eu recomendo se o orçamento estiver apertado. Você paga a diferença entre os planos quando quiser subir, sem retrabalho e sem cobrar de novo o que já foi feito.</p>
+        <p>Pode, e é o caminho que eu recomendo se o caixa estiver apertado. Você paga a diferença entre os planos quando quiser subir, sem retrabalho e sem cobrar de novo o que já foi feito.</p>
       </details>
       <details>
         <summary>E se eu não gostar do site?</summary>
@@ -1031,7 +1078,7 @@ footer a{color:var(--muted)}
       </details>
       <details>
         <summary>Você atende só a minha cidade?</summary>
-        <p>Não. Todo o processo é remoto, por WhatsApp e chamada. Atendo autônomos em qualquer lugar do Brasil.</p>
+        <p>Não. Todo o processo é remoto, por WhatsApp e chamada. Atendo marcenarias e lojas de planejados em qualquer lugar do Brasil.</p>
       </details>
       <details>
         <summary>Emite nota fiscal?</summary>
@@ -1044,12 +1091,13 @@ footer a{color:var(--muted)}
 <!-- ============ FECHAMENTO ============ -->
 <section class="final" id="diagnostico">
   <div class="wrap rv">
-    <h2>Enquanto você decide,<br>alguém está te <span class="serif">procurando</span>.</h2>
+    <h2>Enquanto você decide,<br>alguém está fechando <span class="serif">a cozinha dele</span>.</h2>
     <p class="lead" style="margin:18px auto 32px">
-      E encontrando outro. O diagnóstico é gratuito e leva alguns minutos: eu olho como seu
-      negócio aparece hoje e te digo o que falta. Sem compromisso, mesmo que você não contrate.
+      Com outro. O diagnóstico é gratuito e leva alguns minutos: eu olho como a sua marcenaria
+      aparece hoje, quem está na sua frente na busca da sua cidade e te digo o que falta.
+      Sem compromisso, mesmo que você não contrate.
     </p>
-    <a class="btn pulse" data-wa="Olá! Quero o diagnóstico gratuito da minha identidade digital.">Quero meu diagnóstico gratuito</a>
+    <a class="btn pulse" data-wa="Olá! Tenho uma marcenaria/loja de planejados e quero o diagnóstico gratuito.">Quero meu diagnóstico gratuito</a>
     <span class="btn-sub">Respondo em minutos · direto no WhatsApp</span>
   </div>
 </section>
@@ -1063,7 +1111,7 @@ footer a{color:var(--muted)}
       <a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a>
     </div>
     <p style="font-size:.8rem;color:var(--muted)">
-      Theatrum · identidade digital para negócios em todo o Brasil<br>
+      Theatrum · identidade digital para marcenarias e móveis planejados em todo o Brasil<br>
       Responsável: <span style="color:#C4C0B6">[PREENCHER: nome ou razão social]</span> ·
       CNPJ/CPF <span style="color:#C4C0B6">[PREENCHER]</span> ·
       <a href="mailto:contato@usetheatrum.com.br">contato@usetheatrum.com.br</a><br><br>
@@ -1076,7 +1124,7 @@ footer a{color:var(--muted)}
 
 <!-- CTA fixo mobile -->
 <div class="sticky" id="sticky">
-  <a class="btn pulse" data-wa="Olá! Quero o diagnóstico gratuito da minha identidade digital.">Diagnóstico gratuito no WhatsApp</a>
+  <a class="btn pulse" data-wa="Olá! Tenho uma marcenaria/loja de planejados e quero o diagnóstico gratuito.">Diagnóstico gratuito no WhatsApp</a>
 </div>
 
 <!-- aviso de cookies -->
@@ -1165,7 +1213,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   var itens   = [].slice.call(tela1.querySelectorAll('.sq'));
   var palco   = tela1.parentNode;
 
-  var BUSCA = 'atendimento perto de mim';
+  var BUSCA = 'móveis planejados perto de mim';
   var parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ger = 0;
 
@@ -1197,7 +1245,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     var passo = async function(ms){ await dorme(ms); return g === ger; };
 
     if(!await passo(600)) return;
-    diz('Alguém procura o seu serviço <b>no Google</b>');
+    diz('Alguém procura planejados <b>no Google</b>');
 
     for(var i = 0; i < BUSCA.length; i++){
       q.textContent += BUSCA[i];
@@ -1224,8 +1272,8 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
     if(!await passo(260)) return;
     tela1.classList.remove('on');
     tela2.classList.add('on');
-    endereco.textContent = 'seunegocio.com.br';
-    diz('Cai <b>no seu site</b>, não num perfil parado');
+    endereco.textContent = 'suamarcenaria.com.br';
+    diz('Cai <b>no seu portfólio</b>, não num feed do Instagram');
 
     if(!await passo(1200)) return;
     zap.classList.add('chama');
@@ -1240,7 +1288,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
     if(!await passo(300)) return;
     aviso.classList.add('on');
-    diz('Vira <b>conversa no seu WhatsApp</b>');
+    diz('Vira <b>orçamento no seu WhatsApp</b>');
 
     if(!await passo(3600)) return;
     reiniciar();
