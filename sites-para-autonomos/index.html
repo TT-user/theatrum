@@ -465,7 +465,8 @@ footer a{color:var(--muted)}
 .foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
 .foot-links a{color:var(--ouro);text-decoration:none;font-size:.84rem}
 
-/* ---------- CTA fixo mobile ---------- */
+/* ---------- CTA fixo ---------- */
+/* no celular é uma faixa presa no rodapé, onde o polegar alcança */
 .sticky{
   position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px;
   background:rgba(11,10,8,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);
@@ -473,6 +474,17 @@ footer a{color:var(--muted)}
 }
 .sticky.show{transform:translateY(0)}
 .sticky .btn{width:100%;padding:15px;font-size:.96rem}
+
+/* no desktop vira uma pílula discreta no canto direito. Fica do lado
+   oposto ao aviso de cookies, que ocupa o canto esquerdo. */
+@media(min-width:641px){
+  .sticky{
+    left:auto;right:22px;bottom:22px;padding:0;
+    background:none;backdrop-filter:none;border-top:none;
+    transform:translateY(160%);
+  }
+  .sticky .btn{width:auto;padding:13px 26px;font-size:.88rem}
+}
 
 /* ---------- cookies ---------- */
 .lgpd{
