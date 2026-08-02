@@ -1,5 +1,11 @@
 /* Gera os screenshots dos demos para os cards da página de anúncio.
    Uso: node _screenshots.mjs
+
+   ATENÇÃO: o Chrome só exporta PNG, e PNG aqui custa ~1 MB por print.
+   A página consome os arquivos .webp, então depois de rodar isto
+   converta e apague os PNG:
+     npx sharp-cli -i _prints/*-desktop.png -o _prints -f webp -q 72 resize 1000
+   Sem esse passo os cards ficam sem capa.
    Sobe um servidor estático em /demos, abre cada demo no Chrome headless
    com ?limpo=1 (esconde a barra de demonstração) e salva o print. */
 import http from 'node:http';

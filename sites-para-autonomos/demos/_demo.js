@@ -38,15 +38,35 @@
   ].join('');
   document.head.appendChild(css);
 
-  /* ---------- modo print: sem barra, sem aviso de cookie ---------- */
+  /* ---------- modo embutido/print ----------
+     Sem barra e sem aviso de cookie. Também derruba os mapas do Google:
+     dentro de um card eles não servem para nada e são, de longe, o que
+     mais pesa no carregamento destes demos. */
   if (LIMPO) {
     try {
       localStorage.setItem('cookieConsent', 'accepted');
       localStorage.setItem('pratocurioso-cookies-aceitos', '1');
     } catch (e) {}
     var semCookie = document.createElement('style');
-    semCookie.textContent = '#cookie-banner,.cookie-banner,.lgpd{display:none!important}';
+    semCookie.textContent =
+      '#cookie-banner,.cookie-banner,.lgpd{display:none!important}' +
+      /* arrastar dentro do card rola, não seleciona texto */
+      'body{-webkit-user-select:none;-moz-user-select:none;user-select:none}';
     document.head.appendChild(semCookie);
+
+    var tiraMapa = function () {
+      document.querySelectorAll('iframe[src*="google.com/maps"]').forEach(function (f) {
+        var vazio = document.createElement('div');
+        vazio.style.cssText =
+          'height:' + (f.getAttribute('height') || 320) + 'px;border-radius:12px;' +
+          'background:#1a1a18;display:flex;align-items:center;justify-content:center;' +
+          'color:#8a8578;font:600 13px/1.4 system-ui,sans-serif;text-align:center;padding:16px';
+        vazio.textContent = 'Mapa do consultório (desativado nesta demonstração)';
+        f.parentNode.replaceChild(vazio, f);
+      });
+    };
+    tiraMapa();
+    document.addEventListener('DOMContentLoaded', tiraMapa);
   }
 
   /* ---------- barra de demonstração ---------- */
