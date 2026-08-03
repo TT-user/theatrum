@@ -336,7 +336,10 @@ p{color:#C4C0B6}
 /* o mensal do Plano 03 não pode passar como letra miúda: é ele que
    diferencia o plano, e esconder recorrência é o que gera cancelamento */
 .plano .parc .mensal{display:block;font-size:1rem;font-weight:800;color:var(--ouro-claro);margin-bottom:3px}
-.plano ul{list-style:none;display:grid;gap:9px;margin-bottom:26px;flex:1}
+/* align-content:start porque a linha da lista tem a altura do plano com mais
+   itens. Sem isso, o plano com a lista mais curta espalha os itens para
+   preencher a sobra e o espaçamento fica diferente entre os cards. */
+.plano ul{list-style:none;display:grid;gap:9px;margin-bottom:26px;flex:1;align-content:start}
 .plano li{display:flex;gap:9px;font-size:.89rem;align-items:flex-start;color:#C4C0B6}
 .plano li .ck{color:var(--verde);font-weight:800;flex-shrink:0;font-size:.85rem;line-height:1.6}
 .plano li.herda{color:var(--muted)}
@@ -728,9 +731,9 @@ footer a{color:var(--muted)}
         <p>É o que coloca a sua marcenaria no mapa quando buscam planejados na região, de graça, todo dia.</p>
         <ul>
           <li>Perfil criado e verificado</li>
-          <li>Categorias certas de marcenaria e móvel sob medida</li>
-          <li>Fotos dos ambientes e área de atendimento</li>
+          <li>Site conectado ao perfil</li>
           <li>Link para pedir avaliação de quem você já entregou</li>
+          <li>Guia de como manter o perfil ativo</li>
         </ul>
       </div>
       <div class="card">
@@ -914,8 +917,6 @@ footer a{color:var(--muted)}
         <ul>
           <li class="herda"><span class="ck">★</span> Tudo do Plano 01</li>
           <li><span class="ck">✓</span> Perfil do Google Meu Negócio criado e verificado</li>
-          <li><span class="ck">✓</span> Categorias de marcenaria e móvel sob medida</li>
-          <li><span class="ck">✓</span> Fotos dos ambientes, horários e área de atendimento</li>
           <li><span class="ck">✓</span> Site conectado ao perfil</li>
           <li><span class="ck">✓</span> Link pronto para pedir avaliação</li>
           <li><span class="ck">✓</span> Guia de como manter o perfil ativo</li>
