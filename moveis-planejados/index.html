@@ -336,6 +336,13 @@ p{color:#C4C0B6}
 /* o mensal do Plano 03 não pode passar como letra miúda: é ele que
    diferencia o plano, e esconder recorrência é o que gera cancelamento */
 .plano .parc .mensal{display:block;font-size:1rem;font-weight:800;color:var(--ouro-claro);margin-bottom:3px}
+/* a verba fica no card, e não só na nota amarela lá embaixo: quem compara
+   três preços lado a lado decide ali, e descobrir depois que existe um
+   custo de anúncio por fora é exatamente o mal-entendido a evitar */
+.plano .parc .verba{
+  display:block;margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.5;color:#8E887C;
+}
 /* align-content:start porque a linha da lista tem a altura do plano com mais
    itens. Sem isso, o plano com a lista mais curta espalha os itens para
    preencher a sobra e o espaçamento fica diferente entre os cards. */
@@ -928,11 +935,12 @@ footer a{color:var(--muted)}
         <div class="selo selo-rec">Contato entrando todo mês</div>
         <div class="nome">Plano 03</div>
         <h3>Tudo + gestão mensal</h3>
-        <p class="desc">Para quem quer projeto entrando toda semana e não quer cuidar disso.</p>
+        <p class="desc">Para quem quer campanha rodando e não quer cuidar disso.</p>
         <div class="preco"><small>R$</small>2.497</div>
         <div class="parc">
-          <span class="mensal">+ R$ 1.200 por mês</span>
+          <span class="mensal">+ R$ 500 por mês de gestão</span>
           setup único · mensal sem fidelidade
+          <span class="verba">Verba de anúncio à parte, a partir de R$&nbsp;1.200/mês, paga por você direto ao Google.</span>
         </div>
         <ul>
           <li class="herda"><span class="ck">★</span> Tudo do Plano 02</li>
@@ -943,7 +951,7 @@ footer a{color:var(--muted)}
           <li><span class="ck">✓</span> Uma chamada por mês para ler o relatório junto</li>
           <li><span class="ck">✓</span> Cancela quando quiser, avisando com 30 dias</li>
         </ul>
-        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 03: gestão mensal (R$ 2.497 de setup + R$ 1.200/mês). Minha marcenaria fica em ">Quero o Plano 03</a>
+        <a class="btn btn-block btn-ghost" data-wa="Olá! Tenho interesse no Plano 03: gestão mensal (R$ 2.497 de setup + R$ 500/mês de gestão). Minha marcenaria fica em ">Quero o Plano 03</a>
       </div>
 
     </div>
@@ -957,12 +965,15 @@ footer a{color:var(--muted)}
         </svg>
         Sobre o Plano 03: o que a mensalidade paga e o que ela não paga
       </div>
-      Os R$ 1.200 por mês pagam <b>o meu trabalho de gestão</b>: acompanhar a campanha, ajustar
+      Os R$ 500 por mês pagam <b>o meu trabalho de gestão</b>: acompanhar a campanha, ajustar
       palavra-chave, verba e anúncio, cortar o que está queimando dinheiro e te entregar o
       relatório de leads. <b>A verba do anúncio é separada e não passa por mim</b> — você paga
       direto ao Google, no seu cartão, e define o teto. "Móveis planejados" é termo disputado:
-      o clique custa mais que na média, então a verba que faz sentido para a sua cidade a gente
-      define junto no diagnóstico, antes de você assinar qualquer coisa.
+      o clique custa mais que na média, e por isso <b>a verba começa em R$ 1.200 por mês</b> —
+      abaixo disso a campanha aparece pouco e não dá para tirar conclusão do que funciona.
+      O valor certo para a sua cidade a gente define junto no diagnóstico, antes de você
+      assinar qualquer coisa. Na prática, o Plano 03 custa <b>R$ 1.700 por mês</b> no piso:
+      R$ 500 para mim e R$ 1.200 para o Google.
       <br><br>
       A conta de anúncio, o domínio, o site e o perfil do Google ficam <b>no seu nome</b>.
       Se um dia você quiser levar embora ou trocar de fornecedor, leva tudo, com o histórico.
@@ -1039,15 +1050,15 @@ footer a{color:var(--muted)}
     <div class="faq">
       <details open>
         <summary>Tem mensalidade?</summary>
-        <p>Nos Planos 01 e 02, não: você paga uma vez, pelo projeto. No Plano 03 tem, e é proposital: são R$ 1.200 por mês pela gestão da campanha e pelo relatório de leads. Campanha de anúncio não é coisa que se entrega e abandona — sem alguém olhando toda semana, ela queima verba em busca errada. Se você não quer mensalidade, fique no Plano 02: ele funciona sozinho, só é mais lento.</p>
+        <p>Nos Planos 01 e 02, não: você paga uma vez, pelo projeto. No Plano 03 tem, e é proposital: são R$ 500 por mês pela gestão da campanha e pelo relatório de leads, mais a verba de anúncio, que começa em R$ 1.200 e você paga direto ao Google. Campanha de anúncio não é coisa que se entrega e abandona — sem alguém olhando toda semana, ela queima verba em busca errada. Se você não quer mensalidade, fique no Plano 02: ele funciona sozinho, só é mais lento.</p>
       </details>
       <details>
-        <summary>O que eu recebo, na prática, por R$ 1.200 por mês?</summary>
+        <summary>O que eu recebo, na prática, por R$ 500 por mês?</summary>
         <p>Revisão da campanha ao longo do mês: verba redistribuída para o que está trazendo contato, palavras-chave novas, termos negativos cortando curioso, anúncios reescritos e testados. No fim do mês, um relatório dizendo quantos contatos entraram, de quais buscas vieram e quanto custou cada um, mais uma chamada para lermos juntos. Se em algum mês não houver o que ajustar, eu digo isso no relatório em vez de inventar serviço.</p>
       </details>
       <details>
         <summary>A verba do anúncio está inclusa na mensalidade?</summary>
-        <p>Não, e é importante você entender essa separação antes de assinar. A mensalidade é o meu trabalho. A verba você paga direto ao Google, no seu cartão, e é você quem define o teto. "Móveis planejados" é um dos termos mais disputados da sua região, então o clique custa mais que na média. No diagnóstico eu levanto o cenário da sua cidade e a gente define um valor que faça sentido antes de você se comprometer com qualquer coisa.</p>
+        <p>Não, e é importante você entender essa separação antes de assinar. Os R$ 500 são o meu trabalho. A verba você paga direto ao Google, no seu cartão, e é você quem define o teto — ela começa em R$ 1.200 por mês. "Móveis planejados" é um dos termos mais disputados da sua região, então o clique custa mais que na média, e verba menor que isso faz a campanha aparecer pouco demais para você saber se funcionou. Somando, o piso do Plano 03 é R$ 1.700 por mês. No diagnóstico eu levanto o cenário da sua cidade e a gente define o valor que faz sentido antes de você se comprometer com qualquer coisa.</p>
       </details>
       <details>
         <summary>Posso cancelar a mensalidade?</summary>
