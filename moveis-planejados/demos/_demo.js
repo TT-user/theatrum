@@ -84,7 +84,7 @@
           'height:' + (f.getAttribute('height') || 320) + 'px;border-radius:12px;' +
           'background:#1a1a18;display:flex;align-items:center;justify-content:center;' +
           'color:#8a8578;font:600 13px/1.4 system-ui,sans-serif;text-align:center;padding:16px';
-        vazio.textContent = 'Mapa do consultório (desativado nesta demonstração)';
+        vazio.textContent = 'Mapa (desativado nesta prévia)';
         f.parentNode.replaceChild(vazio, f);
       });
     };

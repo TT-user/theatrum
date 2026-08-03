@@ -29,6 +29,10 @@ const DEMOS = [
   { slug: 'nutri-clinica',       pagina: 'index.html' },
   { slug: 'nutri-usa',           pagina: 'index.html' },
   { slug: 'nutri-emagrecimento', pagina: 'index.html' },
+  { slug: 'atelie-verga',        pagina: 'index.html' },
+  { slug: 'casa-nobre',          pagina: 'index.html' },
+  { slug: 'medida-certa',        pagina: 'index.html' },
+  { slug: 'cozinha-viva',        pagina: 'index.html' },
 ];
 
 const TIPOS = {
