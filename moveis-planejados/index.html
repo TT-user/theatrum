@@ -448,11 +448,6 @@ p{color:#C4C0B6}
 .prova h3{margin-bottom:10px}
 .prova p{font-size:.94rem}
 
-/* ---------- compromissos ---------- */
-.compromissos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
-.comp{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--card)}
-.comp b{display:block;font-size:1.5rem;color:var(--ouro);font-family:'Instrument Serif',serif;font-style:normal;margin-bottom:6px}
-.comp p{font-size:.87rem;color:var(--muted)}
 
 /* ---------- FAQ ---------- */
 .faq{max-width:820px;margin:36px 0 0}
@@ -546,7 +541,7 @@ footer a{color:var(--muted)}
 }
 
 @media(max-width:960px){
-  .cards3,.etapas,.planos,.compromissos,.trabalhos{grid-template-columns:1fr}
+  .cards3,.etapas,.planos,.trabalhos{grid-template-columns:1fr}
   .hero-grid,.duas{grid-template-columns:1fr;gap:40px}
   /* o texto vem primeiro: o CTA precisa caber na primeira tela */
   .hero-copy{order:1}.hero-art{order:2}
@@ -1030,30 +1025,11 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
-<!-- ============ COMPROMISSOS ============ -->
-<section>
-  <div class="wrap rv">
-    <span class="eyebrow">Compromissos</span>
-    <h2>O que eu garanto por escrito.</h2>
-    <div class="compromissos">
-      <div class="comp">
-        <b>7 dias</b>
-        <p>Prazo de publicação a partir do briefing completo. Se atrasar por minha causa, você recebe o mês de ajustes sem custo.</p>
-      </div>
-      <div class="comp">
-        <b>2 rodadas</b>
-        <p>De ajuste no layout e nos textos antes de publicar, incluídas no valor. Nada de cobrar por vírgula trocada.</p>
-      </div>
-      <div class="comp">
-        <b>100% seu</b>
-        <p>Domínio, site, perfil do Google e conta de anúncio ficam no seu nome, inclusive no plano mensal. Se um dia quiser trocar de fornecedor, leva tudo com o histórico.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ FAQ ============ -->
-<section class="faixa" id="faq">
+<!-- sem "faixa" de propósito: a seção de compromissos, que era o fundo liso
+     entre esta e a Prova, saiu. Com as duas em faixa, as bordas encostam e
+     viram uma linha dupla no meio de um bloco só. -->
+<section id="faq">
   <div class="wrap rv">
     <span class="eyebrow">Perguntas diretas</span>
     <h2>O que todo dono de marcenaria pergunta antes de fechar</h2>
