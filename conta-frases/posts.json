@@ -1,0 +1,112 @@
+[
+  {
+    "id": "01",
+    "pilar": "P1",
+    "formula": "F3",
+    "frase": "Nem toda cobrança merece\na sua resposta.",
+    "frase_flat": "Nem toda cobrança merece a sua resposta.",
+    "text_zone": "upper",
+    "scene": "A person sitting alone on a green grassy hill overlooking a calm blue sea, wide empty sky above, a few slow clouds",
+    "palette": "Soft cobalt blue, sage green, pale cream horizon, gentle rose light",
+    "surreal": false
+  },
+  {
+    "id": "02",
+    "pilar": "P2",
+    "formula": "F5",
+    "frase": "Você não precisa de pressa\npara mudar.",
+    "frase_flat": "Você não precisa de pressa para mudar.",
+    "text_zone": "upper",
+    "scene": "A person walking away along a narrow stone pier into a grey-green sea, birds scattering around them, overcast open sky",
+    "palette": "Muted slate grey, sea green, warm sand, overcast pale sky",
+    "surreal": false
+  },
+  {
+    "id": "03",
+    "pilar": "P3",
+    "formula": "F2",
+    "frase": "Tudo aquilo que é seu\nchegará inteiro.",
+    "frase_flat": "Tudo aquilo que é seu chegará inteiro.",
+    "text_zone": "upper",
+    "scene": "A tiny figure standing in a vast dark valley holding a shooting star by a thread of light, comet trails streaking the sky",
+    "palette": "Burnt orange, deep amber, indigo shadow, golden sparks",
+    "surreal": false
+  },
+  {
+    "id": "04",
+    "pilar": "P4",
+    "formula": "F1",
+    "frase": "Escolha primeiro aquilo\nque te faz bem.",
+    "frase_flat": "Escolha primeiro aquilo que te faz bem.",
+    "text_zone": "upper",
+    "scene": "One person walking slowly toward a warm distant light on a soft open hillside at dusk",
+    "palette": "Dusty pink, warm terracotta, soft lavender, cream",
+    "surreal": false
+  },
+  {
+    "id": "05",
+    "pilar": "P1",
+    "formula": "F6",
+    "frase": "O silêncio guarda\no que importa.",
+    "frase_flat": "O silêncio guarda o que importa.",
+    "text_zone": "upper",
+    "scene": "A person sitting alone at the edge of a wide green meadow that falls into a calm blue bay, enormous empty sky",
+    "palette": "Soft cobalt blue, sage green, pale cream horizon, gentle rose light",
+    "surreal": false
+  },
+  {
+    "id": "06",
+    "pilar": "P2",
+    "formula": "F1",
+    "frase": "Confie no ritmo\ndo seu recomeço.",
+    "frase_flat": "Confie no ritmo do seu recomeço.",
+    "text_zone": "upper",
+    "scene": "A small astronaut sitting alone on a simple wooden bench at the edge of a grey-green sea, seen from behind, tiny in a vast empty frame",
+    "palette": "Muted slate grey, sea green, warm sand, overcast pale sky",
+    "surreal": true
+  },
+  {
+    "id": "07",
+    "pilar": "P3",
+    "formula": "F6",
+    "frase": "A espera também faz parte\ndo caminho.",
+    "frase_flat": "A espera também faz parte do caminho.",
+    "text_zone": "middle",
+    "scene": "A tiny figure walking alone across a vast dark valley under long comet trails, a single thread of golden light ahead of them",
+    "palette": "Burnt orange, deep amber, indigo shadow, golden sparks",
+    "surreal": false
+  },
+  {
+    "id": "08",
+    "pilar": "P4",
+    "formula": "F5",
+    "frase": "Você não precisa agradar\npara ser amado.",
+    "frase_flat": "Você não precisa agradar para ser amado.",
+    "text_zone": "upper",
+    "scene": "Two small figures sitting side by side on a wide hillside at dusk, seen from behind, warm sky filling most of the frame",
+    "palette": "Dusty pink, warm terracotta, soft lavender, cream",
+    "surreal": false
+  },
+  {
+    "id": "09",
+    "pilar": "P1",
+    "formula": "F4",
+    "frase": "Está tudo bem em querer\nmenos coisas.",
+    "frase_flat": "Está tudo bem em querer menos coisas.",
+    "text_zone": "upper",
+    "scene": "A person lying back on a green grassy slope above a still blue sea, a single small tree nearby, wide empty sky",
+    "palette": "Soft cobalt blue, sage green, pale cream horizon, gentle rose light",
+    "surreal": false
+  },
+  {
+    "id": "10",
+    "pilar": "P2",
+    "formula": "F2",
+    "frase": "Dias mais leves virão\nsem aviso.",
+    "frase_flat": "Dias mais leves virão sem aviso.",
+    "text_zone": "upper",
+    "scene": "A person standing at the very end of a narrow stone pier facing a grey-green sea, a break of pale light opening in the overcast sky, birds scattering",
+    "palette": "Muted slate grey, sea green, warm sand, overcast pale sky",
+    "surreal": false
+  }
+]
