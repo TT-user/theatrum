@@ -1,3 +1,7 @@
+# credenciais — o repositório é público, nada de token aqui
+.env
+.env.*
+
 # mídia gerada — pesada demais para o repo, reproduzível pelos scripts
 img/
 video/
