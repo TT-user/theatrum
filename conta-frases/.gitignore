@@ -2,5 +2,11 @@
 img/
 video/
 overlay/
-final/
 fonts/
+
+# os finais de Instagram ficam versionados porque a API da Meta baixa o
+# vídeo de uma URL pública: são servidos pelo raw do GitHub na hora de postar
+final/*
+!final/instagram/
+final/instagram/*
+!final/instagram/*.mp4
