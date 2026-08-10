@@ -7,10 +7,12 @@ const path = require('path');
 const ROOT = 'c:/Users/mathe/Desktop/theatrum/conta-frases';
 const FONT = `${ROOT}/fonts/Itim-Regular.ttf`;
 
+const MARCA = '@explicologo';
+
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-async function block(text, size) {
-  const ls = Math.round(size * 0.03 * 1024); // letter-spacing +3%
+async function block(text, size, tracking = 0.03) {
+  const ls = Math.round(size * tracking * 1024);
   return sharp({
     text: {
       text: `<span foreground="#FFFFFF" letter_spacing="${ls}">${esc(text)}</span>`,
@@ -49,7 +51,7 @@ async function render({ text, zone, W, H, margin, out }) {
 
   // sombra suave em duas camadas: um halo largo para descolar do fundo claro
   // e uma sombra curta 3px abaixo. Equivale a 0 2px 12px rgba(0,0,0,.35).
-  const shade = async (blur, alpha) => sharp(buf)
+  const shade = async (src, blur, alpha) => sharp(src)
     .tint('#000000')
     .blur(blur)
     .composite([{
@@ -58,19 +60,38 @@ async function render({ text, zone, W, H, margin, out }) {
     }])
     .png().toBuffer();
 
-  const halo = await shade(14, 120);
-  const shadow = await shade(6, 170);
+  const halo = await shade(buf, 14, 120);
+  const shadow = await shade(buf, 6, 170);
+
+  // Assinatura da conta logo abaixo da frase: metade do corpo, tracking largo
+  // e opacidade reduzida, para marcar a autoria sem competir com o texto.
+  const mSize = Math.max(26, Math.round(size * 0.42));
+  const mRaw = await block(MARCA, mSize, 0.12);
+  const mMeta = await sharp(mRaw).metadata();
+  const mBuf = await sharp(mRaw)
+    .composite([{
+      input: Buffer.from([255, 255, 255, 190]), raw: { width: 1, height: 1, channels: 4 },
+      tile: true, blend: 'dest-in',
+    }])
+    .png().toBuffer();
+  const mHalo = await shade(mBuf, 10, 110);
+  const mShadow = await shade(mBuf, 4, 150);
+  const mLeft = Math.round((W - mMeta.width) / 2);
+  const mTop = Math.round(top + h + size * 0.85);
 
   await sharp({ create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
     .composite([
       { input: halo, left, top: top + 1 },
       { input: shadow, left, top: top + 3 },
       { input: buf, left, top },
+      { input: mHalo, left: mLeft, top: mTop + 1 },
+      { input: mShadow, left: mLeft, top: mTop + 2 },
+      { input: mBuf, left: mLeft, top: mTop },
     ])
     .png()
     .toFile(out);
 
-  return { size, w, h, left, top };
+  return { size, w, h, left, top, marca: { size: mSize, top: mTop } };
 }
 
 (async () => {
