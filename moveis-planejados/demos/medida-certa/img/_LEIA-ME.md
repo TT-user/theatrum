@@ -1,6 +1,9 @@
 # Fotos do demo — Medida Certa Planejados
 
-Coloque os arquivos aqui **com estes nomes exatos**. O HTML não precisa ser tocado:
+As fotos já estão aqui: geradas em 10/08/2026 com Nano Banana Pro (Higgsfield), a partir
+dos prompts do briefing somados à assinatura visual do demo, com o `hero.jpg` anexado
+como referência para segurar a paleta. Para refazer alguma, gere no mesmo aspecto, use o
+hero como referência e **mantenha o nome do arquivo**. O HTML não precisa ser tocado:
 enquanto o arquivo não existe, a página mostra um bloco de placeholder no lugar;
 assim que ele aparece, o placeholder some sozinho.
 
