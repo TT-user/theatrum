@@ -44,3 +44,48 @@
     obs.observe(el);
   });
 })();
+
+/* Filme do hero. Entra depois da foto, nunca antes dela. */
+(function () {
+  'use strict';
+  var caixa = document.querySelector('.hero-filme');
+  if (!caixa || !caixa.dataset.src) return;
+
+  var conexao = navigator.connection || {};
+  var economiza = conexao.saveData === true || /(^|-)2g$/.test(conexao.effectiveType || '');
+  var menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (economiza || menosMovimento || window.innerWidth < 760) return;
+
+  function entra() {
+    setTimeout(function () {
+      var v = document.createElement('video');
+      v.muted = true;
+      v.loop = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      v.setAttribute('aria-hidden', 'true');
+      v.preload = 'auto';
+      /* canplaythrough e o evento que mais falha em Safari e em conexao
+         instavel. Escuto os tres que significam 'ja da para mostrar' e
+         ainda confiro uma vez por segurança, senao o hero ficaria preso
+         na foto sem ninguem perceber. */
+      function mostra() {
+        if (v.classList.contains('pronto')) return;
+        v.classList.add('pronto');
+        document.querySelector('.hero').classList.add('com-filme');
+      }
+      v.addEventListener('loadeddata', mostra);
+      v.addEventListener('canplay', mostra);
+      v.addEventListener('playing', mostra);
+      setTimeout(function () { if (v.readyState >= 2) mostra(); }, 4000);
+      v.src = caixa.dataset.src;
+      caixa.appendChild(v);
+      var toca = v.play();
+      if (toca && toca.catch) toca.catch(function () {});
+    }, 500);
+  }
+
+  if (document.readyState === 'complete') entra();
+  else window.addEventListener('load', entra);
+})();
