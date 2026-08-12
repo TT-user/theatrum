@@ -1,11 +1,36 @@
-# 10 posts — frases sobre pinturas texturizadas
+# 30 posts — frases sobre pinturas texturizadas
 
-Cada post é **um vídeo de 5s** (pintura a óleo animada) com uma frase queimada em Itim branco.
-Sem carrossel: são 10 posts avulsos, feitos para render print e pin.
+Cada post é **um vídeo de 5s** (pintura a óleo animada) com uma frase queimada em Itim branco
+e a assinatura `@explicologo` logo abaixo.
+
+> Este arquivo é **gerado**. Edite `posts.json` / `copy.json` e rode `node build-md.js`.
+
+## Regras da conta — valem para todo post novo
+
+**1. Toda legenda termina com CTA de seguir.**
+A última linha da legenda é sempre um convite para seguir `@explicologo`, separado por linha
+em branco da linha de engajamento (salvar / comentar). São duas chamadas empilhadas: primeiro
+a que pede a ação barata (salvar), depois a que pede o seguidor.
+O CTA vive **na legenda**, nunca queimado na arte: a arte carrega só a frase e a assinatura.
+O texto rotaciona entre estas variações para não ficar robótico:
+
+- Se isso te fez respirar, siga @explicologo.
+- Segue a página para receber essas frases no seu feed: @explicologo.
+- Siga @explicologo para uma frase calma por dia.
+- Siga @explicologo — aqui tem uma pausa dessas todo dia.
+
+**2. Carrossel: só o primeiro slide é vídeo.**
+Quando um post for carrossel, apenas o **slide 1** é o `.mp4` animado — ele é quem segura o
+autoplay no feed. Os slides seguintes podem ser **imagem estática** (`.jpg`), o que corta
+tempo de render e crédito de animação. Na prática: gere o vídeo só do slide de capa e monte
+os demais direto do `overlay.js` sobre a pintura parada.
+
+**3. Rodízio.** Nenhum pilar e nenhuma fórmula se repetem em posts consecutivos.
+Uma variante surreal (astronauta) a cada dez — hoje nos posts 06, 16, 26.
 
 **Arquivos**
 - `final/instagram/NN-4x5.mp4` — 1080×1350, publicar no feed
-- `final/instagram/NN-4x5.jpg` — capa estática (thumbnail / fallback)
+- `final/instagram/NN-4x5.jpg` — capa estática (thumbnail / slide de carrossel)
 - `final/pinterest/NN-2x3.mp4` — 1000×1500, pin de vídeo
 - `final/pinterest/NN-2x3.jpg` — pin estático
 
@@ -23,8 +48,26 @@ Sem carrossel: são 10 posts avulsos, feitos para render print e pin.
 | 08 | P4 Amor-próprio | F5 | Você não precisa agradar para ser amado. |
 | 09 | P1 Paz e limites | F4 | Está tudo bem em querer menos coisas. |
 | 10 | P2 Recomeços | F2 | Dias mais leves virão sem aviso. |
-
-Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio da sequência.
+| 11 | P3 Fé leve | F1 | Confie no que ainda não dá para ver. |
+| 12 | P4 Amor-próprio | F3 | Nem toda opinião sobre você é verdade. |
+| 13 | P1 Paz e limites | F5 | Você não precisa se explicar para dizer não. |
+| 14 | P2 Recomeços | F6 | O recomeço não pede permissão. |
+| 15 | P3 Fé leve | F4 | Está tudo bem em não ter todas as respostas. |
+| 16 | P4 Amor-próprio | F2 | Você vai se reconhecer de novo. |
+| 17 | P1 Paz e limites | F1 | Guarde um pedaço do dia para você. |
+| 18 | P2 Recomeços | F3 | Nem todo recuo é derrota. |
+| 19 | P3 Fé leve | F5 | Você não precisa entender agora para seguir. |
+| 20 | P4 Amor-próprio | F6 | O seu valor não está em votação. |
+| 21 | P1 Paz e limites | F4 | Está tudo bem em não responder hoje. |
+| 22 | P2 Recomeços | F2 | Você vai olhar para trás com carinho. |
+| 23 | P3 Fé leve | F1 | Deixe o tempo fazer a parte dele. |
+| 24 | P4 Amor-próprio | F3 | Nem todo amor que cansa é amor. |
+| 25 | P1 Paz e limites | F5 | Você não precisa de barulho para existir. |
+| 26 | P2 Recomeços | F6 | Todo começo é meio desajeitado. |
+| 27 | P3 Fé leve | F4 | Está tudo bem em confiar de novo. |
+| 28 | P4 Amor-próprio | F2 | Vai chegar quem fica sem você pedir. |
+| 29 | P1 Paz e limites | F1 | Respire antes de responder. |
+| 30 | P2 Recomeços | F3 | Nem todo dia precisa render. |
 
 ---
 
@@ -38,6 +81,8 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Guardar energia não é frieza, é cuidado com o que sobra do seu dia.
 >
 > Salve para lembrar disso na próxima mensagem que chegar cobrando.
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
 
 **Hashtags (1º comentário):** #frasesreflexivas #frasescurtas #paginasdecalma #limitessaudaveis #serenidade #frasesdepaz #calmaria
 
@@ -59,8 +104,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > O que atrapalha não é a lentidão, é a comparação com o ritmo de outra pessoa.
 >
 > Qual passo pequeno cabe no seu dia de hoje?
+>
+> Se isso te fez respirar, siga @explicologo.
 
-**Hashtags:** #frasesdemudanca #frasesreflexivas #recomeco #paginasdecalma #frasescurtas #vidaleve #coragem
+**Hashtags (1º comentário):** #frasesdemudanca #frasesreflexivas #recomeco #paginasdecalma #frasescurtas #vidaleve #coragem
 
 **Alt text:** Pintura a óleo texturizada de uma pessoa caminhando de costas por um píer de pedra estreito em direção a um mar cinza-esverdeado, com gaivotas ao redor e céu nublado.
 
@@ -80,8 +127,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Enquanto isso, cuide do que já está aqui.
 >
 > Salve para os dias em que a dúvida bater.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
 
-**Hashtags:** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #frasescurtas #tempocerto #esperanca
+**Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #frasescurtas #tempocerto #esperanca
 
 **Alt text:** Pintura a óleo texturizada de uma figura minúscula em um vale escuro segurando uma estrela cadente por um fio de luz, sob um céu laranja queimado com rastros de cometa.
 
@@ -101,8 +150,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Comece pelo simples: o que hoje te devolve energia em vez de tirar?
 >
 > Responde aqui embaixo, quero ler.
+>
+> Siga @explicologo para uma frase calma por dia.
 
-**Hashtags:** #amorproprio #frasesdeamorproprio #autocuidado #frasesreflexivas #paginasdecalma #frasescurtas #autoestima
+**Hashtags (1º comentário):** #amorproprio #frasesdeamorproprio #autocuidado #frasesreflexivas #paginasdecalma #frasescurtas #autoestima
 
 **Alt text:** Pintura a óleo texturizada de uma pessoa caminhando de costas por uma encosta aberta em direção a uma luz quente distante, em tons de rosa empoeirado e terracota no fim da tarde.
 
@@ -122,8 +173,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Ficar quieto não é perder a vez, é escolher onde gastar a voz.
 >
 > Salve para o próximo dia barulhento.
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
 
-**Hashtags:** #frasesdepaz #silencio #frasesreflexivas #paginasdecalma #calmaria #frasescurtas #descanso
+**Hashtags (1º comentário):** #frasesdepaz #silencio #frasesreflexivas #paginasdecalma #calmaria #frasescurtas #descanso
 
 **Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas na borda de um campo verde que desce até uma baía azul, sob um céu enorme e vazio em tons pastel.
 
@@ -143,8 +196,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Ninguém recomeça no ritmo de ninguém.
 >
 > Em que fase você está agora?
+>
+> Se isso te fez respirar, siga @explicologo.
 
-**Hashtags:** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
+**Hashtags (1º comentário):** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
 
 **Alt text:** Pintura a óleo texturizada de um pequeno astronauta sentado sozinho de costas em um banco de madeira à beira de um mar cinza-esverdeado, sob céu nublado.
 
@@ -164,8 +219,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Se ainda não abriu, talvez você é que ainda esteja ficando pronto.
 >
 > Salve para quando a ansiedade apertar.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
 
-**Hashtags:** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #tempocerto #frasescurtas #paciencia
+**Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #tempocerto #frasescurtas #paciencia
 
 **Alt text:** Pintura a óleo texturizada de uma figura minúscula atravessando um vale escuro por uma trilha de luz dourada, sob rastros longos de cometas em um céu âmbar.
 
@@ -185,8 +242,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Existe gente que fica mesmo quando você discorda, e é dessa gente que vale cuidar.
 >
 > Salve e releia quando bater a vontade de agradar todo mundo.
+>
+> Siga @explicologo para uma frase calma por dia.
 
-**Hashtags:** #amorproprio #autoestima #frasesreflexivas #relacoessaudaveis #paginasdecalma #frasescurtas #autocuidado
+**Hashtags (1º comentário):** #amorproprio #autoestima #frasesreflexivas #relacoessaudaveis #paginasdecalma #frasescurtas #autocuidado
 
 **Alt text:** Pintura a óleo texturizada de duas figuras pequenas sentadas lado a lado de costas em uma encosta ampla no fim da tarde, com o céu quente ocupando quase todo o quadro.
 
@@ -206,8 +265,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > Menos compromisso, menos barulho, menos conta para pagar — mais dia seu.
 >
 > O que você tiraria da sua semana se pudesse?
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
 
-**Hashtags:** #frasesdepaz #vidasimples #frasesreflexivas #paginasdecalma #descanso #frasescurtas #calmaria
+**Hashtags (1º comentário):** #frasesdepaz #vidasimples #frasesreflexivas #paginasdecalma #descanso #frasescurtas #calmaria
 
 **Alt text:** Pintura a óleo texturizada de uma pessoa deitada de costas em uma encosta verde acima de um mar azul parado, com uma árvore pequena ao lado e céu amplo.
 
@@ -227,8 +288,10 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 > A leveza costuma voltar pelo caminho mais banal.
 >
 > Salve para reler no dia em que isso parecer impossível.
+>
+> Se isso te fez respirar, siga @explicologo.
 
-**Hashtags:** #esperanca #frasesreflexivas #recomeco #paginasdecalma #vidaleve #frasescurtas #frasesdeconforto
+**Hashtags (1º comentário):** #esperanca #frasesreflexivas #recomeco #paginasdecalma #vidaleve #frasescurtas #frasesdeconforto
 
 **Alt text:** Pintura a óleo texturizada de uma pessoa de costas no fim de um píer de pedra diante de um mar cinza-esverdeado, com uma abertura de luz pálida rompendo o céu nublado.
 
@@ -238,11 +301,472 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 
 ---
 
+## 11 · P3 · F1
+
+**Frase:** Confie no que ainda não dá para ver.
+
+**Legenda**
+> Confiar é diferente de ter certeza. Certeza é o que a gente pede quando está com medo.
+> Tem processo que só mostra o resultado no fim, e o meio é justamente a parte sem paisagem.
+> Você não precisa enxergar o caminho inteiro para dar o próximo passo.
+>
+> Salve para os dias em que o escuro parecer grande demais.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
+
+**Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #frasescurtas #tempocerto #esperanca
+
+**Alt text:** Pintura a óleo texturizada de uma figura minúscula parada na entrada de um vale escuro, diante de um horizonte de luz dourada, sob rastros longos de cometa.
+
+**Pinterest** — board *Fé e Confiança*
+- Título: `Frases de fé para quem está no escuro`
+- Descrição: Confie no que ainda não dá para ver. Frases de fé e confiança para fases de incerteza. Reflexões curtas sobre seguir sem enxergar o caminho inteiro.
+
+---
+
+## 12 · P4 · F3
+
+**Frase:** Nem toda opinião sobre você é verdade.
+
+**Legenda**
+> As pessoas te descrevem com o que elas conseguem enxergar — e quase sempre é pouco.
+> O que dizem de você diz mais sobre o lugar de onde estão olhando.
+> Você pode ouvir, agradecer e continuar sendo quem já sabia que era.
+>
+> Salve para a próxima vez que um comentário pesar.
+>
+> Siga @explicologo para uma frase calma por dia.
+
+**Hashtags (1º comentário):** #amorproprio #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #autocuidado #frasesdeamorproprio
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas em uma encosta aberta no fim da tarde, com o céu quente em rosa e terracota ocupando quase todo o quadro.
+
+**Pinterest** — board *Amor-Próprio*
+- Título: `Frases de amor próprio sobre opinião alheia`
+- Descrição: Nem toda opinião sobre você é verdade. Frases de amor próprio para quem se cobra com o julgamento dos outros. Reflexões curtas sobre autoestima e limites.
+
+---
+
+## 13 · P1 · F5
+
+**Frase:** Você não precisa se explicar para dizer não.
+
+**Legenda**
+> Um não com parágrafo de justificativa vira uma negociação aberta.
+> Quem respeita você aceita a resposta curta. Quem não aceita ia insistir de qualquer jeito.
+> "Hoje não dá" é uma frase inteira.
+>
+> Salve para o próximo convite que não couber no seu dia.
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
+
+**Hashtags (1º comentário):** #limitessaudaveis #frasesdepaz #frasesreflexivas #paginasdecalma #frasescurtas #serenidade #calmaria
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas sob uma árvore larga no alto de uma colina verde, com um mar azul calmo lá embaixo e céu amplo.
+
+**Pinterest** — board *Frases de Paz*
+- Título: `Frases sobre limites e dizer não`
+- Descrição: Você não precisa se explicar para dizer não. Frases sobre limites saudáveis e o direito de recusar sem justificativa. Reflexões curtas sobre paz e energia.
+
+---
+
+## 14 · P2 · F6
+
+**Frase:** O recomeço não pede permissão.
+
+**Legenda**
+> Ninguém vai te avisar que agora pode. Não existe essa autorização.
+> Recomeço costuma começar meio torto, num dia comum, sem plateia.
+> Você muda de direção e o mundo leva um tempo para reparar — tudo bem.
+>
+> Qual recomeço você está esperando permissão para começar?
+>
+> Se isso te fez respirar, siga @explicologo.
+
+**Hashtags (1º comentário):** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas pisando a primeira pedra de um píer longo sobre um mar cinza-esverdeado, com gaivotas levantando voo sob céu nublado.
+
+**Pinterest** — board *Frases de Recomeço*
+- Título: `Frases de recomeço e coragem`
+- Descrição: O recomeço não pede permissão. Frases de recomeço para quem está esperando o momento certo para mudar. Reflexões curtas sobre coragem e começar de novo.
+
+---
+
+## 15 · P3 · F4
+
+**Frase:** Está tudo bem em não ter todas as respostas.
+
+**Legenda**
+> A gente aprendeu que dúvida é falha, quando quase sempre é só honestidade.
+> Tem pergunta que só se responde vivendo mais um pouco.
+> Não saber ainda não é o mesmo que estar perdido.
+>
+> Salve para quando cobrarem um plano pronto de você.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
+
+**Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #frasescurtas #paciencia #tempocerto
+
+**Alt text:** Pintura a óleo texturizada de uma figura minúscula sentada em uma pedra dentro de um vale escuro, olhando um céu âmbar cortado por rastros lentos de cometa.
+
+**Pinterest** — board *Fé e Confiança*
+- Título: `Frases sobre não ter todas as respostas`
+- Descrição: Está tudo bem em não ter todas as respostas. Frases de fé e paciência para fases de dúvida. Reflexões curtas sobre confiar no processo sem ter tudo resolvido.
+
+---
+
+## 16 · P4 · F2 · surreal
+
+**Frase:** Você vai se reconhecer de novo.
+
+**Legenda**
+> Tem época em que a gente olha no espelho e encontra alguém meio estranho.
+> Não é perda. É travessia — e travessia mexe com o rosto da gente.
+> A pessoa que você é continua aí, esperando o barulho baixar.
+>
+> Salve para reler quando você se sentir longe de si.
+>
+> Siga @explicologo para uma frase calma por dia.
+
+**Hashtags (1º comentário):** #amorproprio #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #recomeco #autocuidado
+
+**Alt text:** Pintura a óleo texturizada de um pequeno astronauta sentado sozinho de costas em uma encosta suave no fim da tarde, diante de um horizonte quente e distante.
+
+**Pinterest** — board *Amor-Próprio*
+- Título: `Frases para quando você se perde de si`
+- Descrição: Você vai se reconhecer de novo. Frases de amor próprio para fases de travessia e reconstrução. Reflexões curtas sobre voltar para si mesmo com calma.
+
+---
+
+## 17 · P1 · F1
+
+**Frase:** Guarde um pedaço do dia para você.
+
+**Legenda**
+> Se sobrar, não sobra. O tempo para você precisa ser marcado antes, igual compromisso.
+> Não precisa ser uma hora. Quinze minutos sem tela e sem cobrança já mudam o dia.
+> Descanso não é o prêmio depois de terminar tudo.
+>
+> Que pedaço do seu dia você consegue proteger amanhã?
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
+
+**Hashtags (1º comentário):** #frasesdepaz #autocuidado #frasesreflexivas #paginasdecalma #descanso #frasescurtas #calmaria
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas em um muro baixo de pedra na borda de um campo verde, diante de uma baía azul e horizonte claro.
+
+**Pinterest** — board *Frases de Paz*
+- Título: `Frases sobre descanso e autocuidado`
+- Descrição: Guarde um pedaço do dia para você. Frases de paz sobre descanso, autocuidado e proteger o próprio tempo. Reflexões curtas para rotinas cheias.
+
+---
+
+## 18 · P2 · F3
+
+**Frase:** Nem todo recuo é derrota.
+
+**Legenda**
+> Tem hora que voltar dois passos é o que evita o tombo lá na frente.
+> Sair de algo que estava te consumindo não é desistir, é escolher outro caminho.
+> O que parece recuo de fora costuma ser lucidez de dentro.
+>
+> Salve para quando te chamarem de desistente.
+>
+> Se isso te fez respirar, siga @explicologo.
+
+**Hashtags (1º comentário):** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas caminhando de volta pela areia molhada à beira de um mar cinza-esverdeado, deixando um rastro de pegadas.
+
+**Pinterest** — board *Frases de Recomeço*
+- Título: `Frases sobre recuar e recomeçar`
+- Descrição: Nem todo recuo é derrota. Frases de recomeço para quem precisou voltar atrás. Reflexões curtas sobre mudar de caminho sem culpa.
+
+---
+
+## 19 · P3 · F5
+
+**Frase:** Você não precisa entender agora para seguir.
+
+**Legenda**
+> Entendimento quase sempre chega atrasado, depois que a fase passa.
+> Se você esperar fazer sentido para dar o passo, vai ficar parado muito tempo.
+> Dá para caminhar com a pergunta aberta.
+>
+> Salve para o dia em que nada estiver fazendo sentido.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
+
+**Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #frasescurtas #tempocerto #esperanca
+
+**Alt text:** Pintura a óleo texturizada de uma figura minúscula caminhando por uma crista estreita em um vale âmbar escuro, com uma única estrela distante brilhando à frente.
+
+**Pinterest** — board *Fé e Confiança*
+- Título: `Frases para quando nada faz sentido`
+- Descrição: Você não precisa entender agora para seguir. Frases de fé para fases confusas e de transição. Reflexões curtas sobre seguir mesmo sem respostas.
+
+---
+
+## 20 · P4 · F6
+
+**Frase:** O seu valor não está em votação.
+
+**Legenda**
+> Não é a maioria que decide quanto você vale. Nunca foi.
+> Quando a gente entrega essa conta para os outros, cada silêncio vira sentença.
+> Você já vale antes da aprovação chegar — e continua valendo se ela não vier.
+>
+> Salve para o próximo dia de comparação.
+>
+> Siga @explicologo para uma frase calma por dia.
+
+**Hashtags (1º comentário):** #amorproprio #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #autocuidado #frasesdeamorproprio
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas no alto de uma colina no fim da tarde, com os braços relaxados e um céu terracota suave se abrindo atrás.
+
+**Pinterest** — board *Amor-Próprio*
+- Título: `Frases de autoestima e aprovação`
+- Descrição: O seu valor não está em votação. Frases de autoestima para quem depende da aprovação dos outros. Reflexões curtas sobre amor próprio e comparação.
+
+---
+
+## 21 · P1 · F4
+
+**Frase:** Está tudo bem em não responder hoje.
+
+**Legenda**
+> A mensagem vai continuar lá amanhã. A sua paciência, talvez não.
+> Responder no automático custa mais caro do que parece.
+> Deixar para depois não é sumir, é chegar inteiro na conversa.
+>
+> Salve para a próxima notificação que chegar em hora ruim.
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
+
+**Hashtags (1º comentário):** #limitessaudaveis #frasesdepaz #frasesreflexivas #paginasdecalma #descanso #frasescurtas #serenidade
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa deitada de costas na grama alta de uma encosta verde acima de um mar azul, sob um céu enorme e silencioso.
+
+**Pinterest** — board *Frases de Paz*
+- Título: `Frases sobre responder no seu tempo`
+- Descrição: Está tudo bem em não responder hoje. Frases de paz sobre limites, descanso mental e responder no próprio tempo. Reflexões curtas para dias cheios.
+
+---
+
+## 22 · P2 · F2
+
+**Frase:** Você vai olhar para trás com carinho.
+
+**Legenda**
+> Esse trecho que hoje parece só cansaço vai virar história que você conta com orgulho.
+> Não porque foi bonito, mas porque você atravessou.
+> Daqui a um tempo, você vai ter uma ternura estranha por quem você é hoje.
+>
+> Salve para reler daqui a um ano.
+>
+> Se isso te fez respirar, siga @explicologo.
+
+**Hashtags (1º comentário):** #esperanca #recomeco #frasesreflexivas #paginasdecalma #vidaleve #frasescurtas #frasesdeconforto
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas em uma duna baixa olhando um mar cinza-esverdeado, com a vegetação da praia curvada pelo vento.
+
+**Pinterest** — board *Frases de Recomeço*
+- Título: `Frases de esperança para fases difíceis`
+- Descrição: Você vai olhar para trás com carinho. Frases de esperança e conforto para fases pesadas. Reflexões curtas sobre atravessar e seguir.
+
+---
+
+## 23 · P3 · F1
+
+**Frase:** Deixe o tempo fazer a parte dele.
+
+**Legenda**
+> Tem coisa que não se resolve com esforço, se resolve com prazo.
+> A gente insiste em apressar o que só amadurece parado.
+> Faça a sua parte e devolva o resto para o relógio.
+>
+> Salve para quando a vontade de forçar bater.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
+
+**Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #tempocerto #frasescurtas #paciencia
+
+**Alt text:** Pintura a óleo texturizada de uma figura minúscula descansando sob uma árvore seca em um vale escuro, com luz âmbar quente se acumulando no horizonte.
+
+**Pinterest** — board *Fé e Confiança*
+- Título: `Frases sobre paciência e tempo certo`
+- Descrição: Deixe o tempo fazer a parte dele. Frases de fé e paciência para quem quer apressar o processo. Reflexões curtas sobre confiar no tempo certo.
+
+---
+
+## 24 · P4 · F3
+
+**Frase:** Nem todo amor que cansa é amor.
+
+**Legenda**
+> Cuidado cansa às vezes. Mas se o cansaço virou a regra, vale olhar melhor.
+> Amor que exige que você diminua para caber não está te querendo, está te ajustando.
+> Existe vínculo que descansa a gente. Existe mesmo.
+>
+> Salve e releia com calma depois.
+>
+> Siga @explicologo para uma frase calma por dia.
+
+**Hashtags (1º comentário):** #amorproprio #relacoessaudaveis #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #autocuidado
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas descendo sozinha por um caminho largo em uma encosta no fim da tarde, afastando-se de pequenas luzes quentes ao longe.
+
+**Pinterest** — board *Amor-Próprio*
+- Título: `Frases sobre relações que cansam`
+- Descrição: Nem todo amor que cansa é amor. Frases de amor próprio sobre relações saudáveis e vínculos que esgotam. Reflexões curtas sobre limites no afeto.
+
+---
+
+## 25 · P1 · F5
+
+**Frase:** Você não precisa de barulho para existir.
+
+**Legenda**
+> Nem toda presença precisa ser anunciada. Tem gente que ocupa espaço sem fazer alarde.
+> Ficar de fora de uma conversa não te apaga.
+> A sua vida não precisa de plateia para estar acontecendo.
+>
+> Salve para os dias de comparação online.
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
+
+**Hashtags (1º comentário):** #frasesdepaz #silencio #frasesreflexivas #paginasdecalma #calmaria #frasescurtas #vidasimples
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa de costas parada em um campo verde amplo e vazio, com um lago azul parado atrás e nuvens suaves em um céu claro.
+
+**Pinterest** — board *Frases de Paz*
+- Título: `Frases sobre silêncio e presença`
+- Descrição: Você não precisa de barulho para existir. Frases de paz sobre silêncio, vida simples e presença discreta. Reflexões curtas para quem quer menos ruído.
+
+---
+
+## 26 · P2 · F6 · surreal
+
+**Frase:** Todo começo é meio desajeitado.
+
+**Legenda**
+> A primeira versão de qualquer coisa é torta. Sempre foi.
+> A gente compara o próprio começo com o meio do caminho dos outros e conclui que não serve.
+> Desajeitado é como começo se parece por dentro.
+>
+> O que você começaria se pudesse fazer mal feito primeiro?
+>
+> Se isso te fez respirar, siga @explicologo.
+
+**Hashtags (1º comentário):** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
+
+**Alt text:** Pintura a óleo texturizada de um pequeno astronauta de costas parado no início de um píer estreito de pedra sobre um mar cinza-esverdeado, minúsculo no quadro.
+
+**Pinterest** — board *Frases de Recomeço*
+- Título: `Frases sobre começar do jeito que dá`
+- Descrição: Todo começo é meio desajeitado. Frases de recomeço para quem trava no perfeccionismo. Reflexões curtas sobre começar torto e seguir.
+
+---
+
+## 27 · P3 · F4
+
+**Frase:** Está tudo bem em confiar de novo.
+
+**Legenda**
+> Depois de levar um susto, a gente fecha. Faz sentido, foi proteção.
+> Mas viver de portão trancado também cobra um preço, só que devagar.
+> Confiar de novo não é esquecer. É escolher não carregar aquilo em toda relação nova.
+>
+> Salve para quando o medo de repetir aparecer.
+>
+> Segue a página para receber essas frases no seu feed: @explicologo.
+
+**Hashtags (1º comentário):** #frasesdefe #confianca #frasesreflexivas #paginasdecalma #frasescurtas #esperanca #relacoessaudaveis
+
+**Alt text:** Pintura a óleo texturizada de uma figura minúscula em um vale escuro com as duas mãos abertas, cercada por pequenas faíscas douradas subindo devagar.
+
+**Pinterest** — board *Fé e Confiança*
+- Título: `Frases sobre confiar de novo`
+- Descrição: Está tudo bem em confiar de novo. Frases de fé e confiança para quem se fechou depois de uma decepção. Reflexões curtas sobre reabrir com calma.
+
+---
+
+## 28 · P4 · F2
+
+**Frase:** Vai chegar quem fica sem você pedir.
+
+**Legenda**
+> Existe gente que precisa ser convencida a ficar. Essa nunca fica de verdade.
+> E existe gente que aparece e simplesmente permanece, sem cobrança nem cena.
+> Você vai reconhecer pela leveza, não pelo esforço.
+>
+> Salve para lembrar de parar de insistir.
+>
+> Siga @explicologo para uma frase calma por dia.
+
+**Hashtags (1º comentário):** #amorproprio #relacoessaudaveis #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #esperanca
+
+**Alt text:** Pintura a óleo texturizada de duas figuras pequenas caminhando devagar uma em direção à outra em uma encosta ampla no fim da tarde, ainda distantes, sob céu quente.
+
+**Pinterest** — board *Amor-Próprio*
+- Título: `Frases sobre quem fica de verdade`
+- Descrição: Vai chegar quem fica sem você pedir. Frases de amor próprio sobre relações saudáveis e parar de insistir. Reflexões curtas sobre vínculos leves.
+
+---
+
+## 29 · P1 · F1
+
+**Frase:** Respire antes de responder.
+
+**Legenda**
+> O primeiro impulso quase nunca é o melhor. Ele é só o mais rápido.
+> Um minuto de silêncio já muda a frase que ia sair.
+> Você não perde a razão por responder devagar — costuma ganhar.
+>
+> Salve para a próxima discussão que aparecer.
+>
+> Siga @explicologo — aqui tem uma pausa dessas todo dia.
+
+**Hashtags (1º comentário):** #frasesdepaz #serenidade #frasesreflexivas #paginasdecalma #calmaria #frasescurtas #limitessaudaveis
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas no topo de uma encosta verde diante de um mar azul calmo, com um pequeno barco ao longe.
+
+**Pinterest** — board *Frases de Paz*
+- Título: `Frases sobre calma antes de reagir`
+- Descrição: Respire antes de responder. Frases de paz e serenidade sobre reagir com calma. Reflexões curtas para discussões e dias de estresse.
+
+---
+
+## 30 · P2 · F3
+
+**Frase:** Nem todo dia precisa render.
+
+**Legenda**
+> Tem dia que a meta é atravessar, e atravessar já é bastante.
+> Quem está recomeçando sente isso mais forte: cobra resultado no meio da reconstrução.
+> Um dia parado não apaga o mês inteiro nem atrasa a sua virada.
+>
+> Salve para o próximo dia improdutivo — e não se cobre.
+>
+> Se isso te fez respirar, siga @explicologo.
+
+**Hashtags (1º comentário):** #recomeco #descanso #frasesreflexivas #paginasdecalma #vidaleve #frasescurtas #frasesdemudanca
+
+**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas na beira de um deque de madeira sobre um mar cinza-esverdeado, com pequenos barcos parados e céu nublado.
+
+**Pinterest** — board *Frases de Recomeço*
+- Título: `Frases sobre dias que não rendem`
+- Descrição: Nem todo dia precisa render. Frases sobre descanso e recomeço para quem se cobra produtividade. Reflexões curtas sobre dias improdutivos sem culpa.
+
+---
+
 ## Cadência sugerida
 
-**Instagram** — 5 posts por semana, na ordem 01→10 (duas semanas). A ordem já alterna os pilares.
+**Instagram** — 5 posts por semana, na ordem crescente de id. A ordem já alterna os pilares.
 
-**Pinterest** — não jogue os 10 de uma vez. 3 a 5 pins por dia, sempre no board do pilar. Os mais fortes para começar: **01**, **08** e **10** (funcionam sozinhos, fora de contexto). Repine os antigos em boards diferentes depois de algumas semanas — pin tem cauda longa.
+**Pinterest** — não jogue tudo de uma vez. 3 a 5 pins por dia, sempre no board do pilar.
+Repine os antigos em boards diferentes depois de algumas semanas — pin tem cauda longa.
 
 ## Regenerar / editar
 
@@ -251,10 +775,30 @@ Post 06 é a variante surreal (astronauta no banco) — um a cada dez, no meio d
 .\gen-imagens.ps1 -Only "03"
 .\baixar-imagens.ps1
 
-# nova animação
+# nova animacao
 .\gen-videos.ps1 -Only "03"
+.\baixar-videos.ps1
 
 # mudou a frase em posts.json? re-renderize o texto e remonte
 node overlay.js 03
 .\montar.ps1 -Only "03"
+
+# mudou copy.json ou posts.json? regenere os derivados
+node build-md.js
+node build-page.js
 ```
+
+`overlay.js` e `build-page.js` dependem do `sharp`, que mora fora do repo:
+rode com `NODE_PATH` apontando para o `node_modules` das ferramentas.
+
+## Publicar
+
+```bash
+# confere conta e URLs publicas antes de qualquer coisa
+node --env-file=../../explicologo/.env postar-reels.js --checar
+node --env-file=../../explicologo/.env postar-reels.js 06 07 08
+```
+
+O token de `@explicologo` fica em `Desktop/explicologo/.env` (fora deste repo).
+`../MazyOS/.env` é a conta `@theatrum.br` — o `--checar` barra a publicação cruzada.
+Cada post publicado fica registrado em `publicados.json` e nunca sai duas vezes.
