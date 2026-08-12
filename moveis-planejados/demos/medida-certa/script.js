@@ -44,3 +44,16 @@
     obs.observe(el);
   });
 })();
+
+/* WhatsApp flutuante: entra quando o hero sai de cena. */
+(function () {
+  'use strict';
+  var wa = document.querySelector('.whatsapp-float');
+  if (!wa) return;
+  function ver() {
+    wa.classList.toggle('on', window.scrollY > window.innerHeight * 0.6);
+  }
+  ver();
+  window.addEventListener('scroll', ver, { passive: true });
+  window.addEventListener('resize', ver);
+})();
