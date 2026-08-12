@@ -18,8 +18,8 @@ skills-lock.json
 
 # oficina das fotos dos demos: PNG de origem e dependencias do
 # conversor. O que o site consome sao os JPG dentro de cada demo/img.
-imoveis/demos/_fotos/png-*/
-imoveis/demos/_fotos/contato-*.jpg
-imoveis/demos/_fotos/conferencia.jpg
-imoveis/demos/_fotos/node_modules/
-imoveis/demos/_fotos/package*.json
+**/demos/_fotos/png-*/
+**/demos/_fotos/contato-*.jpg
+**/demos/_fotos/conferencia.jpg
+**/demos/_fotos/node_modules/
+**/demos/_fotos/package*.json

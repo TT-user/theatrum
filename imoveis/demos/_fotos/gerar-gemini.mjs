@@ -60,6 +60,9 @@ const linhas = fs.readFileSync(manifesto, 'utf8')
 
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/* vira true no primeiro 429 de saldo: os lotes seguintes nem saem */
+let semSaldo = false;
+
 /* A API só aceita esta lista fechada de proporções e recusa o pedido
    inteiro com 400 se pedirem outra. Como os manifestos são escritos à
    mão e nasceram para o Higgsfield, que aceita qualquer razão, aqui a
@@ -80,11 +83,15 @@ function proporcao(pedida) {
 }
 
 async function uma({ nome, aspecto, prompt }) {
+  if (semSaldo) return false;
   const saida = path.join(destino, nome);
   if (fs.existsSync(saida) && fs.statSync(saida).size > 0) {
     console.log(`  JA EXISTE  ${nome}`);
     return true;
   }
+  /* alguns manifestos usam o caminho do site como nome (img/ambientes/x.png)
+     para o conversor saber onde cada arquivo vai; sem isto o write falha */
+  fs.mkdirSync(path.dirname(saida), { recursive: true });
 
   const corpo = {
     contents: [{ parts: [{ text: prompt }] }],
@@ -107,11 +114,23 @@ async function uma({ nome, aspecto, prompt }) {
 
       if (!resposta.ok) {
         const texto = await resposta.text();
-        /* 429 é cota por minuto: esperar resolve. 400 é o prompt ou o
-           formato — insistir só queima tentativa, então sai na hora
-           com a mensagem da API, que diz qual campo recusou. */
+        /* 400 é o prompt ou o formato — insistir só queima tentativa, então
+           sai na hora com a mensagem da API, que diz qual campo recusou. */
         if (resposta.status === 400 || resposta.status === 404) {
           console.log(`  FALHOU     ${nome}  ${resposta.status} ${texto.slice(0, 200)}`);
+          return false;
+        }
+        /* Nem todo 429 é cota por minuto. Quando o saldo acaba, a API
+           responde 429 com "credits are depleted", e aí esperar não
+           resolve nunca: o lote inteiro tentaria três vezes cada um
+           contra um endpoint morto. Abortar de uma vez deixa claro o
+           que aconteceu e devolve o terminal em segundos. */
+        if (resposta.status === 429 && /depleted|exceeded your current quota/i.test(texto)) {
+          console.log(`\n  SALDO ACABOU na API do Gemini — parando aqui.`);
+          console.log(`  Recarregue em https://ai.studio/projects e rode de novo:`);
+          console.log(`  o que já foi gerado é pulado, e só o que falta é refeito.\n`);
+          process.exitCode = 2;
+          semSaldo = true;
           return false;
         }
         throw new Error(`${resposta.status} ${texto.slice(0, 160)}`);
@@ -152,6 +171,7 @@ for (let i = 0; i < linhas.length; i += PARALELO) {
   const lote = linhas.slice(i, i + PARALELO);
   const r = await Promise.all(lote.map(uma));
   feitas += r.filter(Boolean).length;
+  if (semSaldo) break;
 }
 
 console.log(`\n  ${feitas} de ${linhas.length} prontas em ${destino}\n`);
