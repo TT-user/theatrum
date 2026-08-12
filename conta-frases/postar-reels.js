@@ -18,6 +18,11 @@ const TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN;
 const IG_ID = process.env.INSTAGRAM_USER_ID;
 const API = 'https://graph.instagram.com/v21.0';
 
+// As artes tem @explicologo queimado no video. Se o token apontar para outra
+// conta, o post sai assinado com um handle que nao e o dono do perfil — entao
+// o script confere o username antes de criar qualquer container.
+const CONTA_ESPERADA = 'explicologo';
+
 const BASE_VIDEO =
   'https://raw.githubusercontent.com/TT-user/theatrum/main/conta-frases/final/instagram';
 
@@ -52,9 +57,18 @@ async function api(caminho, corpo) {
   return dados;
 }
 
-async function conferirAmbiente() {
+async function conferirConta() {
   const conta = await api(`${IG_ID}?fields=id,username,account_type,media_count`);
-  console.log(`conta      : @${conta.username} (${conta.account_type}, ${conta.media_count} posts)`);
+  const ok = conta.username.toLowerCase() === CONTA_ESPERADA;
+  console.log(
+    `conta      : @${conta.username} (${conta.account_type}, ${conta.media_count} posts)` +
+      (ok ? '' : `  <-- ESPERADO @${CONTA_ESPERADA}`)
+  );
+  return { conta, ok };
+}
+
+async function conferirAmbiente() {
+  const { ok } = await conferirConta();
 
   let faltando = 0;
   for (const p of posts) {
@@ -72,6 +86,11 @@ async function conferirAmbiente() {
   if (faltando) {
     console.log(`\n${faltando} video(s) sem URL publica. Faca commit e push de`);
     console.log('conta-frases/final/instagram/*.mp4 antes de publicar.');
+    process.exit(1);
+  }
+  if (!ok) {
+    console.log(`\nO token nao e da conta @${CONTA_ESPERADA}. Publicacao bloqueada:`);
+    console.log('os videos estao assinados com esse handle na propria arte.');
     process.exit(1);
   }
   console.log('\nambiente ok.');
@@ -153,6 +172,14 @@ async function main() {
   if (!ids.length) {
     console.error('Informe os ids (ex: 01 02) ou --todos. Use --checar para conferir antes.');
     process.exit(1);
+  }
+
+  const { ok } = await conferirConta();
+  if (!ok && !args.includes('--forcar-conta')) {
+    console.error(`\nToken de outra conta. Nada foi publicado. Ajuste o .env para @${CONTA_ESPERADA}`);
+    console.error('ou rode com --forcar-conta se a publicacao cruzada for intencional.');
+    process.exitCode = 1;
+    return;
   }
 
   for (const id of ids) {
