@@ -60,6 +60,25 @@ const linhas = fs.readFileSync(manifesto, 'utf8')
 
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/* A API só aceita esta lista fechada de proporções e recusa o pedido
+   inteiro com 400 se pedirem outra. Como os manifestos são escritos à
+   mão e nasceram para o Higgsfield, que aceita qualquer razão, aqui a
+   proporção pedida cai na mais próxima em vez de derrubar a geração. */
+const ACEITAS = ['1:1', '1:4', '1:8', '2:3', '3:2', '3:4', '4:1', '4:3', '4:5', '5:4', '9:16', '16:9', '21:9'];
+
+function proporcao(pedida) {
+  if (ACEITAS.includes(pedida)) return pedida;
+  const [a, b] = pedida.split(':').map(Number);
+  if (!a || !b) return '4:3';
+  const alvo = a / b;
+  const perto = ACEITAS.reduce((melhor, cand) => {
+    const [x, y] = cand.split(':').map(Number);
+    return Math.abs(x / y - alvo) < Math.abs(melhor.v - alvo) ? { c: cand, v: x / y } : melhor;
+  }, { c: '4:3', v: 4 / 3 }).c;
+  console.log(`  ajuste     ${pedida} nao existe na API, usando ${perto}`);
+  return perto;
+}
+
 async function uma({ nome, aspecto, prompt }) {
   const saida = path.join(destino, nome);
   if (fs.existsSync(saida) && fs.statSync(saida).size > 0) {
@@ -71,7 +90,7 @@ async function uma({ nome, aspecto, prompt }) {
     contents: [{ parts: [{ text: prompt }] }],
     generationConfig: {
       responseModalities: ['IMAGE'],
-      imageConfig: { aspectRatio: aspecto },
+      imageConfig: { aspectRatio: proporcao(aspecto) },
     },
   };
 

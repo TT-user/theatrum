@@ -59,7 +59,9 @@ for (const nome of arquivos) {
   const saida = path.join(destino, nome.replace(/\.(png|jpeg|webp)$/i, '.jpg'));
 
   let kb = 0;
-  for (let q = 86; q >= 46; q -= 6) {
+  /* desce até 38: foto de rua arborizada, cheia de folha, não cabe no
+     teto com qualidade alta — e o passo de 6 fecha em poucas voltas */
+  for (let q = 86; q >= 38; q -= 6) {
     await sharp(path.join(origem, nome))
       /* position 'attention' corta pelo que a imagem tem de mais
          saliente; num recorte de fachada isso salva o prédio de sair
