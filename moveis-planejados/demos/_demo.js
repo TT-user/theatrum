@@ -12,7 +12,31 @@
 (function () {
   'use strict';
 
-  var LIMPO = new URLSearchParams(location.search).has('limpo');
+  var BUSCA = new URLSearchParams(location.search);
+  var LIMPO = BUSCA.has('limpo');
+
+  /* ---------- de onde a pessoa veio ----------
+     Os demos moram em /moveis-planejados/demos/, então um '../../' fixo
+     devolvia todo mundo para a página de planejados. Quem chegou pela
+     home veio de um funil mais amplo e não pode ser despejado na página
+     de um segmento só — perde o contexto e o assunto muda embaixo dele.
+
+     O parâmetro ?de=home é o sinal confiável, posto nos links da home.
+     O referrer é o plano B, para link compartilhado ou colado à mão.
+     Sem nenhum dos dois, mantém o comportamento antigo: a maior parte
+     do tráfego dos demos ainda vem da página de planejados. */
+  var origem = BUSCA.get('de');
+  if (!origem && document.referrer) {
+    try {
+      var de = new URL(document.referrer);
+      if (de.host === location.host) {
+        origem = de.pathname.indexOf('/moveis-planejados/') === 0 ? 'planejados' : 'home';
+      }
+    } catch (e) {}
+  }
+  var VOLTA = origem === 'home'
+    ? { raiz: '../../../', cta: '../../../#diagnostico' }
+    : { raiz: '../../',    cta: '../../#planos' };
 
   /* ---------- camada de proteção ----------
      Carregada daqui, e não por uma tag em cada página, porque são
@@ -97,11 +121,12 @@
     var bar = document.createElement('div');
     bar.className = 'thtr-bar';
     /* relativo de propósito: o site é servido numa subpasta do domínio,
-       então '../../' aponta para a página de conversão seja qual for o nome dela */
-    bar.innerHTML = '<a class="voltar" href="../../">&larr; Voltar para a Theatrum</a>' +
+       então o caminho funciona seja qual for o nome da pasta. Para onde
+       ele aponta depende de onde a pessoa veio — ver VOLTA lá em cima. */
+    bar.innerHTML = '<a class="voltar" href="' + VOLTA.raiz + '">&larr; Voltar para a Theatrum</a>' +
                     '<span><b>Demonstração.</b> Pessoa, marca e contatos são fictícios. ' +
                     'O layout é real e foi feito pela Theatrum.</span>' +
-                    '<a class="quero" href="../../#planos">Quero um assim</a>';
+                    '<a class="quero" href="' + VOLTA.cta + '">Quero um assim</a>';
     document.body.appendChild(bar);
 
     /* garante que a barra não cubra o rodapé nem botões flutuantes */
