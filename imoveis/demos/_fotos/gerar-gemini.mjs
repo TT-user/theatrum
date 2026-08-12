@@ -18,11 +18,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+/* A chave pode vir do ambiente ou de um .env aqui do lado. O arquivo é
+   mais prático — a variável exportada some a cada terminal novo — e o
+   .gitignore da raiz já barra o commit dele. */
+const AQUI = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ENV = path.join(AQUI, '.env');
+if (fs.existsSync(ENV)) {
+  for (const linha of fs.readFileSync(ENV, 'utf8').split('\n')) {
+    const m = linha.match(/^\s*([A-Z_0-9]+)\s*=\s*(.*?)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
+  }
+}
+
 const CHAVE = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 const [manifesto, destino, modelo = 'gemini-3-pro-image-preview'] = process.argv.slice(2);
 
 if (!CHAVE) {
-  console.error('Falta GEMINI_API_KEY no ambiente. Pegue em https://aistudio.google.com/apikey');
+  console.error('Falta a GEMINI_API_KEY.');
+  console.error('Pegue em https://aistudio.google.com/apikey e salve em ' + ENV);
+  console.error('no formato  GEMINI_API_KEY=AIza...');
   process.exit(1);
 }
 if (!manifesto || !destino) {

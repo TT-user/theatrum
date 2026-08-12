@@ -9,3 +9,15 @@ site/astro-site/.astro/
 .agents/
 .mcp.json
 skills-lock.json
+
+# chaves de API. Este repositorio e publicado como site: um .env
+# commitado aqui fica servido em texto puro no dominio.
+.env
+*.env
+!.env.exemplo
+
+# oficina das fotos dos demos: PNG de origem e dependencias do
+# conversor. O que o site consome sao os JPG dentro de cada demo/img.
+imoveis/demos/_fotos/png-*/
+imoveis/demos/_fotos/node_modules/
+imoveis/demos/_fotos/package*.json
