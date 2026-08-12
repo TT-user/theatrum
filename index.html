@@ -23,6 +23,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LNND3QDPM"></script>
 <script>
+  /* Dois auxiliares de idioma, declarados aqui no topo de propósito:
+     são chamados por blocos de script que aparecem antes de onde eles
+     moravam. No caminho normal a chamada acontecia dentro de um callback
+     de animação e dava tempo; com prefers-reduced-motion ela é síncrona
+     e quebrava. */
+  function typingLabel(){ return document.documentElement.lang === 'en' ? 'typing…' : 'digitando…'; }
+  /* separador de milhar: . em pt-BR, , em inglês */
+  function moneyLocale(){ return document.documentElement.lang === 'en' ? 'en-US' : 'pt-BR'; }
+</script>
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -100,7 +110,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .brand-chip i{position:absolute;top:8px;right:9px;width:6px;height:6px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent2);font-style:normal;animation:dotPulse 2.2s ease-in-out infinite}
   .brand b{font-family:var(--font-display);font-weight:600;font-size:19px}
   .brand b span{color:var(--muted);font-weight:500}
-  .nav-cta{font-weight:600;font-size:14.5px;color:var(--white);text-decoration:none;border:1px solid var(--line);border-radius:40px;padding:11px 22px;transition:.3s;white-space:nowrap}
+  /* O min-width existe por causa do PT/EN. O botão de idioma fica à
+     esquerda deste CTA, dentro de um bloco ancorado à direita da barra:
+     quando "Diagnóstico gratuito" vira "Free diagnosis" o CTA encolhe
+     40px e empurra o botão de idioma junto, que salta de lugar bem na
+     hora em que o visitante acabou de clicar nele. Reservando a largura
+     do rótulo mais longo, o CTA não muda de tamanho e nada ao lado se
+     mexe. O valor é a largura medida de "Diagnóstico gratuito"; se o
+     texto mudar, remeça. */
+  .nav-cta{font-weight:600;font-size:14.5px;color:var(--white);text-decoration:none;border:1px solid var(--line);border-radius:40px;padding:11px 22px;transition:.3s;white-space:nowrap;
+    min-width:188px;display:inline-flex;align-items:center;justify-content:center}
   .nav-cta:hover{border-color:rgba(227,179,65,.5);color:var(--accent)}
 
   /* ============ NAV FIXA (site inteiro) — logo sempre visível; menu/CTA aparecem após a 1ª tela ============ */
@@ -284,9 +303,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* o respiro entre cartões mora no cartão, não em gap no trilho: com gap
      as duas metades não teriam largura idêntica e o translateX(-50%)
      daria um pulo visível a cada volta do laço */
-  .vit-mq .mq-track{animation-duration:64s;align-items:stretch}
-  .vit-mq.rev .mq-track{animation-duration:76s}
-  .vit-mq:hover .mq-track,.vit-mq:focus-within .mq-track{animation-play-state:paused}
+  /* Estas duas esteiras não andam por @keyframes: quem move é o script,
+     num laço próprio. A animação do CSS sobrescreve qualquer transform
+     que o JS escreva, e sem escrever transform não há como o visitante
+     arrastar a esteira para o lado. A faixa de texto lá em cima, que
+     ninguém arrasta, continua no CSS. */
+  .vit-mq .mq-track{animation:none;align-items:stretch;will-change:transform}
+  .vit-mq{cursor:grab;touch-action:pan-y}
+  .vit-mq.arrastando{cursor:grabbing}
+  /* durante o arrasto o cartão não deve responder a hover nem receber o
+     clique: mirar enquanto se arrasta é ruído, e soltar o dedo em cima
+     de um cartão abriria a demo sem querer */
+  .vit-mq.arrastando .vit-card{pointer-events:none}
   .vit-card{flex:0 0 auto;width:min(38vw,392px);margin-right:20px;text-decoration:none;color:inherit;
     border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0C0A08;
     display:flex;flex-direction:column;
@@ -311,10 +339,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .vit-card{width:74vw}
     .vit-cab{padding:0 5vw;gap:8px}
   }
-  /* quem pediu menos movimento arrasta a esteira com o dedo ou o trackpad */
+  /* quem pediu menos movimento fica com a rolagem nativa: o script não
+     liga o laço, e a esteira vira uma faixa que se arrasta e para */
   @media (prefers-reduced-motion:reduce){
-    .vit-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
-    .vit-mq .mq-track{animation:none;min-width:0}
+    .vit-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none;cursor:auto;touch-action:auto}
+    .vit-mq .mq-track{animation:none;min-width:0;transform:none!important}
   }
 
   /* ============ base das seções ============ */
@@ -626,12 +655,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <b>Theatrum</b>
   </a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
     <li><a href="#problema" data-en="Problem">Problema</a></li>
     <li><a href="#solucao" data-en="Solution">Solução</a></li>
     <li><a href="#como-funciona" data-en="How it works">Como funciona</a></li>
     <li><a href="#beneficios" data-en="Difference">Diferença</a></li>
     <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
-    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
     <li><a href="#faq" data-en="FAQ">FAQ</a></li>
   </ul>
   <div class="nav-right">
@@ -649,6 +678,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
     <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
   </button>
+  <a href="#trabalhos" data-en="Work">Trabalhos</a>
   <a href="#problema" data-en="Problem">Problema</a>
   <a href="#solucao" data-en="Solution">Solução</a>
   <a href="#como-funciona" data-en="How it works">Como funciona</a>
@@ -749,11 +779,340 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ 3 · O PROBLEMA ============ -->
+<!-- ============ 3 · VITRINE (o portfolio vem antes da argumentacao) ============ -->
+<section class="sec" id="trabalhos">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>trabalhos</p>
+    <h2 class="rv" style="--d:.08s" data-en='Three markets, fourteen sites. <span class="lm">Scroll and open any of them.</span>'>Três mercados, quatorze sites. <span class="lm">Role e abra qualquer um.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Custom furniture">Móveis planejados</h3>
+      <span class="vit-tag" data-en="six demos · fictional brands">seis demonstrações · marcas fictícias</span>
+    </div>
+    <div class="mq vit-mq">
+      <div class="mq-track">
+        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
+          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
+          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
+          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
+          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
+          <img src="assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
+          <img src="assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
+          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
+          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
+          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
+          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
+          <img src="assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
+          <img src="assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Dietitians">Nutricionistas</h3>
+      <span class="vit-tag" data-en="four delivered sites · identity swapped">quatro sites entregues · identidade trocada</span>
+    </div>
+    <div class="mq vit-mq rev">
+      <div class="mq-track">
+        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
+          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
+          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
+          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
+          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Real estate">Imóveis</h3>
+      <span class="vit-tag" data-en="four demos · working systems inside">quatro demonstrações · com sistema funcionando</span>
+    </div>
+    <div class="mq vit-mq">
+      <div class="mq-track">
+        <a class="vit-card" href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
+          <img src="assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
+          <img src="assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
+          <img src="assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
+          <img src="assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
+          <img src="assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
+          <img src="assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
+          <img src="assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
+        </a>
+        <a class="vit-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
+          <img src="assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p class="vit-nota rv" data-en='The real estate demos are <b>invented brands</b>, built to show what each type of business needs: an independent broker, an agency, a launch and a high-end portfolio. What is real in them is the layout and the system — the search, the comparison table, the unit board, the financing calculator and the visit scheduler all work in the browser.'>As demonstrações de imóveis são <b>marcas inventadas</b>, feitas para mostrar o que cada tipo de negócio precisa: corretor autônomo, imobiliária, lançamento e alto padrão. O que é real nelas é o layout e o sistema — a busca, o comparador, o espelho de unidades, o simulador de financiamento e a agenda de visitas funcionam de verdade no navegador.</p>
+</section>
+
+<script>
+/* ============================================================
+   Esteiras da vitrine — movimento próprio e arrastável
+
+   O CSS movia o trilho com @keyframes. Isso é simples, mas fecha a
+   porta para o visitante conduzir: a animação sobrescreve qualquer
+   transform que o script escreva, e sem escrever transform não há
+   arrasto possível. Aqui o laço é nosso, e arrastar vira só somar
+   no mesmo deslocamento que o laço já vinha somando sozinho.
+
+   A faixa de texto da seção 2 continua no CSS: ninguém arrasta
+   uma frase, e trocar o que funciona custaria sem devolver nada.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
+  /* quem pediu menos movimento fica com a rolagem nativa que o CSS liga */
+  if (menosMovimento.matches) return;
+
+  document.querySelectorAll('.vit-mq').forEach(function (caixa) {
+    var trilho = caixa.querySelector('.mq-track');
+    if (!trilho) return;
+
+    var reverso = caixa.classList.contains('rev');
+    /* as durações de antes, em segundos para atravessar meia volta */
+    var DURACAO = reverso ? 76 : 64;
+    var LIMIAR = 4;   // px de folga antes de tratar como arrasto, e não clique
+
+    var meia = 0, pos = 0, vel = 0;
+    var parado = false, arrastando = false, visivel = true;
+    var xInicial = 0, posInicial = 0, andou = 0, quadro = null, ultimo = 0;
+
+    /* Meia volta é a metade do trilho, porque o HTML repete os cartões
+       duas vezes. Recalculado no resize e quando as capas terminam de
+       carregar: com loading=lazy a largura muda depois da primeira medida. */
+    function medir() {
+      meia = trilho.scrollWidth / 2;
+      vel = meia / DURACAO;
+      if (meia > 0) pos = ((pos % meia) + meia) % meia;
+    }
+
+    function desenhar() {
+      trilho.style.transform = 'translateX(' + (-pos) + 'px)';
+    }
+
+    function passo(agora) {
+      quadro = requestAnimationFrame(passo);
+      var dt = ultimo ? (agora - ultimo) / 1000 : 0;
+      ultimo = agora;
+      /* dt travado em 50 ms: ao voltar de uma aba em segundo plano o
+         primeiro quadro traz um salto de vários segundos, e a esteira
+         daria um pulo grande em vez de retomar de onde parou */
+      if (dt > 0.05) dt = 0.05;
+      if (parado || arrastando || !visivel || !meia) return;
+      pos += (reverso ? -vel : vel) * dt;
+      pos = ((pos % meia) + meia) % meia;
+      desenhar();
+    }
+
+    function ligar() { if (!quadro) { ultimo = 0; quadro = requestAnimationFrame(passo); } }
+    function desligar() { if (quadro) { cancelAnimationFrame(quadro); quadro = null; } }
+
+    /* ---------- arrasto ---------- */
+    var capturado = false;
+
+    caixa.addEventListener('pointerdown', function (e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      arrastando = true;
+      capturado = false;
+      andou = 0;
+      xInicial = e.clientX;
+      posInicial = pos;
+    });
+
+    caixa.addEventListener('pointermove', function (e) {
+      if (!arrastando || !meia) return;
+      var dx = e.clientX - xInicial;
+      if (Math.abs(dx) > andou) andou = Math.abs(dx);
+      if (andou > LIMIAR) {
+        caixa.classList.add('arrastando');
+        /* A captura só entra depois do limiar, e não no pointerdown.
+           Com o ponteiro capturado o navegador entrega o clique ao
+           contêiner em vez de ao <a> de dentro, e um clique seco no
+           cartão deixaria de abrir a demonstração. Capturando só
+           quando já houve arrasto de verdade, o clique segue intacto
+           e o arrasto continua funcionando com o dedo fora da faixa. */
+        if (!capturado) { caixa.setPointerCapture(e.pointerId); capturado = true; }
+      }
+      pos = posInicial - dx;
+      pos = ((pos % meia) + meia) % meia;
+      desenhar();
+    });
+
+    function soltar(e) {
+      if (!arrastando) return;
+      arrastando = false;
+      if (capturado && e && e.pointerId !== undefined && caixa.hasPointerCapture(e.pointerId)) {
+        caixa.releasePointerCapture(e.pointerId);
+      }
+      capturado = false;
+      /* tira a classe no quadro seguinte: removida agora, o clique que
+         ainda está a caminho encontraria os cartões já clicáveis */
+      requestAnimationFrame(function () { caixa.classList.remove('arrastando'); });
+    }
+    caixa.addEventListener('pointerup', soltar);
+    caixa.addEventListener('pointercancel', soltar);
+    caixa.addEventListener('lostpointercapture', soltar);
+    /* segura o clique que fecha um arrasto de verdade */
+    caixa.addEventListener('click', function (e) {
+      if (andou > LIMIAR) { e.preventDefault(); e.stopPropagation(); andou = 0; }
+    }, true);
+
+    /* ---------- pausa ---------- */
+    caixa.addEventListener('pointerenter', function () { parado = true; });
+    caixa.addEventListener('pointerleave', function () { parado = false; });
+    caixa.addEventListener('focusin', function () { parado = true; });
+    caixa.addEventListener('focusout', function () { parado = false; });
+
+    /* fora da tela o laço não roda: são duas esteiras numa página longa,
+       e girar transform sem ninguém olhando só gasta bateria */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entradas) {
+        visivel = entradas[0].isIntersecting;
+        if (visivel) ligar(); else desligar();
+      }, { rootMargin: '120px 0px' }).observe(caixa);
+    } else {
+      ligar();
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) desligar(); else if (visivel) ligar();
+    });
+
+    window.addEventListener('resize', medir);
+    trilho.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', medir, { once: true });
+    });
+
+    medir();
+    desenhar();
+  });
+})();
+</script>
+
+<!-- ============ 4 · O PROBLEMA ============ -->
 <section class="sec" id="problema">
   <div class="pb-ghost" aria-hidden="true" data-en="Problem">Problema</div>
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>the problem'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>o problema</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>the problem'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>o problema</p>
     <h2 class="rv" style="--d:.08s" data-en='Your business deserves better.<br>But the internet <span class="lm">doesn&apos;t show it.</span>'>Seu negócio faz por merecer.<br>Mas a internet <span class="lm">não mostra isso.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='Every day, somewhere in Brazil, people are searching for what you sell. If they never reach you, it&apos;s because your business has <b>at least one of these three leaks:</b>'>Todo dia tem gente em algum lugar do Brasil procurando o que você vende. Se essa gente não chega até você, é porque o seu negócio tem <b>pelo menos um destes três vazamentos:</b></p>
 
@@ -789,11 +1148,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ 4 · A SOLUÇÃO ============ -->
+<!-- ============ 5 · A SOLUÇÃO ============ -->
 <section class="sec light" id="solucao">
   <div class="sol-atmos" aria-hidden="true"><span class="sol-glow g1"></span><span class="sol-glow g2"></span><span class="sol-dots"></span></div>
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>the solution'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>a solução</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>the solution'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>a solução</p>
     <h2 class="rv" style="--d:.08s" data-en='Digital presence isn&apos;t luck.<br>It&apos;s a <span class="lm">system.</span>'>Presença digital não é sorte.<br>É <span class="lm">sistema.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en="Theatrum builds the <b>three engines</b> that close the three leaks and run everything for you, with website, traffic and AI working together.">A Theatrum monta os <b>três motores</b> que fecham os três vazamentos e opera tudo por você, com site, tráfego e IA trabalhando juntos.</p>
 
@@ -839,10 +1198,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ 5 · COMO FUNCIONA ============ -->
+<!-- ============ 6 · COMO FUNCIONA ============ -->
 <section class="sec" id="como-funciona">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>how it works'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>como funciona</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>how it works'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>como funciona</p>
     <h2 class="rv" style="--d:.08s" data-en='From diagnosis to your<br>digital identity <span class="lm">live.</span>'>Do diagnóstico à sua<br>identidade digital <span class="lm">no ar.</span></h2>
 
     <div class="steps">
@@ -870,10 +1229,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ 6 · O CONTRASTE ============ -->
+<!-- ============ 7 · O CONTRASTE ============ -->
 <section class="sec" id="beneficios" style="padding-top:40px">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>the difference'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>a diferença</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>the difference'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>a diferença</p>
     <h2 class="dif-h" data-en='<span class="dif-line"><span class="w">What</span> <span class="w">you</span> <span class="w">get</span></span> <span class="dif-line"><span class="w dif-em">(and what you stop accepting).<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>'>
       <span class="dif-line"><span class="w">O</span> <span class="w">que</span> <span class="w">você</span> <span class="w">recebe</span></span>
       <span class="dif-line"><span class="w dif-em">(e o que para de aceitar).<svg class="dif-uline" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathlength="100" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
@@ -907,7 +1266,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ 6.5 · SISTEMA TRABALHANDO (demos animadas) ============ -->
+<!-- ============ 7.5 · SISTEMA TRABALHANDO (demos animadas) ============ -->
 <style>
   #sistema{
     --sys-border:#2a251d; --sys-panel:#141210;
@@ -1296,7 +1655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec light" id="sistema">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>demonstração</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demonstração</p>
     <h2 class="rv" style="--d:.08s" data-en='See the system <span class="lm">at work.</span>'>Vê o sistema <span class="lm">trabalhando.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en="It's not a promise: it's a demonstration. All of this keeps running on its own once Theatrum is in your business.">Não é promessa: é demonstração. Isso tudo fica rodando sozinho quando a Theatrum entra no seu negócio.</p>
 
@@ -2308,190 +2667,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 7 · VITRINE ============ -->
-<section class="sec" id="trabalhos">
-  <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Three markets, fourteen sites. <span class="lm">Scroll and open any of them.</span>'>Três mercados, quatorze sites. <span class="lm">Role e abra qualquer um.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Custom furniture">Móveis planejados</h3>
-      <span class="vit-tag" data-en="six demos · fictional brands">seis demonstrações · marcas fictícias</span>
-    </div>
-    <div class="mq vit-mq">
-      <div class="mq-track">
-        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
-          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
-          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
-          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
-          <img src="assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
-          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
-          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
-          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
-          <img src="assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Dietitians">Nutricionistas</h3>
-      <span class="vit-tag" data-en="four delivered sites · identity swapped">quatro sites entregues · identidade trocada</span>
-    </div>
-    <div class="mq vit-mq rev">
-      <div class="mq-track">
-        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
-          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
-          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
-          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
-          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Real estate">Imóveis</h3>
-      <span class="vit-tag" data-en="four demos · working systems inside">quatro demonstrações · com sistema funcionando</span>
-    </div>
-    <div class="mq vit-mq">
-      <div class="mq-track">
-        <a class="vit-card" href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
-          <img src="assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
-          <img src="assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
-          <img src="assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
-          <img src="assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <p class="vit-nota rv" data-en='The real estate demos are <b>invented brands</b>, built to show what each type of business needs: an independent broker, an agency, a launch and a high-end portfolio. What is real in them is the layout and the system — the search, the comparison table, the unit board, the financing calculator and the visit scheduler all work in the browser.'>As demonstrações de imóveis são <b>marcas inventadas</b>, feitas para mostrar o que cada tipo de negócio precisa: corretor autônomo, imobiliária, lançamento e alto padrão. O que é real nelas é o layout e o sistema — a busca, o comparador, o espelho de unidades, o simulador de financiamento e a agenda de visitas funcionam de verdade no navegador.</p>
-</section>
-
 <!-- ============ 8 · AVALIAÇÕES ============ -->
 <!-- oculta por enquanto: sem depoimentos reais ainda, reativar quando houver -->
 <section class="sec" id="avaliacoes" style="display:none">
@@ -2528,7 +2703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 8 · FAQ ============ -->
 <section class="sec" id="faq">
   <div class="sec-inner">
-    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>straight answers'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>perguntas diretas</p>
+    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>straight answers'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>perguntas diretas</p>
     <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto" data-en='What every business owner<br>asks <span class="lm">before closing.</span>'>O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
 
     <div class="faq rv" style="--d:.15s">
@@ -2558,7 +2733,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ 9 · CTA FINAL ============ -->
 <section class="final" id="diagnostico">
-  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>the next step'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o próximo passo</p>
+  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>the next step'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>o próximo passo</p>
   <h2 class="rv" style="--d:.08s" data-en="Want to know how much revenue your business is missing out on every month?">Quer saber quanto seu negócio deixa de faturar todo mês?</h2>
   <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows your business's leaks and what the system would do about each one. No obligation, no runaround.">O diagnóstico gratuito mostra os vazamentos do seu negócio e o que o sistema faria com cada um. Sem compromisso, sem enrolação.</p>
   <a class="btn-dark rv" style="--d:.24s" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20da%20minha%20identidade%20digital." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
@@ -2590,10 +2765,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
-  // usado pelas simulações de chat (mais abaixo) pra escrever "digitando…"/"typing…" no idioma certo
-  function typingLabel(){ return document.documentElement.lang === 'en' ? 'typing…' : 'digitando…'; }
-  // locale certo pros valores em R$ (separador de milhar . em pt-BR vs , em inglês)
-  function moneyLocale(){ return document.documentElement.lang === 'en' ? 'en-US' : 'pt-BR'; }
 
   // nav fixa: escondida no hero, aparece só depois da 1ª tela
   const siteNav = document.getElementById('siteNav');
