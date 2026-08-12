@@ -114,23 +114,38 @@ async function uma({ nome, aspecto, prompt }) {
 
       if (!resposta.ok) {
         const texto = await resposta.text();
-        /* 400 é o prompt ou o formato — insistir só queima tentativa, então
-           sai na hora com a mensagem da API, que diz qual campo recusou. */
-        if (resposta.status === 400 || resposta.status === 404) {
-          console.log(`  FALHOU     ${nome}  ${resposta.status} ${texto.slice(0, 200)}`);
-          return false;
-        }
-        /* Nem todo 429 é cota por minuto. Quando o saldo acaba, a API
-           responde 429 com "credits are depleted", e aí esperar não
-           resolve nunca: o lote inteiro tentaria três vezes cada um
-           contra um endpoint morto. Abortar de uma vez deixa claro o
-           que aconteceu e devolve o terminal em segundos. */
-        if (resposta.status === 429 && /depleted|exceeded your current quota/i.test(texto)) {
-          console.log(`\n  SALDO ACABOU na API do Gemini — parando aqui.`);
-          console.log(`  Recarregue em https://ai.studio/projects e rode de novo:`);
-          console.log(`  o que já foi gerado é pulado, e só o que falta é refeito.\n`);
+        /* Dois bloqueios que valem parar o lote inteiro, e não só a imagem
+           da vez. Nenhum dos dois melhora com insistência:
+
+             429 "depleted"  — o saldo pré-pago zerou.
+             403 "dunning"   — a cobrança do projeto no Google Cloud foi
+                               barrada (cartão recusado ou fatura em aberto).
+                               Aqui recarregar crédito não resolve: o bloqueio
+                               é de pagamento, não de saldo.
+
+           Sem isto, as 24 imagens restantes tentariam três vezes cada uma
+           contra um endpoint que já disse não. */
+        var semSaldoAgora = resposta.status === 429 && /depleted|exceeded your current quota/i.test(texto);
+        var cobrancaBarrada = resposta.status === 403 && /dunning|billing|PERMISSION_DENIED/i.test(texto);
+
+        if (semSaldoAgora || cobrancaBarrada) {
+          console.log('\n  ' + (cobrancaBarrada
+            ? 'COBRANCA BARRADA no projeto do Google Cloud — parando aqui.'
+            : 'SALDO ACABOU na API do Gemini — parando aqui.'));
+          console.log('  ' + (cobrancaBarrada
+            ? 'Resolva o pagamento em https://console.cloud.google.com/billing e rode de novo:'
+            : 'Recarregue em https://ai.studio/projects e rode de novo:'));
+          console.log('  o que já foi gerado é pulado, e só o que falta é refeito.\n');
           process.exitCode = 2;
           semSaldo = true;
+          return false;
+        }
+
+        /* 400 é o prompt ou o formato, e os demais 403/404 são permissão ou
+           modelo inexistente: sai na hora com a mensagem da API, que diz
+           qual campo recusou. */
+        if (resposta.status === 400 || resposta.status === 403 || resposta.status === 404) {
+          console.log(`  FALHOU     ${nome}  ${resposta.status} ${texto.slice(0, 200)}`);
           return false;
         }
         throw new Error(`${resposta.status} ${texto.slice(0, 160)}`);
