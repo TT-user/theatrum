@@ -268,6 +268,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     letter-spacing:.22em;text-transform:uppercase;color:var(--muted);gap:26px;padding:0 26px}
   .mq.rev .mq-item b{color:var(--accent);font-weight:700}
 
+  /* ============ SEÇÃO 7 · VITRINE (esteira de sites) ============
+     Reaproveita o mecanismo do marquee da faixa: .mq-track duplicado e
+     translateX(-50%). O que muda é o conteúdo — aqui são cartões
+     clicáveis, e por isso a esteira para no hover: mirar um alvo em
+     movimento para clicar é frustrante. */
+  .vitrine{margin-top:56px}
+  .vitrine + .vitrine{margin-top:52px}
+  .vit-cab{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:0 5vw;margin-bottom:20px}
+  .vit-cab h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,2.2vw,1.6rem);
+    letter-spacing:-.02em;color:var(--white);margin:0}
+  .vit-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .vit-mq{position:relative;overflow:hidden;user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  /* o respiro entre cartões mora no cartão, não em gap no trilho: com gap
+     as duas metades não teriam largura idêntica e o translateX(-50%)
+     daria um pulo visível a cada volta do laço */
+  .vit-mq .mq-track{animation-duration:64s;align-items:stretch}
+  .vit-mq.rev .mq-track{animation-duration:76s}
+  .vit-mq:hover .mq-track,.vit-mq:focus-within .mq-track{animation-play-state:paused}
+  .vit-card{flex:0 0 auto;width:min(38vw,392px);margin-right:20px;text-decoration:none;color:inherit;
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0C0A08;
+    display:flex;flex-direction:column;
+    transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+  .vit-card:hover{border-color:rgba(217,164,65,.5);transform:translateY(-4px);box-shadow:0 20px 46px rgba(0,0,0,.5)}
+  .vit-janela{display:flex;align-items:center;gap:6px;padding:9px 13px;background:#141210;border-bottom:1px solid var(--line)}
+  .vit-janela i{width:8px;height:8px;border-radius:50%;background:#2E2A24;flex:none}
+  .vit-janela b{margin-left:8px;font-family:var(--font-mono);font-size:.68rem;font-weight:500;
+    letter-spacing:.06em;color:#7E776B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vit-card img{width:100%;height:auto;display:block;aspect-ratio:1000/625;object-fit:cover;object-position:top center}
+  .vit-pe{display:flex;flex-direction:column;gap:3px;padding:15px 16px 17px}
+  .vit-pe b{font-weight:700;font-size:.98rem;color:var(--white)}
+  .vit-pe em{font-style:normal;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted)}
+  .vit-card:hover .vit-pe em{color:var(--accent)}
+  @media (max-width:720px){
+    .vit-card{width:74vw}
+    .vit-cab{padding:0 5vw;gap:8px}
+  }
+  /* quem pediu menos movimento arrasta a esteira com o dedo ou o trackpad */
+  @media (prefers-reduced-motion:reduce){
+    .vit-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+    .vit-mq .mq-track{animation:none;min-width:0}
+  }
+
   /* ============ base das seções ============ */
   .sec{position:relative;padding:110px 5vw;overflow:hidden}
   .sec-inner{max-width:1280px;margin:0 auto}
@@ -582,6 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#como-funciona" data-en="How it works">Como funciona</a></li>
     <li><a href="#beneficios" data-en="Difference">Diferença</a></li>
     <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
+    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
     <li><a href="#faq" data-en="FAQ">FAQ</a></li>
   </ul>
   <div class="nav-right">
@@ -2258,11 +2303,122 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 7 · AVALIAÇÕES ============ -->
+<!-- ============ 7 · VITRINE ============ -->
+<section class="sec" id="trabalhos">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>trabalhos</p>
+    <h2 class="rv" style="--d:.08s" data-en='Two markets, eight sites. <span class="lm">Scroll and open any of them.</span>'>Dois mercados, oito sites. <span class="lm">Role e abra qualquer um.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Custom furniture">Móveis planejados</h3>
+      <span class="vit-tag" data-en="four demos · fictional brands">quatro demonstrações · marcas fictícias</span>
+    </div>
+    <div class="mq vit-mq">
+      <div class="mq-track">
+        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
+          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
+          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/medida-certa/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
+          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
+          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
+          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
+          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/medida-certa/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
+          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
+          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Dietitians">Nutricionistas</h3>
+      <span class="vit-tag" data-en="four delivered sites · identity swapped">quatro sites entregues · identidade trocada</span>
+    </div>
+    <div class="mq vit-mq rev">
+      <div class="mq-track">
+        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
+          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
+          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
+          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
+          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
+        </a>
+        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
+          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · AVALIAÇÕES ============ -->
 <!-- oculta por enquanto: sem depoimentos reais ainda, reativar quando houver -->
 <section class="sec" id="avaliacoes" style="display:none">
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>avaliações</p>
+    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>avaliações</p>
     <h2 class="rv" style="--d:.08s">Ainda não temos <span class="lm">depoimentos públicos</span> — e não vamos inventar um.</h2>
     <p class="lead rv" style="--d:.16s">Prefiro começar do zero e mostrar prova real conforme os primeiros diagnósticos viram cliente, do que forçar estrela que ninguém deu. Esta seção se preenche aqui — com nome, negócio e nota reais.</p>
 
