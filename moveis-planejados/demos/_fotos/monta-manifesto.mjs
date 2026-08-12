@@ -2,13 +2,16 @@
    manifestos no formato do gerar-gemini.mjs. Transcrever 64 prompts a
    mao seria a parte mais facil de errar do trabalho todo. */
 import fs from 'node:fs';
+import path from 'node:path';
 
-const FONTE = 'c:/Users/mathe/Desktop/theatrum/pedidos de novas demos';
+/* Os prompts vivem aqui do lado, e nao numa pasta solta fora do repositorio:
+   sem isso o script quebra na primeira vez que alguem clonar o projeto. */
+const AQUI = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const bloco = (t, i) => { const a = t.indexOf('```', i) + 3; const b = t.indexOf('```', a); return t.slice(a, b).trim().replace(/\s*\n\s*/g, ' '); };
 
 /* ---------- CERNE ---------- */
 {
-  const t = fs.readFileSync(`${FONTE}/cerne/PROMPTS-HIGGSFIELD.md`, 'utf8');
+  const t = fs.readFileSync(`${AQUI}/prompts-cerne.md`, 'utf8');
   const dna = bloco(t, t.indexOf('## 1 · DNA visual'));
   const linhas = [];
   const re = /\*\*`([a-z0-9.-]+\.(?:webp|jpg|png))`\*\*/g;
@@ -20,14 +23,20 @@ const bloco = (t, i) => { const a = t.indexOf('```', i) + 3; const b = t.indexOf
     const asp = /hero|cta/.test(nome) ? '16:9' : '4:3';
     linhas.push(`${nome.replace(/\.(webp|jpg)$/, '.png')}|${asp}|n|${p} ${dna}`);
   }
-  fs.writeFileSync('_fotos/man-cerne.txt', '# CERNE — gerado de PROMPTS-HIGGSFIELD.md\n' + linhas.join('\n') + '\n');
+  /* O poster do hero está descrito na seção 3.1 como "frame base" do vídeo,
+     num formato de título diferente do resto, e por isso escapa da varredura
+     acima. Ele importa mais que os outros: sem o mp4, é ele que É o hero. */
+  const frame = bloco(t, t.indexOf('### 3.1 · Frame base'));
+  if (frame) linhas.push(`hero-poster.png|16:9|n|${frame} ${dna}`);
+
+  fs.writeFileSync(path.join(AQUI,'man-cerne.txt'), '# CERNE — gerado de PROMPTS-HIGGSFIELD.md\n' + linhas.join('\n') + '\n');
   console.log('cerne:', linhas.length, 'prompts');
   linhas.forEach(l => console.log('   ', l.split('|')[0], l.split('|')[1]));
 }
 
 /* ---------- MORATTA ---------- */
 {
-  const t = fs.readFileSync(`${FONTE}/moratta/PROMPTS-HIGGSFIELD.md`, 'utf8');
+  const t = fs.readFileSync(`${AQUI}/prompts-moratta.md`, 'utf8');
   const estilo = bloco(t, t.indexOf('## 1. Bloco de estilo'));
   const linhas = [];
 
@@ -53,7 +62,7 @@ const bloco = (t, i) => { const a = t.indexOf('```', i) + 3; const b = t.indexOf
     linhas.push(`${v[2]}|16:9|n|${p.replace(/^Start frame:?\s*/i, '')}. ${estilo}`);
   }
 
-  fs.writeFileSync('_fotos/man-moratta.txt', '# MORATTA — gerado de PROMPTS-HIGGSFIELD.md\n' + linhas.join('\n') + '\n');
+  fs.writeFileSync(path.join(AQUI,'man-moratta.txt'), '# MORATTA — gerado de PROMPTS-HIGGSFIELD.md\n' + linhas.join('\n') + '\n');
   console.log('\nmoratta:', linhas.length, 'prompts');
   const porAsp = {};
   linhas.forEach(l => { const a = l.split('|')[1]; porAsp[a] = (porAsp[a] || 0) + 1; });

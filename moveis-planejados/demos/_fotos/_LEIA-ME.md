@@ -64,8 +64,8 @@ A CERNE não sofre com isso: o `<video>` do hero tem `poster=`, e o poster
 já está gerado — é ele que se vê. No Morattá, cada bloco de vídeo mostra a
 sua capa `*-capa.jpg`, que também é imagem estática.
 
-Os prompts de vídeo estão nos `PROMPTS-HIGGSFIELD.md` originais, em
-`pedidos de novas demos/`, e valem para o Higgsfield.
+Os prompts de vídeo estão em `prompts-cerne.md` e `prompts-moratta.md`,
+aqui nesta pasta, e valem para o Higgsfield.
 
 ## Depois de completar
 
