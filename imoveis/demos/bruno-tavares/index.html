@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Tavares | Corretor de imóveis no bairro São Mateus — Juiz de Fora, MG</title>
+<meta name="description" content="Corretor de imóveis especializado no São Mateus e no Bom Pastor, em Juiz de Fora. Carteira pequena, visita acompanhada e resposta no mesmo dia. CRECI-MG 00.000.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Bruno Tavares | Corretor no São Mateus, Juiz de Fora">
+<meta property="og:description" content="Eu não vendo a cidade inteira. Vendo dois bairros — e conheço cada rua deles.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#F7F4EE">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Placeholder das fotos: precisa estar aqui, antes das imagens carregarem. -->
+<script>document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'){var m=t.closest('.foto');if(m)m.classList.add('sem-foto');}},true);</script>
+</head>
+<body>
+
+<!-- ============ TOPO ============ -->
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#topo">Bruno <b>Tavares</b><em>CRECI-MG 00.000</em></a>
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#busca">Buscar imóvel</a>
+      <a href="#carteira">Carteira</a>
+      <a href="#bairro">O bairro</a>
+      <a href="#sobre">Sobre mim</a>
+    </nav>
+    <a class="btn btn-cheio" href="https://wa.me/5532999990000?text=Ol%C3%A1%2C%20Bruno!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20im%C3%B3vel.">
+      Falar comigo
+    </a>
+    <button class="abre-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="topo">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-texto">
+      <span class="sobrancelha">Corretor autônomo · Juiz de Fora, MG</span>
+      <h1>Eu não vendo a cidade inteira. <em>Vendo dois bairros</em> — e conheço cada rua deles.</h1>
+      <p class="lead">
+        São Mateus e Bom Pastor. Se o imóvel que você procura está aqui, eu já entrei nele,
+        já sei o barulho da rua às sete da manhã e já sei quanto o condomínio subiu no ano passado.
+      </p>
+      <div class="hero-acoes">
+        <a class="btn btn-cheio btn-g" href="#busca">Ver o que tenho hoje</a>
+        <a class="btn btn-vazio btn-g" href="https://wa.me/5532999990000?text=Ol%C3%A1%2C%20Bruno!%20Quero%20anunciar%20meu%20im%C3%B3vel%20com%20voc%C3%AA.">Quero anunciar o meu</a>
+      </div>
+      <ul class="hero-provas">
+        <li><b>14 anos</b> só nestes dois bairros</li>
+        <li><b>9 imóveis</b> na carteira agora</li>
+        <li><b>Resposta</b> no mesmo dia</li>
+      </ul>
+    </div>
+    <figure class="hero-foto foto" data-ph="img/hero.jpg · 1600×1200">
+      <img src="img/hero.jpg" alt="Bruno Tavares, corretor de imóveis, em uma rua residencial do bairro São Mateus no fim da tarde">
+    </figure>
+  </div>
+</section>
+
+<!-- ============ SISTEMA · BUSCA POR PERFIL ============ -->
+<section class="sec sec-busca" id="busca">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Sistema de busca</span>
+      <h2>Diga o que você precisa. <em>A lista se ajusta enquanto você escolhe.</em></h2>
+      <p class="sub">
+        Nada de formulário que some numa caixa de e-mail. Você filtra, vê o resultado na hora,
+        marca os que gostou — e o botão do WhatsApp já vai com os códigos escritos.
+      </p>
+    </div>
+
+    <form class="filtros" id="filtros" autocomplete="off">
+      <label class="campo">
+        <span>Quero</span>
+        <select name="finalidade">
+          <option value="">Comprar ou alugar</option>
+          <option value="venda">Comprar</option>
+          <option value="locacao">Alugar</option>
+        </select>
+      </label>
+      <label class="campo">
+        <span>Tipo</span>
+        <select name="tipo">
+          <option value="">Qualquer</option>
+          <option value="apartamento">Apartamento</option>
+          <option value="casa">Casa</option>
+          <option value="cobertura">Cobertura</option>
+          <option value="terreno">Terreno</option>
+        </select>
+      </label>
+      <label class="campo">
+        <span>Bairro</span>
+        <select name="bairro">
+          <option value="">Os dois</option>
+          <option value="São Mateus">São Mateus</option>
+          <option value="Bom Pastor">Bom Pastor</option>
+        </select>
+      </label>
+      <label class="campo">
+        <span>Quartos</span>
+        <select name="quartos">
+          <option value="">Tanto faz</option>
+          <option value="1">1 ou mais</option>
+          <option value="2">2 ou mais</option>
+          <option value="3">3 ou mais</option>
+          <option value="4">4 ou mais</option>
+        </select>
+      </label>
+      <label class="campo campo-faixa">
+        <span>Até <b id="tetoRotulo">R$ 1.200.000</b></span>
+        <input type="range" name="teto" id="teto" min="200000" max="1200000" step="50000" value="1200000">
+      </label>
+      <button class="limpar" type="reset">Limpar</button>
+    </form>
+
+    <div class="resultado-topo">
+      <p class="contagem" id="contagem" role="status" aria-live="polite">9 imóveis na carteira</p>
+      <label class="ordena">
+        <span>Ordenar</span>
+        <select id="ordem">
+          <option value="recente">Mais recentes</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="area">Maior área</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="grade" id="grade"><!-- preenchida pelo script.js --></div>
+
+    <p class="vazio" id="vazio" hidden>
+      Nada bate com esse filtro hoje — e eu prefiro te dizer isso a te empurrar outra coisa.
+      <a href="https://wa.me/5532999990000?text=Ol%C3%A1%2C%20Bruno!%20Procuro%20um%20im%C3%B3vel%20que%20n%C3%A3o%20apareceu%20no%20site.">Me diga o que procura</a>
+      que eu aviso quando entrar.
+    </p>
+
+    <!-- barra de favoritos: aparece quando há pelo menos um marcado -->
+    <div class="barra-fav" id="barraFav" hidden>
+      <p><b id="favCont">0</b> imóveis marcados <span id="favCodigos"></span></p>
+      <div class="barra-fav-acoes">
+        <button type="button" class="btn btn-vazio" id="limpaFav">Desmarcar todos</button>
+        <a class="btn btn-cheio" id="favZap" href="https://wa.me/5532999990000">Falar sobre eles no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="sec sec-passos">
+  <div class="wrap">
+    <div class="cab cab-centro">
+      <span class="etiqueta">Como a gente trabalha</span>
+      <h2>Três conversas, não trinta.</h2>
+    </div>
+    <ol class="passos">
+      <li>
+        <span class="num">01</span>
+        <h3>Você me diz o que precisa</h3>
+        <p>Pelo WhatsApp, em cinco minutos. Faixa de preço real, o que é obrigatório e o que é desejável. Se eu não tiver, eu falo que não tenho.</p>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <h3>A gente visita junto</h3>
+        <p>Eu marco em horário que dê para você, inclusive sábado de manhã. Vou junto em todas — não mando chave e endereço para você se virar.</p>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <h3>Eu cuido do resto</h3>
+        <p>Proposta, contraproposta, certidões, cartório e financiamento. Você assina duas vezes: a proposta e a escritura.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CARTEIRA EM DESTAQUE ============ -->
+<section class="sec sec-carteira" id="carteira">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Carteira</span>
+      <h2>Nove imóveis. <em>Nem um a mais.</em></h2>
+      <p class="sub">
+        Corretor com trezentos anúncios não conhece trezentos imóveis — conhece trezentas fotos.
+        Eu prefiro carregar pouco e saber responder qualquer pergunta sobre cada um.
+      </p>
+    </div>
+    <div class="destaques">
+      <article class="destaque">
+        <figure class="foto" data-ph="img/imovel-01.jpg · 1200×900">
+          <img src="img/imovel-01.jpg" alt="Sala de apartamento reformado com varanda no bairro São Mateus">
+        </figure>
+        <div class="destaque-txt">
+          <span class="cod">SM-104</span>
+          <h3>Apartamento de 3 quartos com varanda, na Rua Bernardo Mascarenhas</h3>
+          <p>Prédio de 2014, sol da manhã na sala, uma vaga coberta. O condomínio é R$ 480 e inclui água.</p>
+          <p class="preco">R$ 690.000</p>
+        </div>
+      </article>
+      <article class="destaque destaque-inverso">
+        <figure class="foto" data-ph="img/imovel-02.jpg · 1200×900">
+          <img src="img/imovel-02.jpg" alt="Fachada de casa térrea com jardim no bairro Bom Pastor">
+        </figure>
+        <div class="destaque-txt">
+          <span class="cod">BP-071</span>
+          <h3>Casa térrea com quintal, quatro quadras da avenida</h3>
+          <p>Rua sem saída, silenciosa. Precisa de pintura e da troca do piso da cozinha — e o preço já considera isso.</p>
+          <p class="preco">R$ 540.000</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O BAIRRO ============ -->
+<section class="sec sec-bairro" id="bairro">
+  <div class="wrap bairro-in">
+    <figure class="foto bairro-foto" data-ph="img/bairro.jpg · 1400×1000">
+      <img src="img/bairro.jpg" alt="Rua arborizada do bairro São Mateus com casas e prédios baixos ao fim da tarde">
+    </figure>
+    <div class="bairro-txt">
+      <span class="etiqueta">O bairro</span>
+      <h2>O que nenhum anúncio te conta.</h2>
+      <ul class="bairro-lista">
+        <li><b>A rua da feira</b> — quarta de manhã, entre a Santa Rita e a Halfeld, o quarteirão inteiro fecha.</li>
+        <li><b>O lado do sol</b> — apartamento de frente para o oeste fica quente das duas às cinco. No verão isso pesa.</li>
+        <li><b>A escola</b> — três colégios num raio de 800 metros. Ótimo para quem tem filho, barulhento das 6h50 às 7h20.</li>
+        <li><b>Estacionar</b> — na parte alta, vaga na rua é raridade. Se o imóvel não tem garagem, isso vira problema real.</li>
+      </ul>
+      <p class="bairro-pe">
+        Eu moro aqui há 22 anos. Não é discurso de venda — é o motivo de eu só trabalhar nestes dois bairros.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="sec sec-vozes">
+  <div class="wrap">
+    <div class="cab cab-centro">
+      <span class="etiqueta">Quem já comprou comigo</span>
+      <h2>Sem estrela inventada.</h2>
+    </div>
+    <div class="vozes">
+      <blockquote>
+        <p>Ele me desaconselhou o primeiro apartamento que eu queria. Disse que a infiltração da garagem ia voltar. Voltou — no do vizinho, que comprou.</p>
+        <cite>Marcela A. <span>comprou no São Mateus, 2024</span></cite>
+      </blockquote>
+      <blockquote>
+        <p>Botei minha casa com três corretores. O Bruno foi o único que apareceu para conhecer antes de anunciar. Vendeu em 41 dias.</p>
+        <cite>Jorge P. <span>vendeu no Bom Pastor, 2025</span></cite>
+      </blockquote>
+      <blockquote>
+        <p>Respondia no sábado, no domingo, às dez da noite. E quando não sabia, falava que ia descobrir — e descobria.</p>
+        <cite>Fernanda L. <span>alugou no São Mateus, 2025</span></cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="sec sec-sobre" id="sobre">
+  <div class="wrap sobre-in">
+    <div class="sobre-txt">
+      <span class="etiqueta">Sobre mim</span>
+      <h2>Bruno Tavares, CRECI-MG 00.000.</h2>
+      <p>
+        Comecei em imobiliária grande, em 2011, atendendo a cidade toda. Passava o dia dirigindo e
+        chegava nas visitas sabendo do imóvel o mesmo tanto que o cliente: o que estava no anúncio.
+      </p>
+      <p>
+        Em 2017 saí e passei a atender só São Mateus e Bom Pastor. Ganho menos comissão por mês e
+        durmo melhor. Trabalho sozinho, com uma assistente para a papelada, e atendo no máximo
+        seis famílias por vez — que é o tanto que eu consigo atender bem.
+      </p>
+      <p class="assina">Bruno</p>
+    </div>
+    <figure class="foto sobre-foto" data-ph="img/sobre.jpg · 900×1100">
+      <img src="img/sobre.jpg" alt="Bruno Tavares sentado à mesa do escritório conversando com um casal">
+    </figure>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-faq">
+  <div class="wrap wrap-estreito">
+    <div class="cab cab-centro">
+      <span class="etiqueta">Perguntas diretas</span>
+      <h2>O que costumam me perguntar.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Você cobra alguma coisa do comprador?</summary>
+        <p>Não. A comissão é paga por quem vende, e é de 6% sobre o valor do negócio, o padrão do CRECI-MG. Você não paga nada para visitar, nem para eu procurar.</p>
+      </details>
+      <details>
+        <summary>Se eu quiser um imóvel fora desses dois bairros?</summary>
+        <p>Eu te indico um colega que trabalha na região e não fico com nada disso. Prefiro perder a venda a te atender mal num lugar que eu não conheço.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo leva para vender minha casa?</summary>
+        <p>Nos últimos dois anos, a média foi 68 dias no São Mateus e 84 no Bom Pastor — com preço colocado onde eu sugiro. Anúncio acima do mercado passa de seis meses.</p>
+      </details>
+      <details>
+        <summary>Você trabalha com financiamento?</summary>
+        <p>Acompanho o processo inteiro na Caixa, no Itaú e no Bradesco. Faço a simulação com você antes de visitar, para não perdermos tempo com imóvel fora do seu limite.</p>
+      </details>
+      <details>
+        <summary>Posso visitar no fim de semana?</summary>
+        <p>Sábado de manhã, sim, é o horário que mais uso. Domingo só em caso combinado, porque também dependo do morador liberar.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="sec sec-contato" id="contato">
+  <div class="wrap contato-in">
+    <div class="contato-txt">
+      <span class="etiqueta">Contato</span>
+      <h2>Manda mensagem. Eu respondo hoje.</h2>
+      <p class="sub">
+        Se for depois das 20h, respondo na manhã seguinte — e aviso que li.
+      </p>
+      <p class="endereco"><span class="pino" aria-hidden="true"></span>Rua Santa Rita, 480 · São Mateus · Juiz de Fora, MG</p>
+      <a class="btn btn-mapa" href="https://maps.google.com/?q=Juiz+de+Fora+MG">Como chegar</a>
+      <ul class="contato-lista">
+        <li><b>WhatsApp</b> (32) 99999-0000</li>
+        <li><b>E-mail</b> bruno@brunotavares.com.br</li>
+        <li><b>Atendimento</b> seg. a sex., 8h30 às 18h30 · sáb., 8h às 12h</li>
+      </ul>
+    </div>
+    <div class="contato-cta">
+      <p class="cta-linha">Quer que eu avise quando entrar algo do seu perfil?</p>
+      <a class="btn btn-cheio btn-g" href="https://wa.me/5532999990000?text=Ol%C3%A1%2C%20Bruno!%20Quero%20entrar%20na%20sua%20lista%20de%20avisos.">Entrar na lista de avisos</a>
+      <p class="cta-micro">Aviso só quando tem imóvel do seu perfil. Sem corrente, sem bom dia.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <div>
+      <p class="rodape-marca">Bruno <b>Tavares</b></p>
+      <p class="rodape-creci">Corretor de imóveis · CRECI-MG 00.000</p>
+    </div>
+    <nav class="rodape-menu" aria-label="Rodapé">
+      <a href="#busca">Buscar imóvel</a>
+      <a href="#carteira">Carteira</a>
+      <a href="#bairro">O bairro</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+  <p class="rodape-fim">© 2026 Bruno Tavares. Site fictício, criado como demonstração.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5532999990000?text=Ol%C3%A1%2C%20Bruno!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20im%C3%B3vel." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.28-8.07 8.28zm4.76-6.16c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.58-1.4-.8-1.92-.21-.5-.42-.44-.58-.44h-.5c-.17 0-.45.07-.69.33-.24.26-.9.88-.9 2.15s.93 2.49 1.06 2.66c.13.17 1.83 2.79 4.43 3.91.62.27 1.1.43 1.48.55.62.2 1.19.17 1.64.1.5-.07 1.54-.63 1.75-1.24.22-.61.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3z"/></svg>
+  <span>Falar com o Bruno</span>
+</a>
+
+<script src="../_demo.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

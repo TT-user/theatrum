@@ -1,0 +1,391 @@
+/* ============================================================
+   Reserva Aurora — lançamento imobiliário
+   Demonstração Theatrum · mercado imobiliário
+
+   Linguagem de lançamento: creme, serifa larga e muito respiro.
+   O que difere este demo dos outros dois é o peso que o espelho
+   de unidades tem na página — ele é o motivo de a pessoa entrar,
+   e por isso ocupa uma seção inteira, não um cantinho.
+   ============================================================ */
+
+:root{
+  --creme:#F4EFE6;
+  --creme-2:#EAE3D6;
+  --verde:#16261D;
+  --verde-2:#22382B;
+  --terra:#C2603C;
+  --terra-2:#A94E2E;
+  --tinta:#1A1A17;
+  --suave:#6F6A5F;
+  --linha:#DBD3C3;
+  --pino:#E0453C;
+  --disp:#3E7D54;
+  --res:#D9A441;
+  --vend:#B9B2A4;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--creme);color:var(--tinta);font:400 16.5px/1.68 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.01em}
+em{font-style:italic}
+
+.wrap{width:min(1220px,92vw);margin:0 auto}
+.wrap-estreito{width:min(760px,92vw)}
+
+/* O atributo hidden precisa vencer o display do próprio componente.
+   Sem isto, um .modal{display:grid} ou uma .barra{display:flex} marcados
+   com hidden continuam na tela — o hidden vira letra morta porque a regra
+   de classe tem mais especificidade que o padrão do navegador. */
+[hidden]{display:none!important}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:12px 24px;border-radius:2px;border:1px solid transparent;
+  font:600 13.5px/1 var(--sans);letter-spacing:.04em;text-decoration:none;cursor:pointer;
+  transition:background .22s ease,border-color .22s ease,color .22s ease;
+}
+.btn-g{padding:16px 32px;font-size:14.5px}
+.btn-larg{width:100%}
+.btn-cheio{background:var(--terra);color:#fff;border-color:var(--terra)}
+.btn-cheio:hover{background:var(--terra-2);border-color:var(--terra-2)}
+.btn-vazio{color:inherit;border-color:currentColor;background:transparent;opacity:.85}
+.btn-vazio:hover{opacity:1;background:rgba(0,0,0,.05)}
+
+/* ============================================================
+   Placeholder de imagem
+   As fotos ainda não existem. Cada .foto guarda o nome e o
+   tamanho do arquivo em data-ph; se o <img> der 404, o script
+   do <head> marca .sem-foto e o bloco aparece. Basta colocar
+   o .jpg com o nome certo em img/ que ele some sozinho.
+   ============================================================ */
+.foto{position:relative;overflow:hidden;background:var(--creme-2)}
+.foto img{width:100%;height:100%;object-fit:cover}
+.foto.sem-foto{
+  background:
+    repeating-linear-gradient(135deg, rgba(194,96,60,.07) 0 10px, transparent 10px 22px),
+    linear-gradient(150deg, var(--creme-2), var(--linha));
+}
+.foto.sem-foto img{opacity:0}
+.foto::after{
+  content:attr(data-ph);
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font:400 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--suave);white-space:nowrap;
+  border:1px solid var(--linha);border-radius:999px;
+  padding:9px 15px;background:rgba(255,255,255,.62);
+  opacity:0;transition:opacity .2s ease;pointer-events:none;
+}
+.foto.sem-foto::after{opacity:1}
+
+/* ---------- topo ---------- */
+.topo{position:fixed;inset:0 0 auto;z-index:50;border-bottom:1px solid transparent;
+  transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease}
+.topo.rolou{background:rgba(244,239,230,.94);backdrop-filter:blur(10px);border-color:var(--linha)}
+.topo.rolou .marca,.topo.rolou .menu a{color:var(--tinta)}
+.topo-in{display:flex;align-items:center;gap:28px;padding:18px 0}
+.marca{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:.01em;
+  text-decoration:none;color:#fff;flex:none;transition:color .3s ease}
+.marca b{font-weight:600;color:var(--terra)}
+.menu{display:flex;gap:26px;margin-left:auto}
+.menu a{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.8);text-decoration:none;
+  transition:color .2s ease}
+.topo.rolou .menu a{color:var(--suave)}
+.menu a:hover{color:var(--terra)}
+.abre-menu{display:none;background:none;border:0;color:#fff;cursor:pointer;padding:6px}
+.topo.rolou .abre-menu{color:var(--tinta)}
+.abre-menu svg{width:26px;height:26px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-end;
+  padding:150px 0 70px;color:var(--creme)}
+.hero-foto{position:absolute;inset:0}
+.veu{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(22,38,29,.62) 0%,rgba(22,38,29,.36) 40%,rgba(22,38,29,.92) 100%)}
+.hero-in{position:relative;z-index:3;max-width:900px}
+.sobrancelha{display:inline-block;font:400 11px/1 var(--mono);letter-spacing:.22em;
+  text-transform:uppercase;color:#E8B79D;margin-bottom:22px}
+.hero h1{font-size:clamp(2.7rem,6vw,4.9rem);color:#fff}
+.hero h1 em{color:#E8B79D}
+.hero .lead{margin-top:22px;max-width:56ch;font-size:1.07rem;color:rgba(244,239,230,.86)}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero .btn-vazio{color:var(--creme)}
+.hero-marcas{list-style:none;display:flex;flex-wrap:wrap;gap:34px;margin-top:40px;
+  padding-top:24px;border-top:1px solid rgba(244,239,230,.22)}
+.hero-marcas li{font:400 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,239,230,.62)}
+.hero-marcas b{display:block;font-family:var(--serif);font-size:1.7rem;font-weight:600;
+  letter-spacing:0;text-transform:none;color:#fff;margin-bottom:2px}
+
+/* ---------- filme do hero ----------
+   Dois <video> empilhados, um por cima do outro: o que entra sobe
+   a opacidade enquanto o que sai desce, e a troca não pisca. Fica
+   escondido até o primeiro arquivo carregar de verdade — sem os
+   mp4 na pasta, a foto do hero continua sendo o que se vê. */
+.hero-filme{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .8s ease}
+.hero.com-filme .hero-filme{opacity:1}
+.hero-filme video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .7s ease}
+.hero-filme video.pronto{opacity:1}
+.hero.com-filme .hero-foto{opacity:0;transition:opacity .8s ease}
+
+/* ---------- seções ---------- */
+.sec{padding:96px 0}
+.cab{max-width:64ch}
+.etiqueta{display:inline-block;font:400 11px/1 var(--mono);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:16px}
+.sec h2{font-size:clamp(2rem,4.2vw,3.1rem)}
+.sub{margin-top:16px;color:var(--suave);font-size:1.02rem}
+
+/* ---------- empreendimento ---------- */
+.empre-in{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.empre-in p{margin-top:18px;color:var(--suave)}
+.empre-lista{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px;
+  padding-top:24px;border-top:1px solid var(--linha)}
+.empre-lista li{font-size:.95rem;color:var(--suave)}
+.empre-lista b{display:block;font-family:var(--serif);font-size:1.32rem;color:var(--tinta)}
+.empre-foto{aspect-ratio:4/5}
+
+/* ---------- plantas ---------- */
+.sec-plantas{background:var(--creme-2);border-block:1px solid var(--linha)}
+.abas-plantas{display:flex;flex-wrap:wrap;gap:8px;margin:36px 0 26px}
+.aba-planta{
+  padding:12px 20px;border:1px solid var(--linha);border-radius:2px;background:transparent;
+  font:600 13px/1 var(--sans);color:var(--suave);cursor:pointer;transition:all .2s ease;
+}
+.aba-planta:hover{border-color:var(--terra);color:var(--terra)}
+.aba-planta.ativa{background:var(--verde);border-color:var(--verde);color:var(--creme)}
+.planta{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.planta-foto{aspect-ratio:4/3;background:#fff;border:1px solid var(--linha)}
+.planta h3{font-size:1.9rem}
+.planta p{margin-top:14px;color:var(--suave)}
+.planta-specs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;
+  padding-top:22px;border-top:1px solid var(--linha)}
+.planta-specs li{font-size:.9rem;color:var(--suave)}
+.planta-specs b{display:block;font-family:var(--serif);font-size:1.28rem;color:var(--tinta)}
+
+/* ============================================================
+   Espelho de unidades — o sistema da página
+   Grade de andares, uma linha por andar, quatro posições. O que
+   torna isso útil é a ficha ao lado: clicar num apartamento não
+   abre outra página, preenche a ficha e alimenta o simulador.
+   ============================================================ */
+.sec-unidades{background:var(--verde);color:var(--creme)}
+.sec-unidades .etiqueta{color:#E8B79D}
+.sec-unidades h2{color:#fff}
+.sec-unidades .sub{color:rgba(244,239,230,.7)}
+
+.legenda{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin:30px 0 22px;
+  font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,230,.66)}
+.legenda span{display:flex;align-items:center;gap:8px}
+.ponto{width:10px;height:10px;border-radius:2px;display:inline-block}
+.ponto.disp{background:var(--disp)}
+.ponto.res{background:var(--res)}
+.ponto.vend{background:var(--vend)}
+.legenda-nota{margin-left:auto;color:rgba(244,239,230,.42)}
+
+.espelho-bloco{display:grid;grid-template-columns:1fr 330px;gap:30px;align-items:start}
+.espelho{background:rgba(0,0,0,.16);border:1px solid rgba(244,239,230,.13);border-radius:6px;
+  padding:16px;overflow-x:auto}
+.andar{display:grid;grid-template-columns:52px repeat(4,1fr);gap:8px;align-items:center;
+  margin-bottom:8px;min-width:420px}
+.andar:last-child{margin-bottom:0}
+.andar-nome{font:400 10.5px/1 var(--mono);letter-spacing:.1em;color:rgba(244,239,230,.5);text-align:right}
+.unidade{
+  border:1px solid rgba(244,239,230,.14);border-radius:4px;padding:11px 8px;cursor:pointer;
+  background:rgba(244,239,230,.05);color:var(--creme);text-align:center;font:inherit;
+  display:flex;flex-direction:column;gap:3px;transition:all .18s ease;position:relative;
+}
+.unidade b{font:600 13px/1 var(--sans);letter-spacing:.02em}
+.unidade span{font:400 9.5px/1 var(--mono);letter-spacing:.08em;color:rgba(244,239,230,.5)}
+.unidade::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:4px 0 0 4px}
+.unidade.disp::before{background:var(--disp)}
+.unidade.res::before{background:var(--res)}
+.unidade.vend::before{background:var(--vend)}
+.unidade.disp:hover{background:rgba(62,125,84,.24);border-color:var(--disp)}
+.unidade.res:hover{background:rgba(217,164,65,.18);border-color:var(--res)}
+/* vendido continua clicável para ver a ficha, mas o preço sai de
+   cena: divulgar valor de unidade vendida não ajuda ninguém e
+   atrapalha a negociação das que sobraram */
+.unidade.vend{opacity:.45}
+.unidade.escolhida{outline:2px solid #E8B79D;outline-offset:1px;background:rgba(232,183,157,.16)}
+
+.ficha{background:rgba(244,239,230,.06);border:1px solid rgba(244,239,230,.14);border-radius:6px;
+  padding:26px;position:sticky;top:96px}
+.ficha-vazia{font-size:.95rem;color:rgba(244,239,230,.55)}
+.ficha-tag{display:inline-block;font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  padding:6px 11px;border-radius:2px;background:var(--disp);color:#fff;margin-bottom:14px}
+.ficha-tag.res{background:var(--res);color:#3A2A08}
+.ficha-tag.vend{background:var(--vend);color:#2C2A25}
+.ficha h3{font-size:2.1rem;color:#fff}
+.ficha-tipo{font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:#E8B79D;margin-top:8px}
+.ficha-dados{margin:22px 0;display:flex;flex-direction:column;gap:10px}
+.ficha-dados div{display:flex;justify-content:space-between;gap:14px;font-size:.92rem;
+  padding-bottom:9px;border-bottom:1px solid rgba(244,239,230,.1)}
+.ficha-dados dt{color:rgba(244,239,230,.55)}
+.ficha-dados dd{font-weight:600;text-align:right}
+.ficha-preco{font-family:var(--serif);font-size:2rem;color:#fff;margin-bottom:18px}
+.ficha-preco small{display:block;font:400 10.5px/1.5 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(244,239,230,.5);margin-top:6px}
+
+/* ---------- simulador ---------- */
+.simulador{margin-top:34px;background:var(--creme);color:var(--tinta);border-radius:6px;padding:38px}
+.sim-cab{max-width:60ch;margin-bottom:30px}
+.sim-cab h3{font-size:1.9rem;margin-top:4px}
+.sim-cab p{margin-top:12px;color:var(--suave);font-size:.97rem}
+.sim-corpo{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.sim-controles{display:flex;flex-direction:column;gap:26px}
+.sim-campo{display:block}
+.sim-campo>span{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font:400 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.sim-campo>span b{font-family:var(--serif);font-size:1.4rem;font-weight:600;letter-spacing:0;
+  text-transform:none;color:var(--tinta)}
+.sim-campo em{display:block;font-style:normal;font-size:12px;line-height:1.5;color:var(--suave);margin-top:2px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:999px;
+  background:var(--linha);margin:16px 0 8px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--terra);border:3px solid var(--creme);box-shadow:0 1px 6px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--terra);
+  border:3px solid var(--creme);box-shadow:0 1px 6px rgba(0,0,0,.25)}
+.sim-saida{background:var(--creme-2);border:1px solid var(--linha);border-radius:4px;padding:26px}
+.sim-linha{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--linha);font-size:.93rem;color:var(--suave)}
+.sim-linha b{font-family:var(--serif);font-size:1.24rem;font-weight:600;color:var(--tinta)}
+.sim-linha.destaque{padding-top:0}
+.sim-linha.destaque b{font-size:2.1rem;color:var(--terra)}
+.sim-aviso{margin:18px 0;font-size:12px;line-height:1.6;color:var(--suave)}
+
+/* ---------- lazer ---------- */
+.lazer{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.lazer article .foto{aspect-ratio:4/3;border-radius:3px}
+.lazer h3{font-size:1.32rem;margin:16px 0 6px}
+.lazer p{font-size:.93rem;color:var(--suave)}
+
+/* ---------- obra ---------- */
+.sec-obra{background:var(--creme-2);border-block:1px solid var(--linha)}
+.obra{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;margin-top:44px}
+.obra-etapas{display:flex;flex-direction:column;gap:20px}
+.etapa{display:grid;grid-template-columns:104px 1fr 46px;align-items:center;gap:14px}
+.etapa span{font:400 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.barra{height:6px;border-radius:999px;background:var(--linha);overflow:hidden}
+.barra i{display:block;height:100%;background:var(--terra);border-radius:999px;
+  transform-origin:left;animation:cresce 1s cubic-bezier(.2,.7,.3,1) both}
+@keyframes cresce{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.etapa b{font-family:var(--serif);font-size:1.2rem;text-align:right}
+.obra-foto{aspect-ratio:4/3;border-radius:3px}
+
+/* ---------- localização ---------- */
+.local-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.local-lista{list-style:none;margin-top:30px;display:flex;flex-direction:column;gap:12px;
+  font-size:.96rem;color:var(--suave)}
+.local-lista b{color:var(--tinta);font-weight:600}
+.local-foto{aspect-ratio:4/3;border-radius:3px}
+
+/* endereço com pino: o ponto vermelho pulsa devagar, como um
+   marcador de mapa — é o que leva o olho até o endereço */
+.endereco{display:flex;align-items:center;gap:13px;margin-top:24px;font-weight:600;font-size:1.01rem}
+.pino{position:relative;flex:none;width:11px;height:11px;border-radius:50%;background:var(--pino);
+  box-shadow:0 0 0 3px rgba(224,69,60,.2)}
+.pino::after{content:'';position:absolute;inset:0;border-radius:50%;background:var(--pino);
+  animation:pulso 2.6s cubic-bezier(.2,.6,.3,1) infinite}
+@keyframes pulso{0%{transform:scale(1);opacity:.65}70%{transform:scale(3);opacity:0}100%{transform:scale(3);opacity:0}}
+.btn-mapa{margin-top:16px;background:var(--verde);color:var(--creme);border-color:var(--verde);font-weight:700}
+.btn-mapa:hover{background:var(--verde-2);border-color:var(--verde-2)}
+
+/* ---------- faq ---------- */
+.faq{margin-top:36px;border-top:1px solid var(--linha)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
+  font-size:1.05rem;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'';position:absolute;right:6px;top:50%;width:10px;height:10px;
+  border-right:2px solid var(--terra);border-bottom:2px solid var(--terra);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s ease}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.faq p{padding:0 40px 22px 0;color:var(--suave)}
+
+/* ---------- cadastro ---------- */
+.sec-cadastro{background:var(--verde);color:var(--creme)}
+.sec-cadastro .etiqueta{color:#E8B79D}
+.sec-cadastro h2{color:#fff}
+.sec-cadastro .sub{color:rgba(244,239,230,.72)}
+.cadastro-in{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.cadastro-cartao{background:rgba(244,239,230,.06);border:1px solid rgba(244,239,230,.14);
+  border-radius:6px;padding:34px;display:flex;flex-direction:column;gap:12px}
+.cartao-linha{font-family:var(--serif);font-size:1.6rem;color:#fff;margin-bottom:8px}
+.cadastro-cartao .btn-vazio{color:var(--creme)}
+.cartao-micro{margin-top:8px;font:400 10.5px/1.7 var(--mono);letter-spacing:.08em;
+  color:rgba(244,239,230,.5)}
+
+/* ---------- rodapé ---------- */
+.rodape{background:#101A14;color:rgba(244,239,230,.5);padding:44px 0 26px}
+.rodape-in{display:flex;align-items:flex-start;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.rodape-marca{font-family:var(--serif);font-size:1.45rem;color:var(--creme)}
+.rodape-marca b{color:#E8B79D}
+.rodape-reg{margin-top:8px;font:400 10.5px/1.7 var(--mono);letter-spacing:.06em;max-width:44ch}
+.rodape-menu{display:flex;gap:22px;flex-wrap:wrap}
+.rodape-menu a{font-size:13.5px;text-decoration:none;transition:color .2s}
+.rodape-menu a:hover{color:var(--creme)}
+.rodape-fim{width:min(1220px,92vw);margin:30px auto 0;padding-top:20px;
+  border-top:1px solid rgba(244,239,230,.1);font:400 10.5px/1.7 var(--mono);letter-spacing:.08em}
+
+/* ---------- whatsapp flutuante ---------- */
+.whatsapp-float{
+  position:fixed;right:24px;bottom:24px;z-index:60;
+  display:flex;align-items:center;height:58px;padding:0 16px;border-radius:999px;
+  background:#25D366;color:#fff;text-decoration:none;
+  box-shadow:0 10px 28px rgba(37,211,102,.35);
+  opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:opacity .3s ease,transform .3s ease,visibility .3s ease,box-shadow .25s ease;
+}
+.whatsapp-float.on{opacity:1;visibility:visible;transform:none}
+.whatsapp-float:hover{box-shadow:0 14px 34px rgba(37,211,102,.5)}
+.whatsapp-float svg{width:27px;height:27px;flex:none}
+.whatsapp-float span{max-width:0;overflow:hidden;white-space:nowrap;font:600 14.5px/1 var(--sans);
+  transition:max-width .3s ease,margin-left .3s ease}
+.whatsapp-float:hover span,.whatsapp-float:focus-visible span{max-width:200px;margin-left:11px}
+
+/* ---------- entrada ao rolar ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:none}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1040px){
+  .espelho-bloco{grid-template-columns:1fr}
+  .ficha{position:static}
+  .sim-corpo{grid-template-columns:1fr;gap:30px}
+  .lazer{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .empre-in,.planta,.obra,.local-in,.cadastro-in{grid-template-columns:1fr;gap:34px}
+  .empre-foto{aspect-ratio:4/3}
+}
+@media (max-width:720px){
+  .menu{display:none}
+  .menu.aberto{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:100%;
+    background:var(--creme);border-block:1px solid var(--linha);padding:8px 4vw 14px}
+  .menu.aberto a{padding:13px 0;border-bottom:1px solid var(--linha);color:var(--suave)}
+  .abre-menu{display:block;margin-left:auto;order:3}
+  .topo-in{position:relative}
+  .topo-in .btn-cheio{display:none}
+  .hero{padding:124px 0 56px;min-height:auto}
+  .sec{padding:66px 0}
+  .lazer{grid-template-columns:1fr}
+  .empre-lista,.planta-specs{grid-template-columns:1fr}
+  .simulador{padding:26px 20px}
+  .legenda-nota{margin-left:0;width:100%}
+  .whatsapp-float{right:16px;bottom:16px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::after,*::before{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}

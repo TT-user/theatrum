@@ -1,0 +1,13 @@
+# Reserva Aurora — filme do hero · 5 clipes
+# O <div class="hero-filme"> do index.html já aponta para estes cinco
+# arquivos. Basta colocá-los em reserva-aurora/img/video/ que o script
+# liga o filme sozinho — nenhuma linha de código muda.
+#
+# formato: pasta_png|saida.mp4|imagem_de_partida.jpg|prompt
+# usa a mesma gerar-video.sh dos demos de planejados (Kling 3.0 Turbo,
+# 3 s, 720p, 4,5 créditos por clipe).
+png-aurora|hero-1.mp4|hero.jpg|Extremely slow, subtle camera push-in on the facade of the residential tower at dusk. The warm apartment lights glow steady, the reflecting pool ripples almost imperceptibly. Locked-off cinematic feel, no camera cuts, no people, no text.
+png-aurora|hero-2.mp4|lazer-01.jpg|Extremely slow, subtle camera drift to the right across the condominium pool and its wooden deck. The water surface moves gently, warm late light shifts on the deck. Locked-off cinematic feel, no camera cuts, no people, no text.
+png-aurora|hero-3.mp4|lazer-04.jpg|Extremely slow, subtle camera push-in on the covered gourmet area. The pendant lights glow steady, a thin wisp of smoke rises from the grill. Locked-off cinematic feel, no camera cuts, no people, no text.
+png-aurora|hero-4.mp4|fachada.jpg|Extremely slow, subtle camera drift upward along the wooden brise-soleil of the facade. Shadows shift almost imperceptibly between the louvres. Locked-off cinematic feel, no camera cuts, no people, no text.
+png-aurora|hero-5.mp4|entorno.jpg|Extremely slow, subtle camera push-in along the tree-lined street in front of the site. Leaves move gently in the breeze, warm morning light shifts. Locked-off cinematic feel, no camera cuts, no people, no text.

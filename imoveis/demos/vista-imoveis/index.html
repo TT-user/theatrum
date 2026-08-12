@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vista Imóveis | Venda, locação e administração em Juiz de Fora, MG</title>
+<meta name="description" content="Imobiliária em Juiz de Fora há 23 anos. Venda, locação e administração de imóveis com carteira própria, visita acompanhada e contrato assinado em cinco dias. CRECI-MG J-0000.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Vista Imóveis | Juiz de Fora, MG">
+<meta property="og:description" content="Filtre por bairro, quarto e faixa de preço, compare até três imóveis lado a lado e agende a visita no mesmo dia.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#0E1116">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Placeholder das fotos: precisa estar aqui, antes das imagens carregarem. -->
+<script>document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'){var m=t.closest('.foto');if(m)m.classList.add('sem-foto');}},true);</script>
+</head>
+<body>
+
+<!-- ============ TOPO ============ -->
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#topo">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 17 16 6l12 11v9a1 1 0 0 1-1 1h-7v-8h-8v8H5a1 1 0 0 1-1-1z"/></svg>
+      Vista <b>Imóveis</b>
+    </a>
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#catalogo">Imóveis</a>
+      <a href="#bairros">Bairros</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-cheio" href="https://wa.me/5532988880000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Vista%20Im%C3%B3veis.">Falar agora</a>
+    <button class="abre-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="topo">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <picture class="foto hero-foto" data-ph="img/hero.jpg · 1920×1080">
+    <source media="(max-width:700px)" srcset="img/hero-mobile.jpg">
+    <img src="img/hero.jpg" alt="Vista aérea de um bairro residencial de Juiz de Fora no fim da tarde">
+  </picture>
+  <div class="veu"></div>
+  <div class="wrap hero-in">
+    <span class="sobrancelha">Juiz de Fora, MG · CRECI-MG J-0000</span>
+    <h1>1.400 imóveis na cidade.<br><b>Nós filtramos os 6 que servem para você.</b></h1>
+    <p class="lead">Venda, locação e administração há 23 anos. Carteira própria, visita acompanhada e proposta respondida em até 48 horas.</p>
+
+    <!-- busca do hero: leva direto para o catálogo com o filtro já aplicado -->
+    <form class="busca-hero" id="buscaHero" autocomplete="off">
+      <div class="abas" role="tablist" aria-label="Finalidade">
+        <button type="button" class="aba ativa" data-fim="venda" role="tab" aria-selected="true">Comprar</button>
+        <button type="button" class="aba" data-fim="locacao" role="tab" aria-selected="false">Alugar</button>
+      </div>
+      <div class="busca-campos">
+        <label>
+          <span>Tipo</span>
+          <select name="tipo">
+            <option value="">Todos</option>
+            <option value="apartamento">Apartamento</option>
+            <option value="casa">Casa</option>
+            <option value="cobertura">Cobertura</option>
+            <option value="sala">Sala comercial</option>
+            <option value="terreno">Terreno</option>
+          </select>
+        </label>
+        <label>
+          <span>Bairro</span>
+          <select name="bairro" id="bairroHero">
+            <option value="">Todos os bairros</option>
+          </select>
+        </label>
+        <label>
+          <span>Quartos</span>
+          <select name="quartos">
+            <option value="">Qualquer</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
+        </label>
+        <button class="btn btn-cheio btn-buscar" type="submit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          Buscar
+        </button>
+      </div>
+      <p class="busca-atalho">ou <a href="#catalogo">ver os 12 imóveis disponíveis</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS ============ -->
+<section class="faixa">
+  <div class="wrap faixa-in">
+    <div><b>23</b><span>anos na cidade</span></div>
+    <div><b>12</b><span>imóveis disponíveis</span></div>
+    <div><b>380</b><span>contratos administrados</span></div>
+    <div><b>48h</b><span>para responder proposta</span></div>
+  </div>
+</section>
+
+<!-- ============ SISTEMA · CATÁLOGO ============ -->
+<section class="sec" id="catalogo">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Sistema de catálogo</span>
+      <h2>Filtre, compare até três e agende a visita.</h2>
+      <p class="sub">
+        O catálogo roda inteiro no navegador: você mexe num filtro e o resultado muda na hora,
+        sem recarregar a página. Marque <b>Comparar</b> em até três imóveis e veja os números
+        lado a lado antes de sair de casa.
+      </p>
+    </div>
+
+    <div class="catalogo">
+      <!-- painel de filtros -->
+      <aside class="painel" aria-label="Filtros">
+        <form id="filtros" autocomplete="off">
+          <fieldset class="grupo">
+            <legend>Finalidade</legend>
+            <div class="pilulas" id="pilFim">
+              <label><input type="radio" name="fim" value="" checked><span>Todas</span></label>
+              <label><input type="radio" name="fim" value="venda"><span>Venda</span></label>
+              <label><input type="radio" name="fim" value="locacao"><span>Locação</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Tipo</legend>
+            <select name="tipo">
+              <option value="">Todos</option>
+              <option value="apartamento">Apartamento</option>
+              <option value="casa">Casa</option>
+              <option value="cobertura">Cobertura</option>
+              <option value="sala">Sala comercial</option>
+              <option value="terreno">Terreno</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Bairro</legend>
+            <select name="bairro" id="bairroFiltro">
+              <option value="">Todos os bairros</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Quartos</legend>
+            <div class="pilulas">
+              <label><input type="radio" name="quartos" value="" checked><span>Qualquer</span></label>
+              <label><input type="radio" name="quartos" value="1"><span>1+</span></label>
+              <label><input type="radio" name="quartos" value="2"><span>2+</span></label>
+              <label><input type="radio" name="quartos" value="3"><span>3+</span></label>
+              <label><input type="radio" name="quartos" value="4"><span>4+</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Vagas de garagem</legend>
+            <div class="pilulas">
+              <label><input type="radio" name="vagas" value="" checked><span>Qualquer</span></label>
+              <label><input type="radio" name="vagas" value="1"><span>1+</span></label>
+              <label><input type="radio" name="vagas" value="2"><span>2+</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Valor até <b id="tetoRotulo">R$ 1.500.000</b></legend>
+            <input type="range" name="teto" id="teto" min="150000" max="1500000" step="50000" value="1500000">
+            <p class="dica">O limite vale para venda. Locação tem outra escala e usa o filtro abaixo.</p>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Aluguel até <b id="aluguelRotulo">R$ 6.000</b></legend>
+            <input type="range" name="tetoAluguel" id="tetoAluguel" min="800" max="6000" step="200" value="6000">
+          </fieldset>
+
+          <button class="limpar" type="reset">Limpar filtros</button>
+        </form>
+      </aside>
+
+      <!-- resultados -->
+      <div class="resultados">
+        <div class="resultado-topo">
+          <p class="contagem" id="contagem" role="status" aria-live="polite">12 imóveis</p>
+          <label class="ordena">
+            <span>Ordenar por</span>
+            <select id="ordem">
+              <option value="recente">Mais recentes</option>
+              <option value="menor">Menor valor</option>
+              <option value="maior">Maior valor</option>
+              <option value="area">Maior área</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="grade" id="grade"><!-- preenchida pelo script.js --></div>
+
+        <p class="vazio" id="vazio" hidden>
+          Nenhum imóvel bate com esses filtros.
+          <button type="button" class="como-link" id="afrouxa">Afrouxar a busca</button>
+          ou <a href="https://wa.me/5532988880000?text=Ol%C3%A1!%20Procuro%20um%20im%C3%B3vel%20que%20n%C3%A3o%20apareceu%20no%20site.">nos diga o que procura</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- barra do comparador -->
+  <div class="barra-comp" id="barraComp" hidden>
+    <div class="wrap barra-comp-in">
+      <p><b id="compCont">0</b> de 3 selecionados <span id="compCodigos"></span></p>
+      <div class="barra-comp-acoes">
+        <button type="button" class="btn btn-vazio" id="limpaComp">Limpar</button>
+        <button type="button" class="btn btn-cheio" id="abreComp">Comparar lado a lado</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- modal do comparador -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-fundo" data-fecha></div>
+  <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal-topo">
+      <h3 id="modalTitulo">Comparação</h3>
+      <button type="button" class="fecha" data-fecha aria-label="Fechar comparação">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-corpo" id="modalCorpo"></div>
+    <div class="modal-pe">
+      <a class="btn btn-cheio" id="compZap" href="https://wa.me/5532988880000">Agendar visita nesses imóveis</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BAIRROS ============ -->
+<section class="sec sec-bairros" id="bairros">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Onde atendemos</span>
+      <h2>Sete bairros, e não a cidade inteira.</h2>
+      <p class="sub">Trabalhamos onde temos histórico de preço. Fora daqui, indicamos um colega — e não ficamos com nada disso.</p>
+    </div>
+    <div class="bairros" id="bairrosGrade"><!-- preenchida pelo script.js --></div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section class="sec sec-servicos" id="servicos">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Serviços</span>
+      <h2>Quatro coisas, feitas até o fim.</h2>
+    </div>
+    <div class="servicos">
+      <article>
+        <span class="num">01</span>
+        <h3>Venda</h3>
+        <p>Avaliação com base em fechamentos reais do bairro, fotos profissionais, anúncio em quatro portais e visita sempre acompanhada por um corretor nosso.</p>
+      </article>
+      <article>
+        <span class="num">02</span>
+        <h3>Locação</h3>
+        <p>Análise de crédito em 24 horas, contrato digital e vistoria com laudo fotografado. Entrega das chaves em até cinco dias úteis.</p>
+      </article>
+      <article>
+        <span class="num">03</span>
+        <h3>Administração</h3>
+        <p>Repasse até o dia 10, cobrança amigável, acompanhamento de manutenção e prestação de contas mensal no seu e-mail.</p>
+      </article>
+      <article>
+        <span class="num">04</span>
+        <h3>Avaliação</h3>
+        <p>Laudo de valor de mercado para inventário, divórcio ou financiamento, assinado por corretor credenciado no CNAI.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPE ============ -->
+<section class="sec sec-equipe" id="equipe">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Equipe</span>
+      <h2>Quem vai atender você.</h2>
+      <p class="sub">Somos cinco. Você fala com a mesma pessoa do começo ao fim — não é fila de atendimento.</p>
+    </div>
+    <div class="equipe">
+      <article>
+        <figure class="foto" data-ph="img/equipe-01.jpg · 800×1000"><img src="img/equipe-01.jpg" alt="Retrato de Cláudia Werneck, corretora"></figure>
+        <h3>Cláudia Werneck</h3>
+        <p class="cargo">Diretora · CRECI-MG 00.001</p>
+        <p>Fundou a Vista em 2003. Cuida das avaliações e dos casos de inventário.</p>
+      </article>
+      <article>
+        <figure class="foto" data-ph="img/equipe-02.jpg · 800×1000"><img src="img/equipe-02.jpg" alt="Retrato de Rafael Ottoni, corretor"></figure>
+        <h3>Rafael Ottoni</h3>
+        <p class="cargo">Corretor · CRECI-MG 00.002</p>
+        <p>Vendas no Alto dos Passos e no Bom Pastor. Onze anos de casa.</p>
+      </article>
+      <article>
+        <figure class="foto" data-ph="img/equipe-03.jpg · 800×1000"><img src="img/equipe-03.jpg" alt="Retrato de Simone Diniz, responsável pela locação"></figure>
+        <h3>Simone Diniz</h3>
+        <p class="cargo">Locação e administração</p>
+        <p>Análise de crédito, contratos e vistorias. Resolve inquilino e proprietário no mesmo dia.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="sec sec-vozes">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Quem já fechou com a gente</span>
+      <h2>O que costumam dizer depois.</h2>
+    </div>
+    <div class="vozes">
+      <blockquote>
+        <p>Comparei três apartamentos no site antes de sair de casa. Fui ver dois e comprei o segundo. Economizei uns quatro sábados.</p>
+        <cite>Diego M. <span>comprou no Granbery, 2025</span></cite>
+      </blockquote>
+      <blockquote>
+        <p>Minha casa estava com outra imobiliária havia oito meses. A Vista refez o anúncio, baixou 6% e alugou em três semanas.</p>
+        <cite>Vera L. <span>alugou no São Mateus, 2025</span></cite>
+      </blockquote>
+      <blockquote>
+        <p>Moro em São Paulo e o imóvel é aqui. Recebo a prestação de contas todo dia 10 e não precisei ir a Juiz de Fora nenhuma vez em três anos.</p>
+        <cite>Alexandre C. <span>administração, desde 2022</span></cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-faq">
+  <div class="wrap wrap-estreito">
+    <div class="cab">
+      <span class="etiqueta">Perguntas frequentes</span>
+      <h2>O que perguntam antes de assinar.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Quanto custa a taxa de administração?</summary>
+        <p>8% sobre o valor do aluguel, já com a cobrança, o repasse e a prestação de contas incluídos. A primeira locação tem uma taxa de intermediação equivalente a um aluguel.</p>
+      </details>
+      <details>
+        <summary>Preciso de fiador para alugar?</summary>
+        <p>Não necessariamente. Aceitamos seguro-fiança, título de capitalização ou fiador com imóvel na cidade. A análise sai em 24 horas úteis.</p>
+      </details>
+      <details>
+        <summary>Vocês cobram para avaliar meu imóvel?</summary>
+        <p>Avaliação para venda ou locação com a gente é gratuita. Laudo formal para inventário, divórcio ou banco é um serviço à parte, com preço fechado antes.</p>
+      </details>
+      <details>
+        <summary>Em quanto tempo vocês respondem uma proposta?</summary>
+        <p>Levamos a proposta ao proprietário no mesmo dia e retornamos em até 48 horas, mesmo quando a resposta é não.</p>
+      </details>
+      <details>
+        <summary>O imóvel que eu quero não está no site. E agora?</summary>
+        <p>Nos diga o perfil pelo WhatsApp. Temos imóveis que ainda não foram anunciados e proprietários que só liberam a foto depois do primeiro contato.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="sec sec-contato" id="contato">
+  <div class="wrap contato-in">
+    <div>
+      <span class="etiqueta">Contato</span>
+      <h2>Venha tomar um café e ver a carteira toda.</h2>
+      <p class="sub">A sala fica no centro, com estacionamento conveniado ao lado.</p>
+      <p class="endereco"><span class="pino" aria-hidden="true"></span>Avenida Rio Branco, 2.900 · sala 704 · Centro · Juiz de Fora, MG</p>
+      <a class="btn btn-mapa" href="https://maps.google.com/?q=Avenida+Rio+Branco+Juiz+de+Fora+MG">Como chegar</a>
+      <ul class="contato-lista">
+        <li><b>WhatsApp</b> (32) 98888-0000</li>
+        <li><b>Telefone</b> (32) 3888-0000</li>
+        <li><b>E-mail</b> contato@vistaimoveis.com.br</li>
+        <li><b>Horário</b> seg. a sex., 8h30 às 18h · sáb., 9h às 13h</li>
+      </ul>
+    </div>
+    <div class="contato-cartao">
+      <h3>Quer anunciar seu imóvel?</h3>
+      <p>A gente avalia, fotografa e anuncia sem custo. Você só paga se vender ou alugar.</p>
+      <a class="btn btn-cheio btn-g" href="https://wa.me/5532988880000?text=Ol%C3%A1!%20Quero%20anunciar%20meu%20im%C3%B3vel%20com%20a%20Vista.">Quero anunciar</a>
+      <p class="cartao-micro">Retorno em até 2 horas úteis · sem exclusividade obrigatória</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <div>
+      <p class="rodape-marca">Vista <b>Imóveis</b></p>
+      <p class="rodape-creci">CRECI-MG J-0000 · Juiz de Fora, MG</p>
+    </div>
+    <nav class="rodape-menu" aria-label="Rodapé">
+      <a href="#catalogo">Imóveis</a>
+      <a href="#bairros">Bairros</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+  <p class="rodape-fim">© 2026 Vista Imóveis. Site fictício, criado como demonstração.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5532988880000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Vista%20Im%C3%B3veis." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.28-8.07 8.28zm4.76-6.16c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.58-1.4-.8-1.92-.21-.5-.42-.44-.58-.44h-.5c-.17 0-.45.07-.69.33-.24.26-.9.88-.9 2.15s.93 2.49 1.06 2.66c.13.17 1.83 2.79 4.43 3.91.62.27 1.1.43 1.48.55.62.2 1.19.17 1.64.1.5-.07 1.54-.63 1.75-1.24.22-.61.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3z"/></svg>
+  <span>Falar com a Vista</span>
+</a>
+
+<script src="../_demo.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

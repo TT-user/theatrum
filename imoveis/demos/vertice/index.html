@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vértice | Imóveis de alto padrão em Juiz de Fora e região</title>
+<meta name="description" content="Assessoria em imóveis de alto padrão. Carteira curta, parte dela reservada a clientes cadastrados, e visita agendada com hora marcada. CRECI-MG 00.000.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Vértice | Imóveis de alto padrão">
+<meta property="og:description" content="Nem tudo que vendemos está publicado. O que está, está aqui inteiro.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#0A0A0A">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Placeholder das fotos: precisa estar aqui, antes das imagens carregarem. -->
+<script>document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'){var m=t.closest('.foto');if(m)m.classList.add('sem-foto');}},true);</script>
+</head>
+<body>
+
+<!-- ============ TOPO ============ -->
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#topo">Vértice<em>imóveis de alto padrão</em></a>
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#carteira">Carteira</a>
+      <a href="#reservada">Carteira reservada</a>
+      <a href="#visita">Agendar visita</a>
+      <a href="#metodo">Método</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="abre-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="topo">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <picture class="foto hero-foto" data-ph="img/hero.jpg · 1920×1080">
+    <source media="(max-width:700px)" srcset="img/hero-mobile.jpg">
+    <img src="img/hero.jpg" alt="Casa contemporânea de alto padrão ao anoitecer, vista do jardim com piscina">
+  </picture>
+  <div class="veu"></div>
+  <div class="wrap hero-in">
+    <span class="sobrancelha">Juiz de Fora e região · CRECI-MG 00.000</span>
+    <h1>Nem tudo que vendemos<br>está publicado.</h1>
+    <p class="lead">
+      Trabalhamos com onze imóveis por vez. Sete estão nesta página. Os outros quatro pertencem a
+      famílias que não querem o próprio endereço num portal — e essas nós mostramos com código.
+    </p>
+    <div class="hero-acoes">
+      <a class="btn btn-cheio" href="#carteira">Ver a carteira aberta</a>
+      <a class="btn btn-vazio" href="#reservada">Acessar a carteira reservada</a>
+    </div>
+  </div>
+  <span class="hero-rolar" aria-hidden="true">role</span>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="sec sec-manifesto">
+  <div class="wrap wrap-estreito">
+    <p class="manifesto">
+      Uma casa de três milhões não se vende com anúncio patrocinado.
+      Vende-se com <em>discrição</em>, com um corretor que já esteve nela três vezes
+      e com um comprador que foi checado antes de pisar no hall.
+    </p>
+    <p class="manifesto-pe">
+      É por isso que a nossa carteira é curta. Onze imóveis é o que dois corretores conseguem
+      conhecer de verdade — a metragem, o histórico da matrícula, o vizinho, o que a reforma escondeu.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CARTEIRA ABERTA ============ -->
+<section class="sec sec-carteira" id="carteira">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Carteira aberta</span>
+      <h2>Sete imóveis, com endereço e preço à vista.</h2>
+      <p class="sub">Sem "consulte-nos". Se está publicado, está publicado inteiro.</p>
+    </div>
+    <div class="carteira" id="carteiraGrade"><!-- preenchida pelo script.js --></div>
+  </div>
+</section>
+
+<!-- ============ SISTEMA · CARTEIRA RESERVADA ============ -->
+<section class="sec sec-reservada" id="reservada">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Carteira reservada</span>
+      <h2>Quatro imóveis fora dos portais.</h2>
+      <p class="sub">
+        São famílias que estão vendendo por motivo particular e não querem a casa circulando na
+        internet. O acesso sai depois de uma conversa e vale por trinta dias.
+      </p>
+    </div>
+
+    <div class="cofre" id="cofre">
+      <form class="cofre-porta" id="cofrePorta" autocomplete="off">
+        <div class="cofre-icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="4" y="10.5" width="16" height="10.5" rx="2"/>
+            <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+            <circle cx="12" cy="15.6" r="1.3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Digite o seu código de acesso</h3>
+        <p>O código chega por WhatsApp depois da primeira conversa.</p>
+        <div class="cofre-campo">
+          <input type="text" id="codigo" name="codigo" placeholder="VERTICE00" maxlength="12"
+                 aria-label="Código de acesso" spellcheck="false">
+          <button class="btn btn-cheio" type="submit">Entrar</button>
+        </div>
+        <p class="cofre-erro" id="cofreErro" role="alert" hidden>Código não reconhecido. Confira as letras e tente de novo.</p>
+        <p class="cofre-dica">
+          <b>Nesta demonstração</b>, use o código <code>VERTICE26</code> para ver como a área
+          reservada se comporta.
+        </p>
+        <a class="cofre-pedir" href="https://wa.me/5532966660000?text=Ol%C3%A1!%20Gostaria%20de%20receber%20o%20c%C3%B3digo%20da%20carteira%20reservada.">
+          Não tenho código — quero pedir o meu
+        </a>
+      </form>
+
+      <div class="cofre-dentro" id="cofreDentro" hidden>
+        <div class="cofre-cab">
+          <span class="etiqueta">Acesso liberado</span>
+          <h3>Quatro imóveis reservados</h3>
+          <p>Válido por 30 dias. Pedimos que não compartilhe endereço nem foto.</p>
+          <button type="button" class="cofre-sair" id="cofreSair">Sair da área reservada</button>
+        </div>
+        <div class="carteira" id="reservadaGrade"><!-- preenchida pelo script.js --></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SISTEMA · AGENDAMENTO ============ -->
+<section class="sec sec-visita" id="visita">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Agendamento</span>
+      <h2>Escolha o imóvel, o dia e a hora.</h2>
+      <p class="sub">
+        A agenda é real: horário ocupado aparece apagado. Você fecha aqui e recebe a confirmação
+        por WhatsApp em minutos, com o nome do corretor que vai te receber.
+      </p>
+    </div>
+
+    <div class="agenda">
+      <div class="agenda-passo">
+        <span class="passo-num">01</span>
+        <h3>Qual imóvel</h3>
+        <div class="agenda-imoveis" id="agendaImoveis"><!-- preenchida pelo script.js --></div>
+      </div>
+
+      <div class="agenda-passo">
+        <span class="passo-num">02</span>
+        <h3>Qual dia</h3>
+        <div class="agenda-dias" id="agendaDias"><!-- preenchida pelo script.js --></div>
+      </div>
+
+      <div class="agenda-passo">
+        <span class="passo-num">03</span>
+        <h3>Qual horário</h3>
+        <div class="agenda-horas" id="agendaHoras"><!-- preenchida pelo script.js --></div>
+        <p class="agenda-nota">Cada visita dura cerca de 50 minutos. Vamos junto, sempre.</p>
+      </div>
+
+      <aside class="agenda-resumo" id="agendaResumo" aria-live="polite">
+        <span class="etiqueta">Sua visita</span>
+        <dl id="resumoDados">
+          <div><dt>Imóvel</dt><dd id="resImovel">—</dd></div>
+          <div><dt>Dia</dt><dd id="resDia">—</dd></div>
+          <div><dt>Hora</dt><dd id="resHora">—</dd></div>
+          <div><dt>Corretor</dt><dd id="resCorretor">—</dd></div>
+        </dl>
+        <a class="btn btn-cheio btn-larg" id="resZap" href="https://wa.me/5532966660000">Escolha os três passos</a>
+        <p class="resumo-micro">Sem formulário, sem cadastro e sem ligação de vendas depois.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTODO ============ -->
+<section class="sec sec-metodo" id="metodo">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etiqueta">Método</span>
+      <h2>Quatro etapas, e nenhuma delas é "vou te mandar umas opções".</h2>
+    </div>
+    <ol class="metodo">
+      <li>
+        <span class="num">01</span>
+        <h3>Conversa fechada</h3>
+        <p>Uma hora, no nosso escritório ou na sua casa. Entendemos o que você procura e o que já descartou — e por quê.</p>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <h3>Seleção curta</h3>
+        <p>Mandamos de três a cinco imóveis, nunca uma lista. Cada um com o motivo de estar ali e o motivo de talvez não servir.</p>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <h3>Visita acompanhada</h3>
+        <p>Com hora marcada e o proprietário fora de casa. Você circula à vontade, abre armário e faz a pergunta difícil.</p>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <h3>Fechamento assessorado</h3>
+        <p>Due diligence da matrícula, negociação, escritura e mudança. Trabalhamos com o seu advogado, ou indicamos um.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="sec sec-sobre">
+  <div class="wrap sobre-in">
+    <figure class="foto sobre-foto" data-ph="img/sobre.jpg · 1000×1250">
+      <img src="img/sobre.jpg" alt="Escritório da Vértice, com mesa de reunião e estante de madeira">
+    </figure>
+    <div>
+      <span class="etiqueta">Quem somos</span>
+      <h2>Dois corretores e uma advogada.</h2>
+      <p>
+        A Vértice nasceu em 2016, quando saímos de uma imobiliária grande incomodados com o mesmo
+        problema: alto padrão sendo tratado com o processo de aluguel de kitnet — anúncio em massa,
+        visita sem hora e comprador não qualificado entrando na casa de quem não pediu isso.
+      </p>
+      <p>
+        Somos três. Duas pessoas atendendo e uma advogada que revisa cada matrícula antes de
+        qualquer proposta ser apresentada. Nos últimos três anos fechamos 34 negócios — número
+        pequeno de propósito.
+      </p>
+      <ul class="sobre-numeros">
+        <li><b>11</b><span>imóveis por vez</span></li>
+        <li><b>34</b><span>negócios em 3 anos</span></li>
+        <li><b>100%</b><span>das visitas acompanhadas</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-faq">
+  <div class="wrap wrap-estreito">
+    <div class="cab">
+      <span class="etiqueta">Perguntas diretas</span>
+      <h2>O que costumam perguntar.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Por que alguns imóveis ficam fora do site?</summary>
+        <p>Separação, inventário, mudança de país, sócio que não pode saber. São situações em que publicar o endereço causa um problema real para o proprietário — e a discrição faz parte do serviço que ele contratou.</p>
+      </details>
+      <details>
+        <summary>Como se consegue o código da carteira reservada?</summary>
+        <p>Numa conversa de vinte minutos, presencial ou por vídeo. Precisamos entender o que você procura e a forma de pagamento pretendida. Não é exclusividade nem fidelidade: é só o filtro que os proprietários nos pediram.</p>
+      </details>
+      <details>
+        <summary>Vocês trabalham com permuta?</summary>
+        <p>Sim, em cerca de um terço dos negócios. Avaliamos o imóvel oferecido em permuta com o mesmo rigor do imóvel comprado, e o laudo vai junto da proposta.</p>
+      </details>
+      <details>
+        <summary>Qual é a comissão?</summary>
+        <p>6% sobre o valor do negócio, paga por quem vende, conforme a tabela do CRECI-MG. Assessoria de compra para quem procura um imóvel específico tem contrato e preço próprios, combinados antes.</p>
+      </details>
+      <details>
+        <summary>Atendem fora de Juiz de Fora?</summary>
+        <p>Atendemos a Zona da Mata e a região serrana até Petrópolis, nos imóveis acima de R$ 1,5 milhão. Fora disso, indicamos um colega de confiança e não participamos da comissão.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="sec sec-contato" id="contato">
+  <div class="wrap contato-in">
+    <div>
+      <span class="etiqueta">Contato</span>
+      <h2>Comece por uma conversa.</h2>
+      <p class="sub">Sem apresentação de carteira no primeiro encontro. Primeiro escutamos.</p>
+      <p class="endereco"><span class="pino" aria-hidden="true"></span>Rua Osório de Almeida, 210 · sala 3 · Alto dos Passos · Juiz de Fora, MG</p>
+      <a class="btn btn-mapa" href="https://maps.google.com/?q=Alto+dos+Passos+Juiz+de+Fora+MG">Como chegar</a>
+      <ul class="contato-lista">
+        <li><b>WhatsApp</b> (32) 96666-0000</li>
+        <li><b>E-mail</b> contato@verticeimoveis.com.br</li>
+        <li><b>Atendimento</b> com hora marcada, seg. a sex., 9h às 19h</li>
+      </ul>
+    </div>
+    <div class="contato-cartao">
+      <p class="cartao-linha">Vai vender um imóvel de alto padrão?</p>
+      <p class="cartao-txt">
+        Avaliamos e dizemos, na primeira conversa, se é um imóvel que conseguimos vender — e por
+        quanto. Quando não é o nosso perfil, falamos na hora em vez de deixar seis meses parado.
+      </p>
+      <a class="btn btn-cheio btn-larg" href="https://wa.me/5532966660000?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20a%20venda%20de%20um%20im%C3%B3vel.">Conversar sobre a venda</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <div>
+      <p class="rodape-marca">Vértice</p>
+      <p class="rodape-creci">Imóveis de alto padrão · CRECI-MG 00.000 · Juiz de Fora, MG</p>
+    </div>
+    <nav class="rodape-menu" aria-label="Rodapé">
+      <a href="#carteira">Carteira</a>
+      <a href="#reservada">Carteira reservada</a>
+      <a href="#visita">Agendar visita</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+  <p class="rodape-fim">© 2026 Vértice. Site fictício, criado como demonstração.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5532966660000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20V%C3%A9rtice." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.28-8.07 8.28zm4.76-6.16c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.58-1.4-.8-1.92-.21-.5-.42-.44-.58-.44h-.5c-.17 0-.45.07-.69.33-.24.26-.9.88-.9 2.15s.93 2.49 1.06 2.66c.13.17 1.83 2.79 4.43 3.91.62.27 1.1.43 1.48.55.62.2 1.19.17 1.64.1.5-.07 1.54-.63 1.75-1.24.22-.61.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3z"/></svg>
+  <span>Falar com a Vértice</span>
+</a>
+
+<script src="../_demo.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Vista Imóveis — imobiliária · 15 imagens
+# O hero, o hero-mobile e o og já foram gerados e estão em img/.
+# formato: nome|aspecto|usa_ref(s/n)|prompt
+equipe-01.png|4:5|n|Studio portrait of a Brazilian woman in her fifties, short grey-streaked hair, wearing a dark blazer, arms relaxed, warm confident half-smile, against a dark neutral background with soft side light. Corporate but human, editorial quality. No text, no logos, no watermarks.
+equipe-02.png|4:5|n|Studio portrait of a Brazilian man in his late thirties, short dark hair, light beard, wearing a light blue shirt without tie, relaxed posture, against a dark neutral background with soft side light. Corporate but human, editorial quality. No text, no logos, no watermarks.
+equipe-03.png|4:5|n|Studio portrait of a Brazilian woman in her forties, dark curly hair tied back, wearing a burgundy blouse, calm direct gaze, against a dark neutral background with soft side light. Corporate but human, editorial quality. No text, no logos, no watermarks.
+vi-2041.png|4:3|n|Interior photograph of an upscale three-bedroom Brazilian apartment living room integrated with a gourmet balcony, stone countertop, large glass doors, late afternoon light. Real estate photography, no people, no text, no logos.
+vi-2038.png|4:3|n|Interior photograph of a renovated two-bedroom Brazilian apartment on a high floor, living room with a city view through a large window, light wood floor. Real estate photography, no people, no text, no logos.
+vi-2035.png|4:3|n|Exterior photograph of a Brazilian house with a swimming pool, wooden deck and a covered gourmet area with a barbecue, tropical planting, sunny afternoon. Real estate photography, no people, no text, no logos.
+vi-2033.png|4:3|n|Photograph of a duplex penthouse terrace in Brazil with lounge furniture, pergola and a wide view over hills at dusk. Real estate photography, no people, no text, no logos.
+vi-2030.png|4:3|n|Interior photograph of a simple two-bedroom apartment in a Brazilian city centre, living room with an older parquet floor, window overlooking the street, daylight. Honest real estate photography, no people, no text, no logos.
+vi-2028.png|4:3|n|Interior photograph of a small furnished commercial office room in a Brazilian city building: desk, two chairs, a meeting table, venetian blinds, neutral daylight. Real estate photography, no people, no text, no logos.
+vi-2026.png|4:3|n|Exterior photograph of a Brazilian house with a paved back yard, an annex building and a tiled roof, plants along the wall, sunny day. Real estate photography, no people, no text, no logos.
+vi-2024.png|4:3|n|Interior photograph of a new three-bedroom Brazilian apartment: empty living room, porcelain floor, large aluminium window, balcony with glass rail. Bright daylight. Real estate photography, no people, no text, no logos.
+vi-2021.png|4:3|n|Interior photograph of a compact furnished studio apartment near a university in Brazil: bed, desk, kitchenette, large window. Modern and bright. Real estate photography, no people, no text, no logos.
+vi-2018.png|4:3|n|Photograph of an empty flat plot of land inside a gated Brazilian residential development, cut grass, paved street with kerbs, hills in the background, clear day. No people, no text, no logos.
+vi-2015.png|4:3|n|Exterior photograph of a contemporary Brazilian house in a gated community: flat roof, stone and wood facade, heated pool with steam, landscaped garden, blue hour lighting. Real estate photography, no people, no text, no logos.
+vi-2011.png|4:3|n|Interior photograph of a three-bedroom Brazilian apartment living and dining area with a service corridor visible, neutral finishes, warm afternoon light. Real estate photography, no people, no text, no logos.

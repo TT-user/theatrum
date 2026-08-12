@@ -1,0 +1,15 @@
+# Vértice — alto padrão · 12 imagens
+# O hero, o hero-mobile e o og já foram gerados e estão em img/.
+# formato: nome|aspecto|usa_ref(s/n)|prompt
+sobre.png|4:5|n|Interior photograph of a small refined real estate office: solid wood meeting table, four leather chairs, a bookshelf with files and books, brass desk lamp, dark walls, warm side light from a tall window. Editorial, calm, no people. No text, no logos, no watermarks.
+v-118.png|4:3|n|Architectural photograph of a restored 1970s Brazilian modernist house: exposed concrete beams, wide wooden window frames, a garden with mature trees, late afternoon light. Editorial architecture photography, no people, no text, no logos.
+v-121.png|4:3|n|Architectural photograph of a single-storey house in a Brazilian gated community: L-shaped plan around a heated pool, glass walls, wooden ceiling on the terrace, mountains in the background at sunset. Editorial, no people, no text, no logos.
+v-124.png|4:3|n|Photograph of a large penthouse terrace in Brazil: pergola, hot tub, wood-fired barbecue, lounge furniture, city and hills below, blue hour. Editorial architecture photography, no people, no text, no logos.
+v-127.png|4:3|n|Interior photograph of a large full-floor apartment living room in Brazil: 60 square metre living area, climate-controlled wine cabinet, designer furniture, floor-to-ceiling windows, warm evening light. Editorial, no people, no text, no logos.
+v-131.png|4:3|n|Photograph of a Brazilian country estate: a renovated farmhouse with a veranda, a lake in the foreground, pasture and hills behind, morning mist and warm light. Editorial, no people, no text, no logos.
+v-134.png|4:3|n|Architectural photograph of a contemporary house of stone and glass built into a steep slope over four levels, warm interior lighting, surrounding forest, blue hour. Editorial architecture photography, no people, no text, no logos.
+v-138.png|4:3|n|Interior photograph of a restored historic commercial floor in Brazil: 4-metre ceilings, tall arched windows, restored wooden floor, exposed brick and modern lighting, empty open plan. Editorial, no people, no text, no logos.
+r-04.png|4:3|n|Architectural photograph of a very large contemporary Brazilian house seen from the garden: long horizontal roof, travertine terrace, infinity pool, mature landscaping, dusk with warm interior lights. Editorial, discreet, no people, no text, no logos.
+r-07.png|4:3|n|Photograph of an early 20th century Brazilian mansion in need of restoration: eclectic facade, tall shuttered windows, weathered plaster, a large garden with old trees, soft overcast light. Editorial, no people, no text, no logos.
+r-09.png|4:3|n|Photograph of a large mountain country house in the Brazilian serra: stone and wood facade, wide lawn, forest and mountains behind, mist, late afternoon. Editorial, no people, no text, no logos, no aircraft.
+r-12.png|4:3|n|Exterior photograph of a small six-unit residential building in a Brazilian city: clean modern facade, balconies, landscaped entrance, parked cars, warm afternoon light. Editorial, no people, no text, no logos.

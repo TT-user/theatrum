@@ -1,0 +1,410 @@
+/* ============================================================
+   Bruno Tavares — corretor autônomo
+   Demonstração Theatrum · mercado imobiliário
+
+   A identidade aqui é a oposta de portal de imóveis: fundo claro,
+   serifa editorial e uma carteira pequena. O site precisa parecer
+   a página de uma pessoa, não de uma empresa — é isso que o
+   posicionamento dele vende.
+   ============================================================ */
+
+:root{
+  --fundo:#F7F4EE;
+  --fundo-2:#EFE9DE;
+  --texto:#1B1A17;
+  --suave:#6E6A60;
+  --linha:#DFD8CA;
+  --destaque:#3F6B4A;
+  --destaque-2:#2F5238;
+  --claro:#FFFFFF;
+  --pino:#E0453C;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--fundo);color:var(--texto);
+  font:400 16.5px/1.65 var(--sans);
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-weight:400;line-height:1.08;letter-spacing:-.015em}
+h1,h2{font-family:var(--serif)}
+em{font-style:italic}
+
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.wrap-estreito{width:min(760px,92vw)}
+
+/* O atributo hidden precisa vencer o display do próprio componente.
+   Sem isto, um .modal{display:grid} ou uma .barra{display:flex} marcados
+   com hidden continuam na tela — o hidden vira letra morta porque a regra
+   de classe tem mais especificidade que o padrão do navegador. */
+[hidden]{display:none!important}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:11px 21px;border-radius:999px;border:1px solid transparent;
+  font:600 14.5px/1 var(--sans);text-decoration:none;cursor:pointer;
+  transition:background .22s ease,border-color .22s ease,color .22s ease,transform .22s ease;
+}
+.btn-g{padding:15px 28px;font-size:15.5px}
+.btn-cheio{background:var(--destaque);color:#fff;border-color:var(--destaque)}
+.btn-cheio:hover{background:var(--destaque-2);border-color:var(--destaque-2)}
+.btn-vazio{color:var(--texto);border-color:var(--linha);background:transparent}
+.btn-vazio:hover{border-color:var(--destaque);color:var(--destaque)}
+
+/* ============================================================
+   Placeholder de imagem
+   As fotos ainda não existem. Cada .foto guarda o nome e o
+   tamanho do arquivo em data-ph; se o <img> der 404, o script
+   do <head> marca .sem-foto e o bloco aparece. Basta colocar
+   o .jpg com o nome certo em img/ que ele some sozinho — o
+   HTML não muda.
+   ============================================================ */
+.foto{position:relative;overflow:hidden;background:var(--fundo-2)}
+.foto img{width:100%;height:100%;object-fit:cover}
+.foto.sem-foto{
+  background:
+    repeating-linear-gradient(135deg, rgba(63,107,74,.06) 0 10px, transparent 10px 22px),
+    linear-gradient(150deg, var(--fundo-2), var(--linha));
+}
+.foto.sem-foto img{opacity:0}
+.foto::after{
+  content:attr(data-ph);
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font:500 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--suave);white-space:nowrap;
+  border:1px solid var(--linha);border-radius:999px;
+  padding:9px 15px;background:rgba(255,255,255,.6);
+  opacity:0;transition:opacity .2s ease;pointer-events:none;
+}
+.foto.sem-foto::after{opacity:1}
+
+/* ---------- topo ---------- */
+.topo{
+  position:fixed;inset:0 0 auto;z-index:50;
+  border-bottom:1px solid transparent;
+  transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;
+}
+.topo.rolou{background:rgba(247,244,238,.92);backdrop-filter:blur(10px);border-color:var(--linha)}
+.topo-in{display:flex;align-items:center;gap:26px;padding:17px 0}
+.marca{
+  font-family:var(--serif);font-size:1.42rem;text-decoration:none;line-height:1;
+  display:flex;align-items:baseline;gap:9px;flex:none;
+}
+.marca b{font-weight:400;color:var(--destaque)}
+.marca em{font:500 9.5px/1 var(--mono);letter-spacing:.14em;color:var(--suave);font-style:normal}
+.menu{display:flex;gap:26px;margin-left:auto}
+.menu a{
+  font-size:14.5px;font-weight:500;text-decoration:none;color:var(--suave);
+  padding-bottom:2px;border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease;
+}
+.menu a:hover{color:var(--texto);border-color:var(--destaque)}
+.abre-menu{display:none;background:none;border:0;color:var(--texto);cursor:pointer;padding:6px}
+.abre-menu svg{width:26px;height:26px}
+
+/* ---------- hero ---------- */
+.hero{padding:132px 0 74px}
+.hero-in{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.sobrancelha{
+  display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--destaque);margin-bottom:22px;
+}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.15rem)}
+.hero h1 em{color:var(--destaque)}
+.hero .lead{margin-top:24px;font-size:1.09rem;color:var(--suave);max-width:52ch}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+.hero-provas{list-style:none;display:flex;flex-wrap:wrap;gap:28px;margin-top:38px;
+  padding-top:24px;border-top:1px solid var(--linha)}
+.hero-provas li{font:500 12.5px/1.4 var(--mono);letter-spacing:.06em;color:var(--suave)}
+.hero-provas b{display:block;font-family:var(--sans);font-size:1.22rem;font-weight:700;
+  letter-spacing:-.01em;color:var(--texto);margin-bottom:3px}
+.hero-foto{aspect-ratio:4/5;border-radius:16px}
+
+/* ---------- seções ---------- */
+.sec{padding:86px 0}
+.cab{max-width:62ch}
+.cab-centro{margin:0 auto;text-align:center}
+.etiqueta{
+  display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--destaque);margin-bottom:16px;
+}
+.sec h2{font-size:clamp(1.95rem,3.8vw,2.85rem)}
+.sec h2 em{color:var(--destaque)}
+.sub{margin-top:16px;color:var(--suave);font-size:1.02rem}
+
+/* ============================================================
+   Sistema de busca
+   O bloco é o produto da página: é o que o visitante da Theatrum
+   precisa ver funcionando. Por isso ele ganha fundo próprio e
+   fica logo abaixo do hero, e não enterrado no fim.
+   ============================================================ */
+.sec-busca{background:var(--fundo-2);border-block:1px solid var(--linha)}
+.filtros{
+  display:grid;grid-template-columns:repeat(4,1fr) 1.4fr auto;gap:14px;align-items:end;
+  margin-top:38px;padding:20px;background:var(--claro);
+  border:1px solid var(--linha);border-radius:16px;
+}
+.campo{display:flex;flex-direction:column;gap:7px}
+.campo>span{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.campo>span b{font-family:var(--sans);font-size:12px;letter-spacing:0;color:var(--texto)}
+.campo select{
+  appearance:none;width:100%;padding:11px 34px 11px 13px;border-radius:10px;
+  border:1px solid var(--linha);background:var(--claro);color:var(--texto);
+  font:500 14.5px/1 var(--sans);cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E6A60' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;background-size:15px;
+}
+.campo select:focus-visible{outline:2px solid var(--destaque);outline-offset:1px}
+.campo-faixa input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:999px;
+  background:var(--linha);margin:16px 0 12px;cursor:pointer;
+}
+.campo-faixa input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:19px;height:19px;border-radius:50%;
+  background:var(--destaque);border:3px solid var(--claro);box-shadow:0 1px 6px rgba(0,0,0,.22);
+}
+.campo-faixa input[type=range]::-moz-range-thumb{
+  width:19px;height:19px;border:3px solid var(--claro);border-radius:50%;
+  background:var(--destaque);box-shadow:0 1px 6px rgba(0,0,0,.22);
+}
+.limpar{
+  background:none;border:1px solid var(--linha);border-radius:10px;padding:11px 16px;
+  font:500 13px/1 var(--sans);color:var(--suave);cursor:pointer;
+  transition:border-color .2s ease,color .2s ease;
+}
+.limpar:hover{border-color:var(--destaque);color:var(--destaque)}
+
+.resultado-topo{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  flex-wrap:wrap;margin:30px 0 20px}
+.contagem{font:500 13px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.contagem b{color:var(--destaque)}
+.ordena{display:flex;align-items:center;gap:10px}
+.ordena span{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.ordena select{
+  appearance:none;padding:9px 30px 9px 12px;border-radius:9px;border:1px solid var(--linha);
+  background:var(--claro);color:var(--texto);font:500 13.5px/1 var(--sans);cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E6A60' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:14px;
+}
+
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:22px}
+.card{
+  background:var(--claro);border:1px solid var(--linha);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+.card:hover{border-color:rgba(63,107,74,.45);transform:translateY(-3px);box-shadow:0 16px 36px rgba(27,26,23,.09)}
+.card .foto{aspect-ratio:4/3}
+.card-topo{position:relative}
+.card-selo{
+  position:absolute;left:12px;top:12px;padding:6px 11px;border-radius:999px;
+  font:600 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(27,26,23,.78);color:#fff;backdrop-filter:blur(4px);
+}
+.card-fav{
+  position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;
+  border:0;background:rgba(255,255,255,.9);cursor:pointer;display:grid;place-items:center;
+  transition:background .2s ease,transform .2s ease;
+}
+.card-fav:hover{transform:scale(1.08)}
+.card-fav svg{width:19px;height:19px;fill:none;stroke:var(--texto);stroke-width:1.9}
+.card-fav.on{background:var(--destaque)}
+.card-fav.on svg{fill:#fff;stroke:#fff}
+.card-corpo{padding:16px 17px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card-cod{font:500 10.5px/1 var(--mono);letter-spacing:.14em;color:var(--suave)}
+.card h3{font-family:var(--sans);font-size:1.02rem;font-weight:600;line-height:1.35;letter-spacing:-.005em}
+.card-bairro{font-size:13.5px;color:var(--suave)}
+.card-specs{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:12px;
+  border-top:1px solid var(--linha);font:500 12.5px/1 var(--sans);color:var(--suave)}
+.card-preco{font-size:1.16rem;font-weight:700;letter-spacing:-.015em}
+.card-preco small{display:block;font:500 11px/1 var(--mono);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--suave);margin-top:5px}
+
+.vazio{margin-top:26px;padding:24px;border:1px dashed var(--linha);border-radius:14px;
+  text-align:center;color:var(--suave)}
+.vazio a{color:var(--destaque);font-weight:600}
+
+.barra-fav{
+  position:sticky;bottom:16px;z-index:20;margin-top:26px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  padding:15px 20px;border-radius:14px;background:var(--texto);color:#F2EFE8;
+  box-shadow:0 18px 44px rgba(27,26,23,.28);
+}
+.barra-fav p{font-size:14.5px}
+.barra-fav b{color:#fff}
+.barra-fav span{display:block;font:500 11px/1.5 var(--mono);letter-spacing:.1em;color:#A9A498;margin-top:4px}
+.barra-fav-acoes{display:flex;gap:10px;flex-wrap:wrap}
+.barra-fav .btn-vazio{color:#CFCAC0;border-color:rgba(255,255,255,.24)}
+.barra-fav .btn-vazio:hover{color:#fff;border-color:#fff}
+
+/* ---------- passos ---------- */
+.passos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+.passos li{padding-top:22px;border-top:2px solid var(--destaque)}
+.passos .num{font:500 11px/1 var(--mono);letter-spacing:.2em;color:var(--destaque)}
+.passos h3{font-family:var(--sans);font-size:1.13rem;font-weight:600;margin:12px 0 9px}
+.passos p{color:var(--suave);font-size:.97rem}
+
+/* ---------- carteira ---------- */
+.destaques{display:flex;flex-direction:column;gap:26px;margin-top:44px}
+.destaque{display:grid;grid-template-columns:1.15fr 1fr;gap:0;
+  border:1px solid var(--linha);border-radius:18px;overflow:hidden;background:var(--claro)}
+.destaque .foto{aspect-ratio:4/3;min-height:100%}
+.destaque-inverso .foto{order:2}
+.destaque-txt{padding:38px 40px;display:flex;flex-direction:column;justify-content:center;gap:13px}
+.cod{font:500 10.5px/1 var(--mono);letter-spacing:.18em;color:var(--destaque)}
+.destaque h3{font-family:var(--serif);font-size:1.7rem;line-height:1.15}
+.destaque p{color:var(--suave);font-size:.99rem}
+.preco{font-family:var(--sans)!important;font-size:1.4rem!important;font-weight:700;
+  letter-spacing:-.02em;color:var(--texto)!important;margin-top:6px}
+
+/* ---------- bairro ---------- */
+.sec-bairro{background:var(--texto);color:#EDE9E0}
+.bairro-in{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+.bairro-foto{aspect-ratio:7/5;border-radius:16px;background:#26241F}
+.sec-bairro .foto.sem-foto{
+  background:repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 10px, transparent 10px 22px),
+    linear-gradient(150deg,#26241F,#33302A);
+}
+.sec-bairro .foto::after{background:rgba(0,0,0,.34);border-color:rgba(255,255,255,.16);color:#A9A498}
+.sec-bairro .etiqueta{color:#8FBF9C}
+.sec-bairro h2{color:#fff}
+.bairro-lista{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:16px}
+.bairro-lista li{padding-left:20px;position:relative;color:#BEB8AC;font-size:.99rem}
+.bairro-lista li::before{content:'';position:absolute;left:0;top:.62em;width:7px;height:7px;
+  border-radius:50%;background:#8FBF9C}
+.bairro-lista b{color:#fff;font-weight:600}
+.bairro-pe{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);
+  font-family:var(--serif);font-size:1.18rem;font-style:italic;color:#EDE9E0}
+
+/* ---------- vozes ---------- */
+.vozes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.vozes blockquote{background:var(--claro);border:1px solid var(--linha);border-radius:16px;
+  padding:28px 26px;display:flex;flex-direction:column;gap:18px}
+.vozes p{font-family:var(--serif);font-size:1.16rem;line-height:1.4}
+.vozes cite{font-style:normal;font-size:14px;font-weight:600;margin-top:auto}
+.vozes cite span{display:block;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--suave);margin-top:4px}
+
+/* ---------- sobre ---------- */
+.sec-sobre{background:var(--fundo-2);border-block:1px solid var(--linha)}
+.sobre-in{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.sobre-txt p{margin-top:16px;color:var(--suave)}
+.assina{font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--texto)!important;margin-top:26px!important}
+.sobre-foto{aspect-ratio:9/11;border-radius:16px}
+
+/* ---------- faq ---------- */
+.faq{margin-top:38px;border-top:1px solid var(--linha)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
+  font-size:1.05rem;font-weight:600;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:'';position:absolute;right:6px;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--destaque);border-bottom:2px solid var(--destaque);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s ease;
+}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.faq p{padding:0 40px 22px 0;color:var(--suave)}
+
+/* ---------- contato ---------- */
+.sec-contato{background:var(--texto);color:#EDE9E0}
+.contato-in{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.sec-contato .etiqueta{color:#8FBF9C}
+.sec-contato h2{color:#fff}
+.sec-contato .sub{color:#A9A498}
+.contato-lista{list-style:none;margin-top:30px;display:flex;flex-direction:column;gap:11px;
+  font-size:.98rem;color:#BEB8AC}
+.contato-lista b{display:inline-block;min-width:112px;font:500 10.5px/1 var(--mono);
+  letter-spacing:.14em;text-transform:uppercase;color:#8FBF9C}
+.contato-cta{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;padding:34px}
+.cta-linha{font-family:var(--serif);font-size:1.4rem;line-height:1.2;color:#fff;margin-bottom:20px}
+.cta-micro{margin-top:14px;font:500 11px/1.6 var(--mono);letter-spacing:.08em;color:#8F8A7E}
+
+/* endereço com pino: o ponto vermelho pulsa devagar, do jeito que
+   um marcador de mapa pisca — é o que faz o olho ir para o endereço */
+.endereco{display:flex;align-items:center;gap:13px;margin-top:24px;font-weight:600;font-size:1.02rem;color:#EDE9E0}
+.pino{position:relative;flex:none;width:11px;height:11px;border-radius:50%;background:var(--pino);
+  box-shadow:0 0 0 3px rgba(224,69,60,.2)}
+.pino::after{content:'';position:absolute;inset:0;border-radius:50%;background:var(--pino);
+  animation:pulso 2.6s cubic-bezier(.2,.6,.3,1) infinite}
+@keyframes pulso{0%{transform:scale(1);opacity:.65}70%{transform:scale(3);opacity:0}100%{transform:scale(3);opacity:0}}
+.btn-mapa{margin-top:16px;background:#8FBF9C;color:#12271A;border-color:#8FBF9C;font-weight:700}
+.btn-mapa:hover{background:#A9D3B4;border-color:#A9D3B4}
+
+/* ---------- rodapé ---------- */
+.rodape{background:#12110F;color:#8F8A7E;padding:44px 0 26px}
+.rodape-in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.rodape-marca{font-family:var(--serif);font-size:1.35rem;color:#EDE9E0}
+.rodape-marca b{font-weight:400;color:#8FBF9C}
+.rodape-creci{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-top:7px}
+.rodape-menu{display:flex;gap:22px;flex-wrap:wrap}
+.rodape-menu a{font-size:14px;text-decoration:none;transition:color .2s ease}
+.rodape-menu a:hover{color:#EDE9E0}
+.rodape-fim{width:min(1180px,92vw);margin:30px auto 0;padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.09);font:500 10.5px/1.6 var(--mono);letter-spacing:.1em}
+
+/* ---------- whatsapp flutuante ---------- */
+.whatsapp-float{
+  position:fixed;right:24px;bottom:24px;z-index:60;
+  display:flex;align-items:center;height:58px;padding:0 16px;border-radius:999px;
+  background:#25D366;color:#fff;text-decoration:none;
+  box-shadow:0 10px 28px rgba(37,211,102,.35);
+  opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:opacity .3s ease,transform .3s ease,visibility .3s ease,box-shadow .25s ease;
+}
+.whatsapp-float.on{opacity:1;visibility:visible;transform:none}
+.whatsapp-float:hover{box-shadow:0 14px 34px rgba(37,211,102,.5)}
+.whatsapp-float svg{width:27px;height:27px;flex:none}
+.whatsapp-float span{
+  max-width:0;overflow:hidden;white-space:nowrap;font:600 14.5px/1 var(--sans);
+  transition:max-width .3s ease,margin-left .3s ease;
+}
+.whatsapp-float:hover span,.whatsapp-float:focus-visible span{max-width:190px;margin-left:11px}
+
+/* ---------- entrada ao rolar ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:none}
+
+/* ---------- responsivo ---------- */
+@media (max-width:980px){
+  .hero-in,.bairro-in,.sobre-in,.contato-in{grid-template-columns:1fr;gap:36px}
+  .hero-foto,.sobre-foto{aspect-ratio:4/3}
+  .filtros{grid-template-columns:1fr 1fr;gap:16px}
+  .limpar{grid-column:1/-1}
+  .passos,.vozes{grid-template-columns:1fr}
+  .destaque{grid-template-columns:1fr}
+  .destaque-inverso .foto{order:0}
+  .destaque-txt{padding:28px 26px}
+}
+@media (max-width:720px){
+  .menu{display:none}
+  .menu.aberto{
+    display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:100%;
+    background:var(--fundo);border-block:1px solid var(--linha);padding:8px 4vw 14px;
+  }
+  .menu.aberto a{padding:13px 0;border-bottom:1px solid var(--linha)}
+  .abre-menu{display:block;margin-left:auto;order:3}
+  .topo-in{position:relative}
+  .topo-in .btn-cheio{display:none}
+  .hero{padding:112px 0 58px}
+  .sec{padding:64px 0}
+  .filtros{grid-template-columns:1fr}
+  .barra-fav{flex-direction:column;align-items:stretch;text-align:center}
+  .barra-fav-acoes{justify-content:center}
+  .whatsapp-float{right:16px;bottom:16px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::after,*::before{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}
