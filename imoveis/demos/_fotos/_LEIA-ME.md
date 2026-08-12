@@ -29,11 +29,31 @@ marca `.sem-foto`. **Basta salvar o `.jpg` com o nome certo dentro de
 
 ## Como gerar
 
-Os manifestos deste diretório usam o mesmo formato do `gerar.sh` que
-produziu as fotos dos demos de planejados:
+Os manifestos usam o formato `nome|aspecto|usa_ref(s/n)|prompt` e são
+lidos pelos dois geradores, para não existirem duas listas de prompts
+que possam divergir.
+
+### Pelo Gemini (`gerar-gemini.mjs`)
+
+Precisa de uma chave do Google AI Studio (https://aistudio.google.com/apikey)
+em `GEMINI_API_KEY`:
 
 ```bash
-# imagens — nome|aspecto|usa_ref(s/n)|prompt
+export GEMINI_API_KEY=...
+node gerar-gemini.mjs man-bruno.txt   png-bruno
+node gerar-gemini.mjs man-vista.txt   png-vista
+node gerar-gemini.mjs man-aurora.txt  png-aurora
+node gerar-gemini.mjs man-vertice.txt png-vertice
+```
+
+O modelo padrão é o `gemini-3-pro-image-preview`. Para o mais barato,
+passe `gemini-2.5-flash-image` como terceiro argumento. O script pula o
+que já existe, então rodar de novo depois de uma falha só refaz o que
+faltou.
+
+### Pelo Higgsfield (`gerar.sh`)
+
+```bash
 bash gerar.sh man-bruno.txt   png-bruno   ""
 bash gerar.sh man-vista.txt   png-vista   ""
 bash gerar.sh man-aurora.txt  png-aurora  ""
@@ -43,9 +63,18 @@ bash gerar.sh man-vertice.txt png-vertice ""
 bash gerar-video.sh man-video-aurora.txt
 ```
 
-Depois converta os PNG de 2k para os JPG que os sites consomem, com o
-teto de peso de sempre: **hero até 250 KB, o resto até 150 KB**. O
-`converter.js` faz isso descendo a qualidade em passos até caber.
+### Depois, em qualquer um dos dois
+
+Converta os PNG para os JPG que os sites consomem, com o teto de peso
+de sempre — **hero até 250 KB, o resto até 150 KB**:
+
+```bash
+npm i sharp
+node converter.mjs png-bruno   ../bruno-tavares/img
+node converter.mjs png-vista   ../vista-imoveis/img
+node converter.mjs png-aurora  ../reserva-aurora/img
+node converter.mjs png-vertice ../vertice/img
+```
 
 Os vídeos entram em `reserva-aurora/img/video/` com os nomes `hero-1.mp4`
 a `hero-5.mp4`. O `data-srcs` do `<div class="hero-filme">` já aponta
