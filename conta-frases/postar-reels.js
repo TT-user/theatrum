@@ -1,9 +1,13 @@
 // Publica os posts de conta-frases como Reels no Instagram.
 //
-//   node --env-file=../MazyOS/.env postar-reels.js --checar
-//   node --env-file=../MazyOS/.env postar-reels.js 01
-//   node --env-file=../MazyOS/.env postar-reels.js 01 02 03
-//   node --env-file=../MazyOS/.env postar-reels.js --todos
+//   node --env-file=$ENV postar-reels.js --checar
+//   node --env-file=$ENV postar-reels.js 01
+//   node --env-file=$ENV postar-reels.js 01 02 03
+//   node --env-file=$ENV postar-reels.js --todos
+//
+// $ENV = ../../explicologo/.env  (fora deste repo). ATENCAO: ../MazyOS/.env
+// existe mas e o token da conta @theatrum.br — o --checar barra a publicacao
+// se voce usar ele por engano.
 //
 // Os vídeos precisam estar acessíveis publicamente: a Meta baixa o arquivo
 // da URL, ela não aceita upload direto. Usamos o raw do GitHub.
