@@ -45,44 +45,94 @@
   });
 })();
 
-/* Filme do hero. Entra depois da foto, nunca antes dela. */
+/* Filme do hero. Entra depois da foto, nunca antes dela.
+   Sao cinco clipes de ambientes diferentes que tocam em sequencia e
+   voltam ao primeiro. Dois <video> alternados fazem a troca por
+   crossfade: um toca enquanto o outro ja carregou o proximo. Trocar o
+   src de um elemento so pisca preto no meio do hero. Tambem por isso o
+   carregamento e sob demanda: so dois clipes na fila, nunca os cinco. */
 (function () {
   'use strict';
   var caixa = document.querySelector('.hero-filme');
-  if (!caixa || !caixa.dataset.src) return;
+  if (!caixa || !caixa.dataset.srcs) return;
 
   var conexao = navigator.connection || {};
   var economiza = conexao.saveData === true || /(^|-)2g$/.test(conexao.effectiveType || '');
   var menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (economiza || menosMovimento || window.innerWidth < 760) return;
 
+  var lista = caixa.dataset.srcs.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  if (!lista.length) return;
+
+  var CRUZA = 0.7; // segundos de sobreposicao, igual a transicao do CSS
+
+  function novoVideo() {
+    var v = document.createElement('video');
+    v.muted = true;
+    v.playsInline = true;
+    v.setAttribute('playsinline', '');
+    v.setAttribute('aria-hidden', 'true');
+    v.preload = 'auto';
+    caixa.appendChild(v);
+    return v;
+  }
+
+  function toca(v) {
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  var atual = novoVideo();
+  var proximo = novoVideo();
+  var i = 0;
+  var trocando = false;
+
+  function carrega(v, n) {
+    v.src = lista[n % lista.length];
+    v.load();
+  }
+
+  function troca() {
+    if (trocando) return;
+    trocando = true;
+    i = (i + 1) % lista.length;
+
+    proximo.classList.add('pronto');
+    atual.classList.remove('pronto');
+    toca(proximo);
+
+    var saindo = atual;
+    atual = proximo;
+    proximo = saindo;
+
+    setTimeout(function () {
+      saindo.pause();
+      carrega(saindo, i + 1); // ja deixa o seguinte na agulha
+      trocando = false;
+    }, CRUZA * 1000);
+  }
+
+  /* o 'ended' sozinho deixaria um respiro entre os clipes: a troca
+     comeca CRUZA segundos antes do fim, e o 'ended' fica so de rede */
+  function vigia() {
+    if (!atual.duration || isNaN(atual.duration)) return;
+    if (atual.currentTime >= atual.duration - CRUZA) troca();
+  }
+
+  [atual, proximo].forEach(function (v) {
+    v.addEventListener('timeupdate', vigia);
+    v.addEventListener('ended', troca);
+  });
+
   function entra() {
     setTimeout(function () {
-      var v = document.createElement('video');
-      v.muted = true;
-      v.loop = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.setAttribute('playsinline', '');
-      v.setAttribute('aria-hidden', 'true');
-      v.preload = 'auto';
-      /* canplaythrough e o evento que mais falha em Safari e em conexao
-         instavel. Escuto os tres que significam 'ja da para mostrar' e
-         ainda confiro uma vez por segurança, senao o hero ficaria preso
-         na foto sem ninguem perceber. */
-      function mostra() {
-        if (v.classList.contains('pronto')) return;
-        v.classList.add('pronto');
+      atual.addEventListener('canplay', function () {
+        atual.classList.add('pronto');
         document.querySelector('.hero').classList.add('com-filme');
-      }
-      v.addEventListener('loadeddata', mostra);
-      v.addEventListener('canplay', mostra);
-      v.addEventListener('playing', mostra);
-      setTimeout(function () { if (v.readyState >= 2) mostra(); }, 4000);
-      v.src = caixa.dataset.src;
-      caixa.appendChild(v);
-      var toca = v.play();
-      if (toca && toca.catch) toca.catch(function () {});
+        toca(atual);
+        carrega(proximo, 1);
+      }, { once: true });
+      carrega(atual, 0);
     }, 500);
   }
 

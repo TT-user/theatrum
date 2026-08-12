@@ -325,9 +325,12 @@ p{margin:0}
    espera por vídeo — é isso que derruba conversão. Celular, conexão em
    modo econômico e quem pediu menos movimento ficam na foto parada. */
 .hero-filme{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+/* dois <video> empilhados: um toca enquanto o outro ja carregou o
+   proximo ambiente. E o que permite a troca por crossfade em vez do
+   piscar preto que daria trocar o src de um elemento so. */
 .hero-filme video{
-  width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity 1s ease;
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .7s ease;
 }
 .hero-filme video.pronto{opacity:1}
 /* com o vídeo no ar o Ken Burns da foto vira trabalho jogado fora */

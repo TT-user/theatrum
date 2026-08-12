@@ -26,3 +26,13 @@ já cobre o atelier.
 
 Os prompts estão em `novas demos/04-cozinha-viva.md`. Comprima antes de subir:
 hero abaixo de 250 KB, o resto abaixo de 150 KB.
+
+## Vídeo do hero
+
+`video/hero-1.mp4` a `video/hero-5.mp4` — cinco clipes que tocam em sequência
+e voltam ao primeiro, com crossfade de 0,7 s entre eles. O primeiro nasceu do
+`hero.jpg` (Seedance 2.0, 5 s); os quatro seguintes nasceram das fotos de
+ambiente `projeto-0X.jpg`, cortadas para 16:9 (Kling 3.0 Turbo, 3 s).
+
+Para trocar um clipe, mantenha o nome. Para mudar a ordem ou a quantidade,
+edite `data-srcs` no `.hero-filme` do index.html — o script lê a lista de lá.
