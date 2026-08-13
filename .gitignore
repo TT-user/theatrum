@@ -23,3 +23,10 @@ skills-lock.json
 **/demos/_fotos/conferencia.jpg
 **/demos/_fotos/node_modules/
 **/demos/_fotos/package*.json
+
+# mesma oficina, para a demo de loja, que fica fora de uma pasta demos/.
+# As reprovadas ficam so no disco: sao o registro do que nao passou na
+# conferencia, nao asset do site.
+**/_fotos/node_modules/
+**/_fotos/package*.json
+**/_fotos/reprovadas/

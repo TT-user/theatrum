@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEIS PANOS · painel de prompts Higgsfield</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#141414;--line:rgba(255,255,255,.13);--txt:#FAF8F4;--dim:#8C8C86;--lima:#C9FF3D}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:400 15px/1.65 Inter,system-ui,sans-serif;padding:32px clamp(16px,5vw,64px) 90px}
+h1{font-family:Archivo;font-weight:900;font-size:26px;letter-spacing:-.04em;text-transform:uppercase;margin:0 0 4px}
+h1 b{color:var(--lima)}
+h2{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+  font-weight:700;margin:36px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.sub{color:var(--dim);font-size:13.5px;margin:0 0 26px}
+button{font:inherit;cursor:pointer;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);padding:9px 17px;transition:.18s}
+button:hover{background:var(--lima);color:#0B0B0B;border-color:var(--lima)}
+input{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:11px 15px;font:inherit;width:100%}
+input:focus{outline:none;border-color:var(--lima)}
+.gerador{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:8px}
+.gerador .campos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.gerador label{display:block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px 19px;margin-bottom:9px;
+  display:grid;grid-template-columns:1fr auto;gap:10px 16px;align-items:start}
+.card.feito{opacity:.4}
+.file{font-family:'Space Mono',monospace;font-size:12.5px}
+.meta{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+.p{grid-column:1/-1;font-family:'Space Mono',monospace;font-size:12.5px;line-height:1.6;color:#D6D3CC;
+  background:#0B0B0B;border:1px solid var(--line);border-radius:8px;padding:14px 16px;white-space:pre-wrap}
+.acts{display:flex;gap:8px}
+.acts button{padding:8px 14px;font-size:12px}
+.chk{width:34px;padding:0;height:34px;display:grid;place-items:center}
+.chk.on{background:var(--lima);color:#0B0B0B;border-color:var(--lima)}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 14px;border-bottom:1px solid var(--line);
+  display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.count{color:var(--dim);font-size:12px;margin-left:auto;font-family:'Space Mono',monospace}
+.nota{border-left:2px solid var(--lima);padding-left:14px;color:var(--dim);font-size:13.5px;margin:0 0 24px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--lima);color:#0B0B0B;
+  padding:11px 22px;border-radius:999px;font-family:Archivo;font-weight:800;font-size:12.5px;text-transform:uppercase;
+  letter-spacing:.05em;transition:.24s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:620px){.card{grid-template-columns:1fr}.gerador .campos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<h1>Seis<b>Panos</b> · prompts Higgsfield</h1>
+<p class="sub">Os blocos fixos ficam no topo. Embaixo, o gerador: digite o nome do boné que você mandou no chat e os quatro prompts saem prontos, com os nomes de arquivo certos.</p>
+
+<p class="nota">Regra que faz ou quebra tudo: quando a foto do boné entrar como referência, <b>não descreva o boné no prompt</b>. Descreva só a pessoa, a luz e o fundo. A trava no fim do prompt cuida do resto.</p>
+
+<div class="bar">
+  <button data-copia-bloco="CENA">Copiar [CENA]</button>
+  <button data-copia-bloco="TRAVA">Copiar [TRAVA]</button>
+  <button data-copia-bloco="NEG">Copiar negative</button>
+  <button id="csv">Baixar CSV</button>
+  <span class="count" id="count"></span>
+</div>
+
+<h2>Passo 1 · os dois modelos fixos</h2>
+<div id="modelos"></div>
+
+<h2>Passo 2 · gerador por boné</h2>
+<div class="gerador">
+  <b style="font-family:Archivo;font-weight:800;text-transform:uppercase;font-size:15px">Qual boné você mandou?</b>
+  <div class="campos">
+    <div><label for="nome">Nome do modelo</label><input id="nome" value="Fitted 59 · Areia Rubro"></div>
+    <div><label for="slug">id do arquivo</label><input id="slug" value="areia-rubro"></div>
+  </div>
+</div>
+<div id="receita"></div>
+
+<h2>Passo 3 · cenas de campanha</h2>
+<div id="campanha"></div>
+
+<h2>Passo 4 · categorias e prova social</h2>
+<div id="extras"></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CENA = "low-angle shot from below looking up, bright clear blue sky filling the background, outdoor basketball court, the rim and net of a hoop entering the frame at the edge, late afternoon sun, soft warm rim light on the skin, tonal beige and sand wardrobe, shot on 35mm at f/2.0, shallow depth of field, editorial streetwear campaign, warm muted colour grade, subtle film grain, photorealistic";
+
+const TRAVA = "the cap is exactly the reference image, unchanged: same colour, same panel structure, same front patch, same embroidery, same brim shape and same sticker on the brim. Do not redesign, recolour or reinterpret the cap. Keep the brim perfectly flat and the logo undistorted.";
+
+const NEG = "text, letters, watermark, logo overlay, distorted hands, extra fingers, deformed face, warped cap brim, curved brim, melted embroidery, blurred patch, plastic skin, oversharpened, HDR halo, cluttered background, cars, crowd, low resolution, cartoon, illustration, 3d render";
+
+const BLOCOS = { CENA, TRAVA, NEG };
+
+const MODELOS = [
+  ['modelo-a · feminina', 'salvar como personagem · 1:1',
+   "A young woman in her mid-twenties, natural beauty, long straight dark hair moving slightly in the wind, minimal makeup, small gold hoop earrings and a thin gold chain, calm confident expression looking slightly off camera. Wearing a sand-coloured ribbed turtleneck under a beige utility jacket. Neutral studio lighting, plain background, front-facing reference shot, shot on 85mm at f/2.8, photorealistic, sharp facial detail."],
+  ['modelo-b · masculino', 'salvar como personagem · 1:1',
+   "A young man in his mid-twenties, short faded haircut and light beard, warm brown skin, calm confident expression looking straight at camera. Wearing a beige ribbed turtleneck under a sand-coloured overshirt. Neutral studio lighting, plain background, front-facing reference shot, shot on 85mm at f/2.8, photorealistic, sharp facial detail."]
+];
+
+const RECEITA = [
+  ['-1.jpg', 'packshot · sua foto, sem IA', null,
+   "Não gere. Use a foto real do boné, recortada em fundo creme #E9E2D4 — é a mesma cor que o CSS usa atrás do produto, então o recorte fica invisível."],
+  ['-2.jpg', '1:1 · ref: foto do boné + modelo-a',
+   "modelo-a wearing the cap, seen from a low angle from below, head slightly tilted, one hand adjusting the brim, hair moving in the wind, looking off camera to the right."],
+  ['-3.jpg', '1:1 · ref: foto do boné',
+   "Extreme close-up of the cap held in two hands against a clear blue sky, brim in the foreground and slightly out of focus, front patch perfectly sharp, raking late-afternoon light across the embroidery texture. No face in frame."],
+  ['-4.jpg', '1:1 · ref: foto do boné + modelo-b',
+   "modelo-b wearing the cap straight and low on the forehead, seen from a low angle from below, chin slightly raised, both hands in jacket pockets, looking straight at camera."],
+  ['-unissex.jpg', '4:5 · opcional, a foto que vende o unissex',
+   "modelo-a and modelo-b standing shoulder to shoulder, both wearing the same cap model, seen from a low angle from below, heads close together filling the upper frame, basketball hoop entering the frame on the left. Both looking in slightly different directions."]
+];
+
+const CAMPANHA = [
+  ['img/hero/hero-principal.jpg', '16:9 · hero da home',
+   "modelo-a and modelo-b together, both holding caps in their hands at chest height and one wearing a cap, seen from a low angle from below, faces in the upper third, generous empty sky on the left side of the frame for the headline. Basketball hoop and backboard entering the frame on the far left."],
+  ['img/lifestyle/unissex-duo.jpg', '4:5 · faixa unissex da home',
+   "modelo-a and modelo-b side by side wearing the exact same cap model, heads tilted toward each other, seen from a low angle. Same wardrobe tone, different silhouettes."],
+  ['img/drop/drop-hero.jpg', '16:9 · hero do drop',
+   "modelo-a and modelo-b on an outdoor court at golden hour, each holding two caps fanned out in one hand, low-angle shot, long shadows on the court floor, warmer light than the other shots."],
+  ['img/drop/lookbook-01.jpg', '4:5 · lookbook do drop',
+   "Split composition: modelo-a on the left and modelo-b on the right, both wearing the same sand cap, shot from below against blue sky, symmetrical framing, editorial lookbook page."],
+  ['img/og.jpg', '1200x630 · miniatura de link',
+   "modelo-a and modelo-b from a low angle with caps, wide horizontal crop, large clean sky area on the left third for a logo overlay."]
+];
+
+const EXTRAS = [
+  ['img/categorias/fitted.jpg', '3:4 · categoria',
+   "modelo-b wearing a flat-brim fitted cap, tight vertical crop from chest up, seen from below, sticker still on the brim."],
+  ['img/categorias/snapback.jpg', '3:4 · categoria',
+   "modelo-a wearing a snapback cap, hand reaching back to adjust the plastic strap, tight vertical crop, seen from below."],
+  ['img/categorias/trucker.jpg', '3:4 · categoria',
+   "modelo-b wearing a trucker cap with mesh back, three-quarter view showing the mesh panel against the light, tight vertical crop."],
+  ['img/categorias/dad-hat.jpg', '3:4 · categoria',
+   "modelo-a wearing a low-profile curved-brim dad hat, relaxed posture, tight vertical crop, softer light."],
+  ['img/social/cliente-01.jpg', '1:1 · UGC, sem [CENA]',
+   "Casual smartphone selfie of a man in his thirties wearing a sand fitted cap, taken at arm's length in an apartment hallway with a mirror, slightly uneven framing, mixed indoor lighting, mild phone-camera noise, authentic user-generated photo, not a studio shot.", true],
+  ['img/social/cliente-02.jpg', '1:1 · UGC, sem [CENA]',
+   "Casual smartphone photo of a woman in her twenties wearing a tie-dye patch cap, standing on a city sidewalk at midday, slightly harsh sunlight, imperfect framing, authentic user-generated photo, not a studio shot.", true],
+  ['img/social/cliente-03.jpg', '1:1 · UGC, sem [CENA]',
+   "Casual smartphone photo of a man in his late twenties wearing a black cap, seated in a café, shallow phone-portrait-mode background, warm indoor light, authentic user-generated photo, not a studio shot.", true]
+];
+
+const KEY = 'seispanos-prompts-feitos';
+let feitos = {};
+try { feitos = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1500);}
+
+function copy(txt,msg){
+  navigator.clipboard.writeText(txt).then(()=>toast(msg||'copiado')).catch(()=>{
+    const a=document.createElement('textarea');a.value=txt;document.body.appendChild(a);a.select();
+    document.execCommand('copy');a.remove();toast(msg||'copiado');});
+}
+
+function monta(prompt, semCena){
+  if (prompt === null) return null;
+  return semCena ? prompt : prompt + ' ' + CENA + ' ' + TRAVA;
+}
+
+function cartao(arquivo, meta, prompt, chave){
+  const feito = feitos[chave] ? ' feito' : '';
+  const check = feitos[chave] ? ' on' : '';
+  return '<div class="card' + feito + '">' +
+    '<div><div class="file">' + arquivo + '</div><div class="meta">' + meta + '</div></div>' +
+    '<div class="acts">' +
+      (prompt ? '<button data-copia="' + encodeURIComponent(prompt) + '">Copiar</button>' : '') +
+      '<button class="chk' + check + '" data-chk="' + chave + '" aria-label="Marcar como feito">✓</button>' +
+    '</div>' +
+    '<div class="p">' + (prompt || '').replace(/</g,'&lt;') + '</div></div>';
+}
+
+function pintaFixos(){
+  document.getElementById('modelos').innerHTML =
+    MODELOS.map(m => cartao(m[0], m[1], m[2], m[0])).join('');
+
+  document.getElementById('campanha').innerHTML =
+    CAMPANHA.map(c => cartao(c[0], c[1], monta(c[2]), c[0])).join('');
+
+  document.getElementById('extras').innerHTML =
+    EXTRAS.map(c => cartao(c[0], c[1], monta(c[2], c[3]), c[0])).join('');
+}
+
+function pintaReceita(){
+  const nome = document.getElementById('nome').value.trim() || 'seu boné';
+  const slug = (document.getElementById('slug').value.trim() || 'boné')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+
+  document.getElementById('receita').innerHTML = RECEITA.map(r => {
+    const arquivo = 'img/produtos/' + slug + r[0];
+    const p = r[2] === null ? r[3] : monta(r[2]);
+    return cartao(arquivo, r[1] + ' · ' + nome, p, arquivo);
+  }).join('');
+  conta();
+}
+
+function conta(){
+  const total = document.querySelectorAll('.card').length;
+  const ok = document.querySelectorAll('.chk.on').length;
+  document.getElementById('count').textContent = ok + ' / ' + total + ' feitos';
+}
+
+document.addEventListener('click', e => {
+  const c = e.target.closest('[data-copia]');
+  if (c) return copy(decodeURIComponent(c.dataset.copia), 'prompt copiado');
+  const b = e.target.closest('[data-copia-bloco]');
+  if (b) return copy(BLOCOS[b.dataset.copiaBloco], b.dataset.copiaBloco.toLowerCase() + ' copiado');
+  const k = e.target.closest('[data-chk]');
+  if (k) {
+    const id = k.dataset.chk;
+    feitos[id] ? delete feitos[id] : feitos[id] = 1;
+    localStorage.setItem(KEY, JSON.stringify(feitos));
+    k.classList.toggle('on');
+    k.closest('.card').classList.toggle('feito');
+    conta();
+  }
+});
+
+['nome','slug'].forEach(id =>
+  document.getElementById(id).addEventListener('input', pintaReceita));
+
+document.getElementById('csv').addEventListener('click', () => {
+  const esc = s => '"' + String(s).replace(/"/g,'""') + '"';
+  const linhas = [['Arquivo','Formato','Prompt','Feito'].map(esc).join(',')];
+  document.querySelectorAll('.card').forEach(c => {
+    linhas.push([
+      c.querySelector('.file').textContent,
+      c.querySelector('.meta').textContent,
+      c.querySelector('.p').textContent,
+      c.querySelector('.chk').classList.contains('on') ? 'sim' : 'nao'
+    ].map(esc).join(','));
+  });
+  const blob = new Blob(['﻿' + linhas.join('\r\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'seispanos-prompts-higgsfield.csv';
+  a.click();
+  toast('CSV baixado');
+});
+
+pintaFixos();
+pintaReceita();
+</script>
+</body>
+</html>

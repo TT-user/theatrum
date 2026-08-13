@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — SEIS PANOS</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="hdr" style="justify-content:center">
+  <div class="hdr__in" style="justify-content:space-between">
+    <a class="logo" href="index.html">Seis<b>Panos</b></a>
+    <span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--cinza)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lima)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      Ambiente seguro · seus dados são criptografados
+    </span>
+  </div>
+</header>
+
+<section class="sec" style="padding-top:34px">
+  <div class="in" style="max-width:1180px">
+
+    <div class="passos" data-passos>
+      <span class="passo on"><b>1</b> Identificação</span>
+      <span class="passo"><b>2</b> Entrega</span>
+      <span class="passo"><b>3</b> Pagamento</span>
+    </div>
+
+    <div class="check" data-tela>
+
+      <div>
+        <div class="bloco">
+          <b>Quem está comprando</b>
+          <div class="campo-in"><label for="nome">Nome completo</label><input id="nome" type="text" placeholder="Como está no documento"></div>
+          <div class="linha-campos">
+            <div class="campo-in"><label for="email">E-mail</label><input id="email" type="email" placeholder="seu@email.com"></div>
+            <div class="campo-in"><label for="tel">WhatsApp</label><input id="tel" type="tel" placeholder="(00) 00000-0000"></div>
+          </div>
+          <div class="campo-in" style="margin-bottom:0"><label for="cpf">CPF</label><input id="cpf" type="text" placeholder="000.000.000-00"></div>
+        </div>
+
+        <div class="bloco">
+          <b>Para onde vai</b>
+          <div class="linha-campos">
+            <div class="campo-in"><label for="cep">CEP</label><input id="cep" type="text" placeholder="00000-000"></div>
+            <div class="campo-in"><label for="num">Número</label><input id="num" type="text" placeholder="123"></div>
+          </div>
+          <div class="campo-in"><label for="end">Endereço</label><input id="end" type="text" placeholder="Rua, avenida…"></div>
+          <div class="linha-campos" style="margin-bottom:0">
+            <div class="campo-in" style="margin-bottom:0"><label for="cid">Cidade</label><input id="cid" type="text" placeholder="Sua cidade"></div>
+            <div class="campo-in" style="margin-bottom:0"><label for="uf">Estado</label>
+              <select id="uf"><option>SP</option><option>RJ</option><option>MG</option><option>PR</option><option>SC</option><option>RS</option><option>BA</option><option>PE</option><option>outro</option></select></div>
+          </div>
+
+          <div style="margin-top:18px;display:grid;gap:10px">
+            <label class="pag" style="display:block"><span style="display:flex;align-items:center;gap:12px;border:1px solid var(--lima);background:rgba(201,255,61,.06);border-radius:4px;padding:15px">
+              <input type="radio" name="frete" checked>
+              <span style="flex:1;font-size:14px"><b>Frete grátis</b><br><small style="color:var(--cinza)">4 a 9 dias úteis · rastreio no mesmo dia</small></span>
+              <b style="color:var(--lima);font-family:var(--display)">R$ 0,00</b></span></label>
+            <label class="pag" style="display:block"><span style="display:flex;align-items:center;gap:12px;border:1px solid var(--linha);border-radius:4px;padding:15px">
+              <input type="radio" name="frete">
+              <span style="flex:1;font-size:14px"><b>Expresso</b><br><small style="color:var(--cinza)">2 a 4 dias úteis</small></span>
+              <b style="font-family:var(--display)">R$ 34,90</b></span></label>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <b>Como pagar</b>
+          <div class="pag">
+            <label><input type="radio" name="pg" value="pix" checked> <span><b>Pix</b> — aprovação na hora</span><span class="tag">10% off</span></label>
+            <label><input type="radio" name="pg" value="cartao"> <span><b>Cartão de crédito</b> — até 12x sem juros</span><span class="tag">sem juros</span></label>
+            <label><input type="radio" name="pg" value="boleto"> <span><b>Boleto</b> — vence em 2 dias úteis</span></label>
+          </div>
+          <div data-cartao style="display:none;margin-top:16px">
+            <div class="campo-in"><label for="cc">Número do cartão</label><input id="cc" type="text" placeholder="0000 0000 0000 0000"></div>
+            <div class="linha-campos">
+              <div class="campo-in"><label for="val">Validade</label><input id="val" type="text" placeholder="MM/AA"></div>
+              <div class="campo-in"><label for="cvv">CVV</label><input id="cvv" type="text" placeholder="000"></div>
+            </div>
+            <div class="campo-in" style="margin-bottom:0"><label for="parc">Parcelas</label>
+              <select id="parc" data-parcelas></select></div>
+          </div>
+        </div>
+
+        <button class="btn btn--lg btn--pulso" data-pagar>Finalizar pedido</button>
+        <p style="text-align:center;font-size:12px;color:var(--cinza);margin:12px 0 0">
+          Checkout demonstrativo — nenhum pagamento é processado e nenhum dado é enviado.</p>
+      </div>
+
+      <aside class="resumo">
+        <b style="font-family:var(--display);font-size:17px;text-transform:uppercase;display:block;margin-bottom:16px">Seu pedido</b>
+        <div data-itens></div>
+        <div class="cupom">
+          <input type="text" placeholder="Cupom de desconto" data-cupom aria-label="Cupom">
+          <button type="button" data-aplica>Aplicar</button>
+        </div>
+        <p style="font-size:11.5px;color:var(--cinza);margin:0 0 14px">Experimente <b style="color:var(--lima)">PRIMEIRA10</b> ou <b style="color:var(--lima)">LACRE20</b>.</p>
+        <div data-totais></div>
+        <div style="border-top:1px solid var(--linha);margin-top:16px;padding-top:14px;display:grid;gap:9px">
+          <span style="display:flex;gap:9px;align-items:center;font-size:12.5px;color:var(--cinza)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lima)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Original garantido ou 100% de volta</span>
+          <span style="display:flex;gap:9px;align-items:center;font-size:12.5px;color:var(--cinza)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lima)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Primeira troca de tamanho grátis</span>
+          <span style="display:flex;gap:9px;align-items:center;font-size:12.5px;color:var(--cinza)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lima)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Envio em 24h para pedidos até 14h</span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="ok-final" data-ok style="display:none">
+      <div class="circ">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7"/></svg>
+      </div>
+      <h1 class="d3">Pedido confirmado</h1>
+      <p class="lead" style="margin:14px auto 6px">Seu número é <b style="color:var(--lima)" data-pedido></b>. Enviamos a confirmação por e-mail e o rastreio chega no WhatsApp assim que a etiqueta for gerada.</p>
+      <p class="lead" style="margin:0 auto 28px;font-size:13.5px">Pedidos aprovados até 14h saem no mesmo dia útil.</p>
+      <a class="btn" href="catalogo.html">Continuar comprando</a>
+      <p style="font-size:12px;color:var(--cinza);margin-top:20px">Checkout demonstrativo. Nenhuma compra foi realizada.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="ftr__base" style="margin-top:0;border:0">
+    <span>SEIS PANOS · CNPJ 00.000.000/0001-00 · <span data-ano>2026</span></span>
+    <span>Site por <b style="color:#fff">Theatrum</b></span>
+  </div>
+</footer>
+
+<p class="aviso">Projeto demonstrativo. Marca, produtos, preços e checkout são fictícios — nenhum pagamento é processado.</p>
+
+<script src="assets/js/dados.js"></script>
+<script src="assets/js/loja.js"></script>
+<script>
+window.paginaPronta = function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var descontoCupom = 0, cupomNome = '';
+
+  function frete() {
+    var exp = $$('[name=frete]')[1];
+    return (exp && exp.checked) ? 34.9 : 0;
+  }
+  function forma() {
+    var m = $('[name=pg]:checked');
+    return m ? m.value : 'pix';
+  }
+
+  function pintaItens() {
+    var itens = SP.itens;
+    if (!itens.length) {
+      $('[data-tela]').innerHTML =
+        '<div style="grid-column:1/-1;text-align:center;padding:70px 0">' +
+        '<h2 class="d3">Sua sacola está vazia</h2>' +
+        '<p class="lead" style="margin:14px auto 24px">Escolhe um boné e volta pra cá.</p>' +
+        '<a class="btn" href="catalogo.html">Ver catálogo</a></div>';
+      $('[data-passos]').style.display = 'none';
+      return false;
+    }
+    $('[data-itens]').innerHTML = itens.map(function (i) {
+      var p = SP.prod(i.id); if (!p) return '';
+      return '<div style="display:grid;grid-template-columns:52px 1fr auto;gap:11px;align-items:center;padding:9px 0;border-bottom:1px solid var(--linha)">' +
+        '<div style="aspect-ratio:1;border-radius:4px;overflow:hidden;background:var(--creme)">' +
+          SP.figura('img/produtos/' + p.id + '-1.jpg', p.nome, 'ph--claro') + '</div>' +
+        '<div><b style="font-size:12.8px;font-weight:600;display:block;line-height:1.3">' + p.nome + '</b>' +
+        '<small style="font-family:var(--mono);font-size:11px;color:var(--cinza)">tam ' + i.tam + ' · ' + i.qtd + 'x</small></div>' +
+        '<b style="font-family:var(--display);font-size:14px">' + SP.brl(p.preco * i.qtd) + '</b></div>';
+    }).join('');
+    SP.armar($('[data-itens]'));
+    return true;
+  }
+
+  function pintaTotais() {
+    var sub = SP.subtotal();
+    var f = frete();
+    var dc = sub * descontoCupom;
+    var pix = forma() === 'pix' ? (sub - dc) * 0.10 : 0;
+    var total = sub - dc - pix + f;
+
+    $('[data-totais]').innerHTML =
+      '<div class="linha-total"><span>Subtotal</span><span>' + SP.brl(sub) + '</span></div>' +
+      (dc ? '<div class="linha-total" style="color:var(--lima)"><span>Cupom ' + cupomNome + '</span><span>− ' + SP.brl(dc) + '</span></div>' : '') +
+      (pix ? '<div class="linha-total" style="color:var(--lima)"><span>Desconto Pix (10%)</span><span>− ' + SP.brl(pix) + '</span></div>' : '') +
+      '<div class="linha-total"><span>Frete</span><span>' + (f ? SP.brl(f) : 'grátis') + '</span></div>' +
+      '<div class="linha-total linha-total--big"><span>Total</span><b>' + SP.brl(total) + '</b></div>' +
+      (forma() === 'cartao'
+        ? '<p style="font-size:12px;color:var(--cinza);margin:0">ou 12x de ' + SP.brl(total / 12) + ' sem juros</p>'
+        : '<p style="font-size:12px;color:var(--cinza);margin:0">à vista, aprovação imediata</p>');
+
+    var sel = $('[data-parcelas]');
+    if (sel) {
+      sel.innerHTML = '';
+      for (var n = 1; n <= 12; n++) {
+        sel.insertAdjacentHTML('beforeend',
+          '<option>' + n + 'x de ' + SP.brl(total / n) + ' sem juros</option>');
+      }
+    }
+  }
+
+  if (!pintaItens()) return;
+  pintaTotais();
+
+  $$('[name=pg]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      $('[data-cartao]').style.display = forma() === 'cartao' ? 'block' : 'none';
+      pintaTotais();
+    });
+  });
+  $$('[name=frete]').forEach(function (r) { r.addEventListener('change', pintaTotais); });
+
+  $('[data-aplica]').addEventListener('click', function () {
+    var c = ($('[data-cupom]').value || '').trim().toUpperCase();
+    if (SP.CUPONS[c]) {
+      descontoCupom = SP.CUPONS[c]; cupomNome = c;
+      SP.toast('cupom ' + c + ' aplicado');
+    } else {
+      descontoCupom = 0; cupomNome = '';
+      SP.toast('cupom inválido');
+    }
+    pintaTotais();
+  });
+
+  var campos = ['nome', 'email', 'tel', 'cpf', 'cep', 'end', 'num', 'cid'];
+  $$('.passo').forEach(function (p, i) {
+    p.addEventListener('click', function () {
+      $$('.passo').forEach(function (x, k) { x.classList.toggle('on', k <= i); });
+    });
+  });
+
+  $('[data-pagar]').addEventListener('click', function () {
+    var falta = campos.filter(function (id) { var e = document.getElementById(id); return e && !e.value.trim(); });
+    if (falta.length) {
+      var alvo = document.getElementById(falta[0]);
+      alvo.focus();
+      alvo.style.borderColor = 'var(--alerta)';
+      SP.toast('preencha ' + (alvo.previousElementSibling ? alvo.previousElementSibling.textContent.toLowerCase() : 'os dados'));
+      return;
+    }
+    var n = 'SP-' + Math.floor(100000 + Math.random() * 899999);
+    $('[data-pedido]').textContent = n;
+    $('[data-tela]').style.display = 'none';
+    $('[data-passos]').style.display = 'none';
+    $('[data-ok]').style.display = 'block';
+    SP.limpar();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $$('.campo-in input').forEach(function (i) {
+    i.addEventListener('input', function () { i.style.borderColor = ''; });
+  });
+};
+</script>
+</body>
+</html>
