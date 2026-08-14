@@ -335,9 +335,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .vit-nota{max-width:74ch;margin:34px auto 0;padding:0 5vw;font-size:.92rem;
     line-height:1.7;color:var(--muted)}
   .vit-nota b{color:var(--white);font-weight:600}
+  /* cartao unico, fora de esteira: alinhado ao mesmo respiro lateral dos
+     cabecalhos, sem mascara de borda e sem laco. O width vem do .vit-card,
+     entao ele fica do tamanho dos outros cartoes da pagina. */
+  .vit-solo{padding:0 5vw}
+  .vit-solo .vit-card{margin-right:0}
   @media (max-width:720px){
     .vit-card{width:74vw}
     .vit-cab{padding:0 5vw;gap:8px}
+    .vit-solo .vit-card{width:100%}
   }
   /* quem pediu menos movimento fica com a rolagem nativa: o script não
      liga o laço, e a esteira vira uma faixa que se arrasta e para */
@@ -967,19 +973,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h3 data-en="Online stores">Lojas online</h3>
       <span class="vit-tag" data-en="one demo · cart and checkout working">uma demonstração · carrinho e checkout funcionando</span>
     </div>
-    <div class="mq vit-mq">
-      <div class="mq-track">
-        <a class="vit-card" href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
-          <img src="assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
-        </a>
-        <a class="vit-card" href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
-          <img src="assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
-        </a>
-      </div>
+    <!-- uma demo so: esteira aqui seria um cartao repetindo em loop, que
+         parece defeito. Fica um quadrado parado ate existir a segunda. -->
+    <div class="vit-solo">
+      <a class="vit-card" href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener">
+        <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
+        <img src="assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
+        <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
+      </a>
     </div>
   </div>
 
@@ -1072,8 +1073,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            contêiner em vez de ao <a> de dentro, e um clique seco no
            cartão deixaria de abrir a demonstração. Capturando só
            quando já houve arrasto de verdade, o clique segue intacto
-           e o arrasto continua funcionando com o dedo fora da faixa. */
-        if (!capturado) { caixa.setPointerCapture(e.pointerId); capturado = true; }
+           e o arrasto continua funcionando com o dedo fora da faixa.
+
+           No toque não se captura: o dedo já é capturado implicitamente
+           pelo alvo, e pedir a captura explícita fazia o navegador
+           retargetar o ponteiro no meio do gesto — o que disparava
+           lostpointercapture e matava o arrasto antes de ele andar. */
+        if (!capturado && e.pointerType !== 'touch') {
+          caixa.setPointerCapture(e.pointerId); capturado = true;
+        }
       }
       pos = posInicial - dx;
       pos = ((pos % meia) + meia) % meia;
@@ -1093,15 +1101,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     caixa.addEventListener('pointerup', soltar);
     caixa.addEventListener('pointercancel', soltar);
-    caixa.addEventListener('lostpointercapture', soltar);
+    /* lostpointercapture NÃO encerra o arrasto. Ele dispara no meio do
+       gesto sempre que o alvo é retargetado — e como o pointer-events dos
+       cartões muda ao entrar a classe .arrastando, isso acontecia várias
+       vezes por arrasto no toque. Quem encerra é pointerup e
+       pointercancel, que bastam: os dois sempre chegam. */
     /* segura o clique que fecha um arrasto de verdade */
     caixa.addEventListener('click', function (e) {
       if (andou > LIMIAR) { e.preventDefault(); e.stopPropagation(); andou = 0; }
     }, true);
 
-    /* ---------- pausa ---------- */
-    caixa.addEventListener('pointerenter', function () { parado = true; });
-    caixa.addEventListener('pointerleave', function () { parado = false; });
+    /* ---------- pausa ----------
+       Só para o mouse. No toque não existe "passar o mouse por cima", e
+       enter/leave chegavam sete vezes por gesto conforme o dedo cruzava
+       os cartões, ligando e desligando a pausa sem sentido. */
+    caixa.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') parado = true; });
+    caixa.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') parado = false; });
     caixa.addEventListener('focusin', function () { parado = true; });
     caixa.addEventListener('focusout', function () { parado = false; });
 
