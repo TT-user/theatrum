@@ -30,3 +30,6 @@ skills-lock.json
 **/_fotos/node_modules/
 **/_fotos/package*.json
 **/_fotos/reprovadas/
+# vídeo cru saido do gerador: pesa alguns MB e o que o site serve é a
+# versão comprimida dentro da demo
+**/_fotos/*.mp4
