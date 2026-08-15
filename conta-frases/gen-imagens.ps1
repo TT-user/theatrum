@@ -1,11 +1,19 @@
 # 2k = 1744x2336, folgado para o entregavel de 1080x1350. 1k = 872x1168, que
 # fica ABAIXO do final e exigiria upscale: quando faltar credito, baixe a
 # -Quality antes de baixar a -Resolution.
+#
+# -Modelo gpt_image_2    7 creditos, exige plano basic ou acima
+# -Modelo nano_banana_pro 2 creditos, roda no plano free e aceita referencia
+#
+# Com nano_banana_pro o script passa uma pintura ja aprovada do MESMO pilar
+# como referencia de estilo, senao o look muda de modelo para modelo e a
+# grade do perfil perde a unidade.
 param(
   [string[]]$Only,
   [int]$Tentativas = 4,
   [ValidateSet('1k', '2k', '4k')][string]$Resolution = '2k',
-  [ValidateSet('low', 'medium', 'high')][string]$Quality = 'high'
+  [ValidateSet('low', 'medium', 'high')][string]$Quality = 'high',
+  [ValidateSet('gpt_image_2', 'nano_banana_pro')][string]$Modelo = 'gpt_image_2'
 )
 
 $root  = "c:\Users\mathe\Desktop\theatrum\conta-frases"
@@ -30,6 +38,17 @@ foreach ($p in $posts) {
     "Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes."
   }
 
+  # referencia de estilo: primeira pintura ja baixada do mesmo pilar
+  $ref = $null
+  if ($Modelo -eq 'nano_banana_pro') {
+    $ref = $posts |
+      Where-Object { $_.pilar -eq $p.pilar -and $_.id -ne $p.id -and (Test-Path "$root\img\$($_.id).png") } |
+      Select-Object -First 1
+  }
+  $trava = if ($ref) {
+    "Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.`n"
+  } else { "" }
+
   $prompt = @"
 Textured oil painting on rough linen canvas, naive folk-art style.
 $($p.scene).
@@ -39,14 +58,20 @@ Soft diffused light, hazy horizon, no hard shadows.
 Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.
 Wide open negative space in the $($p.text_zone) third of the frame, empty and low-contrast, reserved for text overlay.
 Painterly, contemplative, quiet, melancholic but hopeful.
+$trava
 No text, no lettering, no watermark, no signature, no faces, no logos.
 Vertical portrait composition.
 "@
 
+  # gpt_image_2 tem --quality, nano_banana_pro nao
+  $extra = if ($Modelo -eq 'gpt_image_2') { @('--quality', $Quality) } else { @() }
+  if ($ref) { $extra += @('--image', "$root\img\$($ref.id).png") }
+
   # a API devolve 503/403 quando o lote aperta: serializar e tentar de novo
   for ($t = 1; $t -le $Tentativas; $t++) {
-    Write-Host "=== imagem $($p.id) ($($p.pilar)) $Resolution/$Quality - tentativa $t ==="
-    $out = higgsfield generate create gpt_image_2 --prompt $prompt --aspect_ratio 3:4 --resolution $Resolution --quality $Quality --wait --json
+    $comRef = if ($ref) { " ref=$($ref.id)" } else { "" }
+    Write-Host "=== imagem $($p.id) ($($p.pilar)) $Modelo $Resolution$comRef - tentativa $t ==="
+    $out = higgsfield generate create $Modelo --prompt $prompt --aspect_ratio 3:4 --resolution $Resolution @extra --wait --json
 
     $txt = ($out | Out-String)
     if ($txt -match 'result_url.{0,4}http') {
