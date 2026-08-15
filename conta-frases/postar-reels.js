@@ -1,4 +1,9 @@
-// Publica os posts de conta-frases como Reels no Instagram.
+// Publica os posts de conta-frases no Instagram.
+//
+// Cada post sai como Reel quando existe o mp4 animado e como imagem de feed
+// quando so existe o jpg estatico. O formato e deduzido do arquivo, nao
+// escolhido na linha de comando: assim um post animado nunca sai como foto
+// por engano.
 //
 //   node --env-file=$ENV postar-reels.js --checar
 //   node --env-file=$ENV postar-reels.js 01
@@ -27,11 +32,24 @@ const API = 'https://graph.instagram.com/v21.0';
 // o script confere o username antes de criar qualquer container.
 const CONTA_ESPERADA = 'explicologo';
 
-const BASE_VIDEO =
+const BASE =
   'https://raw.githubusercontent.com/TT-user/theatrum/main/conta-frases/final/instagram';
 
 const ROOT = __dirname;
 const REGISTRO = path.join(ROOT, 'publicados.json');
+const FINAL = path.join(ROOT, 'final', 'instagram');
+
+// O mp4 manda: se a animacao existe, o post e Reel. Sem mp4 e com jpg, sai
+// como imagem de feed. Sem nenhum dos dois, o post ainda nao esta pronto.
+function midia(id) {
+  if (fs.existsSync(path.join(FINAL, `${id}-4x5.mp4`))) {
+    return { tipo: 'REELS', arquivo: `${id}-4x5.mp4`, url: `${BASE}/${id}-4x5.mp4` };
+  }
+  if (fs.existsSync(path.join(FINAL, `${id}-4x5.jpg`))) {
+    return { tipo: 'IMAGE', arquivo: `${id}-4x5.jpg`, url: `${BASE}/${id}-4x5.jpg` };
+  }
+  return null;
+}
 
 const posts = JSON.parse(fs.readFileSync(path.join(ROOT, 'posts.json'), 'utf8'));
 const copy = JSON.parse(fs.readFileSync(path.join(ROOT, 'copy.json'), 'utf8'));
@@ -74,22 +92,27 @@ async function conferirConta() {
 async function conferirAmbiente() {
   const { ok } = await conferirConta();
 
+  // so checa o que ja foi montado: os posts sem arte ainda estao na esteira
+  // e nao sao erro, apenas nao entram na fila de publicacao.
   let faltando = 0;
+  let semArte = 0;
   for (const p of posts) {
-    const url = `${BASE_VIDEO}/${p.id}-4x5.mp4`;
+    const m = midia(p.id);
+    if (!m) { semArte++; continue; }
     let estado;
     try {
-      const r = await fetch(url, { method: 'HEAD' });
+      const r = await fetch(m.url, { method: 'HEAD' });
       estado = r.ok
         ? `${r.status} ${(Number(r.headers.get('content-length')) / 1024 / 1024).toFixed(1)} MB`
         : `${r.status} INACESSIVEL`;
       if (!r.ok) faltando++;
     } catch (e) { estado = 'ERRO ' + e.message; faltando++; }
-    console.log(`video ${p.id}  : ${estado}`);
+    console.log(`${p.id} ${m.tipo.padEnd(5)}: ${estado}`);
   }
+  if (semArte) console.log(`\n${semArte} post(s) ainda sem arte montada.`);
   if (faltando) {
-    console.log(`\n${faltando} video(s) sem URL publica. Faca commit e push de`);
-    console.log('conta-frases/final/instagram/*.mp4 antes de publicar.');
+    console.log(`\n${faltando} arquivo(s) sem URL publica. Faca commit e push de`);
+    console.log('conta-frases/final/instagram/ antes de publicar.');
     process.exit(1);
   }
   if (!ok) {
@@ -135,16 +158,23 @@ async function publicarUm(p) {
     return;
   }
 
-  const videoUrl = `${BASE_VIDEO}/${p.id}-4x5.mp4`;
-  console.log(`\n${p.id} — "${p.frase_flat}"`);
+  const m = midia(p.id);
+  if (!m) { console.log(`${p.id}: sem arte montada, pulando`); return; }
+
+  console.log(`\n${p.id} [${m.tipo}] — "${p.frase_flat}"`);
 
   console.log('  criando container...');
-  const container = await api(`${IG_ID}/media`, {
-    media_type: 'REELS',
-    video_url: videoUrl,
-    caption: montarLegenda(p.id),
-    share_to_feed: true,
-  });
+  const container = await api(`${IG_ID}/media`, m.tipo === 'REELS'
+    ? {
+        media_type: 'REELS',
+        video_url: m.url,
+        caption: montarLegenda(p.id),
+        share_to_feed: true,
+      }
+    : {
+        image_url: m.url,
+        caption: montarLegenda(p.id),
+      });
 
   console.log(`  container ${container.id}, aguardando processamento...`);
   await esperarContainer(container.id);
@@ -152,7 +182,7 @@ async function publicarUm(p) {
   console.log('  publicando...');
   const pub = await api(`${IG_ID}/media_publish`, { creation_id: container.id });
 
-  reg[p.id] = { media_id: pub.id, quando: new Date().toISOString() };
+  reg[p.id] = { media_id: pub.id, tipo: m.tipo, quando: new Date().toISOString() };
   gravarRegistro(reg);
   console.log(`  publicado: ${pub.id}`);
 

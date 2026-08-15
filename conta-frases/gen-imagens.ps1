@@ -1,4 +1,12 @@
-param([string[]]$Only, [int]$Tentativas = 4)
+# 2k = 1744x2336, folgado para o entregavel de 1080x1350. 1k = 872x1168, que
+# fica ABAIXO do final e exigiria upscale: quando faltar credito, baixe a
+# -Quality antes de baixar a -Resolution.
+param(
+  [string[]]$Only,
+  [int]$Tentativas = 4,
+  [ValidateSet('1k', '2k', '4k')][string]$Resolution = '2k',
+  [ValidateSet('low', 'medium', 'high')][string]$Quality = 'high'
+)
 
 $root  = "c:\Users\mathe\Desktop\theatrum\conta-frases"
 $posts = Get-Content "$root\posts.json" -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -37,14 +45,21 @@ Vertical portrait composition.
 
   # a API devolve 503/403 quando o lote aperta: serializar e tentar de novo
   for ($t = 1; $t -le $Tentativas; $t++) {
-    Write-Host "=== imagem $($p.id) ($($p.pilar)) - tentativa $t ==="
-    $out = higgsfield generate create gpt_image_2 --prompt $prompt --aspect_ratio 3:4 --resolution 2k --quality high --wait --json
+    Write-Host "=== imagem $($p.id) ($($p.pilar)) $Resolution/$Quality - tentativa $t ==="
+    $out = higgsfield generate create gpt_image_2 --prompt $prompt --aspect_ratio 3:4 --resolution $Resolution --quality $Quality --wait --json
 
     $txt = ($out | Out-String)
     if ($txt -match 'result_url.{0,4}http') {
       $txt | Out-File $meta -Encoding utf8
       Write-Host "$($p.id): ok"
       break
+    }
+
+    # saldo insuficiente nao melhora tentando de novo: aborta o lote inteiro
+    # em vez de queimar as tentativas restantes de todos os posts
+    if ($txt -match 'not_enough_credits') {
+      Write-Host "$($p.id): creditos insuficientes, abortando o lote"
+      exit 3
     }
 
     Write-Host "$($p.id): falhou ($($txt.Trim()))"
