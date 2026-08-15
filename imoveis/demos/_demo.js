@@ -34,9 +34,31 @@
       }
     } catch (e) {}
   }
+  /* Quem chega pela landing em inglês volta para ela, e não para a home
+     em português: mandar um visitante dos EUA ou do Reino Unido para uma
+     página que ele não lê é perder o clique que o anúncio pagou. */
   var VOLTA = origem === 'planejados'
     ? { raiz: '../../../moveis-planejados/', cta: '../../../moveis-planejados/#planos' }
+    : origem === 'us'
+    ? { raiz: '../../../us/',                cta: '../../../us/#pricing' }
     : { raiz: '../../../',                   cta: '../../../#diagnostico' };
+
+  var EN = origem === 'us';
+  var TXT = EN
+    ? { voltar: '&larr; Back to Theatrum',
+        aviso: '<b>Demonstration.</b> The brand, the listings, the prices and the contacts are invented. ' +
+               'The layout and the system are real and were built by Theatrum.',
+        quero: 'I want one',
+        toastTitulo: 'Demonstration',
+        toastTexto: 'On a real site this button opens WhatsApp with the message already written — ' +
+                    'including the listing code.' }
+    : { voltar: '&larr; Voltar para a Theatrum',
+        aviso: '<b>Demonstração.</b> Marca, imóveis, preços e contatos são fictícios. ' +
+               'O layout e o sistema são reais e foram feitos pela Theatrum.',
+        quero: 'Quero um assim',
+        toastTitulo: 'Demonstração',
+        toastTexto: 'Num site real, este botão abre o WhatsApp do corretor com a mensagem já escrita ' +
+                    '— inclusive o código do imóvel.' };
 
   /* ---------- camada de proteção ----------
      As páginas ficam em imoveis/demos/<demo>/, o arquivo fica um
@@ -105,10 +127,9 @@
   if (!LIMPO) {
     var bar = document.createElement('div');
     bar.className = 'thtr-bar';
-    bar.innerHTML = '<a class="voltar" href="' + VOLTA.raiz + '">&larr; Voltar para a Theatrum</a>' +
-                    '<span><b>Demonstração.</b> Marca, imóveis, preços e contatos são fictícios. ' +
-                    'O layout e o sistema são reais e foram feitos pela Theatrum.</span>' +
-                    '<a class="quero" href="' + VOLTA.cta + '">Quero um assim</a>';
+    bar.innerHTML = '<a class="voltar" href="' + VOLTA.raiz + '">' + TXT.voltar + '</a>' +
+                    '<span>' + TXT.aviso + '</span>' +
+                    '<a class="quero" href="' + VOLTA.cta + '">' + TXT.quero + '</a>';
     document.body.appendChild(bar);
 
     var folga = document.createElement('style');
@@ -121,8 +142,7 @@
   var toast = document.createElement('div');
   toast.className = 'thtr-toast';
   toast.setAttribute('role', 'status');
-  toast.innerHTML = '<b>Demonstração</b>Num site real, este botão abre o WhatsApp ' +
-                    'do corretor com a mensagem já escrita — inclusive o código do imóvel.';
+  toast.innerHTML = '<b>' + TXT.toastTitulo + '</b>' + TXT.toastTexto;
   document.body.appendChild(toast);
 
   var timer;

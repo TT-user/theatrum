@@ -58,6 +58,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --font-body:'Inter',sans-serif;
     --font-mono:'JetBrains Mono',monospace;
     --pad:5vw;
+    /* tokens da janela de WhatsApp, iguais aos da home */
+    --wa-bg:#0b141a; --wa-header:#1f2c34; --wa-in:#202c33; --wa-out:#005c4b;
+    --wa-text:#e9edef; --wa-sub:#8696a0; --wa-green:#00a884;
+    --sys-border:#2a251d; --sys-ease:cubic-bezier(.2,.7,.2,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -111,6 +115,75 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero::before{content:"";position:absolute;top:-30%;right:-10%;width:60%;height:120%;
     background:radial-gradient(circle,rgba(227,179,65,.10),transparent 62%);pointer-events:none}
   .hero .lead{font-size:1.12rem}
+  .hero__grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:56px;align-items:center}
+  @media (max-width:980px){
+    .hero__grid{grid-template-columns:1fr;gap:46px}
+    .hero__fone{justify-self:center}
+  }
+
+  /* ---------- celular / conversa ----------
+     Portado da secao de demonstracao da home: mesma janela de WhatsApp,
+     mesma sequencia com "digitando", mesmo aviso no fim. So o roteiro
+     muda, e aqui ele fala ingles e agenda um orcamento. */
+  .fone-wrap{position:relative;padding-bottom:34px}
+  .fone{width:320px;max-width:86vw;border-radius:42px;background:#000;
+    border:1px solid var(--sys-border);overflow:hidden;
+    box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 8px rgba(255,255,255,.02)}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;
+    padding:12px 22px 8px;background:var(--wa-header);
+    font-size:.7rem;font-weight:600;color:var(--wa-text)}
+  .wa-header{display:flex;align-items:center;gap:10px;padding:8px 14px 12px;background:var(--wa-header)}
+  .wa-header .back{color:var(--wa-sub);display:flex}
+  .wa-avatar{width:36px;height:36px;border-radius:50%;flex:none;
+    background:linear-gradient(135deg,#6b7c85,#4a5a63);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.95rem}
+  .contact{flex:1;min-width:0}
+  .contact .name{color:var(--wa-text);font-weight:600;font-size:.92rem}
+  .contact .status{color:var(--wa-sub);font-size:.72rem}
+  .wa-header .icons{display:flex;gap:16px;color:var(--wa-sub)}
+  .chat{background:var(--wa-bg);height:400px;padding:14px 12px 10px;
+    display:flex;flex-direction:column;gap:8px;overflow:hidden;
+    background-image:radial-gradient(rgba(255,255,255,.02) 1px,transparent 1px);
+    background-size:18px 18px}
+  .daychip{align-self:center;background:#182229;color:var(--wa-sub);
+    font-size:.64rem;font-weight:600;letter-spacing:.06em;
+    padding:5px 12px;border-radius:8px;text-transform:uppercase}
+  .msg{max-width:80%;padding:8px 10px 6px;border-radius:10px;
+    font-size:.83rem;line-height:1.42;color:var(--wa-text);position:relative}
+  .msg .meta{display:flex;align-items:center;gap:4px;justify-content:flex-end;
+    margin-top:3px;font-size:.6rem;color:var(--wa-sub)}
+  .msg.in{align-self:flex-start;background:var(--wa-in);border-top-left-radius:3px;transform-origin:left bottom}
+  .msg.out{align-self:flex-end;background:var(--wa-out);border-top-right-radius:3px;transform-origin:right bottom}
+  .msg.out .meta .ia{font-family:var(--font-mono);font-weight:700;font-size:.54rem;
+    color:rgba(233,237,239,.75);letter-spacing:.08em;
+    border:1px solid rgba(233,237,239,.28);border-radius:4px;padding:1px 4px}
+  .typing{align-self:flex-end;background:var(--wa-out);border-radius:10px;
+    border-top-right-radius:3px;transform-origin:right bottom;
+    padding:12px 14px;display:flex;gap:5px;align-items:center}
+  .typing i{width:6px;height:6px;border-radius:50%;background:rgba(233,237,239,.65);
+    animation:piscar 1.1s infinite var(--sys-ease)}
+  .typing i:nth-child(2){animation-delay:.18s}
+  .typing i:nth-child(3){animation-delay:.36s}
+  @keyframes piscar{0%,70%,100%{opacity:.25;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
+  .inputbar{display:flex;align-items:center;gap:10px;padding:10px 12px 16px;background:var(--wa-bg)}
+  .inputbar .field{flex:1;background:var(--wa-header);border-radius:22px;
+    padding:10px 16px;color:var(--wa-sub);font-size:.83rem}
+  .inputbar .mic{width:40px;height:40px;border-radius:50%;background:var(--wa-green);
+    display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+  .seq{opacity:0;transform:translateY(14px) scale(.96)}
+  .seq.show{opacity:1;transform:translateY(0) scale(1);
+    transition:opacity .45s var(--sys-ease),transform .45s var(--sys-ease)}
+  .aviso{position:absolute;left:50%;bottom:0;transform:translate(-50%,20px);
+    opacity:0;width:max-content;max-width:94%;
+    background:#141210;border:1px solid var(--sys-border);border-radius:14px;
+    padding:12px 18px;display:flex;align-items:center;gap:12px;
+    box-shadow:0 24px 60px rgba(0,0,0,.65);
+    transition:opacity .5s var(--sys-ease),transform .5s var(--sys-ease);z-index:2}
+  .aviso.show{opacity:1;transform:translate(-50%,0)}
+  .aviso .check{width:26px;height:26px;border-radius:50%;background:var(--accent);
+    flex:none;display:flex;align-items:center;justify-content:center}
+  .aviso .t-title{color:var(--white);font-weight:700;font-size:.86rem;letter-spacing:-.01em}
+  .aviso .t-sub{color:var(--muted);font-size:.72rem;margin-top:1px}
   .hero__ctas{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
   /* as tres objecoes que matam a venda antes do preco, respondidas na
      primeira tela: preco fixo, sem mensalidade, o site e seu */
@@ -179,18 +252,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      teclado — sem script de arrasto para dar errado. */
   /* align-items:start e obrigatorio: sem ele o flex estica todo cartao
      ate a altura do mais alto e o aspect-ratio da imagem e ignorado */
-  .esteira{margin-top:38px;align-items:start;
-    display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;
-    scroll-snap-type:x proximity;padding:4px var(--pad) 20px;
-    /* sem o scroll-padding o encaixe cola o primeiro cartao na borda da
-       tela e come a margem lateral que alinha a esteira com o texto */
-    scroll-padding-left:var(--pad);
-    scrollbar-color:rgba(227,179,65,.5) rgba(255,255,255,.07)}
-  .esteira::-webkit-scrollbar{height:8px}
-  .esteira::-webkit-scrollbar-track{background:rgba(255,255,255,.07);border-radius:999px}
-  .esteira::-webkit-scrollbar-thumb{background:rgba(227,179,65,.5);border-radius:999px}
-  .esteira::-webkit-scrollbar-thumb:hover{background:var(--accent)}
-  .esteira .cartao{flex:0 0 clamp(276px,31vw,430px);scroll-snap-align:start}
+  /* A esteira anda sozinha e tambem se arrasta. O laco e do script, nao
+     do CSS: @keyframes sobrescreve qualquer transform que o JS escreva, e
+     sem escrever transform nao ha arrasto possivel. As bordas somem numa
+     mascara para os cartoes entrarem e sairem sem corte seco. */
+  .esteira{margin-top:38px;position:relative;overflow:hidden;user-select:none;cursor:grab;
+    touch-action:pan-y;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  .esteira.arrastando{cursor:grabbing}
+  .esteira-trilho{display:flex;align-items:start;gap:20px;padding:4px 0 8px;
+    width:max-content;will-change:transform}
+  /* durante o arrasto o cartao nao responde a hover nem recebe o clique:
+     soltar o dedo em cima de um cartao abriria a demo sem querer */
+  .esteira.arrastando .cartao{pointer-events:none}
+  .esteira .cartao{flex:0 0 clamp(276px,31vw,430px)}
   .dica-rolagem{display:flex;align-items:center;gap:9px;margin-top:6px;
     font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;
     text-transform:uppercase;color:var(--muted)}
@@ -299,23 +375,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="wrap">
-    <p class="eyebrow"><i></i>For small businesses in the US &amp; UK</p>
-    <h1>A website that makes your business <span class="hl">look expensive</span>.</h1>
-    <p class="lead"><b>$500 flat.</b> Hand-built for your business, live in about two weeks, and yours to keep. No monthly fee, no page builder, and no template a hundred other businesses are already using.</p>
-    <div class="hero__ctas">
-      <a class="btn" data-origem="hero" target="_blank" rel="noopener"
-         href="https://wa.me/5532984762445?text=Hi!%20I%20saw%20your%20ad%20and%20I%27d%20like%20a%20website%20for%20my%20business.">
-        Get my site — $500
-        <svg viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7H21M15 1.5L21.5 7 15 12.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a class="btn btn-ghost" href="#work">See real sites first</a>
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow"><i></i>For small businesses in the US &amp; UK</p>
+      <h1>A website that makes your business <span class="hl">look expensive</span>.</h1>
+      <p class="lead"><b>$500 flat.</b> Hand-built for your business, live in about two weeks, and yours to keep. No monthly fee, no page builder, and no template a hundred other businesses are already using.</p>
+      <div class="hero__ctas">
+        <a class="btn" data-origem="hero" target="_blank" rel="noopener"
+           href="https://wa.me/5532984762445?text=Hi!%20I%20saw%20your%20ad%20and%20I%27d%20like%20a%20website%20for%20my%20business.">
+          Get my site — $500
+          <svg viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7H21M15 1.5L21.5 7 15 12.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#work">See real sites first</a>
+      </div>
+      <div class="mini">Nothing to pay to start the conversation</div>
+      <div class="trust">
+        <span>One price, paid once</span>
+        <span>No monthly fee, ever</span>
+        <span>You own the files</span>
+      </div>
     </div>
-    <div class="mini">Nothing to pay to start the conversation</div>
-    <div class="trust">
-      <span>One price, paid once</span>
-      <span>No monthly fee, ever</span>
-      <span>You own the files</span>
+
+    <!-- primeiro contato: o que acontece quando alguem acha o seu site -->
+    <div class="hero__fone">
+      <div class="fone-wrap">
+        <div class="fone">
+          <div class="statusbar"><span>9:41</span><span>5G · 92%</span></div>
+          <div class="wa-header">
+            <span class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="wa-avatar">S</div>
+            <div class="contact">
+              <div class="name">Sarah M.</div>
+              <div class="status" id="chatStatus">online</div>
+            </div>
+            <div class="icons">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 10.5l5-3v9l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a12 12 0 006 6L15 14l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="chat" id="chatBox">
+            <div class="daychip seq">TODAY</div>
+            <div class="msg in seq">Hi — found you on Google. Do you take on small jobs?<div class="meta">9:41 PM</div></div>
+            <div class="typing seq" data-typing><i></i><i></i><i></i></div>
+            <div class="msg out seq">We do! Send me a photo of the space and I'll get you a quote. Would Thursday at 10 work for a quick call?
+              <div class="meta">9:41 PM
+                <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <div class="msg in seq">Thursday is perfect. Sending the photos now.<div class="meta">9:42 PM</div></div>
+            <div class="typing seq" data-typing><i></i><i></i><i></i></div>
+            <div class="msg out seq">Booked — Thursday, 10 AM. I'll text you a reminder the day before. 😊
+              <div class="meta">9:42 PM
+                <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="inputbar">
+            <div class="field">Message</div>
+            <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          </div>
+        </div>
+        <div class="aviso" id="chatAviso">
+          <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <div class="t-title">Thursday, 10 AM · booked</div>
+            <div class="t-sub">A new job, from a stranger who found your site</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -325,44 +452,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <p class="eyebrow"><i></i>See the work</p>
     <h2>Every site below is live. <span class="hl">Open any of them.</span></h2>
-    <p class="lead">Not pictures of a mockup — real pages you can scroll and click through, with the search, the filters and the checkout working right in your browser.</p>
+    <p class="lead"><b>Click any card to open the real site</b> — not a picture of a mockup. Scroll it, use the filters, put something in the cart: it all works in your browser. It opens in a new tab, and every demo carries a button to bring you back to this page.</p>
     <p class="dica-rolagem">
       <svg viewBox="0 0 26 9" aria-hidden="true"><path d="M0 4.5h23M18 1l4.5 3.5L18 8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Scroll sideways for more
+      Drag sideways for more · click to open
     </p>
   </div>
 
-  <div class="esteira">
-      <a class="cartao" href="../moveis-planejados/demos/nutri-usa/" target="_blank" rel="noopener">
-        <span class="janela"><i></i><i></i><i></i><b>ethanreyes-rd.com</b></span>
-        <img src="../assets/img/vitrine/nutri-usa-desktop.webp" alt="Website for a registered dietitian in Los Angeles" loading="lazy" width="1000" height="625"/>
-        <span class="pe"><b>Ethan Reyes, RD</b><em>Dietitian · Los Angeles · in English</em></span>
-      </a>
-      <a class="cartao" href="../lojas/demos/seis-panos/" target="_blank" rel="noopener">
-        <span class="janela"><i></i><i></i><i></i><b>seispanos.com</b></span>
-        <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Online store with catalogue, cart and checkout" loading="lazy" width="1000" height="625"/>
-        <span class="pe"><b>Seis Panos</b><em>Online store · cart + checkout</em></span>
-      </a>
-      <a class="cartao" href="../moveis-planejados/demos/cerne/" target="_blank" rel="noopener">
-        <span class="janela"><i></i><i></i><i></i><b>cernejoinery.com</b></span>
-        <img src="../assets/img/vitrine/cerne-desktop.webp" alt="Website for a high-end custom joinery studio" loading="lazy" width="1000" height="625"/>
-        <span class="pe"><b>Cerne</b><em>Custom joinery · high end</em></span>
-      </a>
-      <a class="cartao" href="../imoveis/demos/reserva-aurora/" target="_blank" rel="noopener">
-        <span class="janela"><i></i><i></i><i></i><b>reservaaurora.com</b></span>
-        <img src="../assets/img/vitrine/reserva-aurora-desktop.webp" alt="Property launch site with unit board and calculator" loading="lazy" width="1000" height="625"/>
-        <span class="pe"><b>Reserva Aurora</b><em>Property launch · unit board</em></span>
-      </a>
-      <a class="cartao" href="../imoveis/demos/vista-imoveis/" target="_blank" rel="noopener">
-        <span class="janela"><i></i><i></i><i></i><b>vistaproperties.com</b></span>
-        <img src="../assets/img/vitrine/vista-imoveis-desktop.webp" alt="Estate agency site with filters and compare" loading="lazy" width="1000" height="625"/>
-        <span class="pe"><b>Vista</b><em>Estate agency · filters + compare</em></span>
-      </a>
-      <a class="cartao" href="../moveis-planejados/demos/atelie-verga/" target="_blank" rel="noopener">
-        <span class="janela"><i></i><i></i><i></i><b>atelierverga.com</b></span>
-        <img src="../assets/img/vitrine/atelie-verga-desktop.webp" alt="Website for a solid wood furniture workshop" loading="lazy" width="1000" height="625"/>
-        <span class="pe"><b>Atelier Verga</b><em>Furniture workshop</em></span>
-      </a>
+  <div class="esteira" id="esteira">
+  <div class="esteira-trilho">
+    <a class="cartao" href="../moveis-planejados/demos/nutri-usa/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>ethanreyes-rd.com</b></span>
+      <img src="../assets/img/vitrine/nutri-usa-desktop.webp" alt="Website for a registered dietitian in Los Angeles" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Ethan Reyes, RD</b><em>Dietitian · Los Angeles · in English</em></span>
+    </a>
+    <a class="cartao" href="../lojas/demos/seis-panos/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>seispanos.com</b></span>
+      <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Online store with catalogue, cart and checkout" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Seis Panos</b><em>Online store · cart + checkout</em></span>
+    </a>
+    <a class="cartao" href="../moveis-planejados/demos/cerne/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>cernejoinery.com</b></span>
+      <img src="../assets/img/vitrine/cerne-desktop.webp" alt="Website for a high-end custom joinery studio" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Cerne</b><em>Custom joinery · high end</em></span>
+    </a>
+    <a class="cartao" href="../imoveis/demos/reserva-aurora/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>reservaaurora.com</b></span>
+      <img src="../assets/img/vitrine/reserva-aurora-desktop.webp" alt="Property launch site with unit board and calculator" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Reserva Aurora</b><em>Property launch · unit board</em></span>
+    </a>
+    <a class="cartao" href="../imoveis/demos/vista-imoveis/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>vistaproperties.com</b></span>
+      <img src="../assets/img/vitrine/vista-imoveis-desktop.webp" alt="Estate agency site with filters and compare" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Vista</b><em>Estate agency · filters + compare</em></span>
+    </a>
+    <a class="cartao" href="../moveis-planejados/demos/atelie-verga/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>atelierverga.com</b></span>
+      <img src="../assets/img/vitrine/atelie-verga-desktop.webp" alt="Website for a solid wood furniture workshop" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Atelier Verga</b><em>Furniture workshop</em></span>
+    </a>
+    <a class="cartao" tabindex="-1" aria-hidden="true" href="../moveis-planejados/demos/nutri-usa/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>ethanreyes-rd.com</b></span>
+      <img src="../assets/img/vitrine/nutri-usa-desktop.webp" alt="Website for a registered dietitian in Los Angeles" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Ethan Reyes, RD</b><em>Dietitian · Los Angeles · in English</em></span>
+    </a>
+    <a class="cartao" tabindex="-1" aria-hidden="true" href="../lojas/demos/seis-panos/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>seispanos.com</b></span>
+      <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Online store with catalogue, cart and checkout" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Seis Panos</b><em>Online store · cart + checkout</em></span>
+    </a>
+    <a class="cartao" tabindex="-1" aria-hidden="true" href="../moveis-planejados/demos/cerne/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>cernejoinery.com</b></span>
+      <img src="../assets/img/vitrine/cerne-desktop.webp" alt="Website for a high-end custom joinery studio" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Cerne</b><em>Custom joinery · high end</em></span>
+    </a>
+    <a class="cartao" tabindex="-1" aria-hidden="true" href="../imoveis/demos/reserva-aurora/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>reservaaurora.com</b></span>
+      <img src="../assets/img/vitrine/reserva-aurora-desktop.webp" alt="Property launch site with unit board and calculator" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Reserva Aurora</b><em>Property launch · unit board</em></span>
+    </a>
+    <a class="cartao" tabindex="-1" aria-hidden="true" href="../imoveis/demos/vista-imoveis/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>vistaproperties.com</b></span>
+      <img src="../assets/img/vitrine/vista-imoveis-desktop.webp" alt="Estate agency site with filters and compare" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Vista</b><em>Estate agency · filters + compare</em></span>
+    </a>
+    <a class="cartao" tabindex="-1" aria-hidden="true" href="../moveis-planejados/demos/atelie-verga/?de=us" target="_blank" rel="noopener">
+      <span class="janela"><i></i><i></i><i></i><b>atelierverga.com</b></span>
+      <img src="../assets/img/vitrine/atelie-verga-desktop.webp" alt="Website for a solid wood furniture workshop" loading="lazy" width="1000" height="625"/>
+      <span class="pe"><b>Atelier Verga</b><em>Furniture workshop</em></span>
+    </a>
+  </div>
   </div>
 
   <div class="wrap">
@@ -581,6 +740,182 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
+  /* Esteira do portfolio — anda sozinha e tambem se arrasta.
+     Portada da vitrine da home, ja com o conserto que o toque exigiu la:
+     no dedo nao se pede setPointerCapture (a captura ja e implicita, e
+     pedi-la retargeta o ponteiro no meio do gesto), lostpointercapture
+     nao encerra o arrasto, e a pausa por hover so vale para o mouse. */
+  (function () {
+    var caixa = document.getElementById('esteira');
+    if (!caixa) return;
+    var trilho = caixa.querySelector('.esteira-trilho');
+    if (!trilho) return;
+    if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      /* quem pediu menos movimento fica com rolagem nativa, sem laco */
+      caixa.style.overflowX = 'auto';
+      caixa.style.touchAction = 'auto';
+      caixa.style.cursor = 'auto';
+      caixa.style.webkitMaskImage = caixa.style.maskImage = 'none';
+      return;
+    }
+
+    var DURACAO = 64;   // segundos para atravessar meia volta
+    var LIMIAR = 4;     // px de folga antes de tratar como arrasto, e nao clique
+    var meia = 0, pos = 0, vel = 0;
+    var parado = false, arrastando = false, visivel = true, capturado = false;
+    var xInicial = 0, posInicial = 0, andou = 0, quadro = null, ultimo = 0;
+
+    /* meia volta e metade do trilho porque os cartoes estao duplicados.
+       Remedido no resize e quando as capas terminam de carregar: com
+       loading=lazy a largura muda depois da primeira medida. */
+    function medir() {
+      meia = trilho.scrollWidth / 2;
+      vel = meia / DURACAO;
+      if (meia > 0) pos = ((pos % meia) + meia) % meia;
+    }
+    function desenhar() { trilho.style.transform = 'translateX(' + (-pos) + 'px)'; }
+
+    function passo(agora) {
+      quadro = requestAnimationFrame(passo);
+      var dt = ultimo ? (agora - ultimo) / 1000 : 0;
+      ultimo = agora;
+      /* dt travado em 50ms: ao voltar de uma aba em segundo plano o
+         primeiro quadro traz um salto de varios segundos */
+      if (dt > 0.05) dt = 0.05;
+      if (parado || arrastando || !visivel || !meia) return;
+      pos += vel * dt;
+      pos = ((pos % meia) + meia) % meia;
+      desenhar();
+    }
+    function ligar() { if (!quadro) { ultimo = 0; quadro = requestAnimationFrame(passo); } }
+    function desligar() { if (quadro) { cancelAnimationFrame(quadro); quadro = null; } }
+
+    caixa.addEventListener('pointerdown', function (e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      arrastando = true; capturado = false; andou = 0;
+      xInicial = e.clientX; posInicial = pos;
+    });
+    caixa.addEventListener('pointermove', function (e) {
+      if (!arrastando || !meia) return;
+      var dx = e.clientX - xInicial;
+      if (Math.abs(dx) > andou) andou = Math.abs(dx);
+      if (andou > LIMIAR) {
+        caixa.classList.add('arrastando');
+        if (!capturado && e.pointerType !== 'touch') {
+          caixa.setPointerCapture(e.pointerId); capturado = true;
+        }
+      }
+      pos = posInicial - dx;
+      pos = ((pos % meia) + meia) % meia;
+      desenhar();
+    });
+    function soltar(e) {
+      if (!arrastando) return;
+      arrastando = false;
+      if (capturado && e && e.pointerId !== undefined && caixa.hasPointerCapture(e.pointerId)) {
+        caixa.releasePointerCapture(e.pointerId);
+      }
+      capturado = false;
+      /* tira a classe no quadro seguinte: removida agora, o clique que
+         ainda esta a caminho encontraria os cartoes ja clicaveis */
+      requestAnimationFrame(function () { caixa.classList.remove('arrastando'); });
+    }
+    caixa.addEventListener('pointerup', soltar);
+    caixa.addEventListener('pointercancel', soltar);
+    /* segura o clique que fecha um arrasto de verdade */
+    caixa.addEventListener('click', function (e) {
+      if (andou > LIMIAR) { e.preventDefault(); e.stopPropagation(); andou = 0; }
+    }, true);
+
+    caixa.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') parado = true; });
+    caixa.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') parado = false; });
+    caixa.addEventListener('focusin', function () { parado = true; });
+    caixa.addEventListener('focusout', function () { parado = false; });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        visivel = e[0].isIntersecting;
+        if (visivel) ligar(); else desligar();
+      }, { rootMargin: '120px 0px' }).observe(caixa);
+    } else { ligar(); }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) desligar(); else if (visivel) ligar();
+    });
+
+    window.addEventListener('resize', medir);
+    trilho.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', medir, { once: true });
+    });
+    medir(); desenhar();
+  })();
+
+  /* Conversa do hero — mesma sequencia da demonstracao da home.
+     Só roda quando o celular esta na tela e reinicia em laco: quem chega
+     do anuncio precisa ver a cena inteira, e ela dura pouco mais de dez
+     segundos. O `gen` invalida um laço antigo quando outro comeca, senao
+     duas execucoes escrevem no mesmo elemento ao mesmo tempo. */
+  (function () {
+    var caixa = document.getElementById('chatBox');
+    if (!caixa) return;
+    var itens = [].slice.call(caixa.querySelectorAll('.seq'));
+    var aviso = document.getElementById('chatAviso');
+    var status = document.getElementById('chatStatus');
+    var gen = 0, rodando = false;
+    var parado = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    function dormir(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    function limpar() {
+      itens.forEach(function (el) { el.classList.remove('show'); });
+      aviso.classList.remove('show');
+      status.textContent = 'online';
+    }
+
+    /* sem animacao: mostra a conversa inteira parada, que e a informacao */
+    if (parado) {
+      itens.forEach(function (el) { if (!el.hasAttribute('data-typing')) el.classList.add('show'); });
+      aviso.classList.add('show');
+      return;
+    }
+
+    async function tocar(g) {
+      var chip = itens[0], m1 = itens[1], t1 = itens[2], o1 = itens[3],
+          m2 = itens[4], t2 = itens[5], o2 = itens[6];
+      var passo = async function (ms) { await dormir(ms); return g === gen; };
+      if (!await passo(500)) return; chip.classList.add('show');
+      if (!await passo(600)) return; m1.classList.add('show');
+      if (!await passo(900)) return;
+      status.textContent = 'typing…'; t1.classList.add('show');
+      if (!await passo(1400)) return;
+      t1.classList.remove('show'); status.textContent = 'online'; o1.classList.add('show');
+      if (!await passo(1700)) return; m2.classList.add('show');
+      if (!await passo(800)) return;
+      status.textContent = 'typing…'; t2.classList.add('show');
+      if (!await passo(1200)) return;
+      t2.classList.remove('show'); status.textContent = 'online'; o2.classList.add('show');
+      if (!await passo(800)) return; aviso.classList.add('show');
+      await passo(3200);
+    }
+
+    async function laco() {
+      if (rodando) return;
+      rodando = true;
+      var g = ++gen;
+      while (g === gen) {
+        limpar();
+        await dormir(300);
+        if (g !== gen) break;
+        await tocar(g);
+      }
+      rodando = false;
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        if (e[0].isIntersecting) laco(); else { gen++; rodando = false; }
+      }, { threshold: .3 }).observe(caixa);
+    } else { laco(); }
+  })();
+
   /* FAQ: abre um de cada vez, com altura medida — max-height fixo grande
      faz a transicao parecer atrasada em respostas curtas. */
   document.querySelectorAll('.faq .item').forEach(function (item) {

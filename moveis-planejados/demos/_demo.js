@@ -34,9 +34,28 @@
       }
     } catch (e) {}
   }
+  /* Quem chega pela landing em inglês volta para ela, e não para a home
+     em português: mandar um visitante dos EUA ou do Reino Unido para uma
+     página que ele não lê é perder o clique que o anúncio pagou. */
   var VOLTA = origem === 'home'
-    ? { raiz: '../../../', cta: '../../../#diagnostico' }
-    : { raiz: '../../',    cta: '../../#planos' };
+    ? { raiz: '../../../',    cta: '../../../#diagnostico' }
+    : origem === 'us'
+    ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
+    : { raiz: '../../',       cta: '../../#planos' };
+
+  var EN = origem === 'us';
+  var TXT = EN
+    ? { voltar: '&larr; Back to Theatrum',
+        aviso: '<b>Demonstration.</b> The brand, the prices and the contacts are invented. ' +
+               'The layout and the system are real and were built by Theatrum.',
+        quero: 'I want one',
+        toastTitulo: 'Demonstration',
+        toastTexto: 'On a real site this button opens WhatsApp with the message already written.' }
+    : { voltar: '&larr; Voltar para a Theatrum',
+        aviso: null,
+        quero: 'Quero um assim',
+        toastTitulo: 'Demonstração',
+        toastTexto: 'Num site real, este botão abre o WhatsApp do profissional com a mensagem já escrita.' };
 
   /* ---------- camada de proteção ----------
      Carregada daqui, e não por uma tag em cada página, porque são
@@ -123,10 +142,11 @@
     /* relativo de propósito: o site é servido numa subpasta do domínio,
        então o caminho funciona seja qual for o nome da pasta. Para onde
        ele aponta depende de onde a pessoa veio — ver VOLTA lá em cima. */
-    bar.innerHTML = '<a class="voltar" href="' + VOLTA.raiz + '">&larr; Voltar para a Theatrum</a>' +
-                    '<span><b>Demonstração.</b> Pessoa, marca e contatos são fictícios. ' +
-                    'O layout é real e foi feito pela Theatrum.</span>' +
-                    '<a class="quero" href="' + VOLTA.cta + '">Quero um assim</a>';
+    bar.innerHTML = '<a class="voltar" href="' + VOLTA.raiz + '">' + TXT.voltar + '</a>' +
+                    '<span>' + (TXT.aviso ||
+                      '<b>Demonstração.</b> Pessoa, marca e contatos são fictícios. ' +
+                      'O layout é real e foi feito pela Theatrum.') + '</span>' +
+                    '<a class="quero" href="' + VOLTA.cta + '">' + TXT.quero + '</a>';
     document.body.appendChild(bar);
 
     /* garante que a barra não cubra o rodapé nem botões flutuantes */
@@ -140,8 +160,7 @@
   var toast = document.createElement('div');
   toast.className = 'thtr-toast';
   toast.setAttribute('role', 'status');
-  toast.innerHTML = '<b>Demonstração</b>Num site real, este botão abre o WhatsApp ' +
-                    'do profissional com a mensagem já escrita.';
+  toast.innerHTML = '<b>' + TXT.toastTitulo + '</b>' + TXT.toastTexto;
   document.body.appendChild(toast);
 
   var timer;
