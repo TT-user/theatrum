@@ -30,7 +30,9 @@ black and white, high-key editorial interior photography, soft diffused north li
 **Onde:** Gemini (gemini.google.com) ou AI Studio (aistudio.google.com), no
 navegador logado. Não gastam crédito do Flow.
 
-**Depois de gerar:** salvar com o nome exato indicado, dentro de `png-moratta/`,
+**Depois de gerar:** salvar o arquivo dentro de `png-moratta/` com o nome
+indicado. Pode ser solto na raiz da pasta e em qualquer extensão de imagem —
+o conversor procura pelo nome e cuida de pasta, corte, tamanho e peso. Aí:
 e rodar:
 
 ```
@@ -38,119 +40,119 @@ node converter.mjs man-moratta.txt png-moratta ../moratta
 ```
 
 ### A01 · `img/cozinhas/sereno.jpg`
-**4:5** · salvar como `png-moratta/img/cozinhas/sereno.png`
+**4:5** · salvar em `png-moratta/sereno.*` (qualquer extensão de imagem)
 
 ```
 Kitchen in raw sand tones with reeded glass upper cabinet doors and a stone backsplash, soft and airy.
 ```
 
 ### A02 · `img/cozinhas/fresta.jpg`
-**4:5** · salvar como `png-moratta/img/cozinhas/fresta.png`
+**4:5** · salvar em `png-moratta/fresta.*` (qualquer extensão de imagem)
 
 ```
 Kitchen with a full vertical slatted wall, a deep lit niche holding ceramics and a slim peninsula, strong graphic rhythm.
 ```
 
 ### A03 · `img/cozinhas/praca.jpg`
-**4:5** · salvar como `png-moratta/img/cozinhas/praca.png`
+**4:5** · salvar em `png-moratta/praca.*` (qualquer extensão de imagem)
 
 ```
 Kitchen built around a central island with a thick quartz countertop, four stools and a sculptural pendant lamp above.
 ```
 
 ### A04 · `img/cozinhas/compacta.jpg`
-**4:5** · salvar como `png-moratta/img/cozinhas/compacta.png`
+**4:5** · salvar em `png-moratta/compacta.*` (qualquer extensão de imagem)
 
 ```
 Very small kitchen of six square metres, one continuous L-shaped run, tall slim pantry, everything integrated, apartment window at the end.
 ```
 
 ### A05 · `img/cozinhas/detalhe-puxador.jpg`
-**4:5** · salvar como `png-moratta/img/cozinhas/detalhe-puxador.png`
+**4:5** · salvar em `png-moratta/detalhe-puxador.*` (qualquer extensão de imagem)
 
 ```
 Extreme close-up of a recessed channel pull machined into the door profile of a matte lacquer front, a finger about to hook into the groove, raking light along the edge.
 ```
 
 ### A06 · `img/lancamento/onix-hero.jpg`
-**16:9** · salvar como `png-moratta/img/lancamento/onix-hero.png`
+**16:9** · salvar em `png-moratta/onix-hero.*` (qualquer extensão de imagem)
 
 ```
 Wide dark kitchen in ultra-matte black lacquer with walnut veneer, one strong shaft of light across the island, integrated LED under the wall units, cinematic and low key.
 ```
 
 ### A07 · `img/lancamento/onix-capa.jpg`
-**3:2** · salvar como `png-moratta/img/lancamento/onix-capa.png`
+**3:2** · salvar em `png-moratta/img/lancamento/onix-capa.*` — **mantenha a subpasta**, este nome se repete
 
 ```
 Three-quarter view of the same black lacquer and walnut kitchen, seen from the living room through a wide opening, evening light.
 ```
 
 ### A08 · `img/lancamento/onix-detalhe.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/onix-detalhe.png`
+**4:5** · salvar em `png-moratta/onix-detalhe.*` (qualquer extensão de imagem)
 
 ```
 Close-up of the junction between a matte black lacquer panel and a walnut veneer panel, a precise shadow gap between them, raking light.
 ```
 
 ### A09 · `img/lancamento/modulo-01.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/modulo-01.png`
+**4:5** · salvar em `png-moratta/modulo-01.*` (qualquer extensão de imagem)
 
 ```
 Open tall oven tower cabinet with a rear ventilation slot and a removable shelf, appliance bay empty, clean interior.
 ```
 
 ### A10 · `img/lancamento/modulo-02.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/modulo-02.png`
+**4:5** · salvar em `png-moratta/modulo-02.*` (qualquer extensão de imagem)
 
 ```
 Kitchen island with a countertop cantilevering thirty-five centimetres with no visible bracket, seen from a low angle.
 ```
 
 ### A11 · `img/lancamento/modulo-03.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/modulo-03.png`
+**4:5** · salvar em `png-moratta/modulo-03.*` (qualquer extensão de imagem)
 
 ```
 Open cutlery drawer with dividers machined directly into the panel, utensils perfectly aligned, seen from above at an angle.
 ```
 
 ### A12 · `img/lancamento/modulo-04.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/modulo-04.png`
+**4:5** · salvar em `png-moratta/modulo-04.*` (qualquer extensão de imagem)
 
 ```
 Corner cabinet with a swing-out carousel mechanism pulled halfway open, revealing pots stored in the dead angle.
 ```
 
 ### A13 · `img/lancamento/modulo-05.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/modulo-05.png`
+**4:5** · salvar em `png-moratta/modulo-05.*` (qualquer extensão de imagem)
 
 ```
 Acoustic slatted wall panel photographed at a sharp angle, mineral wool visible in the shadow gaps between the slats.
 ```
 
 ### A14 · `img/lancamento/modulo-06.jpg`
-**4:5** · salvar como `png-moratta/img/lancamento/modulo-06.png`
+**4:5** · salvar em `png-moratta/modulo-06.*` (qualquer extensão de imagem)
 
 ```
 Recessed niche with an LED strip inside an aluminium profile, no visible cable, casting an even glow on a stone back panel.
 ```
 
 ### A15 · `img/showroom/showroom-01.jpg`
-**4:5** · salvar como `png-moratta/img/showroom/showroom-01.png`
+**4:5** · salvar em `png-moratta/showroom-01.*` (qualquer extensão de imagem)
 
 ```
 Central aisle of a large furniture showroom, complete kitchens and closets assembled on both sides, polished concrete floor, track lighting overhead, deep perspective, no people.
 ```
 
 ### A16 · `img/lojista/loja-parceira.jpg`
-**3:2** · salvar como `png-moratta/img/lojista/loja-parceira.png`
+**3:2** · salvar em `png-moratta/loja-parceira.*` (qualquer extensão de imagem)
 
 ```
 Street-level façade of a planned-furniture store at blue hour, a wide illuminated shop window showing an assembled kitchen inside, glass door, clean minimal signage band above with no readable text.
 ```
 
 ### A17 · `img/og.jpg`
-**1:1** · salvar como `png-moratta/img/og.png`
+**1:1** · salvar em `png-moratta/og.*` (qualquer extensão de imagem)
 
 ```
 Wide hero-style kitchen with an island and vertical slatted panelling, generous empty space on the left third of the frame for a logo overlay.
@@ -168,7 +170,8 @@ cena, salvar em `png-moratta/`, rodar o `converter.mjs`.
 
 **Passo 2 — o vídeo.** No Flow (labs.google/flow), modo **Frames to Video**:
 subir a imagem do passo 1 como primeiro quadro e colar o prompt de movimento.
-Baixar o mp4 e salvar em `video-moratta/` com o nome indicado. Depois:
+Baixar o mp4 para `video-moratta/` — não precisa renomear, basta o nome do
+arquivo conter o alvo indicado no item. Depois:
 
 ```
 node converter-video.mjs
@@ -180,8 +183,9 @@ node converter-video.mjs
 > equipamento, mas a conferência de um antes dos sete continua valendo.
 
 ### B1 · `img/hero/hero-01.mp4`
-capa: `img/hero/hero-01.jpg` (**16:9**) → `png-moratta/img/hero/hero-01.png`
-vídeo: → `video-moratta/hero-01.mp4`
+capa (**16:9**): salvar em `png-moratta/hero-01.*` (qualquer extensão de imagem)
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`hero-01`
 
 *1 · cena da capa:*
 
@@ -196,8 +200,9 @@ The view moves slowly forward, closing in on the scene, with a barely perceptibl
 ```
 
 ### B2 · `img/hero/hero-02.mp4`
-capa: `img/hero/hero-02.jpg` (**16:9**) → `png-moratta/img/hero/hero-02.png`
-vídeo: → `video-moratta/hero-02.mp4`
+capa (**16:9**): salvar em `png-moratta/hero-02.*` (qualquer extensão de imagem)
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`hero-02`
 
 *1 · cena da capa:*
 
@@ -212,8 +217,9 @@ The view glides steadily sideways to the right. Five seconds, one continuous sho
 ```
 
 ### B3 · `img/hero/hero-03.mp4`
-capa: `img/hero/hero-03.jpg` (**16:9**) → `png-moratta/img/hero/hero-03.png`
-vídeo: → `video-moratta/hero-03.mp4`
+capa (**16:9**): salvar em `png-moratta/hero-03.*` (qualquer extensão de imagem)
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`hero-03`
 
 *1 · cena da capa:*
 
@@ -228,8 +234,9 @@ The view draws slowly backwards until the whole room is open in frame, with a ba
 ```
 
 ### B4 · `img/hero/hero-04.mp4`
-capa: `img/hero/hero-04.jpg` (**16:9**) → `png-moratta/img/hero/hero-04.png`
-vídeo: → `video-moratta/hero-04.mp4`
+capa (**16:9**): salvar em `png-moratta/hero-04.*` (qualquer extensão de imagem)
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`hero-04`
 
 *1 · cena da capa:*
 
@@ -244,8 +251,9 @@ The view glides slowly sideways, passing between the machines, industrial scale,
 ```
 
 ### B5 · `img/video/institucional.mp4`
-capa: `img/video/institucional-capa.jpg` (**16:9**) → `png-moratta/img/video/institucional-capa.png`
-vídeo: → `video-moratta/institucional.mp4`
+capa (**16:9**): salvar em `png-moratta/institucional-capa.*` (qualquer extensão de imagem)
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`institucional`
 
 *1 · cena da capa:*
 
@@ -260,8 +268,9 @@ The view closes in slowly on the woman. Five seconds, one continuous shot, no cu
 ```
 
 ### B6 · `img/video/fabrica.mp4`
-capa: `img/video/fabrica-capa.jpg` (**16:9**) → `png-moratta/img/video/fabrica-capa.png`
-vídeo: → `video-moratta/fabrica.mp4`
+capa (**16:9**): salvar em `png-moratta/fabrica-capa.*` (qualquer extensão de imagem)
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`fabrica`
 
 *1 · cena da capa:*
 
@@ -276,8 +285,9 @@ The framing stays almost perfectly still and eases only a hair closer. Five seco
 ```
 
 ### B7 · `img/video/onix.mp4`
-capa: `img/video/onix-capa.jpg` (**16:9**) → `png-moratta/img/video/onix-capa.png`
-vídeo: → `video-moratta/onix.mp4`
+capa (**16:9**): salvar em `png-moratta/img/video/onix-capa.*` — **mantenha a subpasta**, este nome se repete
+vídeo: salvar em `video-moratta/` — o nome do Flow serve, desde que contenha
+`onix`
 
 *1 · cena da capa:*
 

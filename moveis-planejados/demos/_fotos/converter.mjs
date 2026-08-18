@@ -49,11 +49,69 @@ const linhas = fs.readFileSync(manifesto, 'utf8').split('\n')
   .map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
   .map((l) => { const [nome, aspecto] = l.split('|'); return { nome, aspecto }; });
 
-let total = 0, feitas = 0, faltando = [];
+/* ---------- achar o arquivo de origem ----------
+   O manifesto declara um caminho aninhado (img/cozinhas/sereno.jpg),
+   mas navegador nenhum baixa assim: ele joga tudo achatado na pasta de
+   downloads, com a extensão que o gerador escolheu. Exigir que a pessoa
+   recrie oito pastas à mão e acerte a extensão é onde a leva se perde.
+
+   Então: vale o caminho exato, vale o mesmo caminho com outra extensão
+   de imagem, e vale o arquivo solto em qualquer lugar dentro da pasta
+   de origem, contanto que o nome base seja o do manifesto.
+
+   O que NÃO vale é adivinhar: onde dois itens partilham o nome base
+   (onix-capa mora em lancamento/ e em video/), o conversor recusa e
+   diz qual é a dúvida, em vez de escolher um e escrever no lugar
+   errado — erro que só apareceria com o site publicado. */
+const EXTS = ['.jpg', '.jpeg', '.png', '.webp'];
+
+function varrer(dir, achados = []) {
+  if (!fs.existsSync(dir)) return achados;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) varrer(p, achados);
+    else if (EXTS.includes(path.extname(e.name).toLowerCase())) achados.push(p);
+  }
+  return achados;
+}
+
+const indice = new Map();
+for (const p of varrer(origem)) {
+  const base = path.basename(p, path.extname(p)).toLowerCase();
+  if (!indice.has(base)) indice.set(base, []);
+  indice.get(base).push(p);
+}
+
+/* nomes base que o manifesto repete em pastas diferentes */
+const repetidos = new Set();
+const vistos = new Set();
+for (const { nome } of linhas) {
+  const b = path.basename(nome, path.extname(nome)).toLowerCase();
+  if (vistos.has(b)) repetidos.add(b);
+  vistos.add(b);
+}
+
+function origemDe(nome) {
+  const semExt = path.join(origem, nome).replace(/\.[^.]+$/, '');
+  for (const e of EXTS) if (fs.existsSync(semExt + e)) return semExt + e;
+
+  const base = path.basename(nome, path.extname(nome)).toLowerCase();
+  if (repetidos.has(base)) return null;      // ambíguo por definição
+  const cand = indice.get(base) || [];
+  if (cand.length === 1) return cand[0];
+  return null;
+}
+
+let total = 0, feitas = 0, faltando = [], ambiguos = [];
 
 for (const { nome, aspecto } of linhas) {
-  const entrada = path.join(origem, nome);
-  if (!fs.existsSync(entrada)) { faltando.push(nome); continue; }
+  const entrada = origemDe(nome);
+  if (!entrada) {
+    const base = path.basename(nome, path.extname(nome)).toLowerCase();
+    if (repetidos.has(base) && indice.has(base)) ambiguos.push(nome);
+    else faltando.push(nome);
+    continue;
+  }
 
   const rel = saidaDe(nome);
   const saida = path.join(destino, rel);
@@ -76,4 +134,11 @@ for (const { nome, aspecto } of linhas) {
 }
 
 console.log(`\n  ${feitas} arquivos · ${Math.round(total / 1024 * 10) / 10} MB`);
-if (faltando.length) console.log(`  sem PNG ainda (${faltando.length}): ${faltando.join(', ')}\n`);
+if (faltando.length) console.log(`  ainda sem origem (${faltando.length}): ${faltando.join(', ')}`);
+if (ambiguos.length) {
+  console.log(`\n  AMBIGUOS (${ambiguos.length}) — o nome base se repete no manifesto,`);
+  console.log(`  entao o arquivo solto nao diz de qual item ele e. Ponha cada um na`);
+  console.log(`  subpasta certa dentro de ${origem}/ e rode de novo:`);
+  for (const n of ambiguos) console.log(`    ${n}`);
+}
+console.log('');

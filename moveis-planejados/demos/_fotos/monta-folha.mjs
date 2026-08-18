@@ -120,7 +120,23 @@ for (const item of linhas) {
   (mov ? videos : fotos).push(alvo);
 }
 
-const png = (n) => 'png-moratta/' + n.replace(/\.jpg$/, '.png');
+/* nome base para salvar. O conversor acha o arquivo solto dentro de
+   png-moratta/ por esse nome, com qualquer extensão de imagem — ninguém
+   precisa recriar as oito subpastas nem acertar .jpg contra .png. */
+const salvarComo = (n) => path.basename(n, path.extname(n));
+
+/* ...menos onde o nome base se repete em pastas diferentes: aí o arquivo
+   solto não diz de qual item ele é, e o conversor recusa a dúvida em vez
+   de escrever no lugar errado. Estes vão com a subpasta. */
+const contagem = {};
+for (const l of linhas) {
+  const b = path.basename(l.nome, path.extname(l.nome));
+  contagem[b] = (contagem[b] || 0) + 1;
+}
+const ambiguo = (n) => contagem[path.basename(n, path.extname(n))] > 1;
+const destinoDe = (n) => ambiguo(n)
+  ? '`png-moratta/' + n.replace(/\.jpg$/, '') + '.*` — **mantenha a subpasta**, este nome se repete'
+  : '`png-moratta/' + salvarComo(n) + '.*` (qualquer extensão de imagem)';
 
 let md = `# Morattá — folha de geração\n\n`;
 md += `Gerado por \`monta-folha.mjs\` a partir do \`man-moratta.txt\`. Só lista o que\n`;
@@ -142,12 +158,14 @@ md += `> junto da cena naquele item. É o único caso em que vale repetir.\n\n`;
 md += `---\n\n## A · Fotos — ${fotos.length} itens\n\n`;
 md += `**Onde:** Gemini (gemini.google.com) ou AI Studio (aistudio.google.com), no\n`;
 md += `navegador logado. Não gastam crédito do Flow.\n\n`;
-md += `**Depois de gerar:** salvar com o nome exato indicado, dentro de \`png-moratta/\`,\n`;
+md += `**Depois de gerar:** salvar o arquivo dentro de \`png-moratta/\` com o nome\n`;
+md += `indicado. Pode ser solto na raiz da pasta e em qualquer extensão de imagem —\n`;
+md += `o conversor procura pelo nome e cuida de pasta, corte, tamanho e peso. Aí:\n`;
 md += `e rodar:\n\n\`\`\`\nnode converter.mjs man-moratta.txt png-moratta ../moratta\n\`\`\`\n\n`;
 
 fotos.forEach((f, i) => {
   md += `### A${String(i + 1).padStart(2, '0')} · \`${f.nome}\`\n`;
-  md += `**${f.aspecto}** · salvar como \`${png(f.nome)}\`\n\n`;
+  md += `**${f.aspecto}** · salvar em ${destinoDe(f.nome)}\n\n`;
   md += `\`\`\`\n${f.cena}\n\`\`\`\n\n`;
 });
 
@@ -158,7 +176,8 @@ md += `**Passo 1 — a capa.** Mesmo caminho das fotos acima: gerar com o prompt
 md += `cena, salvar em \`png-moratta/\`, rodar o \`converter.mjs\`.\n\n`;
 md += `**Passo 2 — o vídeo.** No Flow (labs.google/flow), modo **Frames to Video**:\n`;
 md += `subir a imagem do passo 1 como primeiro quadro e colar o prompt de movimento.\n`;
-md += `Baixar o mp4 e salvar em \`video-moratta/\` com o nome indicado. Depois:\n\n`;
+md += `Baixar o mp4 para \`video-moratta/\` — não precisa renomear, basta o nome do\n`;
+md += `arquivo conter o alvo indicado no item. Depois:\n\n`;
 md += `\`\`\`\nnode converter-video.mjs\n\`\`\`\n\n`;
 md += `> **Gere um só e olhe antes de fazer os sete.** Um vídeo anterior nasceu com\n`;
 md += `> uma câmera em tripé dentro da cena porque o prompt dizia "tripod dolly", e\n`;
@@ -168,8 +187,9 @@ md += `> equipamento, mas a conferência de um antes dos sete continua valendo.\
 videos.forEach((v, i) => {
   const mp4 = v.nome.replace('-capa.jpg', '.mp4').replace(/\.jpg$/, '.mp4');
   md += `### B${i + 1} · \`${mp4}\`\n`;
-  md += `capa: \`${v.nome}\` (**${v.aspecto}**) → \`${png(v.nome)}\`\n`;
-  md += `vídeo: → \`video-moratta/${path.basename(mp4)}\`\n\n`;
+  md += `capa (**${v.aspecto}**): salvar em ${destinoDe(v.nome)}\n`;
+  md += `vídeo: salvar em \`video-moratta/\` — o nome do Flow serve, desde que contenha\n`;
+  md += `\`${path.basename(mp4, '.mp4')}\`\n\n`;
   md += `*1 · cena da capa:*\n\n\`\`\`\n${v.cena}\n\`\`\`\n\n`;
   md += `*2 · movimento, no Flow:*\n\n\`\`\`\n${v.movimento}\n\`\`\`\n\n`;
 });

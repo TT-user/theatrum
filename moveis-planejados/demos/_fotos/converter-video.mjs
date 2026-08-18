@@ -51,13 +51,39 @@ if (!fs.existsSync(BRUTOS)) {
 
 console.log(`\n  ${Object.keys(destinos).length} vídeos esperados pela demo\n`);
 
-let feitos = 0, faltando = [];
+/* ---------- achar o bruto ----------
+   O Flow não deixa escolher o nome do download: vem algo como
+   "flow_20260818_hero-01 (1).mp4". Exigir renomear os sete à mão antes
+   de rodar é trabalho manual que o script pode fazer sozinho — basta o
+   nome alvo aparecer em algum lugar do nome do arquivo.
+
+   Casando por "contém", dois alvos podem responder pelo mesmo arquivo,
+   então o script recusa a dúvida em vez de escolher. Na prática só
+   acontece se um nome for prefixo de outro. */
+const soltos = fs.existsSync(BRUTOS)
+  ? fs.readdirSync(BRUTOS).filter((f) => f.toLowerCase().endsWith('.mp4'))
+  : [];
+
+function brutoDe(arquivo) {
+  const exato = path.join(BRUTOS, arquivo);
+  if (fs.existsSync(exato)) return { caminho: exato };
+
+  const alvo = path.basename(arquivo, '.mp4').toLowerCase();
+  const cand = soltos.filter((f) => f.toLowerCase().includes(alvo));
+  if (cand.length === 1) return { caminho: path.join(BRUTOS, cand[0]) };
+  if (cand.length > 1) return { duvida: cand };
+  return {};
+}
+
+let feitos = 0, faltando = [], ambiguos = [];
 
 for (const [arquivo, rel] of Object.entries(destinos)) {
-  const bruto = path.join(BRUTOS, arquivo);
-  const saida = path.join(DEMO, rel);
+  const achado = brutoDe(arquivo);
+  if (achado.duvida) { ambiguos.push(arquivo + ' -> ' + achado.duvida.join(', ')); continue; }
+  if (!achado.caminho) { faltando.push(arquivo); continue; }
 
-  if (!fs.existsSync(bruto)) { faltando.push(arquivo); continue; }
+  const bruto = achado.caminho;
+  const saida = path.join(DEMO, rel);
   if (fs.existsSync(saida) && fs.statSync(saida).mtimeMs >= fs.statSync(bruto).mtimeMs) {
     console.log(`  ${rel.padEnd(28)} já convertido`);
     continue;
@@ -83,4 +109,10 @@ for (const [arquivo, rel] of Object.entries(destinos)) {
 }
 
 console.log(`\n  ${feitos} convertidos`);
-if (faltando.length) console.log(`  ainda sem mp4 (${faltando.length}): ${faltando.join(', ')}\n`);
+if (faltando.length) console.log(`  ainda sem mp4 (${faltando.length}): ${faltando.join(', ')}`);
+if (ambiguos.length) {
+  console.log(`\n  AMBIGUOS (${ambiguos.length}) — mais de um arquivo responde pelo mesmo`);
+  console.log(`  alvo. Renomeie para o nome exato e rode de novo:`);
+  for (const a of ambiguos) console.log(`    ${a}`);
+}
+console.log('');
