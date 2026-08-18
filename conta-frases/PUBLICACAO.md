@@ -783,6 +783,10 @@ Repine os antigos em boards diferentes depois de algumas semanas — pin tem cau
 node overlay.js 03
 .\montar.ps1 -Only "03"
 
+# rota alternativa: gerar a pintura pelo Gemini em vez do Higgsfield
+# (exige faturamento ativo no projeto Google; o free tier da cota 0 para imagem)
+node --env-file=.env gen-imagens-gemini.mjs 16 17 18
+
 # mudou copy.json ou posts.json? regenere os derivados
 node build-md.js
 node build-page.js
