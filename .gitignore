@@ -33,3 +33,7 @@ skills-lock.json
 # vídeo cru saido do gerador: pesa alguns MB e o que o site serve é a
 # versão comprimida dentro da demo
 **/_fotos/*.mp4
+
+# brutos do Flow: chegam em 1080p com audio e alguns MB. O que o site
+# serve e a versao do converter-video.mjs, dentro da demo.
+**/_fotos/video-*/

@@ -53,6 +53,33 @@
            '<img src="' + arquivo + '" alt="' + (alt || '').replace(/"/g, '') + '" loading="lazy"></figure>';
   }
 
+  /* Figura com data-video troca a foto pelo filme, e só depois que o
+     arquivo responde: assim o hero funciona igual com ou sem o vídeo, e
+     quem está no 3G continua vendo a foto enquanto o mp4 não chega.
+     Com reduced-motion ligado nem tenta — o hero é decorativo. */
+  function filmar(escopo) {
+    $$('.ph[data-video]', escopo).forEach(fig => {
+      if (fig.dataset.filmado) return;
+      fig.dataset.filmado = '1';
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const capa = fig.querySelector('img');
+      const v = document.createElement('video');
+      v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
+      v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+      v.preload = 'metadata';
+      if (capa) v.poster = capa.getAttribute('src');
+      v.addEventListener('canplay', () => {
+        if (v.dataset.dentro) return;
+        v.dataset.dentro = '1';
+        if (capa) capa.remove();
+        fig.appendChild(v);
+        const p = v.play(); if (p && p.catch) p.catch(() => {});
+      });
+      v.addEventListener('error', () => { v.removeAttribute('src'); v.load(); });
+      v.src = fig.getAttribute('data-video');
+    });
+  }
+
   function armar(escopo) {
     $$('.ph img', escopo).forEach(el => {
       if (el.dataset.ok) return;
@@ -69,6 +96,8 @@
   const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(sacola)); } catch (e) {} };
   const totalItens = () => sacola.reduce((s, i) => s + i.qtd, 0);
   const subtotal = () => sacola.reduce((s, i) => { const p = prod(i.id); return s + (p ? p.preco * i.qtd : 0); }, 0);
+  filmar();
+
 
   window.SP = {
     get itens() { return sacola; },

@@ -13,6 +13,41 @@
   }
   armImages();
 
+  /* ---- vídeo entra sozinho quando o arquivo existir ----
+     As figuras que viram filme já declaram o mp4 em data-file e já
+     carregam a imagem de capa. Em vez de trocar o HTML no dia em que
+     os vídeos ficarem prontos, a página tenta carregar o arquivo e só
+     substitui a capa se ele responder. Enquanto não existir, ninguém
+     vê erro: fica a foto, que é um poster legítimo.
+
+     Só troca com o vídeo realmente pronto para tocar (canplay), e
+     nunca com reduced-motion ligado — um loop de fundo é exatamente o
+     tipo de movimento que essa preferência pede para não acontecer. */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.ph[data-file$=".mp4"]').forEach(function (fig) {
+      var capa = fig.querySelector('img');
+      var v = document.createElement('video');
+      v.muted = true; v.loop = true; v.autoplay = true;
+      v.playsInline = true; v.setAttribute('playsinline', '');
+      v.setAttribute('aria-hidden', 'true');
+      v.preload = 'metadata';
+      if (capa) v.poster = capa.getAttribute('src');
+
+      v.addEventListener('canplay', function () {
+        if (v.dataset.trocado) return;
+        v.dataset.trocado = '1';
+        if (capa) capa.remove();
+        fig.appendChild(v);
+        var t = v.play();
+        if (t && t.catch) t.catch(function () {});
+      });
+      /* arquivo ausente: descarta e a capa segue no lugar */
+      v.addEventListener('error', function () { v.removeAttribute('src'); v.load(); });
+
+      v.src = fig.getAttribute('data-file');
+    });
+  }
+
   /* ---- menu mobile ---- */
   var burger = document.querySelector('.burger');
   if (burger) {
