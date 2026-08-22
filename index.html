@@ -820,6 +820,313 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ============ 3 · A CALCULADORA ============ -->
+<style>
+  /* ---------- [03] calculadora de vazamento ----------
+     Componente com estado. Por isso ele NÃO usa data-en: a troca de
+     idioma reescreve o innerHTML de tudo que tem esse atributo, e
+     levaria junto os listeners e o que a pessoa já respondeu. Os
+     textos dele moram num objeto JS e ele se redesenha quando o
+     idioma muda. Ver CLAUDE.md, "a página é bilíngue". */
+  .calc{
+    margin-top:44px;display:grid;gap:22px;
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start;
+  }
+  @media(max-width:900px){ .calc{grid-template-columns:1fr;gap:18px} }
+
+  .calc-perguntas{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:28px 26px;display:grid;gap:26px;
+  }
+  .calc-q > label,.calc-q > .calc-legenda{
+    display:block;font:600 14px/1.4 var(--font-body);color:var(--cream);margin-bottom:14px;
+  }
+  .calc-valor{
+    float:right;font:700 14px/1.4 var(--font-mono);color:var(--accent);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* range: pista fina, polegar dourado, foco visível pelo teclado */
+  .calc-q input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;
+    background:rgba(255,255,255,.14);outline:none;margin:0;
+  }
+  .calc-q input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--accent);border:3px solid var(--bg);cursor:grab;
+    box-shadow:0 2px 10px rgba(0,0,0,.45);
+  }
+  .calc-q input[type=range]::-moz-range-thumb{
+    width:22px;height:22px;border-radius:50%;background:var(--accent);
+    border:3px solid var(--bg);cursor:grab;box-shadow:0 2px 10px rgba(0,0,0,.45);
+  }
+  .calc-q input[type=range]:focus-visible{box-shadow:0 0 0 3px rgba(227,179,65,.35)}
+
+  .calc-moeda{position:relative;display:flex;align-items:center}
+  .calc-moeda span{
+    position:absolute;left:14px;font:700 15px/1 var(--font-mono);color:var(--muted);pointer-events:none;
+  }
+  .calc-moeda input{
+    width:100%;padding:13px 14px 13px 42px;border-radius:11px;
+    background:rgba(255,255,255,.04);border:1px solid var(--line);
+    color:var(--cream);font:700 16px/1 var(--font-mono);
+    font-variant-numeric:tabular-nums;outline:none;
+  }
+  .calc-moeda input:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px rgba(227,179,65,.2)}
+
+  .calc-opcoes{display:flex;flex-wrap:wrap;gap:8px}
+  .calc-opcoes button{
+    flex:1 1 auto;padding:11px 14px;border-radius:99px;cursor:pointer;
+    background:transparent;border:1px solid var(--line);color:var(--muted);
+    font:600 13px/1.2 var(--font-body);transition:border-color .2s ease,color .2s ease,background .2s ease;
+  }
+  .calc-opcoes button:hover{border-color:rgba(227,179,65,.5);color:var(--cream)}
+  .calc-opcoes button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .calc-opcoes button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- resultado ---------- */
+  .calc-saida{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:28px 26px;position:sticky;top:96px;
+  }
+  @media(max-width:900px){ .calc-saida{position:static} }
+
+  .calc-linha{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+    padding:13px 0;border-bottom:1px solid var(--line);
+  }
+  .calc-linha b{font:600 14px/1.3 var(--font-body);color:var(--muted)}
+  .calc-linha i{
+    font-style:normal;font:700 15px/1.3 var(--font-mono);color:var(--cream);
+    font-variant-numeric:tabular-nums;white-space:nowrap;
+  }
+
+  .calc-total{margin-top:22px}
+  .calc-total p{font:600 13px/1.5 var(--font-body);color:var(--muted);margin:0 0 6px}
+  .calc-total strong{
+    display:block;font:800 clamp(2rem,6vw,3rem)/1.05 var(--font-display);
+    color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  }
+  .calc-nota{margin-top:16px;font:400 12px/1.6 var(--font-body);color:var(--muted)}
+
+  .calc-cta{
+    display:inline-flex;align-items:center;gap:10px;margin-top:20px;
+    padding:14px 22px;border-radius:99px;text-decoration:none;
+    background:var(--accent);color:var(--ink);font:700 14px/1 var(--font-body);
+    transition:background .2s ease,transform .2s ease;
+  }
+  .calc-cta:hover{background:var(--accent-soft);transform:translateY(-1px)}
+  .calc-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* enquanto o componente não montou, o espaço já existe: evita o
+     pulo de layout quando ele entra */
+  .calc-esqueleto{min-height:420px}
+
+  @media(prefers-reduced-motion:reduce){ .calc-cta{transition:none} }
+</style>
+
+<section class="sec" id="calculadora">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>the maths'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>o cálculo</p>
+    <h2 class="rv" style="--d:.08s" data-en='How much is your business leaving <span class="lm">on the table</span> every month?'>Quanto o seu negócio deixa <span class="lm">na mesa</span> todo mês?</h2>
+    <p class="lead rv" style="--d:.16s" data-en='Four questions. No sign-up. The number shows up on the spot.'>Quatro perguntas. Nenhum cadastro. O número aparece na hora.</p>
+
+    <div class="calc calc-esqueleto" id="calc" role="group" aria-label="Calculadora de vazamento"></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- constantes do cálculo ----------
+     Ficam aqui em cima, soltas e comentadas, porque são o que muda
+     quando quisermos calibrar a conta. Nenhuma delas vem de pesquisa
+     de mercado: são os fatores que a Theatrum assume, e o texto do
+     resultado diz isso na cara do visitante. Não invente fonte. */
+  const F = {
+    SEMANAS_MES: 4.33,          // média de semanas num mês
+
+    /* quanto do que ele já fatura se perde por demorar a responder */
+    DEMORA: { minutos: 0, horas: 0.15, dia: 0.30, depois: 0.45 },
+
+    /* contatos que nunca chegam porque o negócio não aparece na busca.
+       Proporcional ao que ele já fatura, que é a leitura mais
+       conservadora: quem fatura pouco perde pouco nesta linha. */
+    INVISIVEL: 0.35,
+
+    /* cliente antigo que não volta porque ninguém o chamou de volta */
+    REATIVAR: 0.20,
+  };
+
+  /* ---------- textos ----------
+     Fora do sistema data-en de propósito: a troca de idioma reescreve
+     innerHTML e mataria o estado deste componente. */
+  const CIFRAO_EN = String.fromCharCode(36);
+  const T = {
+    pt: {
+      q1: 'Quantas pessoas chamam seu negócio por semana?',
+      q2: 'De cada 10 que chamam, quantas fecham?',
+      q3: 'Quanto vale, em média, um cliente para você?',
+      q4: 'Em quanto tempo você costuma responder?',
+      opcoes: { minutos:'em minutos', horas:'em algumas horas', dia:'no fim do dia', depois:'no dia seguinte ou mais' },
+      esfria: 'o cliente esfria',
+      acha: 'ninguém te acha',
+      volta: 'ninguém volta',
+      totalRotulo: 'seu negócio deixa de faturar cerca de',
+      porMes: '/mês',
+      nota: 'Estimativa a partir do que você respondeu. Não é promessa de resultado: é a ordem de grandeza do buraco.',
+      cta: 'Quero o plano para fechar esses ',
+      wa: (n) => 'Vim do site. A calculadora deu ' + n + ' por mês. Quero o plano.',
+      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'pt-BR',
+    },
+    en: {
+      q1: 'How many people reach out to your business per week?',
+      q2: 'Out of every 10 who reach out, how many close?',
+      q3: 'On average, what is a client worth to you?',
+      q4: 'How long do you usually take to reply?',
+      opcoes: { minutos:'within minutes', horas:'within a few hours', dia:'by end of day', depois:'next day or later' },
+      esfria: 'the client goes cold',
+      acha: 'nobody finds you',
+      volta: 'nobody comes back',
+      totalRotulo: 'your business is missing out on roughly',
+      porMes: '/mo',
+      nota: 'Estimated from what you answered. Not a promise of results: it is the order of magnitude of the hole.',
+      cta: 'I want the plan to close that ',
+      wa: (n) => 'I came from the site. The calculator showed ' + n + ' per month. I want the plan.',
+      /* Moeda continua em real mesmo em inglês. A home vende no Brasil e
+         o inglês aqui é tradução, não outro mercado: trocar para dólar
+         redenominaria, sem avisar, o número que a pessoa digitou em
+         reais. Quem vende em dólar tem a landing /us/, que é separada. */
+      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'en-US',
+    }
+  };
+
+  const WA = '5532984762445';
+  const caixa = document.getElementById('calc');
+  if (!caixa) return;
+
+  /* resposta guardada só enquanto a aba viver. Nada de localStorage:
+     é número de faturamento de quem está do outro lado. */
+  const CHAVE = 'theatrum-calc';
+  let estado = { contatos: 20, fecha: 3, ticket: 800, resposta: 'horas' };
+  try { const s = sessionStorage.getItem(CHAVE); if (s) estado = Object.assign(estado, JSON.parse(s)); } catch(e){}
+
+  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const dinheiro = (v) => {
+    const t = T[idioma()];
+    return Number(v).toLocaleString(t.locale, { style:'currency', currency:t.moeda, maximumFractionDigits:0 });
+  };
+
+  function conta(){
+    const contatosMes = estado.contatos * F.SEMANAS_MES;
+    const receita = contatosMes * (estado.fecha / 10) * estado.ticket;
+    const esfria = receita * F.DEMORA[estado.resposta];
+    const acha = receita * F.INVISIVEL;
+    const volta = receita * F.REATIVAR;
+    return { esfria, acha, volta, total: esfria + acha + volta };
+  }
+
+  /* conta subindo até o valor. Só o texto muda; o número usa
+     tabular-nums e a caixa não muda de tamanho, então não há
+     recálculo de layout a cada quadro. */
+  function anima(el, ate){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = dinheiro(ate); el.dataset.v = ate; return; }
+    const de = Number(el.dataset.v || 0), t0 = performance.now(), dur = 620;
+    el.dataset.v = ate;
+    (function passo(t){
+      const p = Math.min(1, (t - t0) / dur);
+      const suave = 1 - Math.pow(1 - p, 3);
+      el.textContent = dinheiro(de + (ate - de) * suave);
+      if (p < 1) requestAnimationFrame(passo);
+    })(t0);
+  }
+
+  function desenha(){
+    const t = T[idioma()];
+    caixa.classList.remove('calc-esqueleto');
+    caixa.innerHTML =
+      '<div class="calc-perguntas">' +
+        '<div class="calc-q"><label for="cq1">' + t.q1 + '<span class="calc-valor" id="cv1"></span></label>' +
+          '<input type="range" id="cq1" min="0" max="100" step="1"></div>' +
+        '<div class="calc-q"><label for="cq2">' + t.q2 + '<span class="calc-valor" id="cv2"></span></label>' +
+          '<input type="range" id="cq2" min="0" max="10" step="1"></div>' +
+        '<div class="calc-q"><label for="cq3">' + t.q3 + '</label>' +
+          '<div class="calc-moeda"><span>' + t.simbolo + '</span>' +
+          '<input type="text" id="cq3" inputmode="numeric" autocomplete="off"></div></div>' +
+        '<div class="calc-q"><p class="calc-legenda" id="cq4rot">' + t.q4 + '</p>' +
+          '<div class="calc-opcoes" role="group" aria-labelledby="cq4rot">' +
+            Object.keys(t.opcoes).map(k =>
+              '<button type="button" data-r="' + k + '" aria-pressed="false">' + t.opcoes[k] + '</button>').join('') +
+          '</div></div>' +
+      '</div>' +
+      '<div class="calc-saida" aria-live="polite">' +
+        '<div class="calc-linha"><b>' + t.esfria + '</b><i id="cr1"></i></div>' +
+        '<div class="calc-linha"><b>' + t.acha + '</b><i id="cr2"></i></div>' +
+        '<div class="calc-linha"><b>' + t.volta + '</b><i id="cr3"></i></div>' +
+        '<div class="calc-total"><p>' + t.totalRotulo + '</p><strong id="crt"></strong></div>' +
+        '<p class="calc-nota">' + t.nota + '</p>' +
+        '<a class="calc-cta" id="ccta" target="_blank" rel="noopener"><span id="cctat"></span><span aria-hidden="true">&rarr;</span></a>' +
+      '</div>';
+
+    const q1 = caixa.querySelector('#cq1'), q2 = caixa.querySelector('#cq2'), q3 = caixa.querySelector('#cq3');
+    q1.value = estado.contatos; q2.value = estado.fecha;
+    q3.value = Number(estado.ticket).toLocaleString(t.locale);
+
+    q1.addEventListener('input', () => { estado.contatos = +q1.value; atualiza(); });
+    q2.addEventListener('input', () => { estado.fecha = +q2.value; atualiza(); });
+    q3.addEventListener('input', () => {
+      const so = q3.value.replace(/\D/g, '');
+      estado.ticket = so ? Math.min(+so, 9999999) : 0;
+      q3.value = estado.ticket ? estado.ticket.toLocaleString(T[idioma()].locale) : '';
+      atualiza();
+    });
+    caixa.querySelectorAll('.calc-opcoes button').forEach(b => {
+      b.addEventListener('click', () => { estado.resposta = b.dataset.r; atualiza(); });
+    });
+
+    atualiza(true);
+  }
+
+  function atualiza(primeira){
+    const t = T[idioma()], r = conta();
+    caixa.querySelector('#cv1').textContent = estado.contatos;
+    caixa.querySelector('#cv2').textContent = estado.fecha + '/10';
+    caixa.querySelectorAll('.calc-opcoes button').forEach(b =>
+      b.setAttribute('aria-pressed', String(b.dataset.r === estado.resposta)));
+
+    [['#cr1', r.esfria], ['#cr2', r.acha], ['#cr3', r.volta], ['#crt', r.total]].forEach(([sel, v]) => {
+      const el = caixa.querySelector(sel);
+      if (primeira) el.dataset.v = 0;
+      anima(el, v);
+    });
+
+    const n = dinheiro(r.total);
+    caixa.querySelector('#cctat').textContent = t.cta + n + t.porMes;
+    caixa.querySelector('#ccta').href =
+      'https://wa.me/' + WA + '?text=' + encodeURIComponent(t.wa(n));
+
+    try { sessionStorage.setItem(CHAVE, JSON.stringify(estado)); } catch(e){}
+  }
+
+  /* monta só quando entra em cena */
+  let montado = false;
+  const monta = () => { if (!montado) { montado = true; desenha(); } };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      if (es.some(e => e.isIntersecting)) { io.disconnect(); monta(); }
+    }, { rootMargin: '250px' });
+    io.observe(caixa);
+  } else monta();
+
+  /* redesenha no idioma novo, guardando o que a pessoa já respondeu.
+     Observar o atributo lang do <html> evita mexer na IIFE do
+     seletor de idioma, que é fechada. */
+  new MutationObserver(() => { if (montado) desenha(); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
+
 <!-- ============ 5 · A SOLUÇÃO ============ -->
 <section class="sec light" id="solucao">
   <div class="sol-atmos" aria-hidden="true"><span class="sol-glow g1"></span><span class="sol-glow g2"></span><span class="sol-dots"></span></div>
