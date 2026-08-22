@@ -2936,38 +2936,207 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 8 · AVALIAÇÕES ============ -->
-<!-- oculta por enquanto: sem depoimentos reais ainda, reativar quando houver -->
-<section class="sec" id="avaliacoes" style="display:none">
+<!-- ============ 7 · ENTREGAS + 8 · QUEM FAZ ============ -->
+<style>
+  /* ---------- [07] entregas ---------- */
+  .ent-grid{
+    margin-top:40px;display:grid;gap:18px;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  }
+  .ent-card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:border-color .25s ease,transform .25s ease;
+  }
+  .ent-card:hover{border-color:rgba(227,179,65,.4);transform:translateY(-3px)}
+  .ent-card img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block}
+  .ent-corpo{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .ent-nicho{
+    font:600 11px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  }
+  .ent-card h3{font:700 18px/1.25 var(--font-display);color:var(--cream);margin:0}
+  .ent-card p{font:400 14px/1.6 var(--font-body);color:var(--muted);margin:0;flex:1}
+  .ent-link{
+    align-self:flex-start;margin-top:6px;font:700 13px/1 var(--font-body);
+    color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(227,179,65,.35);
+    padding-bottom:3px;
+  }
+  .ent-link:hover{color:var(--accent-soft)}
+  .ent-rodape{margin-top:28px;font:400 13px/1.7 var(--font-body);color:var(--muted);max-width:62ch}
+
+  /* ---------- [08] quem faz ---------- */
+  .qf{
+    margin-top:40px;display:grid;gap:34px;
+    grid-template-columns:minmax(0,300px) minmax(0,1fr);align-items:start;
+  }
+  @media(max-width:820px){ .qf{grid-template-columns:1fr;gap:24px} }
+  .qf-foto{
+    width:100%;aspect-ratio:4/5;border-radius:18px;object-fit:cover;display:block;
+    background:linear-gradient(145deg,#231F19,#15130F);border:1px solid var(--line);
+  }
+  .qf-texto p{font:400 clamp(15px,2vw,17px)/1.75 var(--font-body);color:var(--muted);margin:0 0 16px}
+  .qf-texto p:last-of-type{margin-bottom:0}
+  .qf-texto b{color:var(--cream);font-weight:600}
+  .qf-cnpj{margin-top:22px;font:400 12px/1.6 var(--font-mono);color:rgba(163,155,141,.75)}
+</style>
+
+<section class="sec" id="entregas" style="display:none">
   <div class="sec-inner">
-    <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>avaliações</p>
-    <h2 class="rv" style="--d:.08s">Ainda não temos <span class="lm">depoimentos públicos</span> — e não vamos inventar um.</h2>
-    <p class="lead rv" style="--d:.16s">Prefiro começar do zero e mostrar prova real conforme os primeiros diagnósticos viram cliente, do que forçar estrela que ninguém deu. Esta seção se preenche aqui — com nome, negócio e nota reais.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>delivered'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>entregas</p>
+    <h2 class="rv" style="--d:.08s" data-en='Proof is <span class="lm">what is already live.</span>'>Prova é o que <span class="lm">já está no ar.</span></h2>
 
-    <div class="g-badge rv" style="--d:.2s">
-      <img src="assets/logos/google-g.svg" alt="Google" width="30" height="30"/>
-      <div class="g-txt"><b>Sem avaliações públicas no Google ainda</b><span>em breve, aqui — assim que os primeiros clientes avaliarem</span></div>
-    </div>
+    <div class="ent-grid rv" style="--d:.15s" id="entGrid"></div>
 
-    <div class="rev-grid">
-      <div class="rev-card rv" style="--d:.1s">
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"[Depoimento real do cliente entra aqui depois do primeiro atendimento.]"</p>
-        <div class="rev-who"><span class="rev-avatar">?</span><div><b>[Nome do cliente]</b><span>[Negócio · cidade]</span></div></div>
-      </div>
-      <div class="rev-card rv" style="--d:.2s">
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"[Depoimento real do cliente entra aqui depois do primeiro atendimento.]"</p>
-        <div class="rev-who"><span class="rev-avatar">?</span><div><b>[Nome do cliente]</b><span>[Negócio · cidade]</span></div></div>
-      </div>
-      <div class="rev-card rv" style="--d:.3s">
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"[Depoimento real do cliente entra aqui depois do primeiro atendimento.]"</p>
-        <div class="rev-who"><span class="rev-avatar">?</span><div><b>[Nome do cliente]</b><span>[Negócio · cidade]</span></div></div>
+    <p class="ent-rodape" data-en="I don't have public Google reviews yet, and I won't manufacture a star. When the first clients review, they show up here, with real name, business and rating.">Avaliação pública no Google ainda não tenho, e não vou fabricar estrela. Quando os primeiros clientes avaliarem, elas entram aqui, com nome, negócio e nota reais.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  /* ---------- entregas reais ----------
+     PREENCHER. Um objeto por cliente entregue. Enquanto 'nome' e 'link'
+     estiverem vazios o card nao e desenhado, e se nao sobrar nenhum a
+     secao inteira fica escondida.
+
+     Isso e proposital: card vazio na secao de prova e pior do que secao
+     ausente. Nao invente nome, print, link nem resultado. Antes de
+     preencher, peca autorizacao por escrito a cada cliente. */
+  const ENTREGAS = [
+    { nicho:'nutricionista',              nome:'', link:'', print:'', feito:'' }, // PREENCHER
+    { nicho:'nutricionista',              nome:'', link:'', print:'', feito:'' }, // PREENCHER
+    { nicho:'dentista',                   nome:'', link:'', print:'', feito:'' }, // PREENCHER
+    { nicho:'dentista',                   nome:'', link:'', print:'', feito:'' }, // PREENCHER
+    { nicho:'terapia alimentar infantil', nome:'', link:'', print:'', feito:'' }, // PREENCHER
+    { nicho:'dietitian (US)',             nome:'', link:'', print:'', feito:'' }, // PREENCHER
+  ];
+
+  const WA = '5532984762445';
+  const MSG = { pt:'Vi os sites que vocês entregaram. Quero um diagnóstico.',
+                en:'I saw the sites you delivered. I want a diagnosis.' };
+
+  const grid = document.getElementById('entGrid');
+  const secao = document.getElementById('entregas');
+  if (!grid || !secao) return;
+
+  const prontas = ENTREGAS.filter(e => e.nome && e.link);
+
+  if (!prontas.length) {
+    /* aviso so em desenvolvimento, para nao poluir o console de quem visita */
+    if (/localhost|127\.0\.0\.1/.test(location.hostname)) {
+      console.warn('[theatrum] secao [07] entregas escondida: nenhum item preenchido em ENTREGAS. ' +
+                   'Preencha nome e link (e peca autorizacao ao cliente antes).');
+    }
+    return;
+  }
+
+  secao.style.display = '';
+  grid.innerHTML = prontas.map(e =>
+    '<article class="ent-card">' +
+      (e.print ? '<img src="' + e.print + '" alt="Site de ' + e.nome + '" loading="lazy" decoding="async">' : '') +
+      '<div class="ent-corpo">' +
+        '<span class="ent-nicho">' + e.nicho + '</span>' +
+        '<h3>' + e.nome + '</h3>' +
+        (e.feito ? '<p>' + e.feito + '</p>' : '<p></p>') +
+        '<a class="ent-link" href="' + e.link + '" target="_blank" rel="noopener">ver o site no ar &rarr;</a>' +
+      '</div>' +
+    '</article>').join('');
+
+  /* CTA da secao, com a mensagem propria desta origem */
+  const cta = document.createElement('a');
+  cta.className = 'calc-cta';
+  cta.target = '_blank'; cta.rel = 'noopener';
+  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const pinta = () => {
+    cta.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(MSG[idioma()]);
+    cta.textContent = idioma() === 'en' ? 'I want a diagnosis' : 'Quero um diagnóstico';
+  };
+  pinta();
+  new MutationObserver(pinta).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+  grid.after(cta);
+})();
+</script>
+
+<!-- ============ 8 · QUEM FAZ ============ -->
+<section class="sec light" id="quem-faz">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>who does it'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>quem faz</p>
+    <h2 class="rv" style="--d:.08s" data-en='Who is going to touch <span class="lm">your business.</span>'>Quem vai mexer <span class="lm">no seu negócio.</span></h2>
+
+    <div class="qf rv" style="--d:.15s">
+      <!-- PREENCHER: foto do Matheus em 4:5. As dimensoes ja estao
+           declaradas para a imagem nao empurrar o texto ao carregar. -->
+      <img class="qf-foto" src="assets/img/matheus.jpg" width="600" height="750"
+           alt="Matheus, fundador da Theatrum" loading="lazy" decoding="async"
+           onerror="this.removeAttribute('src')">
+
+      <div class="qf-texto">
+        <p data-en="I'm Matheus. Before I wrote code I laid floors, raised walls and worked on building sites. I know what it is to depend on referrals, and I know what it is to watch a slow month arrive with the same bills as a good one.">Sou o Matheus. Antes de escrever código eu assentei piso, levantei parede e trabalhei em obra. Sei o que é depender de indicação e sei o que é um mês fraco chegando com as contas iguais às do mês bom.</p>
+        <p data-en="I have a degree in Information Systems and today I build websites, traffic and automation for small businesses in Brazil and in the United States.">Sou formado em Sistemas de Informação e hoje construo site, tráfego e automação para pequenos negócios no Brasil e nos Estados Unidos.</p>
+        <p data-en="There is no support team between the two of us. <b>The person replying on WhatsApp is me.</b>">Não tem equipe de atendimento entre nós dois. <b>Quem responde no WhatsApp sou eu.</b></p>
+        <p class="qf-cnpj">Theatrum · CNPJ 61.978.753/0001-60</p>
       </div>
     </div>
   </div>
 </section>
+
+
+<style>
+  /* ---------- [09] o que vem no raio-x ---------- */
+  .raiox{
+    margin-top:44px;background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:30px 28px;
+  }
+  .raiox h3{
+    font:700 clamp(19px,2.4vw,23px)/1.3 var(--font-display);color:var(--cream);margin:0 0 4px;
+  }
+  .raiox h3 small{
+    display:block;margin-top:7px;font:600 12px/1 var(--font-mono);
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  }
+  .raiox ol{margin:22px 0 0;padding:0;list-style:none;counter-reset:rx;display:grid;gap:14px}
+  .raiox li{
+    counter-increment:rx;position:relative;padding-left:38px;
+    font:400 15px/1.65 var(--font-body);color:var(--muted);
+  }
+  .raiox li::before{
+    content:counter(rx,decimal-leading-zero);position:absolute;left:0;top:1px;
+    font:700 12px/1.5 var(--font-mono);color:var(--accent);
+  }
+  .raiox li b{color:var(--cream);font-weight:600}
+  .raiox-fecho{
+    margin:24px 0 0;padding-top:20px;border-top:1px solid var(--line);
+    font:400 15px/1.7 var(--font-body);color:var(--cream);
+  }
+
+  /* ---------- [11] investimento ---------- */
+  .inv-caixa{
+    margin-top:38px;background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:30px 28px;
+  }
+  .inv-caixa p{font:400 clamp(15px,2vw,17px)/1.75 var(--font-body);color:var(--muted);margin:0}
+  .inv-caixa b{color:var(--accent);font-weight:700}
+  .inv-cols{
+    margin-top:22px;display:grid;gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  }
+  .inv-col{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 22px;
+  }
+  .inv-col h3{
+    font:700 12px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;
+    margin:0 0 16px;
+  }
+  .inv-sim h3{color:var(--accent)}
+  .inv-nao h3{color:var(--danger)}
+  .inv-col ul{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+  .inv-col li{
+    position:relative;padding-left:26px;font:400 14px/1.6 var(--font-body);color:var(--muted);
+  }
+  .inv-col li::before{position:absolute;left:0;top:0;font:700 14px/1.6 var(--font-body)}
+  .inv-sim li::before{content:'\2713';color:var(--accent)}
+  .inv-nao li::before{content:'\2715';color:var(--danger)}
+</style>
 
 <!-- ============ 6 · COMO FUNCIONA ============ -->
 <section class="sec" id="como-funciona">
@@ -2996,6 +3165,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3 data-en="Fine-tuning <small>every month</small>">Ajuste fino <small>todo mês</small></h3>
         <p data-en="Clear reporting on contacts and revenue (not likes), with continuous optimization of whatever brings the best return.">Relatório claro de contatos e faturamento (não de curtidas) e otimização contínua do que traz mais retorno.</p>
       </div>
+    </div>
+
+    <div class="raiox rv" style="--d:.3s">
+      <h3 data-en='What you get in the diagnosis <small>30 minutes, free</small>'>O que você recebe no diagnóstico <small>30 minutos, gratuito</small></h3>
+      <ol>
+        <li data-en='Where your business shows up (and where it does not) on Google today, <b>searched live, in front of you</b>'>Onde seu negócio aparece (e onde não aparece) no Google hoje, <b>com a busca feita ao vivo, na sua frente</b></li>
+        <li data-en='What your <b>3 closest competitors</b> are doing that you are not'>O que os seus <b>3 concorrentes mais próximos</b> estão fazendo que você não está</li>
+        <li data-en='The number for each of your leaks, <b>with the maths on screen</b>'>O número de cada vazamento seu, <b>com a conta na tela</b></li>
+        <li data-en='The plan for the three engines in your case, <b>with a deadline</b>'>O plano dos três motores para o seu caso, <b>com prazo</b></li>
+        <li data-en='The exact investment. <b>No "it depends"</b>'>O investimento exato. <b>Sem "depende"</b></li>
+      </ol>
+      <p class="raiox-fecho" data-en='If it makes sense, we start. If it does not, you keep the x-ray and use it however you like.'>Se fizer sentido, a gente começa. Se não fizer, você fica com o raio-x e usa como quiser.</p>
     </div>
   </div>
 </section>
@@ -3037,6 +3218,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ============ 11 · INVESTIMENTO ============ -->
+<section class="sec" id="investimento">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>investment'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>investimento</p>
+    <h2 class="rv" style="--d:.08s" data-en='What it costs, <span class="lm">for real.</span>'>Quanto custa, <span class="lm">de verdade.</span></h2>
+
+    <!-- PREENCHER: os tres valores. Enquanto forem ___ a secao nao filtra
+         ninguem, que e justamente a funcao dela. Decisao do Matheus. -->
+    <div class="inv-caixa rv" style="--d:.15s">
+      <p data-en='Setup from <b>R$ ___</b> and operation from <b>R$ ___</b> per month. The ad budget is separate and stays in your account, not in mine. Exactly how much depends on how many engines you switch on, and that comes out of the diagnosis, on the spot.'>Implantação a partir de <b>R$ ___</b> e operação a partir de <b>R$ ___</b> por mês. A verba de anúncio é separada e fica na sua conta, não na minha. Quanto exatamente depende de quantos motores você liga, e isso sai no diagnóstico, na hora.</p>
+    </div>
+
+    <div class="inv-cols rv" style="--d:.22s">
+      <div class="inv-col inv-sim">
+        <h3 data-en='it is for you if'>é para você se</h3>
+        <ul>
+          <li data-en='your business is a service with scheduled appointments'>seu negócio é de serviço com atendimento agendado</li>
+          <li data-en='you have someone to serve the client when they arrive'>você tem quem atenda quando o cliente chegar</li>
+          <li data-en='you want predictability, not a spike'>você quer previsibilidade, não pico</li>
+        </ul>
+      </div>
+      <div class="inv-col inv-nao">
+        <h3 data-en='it is not for you if'>não é para você se</h3>
+        <ul>
+          <li data-en='what you want is followers and likes'>o que você quer é seguidor e curtida</li>
+          <li data-en='you do not have the structure to serve more people'>você não tem estrutura para atender mais gente</li>
+          <li data-en='you expect results in seven days'>você espera resultado em sete dias</li>
+          <li data-en='you have no ad budget (minimum R$ ___ /month)'>você não tem verba de anúncio (mínimo R$ ___ /mês)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 8 · FAQ ============ -->
 <section class="sec" id="faq">
   <div class="sec-inner">
@@ -3063,6 +3278,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <details>
         <summary data-en='I work alone and don&apos;t have a team. Can I keep up with this? <span class="pl">+</span>'>Trabalho sozinho e não tenho equipe. Consigo tocar isso? <span class="pl">+</span></summary>
         <div class="ans" data-en="<b>Yes</b> — that's exactly what the system is for. The AI answers WhatsApp, Google Business Profile and ads bring in new clients, and reactivation runs on its own. You get the client ready to close, without having to become a marketing team."><b>Sim</b> — é justamente pra isso que o sistema existe. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
+      </details>
+      <details>
+        <summary data-en='Will the AI say something stupid to my client? <span class="pl">+</span>'>A IA vai falar besteira com o meu cliente? <span class="pl">+</span></summary>
+        <div class="ans" data-en='The script is <b>approved by you before it goes live</b>, the conversation transfers to a human at any moment, and you read every conversation. The AI answers what was agreed and hands over what was not.'>O roteiro é <b>aprovado por você antes de subir</b>, a conversa passa para humano a qualquer momento, e você lê todas as conversas. A IA responde o que foi combinado e passa adiante o que não foi.</div>
+      </details>
+      <details>
+        <summary data-en='Am I locked into a contract? <span class="pl">+</span>'>Fico preso em contrato? <span class="pl">+</span></summary>
+        <div class="ans" data-en='CONFIRM WITH MATHEUS: fill in the actual policy here (notice period, minimum term, cancellation).'>// CONFIRMAR COM O MATHEUS: preencher aqui a política real (aviso prévio, prazo mínimo, cancelamento).</div>
+      </details>
+      <details>
+        <summary data-en='Is the site mine or yours? <span class="pl">+</span>'>O site é meu ou de vocês? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Yours. <b>Domain, hosting and accounts are in your name, always.</b> Including the Google Business Profile and the ad account.'>Seu. <b>Domínio, hospedagem e contas ficam no seu nome, sempre.</b> Inclusive o Google Meu Negócio e a conta de anúncio.</div>
+      </details>
+      <details>
+        <summary data-en='And if I want to leave? <span class="pl">+</span>'>E se eu quiser sair? <span class="pl">+</span></summary>
+        <div class="ans" data-en='You take everything. Site, domain, accounts and history. Nothing here is built to hold you hostage.'>Você leva tudo. Site, domínio, contas e histórico. Nada aqui é montado para te prender.</div>
+      </details>
+      <details>
+        <summary data-en='I already have a site. Does it work? <span class="pl">+</span>'>Já tenho site. Serve? <span class="pl">+</span></summary>
+        <div class="ans" data-en='We audit it. Either it is worth keeping and we build on top, or it is rebuilt. The diagnosis tells you which of the two, with the reason.'>A gente audita. Ou ele aproveita e a gente constrói em cima, ou refaz. O diagnóstico diz qual dos dois, com o motivo.</div>
+      </details>
+      <details>
+        <summary data-en='Do I need to show up, record video, produce content? <span class="pl">+</span>'>Preciso aparecer, gravar vídeo, produzir conteúdo? <span class="pl">+</span></summary>
+        <div class="ans" data-en='No. The system works without you being on camera. If you want to appear, it helps. If you do not, it still works.'>Não. O sistema funciona sem você na frente da câmera. Se quiser aparecer, ajuda. Se não quiser, funciona do mesmo jeito.</div>
       </details>
     </div>
   </div>
