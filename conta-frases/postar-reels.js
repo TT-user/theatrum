@@ -9,6 +9,8 @@
 //   node --env-file=$ENV postar-reels.js 01
 //   node --env-file=$ENV postar-reels.js 01 02 03
 //   node --env-file=$ENV postar-reels.js --todos
+//   node --env-file=$ENV postar-reels.js --carrossel A
+//   node --env-file=$ENV postar-reels.js --carrosseis
 //
 // $ENV = ../../explicologo/.env  (fora deste repo). ATENCAO: ../MazyOS/.env
 // existe mas e o token da conta @theatrum.br — o --checar barra a publicacao
@@ -190,6 +192,78 @@ async function publicarUm(p) {
   if (ok) console.log('  hashtags no primeiro comentario');
 }
 
+
+// ---- carrossel ----------------------------------------------------------
+// Slide 1 e video, os demais sao imagem estatica (regra do PUBLICACAO.md).
+// A Meta monta carrossel em tres etapas: um container por slide marcado com
+// is_carousel_item, um container pai do tipo CAROUSEL apontando para eles, e
+// so entao o publish do pai.
+
+function slidesDo(nome) {
+  return posts
+    .filter((p) => p.carrossel === nome)
+    .sort((a, b) => a.slide - b.slide);
+}
+
+async function containerSlide(p) {
+  const m = midia(p.id);
+  if (!m) throw new Error(`${p.id}: sem arte montada`);
+
+  const corpo = m.tipo === 'REELS'
+    ? { media_type: 'VIDEO', video_url: m.url, is_carousel_item: true }
+    : { image_url: m.url, is_carousel_item: true };
+
+  const c = await api(`${IG_ID}/media`, corpo);
+  console.log(`  slide ${p.slide} (${p.id}, ${m.tipo === 'REELS' ? 'video' : 'imagem'}): container ${c.id}`);
+  await esperarContainer(c.id);
+  return c.id;
+}
+
+async function publicarCarrossel(nome) {
+  const reg = lerRegistro();
+  const chave = `carrossel-${nome}`;
+  if (reg[chave]) {
+    console.log(`carrossel ${nome}: ja publicado em ${reg[chave].quando}, pulando`);
+    return;
+  }
+
+  const slides = slidesDo(nome);
+  if (!slides.length) { console.log(`carrossel ${nome}: nao existe em posts.json`); return; }
+  if (slides.length < 2 || slides.length > 10) {
+    console.log(`carrossel ${nome}: ${slides.length} slides, a Meta aceita de 2 a 10`);
+    return;
+  }
+
+  const capa = slides[0];
+  console.log(`
+carrossel ${nome} — ${slides.length} slides, capa ${capa.id} "${capa.frase_flat}"`);
+
+  const filhos = [];
+  for (const p of slides) filhos.push(await containerSlide(p));
+
+  console.log('  criando container pai...');
+  const pai = await api(`${IG_ID}/media`, {
+    media_type: 'CAROUSEL',
+    children: filhos.join(','),
+    caption: montarLegenda(capa.id),
+  });
+  await esperarContainer(pai.id);
+
+  console.log('  publicando...');
+  const pub = await api(`${IG_ID}/media_publish`, { creation_id: pai.id });
+
+  reg[chave] = {
+    media_id: pub.id,
+    slides: slides.map((p) => p.id),
+    quando: new Date().toISOString(),
+  };
+  gravarRegistro(reg);
+  console.log(`  publicado: ${pub.id}`);
+
+  const ok = await comentar(pub.id, copy[capa.id].hashtags);
+  if (ok) console.log('  hashtags no primeiro comentario');
+}
+
 async function main() {
   if (!TOKEN || !IG_ID) {
     console.error('Faltam INSTAGRAM_ACCESS_TOKEN / INSTAGRAM_USER_ID no .env');
@@ -198,6 +272,28 @@ async function main() {
 
   const args = process.argv.slice(2);
   if (args.includes('--checar')) return conferirAmbiente();
+
+  // --carrossel A B  ou  --carrosseis (todos os que existirem)
+  const nomes = args.includes('--carrosseis')
+    ? [...new Set(posts.filter((p) => p.carrossel).map((p) => p.carrossel))].sort()
+    : args.includes('--carrossel')
+      ? args.slice(args.indexOf('--carrossel') + 1).filter((a) => /^[A-Z]$/.test(a))
+      : [];
+
+  if (nomes.length) {
+    const { ok } = await conferirConta();
+    if (!ok && !args.includes('--forcar-conta')) {
+      console.error(`
+Token de outra conta. Nada foi publicado. Ajuste o .env para @${CONTA_ESPERADA}`);
+      process.exitCode = 1;
+      return;
+    }
+    for (const n of nomes) {
+      await publicarCarrossel(n);
+      if (nomes.length > 1) await dormir(30000);
+    }
+    return;
+  }
 
   const ids = args.includes('--todos')
     ? posts.map((p) => p.id)

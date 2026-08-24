@@ -74,6 +74,19 @@ entra como referencia: puxaria a geracao de volta para ele.
 | P3 | Fé leve | Black sky and white stars, with flat accents of amber yellow and burnt orange |
 | P4 | Amor-próprio | Black sky and white stars, with flat accents of emerald green and cobalt blue |
 
+## Carrosséis montados
+
+Slide 1 é vídeo, os demais saem em imagem estática. Cada carrossel cobre os quatro
+pilares, então funciona sozinho fora da sequência do feed.
+
+| Carrossel | Slides | Capa (vídeo) | Pilares |
+|---|---|---|---|
+| A | 16 · 17 · 18 · 19 · 20 | 16 — Você vai se reconhecer de novo. | P1, P2, P3, P4 |
+| B | 21 · 22 · 23 · 24 · 25 | 21 — Está tudo bem em não responder hoje. | P1, P2, P3, P4 |
+| C | 26 · 27 · 28 · 29 · 30 | 26 — Todo começo é meio desajeitado. | P1, P2, P3, P4 |
+
+Publicar: `node --env-file=$ENV postar-reels.js --carrossel A`
+
 **Arquivos**
 - `final/instagram/NN-4x5.mp4` — 1080×1350, publicar no feed
 - `final/instagram/NN-4x5.jpg` — capa estática (thumbnail / slide de carrossel)

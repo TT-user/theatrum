@@ -172,7 +172,10 @@
     "frase_flat": "Você vai se reconhecer de novo.",
     "text_zone": "upper",
     "scene": "A caped figure sitting alone on a bare asteroid, back to us, watching a distant planet rise slowly over the horizon",
-    "surreal": true
+    "surreal": true,
+    "carrossel": "A",
+    "slide": 1,
+    "capa": true
   },
   {
     "id": "17",
@@ -182,7 +185,10 @@
     "frase_flat": "Guarde um pedaço do dia para você.",
     "text_zone": "upper",
     "scene": "A figure sitting alone on the rim of a crater with a small thermos beside them, an enormous ringed planet low on the horizon",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "A",
+    "slide": 2,
+    "capa": false
   },
   {
     "id": "18",
@@ -192,7 +198,10 @@
     "frase_flat": "Nem todo recuo é derrota.",
     "text_zone": "upper",
     "scene": "A figure walking back down a rocky slope on a small moon, a trail of footprints behind them, a distant red planet in the sky",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "A",
+    "slide": 3,
+    "capa": false
   },
   {
     "id": "19",
@@ -202,7 +211,10 @@
     "frase_flat": "Você não precisa entender agora para seguir.",
     "text_zone": "middle",
     "scene": "A figure walking along a narrow ridge of rock floating in open space, a single bright star burning ahead of them",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "A",
+    "slide": 4,
+    "capa": false
   },
   {
     "id": "20",
@@ -212,7 +224,10 @@
     "frase_flat": "O seu valor não está em votação.",
     "text_zone": "upper",
     "scene": "A figure standing alone on a flat empty plain under an enormous star field, a single small satellite passing overhead",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "A",
+    "slide": 5,
+    "capa": false
   },
   {
     "id": "21",
@@ -222,7 +237,10 @@
     "frase_flat": "Está tudo bem em não responder hoje.",
     "text_zone": "upper",
     "scene": "A figure lying back on a smooth rock on a small moon, hands behind their head, an enormous quiet star field above",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "B",
+    "slide": 1,
+    "capa": true
   },
   {
     "id": "22",
@@ -232,7 +250,10 @@
     "frase_flat": "Você vai olhar para trás com carinho.",
     "text_zone": "upper",
     "scene": "A figure sitting on the rim of a crater with a small dog beside them, both looking back at a tiny blue Earth far away",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "B",
+    "slide": 2,
+    "capa": false
   },
   {
     "id": "23",
@@ -242,7 +263,10 @@
     "frase_flat": "Deixe o tempo fazer a parte dele.",
     "text_zone": "upper",
     "scene": "A figure sitting quietly beside a tall clock standing upright alone on an empty plain, planets drifting slowly in the sky",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "B",
+    "slide": 3,
+    "capa": false
   },
   {
     "id": "24",
@@ -252,7 +276,10 @@
     "frase_flat": "Nem todo amor que cansa é amor.",
     "text_zone": "upper",
     "scene": "A figure walking alone away from a cluster of small glowing windows on a dark plain, a pale moon ahead of them",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "B",
+    "slide": 4,
+    "capa": false
   },
   {
     "id": "25",
@@ -262,7 +289,10 @@
     "frase_flat": "Você não precisa de barulho para existir.",
     "text_zone": "upper",
     "scene": "A figure standing alone in the middle of a wide empty crater, a spiral galaxy turning quietly overhead",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "B",
+    "slide": 5,
+    "capa": false
   },
   {
     "id": "26",
@@ -272,7 +302,10 @@
     "frase_flat": "Todo começo é meio desajeitado.",
     "text_zone": "upper",
     "scene": "A small astronaut standing at the edge of a crater with a toppled flag beside them, back to us, a distant planet rising",
-    "surreal": true
+    "surreal": true,
+    "carrossel": "C",
+    "slide": 1,
+    "capa": true
   },
   {
     "id": "27",
@@ -282,7 +315,10 @@
     "frase_flat": "Está tudo bem em confiar de novo.",
     "text_zone": "middle",
     "scene": "A figure sitting on a rock with both hands open, small glowing sparks drifting upward into the star field",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "C",
+    "slide": 2,
+    "capa": false
   },
   {
     "id": "28",
@@ -292,7 +328,10 @@
     "frase_flat": "Vai chegar quem fica sem você pedir.",
     "text_zone": "upper",
     "scene": "Two small figures walking slowly toward each other across a dark plain under a huge moon, still far apart",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "C",
+    "slide": 3,
+    "capa": false
   },
   {
     "id": "29",
@@ -302,7 +341,10 @@
     "frase_flat": "Respire antes de responder.",
     "text_zone": "upper",
     "scene": "A figure sitting cross-legged on a rock at the edge of a still crater lake, an enormous calm star field above",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "C",
+    "slide": 4,
+    "capa": false
   },
   {
     "id": "30",
@@ -312,6 +354,9 @@
     "frase_flat": "Nem todo dia precisa render.",
     "text_zone": "upper",
     "scene": "A figure sitting alone on a simple bench on an empty moon plain, a small blue Earth low in the sky",
-    "surreal": false
+    "surreal": false,
+    "carrossel": "C",
+    "slide": 5,
+    "capa": false
   }
 ]

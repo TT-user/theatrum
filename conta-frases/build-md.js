@@ -27,6 +27,26 @@ const ctas = [...new Set(
     .filter((l) => l.includes('@explicologo'))
 )];
 
+
+const carrosseis = [...new Set(posts.filter((p) => p.carrossel).map((p) => p.carrossel))].sort();
+const gradeCarrossel = carrosseis.length ? [
+  '## Carrosséis montados',
+  '',
+  'Slide 1 é vídeo, os demais saem em imagem estática. Cada carrossel cobre os quatro',
+  'pilares, então funciona sozinho fora da sequência do feed.',
+  '',
+  '| Carrossel | Slides | Capa (vídeo) | Pilares |',
+  '|---|---|---|---|',
+  ...carrosseis.map((n) => {
+    const g = posts.filter((p) => p.carrossel === n).sort((a, b) => a.slide - b.slide);
+    return '| ' + n + ' | ' + g.map((p) => p.id).join(' · ') + ' | ' + g[0].id +
+      ' — ' + g[0].frase_flat + ' | ' + [...new Set(g.map((p) => p.pilar))].sort().join(', ') + ' |';
+  }),
+  '',
+  'Publicar: `node --env-file=$ENV postar-reels.js --carrossel A`',
+  '',
+].join(String.fromCharCode(10)) : '';
+
 const cabecalho = `# ${posts.length} posts — frases sobre pinturas texturizadas
 
 Cada post é **um vídeo de 5s** (pintura a óleo animada) com uma frase queimada em Itim branco
@@ -55,6 +75,7 @@ os demais direto do \`overlay.js\` sobre a pintura parada.
 Uma variante surreal (astronauta) a cada dez — hoje nos posts ${surreais.join(', ')}.
 
 ${secaoEstilo(estilo, PILAR)}
+${gradeCarrossel}
 **Arquivos**
 - \`final/instagram/NN-4x5.mp4\` — 1080×1350, publicar no feed
 - \`final/instagram/NN-4x5.jpg\` — capa estática (thumbnail / slide de carrossel)
