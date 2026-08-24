@@ -38,7 +38,10 @@ function montarPrompt(p, temRef) {
 }
 
 function referencia(p) {
+  // so serve imagem do mesmo pilar E do estilo vigente: mandar uma arte do
+  // estilo antigo como referencia puxaria a geracao de volta para ele
   const irmao = posts.find((o) => o.pilar === p.pilar && o.id !== p.id
+    && o.id >= estilo.vale_a_partir_de
     && fs.existsSync(`${ROOT}/img/${o.id}.png`));
   return irmao ? { id: irmao.id, b64: fs.readFileSync(`${ROOT}/img/${irmao.id}.png`).toString('base64') } : null;
 }

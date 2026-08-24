@@ -30,7 +30,9 @@ Uma variante surreal (astronauta) a cada dez — hoje nos posts 06, 16, 26.
 
 ## Estilo das imagens de fundo
 
-**Pintura a óleo texturizada.** Pintura a óleo em tela de linho grosso, estilo folk ingênuo. Figura solitária de costas, pequena no quadro, rosto nunca visível. Luz difusa, horizonte enevoado, empastamento visível.
+**Ilustração cósmica em quadrinho.** Ilustração chapada de quadrinho sobre céu noturno preto pontilhado de estrelas. Traço de nanquim grosso, cores chapadas e poucas por quadro, grão de papel de risografia. Figura solitária de costas contemplando o cosmos, às vezes com um bicho ao lado.
+
+> **Vale a partir do post 16.** Pintura a óleo texturizada em tela de linho, usada nos posts 01 a 15. Ver o commit anterior a esta troca se precisar reproduzir aqueles.
 
 O arquivo `estilo.json` e a **fonte unica** do visual. `gen-imagens.ps1` (Higgsfield)
 e `gen-imagens-gemini.mjs` (Gemini) montam o prompt a partir dele, e esta secao e
@@ -41,35 +43,36 @@ saem de sincronia.
 O prompt de cada post e montado nesta ordem:
 
 ```
-Textured oil painting on rough linen canvas, naive folk-art style.
+Flat comic-book illustration, like a single graphic-novel panel. Bold confident black ink linework, screen-print and risograph feel.
 {cena do post, vinda de posts.json}.
-Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes.
+Solitary figure seen from behind, small in frame, face never visible, sitting or standing very still, drawn with heavy ink outlines and flat colour fills.
 {paleta do pilar}.
-Soft diffused light, hazy horizon, no hard shadows.
-Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.
-Wide open negative space in the {zona} third of the frame, empty and low-contrast, reserved for text overlay.
-Painterly, contemplative, quiet, melancholic but hopeful.
+No gradients and no soft shading: flat blocks of colour separated by clean ink lines.
+Deep black night sky densely hand-stippled with small white stars of varying size, subtle paper grain and print texture, colours flat and slightly muted.
+Wide open empty black sky in the {zona} third of the frame, stars only, no objects, reserved for text overlay.
+Cosmic, quiet, contemplative, gently surreal, hopeful.
 No text, no lettering, no watermark, no signature, no faces, no logos.
 Vertical portrait composition.
 ```
 
 A variante surreal troca a linha da figura por:
 
-> Seen from behind, small in frame, face never visible, painted in loose confident brushstrokes.
+> A gently whimsical character seen from behind, face never visible, small in frame, sitting or standing very still, drawn with heavy ink outlines and flat colour fills.
 
-Quando o gerador aceita referencia de imagem, vai junto uma pintura ja aprovada do
-mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
+Quando o gerador aceita referencia de imagem, vai junto uma arte ja aprovada do mesmo
+pilar **e do estilo vigente** (id >= 16), mais esta trava. Arte do estilo antigo nunca
+entra como referencia: puxaria a geracao de volta para ele.
 
-> Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.
+> Match the ink line weight, flat colour handling, star field density and paper texture of the reference image. Do NOT copy its composition or subject.
 
 **Paleta por pilar** — e o que faz a grade do perfil ler como uma conta so:
 
 | Pilar | | Paleta |
 |---|---|---|
-| P1 | Paz e limites | Soft cobalt blue, sage green, pale cream horizon, gentle rose light |
-| P2 | Recomeços | Muted slate grey, sea green, warm sand, overcast pale sky |
-| P3 | Fé leve | Burnt orange, deep amber, indigo shadow, golden sparks |
-| P4 | Amor-próprio | Dusty pink, warm terracotta, soft lavender, cream |
+| P1 | Paz e limites | Black sky and white stars, with flat accents of soft teal and pale grey |
+| P2 | Recomeços | Black sky and white stars, with flat accents of crimson red and warm sand |
+| P3 | Fé leve | Black sky and white stars, with flat accents of amber yellow and burnt orange |
+| P4 | Amor-próprio | Black sky and white stars, with flat accents of emerald green and cobalt blue |
 
 **Arquivos**
 - `final/instagram/NN-4x5.mp4` — 1080×1350, publicar no feed
@@ -474,7 +477,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #amorproprio #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #recomeco #autocuidado
 
-**Alt text:** Pintura a óleo texturizada de um pequeno astronauta sentado sozinho de costas em uma encosta suave no fim da tarde, diante de um horizonte quente e distante.
+**Alt text:** Ilustração de quadrinho em traço grosso: uma figura de capa sentada de costas em um asteroide, olhando um planeta distante subir, sob céu preto cheio de estrelas.
 
 **Pinterest** — board *Amor-Próprio*
 - Título: `Frases para quando você se perde de si`
@@ -497,7 +500,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #frasesdepaz #autocuidado #frasesreflexivas #paginasdecalma #descanso #frasescurtas #calmaria
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas em um muro baixo de pedra na borda de um campo verde, diante de uma baía azul e horizonte claro.
+**Alt text:** Ilustração de quadrinho: uma pessoa sentada de costas na borda de uma cratera, com uma garrafa térmica ao lado e um planeta com anéis baixo no horizonte, sob céu estrelado.
 
 **Pinterest** — board *Frases de Paz*
 - Título: `Frases sobre descanso e autocuidado`
@@ -520,7 +523,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa de costas caminhando de volta pela areia molhada à beira de um mar cinza-esverdeado, deixando um rastro de pegadas.
+**Alt text:** Ilustração de quadrinho: uma pessoa descendo de costas uma encosta rochosa em uma lua, deixando pegadas, com um planeta vermelho ao longe no céu preto estrelado.
 
 **Pinterest** — board *Frases de Recomeço*
 - Título: `Frases sobre recuar e recomeçar`
@@ -543,7 +546,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #frasescurtas #tempocerto #esperanca
 
-**Alt text:** Pintura a óleo texturizada de uma figura minúscula caminhando por uma crista estreita em um vale âmbar escuro, com uma única estrela distante brilhando à frente.
+**Alt text:** Ilustração de quadrinho: uma pessoa caminhando de costas por uma crista estreita de rocha flutuando no espaço, com uma única estrela brilhante à frente.
 
 **Pinterest** — board *Fé e Confiança*
 - Título: `Frases para quando nada faz sentido`
@@ -566,7 +569,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #amorproprio #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #autocuidado #frasesdeamorproprio
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa de costas no alto de uma colina no fim da tarde, com os braços relaxados e um céu terracota suave se abrindo atrás.
+**Alt text:** Ilustração de quadrinho: uma pessoa de costas em pé numa planície vazia sob um campo de estrelas enorme, com um pequeno satélite cruzando o céu.
 
 **Pinterest** — board *Amor-Próprio*
 - Título: `Frases de autoestima e aprovação`
@@ -589,7 +592,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #limitessaudaveis #frasesdepaz #frasesreflexivas #paginasdecalma #descanso #frasescurtas #serenidade
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa deitada de costas na grama alta de uma encosta verde acima de um mar azul, sob um céu enorme e silencioso.
+**Alt text:** Ilustração de quadrinho: uma pessoa deitada de costas sobre uma rocha lisa numa lua, mãos atrás da cabeça, sob um céu preto tomado de estrelas.
 
 **Pinterest** — board *Frases de Paz*
 - Título: `Frases sobre responder no seu tempo`
@@ -612,7 +615,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #esperanca #recomeco #frasesreflexivas #paginasdecalma #vidaleve #frasescurtas #frasesdeconforto
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa de costas em uma duna baixa olhando um mar cinza-esverdeado, com a vegetação da praia curvada pelo vento.
+**Alt text:** Ilustração de quadrinho: uma pessoa sentada de costas na borda de uma cratera ao lado de um cachorro pequeno, os dois olhando a Terra azul minúscula ao longe.
 
 **Pinterest** — board *Frases de Recomeço*
 - Título: `Frases de esperança para fases difíceis`
@@ -635,7 +638,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #frasesdefe #frasesreflexivas #confianca #paginasdecalma #tempocerto #frasescurtas #paciencia
 
-**Alt text:** Pintura a óleo texturizada de uma figura minúscula descansando sob uma árvore seca em um vale escuro, com luz âmbar quente se acumulando no horizonte.
+**Alt text:** Ilustração de quadrinho: uma pessoa sentada de costas ao lado de um relógio alto sozinho numa planície vazia, com planetas no céu preto estrelado.
 
 **Pinterest** — board *Fé e Confiança*
 - Título: `Frases sobre paciência e tempo certo`
@@ -658,7 +661,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #amorproprio #relacoessaudaveis #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #autocuidado
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa de costas descendo sozinha por um caminho largo em uma encosta no fim da tarde, afastando-se de pequenas luzes quentes ao longe.
+**Alt text:** Ilustração de quadrinho: uma pessoa caminhando de costas para longe de um conjunto de janelas acesas numa planície escura, com uma lua pálida à frente.
 
 **Pinterest** — board *Amor-Próprio*
 - Título: `Frases sobre relações que cansam`
@@ -681,7 +684,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #frasesdepaz #silencio #frasesreflexivas #paginasdecalma #calmaria #frasescurtas #vidasimples
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa de costas parada em um campo verde amplo e vazio, com um lago azul parado atrás e nuvens suaves em um céu claro.
+**Alt text:** Ilustração de quadrinho: uma pessoa de costas parada no meio de uma cratera ampla e vazia, com uma galáxia espiral girando no céu preto.
 
 **Pinterest** — board *Frases de Paz*
 - Título: `Frases sobre silêncio e presença`
@@ -704,7 +707,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #recomeco #frasesdemudanca #frasesreflexivas #paginasdecalma #coragem #frasescurtas #vidaleve
 
-**Alt text:** Pintura a óleo texturizada de um pequeno astronauta de costas parado no início de um píer estreito de pedra sobre um mar cinza-esverdeado, minúsculo no quadro.
+**Alt text:** Ilustração de quadrinho: um pequeno astronauta de costas na borda de uma cratera, com uma bandeira caída ao lado e um planeta distante subindo no céu estrelado.
 
 **Pinterest** — board *Frases de Recomeço*
 - Título: `Frases sobre começar do jeito que dá`
@@ -727,7 +730,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #frasesdefe #confianca #frasesreflexivas #paginasdecalma #frasescurtas #esperanca #relacoessaudaveis
 
-**Alt text:** Pintura a óleo texturizada de uma figura minúscula em um vale escuro com as duas mãos abertas, cercada por pequenas faíscas douradas subindo devagar.
+**Alt text:** Ilustração de quadrinho: uma pessoa sentada de costas numa rocha com as duas mãos abertas, faíscas subindo devagar para o campo de estrelas.
 
 **Pinterest** — board *Fé e Confiança*
 - Título: `Frases sobre confiar de novo`
@@ -750,7 +753,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #amorproprio #relacoessaudaveis #autoestima #frasesreflexivas #paginasdecalma #frasescurtas #esperanca
 
-**Alt text:** Pintura a óleo texturizada de duas figuras pequenas caminhando devagar uma em direção à outra em uma encosta ampla no fim da tarde, ainda distantes, sob céu quente.
+**Alt text:** Ilustração de quadrinho: duas figuras pequenas caminhando devagar uma em direção à outra numa planície escura, sob uma lua enorme, ainda distantes.
 
 **Pinterest** — board *Amor-Próprio*
 - Título: `Frases sobre quem fica de verdade`
@@ -773,7 +776,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #frasesdepaz #serenidade #frasesreflexivas #paginasdecalma #calmaria #frasescurtas #limitessaudaveis
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas no topo de uma encosta verde diante de um mar azul calmo, com um pequeno barco ao longe.
+**Alt text:** Ilustração de quadrinho: uma pessoa sentada de pernas cruzadas de costas na beira de um lago de cratera parado, sob um céu preto imenso e calmo.
 
 **Pinterest** — board *Frases de Paz*
 - Título: `Frases sobre calma antes de reagir`
@@ -796,7 +799,7 @@ mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
 
 **Hashtags (1º comentário):** #recomeco #descanso #frasesreflexivas #paginasdecalma #vidaleve #frasescurtas #frasesdemudanca
 
-**Alt text:** Pintura a óleo texturizada de uma pessoa sentada de costas na beira de um deque de madeira sobre um mar cinza-esverdeado, com pequenos barcos parados e céu nublado.
+**Alt text:** Ilustração de quadrinho: uma pessoa sentada sozinha de costas num banco simples numa planície lunar vazia, com a Terra azul pequena baixa no céu.
 
 **Pinterest** — board *Frases de Recomeço*
 - Título: `Frases sobre dias que não rendem`

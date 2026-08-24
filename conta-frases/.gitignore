@@ -16,3 +16,6 @@ final/*
 final/instagram/*
 !final/instagram/*.mp4
 !final/instagram/*.jpg
+
+# prints de referencia de estilo, so para eu olhar
+referencia/

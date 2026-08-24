@@ -38,11 +38,12 @@ foreach ($p in $posts) {
   $fig = if ($p.surreal) { $estilo.figura.surreal } else { $estilo.figura.padrao }
   $paleta = if ($p.palette) { $p.palette } else { $estilo.paletas.PSObject.Properties[$p.pilar].Value }
 
-  # referencia de estilo: primeira pintura ja baixada do mesmo pilar
+  # referencia de estilo: so serve imagem do MESMO pilar e do estilo vigente.
+  # Mandar uma arte do estilo antigo puxaria a geracao de volta para ele.
   $ref = $null
   if ($Modelo -eq 'nano_banana_pro') {
     $ref = $posts |
-      Where-Object { $_.pilar -eq $p.pilar -and $_.id -ne $p.id -and (Test-Path "$root\img\$($_.id).png") } |
+      Where-Object { $_.pilar -eq $p.pilar -and $_.id -ne $p.id -and $_.id -ge $estilo.vale_a_partir_de -and (Test-Path "$root\img\$($_.id).png") } |
       Select-Object -First 1
   }
   $trava = if ($ref) { $estilo.trava_referencia + "`n" } else { "" }

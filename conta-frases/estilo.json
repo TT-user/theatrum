@@ -1,23 +1,25 @@
 {
-  "nome": "Pintura a óleo texturizada",
-  "resumo": "Pintura a óleo em tela de linho grosso, estilo folk ingênuo. Figura solitária de costas, pequena no quadro, rosto nunca visível. Luz difusa, horizonte enevoado, empastamento visível.",
+  "nome": "Ilustração cósmica em quadrinho",
+  "resumo": "Ilustração chapada de quadrinho sobre céu noturno preto pontilhado de estrelas. Traço de nanquim grosso, cores chapadas e poucas por quadro, grão de papel de risografia. Figura solitária de costas contemplando o cosmos, às vezes com um bicho ao lado.",
+  "vale_a_partir_de": "16",
+  "estilo_anterior": "Pintura a óleo texturizada em tela de linho, usada nos posts 01 a 15. Ver o commit anterior a esta troca se precisar reproduzir aqueles.",
   "template": "{abertura}\n{cena}.\n{figura}\n{paleta}.\n{luz}\n{materia}\n{respiro}\n{clima}\n{trava}{negativos}\n{enquadramento}",
-  "abertura": "Textured oil painting on rough linen canvas, naive folk-art style.",
+  "abertura": "Flat comic-book illustration, like a single graphic-novel panel. Bold confident black ink linework, screen-print and risograph feel.",
   "figura": {
-    "padrao": "Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes.",
-    "surreal": "Seen from behind, small in frame, face never visible, painted in loose confident brushstrokes."
+    "padrao": "Solitary figure seen from behind, small in frame, face never visible, sitting or standing very still, drawn with heavy ink outlines and flat colour fills.",
+    "surreal": "A gently whimsical character seen from behind, face never visible, small in frame, sitting or standing very still, drawn with heavy ink outlines and flat colour fills."
   },
-  "luz": "Soft diffused light, hazy horizon, no hard shadows.",
-  "materia": "Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.",
-  "respiro": "Wide open negative space in the {zona} third of the frame, empty and low-contrast, reserved for text overlay.",
-  "clima": "Painterly, contemplative, quiet, melancholic but hopeful.",
-  "trava_referencia": "Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.",
+  "luz": "No gradients and no soft shading: flat blocks of colour separated by clean ink lines.",
+  "materia": "Deep black night sky densely hand-stippled with small white stars of varying size, subtle paper grain and print texture, colours flat and slightly muted.",
+  "respiro": "Wide open empty black sky in the {zona} third of the frame, stars only, no objects, reserved for text overlay.",
+  "clima": "Cosmic, quiet, contemplative, gently surreal, hopeful.",
+  "trava_referencia": "Match the ink line weight, flat colour handling, star field density and paper texture of the reference image. Do NOT copy its composition or subject.",
   "negativos": "No text, no lettering, no watermark, no signature, no faces, no logos.",
   "enquadramento": "Vertical portrait composition.",
   "paletas": {
-    "P1": "Soft cobalt blue, sage green, pale cream horizon, gentle rose light",
-    "P2": "Muted slate grey, sea green, warm sand, overcast pale sky",
-    "P3": "Burnt orange, deep amber, indigo shadow, golden sparks",
-    "P4": "Dusty pink, warm terracotta, soft lavender, cream"
+    "P1": "Black sky and white stars, with flat accents of soft teal and pale grey",
+    "P2": "Black sky and white stars, with flat accents of crimson red and warm sand",
+    "P3": "Black sky and white stars, with flat accents of amber yellow and burnt orange",
+    "P4": "Black sky and white stars, with flat accents of emerald green and cobalt blue"
   }
 }
