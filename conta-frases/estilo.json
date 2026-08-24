@@ -1,0 +1,23 @@
+{
+  "nome": "Pintura a óleo texturizada",
+  "resumo": "Pintura a óleo em tela de linho grosso, estilo folk ingênuo. Figura solitária de costas, pequena no quadro, rosto nunca visível. Luz difusa, horizonte enevoado, empastamento visível.",
+  "template": "{abertura}\n{cena}.\n{figura}\n{paleta}.\n{luz}\n{materia}\n{respiro}\n{clima}\n{trava}{negativos}\n{enquadramento}",
+  "abertura": "Textured oil painting on rough linen canvas, naive folk-art style.",
+  "figura": {
+    "padrao": "Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes.",
+    "surreal": "Seen from behind, small in frame, face never visible, painted in loose confident brushstrokes."
+  },
+  "luz": "Soft diffused light, hazy horizon, no hard shadows.",
+  "materia": "Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.",
+  "respiro": "Wide open negative space in the {zona} third of the frame, empty and low-contrast, reserved for text overlay.",
+  "clima": "Painterly, contemplative, quiet, melancholic but hopeful.",
+  "trava_referencia": "Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.",
+  "negativos": "No text, no lettering, no watermark, no signature, no faces, no logos.",
+  "enquadramento": "Vertical portrait composition.",
+  "paletas": {
+    "P1": "Soft cobalt blue, sage green, pale cream horizon, gentle rose light",
+    "P2": "Muted slate grey, sea green, warm sand, overcast pale sky",
+    "P3": "Burnt orange, deep amber, indigo shadow, golden sparks",
+    "P4": "Dusty pink, warm terracotta, soft lavender, cream"
+  }
+}

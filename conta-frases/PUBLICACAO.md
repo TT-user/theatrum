@@ -28,6 +28,49 @@ os demais direto do `overlay.js` sobre a pintura parada.
 **3. Rodízio.** Nenhum pilar e nenhuma fórmula se repetem em posts consecutivos.
 Uma variante surreal (astronauta) a cada dez — hoje nos posts 06, 16, 26.
 
+## Estilo das imagens de fundo
+
+**Pintura a óleo texturizada.** Pintura a óleo em tela de linho grosso, estilo folk ingênuo. Figura solitária de costas, pequena no quadro, rosto nunca visível. Luz difusa, horizonte enevoado, empastamento visível.
+
+O arquivo `estilo.json` e a **fonte unica** do visual. `gen-imagens.ps1` (Higgsfield)
+e `gen-imagens-gemini.mjs` (Gemini) montam o prompt a partir dele, e esta secao e
+gerada dele. Para trocar o tipo de imagem de fundo, edite `estilo.json` e rode
+`node build-md.js` — nunca edite prompt dentro de script, senao os dois geradores
+saem de sincronia.
+
+O prompt de cada post e montado nesta ordem:
+
+```
+Textured oil painting on rough linen canvas, naive folk-art style.
+{cena do post, vinda de posts.json}.
+Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes.
+{paleta do pilar}.
+Soft diffused light, hazy horizon, no hard shadows.
+Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.
+Wide open negative space in the {zona} third of the frame, empty and low-contrast, reserved for text overlay.
+Painterly, contemplative, quiet, melancholic but hopeful.
+No text, no lettering, no watermark, no signature, no faces, no logos.
+Vertical portrait composition.
+```
+
+A variante surreal troca a linha da figura por:
+
+> Seen from behind, small in frame, face never visible, painted in loose confident brushstrokes.
+
+Quando o gerador aceita referencia de imagem, vai junto uma pintura ja aprovada do
+mesmo pilar mais esta trava, para o look nao mudar de modelo para modelo:
+
+> Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.
+
+**Paleta por pilar** — e o que faz a grade do perfil ler como uma conta so:
+
+| Pilar | | Paleta |
+|---|---|---|
+| P1 | Paz e limites | Soft cobalt blue, sage green, pale cream horizon, gentle rose light |
+| P2 | Recomeços | Muted slate grey, sea green, warm sand, overcast pale sky |
+| P3 | Fé leve | Burnt orange, deep amber, indigo shadow, golden sparks |
+| P4 | Amor-próprio | Dusty pink, warm terracotta, soft lavender, cream |
+
 **Arquivos**
 - `final/instagram/NN-4x5.mp4` — 1080×1350, publicar no feed
 - `final/instagram/NN-4x5.jpg` — capa estática (thumbnail / slide de carrossel)

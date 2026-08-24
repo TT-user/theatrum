@@ -5,6 +5,8 @@ const fs = require('fs');
 const ROOT = 'c:/Users/mathe/Desktop/theatrum/conta-frases';
 const posts = JSON.parse(fs.readFileSync(`${ROOT}/posts.json`, 'utf8'));
 const copy = JSON.parse(fs.readFileSync(`${ROOT}/copy.json`, 'utf8'));
+const estilo = JSON.parse(fs.readFileSync(`${ROOT}/estilo.json`, 'utf8'));
+const secaoEstilo = require('./md-estilo');
 
 const PILAR = {
   P1: 'Paz e limites', P2: 'Recomeços', P3: 'Fé leve', P4: 'Amor-próprio',
@@ -52,6 +54,7 @@ os demais direto do \`overlay.js\` sobre a pintura parada.
 **3. Rodízio.** Nenhum pilar e nenhuma fórmula se repetem em posts consecutivos.
 Uma variante surreal (astronauta) a cada dez — hoje nos posts ${surreais.join(', ')}.
 
+${secaoEstilo(estilo, PILAR)}
 **Arquivos**
 - \`final/instagram/NN-4x5.mp4\` — 1080×1350, publicar no feed
 - \`final/instagram/NN-4x5.jpg\` — capa estática (thumbnail / slide de carrossel)

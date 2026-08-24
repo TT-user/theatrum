@@ -17,7 +17,8 @@ param(
 )
 
 $root  = "c:\Users\mathe\Desktop\theatrum\conta-frases"
-$posts = Get-Content "$root\posts.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+$posts  = Get-Content "$root\posts.json"  -Raw -Encoding UTF8 | ConvertFrom-Json
+$estilo = Get-Content "$root\estilo.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 
 New-Item -ItemType Directory -Force "$root\img" | Out-Null
 
@@ -32,11 +33,10 @@ foreach ($p in $posts) {
     Write-Host "$($p.id): job ja concluido, pulando"; continue
   }
 
-  $fig = if ($p.surreal) {
-    "Seen from behind, small in frame, face never visible, painted in loose confident brushstrokes."
-  } else {
-    "Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes."
-  }
+  # estilo vem de estilo.json, lido tambem pelo gen-imagens-gemini.mjs e pelo
+  # build-md.js: trocar o look das imagens de fundo e editar aquele arquivo
+  $fig = if ($p.surreal) { $estilo.figura.surreal } else { $estilo.figura.padrao }
+  $paleta = if ($p.palette) { $p.palette } else { $estilo.paletas.PSObject.Properties[$p.pilar].Value }
 
   # referencia de estilo: primeira pintura ja baixada do mesmo pilar
   $ref = $null
@@ -45,23 +45,20 @@ foreach ($p in $posts) {
       Where-Object { $_.pilar -eq $p.pilar -and $_.id -ne $p.id -and (Test-Path "$root\img\$($_.id).png") } |
       Select-Object -First 1
   }
-  $trava = if ($ref) {
-    "Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.`n"
-  } else { "" }
+  $trava = if ($ref) { $estilo.trava_referencia + "`n" } else { "" }
 
-  $prompt = @"
-Textured oil painting on rough linen canvas, naive folk-art style.
-$($p.scene).
-$fig
-$($p.palette).
-Soft diffused light, hazy horizon, no hard shadows.
-Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.
-Wide open negative space in the $($p.text_zone) third of the frame, empty and low-contrast, reserved for text overlay.
-Painterly, contemplative, quiet, melancholic but hopeful.
-$trava
-No text, no lettering, no watermark, no signature, no faces, no logos.
-Vertical portrait composition.
-"@
+  $prompt = $estilo.template.
+    Replace('{abertura}', $estilo.abertura).
+    Replace('{cena}', $p.scene).
+    Replace('{figura}', $fig).
+    Replace('{paleta}', $paleta).
+    Replace('{luz}', $estilo.luz).
+    Replace('{materia}', $estilo.materia).
+    Replace('{respiro}', $estilo.respiro.Replace('{zona}', $p.text_zone)).
+    Replace('{clima}', $estilo.clima).
+    Replace('{trava}', $trava).
+    Replace('{negativos}', $estilo.negativos).
+    Replace('{enquadramento}', $estilo.enquadramento)
 
   # gpt_image_2 tem --quality, nano_banana_pro nao
   $extra = if ($Modelo -eq 'gpt_image_2') { @('--quality', $Quality) } else { @() }

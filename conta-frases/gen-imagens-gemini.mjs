@@ -16,25 +16,25 @@ const TENTATIVAS = 4;
 if (!CHAVE) { console.error('Falta GEMINI_API_KEY (use --env-file=.env)'); process.exit(1); }
 
 const posts = JSON.parse(fs.readFileSync(`${ROOT}/posts.json`, 'utf8'));
+const estilo = JSON.parse(fs.readFileSync(`${ROOT}/estilo.json`, 'utf8'));
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function montarPrompt(p, temRef) {
-  const fig = p.surreal
-    ? 'Seen from behind, small in frame, face never visible, painted in loose confident brushstrokes.'
-    : 'Solitary figure seen from behind, small in frame, face never visible, wearing a simple long coat, painted in loose confident brushstrokes.';
-  const trava = temRef
-    ? 'Match the painting style, brushwork, impasto texture and colour handling of the reference image. Do NOT copy its composition or subject.\n'
-    : '';
-  return `Textured oil painting on rough linen canvas, naive folk-art style.
-${p.scene}.
-${fig}
-${p.palette}.
-Soft diffused light, hazy horizon, no hard shadows.
-Thick visible impasto texture, canvas weave showing through, subtle film grain, slightly desaturated, muted and dreamlike.
-Wide open negative space in the ${p.text_zone} third of the frame, empty and low-contrast, reserved for text overlay.
-Painterly, contemplative, quiet, melancholic but hopeful.
-${trava}No text, no lettering, no watermark, no signature, no faces, no logos.
-Vertical portrait composition.`;
+  // O estilo nao mora aqui: mora em estilo.json, que o gen-imagens.ps1 e o
+  // build-md.js leem tambem. Trocar o look e editar aquele arquivo.
+  const e = estilo;
+  return e.template
+    .replace('{abertura}', e.abertura)
+    .replace('{cena}', p.scene)
+    .replace('{figura}', p.surreal ? e.figura.surreal : e.figura.padrao)
+    .replace('{paleta}', p.palette || e.paletas[p.pilar])
+    .replace('{luz}', e.luz)
+    .replace('{materia}', e.materia)
+    .replace('{respiro}', e.respiro.replace('{zona}', p.text_zone))
+    .replace('{clima}', e.clima)
+    .replace('{trava}', temRef ? e.trava_referencia + String.fromCharCode(10) : '')
+    .replace('{negativos}', e.negativos)
+    .replace('{enquadramento}', e.enquadramento);
 }
 
 function referencia(p) {
