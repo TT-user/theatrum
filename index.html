@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N247ZTJ5');</script>
-<!-- End Google Tag Manager -->
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="theme-color" content="#0B0A08"/>
 <title>Theatrum | Identidade digital para negócios em todo o Brasil</title>
 <meta name="description" content="A Theatrum implanta o sistema previsível que transforma quem procura seu negócio em cliente novo todo mês, sem depender de indicação. Diagnóstico gratuito."/>
-<link rel="icon" href="assets/img/logo.jpg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png"/>
+<link rel="apple-touch-icon" href="assets/img/logo-180.png"/>
 <link rel="canonical" href="https://usetheatrum.com.br/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://usetheatrum.com.br/"/>
 <meta property="og:title" content="Theatrum | Identidade digital para negócios em todo o Brasil"/>
 <meta property="og:description" content="Presença digital não é sorte. É sistema. Diagnóstico gratuito direto no WhatsApp."/>
 <meta property="og:locale" content="pt_BR"/>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2LNND3QDPM"></script>
 <script>
   /* Dois auxiliares de idioma, declarados aqui no topo de propósito:
      são chamados por blocos de script que aparecem antes de onde eles
@@ -38,6 +30,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('js', new Date());
   gtag('config', 'G-2LNND3QDPM');
   gtag('config', 'AW-18362682320');
+
+  /* ---------- medicao entra depois da pagina ----------
+     No <head>, o GTM e o gtag custavam 3,9 s e 2,9 s de thread
+     principal num celular modesto: a pagina ficava travada antes de
+     responder a qualquer toque. Nada aqui precisa rodar antes de a
+     pessoa ver o site.
+
+     Sobe no primeiro gesto (toque, rolagem, tecla) ou 3 s depois do
+     load, o que vier antes. Ate la gtag() apenas empilha em dataLayer,
+     e a fila inteira e reproduzida quando o script chega: evento de
+     clique disparado antes do carregamento nao se perde. */
+  (function(){
+    var subiu = false;
+    function sobe(){
+      if (subiu) return; subiu = true;
+      dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      [ "https://www.googletagmanager.com/gtm.js?id=GTM-N247ZTJ5",
+        "https://www.googletagmanager.com/gtag/js?id=G-2LNND3QDPM" ]
+      .forEach(function(src){
+        var j = document.createElement("script");
+        j.async = true; j.src = src;
+        document.head.appendChild(j);
+      });
+    }
+    ["pointerdown","touchstart","keydown","scroll"].forEach(function(ev){
+      addEventListener(ev, sobe, { once: true, passive: true });
+    });
+    addEventListener("load", function(){ setTimeout(sobe, 3000); });
+  })();
   document.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
       a.addEventListener('click', function(){
@@ -656,7 +677,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ NAV FIXA ============ -->
 <nav class="site-nav" id="siteNav">
   <a class="brand" href="#top">
-    <span class="brand-chip"><img src="assets/img/logo.jpg" alt="Theatrum"/><i></i></span>
+    <span class="brand-chip"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt="Theatrum"/><i></i></span>
     <b>Theatrum</b>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -1793,7 +1814,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="panel" id="panel-2">
           <div class="window">
             <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
+              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
               <span class="app-name" data-en='Theatrum <span>· Content engine</span>'>Theatrum <span>· Motor de conteúdo</span></span>
               <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
@@ -1813,7 +1834,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="panel" id="panel-3">
           <div class="window">
             <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
+              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
               <span class="app-name" data-en='Theatrum <span>· Lead CRM</span>'>Theatrum <span>· CRM de leads</span></span>
               <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
@@ -1993,7 +2014,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="panel" id="panel-6">
           <div class="window">
             <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
+              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
               <span class="app-name" data-en='Theatrum <span>· This month&apos;s goals</span>'>Theatrum <span>· Metas do mês</span></span>
               <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
@@ -2034,7 +2055,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="panel" id="panel-7">
           <div class="window">
             <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
+              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
               <span class="app-name" data-en='Theatrum <span>· Revenue</span>'>Theatrum <span>· Faturamento</span></span>
               <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
@@ -2053,7 +2074,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="panel" id="panel-8">
           <div class="window">
             <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
+              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
               <span class="app-name" data-en='Theatrum <span>· Evolution · 12 months</span>'>Theatrum <span>· Evolução · 12 meses</span></span>
               <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
@@ -2093,7 +2114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="panel" id="panel-9">
           <div class="window">
             <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.jpg" alt=""/></span>
+              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
               <span class="app-name" data-en='Theatrum <span>· Week&apos;s schedule</span>'>Theatrum <span>· Agenda da semana</span></span>
               <span class="live" data-en='<i></i> running'><i></i> rodando</span>
             </div>
@@ -3509,7 +3530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="foot-inner">
     <a class="brand" href="#top">
-      <span class="brand-chip"><img src="assets/img/logo.jpg" alt="Theatrum"/><i></i></span>
+      <span class="brand-chip"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt="Theatrum"/><i></i></span>
       <b>Theatrum</b>
     </a>
     <div class="foot-links">
@@ -3682,8 +3703,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <!-- ===== Seção 02 · efeito de convergência (reversível) ===== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   var STILL = new URLSearchParams(location.search).get('still');
