@@ -57,7 +57,13 @@
     ["pointerdown","touchstart","keydown","scroll"].forEach(function(ev){
       addEventListener(ev, sobe, { once: true, passive: true });
     });
-    addEventListener("load", function(){ setTimeout(sobe, 3000); });
+    /* espera o thread ficar livre em vez de um prazo fixo: no prazo,
+       o script competia com o trabalho da propria pagina. O timeout e
+       o teto para quem nunca fica ocioso. */
+    addEventListener("load", function(){
+      if (window.requestIdleCallback) requestIdleCallback(sobe, { timeout: 6000 });
+      else setTimeout(sobe, 3000);
+    });
   })();
   document.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
@@ -370,6 +376,39 @@
 
   /* ============ base das seções ============ */
   .sec{position:relative;padding:110px 5vw;overflow:hidden}
+
+  /* ---------- so desenha o que esta na tela ----------
+     A pagina tem 18.000 px de altura e 73 elementos com animacao
+     infinita (breathe em 25, sysBlink em 18, tagSkew em 13). Sem isto
+     o navegador anima e pinta tudo o tempo todo, inclusive o que esta
+     a dez telas de distancia: 72% dos quadros passavam de 16,7 ms ao
+     rolar, com o pior em 363 ms.
+
+     content-visibility:auto faz o navegador pular layout, pintura e
+     animacao de tudo que esta fora da viewport. O contain-intrinsic-size
+     com "auto" guarda a altura real depois da primeira medicao, entao a
+     barra de rolagem para de pular e as ancoras do menu continuam
+     caindo no lugar certo.
+
+     O hero e as duas primeiras secoes ficam de fora: estao na primeira
+     tela e conter o que ja vai ser pintado so adiciona trabalho. */
+  .sec:not(#problema):not(#calculadora){
+    content-visibility:auto;
+    contain-intrinsic-size:auto 900px;
+  }
+
+  /* will-change fixo mantem uma camada de GPU viva para sempre. Ele so
+     vale durante a animacao; parado, e memoria de video presa. */
+  @media(max-width:900px){
+    .sec:not(#problema):not(#calculadora){contain-intrinsic-size:auto 1200px}
+
+    /* Enfeite que pisca para sempre custa composicao a cada quadro e
+       nao carrega informacao nenhuma. No celular, onde a GPU e menor e
+       a bateria importa, ele sai. O que anima uma vez na entrada fica. */
+    .eyebrow-tag,.proof .ic,.mq-item .star,.dot-pulse,.sys-blink,.sys-pulse{
+      animation:none!important;
+    }
+  }
   .sec-inner{max-width:1280px;margin:0 auto}
   .sec h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.6vw,3.7rem);line-height:1.05;letter-spacing:-.03em;margin-top:26px;max-width:20ch}
   .sec .lead{margin-top:26px;font-size:clamp(1.02rem,1.4vw,1.22rem);line-height:1.65;color:#D8CFC0;max-width:60ch}
@@ -3811,6 +3850,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   gsap.from(good, {y:24, opacity:0, duration:.7, ease:'power3.out', stagger:.09,
     scrollTrigger:{trigger:'#beneficios .dif-good', start:'top 82%'}});
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  /* ---------- ancora certa com content-visibility ----------
+     As secoes abaixo da dobra usam content-visibility:auto, e o navegador
+     rola por ALTURA ESTIMADA: quando o conteudo real e medido, o alvo
+     muda de lugar e o clique no menu parava centenas de pixels fora.
+
+     A correcao e rolar de novo depois que a altura assentou. Duas
+     passadas resolvem todos os casos medidos; o limite de tentativas
+     existe para nunca brigar com quem decidiu rolar no meio do caminho. */
+  var NAV = 78;   // altura da barra fixa
+
+  function corrigeAncora(alvo){
+    var tentativas = 0, ultimo = -1;
+    (function ajusta(){
+      var topo = alvo.getBoundingClientRect().top;
+      if (Math.abs(topo - NAV) < 8 || tentativas++ > 6) return;
+      if (Math.round(topo) === ultimo) return;   // parou de mudar
+      ultimo = Math.round(topo);
+      scrollBy({ top: topo - NAV, behavior: "instant" });
+      requestAnimationFrame(function(){ setTimeout(ajusta, 90); });
+    })();
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute("href").slice(1);
+    if (!id) return;
+    var alvo = document.getElementById(id);
+    if (!alvo) return;
+    e.preventDefault();
+    alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+    /* espera a rolagem suave terminar antes de medir */
+    var ult = -1, quieto = 0;
+    var t = setInterval(function(){
+      if (Math.abs(scrollY - ult) < 2) quieto++; else quieto = 0;
+      ult = scrollY;
+      if (quieto > 3) { clearInterval(t); corrigeAncora(alvo); }
+    }, 80);
+    setTimeout(function(){ clearInterval(t); }, 4000);
+  });
 })();
 </script>
 </body>
