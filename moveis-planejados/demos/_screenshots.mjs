@@ -24,11 +24,9 @@ const CHROME = [
   'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
 ].find(fs.existsSync);
 
+/* Os quatro demos de nutricao sairam daqui: agora moram em
+   /nutricao/demos/ e tem a ferramenta propria daquela pasta. */
 const DEMOS = [
-  { slug: 'nutri-infantil',      pagina: 'index.html' },
-  { slug: 'nutri-clinica',       pagina: 'index.html' },
-  { slug: 'nutri-usa',           pagina: 'index.html' },
-  { slug: 'nutri-emagrecimento', pagina: 'index.html' },
   { slug: 'atelie-verga',        pagina: 'index.html' },
   { slug: 'casa-nobre',          pagina: 'index.html' },
   { slug: 'medida-certa',        pagina: 'index.html' },

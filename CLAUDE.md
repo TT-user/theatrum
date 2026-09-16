@@ -168,10 +168,31 @@ diferente conforme de onde a pessoa clicou:
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
 - `/moveis-planejados/` — landing do segmento de planejados.
-- `/imoveis/demos/`, `/moveis-planejados/demos/`, `/lojas/demos/` — sites de
-  demonstração. Cada pasta tem um `_demo.js` que neutraliza links de contato e
-  põe a barra de volta. O parâmetro `?de=` diz de onde a pessoa veio e decide
-  para onde ela volta (inclusive de volta para `/us/`, em inglês).
+
+### As demonstrações, uma pasta por área
+
+| Pasta | Demos | Área |
+|---|---|---|
+| `/imoveis/demos/` | 4 | imobiliário |
+| `/moveis-planejados/demos/` | 6 | móveis planejados |
+| `/nutricao/demos/` | 4 | nutrição |
+| `/lojas/demos/` | 1 | loja online |
+| `/solar/demos/` | 1 | energia solar |
+
+Cada pasta tem o próprio `_demo.js`, que neutraliza links de contato e põe a
+barra de volta, e um `.htaccess` com `X-Robots-Tag: noindex`. **O noindex não é
+detalhe:** são negócios fictícios, e indexados eles competem na busca com
+clientes reais e alguém pode cair num consultório que não existe vindo do
+Google.
+
+O parâmetro `?de=` diz de onde a pessoa veio e decide para onde ela volta:
+`portfolio`, `us` (em inglês), `home`, ou a landing do segmento onde ela
+existir. Sem o parâmetro, o referrer é o plano B.
+
+Os quatro demos de nutrição moravam em `/moveis-planejados/demos/` por herança,
+de quando aquela esteira nasceu dentro da de planejados. Há um `RedirectMatch
+301` no `.htaccess` de planejados cobrindo os endereços antigos; pode sair
+quando não houver mais nada apontando para lá.
 - `/blog` — saída do Astro em `site/astro-site/`.
 
 ---

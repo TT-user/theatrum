@@ -49,3 +49,19 @@
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml
 </IfModule>
+
+# ---------- mudança de endereço ----------
+# Os quatro demos de nutrição moravam em /moveis-planejados/demos/ por
+# herança: a esteira de nutrição nasceu dentro da de planejados e nunca
+# saiu de lá. A URL não se explicava para ninguém, e o botão de voltar
+# caía numa landing de móveis, que é outro assunto.
+#
+# Eles agora moram em /nutricao/demos/. Esta regra existe para que link
+# já compartilhado não morra: 301 é redirecionamento permanente, então o
+# buscador transfere o endereço em vez de indexar os dois.
+#
+# Pode sair daqui quando não houver mais nada apontando para o caminho
+# antigo.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/moveis-planejados/demos/(nutri-[a-z-]+)/?(.*)$ /nutricao/demos/$1/$2
+</IfModule>
