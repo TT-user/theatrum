@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#F7F9F7"/>
+<title>Caparaó Solar | Sua usina própria, do Caparaó para a sua conta de luz</title>
+<meta name="description" content="Usinas solares residenciais e rurais na região do Caparaó. Calcule em trinta segundos quantas placas o seu consumo pede, quanto custa e em quanto tempo o investimento volta."/>
+<link rel="canonical" href="https://usetheatrum.com.br/solar/demos/caparao-solar/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Caparaó Solar | Sua usina própria"/>
+<meta property="og:description" content="Calcule quantas placas o seu consumo pede e em quanto tempo o investimento volta."/>
+<meta property="og:locale" content="pt_BR"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ============================================================
+     Caparaó Solar — demonstração
+     Marca fictícia. Duas famílias de fonte e quatro pesos, nenhuma
+     biblioteca: as lições de performance da home valem aqui desde
+     o primeiro dia, não como conserto depois.
+     ============================================================ */
+  :root{
+    /* Claro, azul e verde: e a linguagem que o mercado solar usa e que
+       o cliente reconhece de outros sites. O ambar fica so no que pede
+       acao e no numero que importa, para nao virar enfeite. */
+    --noite:#F7F9F7; --fundo-2:#EAF0EC; --card:#FFFFFF;
+    --sol:#E08A1E; --sol-claro:#F2A33C;
+    --folha:#2F7A45;
+    --azul:#0F3F58; --azul-claro:#1C6B8C;
+    --creme:#0E1A16; --musgo:#5B6B62; --tinta:#FFFFFF;
+    --linha:rgba(14,26,22,.12); --linha-escura:rgba(14,26,22,.12);
+    --alerta:#C4452E;
+    --display:'Sora',system-ui,sans-serif;
+    --corpo:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--noite);color:var(--creme);
+    font:400 16px/1.65 var(--corpo);-webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.02em;margin:0}
+  @media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
+  .env{max-width:1180px;margin:0 auto;padding:0 5vw}
+  .sec{padding:96px 0;position:relative}
+  /* congela o que está fora da tela: a lição mais barata que a home
+     ensinou, aplicada antes de a página ficar pesada */
+  .sec:not(#calculadora){content-visibility:auto;contain-intrinsic-size:auto 820px}
+  .sec.clara{background:var(--azul);color:#EAF2F5}
+  .sec.clara h2{color:#FFFFFF}
+  .sec.clara .faq summary{color:#FFFFFF}
+  .sec.clara .faq details{border-color:rgba(255,255,255,.16)}
+  .sec.clara .faq .resp{color:#BBD2DC}
+  .sec.clara .rotulo{color:var(--sol-claro)}
+  .sec.clara .apoio{color:#BBD2DC}
+
+  .rotulo{
+    display:flex;align-items:center;gap:10px;margin:0 0 18px;
+    font:600 12px/1 var(--corpo);letter-spacing:.18em;text-transform:uppercase;color:var(--sol);
+  }
+  .rotulo::before{content:"";width:28px;height:1px;background:currentColor;opacity:.5}
+  h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:var(--azul)}
+  .destaque{color:var(--sol)}
+  .capa h1 .destaque,h2 .destaque{color:var(--folha)}
+  .apoio{max-width:62ch;margin:18px 0 0;font-size:clamp(1rem,1.5vw,1.09rem);color:var(--musgo)}
+
+  .botao{
+    display:inline-flex;align-items:center;gap:10px;min-height:48px;
+    padding:0 26px;border-radius:999px;border:0;cursor:pointer;
+    background:var(--sol);color:var(--tinta);text-decoration:none;
+    font:600 15px/1 var(--corpo);transition:background .2s ease,transform .2s ease;
+  }
+  .botao:hover{background:var(--sol-claro);transform:translateY(-1px)}
+  .botao.vazado{background:transparent;color:var(--azul);border:1px solid rgba(15,63,88,.35)}
+  .botao.vazado:hover{background:rgba(15,63,88,.07)}
+  .botao:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible{
+    outline:2px solid var(--sol);outline-offset:3px;
+  }
+  @media(prefers-reduced-motion:reduce){ .botao{transition:none} }
+
+  /* ---------- topo ---------- */
+  .topo{
+    position:sticky;top:0;z-index:80;background:rgba(247,249,247,.94);
+    border-bottom:1px solid var(--linha);backdrop-filter:blur(8px);
+  }
+  @media(max-width:760px){ .topo{backdrop-filter:none;background:var(--noite)} }
+  .topo-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+  .marca{display:flex;align-items:center;gap:11px;font:800 17px/1 var(--display);text-decoration:none;color:var(--azul)}
+  .marca-sol{
+    width:30px;height:30px;border-radius:50%;flex-shrink:0;
+    background:radial-gradient(circle at 34% 30%,var(--sol-claro),var(--sol) 62%,#C97F1E);
+    box-shadow:0 0 0 4px rgba(242,163,60,.16);
+  }
+  .topo-links{display:flex;gap:26px;align-items:center}
+  .topo-links a{
+    font:600 13px/1 var(--corpo);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--musgo);text-decoration:none;
+  }
+  .topo-links a:hover{color:var(--creme)}
+  @media(max-width:900px){ .topo-links{display:none} }
+
+  /* ---------- capa ---------- */
+  .capa{position:relative;overflow:hidden;padding:84px 0 76px}
+  .capa::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(760px 420px at 78% 8%, rgba(242,163,60,.20), transparent 62%),
+      radial-gradient(620px 460px at 8% 88%, rgba(94,156,110,.14), transparent 64%);
+  }
+  .capa .env{position:relative;z-index:1}
+  .capa-grade{display:grid;gap:52px;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center}
+  @media(max-width:920px){ .capa-grade{grid-template-columns:1fr;gap:38px} }
+  .capa h1{font-size:clamp(2rem,3.9vw,3rem);font-weight:800;color:var(--azul)}
+  .capa .apoio{color:var(--musgo);font-size:clamp(1.02rem,1.7vw,1.16rem)}
+  .capa-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .capa-nota{margin:14px 0 0;font:400 13px/1.5 var(--corpo);color:var(--musgo)}
+
+  .selos{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
+  .selo{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
+    border:1px solid var(--linha);background:#FFF;font:600 12px/1 var(--corpo);color:var(--musgo);
+  }
+  .selo i{font-style:normal;color:var(--sol)}
+
+  /* telhado desenhado: a demo não tem foto e um SVG leve diz o mesmo
+     sem custar download nenhum */
+  .telhado{width:100%;height:auto;border-radius:20px;box-shadow:0 18px 44px rgba(15,63,88,.18)}
+
+  /* ---------- calculadora ---------- */
+  #calculadora{background:var(--fundo-2)}
+  .calc{display:grid;gap:22px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start;margin-top:40px}
+  @media(max-width:960px){ .calc{grid-template-columns:1fr} }
+  .painel{background:var(--card);border:1px solid var(--linha);border-radius:18px;padding:26px 24px;box-shadow:0 2px 16px rgba(14,26,22,.06)}
+  .campo{margin-bottom:24px}
+  .campo:last-child{margin-bottom:0}
+  .campo > label,.campo > .leg{display:block;font:600 14px/1.4 var(--corpo);color:var(--azul);margin-bottom:12px}
+  .campo .dica{display:block;margin-top:7px;font:400 12px/1.5 var(--corpo);color:var(--musgo)}
+  .moeda{position:relative;display:flex;align-items:center}
+  .moeda span{position:absolute;left:14px;font:600 15px/1 var(--corpo);color:var(--musgo);pointer-events:none}
+  .moeda input{
+    width:100%;padding:14px 14px 14px 46px;border-radius:12px;
+    background:#F4F7F5;border:1px solid var(--linha);
+    color:var(--creme);font:600 17px/1 var(--corpo);font-variant-numeric:tabular-nums;outline:none;
+  }
+  .moeda input:focus-visible{border-color:var(--sol);outline:none;box-shadow:0 0 0 3px rgba(242,163,60,.22)}
+  .opcoes{display:flex;flex-wrap:wrap;gap:8px}
+  .opcoes button{
+    flex:1 1 auto;min-height:44px;padding:0 14px;border-radius:999px;cursor:pointer;
+    background:transparent;border:1px solid var(--linha);color:var(--musgo);
+    font:600 13px/1.2 var(--corpo);transition:border-color .2s,color .2s,background .2s;
+  }
+  .opcoes button:hover{border-color:rgba(224,138,30,.6);color:var(--azul)}
+  .opcoes button[aria-pressed=true]{background:var(--sol);border-color:var(--sol);color:var(--tinta)}
+  .avancado{margin-top:22px;border-top:1px solid var(--linha);padding-top:18px}
+  .avancado summary{cursor:pointer;font:600 13px/1 var(--corpo);color:var(--musgo);list-style:none}
+  .avancado summary::-webkit-details-marker{display:none}
+  .avancado summary::before{content:"+ ";color:var(--sol)}
+  .avancado[open] summary::before{content:"– "}
+  .avancado .campo{margin-top:18px}
+
+  .saida{background:var(--azul);color:#EAF2F5;border:1px solid var(--azul);border-radius:18px;padding:26px 24px}
+  .destaque-num{
+    display:grid;gap:4px;padding:0 0 20px;border-bottom:1px solid rgba(255,255,255,.18);margin-bottom:20px;
+  }
+  .destaque-num small{font:600 12px/1 var(--corpo);letter-spacing:.14em;text-transform:uppercase;color:#9FBCC8}
+  .destaque-num strong{color:var(--sol-claro)!important;
+    font:800 clamp(2.2rem,6.5vw,3.4rem)/1 var(--display);color:var(--sol);
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  }
+  .grade-num{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .num{background:rgba(255,255,255,.08);border-radius:12px;padding:14px 15px}
+  .num small{display:block;font:600 11px/1.3 var(--corpo);letter-spacing:.1em;text-transform:uppercase;color:#9FBCC8;margin-bottom:5px}
+  .num b{font:700 19px/1.2 var(--display);color:#FFFFFF;font-variant-numeric:tabular-nums}
+  .num b i{font-style:normal;font-size:13px;font-weight:600;color:#9FBCC8;white-space:nowrap}
+  .aviso-calc{margin:20px 0 0;font:400 12px/1.6 var(--corpo);color:#9FBCC8}
+  .saida .botao{margin-top:18px;width:100%;justify-content:center}
+
+  /* ---------- planos ---------- */
+  .planos{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:42px}
+  .plano{
+    background:var(--card);border:1px solid var(--linha);border-radius:18px;padding:26px 22px;
+    display:flex;flex-direction:column;gap:6px;position:relative;
+  }
+  .plano.destacado{border-color:rgba(242,163,60,.55)}
+  .plano .fita{
+    position:absolute;top:-11px;left:22px;padding:4px 12px;border-radius:999px;
+    background:var(--sol);color:var(--tinta);font:700 11px/1.4 var(--corpo);letter-spacing:.08em;text-transform:uppercase;
+  }
+  .plano h3{font-size:1.25rem;font-weight:800;color:var(--azul)}
+  .plano .placas{font:600 12px/1 var(--corpo);letter-spacing:.12em;text-transform:uppercase;color:var(--sol);margin-bottom:10px}
+  .plano .preco{font:800 2rem/1.05 var(--display);color:var(--azul);margin:12px 0 2px;font-variant-numeric:tabular-nums}
+  .plano .preco small{display:block;font:400 12px/1.5 var(--corpo);color:var(--musgo);letter-spacing:0;text-transform:none}
+  .plano ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:9px}
+  .plano li{position:relative;padding-left:22px;font:400 14px/1.55 var(--corpo);color:var(--musgo)}
+  .plano li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--folha);font-weight:700}
+  .plano .botao{margin-top:20px;justify-content:center}
+  .nota-planos{margin-top:26px;font:400 13px/1.7 var(--corpo);color:var(--musgo);max-width:70ch}
+
+  /* ---------- comparativo ---------- */
+  .comp{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:center;margin-top:42px}
+  @media(max-width:920px){ .comp{grid-template-columns:1fr} }
+  .comp-linhas{display:grid;gap:12px}
+  .comp-l{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .comp-l b{font:600 14px/1.35 var(--corpo);color:#BBD2DC}
+  .comp-l i{font-style:normal;font:700 17px/1.2 var(--display);font-variant-numeric:tabular-nums}
+  .comp-l.ruim i{color:#FF9179}
+  .comp-l.bom i{color:#7BD69B}
+  .grafico{width:100%;height:auto}
+
+  /* ---------- passos ---------- */
+  .passos{counter-reset:p;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:42px}
+  .passo{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:24px 22px;counter-increment:p}
+  .passo::before{
+    content:counter(p,decimal-leading-zero);display:block;margin-bottom:12px;
+    font:800 13px/1 var(--display);color:var(--sol);letter-spacing:.1em;
+  }
+  .passo h3{font-size:1.05rem;font-weight:700;margin-bottom:7px;color:var(--azul)}
+  .passo p{margin:0;font:400 14px/1.6 var(--corpo);color:var(--musgo)}
+
+  /* ---------- perguntas ---------- */
+  .faq{max-width:820px;margin:42px auto 0}
+  .faq details{border-bottom:1px solid var(--linha);padding:4px 0}
+  .faq summary{
+    cursor:pointer;list-style:none;padding:18px 40px 18px 0;position:relative;
+    font:600 16px/1.45 var(--corpo);color:var(--creme);
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    color:var(--sol);font-size:20px;font-weight:600;
+  }
+  .faq details[open] summary::after{content:"\2013"}
+  .faq .resp{padding:0 40px 20px 0;margin:0;font:400 15px/1.7 var(--corpo);color:var(--musgo)}
+
+  /* ---------- fechamento e rodapé ---------- */
+  .fechar{background:linear-gradient(160deg,#0F3F58,#0B2F42);text-align:center;color:#EAF2F5}
+  .fechar h2{color:#FFF}
+  .fechar .apoio{color:#BBD2DC}
+  .fechar .botao.vazado{color:#FFF;border-color:rgba(255,255,255,.35)}
+  .fechar .botao.vazado:hover{background:rgba(255,255,255,.1)}
+  .fechar h2{max-width:20ch;margin:0 auto}
+  .fechar .apoio{margin-left:auto;margin-right:auto;text-align:center}
+  .fechar .capa-ctas{justify-content:center}
+  footer{border-top:1px solid var(--linha);padding:40px 0;font:400 13px/1.7 var(--corpo);color:var(--musgo)}
+  .pe{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+
+  /* barra fixa no celular: mesma regra da home, 44 px de toque e sem
+     backdrop-filter, que é caro em GPU pequena */
+  .cs-fixo{
+    position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:10px;
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    background:var(--fundo-2);border-top:1px solid var(--linha);
+  }
+  .cs-fixo a{flex:1;display:flex;align-items:center;justify-content:center;min-height:44px;
+    border-radius:999px;text-decoration:none;font:600 14px/1 var(--corpo)}
+  .cs-fixo .a{background:var(--sol);color:var(--tinta)}
+  .cs-fixo .b{border:1px solid rgba(15,63,88,.3);color:var(--azul)}
+  @media(max-width:760px){ .cs-fixo{display:flex} }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="env topo-in">
+    <a class="marca" href="#topo"><span class="marca-sol" aria-hidden="true"></span>Caparaó Solar</a>
+    <nav class="topo-links">
+      <a href="#calculadora">Calculadora</a>
+      <a href="#planos">Usinas</a>
+      <a href="#comparativo">Economia</a>
+      <a href="#como">Como funciona</a>
+      <a href="#perguntas">Dúvidas</a>
+    </nav>
+    <a class="botao" href="https://wa.me/5532999999999?text=Quero%20um%20orçamento%20de%20usina%20solar.">Falar com a gente</a>
+  </div>
+</header>
+
+<section class="capa" id="topo">
+  <div class="env capa-grade">
+    <div>
+      <p class="rotulo">Usinas solares · região do Caparaó</p>
+      <h1>Sua conta de luz já paga uma usina.<br><span class="destaque">Só que ela não é sua.</span></h1>
+      <p class="apoio">Todo mês você quita a usina da concessionária e não fica com nada. Com a mesma quantia você pode terminar de pagar uma no seu telhado e parar de pagar por vinte anos. Diga quanto vem na sua conta e a gente mostra a conta inteira: quantas placas, quanto custa e em quanto tempo volta.</p>
+      <div class="capa-ctas">
+        <a class="botao" href="#calculadora">Calcular meu retorno</a>
+        <a class="botao vazado" href="#planos">Ver as usinas prontas</a>
+      </div>
+      <p class="capa-nota">Leva trinta segundos. Só precisa do valor da última conta.</p>
+      <div class="selos">
+        <span class="selo"><i>✦</i> Projeto e homologação inclusos</span>
+        <span class="selo"><i>✦</i> Placas com 25 anos de garantia</span>
+        <span class="selo"><i>✦</i> Instalação em toda a região</span>
+      </div>
+    </div>
+
+    <svg class="telhado" viewBox="0 0 520 420" role="img" aria-label="Telhado com placas solares sob o sol, com a serra do Caparaó ao fundo">
+      <defs>
+        <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1D2C22"/><stop offset="100%" stop-color="#0E1511"/>
+        </linearGradient>
+        <linearGradient id="placa" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#2A4258"/><stop offset="55%" stop-color="#1B2C3C"/><stop offset="100%" stop-color="#25394C"/>
+        </linearGradient>
+        <radialGradient id="brilho"><stop offset="0%" stop-color="#FFC873"/><stop offset="100%" stop-color="#F2A33C" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="520" height="420" fill="url(#ceu)" rx="20"/>
+      <circle cx="404" cy="96" r="80" fill="url(#brilho)" opacity=".55"/>
+      <circle cx="404" cy="96" r="27" fill="#F2A33C"/>
+      <path d="M0 300 L120 236 L214 288 L322 214 L430 268 L520 228 L520 420 L0 420 Z" fill="#16241B"/>
+      <path d="M92 356 L268 262 L470 356 L470 372 L92 372 Z" fill="#20302A"/>
+      <g>
+        <path d="M120 344 L262 268 L286 281 L144 357 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
+        <path d="M156 363 L298 287 L322 300 L180 376 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
+        <path d="M296 281 L438 357 L414 370 L272 294 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
+        <path d="M260 300 L402 376 L378 389 L236 313 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
+      </g>
+      <path d="M92 356 L268 262 L470 356" fill="none" stroke="#34473C" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<section class="sec" id="calculadora">
+  <div class="env">
+    <p class="rotulo">A conta</p>
+    <h2>Quanto tempo até a usina <span class="destaque">se pagar sozinha?</span></h2>
+    <p class="apoio">A conta começa no número que você já conhece: o valor da sua fatura. A partir dele dá para dimensionar a usina, estimar o investimento e ver em quanto tempo ele volta. Nenhum cadastro, e o resultado aparece enquanto você digita.</p>
+
+    <div class="calc">
+      <div class="painel">
+        <div class="campo">
+          <label for="conta">Quanto vem na sua conta de luz por mês?</label>
+          <div class="moeda"><span>R$</span><input type="text" id="conta" inputmode="numeric" autocomplete="off" value="450"></div>
+          <span class="dica">Use a média dos últimos meses, se a sua varia muito.</span>
+        </div>
+
+        <div class="campo">
+          <p class="leg" id="ligrot">Que tipo de ligação você tem?</p>
+          <div class="opcoes" role="group" aria-labelledby="ligrot" id="ligacao">
+            <button type="button" data-kwh="30" aria-pressed="false">Monofásica</button>
+            <button type="button" data-kwh="50" aria-pressed="true">Bifásica</button>
+            <button type="button" data-kwh="100" aria-pressed="false">Trifásica</button>
+          </div>
+          <span class="dica">Isso define o mínimo que a concessionária cobra mesmo com a usina ligada: o custo de disponibilidade. Nenhuma conta de luz zera.</span>
+        </div>
+
+        <details class="avancado">
+          <summary>Ajustar as premissas do cálculo</summary>
+
+          <div class="campo">
+            <label for="tarifa">Tarifa por kWh na sua conta</label>
+            <div class="moeda"><span>R$</span><input type="text" id="tarifa" inputmode="decimal" autocomplete="off" value="1,05"></div>
+            <span class="dica">Divida o valor total da fatura pelo consumo em kWh: os dois números estão impressos nela. O padrão aqui é uma média da região.</span>
+          </div>
+
+          <div class="campo">
+            <label for="geracao">Geração por kWp instalado, por mês</label>
+            <div class="moeda"><span>kWh</span><input type="text" id="geracao" inputmode="numeric" autocomplete="off" value="117" style="padding-left:62px"></div>
+            <span class="dica">Vem da irradiação da região do Caparaó, cerca de 5 horas de sol pleno por dia, descontadas as perdas normais de sistema.</span>
+          </div>
+        </details>
+      </div>
+
+      <div class="saida" aria-live="polite">
+        <div class="destaque-num">
+          <small>O investimento volta em</small>
+          <strong id="oRetorno">—</strong>
+        </div>
+
+        <div class="grade-num">
+          <div class="num"><small>Placas de 580 W</small><b id="oPlacas">—</b></div>
+          <div class="num"><small>Potência</small><b id="oKwp">—</b></div>
+          <div class="num"><small>Investimento</small><b id="oInv">—</b></div>
+          <div class="num"><small>Economia por mês</small><b id="oEco">—</b></div>
+          <div class="num"><small>Sua conta passa a ser</small><b id="oResto">—</b></div>
+          <div class="num"><small>Em 25 anos você deixa de gastar</small><b id="oVinte">—</b></div>
+        </div>
+
+        <p class="aviso-calc" id="oAviso"></p>
+        <a class="botao" id="oCta" href="#" target="_blank" rel="noopener">Quero o orçamento deste dimensionamento</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="planos">
+  <div class="env">
+    <p class="rotulo">As usinas</p>
+    <h2>Quatro tamanhos que <span class="destaque">cobrem quase todo mundo.</span></h2>
+    <p class="apoio">Se preferir não calcular, escolha pelo tamanho da sua conta. Todas saem com projeto, homologação na concessionária, estrutura, inversor e instalação. O que muda é quantas placas sobem no telhado.</p>
+
+    <div class="planos">
+      <article class="plano">
+        <p class="placas">4 placas · 2,3 kWp</p>
+        <h3>Casa pequena</h3>
+        <p class="preco">R$ 13.400<small>ou 60x de R$ 298 no financiamento solar</small></p>
+        <ul>
+          <li>Para contas de até R$ 300</li>
+          <li>Gera cerca de 270 kWh por mês</li>
+          <li>Ocupa cerca de 10 m² de telhado</li>
+        </ul>
+        <a class="botao vazado" href="https://wa.me/5532999999999?text=Quero%20a%20usina%20de%204%20placas.">Pedir orçamento</a>
+      </article>
+
+      <article class="plano destacado">
+        <span class="fita">mais escolhida</span>
+        <p class="placas">6 placas · 3,5 kWp</p>
+        <h3>Casa média</h3>
+        <p class="preco">R$ 18.100<small>ou 60x de R$ 402 no financiamento solar</small></p>
+        <ul>
+          <li>Para contas de R$ 300 a R$ 550</li>
+          <li>Gera cerca de 410 kWh por mês</li>
+          <li>Ocupa cerca de 15 m² de telhado</li>
+        </ul>
+        <a class="botao" href="https://wa.me/5532999999999?text=Quero%20a%20usina%20de%206%20placas.">Pedir orçamento</a>
+      </article>
+
+      <article class="plano">
+        <p class="placas">11 placas · 6,4 kWp</p>
+        <h3>Casa grande</h3>
+        <p class="preco">R$ 29.300<small>ou 60x de R$ 651 no financiamento solar</small></p>
+        <ul>
+          <li>Para contas de R$ 550 a R$ 950</li>
+          <li>Gera cerca de 750 kWh por mês</li>
+          <li>Ar-condicionado e chuveiro elétrico sem susto</li>
+        </ul>
+        <a class="botao vazado" href="https://wa.me/5532999999999?text=Quero%20a%20usina%20de%2011%20placas.">Pedir orçamento</a>
+      </article>
+
+      <article class="plano">
+        <p class="placas">21 placas · 12,2 kWp</p>
+        <h3>Sítio e comércio</h3>
+        <p class="preco">R$ 49.900<small>ou 60x de R$ 1.108 no financiamento solar</small></p>
+        <ul>
+          <li>Para contas acima de R$ 1.200</li>
+          <li>Gera cerca de 1.430 kWh por mês</li>
+          <li>Atende irrigação, câmara fria e ordenha</li>
+        </ul>
+        <a class="botao vazado" href="https://wa.me/5532999999999?text=Quero%20a%20usina%20de%2021%20placas.">Pedir orçamento</a>
+      </article>
+    </div>
+
+    <p class="nota-planos">Os valores acima são de referência para telhado cerâmico com acesso normal. Telhado de fibrocimento, laje ou estrutura em solo mudam o preço da estrutura, e isso aparece no orçamento antes de qualquer assinatura.</p>
+  </div>
+</section>
+
+<section class="sec clara" id="comparativo">
+  <div class="env">
+    <p class="rotulo">A comparação</p>
+    <h2>Vinte e cinco anos pagando conta,<br>ou cinco anos pagando usina.</h2>
+    <p class="apoio">A placa não para de funcionar quando o investimento se paga. Ela continua gerando, e o que era economia mensal vira dinheiro que fica. Esta comparação usa a conta de R$ 450 do exemplo, com reajuste anual de 8% na tarifa, que é a média histórica.</p>
+
+    <div class="comp">
+      <div class="comp-linhas">
+        <div class="comp-l ruim"><b>Sem usina, em 25 anos</b><i>R$ 394.000</i></div>
+        <div class="comp-l bom"><b>Com usina: investimento único</b><i>R$ 18.100</i></div>
+        <div class="comp-l bom"><b>Com usina: conta mínima em 25 anos</b><i>R$ 46.000</i></div>
+        <div class="comp-l bom"><b>Diferença que fica com você</b><i>R$ 330.000</i></div>
+      </div>
+
+      <svg class="grafico" viewBox="0 0 560 320" role="img" aria-label="Gráfico: o gasto acumulado sem usina cresce sem parar, enquanto com usina há um degrau inicial e depois quase nada">
+        <g font-family="Inter,sans-serif" font-size="11" fill="#6B7C70">
+          <line x1="52" y1="268" x2="540" y2="268" stroke="#C9C4B4"/>
+          <line x1="52" y1="28" x2="52" y2="268" stroke="#C9C4B4"/>
+          <text x="52" y="288">hoje</text>
+          <text x="280" y="288" text-anchor="middle">12 anos</text>
+          <text x="540" y="288" text-anchor="end">25 anos</text>
+        </g>
+        <path d="M52 268 C 180 250, 300 176, 540 44" fill="none" stroke="#D9614A" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M52 268 L52 224 C 180 220, 300 212, 540 198" fill="none" stroke="#2F7A45" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="52" cy="224" r="5" fill="#2F7A45"/>
+        <g font-family="Inter,sans-serif" font-size="12" font-weight="600">
+          <text x="536" y="34" text-anchor="end" fill="#D9614A">sem usina</text>
+          <text x="536" y="190" text-anchor="end" fill="#2F7A45">com usina</text>
+          <text x="66" y="218" fill="#2F7A45">investimento</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="como">
+  <div class="env">
+    <p class="rotulo">Como funciona</p>
+    <h2>Do primeiro contato até <span class="destaque">a usina girando o relógio.</span></h2>
+    <p class="apoio">Você não precisa entender de engenharia elétrica em nenhum dos passos. Precisa da conta de luz no começo e de um lugar para as placas.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Visita e projeto</h3>
+        <p>A gente vai até o local, mede o telhado, confere o padrão de entrada e calcula a usina com o seu consumo real dos últimos doze meses.</p>
+      </div>
+      <div class="passo">
+        <h3>Orçamento fechado</h3>
+        <p>Valor único, com tudo dentro: placas, inversor, estrutura, cabeamento, mão de obra e a papelada na concessionária. Sem custo que aparece depois.</p>
+      </div>
+      <div class="passo">
+        <h3>Instalação</h3>
+        <p>De um a três dias no telhado, conforme o tamanho. A casa fica sem energia só no momento da conexão, que leva alguns minutos.</p>
+      </div>
+      <div class="passo">
+        <h3>Homologação e monitoramento</h3>
+        <p>A gente entra com o pedido na concessionária e acompanha até a troca do medidor. Depois você vê a geração pelo celular, dia a dia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec clara" id="perguntas">
+  <div class="env">
+    <p class="rotulo">Dúvidas</p>
+    <h2 style="max-width:18ch">O que todo mundo<br>pergunta antes de fechar.</h2>
+
+    <div class="faq">
+      <details>
+        <summary>Minha conta de luz zera?</summary>
+        <p class="resp">Não, e quem promete isso está escondendo alguma coisa. Mesmo com a usina gerando tudo o que você consome, a concessionária cobra o custo de disponibilidade: 30 kWh na ligação monofásica, 50 na bifásica e 100 na trifásica. É o valor de estar conectado à rede, que continua sendo a sua bateria à noite. A calculadora acima já desconta isso.</p>
+      </details>
+      <details>
+        <summary>E se chover uma semana inteira?</summary>
+        <p class="resp">Você não fica sem luz. O que a usina gera a mais nos dias de sol vira crédito na concessionária, e esse crédito paga os dias nublados. Ele vale por 60 meses. O dimensionamento é feito pela média do ano, justamente para atravessar o inverno.</p>
+      </details>
+      <details>
+        <summary>Preciso de bateria?</summary>
+        <p class="resp">Não para economizar. O sistema conectado à rede usa a própria rede como reserva, e é por isso que ele se paga rápido. Bateria só entra quando o objetivo é outro: continuar com energia durante uma queda, o que é comum em zona rural.</p>
+      </details>
+      <details>
+        <summary>A tal lei que passou a cobrar taxa mudou a conta?</summary>
+        <p class="resp">Mudou, e a calculadora acima já considera. Desde 2023 quem gera energia paga uma parte do uso da rede, o Fio B, que sobe um pouco a cada ano até se estabilizar. Isso alonga o retorno em alguns meses. Continua valendo a pena, mas o número honesto é este, não o de antes da lei.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo as placas duram?</summary>
+        <p class="resp">A garantia de geração é de 25 anos, e elas costumam passar disso trabalhando com um pouco menos de potência. O inversor é o componente que envelhece antes, com garantia de 10 a 12 anos e troca bem mais barata que a usina inteira.</p>
+      </details>
+      <details>
+        <summary>Dá para financiar?</summary>
+        <p class="resp">Dá, e é o caminho mais comum. Existem linhas específicas para energia solar em que a parcela costuma ficar próxima do que você já paga de conta. Na prática você troca a conta de luz pela parcela e, quando ela acaba, fica com a usina.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec fechar">
+  <div class="env">
+    <h2>Comece pela conta que você já tem em casa.</h2>
+    <p class="apoio">Manda uma foto da sua conta de luz no WhatsApp. A gente devolve o dimensionamento e o valor, sem visita e sem compromisso.</p>
+    <div class="capa-ctas">
+      <a class="botao" href="https://wa.me/5532999999999?text=Vou%20mandar%20a%20foto%20da%20minha%20conta%20de%20luz%20para%20o%20dimensionamento.">Mandar minha conta no WhatsApp</a>
+      <a class="botao vazado" href="#calculadora">Calcular antes</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="env pe">
+    <a class="marca" href="#topo"><span class="marca-sol" aria-hidden="true"></span>Caparaó Solar</a>
+    <span>Energia solar para casa, sítio e comércio na região do Caparaó.</span>
+  </div>
+</footer>
+
+<div class="cs-fixo">
+  <a class="a" href="#calculadora">Calcular</a>
+  <a class="b" href="https://wa.me/5532999999999?text=Quero%20um%20orçamento%20de%20usina%20solar.">WhatsApp</a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     Dimensionamento e retorno
+
+     A conta parte do único número que a pessoa tem à mão: o valor da
+     fatura. Tudo o mais é derivado, e cada constante está aqui em
+     cima, nomeada, para poder ser corrigida sem caçar no meio do
+     código.
+
+     Nenhuma delas é promessa. O texto embaixo do resultado diz de
+     onde vem o cálculo e que ele é estimativa.
+     ============================================================ */
+  var C = {
+    /* Caparaó: cerca de 5 horas de sol pleno por dia, já descontadas
+       as perdas normais de sistema (sujeira, temperatura, inversor,
+       cabeamento). Editável na tela. */
+    GERACAO_KWP_MES: 117,
+
+    /* placa de 580 W, que é o que se instala hoje em telhado */
+    KWP_PLACA: 0.58,
+
+    /* Usina pequena custa mais por kWp: projeto, inversor e mão de
+       obra se diluem menos. Ignorar isso é o erro que faz calculadora
+       de site prometer retorno em três anos para uma usina de 2 kWp. */
+    PRECO_KWP: [
+      { ate: 3,  valor: 5800 },
+      { ate: 5,  valor: 5200 },
+      { ate: 10, valor: 4600 },
+      { ate: 20, valor: 4100 },
+      { ate: 1e9, valor: 3700 }
+    ],
+
+    /* Lei 14.300: quem gera paga parte do Fio B, e a fatia sobe a cada
+       ano. 2026 está em 60% sobre a parcela Fio B, que responde por
+       cerca de 28% da tarifa. Sem isto a economia sai inflada. */
+    FIO_B: 0.60 * 0.28,
+
+    /* reajuste médio histórico da tarifa, usado na projeção longa */
+    REAJUSTE_ANO: 0.08,
+    ANOS_VIDA: 25
+  };
+
+  var WA = '5532999999999';
+
+  var $ = function (s) { return document.querySelector(s); };
+  var conta = $('#conta'), tarifa = $('#tarifa'), geracao = $('#geracao');
+  var ligacao = $('#ligacao');
+  if (!conta) return;
+
+  var brl = function (v, casas) {
+    return Number(v).toLocaleString('pt-BR', {
+      style: 'currency', currency: 'BRL',
+      minimumFractionDigits: casas || 0, maximumFractionDigits: casas || 0
+    });
+  };
+  var numero = function (campo) {
+    var t = String(campo.value).replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
+    return parseFloat(t) || 0;
+  };
+  var precoDe = function (kwp) {
+    for (var i = 0; i < C.PRECO_KWP.length; i++) if (kwp <= C.PRECO_KWP[i].ate) return C.PRECO_KWP[i].valor;
+    return C.PRECO_KWP[C.PRECO_KWP.length - 1].valor;
+  };
+  var disponibilidade = function () {
+    var b = ligacao.querySelector('[aria-pressed="true"]');
+    return b ? Number(b.dataset.kwh) : 50;
+  };
+
+  function calcular() {
+    var valorConta = numero(conta);
+    var rs = numero(tarifa) || 1.05;
+    var ger = numero(geracao) || C.GERACAO_KWP_MES;
+    var disp = disponibilidade();
+
+    var consumo = valorConta / rs;                       // kWh/mês
+    var compensar = Math.max(0, consumo - disp);         // o que a usina pode abater
+    var kwpIdeal = compensar / ger;
+    var placas = Math.max(1, Math.ceil(kwpIdeal / C.KWP_PLACA));
+    var kwp = placas * C.KWP_PLACA;                      // a usina real, em placas inteiras
+    var investimento = kwp * precoDe(kwp);
+
+    var economia = compensar * rs * (1 - C.FIO_B);       // já sem o Fio B
+    var resto = valorConta - economia;                   // o que continua vindo na conta
+    var meses = economia > 0 ? investimento / economia : 0;
+
+    /* Projeção longa: a economia acompanha o reajuste da tarifa, então
+       somar 25 vezes o valor de hoje subestimaria bastante. */
+    var acumulado = 0, mensal = economia;
+    for (var a = 0; a < C.ANOS_VIDA; a++) { acumulado += mensal * 12; mensal *= (1 + C.REAJUSTE_ANO); }
+
+    var anos = Math.floor(meses / 12), m = Math.round(meses % 12);
+    if (m === 12) { anos++; m = 0; }
+
+    $('#oRetorno').textContent = meses > 0 && meses < 600
+      ? (anos > 0 ? anos + (anos === 1 ? ' ano' : ' anos') : '') +
+        (anos > 0 && m > 0 ? ' e ' : '') +
+        (m > 0 ? m + (m === 1 ? ' mês' : ' meses') : '')
+      : '—';
+
+    $('#oPlacas').innerHTML = placas + ' <i>placas</i>';
+    $('#oKwp').innerHTML = kwp.toFixed(2).replace('.', ',') + ' <i>kWp</i>';
+    $('#oInv').textContent = brl(investimento);
+    $('#oEco').innerHTML = brl(economia) + ' <i>/mês</i>';
+    $('#oResto').innerHTML = brl(Math.max(0, resto)) + ' <i>/mês</i>';
+    $('#oVinte').textContent = brl(acumulado);
+
+    $('#oAviso').textContent =
+      'Estimativa a partir do valor que você informou, com ' + Math.round(consumo).toLocaleString('pt-BR') +
+      ' kWh de consumo, ' + disp + ' kWh de custo de disponibilidade e o desconto do Fio B já aplicado. ' +
+      'Não é orçamento: o número final depende do telhado e do padrão de entrada.';
+
+    $('#oCta').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(
+      'Simulei no site: conta de ' + brl(valorConta) + ', usina de ' + placas +
+      ' placas (' + kwp.toFixed(2).replace('.', ',') + ' kWp). Quero o orçamento.');
+  }
+
+  /* máscara simples: guarda só dígito e devolve com separador */
+  conta.addEventListener('input', function () {
+    var so = conta.value.replace(/\D/g, '').slice(0, 7);
+    conta.value = so ? Number(so).toLocaleString('pt-BR') : '';
+    calcular();
+  });
+  [tarifa, geracao].forEach(function (c) { c.addEventListener('input', calcular); });
+
+  ligacao.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    ligacao.querySelectorAll('button').forEach(function (o) {
+      o.setAttribute('aria-pressed', String(o === b));
+    });
+    calcular();
+  });
+
+  calcular();
+})();
+</script>
+<script src="../_demo.js"></script>
+</body>
+</html>
