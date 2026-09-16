@@ -31,6 +31,8 @@
   var EN = origem === 'us';
   var VOLTA = EN
     ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
+    : origem === 'portfolio'
+    ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
     : { raiz: '../../../',    cta: '../../../#diagnostico' };
   var TXT = EN
     ? { voltar: '&larr; Back to Theatrum',

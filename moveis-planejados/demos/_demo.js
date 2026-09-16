@@ -41,6 +41,9 @@
     ? { raiz: '../../../',    cta: '../../../#diagnostico' }
     : origem === 'us'
     ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
+
+    : origem === 'portfolio'
+    ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
     : { raiz: '../../',       cta: '../../#planos' };
 
   var EN = origem === 'us';

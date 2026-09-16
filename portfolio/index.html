@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0B0A08"/>
+<title>Portfólio | Theatrum</title>
+<meta name="description" content="Quinze sites em quatro mercados: imobiliário, móveis planejados, nutrição e loja online. Abra qualquer um e navegue por dentro."/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png"/>
+<link rel="apple-touch-icon" href="../assets/img/logo-180.png"/>
+<link rel="canonical" href="https://usetheatrum.com.br/portfolio/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://usetheatrum.com.br/portfolio/"/>
+<meta property="og:title" content="Portfólio | Theatrum"/>
+<meta property="og:description" content="Quinze sites em quatro mercados. Abra qualquer um e navegue por dentro."/>
+<meta property="og:locale" content="pt_BR"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0B0A08; --bg-2:#100E0B; --card:#1A1815;
+    --accent:#E3B341; --accent-soft:#F0D488;
+    --accent2:#8E1F2F;
+    --cream:#F6F1E7;
+    --white:#FFFFFF; --muted:#A39B8D; --ink:#141210;
+    --danger:#D64545;
+    --line:rgba(255,255,255,.10);
+    --line-dark:rgba(20,18,16,.12);
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --font-script:'Instrument Serif',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--white);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  html,body{touch-action:pan-x pan-y}
+  body{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-touch-callout:none}
+  img{-webkit-user-drag:none}
+
+  /* ================= HERO ================= */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+  .hero-bg{position:absolute;inset:-4%;z-index:-4;background:
+    radial-gradient(120% 90% at 78% 8%, #1a160c 0%, transparent 55%),
+    radial-gradient(80% 60% at 12% 95%, #150f0a 0%, transparent 60%),
+    linear-gradient(178deg,#131009 0%,var(--bg) 58%,#070605 100%);
+    animation:heroImageIntro 2.4s cubic-bezier(.22,.9,.24,1) both}
+  @keyframes heroImageIntro{from{transform:scale(1.14);filter:brightness(.4) saturate(.7)}to{transform:scale(1);filter:brightness(1) saturate(1)}}
+  .fx-parallax{position:absolute;inset:0;z-index:-3;transform:translate3d(calc(var(--mx,0)*18px),calc(var(--my,0)*14px),0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .fx-parallax-2{position:absolute;inset:0;z-index:-3;transform:translate3d(calc(var(--mx,0)*-10px),calc(var(--my,0)*-8px),0);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .hero-light{position:absolute;width:72vw;height:72vw;right:-24vw;top:-32vw;border-radius:50%;
+    background:radial-gradient(closest-side, rgba(227,179,65,.16), rgba(227,179,65,.05) 45%, transparent 72%);
+    filter:blur(12px);animation:heroLightIntro 2s cubic-bezier(.2,.7,.2,1) both, lightBreathe 7s ease-in-out 2s infinite}
+  .hero-light-2{position:absolute;width:36vw;height:36vw;left:-15vw;bottom:-17vw;border-radius:50%;
+    background:radial-gradient(closest-side, rgba(142,31,47,.14), transparent 70%);
+    animation:heroLightIntro 2.4s cubic-bezier(.2,.7,.2,1) .3s both, lightBreathe 9s ease-in-out 2.4s infinite}
+  @keyframes heroLightIntro{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+  @keyframes lightBreathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.07);opacity:1}}
+  .hero-beam{position:absolute;top:-12%;right:17%;width:1px;height:126%;
+    background:linear-gradient(180deg,transparent,rgba(227,179,65,.3) 35%,rgba(255,255,255,.06) 70%,transparent);
+    transform:rotate(24deg);animation:beamIn 1.8s ease .8s both}
+  .hero-beam-2{position:absolute;top:-12%;right:34%;width:1px;height:126%;
+    background:linear-gradient(180deg,transparent,rgba(255,255,255,.09) 45%,transparent);
+    transform:rotate(24deg);animation:beamIn 1.8s ease 1.1s both}
+  @keyframes beamIn{from{opacity:0;transform:rotate(24deg) translateY(-8%)}to{opacity:1;transform:rotate(24deg) translateY(0)}}
+  .hero-grain{position:absolute;inset:0;z-index:-1;opacity:.5;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .hero-vignette{position:absolute;inset:0;z-index:-2;background:radial-gradient(140% 100% at 50% 40%, transparent 52%, rgba(0,0,0,.6) 100%)}
+
+  .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--white)}
+  .brand-chip{width:64px;height:64px;border-radius:16px;border:1px solid rgba(255,255,255,.14);position:relative;overflow:hidden;
+    display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:26px;color:var(--accent);background:#000;
+    transition:width .35s cubic-bezier(.2,.7,.2,1),height .35s cubic-bezier(.2,.7,.2,1)}
+  .brand-chip img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+  .brand-chip i{position:absolute;top:8px;right:9px;width:6px;height:6px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent2);font-style:normal;animation:dotPulse 2.2s ease-in-out infinite}
+  .brand b{font-family:var(--font-display);font-weight:600;font-size:19px}
+  .brand b span{color:var(--muted);font-weight:500}
+  /* O min-width existe por causa do PT/EN. O botão de idioma fica à
+     esquerda deste CTA, dentro de um bloco ancorado à direita da barra:
+     quando "Diagnóstico gratuito" vira "Free diagnosis" o CTA encolhe
+     40px e empurra o botão de idioma junto, que salta de lugar bem na
+     hora em que o visitante acabou de clicar nele. Reservando a largura
+     do rótulo mais longo, o CTA não muda de tamanho e nada ao lado se
+     mexe. O valor é a largura medida de "Diagnóstico gratuito"; se o
+     texto mudar, remeça. */
+  .nav-cta{font-weight:600;font-size:14.5px;color:var(--white);text-decoration:none;border:1px solid var(--line);border-radius:40px;padding:11px 22px;transition:.3s;white-space:nowrap;
+    min-width:188px;display:inline-flex;align-items:center;justify-content:center}
+  .nav-cta:hover{border-color:rgba(227,179,65,.5);color:var(--accent)}
+
+  /* ============ NAV FIXA (site inteiro) — logo sempre visível; menu/CTA aparecem após a 1ª tela ============ */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    gap:24px;padding:24px 5vw;background:transparent;border-bottom:1px solid transparent;
+    transition:background .4s ease,padding .4s ease,border-color .4s ease}
+  .site-nav.is-scrolled{background:rgba(11,10,8,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    padding:14px 5vw;border-bottom-color:rgba(255,255,255,.08)}
+  .site-nav.is-scrolled .brand-chip{width:44px;height:44px;font-size:20px}
+  .nav-links,.nav-cta,.nav-burger{
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .45s ease,visibility 0s .45s}
+  .site-nav.is-scrolled .nav-links,.site-nav.is-scrolled .nav-cta,.site-nav.is-scrolled .nav-burger{
+    opacity:1;visibility:visible;pointer-events:auto;
+    transition:opacity .45s ease,visibility 0s}
+  .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+  .nav-links a{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;position:relative;padding:4px 0;transition:color .3s;white-space:nowrap}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:1px;background:var(--accent);transition:width .3s cubic-bezier(.2,.7,.2,1)}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a:hover::after{width:100%}
+  .nav-links a.is-active{color:var(--accent)}
+  .nav-links a.is-active::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+  .lang-toggle{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12px;font-weight:700;
+    letter-spacing:.08em;background:transparent;border:1px solid var(--line);border-radius:40px;padding:8px 14px;
+    cursor:pointer;color:var(--muted);flex-shrink:0;transition:border-color .3s}
+  .lang-toggle:hover{border-color:rgba(227,179,65,.5)}
+  .lt-opt{transition:color .3s}
+  .lt-opt.is-active{color:var(--accent)}
+  .lt-sep{color:var(--line);opacity:.6}
+  .mobile-menu .lang-toggle{margin-bottom:8px}
+  .nav-burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;
+    cursor:pointer;position:relative;flex-shrink:0;padding:0}
+  .nav-burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--white);border-radius:1px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s}
+  .nav-burger span:nth-child(1){top:16px}
+  .nav-burger span:nth-child(2){top:21px}
+  .nav-burger span:nth-child(3){top:26px}
+  .nav-burger.is-open span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+  .nav-burger.is-open span:nth-child(2){opacity:0}
+  .nav-burger.is-open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+  .mobile-menu{position:fixed;inset:0;z-index:999;background:rgba(7,6,5,.98);backdrop-filter:blur(10px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .35s ease,transform .35s ease,visibility 0s .35s}
+  .mobile-menu.is-open{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease}
+  .mobile-menu a{font-family:var(--font-display);font-size:clamp(1.4rem,6.5vw,2rem);font-weight:600;color:var(--white);
+    text-decoration:none;padding:12px 0}
+  .mobile-menu a.is-active{color:var(--accent)}
+  .mobile-menu .mm-cta{margin-top:22px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);background:var(--accent);border-radius:40px;padding:14px 30px;text-decoration:none;font-weight:600}
+
+  @media(max-width:980px){
+    .nav-links{display:none}
+    .nav-burger{display:block}
+  }
+
+  .hero-inner{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(110px,16vh,150px) 5vw 0;max-width:1280px;width:100%;margin:0 auto}
+
+  .eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--font-mono);font-weight:500;font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .hero .eyebrow{animation:rise .8s cubic-bezier(.2,.7,.2,1) .3s both}
+  .eyebrow-bar{width:44px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);flex-shrink:0}
+  .eyebrow-tag{color:var(--accent);font-weight:700;flex-shrink:0;animation:tagSkew 5s ease-in-out infinite}
+  @keyframes tagSkew{0%,88%,100%{transform:skewX(0)}92%{transform:skewX(-9deg)}96%{transform:skewX(5deg)}}
+  .type-wrap{display:inline-flex;align-items:center;min-width:0}
+  .type{white-space:nowrap;overflow:hidden;width:0;animation:typing 2s steps(var(--tlen,44)) 1s forwards}
+  .caret{width:8px;height:15px;background:var(--accent);margin-left:6px;flex-shrink:0;animation:blinkCursor 1s steps(2) infinite}
+  @keyframes typing{to{width:calc(var(--tlen,44) * 1ch + 6.16em)}}
+  @keyframes typingM{to{width:calc(var(--tlen,44) * 1ch)}}
+  @keyframes blinkCursor{50%{opacity:0}}
+
+  .hero-title{font-family:var(--font-display);font-weight:700;letter-spacing:-.035em;line-height:1.03;
+    font-size:clamp(2.6rem,6.8vw,6rem);margin-top:30px;max-width:16ch}
+  .hero-title .word{display:inline-block;animation:wordRise .85s cubic-bezier(.16,.8,.24,1) both;animation-delay:calc(.45s + var(--i)*.08s)}
+  @keyframes wordRise{from{opacity:0;transform:translateY(1.15em) rotate(2.5deg) scale(.96)}to{opacity:1;transform:none}}
+  .hero-em{position:relative;display:inline-block;font-style:normal;
+    background:linear-gradient(110deg,var(--accent) 38%,var(--accent-soft) 50%,#fff 54%,var(--accent) 66%);
+    background-size:280% 100%;background-position:100% 0;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:emShimmer 5.5s ease-in-out 2.4s infinite}
+  @keyframes emShimmer{0%,55%,100%{background-position:100% 0}22%{background-position:0% 0}}
+  .hero-underline{position:absolute;left:-2%;bottom:-.1em;width:104%;height:.16em;overflow:visible;color:var(--accent)}
+  .hero-underline path{stroke-dasharray:100;stroke-dashoffset:100;animation:underlineDraw 1.1s cubic-bezier(.5,0,.2,1) 1.5s forwards}
+  @keyframes underlineDraw{to{stroke-dashoffset:0}}
+
+  .hero-sub{margin-top:34px;font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.62;color:#D8CFC0;max-width:56ch;animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.05s both}
+  .hero-sub b{color:var(--white);font-weight:600}
+
+  .kill-line{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:34px;
+    font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.15s both}
+  .kill{position:relative;white-space:nowrap}
+  .kill::after{content:"";position:absolute;left:-3%;top:52%;width:106%;height:2px;background:var(--danger);
+    transform:scaleX(0);transform-origin:left center;border-radius:2px;
+    animation:strike .5s cubic-bezier(.6,0,.3,1) forwards;animation-delay:calc(1.7s + var(--k)*.45s)}
+  @keyframes strike{to{transform:scaleX(1)}}
+  .kill-verdict{color:var(--accent);font-weight:700;display:inline-flex;align-items:center;gap:10px;
+    opacity:0;animation:riseIn .7s cubic-bezier(.2,.7,.2,1) 3.2s forwards}
+  @keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .status-dot{position:relative;width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0}
+  .status-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 1.8s cubic-bezier(0,0,.2,1) 3.4s infinite}
+  @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+
+  .hero-ctas{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px;animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.35s both}
+  .btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:16.5px;
+    border-radius:60px;padding:18px 32px;position:relative;overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .3s,color .3s}
+  .btn-primary{background:var(--accent);color:var(--ink);box-shadow:0 18px 44px -16px rgba(227,179,65,.45)}
+  .btn-primary::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;transform:skewX(-22deg);
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:sheen 4.5s ease-in-out 2.6s infinite}
+  @keyframes sheen{0%{left:-80%}18%{left:130%}100%{left:130%}}
+  .btn-primary:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 28px 60px -16px rgba(227,179,65,.6)}
+  .btn-arrow{width:22px;height:14px;overflow:visible;flex-shrink:0}
+  .btn-arrow path{stroke:var(--ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:40;stroke-dashoffset:0;transition:stroke-dashoffset .05s}
+  .btn-primary:hover .btn-arrow path{animation:arrowDraw .55s cubic-bezier(.4,0,.2,1)}
+  @keyframes arrowDraw{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+  .btn-secondary{color:var(--white);border:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .btn-secondary:hover{border-color:rgba(227,179,65,.55);color:var(--accent);transform:translateY(-2px)}
+  .btn-dot{position:relative;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);flex-shrink:0}
+  .btn-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 2.2s cubic-bezier(0,0,.2,1) .4s infinite}
+  @keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  .hero-note{margin-top:18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.5s both}
+
+  .hero-proof{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin:60px auto 0;max-width:1280px;width:100%;
+    padding:26px 5vw 34px;border-top:1px solid var(--line);
+    font-family:var(--font-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .proof{display:flex;align-items:center;gap:10px;animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(1.5s + var(--p)*.12s);transition:color .3s}
+  .proof:hover{color:#e7dfd0}
+  .proof b{color:var(--white);font-weight:700}
+  .proof .ic{color:var(--accent);font-style:normal;animation:breathe 3.6s ease-in-out infinite;animation-delay:calc(var(--p)*.5s);display:inline-block}
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.18);opacity:.75}}
+
+  .scroll-hint{position:absolute;right:5vw;bottom:110px;display:flex;flex-direction:column;align-items:center;gap:12px;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+    animation:rise 1s ease 2s both}
+  .scroll-hint span{writing-mode:vertical-rl}
+  .scroll-track{width:1px;height:56px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+  .scroll-track::after{content:"";position:absolute;left:0;top:-40%;width:100%;height:40%;background:var(--accent);animation:scan 2.2s cubic-bezier(.6,0,.4,1) infinite}
+  @keyframes scan{to{top:110%}}
+  @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+  /* ============ SEÇÃO 2 · FAIXA (marquee) ============ */
+  .strip{position:relative;padding:52px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#080706, #0C0A08 50%, #080706);overflow:hidden}
+  .strip::before{content:"";position:absolute;left:0;top:0;bottom:0;width:16vw;z-index:2;pointer-events:none;
+    background:linear-gradient(90deg,#080706,transparent)}
+  .strip::after{content:"";position:absolute;right:0;top:0;bottom:0;width:16vw;z-index:2;pointer-events:none;
+    background:linear-gradient(270deg,#080706,transparent)}
+  .mq{display:flex;overflow:hidden;user-select:none}
+  .mq + .mq{margin-top:24px}
+  .mq-track{display:flex;flex-shrink:0;align-items:center;white-space:nowrap;min-width:100%;animation:mqLeft 38s linear infinite}
+  .mq.rev .mq-track{animation:mqRight 46s linear infinite}
+  @keyframes mqLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes mqRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .mq-item{display:inline-flex;align-items:center;gap:34px;padding:0 34px;
+    font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.5rem);letter-spacing:-.02em;color:var(--white)}
+  .mq-item .star{color:var(--accent);font-size:.6em;animation:breathe 3.6s ease-in-out infinite}
+  .mq.rev .mq-item{font-family:var(--font-mono);font-weight:500;font-size:clamp(.85rem,1.4vw,1.05rem);
+    letter-spacing:.22em;text-transform:uppercase;color:var(--muted);gap:26px;padding:0 26px}
+  .mq.rev .mq-item b{color:var(--accent);font-weight:700}
+
+  /* ============ SEÇÃO 7 · VITRINE (esteira de sites) ============
+     Reaproveita o mecanismo do marquee da faixa: .mq-track duplicado e
+     translateX(-50%). O que muda é o conteúdo — aqui são cartões
+     clicáveis, e por isso a esteira para no hover: mirar um alvo em
+     movimento para clicar é frustrante. */
+  .vitrine{margin-top:56px}
+  .vitrine + .vitrine{margin-top:52px}
+  .vit-cab{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:0 5vw;margin-bottom:20px}
+  .vit-cab h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,2.2vw,1.6rem);
+    letter-spacing:-.02em;color:var(--white);margin:0}
+  .vit-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .vit-mq{position:relative;overflow:hidden;user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  /* o respiro entre cartões mora no cartão, não em gap no trilho: com gap
+     as duas metades não teriam largura idêntica e o translateX(-50%)
+     daria um pulo visível a cada volta do laço */
+  /* Estas duas esteiras não andam por @keyframes: quem move é o script,
+     num laço próprio. A animação do CSS sobrescreve qualquer transform
+     que o JS escreva, e sem escrever transform não há como o visitante
+     arrastar a esteira para o lado. A faixa de texto lá em cima, que
+     ninguém arrasta, continua no CSS. */
+  .vit-mq .mq-track{animation:none;align-items:stretch;will-change:transform}
+  .vit-mq{cursor:grab;touch-action:pan-y}
+  .vit-mq.arrastando{cursor:grabbing}
+  /* durante o arrasto o cartão não deve responder a hover nem receber o
+     clique: mirar enquanto se arrasta é ruído, e soltar o dedo em cima
+     de um cartão abriria a demo sem querer */
+  .vit-mq.arrastando .vit-card{pointer-events:none}
+  .vit-card{flex:0 0 auto;width:min(38vw,392px);margin-right:20px;text-decoration:none;color:inherit;
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0C0A08;
+    display:flex;flex-direction:column;
+    transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+  .vit-card:hover{border-color:rgba(217,164,65,.5);transform:translateY(-4px);box-shadow:0 20px 46px rgba(0,0,0,.5)}
+  .vit-janela{display:flex;align-items:center;gap:6px;padding:9px 13px;background:#141210;border-bottom:1px solid var(--line)}
+  .vit-janela i{width:8px;height:8px;border-radius:50%;background:#2E2A24;flex:none}
+  .vit-janela b{margin-left:8px;font-family:var(--font-mono);font-size:.68rem;font-weight:500;
+    letter-spacing:.06em;color:#7E776B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vit-card img{width:100%;height:auto;display:block;aspect-ratio:1000/625;object-fit:cover;object-position:top center}
+  .vit-pe{display:flex;flex-direction:column;gap:3px;padding:15px 16px 17px}
+  .vit-pe b{font-weight:700;font-size:.98rem;color:var(--white)}
+  .vit-pe em{font-style:normal;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted)}
+  .vit-card:hover .vit-pe em{color:var(--accent)}
+  /* cartao unico, fora de esteira: alinhado ao mesmo respiro lateral dos
+     cabecalhos, sem mascara de borda e sem laco. O width vem do .vit-card,
+     entao ele fica do tamanho dos outros cartoes da pagina. */
+  .vit-solo{padding:0 5vw}
+  .vit-solo .vit-card{margin-right:0}
+  @media (max-width:720px){
+    .vit-card{width:74vw}
+    .vit-cab{padding:0 5vw;gap:8px}
+    .vit-solo .vit-card{width:100%}
+  }
+  /* quem pediu menos movimento fica com a rolagem nativa: o script não
+     liga o laço, e a esteira vira uma faixa que se arrasta e para */
+  @media (prefers-reduced-motion:reduce){
+    .vit-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none;cursor:auto;touch-action:auto}
+    .vit-mq .mq-track{animation:none;min-width:0;transform:none!important}
+  }
+
+  /* ============ base das seções ============ */
+  .sec{position:relative;padding:110px 5vw;overflow:hidden}
+
+  /* ---------- so desenha o que esta na tela ----------
+     A pagina tem 18.000 px de altura e 73 elementos com animacao
+     infinita (breathe em 25, sysBlink em 18, tagSkew em 13). Sem isto
+     o navegador anima e pinta tudo o tempo todo, inclusive o que esta
+     a dez telas de distancia: 72% dos quadros passavam de 16,7 ms ao
+     rolar, com o pior em 363 ms.
+
+     content-visibility:auto faz o navegador pular layout, pintura e
+     animacao de tudo que esta fora da viewport. O contain-intrinsic-size
+     com "auto" guarda a altura real depois da primeira medicao, entao a
+     barra de rolagem para de pular e as ancoras do menu continuam
+     caindo no lugar certo.
+
+     O hero e as duas primeiras secoes ficam de fora: estao na primeira
+     tela e conter o que ja vai ser pintado so adiciona trabalho. */
+  .sec:not(#problema):not(#calculadora){
+    content-visibility:auto;
+    contain-intrinsic-size:auto 900px;
+  }
+
+  /* will-change fixo mantem uma camada de GPU viva para sempre. Ele so
+     vale durante a animacao; parado, e memoria de video presa. */
+  @media(max-width:900px){
+    .sec:not(#problema):not(#calculadora){contain-intrinsic-size:auto 1200px}
+
+    /* Enfeite que pisca para sempre custa composicao a cada quadro e
+       nao carrega informacao nenhuma. No celular, onde a GPU e menor e
+       a bateria importa, ele sai. O que anima uma vez na entrada fica. */
+    .eyebrow-tag,.proof .ic,.mq-item .star,.dot-pulse,.sys-blink,.sys-pulse{
+      animation:none!important;
+    }
+  }
+  .sec-inner{max-width:1280px;margin:0 auto}
+  .sec h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.6vw,3.7rem);line-height:1.05;letter-spacing:-.03em;margin-top:26px;max-width:20ch}
+  .sec .lead{margin-top:26px;font-size:clamp(1.02rem,1.4vw,1.22rem);line-height:1.65;color:#D8CFC0;max-width:60ch}
+  .sec .lead b{color:var(--white)}
+  .sec.light{background:var(--cream);color:var(--ink)}
+  .sec.light .eyebrow{color:#6f6a5c}
+  .sec.light .eyebrow-tag{color:#141210}
+  .sec.light .eyebrow-bar{background:linear-gradient(90deg,#141210,transparent)}
+  .sec.light .lead{color:#4a453c}
+  .sec.light .lead b{color:var(--ink)}
+  .lm{color:var(--accent)}
+  .sec.light .lm{background:rgba(227,179,65,.55);color:var(--ink);padding:0 10px;border-radius:8px}
+
+  /* reveal on scroll */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+  .rv.in{opacity:1;transform:none}
+  .rv-l,.rv-r,.rv-u{opacity:0;transition:opacity .9s cubic-bezier(.76,0,.24,1),transform .9s cubic-bezier(.76,0,.24,1);transition-delay:var(--d,0s)}
+  .rv-l{transform:translate3d(-72px,0,0)}
+  .rv-r{transform:translate3d(72px,0,0)}
+  .rv-u{transform:translate3d(0,66px,0)}
+  .rv-l.in,.rv-r.in,.rv-u.in{opacity:1;transform:none}
+
+  @media(max-width:760px){
+    .nav-cta{display:none}
+    .site-nav{padding:18px 6vw}
+    .site-nav .brand-chip{width:48px;height:48px;font-size:22px}
+    .site-nav.is-scrolled{padding:12px 6vw}
+    .site-nav.is-scrolled .brand-chip{width:40px;height:40px;font-size:18px}
+    .scroll-hint{display:none}
+    .hero-inner{padding-top:clamp(78px,11vh,105px)}
+    .hero-title{margin-top:16px}
+    .hero-sub{margin-top:20px}
+    .kill-line{margin-top:18px}
+    .hero-ctas{margin-top:20px}
+    .hero-note{margin-top:14px}
+    .hero .eyebrow{flex-wrap:wrap}
+    .type-wrap{flex:0 0 100%;margin-top:7px;min-width:0}
+    .type{font-size:9.5px;letter-spacing:0;flex-shrink:0;animation-name:typingM}
+    .caret{margin-bottom:2px}
+    .hero-proof{flex-direction:column;align-items:flex-start;gap:18px;padding-top:22px}
+    .proof{display:block;line-height:1.9}
+    .proof .ic{margin-right:10px}
+    .sec{padding:80px 6vw}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
+    .type{width:auto}
+    .rv{opacity:1;transform:none}
+    #problema .pb-ghost{display:none}
+    #problema .pb-card{opacity:1!important;transform:none!important}
+  }
+
+  /* ============ SEÇÃO 02 · O PROBLEMA (efeito convergência + palavra-fundo) ============ */
+  #problema{isolation:isolate}
+  #problema .pb-ghost{position:absolute;z-index:0;left:-2vw;top:60px;pointer-events:none;white-space:nowrap;
+    font-family:var(--font-display);font-weight:700;font-size:clamp(9rem,26vw,26rem);line-height:.78;
+    letter-spacing:-.05em;color:rgba(255,255,255,.03);will-change:transform}
+  #problema .sec-inner{position:relative;z-index:2}
+  #problema .leaks{perspective:1200px}
+  #problema .pb-card{will-change:transform,opacity;transform-style:preserve-3d}
+  #problema .pb-card>.leak{height:100%}
+
+  .leaks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;position:relative}
+  .leaks::before{content:"";position:absolute;inset:-16% -8% -34%;z-index:-1;pointer-events:none;
+    background:radial-gradient(58% 54% at 50% 38%,rgba(227,179,65,.10),transparent 70%);
+    filter:blur(8px);opacity:0;transition:opacity 1.3s ease}
+  .leaks.lit::before{opacity:1}
+  .leak{background:var(--card);border:1px solid #2a251d;border-radius:22px;padding:38px 32px;position:relative;overflow:hidden;
+    transition:transform .5s cubic-bezier(.76,0,.24,1),border-color .5s,box-shadow .5s}
+  .leak::before{content:"";position:absolute;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;
+    background:linear-gradient(90deg,var(--accent),rgba(227,179,65,0));transition:transform .9s cubic-bezier(.76,0,.24,1) var(--d,0s)}
+  .leak.in::before{transform:scaleX(1)}
+  .leak::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(227,179,65,.09),transparent);transform:skewX(-14deg);transition:left .75s ease}
+  .leak:hover::after{left:135%}
+  .leak:hover{transform:translateY(-8px);border-color:rgba(227,179,65,.4);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+  .leak .n{font-family:var(--font-display);font-weight:700;font-size:64px;line-height:1;color:var(--accent);letter-spacing:-.03em;
+    text-shadow:0 0 26px rgba(227,179,65,.35)}
+  .leak h3{font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:-.02em;margin-top:18px}
+  .leak p{margin-top:14px;font-size:16.5px;line-height:1.6;color:#C9C0B1}
+  .leak p b{color:var(--white)}
+
+  .money{display:flex;align-items:stretch;gap:22px;margin-top:56px;flex-wrap:wrap}
+  .mcard{flex:1;min-width:240px;background:var(--card);border:1px solid #2a251d;border-radius:22px;padding:32px 34px;
+    transition:transform .5s cubic-bezier(.76,0,.24,1),border-color .5s}
+  .mcard:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.14)}
+  .mcard .lb{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .mcard .vl{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,3.6vw,3.4rem);letter-spacing:-.03em;margin-top:12px;font-variant-numeric:tabular-nums}
+  .mcard .vl.up{text-shadow:0 0 30px rgba(227,179,65,.30)}
+  .mcard.down .vl{color:var(--danger)}
+  .mcard.down .vl.up{text-shadow:0 0 30px rgba(214,69,69,.30)}
+  .mcard.note{display:flex;align-items:center;font-size:17.5px;line-height:1.55;color:#D8CFC0}
+  .mcard.note b{color:var(--white)}
+
+  @media(max-width:980px){
+    .leaks,.pillars{grid-template-columns:1fr}
+  }
+
+  /* ============ SEÇÃO 03 · A SOLUÇÃO ============ */
+  #solucao{position:relative;isolation:isolate}
+  #solucao .sec-inner{position:relative;z-index:2}
+  #solucao .sol-atmos{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  #solucao .sol-glow{position:absolute;border-radius:50%;filter:blur(120px)}
+  #solucao .sol-glow.g1{width:42%;height:48%;top:-10%;right:0;background:rgba(227,179,65,.18)}
+  #solucao .sol-glow.g2{width:38%;height:44%;bottom:-12%;left:-4%;background:rgba(142,31,47,.10)}
+  #solucao .sol-dots{position:absolute;inset:0;opacity:.6;
+    background-image:radial-gradient(circle at center,rgba(20,18,16,.06) 1px,transparent 1px);background-size:44px 44px;
+    -webkit-mask:radial-gradient(circle at 50% 32%,#000,transparent 72%);mask:radial-gradient(circle at 50% 32%,#000,transparent 72%)}
+
+  #solucao .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+  #solucao .sol-card{position:relative;display:flex;flex-direction:column;background:#161310;border:1px solid rgba(255,255,255,.07);
+    border-radius:28px;padding:32px 30px 30px;overflow:hidden;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .45s,box-shadow .45s}
+  #solucao .sol-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.16);box-shadow:0 42px 80px -46px rgba(0,0,0,.9)}
+  #solucao .sol-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+    background:linear-gradient(140deg,rgba(227,179,65,.55),rgba(227,179,65,0) 42%,rgba(227,179,65,0) 60%,rgba(227,179,65,.28));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+    mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:.4;transition:opacity .45s}
+  #solucao .sol-card:hover::before{opacity:1}
+  #solucao .sol-card::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(227,179,65,.07),transparent 55%);opacity:0;transition:opacity .45s}
+  #solucao .sol-card:hover::after{opacity:1}
+  #solucao .sol-card>*{position:relative;z-index:1}
+  #solucao .sol-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px}
+  #solucao .sol-ico{width:52px;height:52px;border-radius:15px;background:#1e1a15;border:1px solid rgba(255,255,255,.1);
+    display:grid;place-items:center;color:var(--accent);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s}
+  #solucao .sol-card:hover .sol-ico{transform:scale(1.09);border-color:rgba(227,179,65,.4)}
+  #solucao .sol-ico .i{width:24px;height:24px}
+  #solucao .sol-arr{width:20px;height:20px;color:var(--muted);transition:color .4s,transform .4s}
+  #solucao .sol-card:hover .sol-arr{color:var(--accent);transform:translate(3px,-3px)}
+  #solucao .sol-card .tag2{font-family:var(--font-mono);font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+  #solucao .sol-card h3{font-family:var(--font-display);font-weight:700;font-size:29px;letter-spacing:-.02em;margin-top:13px;color:var(--white)}
+  #solucao .sol-card p{margin-top:13px;font-size:15.5px;line-height:1.62;color:#C9C0B1}
+  #solucao .sol-card p b{color:var(--white)}
+  #solucao .sol-card .foot2{margin-top:auto;padding-top:22px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:9px}
+  #solucao .sol-card .foot2::before{content:"";width:14px;height:1px;background:rgba(227,179,65,.6);flex-shrink:0}
+
+  #solucao .sol-status{display:flex;align-items:center;gap:16px;margin-top:26px;padding:22px 28px;border-radius:20px;
+    border:1px solid rgba(227,179,65,.35);background:#161310;box-shadow:0 34px 64px -44px rgba(0,0,0,.5)}
+  #solucao .sol-status .status-dot{width:9px;height:9px;flex-shrink:0}
+  #solucao .sol-status .status-dot::after{animation-delay:.6s}
+  #solucao .sol-status p{font-family:var(--font-display);font-weight:700;font-size:clamp(1.12rem,2vw,1.6rem);letter-spacing:-.02em;color:var(--white)}
+  #solucao .sol-status .lm{background:transparent;color:var(--accent);padding:0}
+
+  @media(max-width:980px){ #solucao .sol-grid{grid-template-columns:1fr} }
+
+  /* ============ SEÇÃO 04 · COMO FUNCIONA ============ */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;position:relative}
+  .steps::before{content:"";position:absolute;top:26px;left:6%;right:6%;height:1px;z-index:0;
+    background:linear-gradient(90deg,transparent,rgba(227,179,65,.5) 20%,rgba(227,179,65,.5) 80%,transparent)}
+  .steps::after{content:"";position:absolute;top:26px;left:6%;width:88%;height:1px;z-index:0;
+    transform:scaleX(var(--prog,0));transform-origin:left center;
+    background:linear-gradient(90deg,var(--accent),var(--accent));box-shadow:0 0 12px rgba(227,179,65,.55)}
+  .step{padding:0 26px;position:relative}
+  .step .dot{width:53px;height:53px;border-radius:50%;background:var(--bg);border:1px solid rgba(227,179,65,.5);
+    display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;font-size:15px;color:var(--accent);position:relative;z-index:1;
+    transition:background .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease}
+  .step.lit .dot{background:var(--accent);color:var(--ink);border-color:var(--accent);box-shadow:0 0 34px -6px rgba(227,179,65,.7)}
+  .steps.done .step:nth-child(4) .dot{animation:dotGlow 2.2s ease-in-out infinite}
+  @keyframes dotGlow{
+    0%,100%{box-shadow:0 0 34px -6px rgba(227,179,65,.7)}
+    50%{box-shadow:0 0 56px -2px rgba(227,179,65,.95)}
+  }
+  .step h3{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.02em;margin-top:22px}
+  .step h3 small{display:block;font-family:var(--font-mono);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-top:6px}
+  .step p{margin-top:12px;font-size:15.5px;line-height:1.6;color:#C9C0B1}
+
+  @media(max-width:980px){
+    .steps{grid-template-columns:1fr;gap:38px}
+    .steps::before,.steps::after{display:none}
+  }
+
+  /* ============ SEÇÃO 05 · A DIFERENÇA ============ */
+  #beneficios .dif-h{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.8vw,3.8rem);line-height:1.06;letter-spacing:-.03em;margin-top:26px;max-width:22ch}
+  #beneficios .dif-line{display:block}
+  #beneficios .dif-h .w{display:inline-block;will-change:transform}
+  #beneficios .dif-em{font-family:var(--font-script);font-style:italic;font-weight:400;color:var(--accent);position:relative;display:inline-block;letter-spacing:0}
+  #beneficios .dif-uline{position:absolute;left:0;width:100%;overflow:visible;color:var(--accent);pointer-events:none;opacity:0;transition:opacity .3s ease}
+  #beneficios .dif-em .dif-uline{bottom:-.16em;height:.5em}
+  #beneficios .dif-uline path{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .65s cubic-bezier(.5,0,.2,1)}
+  #beneficios.drawn .dif-em .dif-uline{opacity:1}
+  #beneficios.drawn .dif-em .dif-uline path{stroke-dashoffset:0}
+
+  #beneficios .dif-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(28px,5vw,64px);margin-top:60px;position:relative}
+  #beneficios .dif-grid::before{content:"";position:absolute;top:4%;bottom:4%;left:40%;width:1px;background:linear-gradient(180deg,transparent,rgba(227,179,65,.3),transparent)}
+  #beneficios .dif-label{font-family:var(--font-mono);font-size:12.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:26px}
+
+  #beneficios .dif-bad{opacity:.92}
+  #beneficios .dif-bad .dif-label{color:var(--danger)}
+  #beneficios .dif-bad ul{list-style:none;display:flex;flex-direction:column;gap:17px}
+  #beneficios .dif-bad li{display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.4;color:var(--muted)}
+  #beneficios .dif-bad li .x{color:var(--danger);opacity:.7;flex-shrink:0;font-size:13px}
+  #beneficios .dif-bad li .tx{position:relative;background-image:linear-gradient(rgba(214,69,69,.6),rgba(214,69,69,.6));background-repeat:no-repeat;background-position:left 56%;background-size:0% 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .55s cubic-bezier(.6,0,.3,1)}
+  #beneficios .dif-bad li.struck .tx{background-size:100% 2px}
+
+  #beneficios .dif-good .dif-label{color:var(--accent)}
+  #beneficios .dif-good ul{list-style:none;display:flex;flex-direction:column;gap:22px}
+  #beneficios .dif-good li{position:relative;display:flex;gap:15px;align-items:flex-start;
+    font-family:var(--font-display);font-weight:600;font-size:clamp(1.05rem,1.75vw,1.4rem);line-height:1.32;letter-spacing:-.01em;color:var(--white)}
+  #beneficios .dif-good li .ck{color:var(--accent);flex-shrink:0;font-weight:700;line-height:1.32}
+  #beneficios .dif-good li .tx{position:relative}
+  #beneficios .dif-good li .tx b{font-weight:700;color:#fff}
+  #beneficios .dif-good li .tx i{font-family:var(--font-script);font-style:italic;font-weight:400;color:var(--muted);font-size:.9em;letter-spacing:0}
+  #beneficios .dif-good li .dif-uline{bottom:-8px;height:12px}
+  #beneficios .dif-good li:hover .dif-uline{opacity:1}
+  #beneficios .dif-good li:hover .dif-uline path{stroke-dashoffset:0}
+
+  @media(max-width:860px){
+    #beneficios .dif-grid{grid-template-columns:1fr;gap:44px}
+    #beneficios .dif-grid::before{display:none}
+  }
+
+  /* ============ SEÇÃO 07 · AVALIAÇÕES ============ */
+  #avaliacoes .g-badge{
+    display:flex; align-items:center; gap:16px; margin-top:56px; padding:20px 26px;
+    background:var(--card); border:1px dashed #3a3327; border-radius:18px; max-width:640px;
+  }
+  #avaliacoes .g-badge img{width:30px;height:30px;flex-shrink:0;opacity:.55;filter:grayscale(1)}
+  #avaliacoes .g-badge .g-txt b{display:block;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:16px}
+  #avaliacoes .g-badge .g-txt span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+
+  #avaliacoes .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px}
+  #avaliacoes .rev-card{background:var(--card);border:1px dashed #3a3327;border-radius:22px;padding:30px 28px;
+    display:flex;flex-direction:column;gap:16px;transition:border-color .4s,transform .4s}
+  #avaliacoes .rev-card:hover{border-color:rgba(227,179,65,.4);transform:translateY(-4px)}
+  #avaliacoes .rev-stars{color:#3a3327;font-size:15px;letter-spacing:2px}
+  #avaliacoes .rev-text{font-size:15px;line-height:1.6;color:var(--muted);font-style:italic}
+  #avaliacoes .rev-who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  #avaliacoes .rev-avatar{width:38px;height:38px;border-radius:50%;background:#241f18;border:1px dashed #3a3327;
+    display:grid;place-items:center;font-family:var(--font-mono);font-size:14px;color:var(--muted);flex-shrink:0}
+  #avaliacoes .rev-who b{display:block;font-size:14px;color:#C9C0B1;font-weight:600}
+  #avaliacoes .rev-who span{display:block;font-size:12px;color:var(--muted)}
+
+  @media(max-width:900px){ #avaliacoes .rev-grid{grid-template-columns:1fr} }
+
+  /* ============ SEÇÃO 08 · FAQ ============ */
+  .faq{max-width:860px;margin:56px auto 0}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:26px 4px;font-family:var(--font-display);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:-.01em;
+    transition:color .3s}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:hover{color:var(--accent)}
+  .faq summary .pl{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    display:grid;place-items:center;font-weight:500;font-size:19px;color:var(--accent);transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s}
+  .faq details[open] summary .pl{transform:rotate(45deg);background:rgba(227,179,65,.12)}
+  .faq .ans{padding:0 4px 28px;font-size:16.5px;line-height:1.65;color:#C9C0B1;max-width:60ch}
+  .faq .ans b{color:var(--white)}
+
+  /* ============ SEÇÃO 09 · CTA FINAL ============ */
+  .final{background:var(--accent);color:var(--ink);text-align:center;padding:130px 5vw 120px;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:70vw;height:70vw;border-radius:50%;
+    background:radial-gradient(closest-side, rgba(255,255,255,.35), transparent 70%)}
+  .final .eyebrow{justify-content:center;color:rgba(20,18,16,.72)}
+  .final .eyebrow-tag{color:var(--ink)}
+  .final .eyebrow-bar{background:linear-gradient(90deg,var(--ink),transparent)}
+  .final h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.03;letter-spacing:-.035em;
+    max-width:19ch;margin:26px auto 0;position:relative}
+  .final .lead{color:rgba(20,18,16,.75);max-width:52ch;margin:24px auto 0;font-weight:600;position:relative}
+  .btn-dark{background:var(--ink);color:var(--accent);font-weight:800;font-size:19px;padding:24px 46px;border-radius:60px;
+    display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-top:44px;position:relative;
+    box-shadow:0 26px 60px -20px rgba(20,18,16,.55);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  .btn-dark:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 36px 80px -22px rgba(20,18,16,.65)}
+  .final .mini{margin-top:22px;font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(20,18,16,.74);position:relative}
+
+  footer{background:#070605;padding:44px 5vw;border-top:1px solid var(--line)}
+  .foot-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot-inner .brand b{font-size:17px}
+  .foot-links{display:flex;gap:26px;font-size:14px}
+  .foot-links a{color:var(--muted);text-decoration:none;transition:color .3s}
+  .foot-links a:hover{color:var(--accent)}
+  .foot-legal{width:100%;margin-top:18px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:#8a8172}
+  .foot-links a{padding:10px 0;display:inline-block}
+
+  /* ============ CTA flutuante do WhatsApp (mobile) ============ */
+  .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;
+    background:var(--accent);color:var(--ink);display:none;place-items:center;text-decoration:none;
+    box-shadow:0 14px 34px -10px rgba(227,179,65,.55),0 6px 18px rgba(0,0,0,.45);
+    opacity:0;transform:translateY(16px) scale(.8);pointer-events:none;
+    transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1)}
+  .wa-float svg{width:28px;height:28px}
+  .wa-float.on{opacity:1;transform:none;pointer-events:auto}
+  .wa-float:active{transform:scale(.94)}
+  @media(max-width:760px){.wa-float{display:grid}}
+
+  /* ============ foco (teclado) e toque ============ */
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .btn:focus-visible,.btn-dark:focus-visible,.nav-cta:focus-visible{outline-offset:4px;border-radius:60px}
+  .faq summary:focus-visible{outline-offset:-2px}
+  .btn:active,.btn-dark:active{transform:translateY(0) scale(.98)}
+  .btn-dark:focus-visible{outline-color:var(--ink)}
+
+  /* esta pagina e so a vitrine: sem hero, o topo precisa da folga que a
+     barra fixa ocuparia */
+  #trabalhos{padding-top:128px}
+  /* a nav da home revela os links depois da primeira tela; aqui nao ha
+     primeira tela para esperar */
+  .site-nav{opacity:1!important;transform:none!important}
+</style>
+<noscript><style>
+  .rv,.rv-l,.rv-r,.rv-u{opacity:1!important;transform:none!important}
+</style></noscript>
+</head>
+<body id="topo">
+
+<nav class="site-nav" id="siteNav">
+  <a class="brand" href="../">
+    <span class="brand-chip"><img src="../assets/img/logo.webp" width="192" height="192" decoding="async" alt="Theatrum"/><i></i></span>
+    <b>Theatrum</b>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../#problema" data-en="Problem">Problema</a></li>
+    <li><a href="../#calculadora" data-en="Calculator">Calculadora</a></li>
+    <li><a href="../#solucao" data-en="Solution">Solução</a></li>
+    <li><a href="../#sistema" data-en="Demo">Demonstração</a></li>
+    <li><a href="#topo" data-en="Work">Trabalhos</a></li>
+    <li><a href="../#como-funciona" data-en="How it works">Como funciona</a></li>
+    <li><a href="../#investimento" data-en="Pricing">Investimento</a></li>
+    <li><a href="../#faq" data-en="FAQ">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language / Trocar idioma">
+      <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
+    </button>
+    <a class="nav-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
+    <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
+    <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
+  </button>
+  <a href="#topo" data-en="Work">Trabalhos</a>
+  <a href="../#problema" data-en="Problem">Problema</a>
+  <a href="../#solucao" data-en="Solution">Solução</a>
+  <a href="../#como-funciona" data-en="How it works">Como funciona</a>
+  <a href="../#beneficios" data-en="Difference">Diferença</a>
+  <a href="../#sistema" data-en="Demo">Demonstração</a>
+  <a href="../#faq" data-en="FAQ">FAQ</a>
+  <a class="mm-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
+</div>
+
+<section class="sec" id="trabalhos">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">&#9670;</span>portfolio'><span class="eyebrow-bar"></span><span class="eyebrow-tag">&#9670;</span>portfólio</p>
+    <h2 class="rv" style="--d:.08s" data-en='Four markets, fifteen sites. <span class="lm">Scroll and open any of them.</span>'>Quatro mercados, quinze sites. <span class="lm">Role e abra qualquer um.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Custom furniture">Móveis planejados</h3>
+      <span class="vit-tag" data-en="six demos · fictional brands">seis demonstrações · marcas fictícias</span>
+    </div>
+    <div class="mq vit-mq">
+      <div class="mq-track">
+        <a class="vit-card" href="../moveis-planejados/demos/atelie-verga/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
+          <img src="../assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/casa-nobre/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
+          <img src="../assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/medida-certa/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
+          <img src="../assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/cozinha-viva/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
+          <img src="../assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/cerne/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
+          <img src="../assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/moratta/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
+          <img src="../assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/atelie-verga/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
+          <img src="../assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/casa-nobre/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
+          <img src="../assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/medida-certa/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
+          <img src="../assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/cozinha-viva/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
+          <img src="../assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/cerne/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
+          <img src="../assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/moratta/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
+          <img src="../assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Dietitians">Nutricionistas</h3>
+      <span class="vit-tag" data-en="four delivered sites · identity swapped">quatro sites entregues · identidade trocada</span>
+    </div>
+    <div class="mq vit-mq rev">
+      <div class="mq-track">
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-infantil/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
+          <img src="../assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-emagrecimento/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
+          <img src="../assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-clinica/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
+          <img src="../assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-usa/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
+          <img src="../assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-infantil/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
+          <img src="../assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-emagrecimento/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
+          <img src="../assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-clinica/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
+          <img src="../assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
+        </a>
+        <a class="vit-card" href="../moveis-planejados/demos/nutri-usa/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
+          <img src="../assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Real estate">Imóveis</h3>
+      <span class="vit-tag" data-en="four demos · working systems inside">quatro demonstrações · com sistema funcionando</span>
+    </div>
+    <div class="mq vit-mq">
+      <div class="mq-track">
+        <a class="vit-card" href="../imoveis/demos/bruno-tavares/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
+          <img src="../assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/vista-imoveis/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
+          <img src="../assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/reserva-aurora/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
+          <img src="../assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/vertice/?de=portfolio" target="_blank" rel="noopener">
+          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
+          <img src="../assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/bruno-tavares/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
+          <img src="../assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/vista-imoveis/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
+          <img src="../assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/reserva-aurora/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
+          <img src="../assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
+        </a>
+        <a class="vit-card" href="../imoveis/demos/vertice/?de=portfolio" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
+          <img src="../assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
+          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Online stores">Lojas online</h3>
+      <span class="vit-tag" data-en="one demo · cart and checkout working">uma demonstração · carrinho e checkout funcionando</span>
+    </div>
+    <!-- uma demo so: esteira aqui seria um cartao repetindo em loop, que
+         parece defeito. Fica um quadrado parado ate existir a segunda. -->
+    <div class="vit-solo">
+      <a class="vit-card" href="../lojas/demos/seis-panos/?de=portfolio" target="_blank" rel="noopener">
+        <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
+        <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
+        <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+/* ============================================================
+   Esteiras da vitrine — movimento próprio e arrastável
+
+   O CSS movia o trilho com @keyframes. Isso é simples, mas fecha a
+   porta para o visitante conduzir: a animação sobrescreve qualquer
+   transform que o script escreva, e sem escrever transform não há
+   arrasto possível. Aqui o laço é nosso, e arrastar vira só somar
+   no mesmo deslocamento que o laço já vinha somando sozinho.
+
+   A faixa de texto da seção 2 continua no CSS: ninguém arrasta
+   uma frase, e trocar o que funciona custaria sem devolver nada.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
+  /* quem pediu menos movimento fica com a rolagem nativa que o CSS liga */
+  if (menosMovimento.matches) return;
+
+  document.querySelectorAll('.vit-mq').forEach(function (caixa) {
+    var trilho = caixa.querySelector('.mq-track');
+    if (!trilho) return;
+
+    var reverso = caixa.classList.contains('rev');
+    /* as durações de antes, em segundos para atravessar meia volta */
+    var DURACAO = reverso ? 76 : 64;
+    var LIMIAR = 4;   // px de folga antes de tratar como arrasto, e não clique
+
+    var meia = 0, pos = 0, vel = 0;
+    var parado = false, arrastando = false, visivel = true;
+    var xInicial = 0, posInicial = 0, andou = 0, quadro = null, ultimo = 0;
+
+    /* Meia volta é a metade do trilho, porque o HTML repete os cartões
+       duas vezes. Recalculado no resize e quando as capas terminam de
+       carregar: com loading=lazy a largura muda depois da primeira medida. */
+    function medir() {
+      meia = trilho.scrollWidth / 2;
+      vel = meia / DURACAO;
+      if (meia > 0) pos = ((pos % meia) + meia) % meia;
+    }
+
+    function desenhar() {
+      trilho.style.transform = 'translateX(' + (-pos) + 'px)';
+    }
+
+    function passo(agora) {
+      quadro = requestAnimationFrame(passo);
+      var dt = ultimo ? (agora - ultimo) / 1000 : 0;
+      ultimo = agora;
+      /* dt travado em 50 ms: ao voltar de uma aba em segundo plano o
+         primeiro quadro traz um salto de vários segundos, e a esteira
+         daria um pulo grande em vez de retomar de onde parou */
+      if (dt > 0.05) dt = 0.05;
+      if (parado || arrastando || !visivel || !meia) return;
+      pos += (reverso ? -vel : vel) * dt;
+      pos = ((pos % meia) + meia) % meia;
+      desenhar();
+    }
+
+    function ligar() { if (!quadro) { ultimo = 0; quadro = requestAnimationFrame(passo); } }
+    function desligar() { if (quadro) { cancelAnimationFrame(quadro); quadro = null; } }
+
+    /* ---------- arrasto ---------- */
+    var capturado = false;
+
+    caixa.addEventListener('pointerdown', function (e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      arrastando = true;
+      capturado = false;
+      andou = 0;
+      xInicial = e.clientX;
+      posInicial = pos;
+    });
+
+    caixa.addEventListener('pointermove', function (e) {
+      if (!arrastando || !meia) return;
+      var dx = e.clientX - xInicial;
+      if (Math.abs(dx) > andou) andou = Math.abs(dx);
+      if (andou > LIMIAR) {
+        caixa.classList.add('arrastando');
+        /* A captura só entra depois do limiar, e não no pointerdown.
+           Com o ponteiro capturado o navegador entrega o clique ao
+           contêiner em vez de ao <a> de dentro, e um clique seco no
+           cartão deixaria de abrir a demonstração. Capturando só
+           quando já houve arrasto de verdade, o clique segue intacto
+           e o arrasto continua funcionando com o dedo fora da faixa.
+
+           No toque não se captura: o dedo já é capturado implicitamente
+           pelo alvo, e pedir a captura explícita fazia o navegador
+           retargetar o ponteiro no meio do gesto — o que disparava
+           lostpointercapture e matava o arrasto antes de ele andar. */
+        if (!capturado && e.pointerType !== 'touch') {
+          caixa.setPointerCapture(e.pointerId); capturado = true;
+        }
+      }
+      pos = posInicial - dx;
+      pos = ((pos % meia) + meia) % meia;
+      desenhar();
+    });
+
+    function soltar(e) {
+      if (!arrastando) return;
+      arrastando = false;
+      if (capturado && e && e.pointerId !== undefined && caixa.hasPointerCapture(e.pointerId)) {
+        caixa.releasePointerCapture(e.pointerId);
+      }
+      capturado = false;
+      /* tira a classe no quadro seguinte: removida agora, o clique que
+         ainda está a caminho encontraria os cartões já clicáveis */
+      requestAnimationFrame(function () { caixa.classList.remove('arrastando'); });
+    }
+    caixa.addEventListener('pointerup', soltar);
+    caixa.addEventListener('pointercancel', soltar);
+    /* lostpointercapture NÃO encerra o arrasto. Ele dispara no meio do
+       gesto sempre que o alvo é retargetado — e como o pointer-events dos
+       cartões muda ao entrar a classe .arrastando, isso acontecia várias
+       vezes por arrasto no toque. Quem encerra é pointerup e
+       pointercancel, que bastam: os dois sempre chegam. */
+    /* segura o clique que fecha um arrasto de verdade */
+    caixa.addEventListener('click', function (e) {
+      if (andou > LIMIAR) { e.preventDefault(); e.stopPropagation(); andou = 0; }
+    }, true);
+
+    /* ---------- pausa ----------
+       Só para o mouse. No toque não existe "passar o mouse por cima", e
+       enter/leave chegavam sete vezes por gesto conforme o dedo cruzava
+       os cartões, ligando e desligando a pausa sem sentido. */
+    caixa.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') parado = true; });
+    caixa.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') parado = false; });
+    caixa.addEventListener('focusin', function () { parado = true; });
+    caixa.addEventListener('focusout', function () { parado = false; });
+
+    /* fora da tela o laço não roda: são duas esteiras numa página longa,
+       e girar transform sem ninguém olhando só gasta bateria */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entradas) {
+        visivel = entradas[0].isIntersecting;
+        if (visivel) ligar(); else desligar();
+      }, { rootMargin: '120px 0px' }).observe(caixa);
+    } else {
+      ligar();
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) desligar(); else if (visivel) ligar();
+    });
+
+    window.addEventListener('resize', medir);
+    trilho.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', medir, { once: true });
+    });
+
+    medir();
+    desenhar();
+  });
+})();
+</script>
+
+<footer>
+  <div class="foot-inner">
+    <a class="brand" href="../">
+      <span class="brand-chip"><img src="../assets/img/logo.webp" width="192" height="192" decoding="async" alt="Theatrum"/><i></i></span>
+      <b>Theatrum</b>
+    </a>
+    <div class="foot-links">
+      <!-- PLACEHOLDER: trocar pelo link real do LinkedIn -->
+      <a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="../" data-en="Back to top">Voltar ao topo</a>
+    </div>
+    <div class="foot-legal" data-en="Theatrum · digital identity for businesses across Brazil. © 2026.<br>Matheus Ananias de Souza · Brazilian company ID (CNPJ) 61.978.753/0001-60">Theatrum · identidade digital para negócios em todo o Brasil. © 2026.<br>Responsável: Matheus Ananias de Souza · CNPJ 61.978.753/0001-60</div>
+  </div>
+</footer>
+
+<script>
+/* idioma: mesma mecanica da home */
+(function(){
+  var nodes = [].slice.call(document.querySelectorAll('[data-en]'));
+  nodes.forEach(function(el){ el.dataset.pt = el.innerHTML; });
+  function aplica(lang){
+    nodes.forEach(function(el){ el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.pt; });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = lang === 'en' ? 'Portfolio | Theatrum' : 'Portfólio | Theatrum';
+    document.querySelectorAll('.lang-toggle').forEach(function(btn){
+      btn.querySelectorAll('.lt-opt').forEach(function(o){ o.classList.toggle('is-active', o.dataset.lang === lang); });
+    });
+    try { localStorage.setItem('theatrum-lang', lang); } catch(e){}
+  }
+  document.querySelectorAll('.lang-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      aplica(document.documentElement.lang === 'en' ? 'pt' : 'en');
+    });
+  });
+  var salvo = null; try { salvo = localStorage.getItem('theatrum-lang'); } catch(e){}
+  if (salvo === 'en') aplica('en');
+})();
+
+/* revelacao na entrada */
+(function(){
+  var alvos = [].slice.call(document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-u'));
+  if (!('IntersectionObserver' in window)) { alvos.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  alvos.forEach(function(e){ io.observe(e); });
+})();
+
+/* menu do celular */
+(function(){
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  burger.addEventListener('click', function(){
+    var abre = !menu.classList.contains('is-open');
+    burger.classList.toggle('is-open', abre);
+    burger.setAttribute('aria-expanded', String(abre));
+    menu.classList.toggle('is-open', abre);
+    document.body.style.overflow = abre ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      burger.classList.remove('is-open'); menu.classList.remove('is-open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+(function(){
+  var n = document.getElementById('siteNav');
+  if (n) n.classList.add('is-scrolled','nav-ready','scrolled','show');
+})();
+</script>
+</body>
+</html>

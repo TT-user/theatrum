@@ -314,66 +314,6 @@
     letter-spacing:.22em;text-transform:uppercase;color:var(--muted);gap:26px;padding:0 26px}
   .mq.rev .mq-item b{color:var(--accent);font-weight:700}
 
-  /* ============ SEÇÃO 7 · VITRINE (esteira de sites) ============
-     Reaproveita o mecanismo do marquee da faixa: .mq-track duplicado e
-     translateX(-50%). O que muda é o conteúdo — aqui são cartões
-     clicáveis, e por isso a esteira para no hover: mirar um alvo em
-     movimento para clicar é frustrante. */
-  .vitrine{margin-top:56px}
-  .vitrine + .vitrine{margin-top:52px}
-  .vit-cab{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:0 5vw;margin-bottom:20px}
-  .vit-cab h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,2.2vw,1.6rem);
-    letter-spacing:-.02em;color:var(--white);margin:0}
-  .vit-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .vit-mq{position:relative;overflow:hidden;user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-  /* o respiro entre cartões mora no cartão, não em gap no trilho: com gap
-     as duas metades não teriam largura idêntica e o translateX(-50%)
-     daria um pulo visível a cada volta do laço */
-  /* Estas duas esteiras não andam por @keyframes: quem move é o script,
-     num laço próprio. A animação do CSS sobrescreve qualquer transform
-     que o JS escreva, e sem escrever transform não há como o visitante
-     arrastar a esteira para o lado. A faixa de texto lá em cima, que
-     ninguém arrasta, continua no CSS. */
-  .vit-mq .mq-track{animation:none;align-items:stretch;will-change:transform}
-  .vit-mq{cursor:grab;touch-action:pan-y}
-  .vit-mq.arrastando{cursor:grabbing}
-  /* durante o arrasto o cartão não deve responder a hover nem receber o
-     clique: mirar enquanto se arrasta é ruído, e soltar o dedo em cima
-     de um cartão abriria a demo sem querer */
-  .vit-mq.arrastando .vit-card{pointer-events:none}
-  .vit-card{flex:0 0 auto;width:min(38vw,392px);margin-right:20px;text-decoration:none;color:inherit;
-    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0C0A08;
-    display:flex;flex-direction:column;
-    transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
-  .vit-card:hover{border-color:rgba(217,164,65,.5);transform:translateY(-4px);box-shadow:0 20px 46px rgba(0,0,0,.5)}
-  .vit-janela{display:flex;align-items:center;gap:6px;padding:9px 13px;background:#141210;border-bottom:1px solid var(--line)}
-  .vit-janela i{width:8px;height:8px;border-radius:50%;background:#2E2A24;flex:none}
-  .vit-janela b{margin-left:8px;font-family:var(--font-mono);font-size:.68rem;font-weight:500;
-    letter-spacing:.06em;color:#7E776B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .vit-card img{width:100%;height:auto;display:block;aspect-ratio:1000/625;object-fit:cover;object-position:top center}
-  .vit-pe{display:flex;flex-direction:column;gap:3px;padding:15px 16px 17px}
-  .vit-pe b{font-weight:700;font-size:.98rem;color:var(--white)}
-  .vit-pe em{font-style:normal;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--muted)}
-  .vit-card:hover .vit-pe em{color:var(--accent)}
-  /* cartao unico, fora de esteira: alinhado ao mesmo respiro lateral dos
-     cabecalhos, sem mascara de borda e sem laco. O width vem do .vit-card,
-     entao ele fica do tamanho dos outros cartoes da pagina. */
-  .vit-solo{padding:0 5vw}
-  .vit-solo .vit-card{margin-right:0}
-  @media (max-width:720px){
-    .vit-card{width:74vw}
-    .vit-cab{padding:0 5vw;gap:8px}
-    .vit-solo .vit-card{width:100%}
-  }
-  /* quem pediu menos movimento fica com a rolagem nativa: o script não
-     liga o laço, e a esteira vira uma faixa que se arrasta e para */
-  @media (prefers-reduced-motion:reduce){
-    .vit-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none;cursor:auto;touch-action:auto}
-    .vit-mq .mq-track{animation:none;min-width:0;transform:none!important}
-  }
-
   /* ============ base das seções ============ */
   .sec{position:relative;padding:110px 5vw;overflow:hidden}
 
@@ -721,10 +661,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#problema" data-en="Problem">Problema</a></li>
-      <a class="btn btn-primary" href="#calculadora" data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
+    <li><a href="#calculadora" data-en="Calculator">Calculadora</a></li>
     <li><a href="#solucao" data-en="Solution">Solução</a></li>
     <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
-    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
+    <li><a href="portfolio/" data-en="Work">Trabalhos</a></li>
     <li><a href="#como-funciona" data-en="How it works">Como funciona</a></li>
     <li><a href="#investimento" data-en="Pricing">Investimento</a></li>
     <li><a href="#faq" data-en="FAQ">FAQ</a></li>
@@ -744,7 +684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
     <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
   </button>
-  <a href="#trabalhos" data-en="Work">Trabalhos</a>
+  <a href="portfolio/" data-en="Work">Trabalhos</a>
   <a href="#problema" data-en="Problem">Problema</a>
   <a href="#solucao" data-en="Solution">Solução</a>
   <a href="#como-funciona" data-en="How it works">Como funciona</a>
@@ -789,7 +729,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="#calculadora" data-en='See how much I lose每month'>
+      <a class="btn btn-primary" href="#calculadora" data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
         Ver quanto eu perco por mês
         <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
       </a>
@@ -2643,363 +2583,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 3 · VITRINE (o portfolio vem antes da argumentacao) ============ -->
+<!-- ============ 3 · CONVITE PARA O PORTFOLIO ============ -->
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
     <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Four markets, fifteen sites. <span class="lm">Scroll and open any of them.</span>'>Quatro mercados, quinze sites. <span class="lm">Role e abra qualquer um.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
+    <h2 class="rv" style="--d:.08s" data-en='Four markets, fifteen sites. <span class="lm">All of them live.</span>'>Quatro mercados, quinze sites. <span class="lm">Todos no ar.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Real estate, fitted furniture, nutrition and an online store. They are working sites, not pictures: open any one and browse it from top to bottom.'>Imobiliário, móveis planejados, nutrição e loja online. São sites que funcionam, não figuras: abra qualquer um e navegue do topo ao rodapé.</p>
+    <a class="btn btn-primary rv" style="--d:.24s;margin-top:34px" href="portfolio/" data-en='See the portfolio <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
+      Ver o portfólio
+      <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
+    </a>
   </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Custom furniture">Móveis planejados</h3>
-      <span class="vit-tag" data-en="six demos · fictional brands">seis demonstrações · marcas fictícias</span>
-    </div>
-    <div class="mq vit-mq">
-      <div class="mq-track">
-        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
-          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
-          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
-          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
-          <img src="assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>atelieverga.com.br</b></span>
-          <img src="assets/img/vitrine/atelie-verga-desktop.webp" alt="Site de marcenaria autoral em madeira maciça" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ateliê Verga</b><em>Custom joinery</em>"><b>Ateliê Verga</b><em>Marcenaria autoral</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>casanobreplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/casa-nobre-desktop.webp" alt="Site de loja de planejados de alto padrão" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Casa Nobre</b><em>High end</em>"><b>Casa Nobre</b><em>Alto padrão</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>medidacerta.com.br</b></span>
-          <img src="assets/img/vitrine/medida-certa-desktop.webp" alt="Site de planejados para apartamento compacto" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Medida Certa</b><em>Published prices</em>"><b>Medida Certa</b><em>Preço publicado</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span>
-          <img src="assets/img/vitrine/cozinha-viva-desktop.webp" alt="Site de atelier especializado em cozinha" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Cozinha Viva</b><em>Kitchens only</em>"><b>Cozinha Viva</b><em>Só cozinha</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>cernemarcenaria.com.br</b></span>
-          <img src="assets/img/vitrine/cerne-desktop.webp" alt="Site de marcenaria arquitetônica de alto padrão em São Paulo" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>CERNE</b><em>Architectural joinery</em>"><b>CERNE</b><em>Marcenaria arquitetônica</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>morattaplanejados.com.br</b></span>
-          <img src="assets/img/vitrine/moratta-desktop.webp" alt="Site de indústria de móveis planejados com rede de lojistas" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Morattá</b><em>Factory + dealer network</em>"><b>Morattá</b><em>Indústria + rede de lojistas</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Dietitians">Nutricionistas</h3>
-      <span class="vit-tag" data-en="four delivered sites · identity swapped">quatro sites entregues · identidade trocada</span>
-    </div>
-    <div class="mq vit-mq rev">
-      <div class="mq-track">
-        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
-          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
-          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-infantil/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>marinabastos.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-infantil-desktop.webp" alt="Site de nutricionista infantil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Marina Bastos</b><em>Child nutrition</em>"><b>Marina Bastos</b><em>Nutrição infantil</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>renatasalles.com.br</b></span>
-          <img src="assets/img/vitrine/nutri-emagrecimento-desktop.webp" alt="Site de nutricionista de emagrecimento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Renata Salles</b><em>Weight loss</em>"><b>Renata Salles</b><em>Emagrecimento</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-clinica/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>camilaprado.com</b></span>
-          <img src="assets/img/vitrine/nutri-clinica-desktop.webp" alt="Site bilíngue de nutricionista nos EUA" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Camila Prado</b><em>Bilingual · USA</em>"><b>Camila Prado</b><em>Bilíngue · EUA</em></span>
-        </a>
-        <a class="vit-card" href="moveis-planejados/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>ethanreyesrd.com</b></span>
-          <img src="assets/img/vitrine/nutri-usa-desktop.webp" alt="Site de dietitian em Los Angeles" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Ethan Reyes</b><em>Dietitian · Los Angeles</em>"><b>Ethan Reyes</b><em>Dietitian · Los Angeles</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Real estate">Imóveis</h3>
-      <span class="vit-tag" data-en="four demos · working systems inside">quatro demonstrações · com sistema funcionando</span>
-    </div>
-    <div class="mq vit-mq">
-      <div class="mq-track">
-        <a class="vit-card" href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
-          <img src="assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
-          <img src="assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener">
-          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>brunotavares.com.br</b></span>
-          <img src="assets/img/vitrine/bruno-tavares-desktop.webp" alt="Site de corretor de imóveis autônomo com busca por perfil" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Bruno Tavares</b><em>Broker · search system</em>"><b>Bruno Tavares</b><em>Corretor · busca por perfil</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>vistaimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vista-imoveis-desktop.webp" alt="Site de imobiliária com catálogo filtrável e comparador" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vista Imóveis</b><em>Agency · filters + compare</em>"><b>Vista Imóveis</b><em>Imobiliária · catálogo e comparador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>reservaaurora.com.br</b></span>
-          <img src="assets/img/vitrine/reserva-aurora-desktop.webp" alt="Site de lançamento com espelho de unidades e simulador de financiamento" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Reserva Aurora</b><em>Launch · unit board + calculator</em>"><b>Reserva Aurora</b><em>Lançamento · espelho e simulador</em></span>
-        </a>
-        <a class="vit-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-          <span class="vit-janela"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
-          <img src="assets/img/vitrine/vertice-desktop.webp" alt="Site de imóveis de alto padrão com carteira reservada por código" loading="lazy" width="1000" height="625">
-          <span class="vit-pe" data-en="<b>Vértice</b><em>High end · gated portfolio</em>"><b>Vértice</b><em>Alto padrão · carteira com código</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
-      <h3 data-en="Online stores">Lojas online</h3>
-      <span class="vit-tag" data-en="one demo · cart and checkout working">uma demonstração · carrinho e checkout funcionando</span>
-    </div>
-    <!-- uma demo so: esteira aqui seria um cartao repetindo em loop, que
-         parece defeito. Fica um quadrado parado ate existir a segunda. -->
-    <div class="vit-solo">
-      <a class="vit-card" href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener">
-        <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
-        <img src="assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
-        <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
-      </a>
-    </div>
-  </div>
-
 </section>
-
-<script>
-/* ============================================================
-   Esteiras da vitrine — movimento próprio e arrastável
-
-   O CSS movia o trilho com @keyframes. Isso é simples, mas fecha a
-   porta para o visitante conduzir: a animação sobrescreve qualquer
-   transform que o script escreva, e sem escrever transform não há
-   arrasto possível. Aqui o laço é nosso, e arrastar vira só somar
-   no mesmo deslocamento que o laço já vinha somando sozinho.
-
-   A faixa de texto da seção 2 continua no CSS: ninguém arrasta
-   uma frase, e trocar o que funciona custaria sem devolver nada.
-   ============================================================ */
-(function () {
-  'use strict';
-
-  var menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
-  /* quem pediu menos movimento fica com a rolagem nativa que o CSS liga */
-  if (menosMovimento.matches) return;
-
-  document.querySelectorAll('.vit-mq').forEach(function (caixa) {
-    var trilho = caixa.querySelector('.mq-track');
-    if (!trilho) return;
-
-    var reverso = caixa.classList.contains('rev');
-    /* as durações de antes, em segundos para atravessar meia volta */
-    var DURACAO = reverso ? 76 : 64;
-    var LIMIAR = 4;   // px de folga antes de tratar como arrasto, e não clique
-
-    var meia = 0, pos = 0, vel = 0;
-    var parado = false, arrastando = false, visivel = true;
-    var xInicial = 0, posInicial = 0, andou = 0, quadro = null, ultimo = 0;
-
-    /* Meia volta é a metade do trilho, porque o HTML repete os cartões
-       duas vezes. Recalculado no resize e quando as capas terminam de
-       carregar: com loading=lazy a largura muda depois da primeira medida. */
-    function medir() {
-      meia = trilho.scrollWidth / 2;
-      vel = meia / DURACAO;
-      if (meia > 0) pos = ((pos % meia) + meia) % meia;
-    }
-
-    function desenhar() {
-      trilho.style.transform = 'translateX(' + (-pos) + 'px)';
-    }
-
-    function passo(agora) {
-      quadro = requestAnimationFrame(passo);
-      var dt = ultimo ? (agora - ultimo) / 1000 : 0;
-      ultimo = agora;
-      /* dt travado em 50 ms: ao voltar de uma aba em segundo plano o
-         primeiro quadro traz um salto de vários segundos, e a esteira
-         daria um pulo grande em vez de retomar de onde parou */
-      if (dt > 0.05) dt = 0.05;
-      if (parado || arrastando || !visivel || !meia) return;
-      pos += (reverso ? -vel : vel) * dt;
-      pos = ((pos % meia) + meia) % meia;
-      desenhar();
-    }
-
-    function ligar() { if (!quadro) { ultimo = 0; quadro = requestAnimationFrame(passo); } }
-    function desligar() { if (quadro) { cancelAnimationFrame(quadro); quadro = null; } }
-
-    /* ---------- arrasto ---------- */
-    var capturado = false;
-
-    caixa.addEventListener('pointerdown', function (e) {
-      if (e.button !== undefined && e.button !== 0) return;
-      arrastando = true;
-      capturado = false;
-      andou = 0;
-      xInicial = e.clientX;
-      posInicial = pos;
-    });
-
-    caixa.addEventListener('pointermove', function (e) {
-      if (!arrastando || !meia) return;
-      var dx = e.clientX - xInicial;
-      if (Math.abs(dx) > andou) andou = Math.abs(dx);
-      if (andou > LIMIAR) {
-        caixa.classList.add('arrastando');
-        /* A captura só entra depois do limiar, e não no pointerdown.
-           Com o ponteiro capturado o navegador entrega o clique ao
-           contêiner em vez de ao <a> de dentro, e um clique seco no
-           cartão deixaria de abrir a demonstração. Capturando só
-           quando já houve arrasto de verdade, o clique segue intacto
-           e o arrasto continua funcionando com o dedo fora da faixa.
-
-           No toque não se captura: o dedo já é capturado implicitamente
-           pelo alvo, e pedir a captura explícita fazia o navegador
-           retargetar o ponteiro no meio do gesto — o que disparava
-           lostpointercapture e matava o arrasto antes de ele andar. */
-        if (!capturado && e.pointerType !== 'touch') {
-          caixa.setPointerCapture(e.pointerId); capturado = true;
-        }
-      }
-      pos = posInicial - dx;
-      pos = ((pos % meia) + meia) % meia;
-      desenhar();
-    });
-
-    function soltar(e) {
-      if (!arrastando) return;
-      arrastando = false;
-      if (capturado && e && e.pointerId !== undefined && caixa.hasPointerCapture(e.pointerId)) {
-        caixa.releasePointerCapture(e.pointerId);
-      }
-      capturado = false;
-      /* tira a classe no quadro seguinte: removida agora, o clique que
-         ainda está a caminho encontraria os cartões já clicáveis */
-      requestAnimationFrame(function () { caixa.classList.remove('arrastando'); });
-    }
-    caixa.addEventListener('pointerup', soltar);
-    caixa.addEventListener('pointercancel', soltar);
-    /* lostpointercapture NÃO encerra o arrasto. Ele dispara no meio do
-       gesto sempre que o alvo é retargetado — e como o pointer-events dos
-       cartões muda ao entrar a classe .arrastando, isso acontecia várias
-       vezes por arrasto no toque. Quem encerra é pointerup e
-       pointercancel, que bastam: os dois sempre chegam. */
-    /* segura o clique que fecha um arrasto de verdade */
-    caixa.addEventListener('click', function (e) {
-      if (andou > LIMIAR) { e.preventDefault(); e.stopPropagation(); andou = 0; }
-    }, true);
-
-    /* ---------- pausa ----------
-       Só para o mouse. No toque não existe "passar o mouse por cima", e
-       enter/leave chegavam sete vezes por gesto conforme o dedo cruzava
-       os cartões, ligando e desligando a pausa sem sentido. */
-    caixa.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') parado = true; });
-    caixa.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') parado = false; });
-    caixa.addEventListener('focusin', function () { parado = true; });
-    caixa.addEventListener('focusout', function () { parado = false; });
-
-    /* fora da tela o laço não roda: são duas esteiras numa página longa,
-       e girar transform sem ninguém olhando só gasta bateria */
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entradas) {
-        visivel = entradas[0].isIntersecting;
-        if (visivel) ligar(); else desligar();
-      }, { rootMargin: '120px 0px' }).observe(caixa);
-    } else {
-      ligar();
-    }
-
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) desligar(); else if (visivel) ligar();
-    });
-
-    window.addEventListener('resize', medir);
-    trilho.querySelectorAll('img').forEach(function (img) {
-      if (!img.complete) img.addEventListener('load', medir, { once: true });
-    });
-
-    medir();
-    desenhar();
-  });
-})();
-</script>
 
 <!-- ============ 7 · ENTREGAS + 8 · QUEM FAZ ============ -->
 <style>

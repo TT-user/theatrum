@@ -41,8 +41,31 @@ de vários MB mais de uma vez. Adicione caminhos explícitos e confira o
 - **Este repositório é publicado como site.** Um `.env` commitado aqui fica
   servido em texto puro no domínio. Chave de API só em arquivo que case com o
   `.gitignore` — inclusive cópias e backups (`.bak` **não** casa com `*.env`).
-- **Dependências externas:** GSAP + ScrollTrigger por CDN, Google Fonts, GTM e
-  gtag. Nenhuma outra.
+- **Dependências externas:** Google Fonts, GTM e gtag. Nenhuma outra, e é para
+  continuar assim. O GSAP saiu: custava 41 KB para cinco animações de entrada
+  que o IntersectionObserver e o CSS já fazem. Não traga biblioteca de animação
+  de volta.
+
+### Orçamento de performance (regra permanente)
+
+A home travava ao abrir e engasgava ao rolar. Depois do conserto ela transfere
+**10 KB** e abre com DOM interativo em 2,1 s em 4G lento com CPU 4x. Qualquer
+mudança daqui para frente respeita isto:
+
+| | teto |
+|---|---|
+| transferido ao abrir | 40 KB |
+| DOM interativo (4G lento, CPU 4x) | 2,5 s |
+| quadros acima de 16,7 ms ao rolar | 5% |
+| tarefas longas durante a rolagem | 0 |
+
+Três coisas que já custaram caro e não podem voltar: imagem servida em tamanho
+maior do que aparece (o logo era 1024 px para exibir em 62), script de medição
+no `<head>` (GTM e gtag custavam 3,9 s e 2,9 s de thread principal), e animação
+infinita fora da tela. As seções abaixo da dobra usam `content-visibility:auto`
+justamente para congelar o que não está à vista; por causa disso o navegador
+rola por altura estimada, e há uma correção de âncora no fim do `index.html`
+que não pode ser removida.
 
 ### A página é bilíngue — leia antes de escrever qualquer copy
 
@@ -137,6 +160,11 @@ diferente conforme de onde a pessoa clicou:
 
 ## Demais páginas do domínio
 
+- `/portfolio/` — a vitrine dos quinze sites, em página própria. Saiu da home
+  porque custava 24 KB de HTML, script próprio e 484 KB de imagem que baixavam
+  assim que alguém rolava até lá. Na home ficou só o convite, sem imagem
+  nenhuma. Quem abre uma demo a partir daqui volta para cá: os links levam
+  `?de=portfolio` e os três `_demo.js` conhecem essa origem.
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
 - `/moveis-planejados/` — landing do segmento de planejados.
