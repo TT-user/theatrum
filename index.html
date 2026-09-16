@@ -2627,16 +2627,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---------- [08] quem faz ---------- */
   .qf{
     margin-top:40px;display:grid;gap:34px;
-    grid-template-columns:minmax(0,300px) minmax(0,1fr);align-items:start;
+    grid-template-columns:minmax(0,250px) minmax(0,1fr);align-items:center;
   }
   @media(max-width:820px){ .qf{grid-template-columns:1fr;gap:24px} }
   .qf-foto{
-    width:100%;aspect-ratio:4/5;border-radius:18px;object-fit:cover;display:block;
-    background:linear-gradient(145deg,#231F19,#15130F);border:1px solid var(--line);
+    width:100%;height:auto;max-width:250px;aspect-ratio:1/1;border-radius:50%;
+    object-fit:cover;display:block;
+    background:linear-gradient(145deg,#231F19,#15130F);
+    box-shadow:0 0 0 3px var(--accent),0 0 0 11px rgba(227,179,65,.16);
   }
-  .qf-texto p{font:400 clamp(15px,2vw,17px)/1.75 var(--font-body);color:var(--muted);margin:0 0 16px}
+  @media(max-width:820px){ .qf-foto{margin:0 auto} }
+  /* A secao [08] tem fundo creme, entao os tokens de texto claro nao
+     servem aqui: --cream sobre creme da 1:1 e --muted da 2,44:1, os
+     dois abaixo do minimo legivel. E o mesmo erro do preco invisivel
+     da landing /us/, e a licao e a mesma: cor de texto se escolhe pelo
+     fundo em que ela cai, nao pelo token que a secao vizinha usa. */
+  .qf-texto p{font:400 clamp(15px,2vw,17px)/1.75 var(--font-body);color:#4A4439;margin:0 0 16px}
   .qf-texto p:last-of-type{margin-bottom:0}
-  .qf-texto b{color:var(--cream);font-weight:600}
+  .qf-texto b{color:#191510;font-weight:700}
   .qf-cnpj{margin-top:22px;font:400 12px/1.6 var(--font-mono);color:rgba(163,155,141,.75)}
 </style>
 
@@ -2726,7 +2734,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="qf rv" style="--d:.15s">
       <!-- PREENCHER: foto do Matheus em 4:5. As dimensoes ja estao
            declaradas para a imagem nao empurrar o texto ao carregar. -->
-      <img class="qf-foto" src="assets/img/matheus.jpg" width="600" height="750"
+      <img class="qf-foto" src="assets/img/matheus.webp" width="400" height="400"
            alt="Matheus, fundador da Theatrum" loading="lazy" decoding="async"
            onerror="this.removeAttribute('src')">
 
