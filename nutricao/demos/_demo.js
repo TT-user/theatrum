@@ -46,6 +46,11 @@
     ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
     : { raiz: '../../../',           cta: '../../../#diagnostico' };
 
+  /* Prévia feita para um profissional real (não um negócio inventado):
+     a página passa o próprio aviso em data-aviso na tag deste script,
+     porque o texto padrão diz que a pessoa é fictícia. */
+  var AVISO = document.currentScript && document.currentScript.getAttribute('data-aviso');
+
   var EN = origem === 'us';
   var TXT = EN
     ? { voltar: '&larr; Back to Theatrum',
@@ -146,7 +151,7 @@
        então o caminho funciona seja qual for o nome da pasta. Para onde
        ele aponta depende de onde a pessoa veio — ver VOLTA lá em cima. */
     bar.innerHTML = '<a class="voltar" href="' + VOLTA.raiz + '">' + TXT.voltar + '</a>' +
-                    '<span>' + (TXT.aviso ||
+                    '<span>' + (AVISO || TXT.aviso ||
                       '<b>Demonstração.</b> Pessoa, marca e contatos são fictícios. ' +
                       'O layout é real e foi feito pela Theatrum.') + '</span>' +
                     '<a class="quero" href="' + VOLTA.cta + '">' + TXT.quero + '</a>';
