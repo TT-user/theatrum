@@ -69,7 +69,7 @@ que não pode ser removida.
 
 ### A página é bilíngue — leia antes de escrever qualquer copy
 
-Há ~277 elementos com atributo `data-en`, e o botão de idioma troca o idioma
+Há ~259 elementos com atributo `data-en`, e o botão de idioma troca o idioma
 **reescrevendo o `innerHTML`** de cada um deles.
 
 Duas consequências obrigatórias:
@@ -126,11 +126,18 @@ pede contato oferece um degrau mais baixo ao lado.
 ### Ordem das seções
 
 ```
-[01] hero            [02] o problema      [03] a calculadora
-[04] a solução       [05] demonstração    [06] trabalhos
-[07] entregas        [08] quem faz        [09] como funciona + o raio-x
-[10] investimento    [11] FAQ             [12] CTA final
+[01] hero                              [02] o problema e a solução (+ investimento)
+[03] a calculadora                     [04] demonstração
+[05] trabalhos                         [06] entregas
+[07] quem faz                          [08] como funciona + o raio-x
+[09] FAQ                               [10] CTA final
 ```
+
+A `[02]` junta o que eram três seções (problema, solução, investimento) e
+mais "a diferença": cada vazamento numa linha ao lado do motor que o fecha,
+e o preço logo abaixo, com o filtro de "é/não é para você". Foi enxugada
+para o cliente ler menos. A calculadora fica de fora, na seção seguinte.
+Os ids `#solucao` e `#investimento` continuam existindo dentro da `[02]`.
 
 ### Regras de copy da marca
 
@@ -204,10 +211,10 @@ quando não houver mais nada apontando para lá.
 
 ## Pendências de conteúdo
 
-1. Valores da seção `[10] investimento`: faixa de implantação, de operação e
+1. Valores do bloco de investimento na seção `[02]`: faixa de implantação, de operação e
    mínimo de verba de anúncio. Sem eles a seção perde a função de filtro.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
-   seção `[07] entregas`.
+   seção `[06] entregas`.
 3. Endpoint para onde o formulário do raio-x envia os leads.
 4. Política de contrato, para a resposta do FAQ.
-5. Foto do Matheus para a seção `[08] quem faz`.
+5. Foto do Matheus para a seção `[07] quem faz`.
