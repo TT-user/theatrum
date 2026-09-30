@@ -1,7 +1,9 @@
 # Projeto Theatrum
 
-Site da Theatrum (usetheatrum.com.br), agência de identidade digital para
-pequenos negócios de serviço no Brasil e nos Estados Unidos.
+Site da Theatrum (usetheatrum.com.br): desenvolvimento de sites e sistemas
+sob medida para pequenos negócios de serviço no Brasil e nos Estados Unidos.
+Site e sistema são o ponto forte e vêm primeiro; Google, tráfego, IA no
+WhatsApp e reativação giram em volta.
 
 > Este arquivo descreve **o que está no ar**, não um plano. Se o código e este
 > arquivo divergirem, o código está certo e este arquivo está velho — conserte-o
@@ -125,19 +127,36 @@ pede contato oferece um degrau mais baixo ao lado.
 
 ### Ordem das seções
 
+A estrutura segue a de theds.com.br (hero com card de entrada à direita,
+letreiro, serviços numerados, cases, como funciona, FAQ, "vamos conversar",
+rodapé em colunas), adaptada à escada de compromisso.
+
 ```
-[01] hero                              [02] o problema e a solução (+ investimento)
-[03] a calculadora                     [04] demonstração
-[05] trabalhos                         [06] entregas
-[07] quem faz                          [08] como funciona + o raio-x
-[09] FAQ                               [10] CTA final
+[01] hero (+ letreiro)                 [02] o que fazemos
+[03] o problema e a solução (+ investimento)
+[04] a calculadora                     [05] demonstração
+[06] trabalhos                         [07] entregas (escondida até ter cliente)
+[08] quem faz                          [09] como funciona + o raio-x
+[10] FAQ                               [11] CTA final ("vamos conversar")
 ```
 
-A `[02]` junta o que eram três seções (problema, solução, investimento) e
-mais "a diferença": cada vazamento numa linha ao lado do motor que o fecha,
-e o preço logo abaixo, com o filtro de "é/não é para você". Foi enxugada
-para o cliente ler menos. A calculadora fica de fora, na seção seguinte.
-Os ids `#solucao` e `#investimento` continuam existindo dentro da `[02]`.
+- **Hero:** título à esquerda com a palavra de destaque em serif itálico
+  dourado; à direita um card (topo dourado, base escura) com três degraus:
+  calculadora, sites no ar e WhatsApp.
+- **`[02]` o que fazemos (`#servicos`):** dois cards grandes e escuros, sites
+  sob medida e sistemas web, e quatro cards menores (IA no WhatsApp, Google e
+  SEO, tráfego, reativação). Os exemplos de sistema só citam o que existe no
+  portfólio (calculadora, carrinho e checkout, área por código, painel).
+- **`[03]`** junta problema, solução e investimento: cada vazamento numa linha
+  ao lado do motor que o fecha, e o preço logo abaixo, com o filtro de "é/não
+  é para você". Os ids `#solucao` e `#investimento` continuam dentro dela.
+- **`[06]` trabalhos:** três janelas de navegador desenhadas em CSS, sem
+  imagem nenhuma, cada uma mostrando o sistema que roda dentro do demo. Os
+  links levam `?de=home`.
+- Destaque em título (`.lm`) é serif itálico dourado (`#8A6412` nas seções
+  claras), não mais marca-texto.
+- O modo QA `?still=1` desliga animações e o `content-visibility`, para print
+  da página inteira no Chrome headless.
 
 ### Regras de copy da marca
 
@@ -157,6 +176,7 @@ diferente conforme de onde a pessoa clicou:
 | Origem | Mensagem |
 |---|---|
 | hero | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
+| o que fazemos | "Vim do site da Theatrum. Quero um site ou sistema para o meu negócio." |
 | calculadora | "Vim do site. A calculadora deu R$ {N} por mês. Quero o plano." |
 | demonstração | "Vi as demonstrações no site e quero isso rodando no meu negócio." |
 | entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
@@ -206,10 +226,10 @@ quando não houver mais nada apontando para lá.
 
 ## Pendências de conteúdo
 
-1. Valores do bloco de investimento na seção `[02]`: faixa de implantação, de operação e
+1. Valores do bloco de investimento na seção `[03]`: faixa de implantação, de operação e
    mínimo de verba de anúncio. Sem eles a seção perde a função de filtro.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
-   seção `[06] entregas`.
+   seção `[07] entregas`.
 3. Endpoint para onde o formulário do raio-x envia os leads.
 4. Política de contrato, para a resposta do FAQ.
-5. Foto do Matheus para a seção `[07] quem faz`.
+5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).

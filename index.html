@@ -4,15 +4,15 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="theme-color" content="#0B0A08"/>
-<title>Theatrum | Identidade digital para negócios em todo o Brasil</title>
-<meta name="description" content="A Theatrum implanta o sistema previsível que transforma quem procura seu negócio em cliente novo todo mês, sem depender de indicação. Diagnóstico gratuito."/>
+<title>Theatrum | Sites e sistemas sob medida para negócios de serviço</title>
+<meta name="description" content="A Theatrum desenvolve site e sistema sob medida para negócios de serviço, coloca no ar e opera: calculadora, catálogo, agenda e WhatsApp que responde sozinho. Diagnóstico gratuito."/>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png"/>
 <link rel="apple-touch-icon" href="assets/img/logo-180.png"/>
 <link rel="canonical" href="https://usetheatrum.com.br/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://usetheatrum.com.br/"/>
-<meta property="og:title" content="Theatrum | Identidade digital para negócios em todo o Brasil"/>
-<meta property="og:description" content="Presença digital não é sorte. É sistema. Diagnóstico gratuito direto no WhatsApp."/>
+<meta property="og:title" content="Theatrum | Sites e sistemas sob medida para negócios de serviço"/>
+<meta property="og:description" content="Sites e sistemas que trabalham pelo seu negócio. Diagnóstico gratuito direto no WhatsApp."/>
 <meta property="og:locale" content="pt_BR"/>
 <script>
   /* Dois auxiliares de idioma, declarados aqui no topo de propósito:
@@ -101,33 +101,16 @@
   img{-webkit-user-drag:none}
 
   /* ================= HERO ================= */
-  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
-  .hero-bg{position:absolute;inset:-4%;z-index:-4;background:
-    radial-gradient(120% 90% at 78% 8%, #1a160c 0%, transparent 55%),
-    radial-gradient(80% 60% at 12% 95%, #150f0a 0%, transparent 60%),
-    linear-gradient(178deg,#131009 0%,var(--bg) 58%,#070605 100%);
-    animation:heroImageIntro 2.4s cubic-bezier(.22,.9,.24,1) both}
-  @keyframes heroImageIntro{from{transform:scale(1.14);filter:brightness(.4) saturate(.7)}to{transform:scale(1);filter:brightness(1) saturate(1)}}
-  .fx-parallax{position:absolute;inset:0;z-index:-3;transform:translate3d(calc(var(--mx,0)*18px),calc(var(--my,0)*14px),0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-  .fx-parallax-2{position:absolute;inset:0;z-index:-3;transform:translate3d(calc(var(--mx,0)*-10px),calc(var(--my,0)*-8px),0);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-  .hero-light{position:absolute;width:72vw;height:72vw;right:-24vw;top:-32vw;border-radius:50%;
-    background:radial-gradient(closest-side, rgba(227,179,65,.16), rgba(227,179,65,.05) 45%, transparent 72%);
-    filter:blur(12px);animation:heroLightIntro 2s cubic-bezier(.2,.7,.2,1) both, lightBreathe 7s ease-in-out 2s infinite}
-  .hero-light-2{position:absolute;width:36vw;height:36vw;left:-15vw;bottom:-17vw;border-radius:50%;
-    background:radial-gradient(closest-side, rgba(142,31,47,.14), transparent 70%);
-    animation:heroLightIntro 2.4s cubic-bezier(.2,.7,.2,1) .3s both, lightBreathe 9s ease-in-out 2.4s infinite}
-  @keyframes heroLightIntro{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-  @keyframes lightBreathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.07);opacity:1}}
-  .hero-beam{position:absolute;top:-12%;right:17%;width:1px;height:126%;
-    background:linear-gradient(180deg,transparent,rgba(227,179,65,.3) 35%,rgba(255,255,255,.06) 70%,transparent);
-    transform:rotate(24deg);animation:beamIn 1.8s ease .8s both}
-  .hero-beam-2{position:absolute;top:-12%;right:34%;width:1px;height:126%;
-    background:linear-gradient(180deg,transparent,rgba(255,255,255,.09) 45%,transparent);
-    transform:rotate(24deg);animation:beamIn 1.8s ease 1.1s both}
-  @keyframes beamIn{from{opacity:0;transform:rotate(24deg) translateY(-8%)}to{opacity:1;transform:rotate(24deg) translateY(0)}}
-  .hero-grain{position:absolute;inset:0;z-index:-1;opacity:.5;mix-blend-mode:overlay;pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
-  .hero-vignette{position:absolute;inset:0;z-index:-2;background:radial-gradient(140% 100% at 50% 40%, transparent 52%, rgba(0,0,0,.6) 100%)}
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;background:var(--bg)}
+  .hero-bg{position:absolute;inset:0;z-index:-2;background:
+    radial-gradient(70% 60% at 85% 18%, rgba(227,179,65,.11) 0%, transparent 60%),
+    radial-gradient(60% 50% at 0% 100%, rgba(142,31,47,.10) 0%, transparent 60%),
+    linear-gradient(180deg,#12100C 0%,var(--bg) 100%)}
+  .hero-grid{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(75% 70% at 72% 30%,#000 0%,transparent 75%);
+    mask-image:radial-gradient(75% 70% at 72% 30%,#000 0%,transparent 75%)}
 
   .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--white)}
   .brand-chip{width:64px;height:64px;border-radius:16px;border:1px solid rgba(255,255,255,.14);position:relative;overflow:hidden;
@@ -145,9 +128,10 @@
      do rótulo mais longo, o CTA não muda de tamanho e nada ao lado se
      mexe. O valor é a largura medida de "Diagnóstico gratuito"; se o
      texto mudar, remeça. */
-  .nav-cta{font-weight:600;font-size:14.5px;color:var(--white);text-decoration:none;border:1px solid var(--line);border-radius:40px;padding:11px 22px;transition:.3s;white-space:nowrap;
+  .nav-cta{font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;background:var(--accent);border:0;border-radius:10px;padding:11px 20px;
+    transition:background .25s ease;white-space:nowrap;
     min-width:188px;display:inline-flex;align-items:center;justify-content:center}
-  .nav-cta:hover{border-color:rgba(227,179,65,.5);color:var(--accent)}
+  .nav-cta:hover{background:var(--accent-soft)}
 
   /* ============ NAV FIXA (site inteiro) — logo sempre visível; menu/CTA aparecem após a 1ª tela ============ */
   .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
@@ -156,12 +140,7 @@
   .site-nav.is-scrolled{background:rgba(11,10,8,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     padding:14px 5vw;border-bottom-color:rgba(255,255,255,.08)}
   .site-nav.is-scrolled .brand-chip{width:44px;height:44px;font-size:20px}
-  .nav-links,.nav-cta,.nav-burger{
-    opacity:0;visibility:hidden;pointer-events:none;
-    transition:opacity .45s ease,visibility 0s .45s}
-  .site-nav.is-scrolled .nav-links,.site-nav.is-scrolled .nav-cta,.site-nav.is-scrolled .nav-burger{
-    opacity:1;visibility:visible;pointer-events:auto;
-    transition:opacity .45s ease,visibility 0s}
+  /* menu, idioma e CTA ficam a vista desde o topo */
   .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
   .nav-links a{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
     color:var(--muted);text-decoration:none;position:relative;padding:4px 0;transition:color .3s;white-space:nowrap}
@@ -201,12 +180,73 @@
   .mobile-menu .mm-cta{margin-top:22px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink);background:var(--accent);border-radius:40px;padding:14px 30px;text-decoration:none;font-weight:600}
 
-  @media(max-width:980px){
+  @media(max-width:1180px){
     .nav-links{display:none}
     .nav-burger{display:block}
   }
 
-  .hero-inner{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(110px,16vh,150px) 5vw 0;max-width:1280px;width:100%;margin:0 auto}
+  .hero-inner{flex:1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:clamp(36px,5vw,72px);align-items:center;
+    padding:clamp(128px,18vh,168px) clamp(24px,6vw,96px) 64px;max-width:1440px;width:100%;margin:0 auto}
+  .hx-eyebrow{font:600 12px/1.7 var(--font-mono);letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.72);
+    animation:rise .8s cubic-bezier(.2,.7,.2,1) .1s both}
+  .hx-eyebrow b{color:var(--accent);font-weight:700;margin-right:6px}
+  .hx-title{font-family:var(--font-display);font-weight:700;font-size:clamp(2.8rem,5.8vw,5.5rem);line-height:1.02;letter-spacing:-.055em;
+    margin-top:22px;max-width:13ch;animation:rise .9s cubic-bezier(.2,.7,.2,1) .2s both}
+  .hx-em{font-family:var(--font-script);font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.035em;line-height:.96;
+    color:var(--accent);padding:0 .04em}
+  .hx-sub{margin-top:26px;max-width:46ch;font-size:clamp(1.02rem,1.35vw,1.2rem);line-height:1.62;color:rgba(255,255,255,.74);
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .32s both}
+  .hx-sub b{color:var(--white);font-weight:600}
+  .hx-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;list-style:none;animation:rise .9s cubic-bezier(.2,.7,.2,1) .42s both}
+  .hx-chips li{font:500 12px/1 var(--font-mono);letter-spacing:.04em;color:#D8CFC0;border:1px solid var(--line);border-radius:99px;
+    padding:10px 14px;background:rgba(255,255,255,.02)}
+  .hx-chips li::before{content:"\2713";color:var(--accent);margin-right:8px;font-weight:700}
+
+  /* card de entrada: topo dourado, base escura com os tres degraus */
+  .hx-card{position:relative;width:100%;max-width:448px;justify-self:end;border-radius:22px;border:1px solid rgba(227,179,65,.35);
+    box-shadow:0 26px 80px rgba(0,0,0,.42);transition:box-shadow .5s ease;
+    animation:hxIn 1s cubic-bezier(.2,.7,.2,1) .35s both}
+  .hx-card:hover{box-shadow:0 28px 90px rgba(227,179,65,.16)}
+  @keyframes hxIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+  .hx-top{position:relative;overflow:hidden;border-radius:21px 21px 0 0;padding:26px 24px 24px;min-height:210px;color:var(--ink);
+    background:linear-gradient(135deg,var(--accent) 0%,#E6A63A 55%,#C9742A 100%)}
+  .hx-top::before{content:"";position:absolute;right:-30px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.16);filter:blur(24px)}
+  .hx-pill{position:relative;display:inline-flex;align-items:center;gap:8px;border-radius:99px;background:rgba(14,13,11,.86);color:#fff;
+    padding:8px 12px;font:600 12px/1 var(--font-body)}
+  .hx-pill i{width:8px;height:8px;border-radius:50%;background:#34D399;box-shadow:0 0 10px rgba(52,211,153,.8)}
+  .hx-card-t{position:relative;margin-top:16px;max-width:10ch;font:700 1.85rem/1 var(--font-display);letter-spacing:-.035em}
+  .hx-card-p{position:relative;margin-top:10px;max-width:26ch;font-size:14px;line-height:1.5;color:rgba(20,18,16,.78)}
+  .hx-code{position:absolute;right:16px;top:18px;z-index:1;width:178px;border-radius:12px;border:1px solid rgba(227,179,65,.35);
+    background:linear-gradient(145deg,#1F1C18,#0E0D0B);box-shadow:0 18px 40px rgba(0,0,0,.35);padding:10px 12px 12px;transform:rotate(3deg)}
+  .hx-dots{display:flex;gap:5px;margin-bottom:8px}
+  .hx-dots i{width:7px;height:7px;border-radius:50%;background:#E0524B}
+  .hx-dots i:nth-child(2){background:#E5B842}
+  .hx-dots i:nth-child(3){background:#4DB861}
+  .hx-code code{display:block;font:500 10.5px/1.75 var(--font-mono);color:rgba(255,255,255,.62);white-space:nowrap}
+  .hx-code code b{color:var(--accent)}
+  .hx-code code.ok{color:#6EE7A8}
+  .hx-bot{border-radius:0 0 21px 21px;background:#1B1A18;padding:20px;display:grid;gap:10px}
+  .hx-b1{display:flex;min-height:56px;align-items:center;justify-content:center;gap:12px;border-radius:12px;padding:0 18px;
+    background:var(--accent);color:var(--ink);font:700 15px/1.2 var(--font-body);text-decoration:none;
+    box-shadow:0 12px 26px rgba(227,179,65,.2);transition:transform .25s ease,background .25s ease}
+  .hx-b1:hover{background:var(--accent-soft);transform:scale(1.015)}
+  .hx-b2{display:flex;min-height:50px;align-items:center;justify-content:center;border-radius:12px;padding:0 18px;
+    border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font:500 14.5px/1.2 var(--font-body);text-decoration:none;
+    transition:border-color .25s ease,background .25s ease}
+  .hx-b2:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05)}
+  .hx-wa{display:flex;align-items:center;gap:12px;min-height:56px;padding:6px 10px;border-radius:12px;color:#fff;text-decoration:none;transition:background .25s ease}
+  .hx-wa:hover{background:rgba(255,255,255,.05)}
+  .hx-wa-ic{width:40px;height:40px;border-radius:50%;background:rgba(37,211,102,.18);color:#25D366;display:grid;place-items:center;flex-shrink:0}
+  .hx-wa-ic svg{width:18px;height:18px}
+  .hx-wa-t{flex:1;min-width:0;font:600 14px/1.3 var(--font-body)}
+  .hx-wa-t small{display:block;margin-top:2px;font:400 12px/1.4 var(--font-body);color:rgba(255,255,255,.5)}
+  .hx-wa .seta{color:rgba(255,255,255,.5);transition:transform .25s ease,color .25s ease}
+  .hx-wa:hover .seta{transform:translateX(4px);color:#fff}
+  @media(max-width:980px){
+    .hero-inner{grid-template-columns:1fr}
+    .hx-card{justify-self:start}
+  }
+  @media(max-width:480px){ .hx-code{display:none} .hx-card-t{max-width:none} }
 
   .eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--font-mono);font-weight:500;font-size:13px;
     letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -214,43 +254,9 @@
   .eyebrow-bar{width:44px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);flex-shrink:0}
   .eyebrow-tag{color:var(--accent);font-weight:700;flex-shrink:0;animation:tagSkew 5s ease-in-out infinite}
   @keyframes tagSkew{0%,88%,100%{transform:skewX(0)}92%{transform:skewX(-9deg)}96%{transform:skewX(5deg)}}
-  .type-wrap{display:inline-flex;align-items:center;min-width:0}
-  .type{white-space:nowrap;overflow:hidden;width:0;animation:typing 2s steps(var(--tlen,44)) 1s forwards}
-  .caret{width:8px;height:15px;background:var(--accent);margin-left:6px;flex-shrink:0;animation:blinkCursor 1s steps(2) infinite}
-  @keyframes typing{to{width:calc(var(--tlen,44) * 1ch + 6.16em)}}
-  @keyframes typingM{to{width:calc(var(--tlen,44) * 1ch)}}
-  @keyframes blinkCursor{50%{opacity:0}}
 
-  .hero-title{font-family:var(--font-display);font-weight:700;letter-spacing:-.035em;line-height:1.03;
-    font-size:clamp(2.6rem,6.8vw,6rem);margin-top:30px;max-width:16ch}
-  .hero-title .word{display:inline-block;animation:wordRise .85s cubic-bezier(.16,.8,.24,1) both;animation-delay:calc(.45s + var(--i)*.08s)}
-  @keyframes wordRise{from{opacity:0;transform:translateY(1.15em) rotate(2.5deg) scale(.96)}to{opacity:1;transform:none}}
-  .hero-em{position:relative;display:inline-block;font-style:normal;
-    background:linear-gradient(110deg,var(--accent) 38%,var(--accent-soft) 50%,#fff 54%,var(--accent) 66%);
-    background-size:280% 100%;background-position:100% 0;
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:emShimmer 5.5s ease-in-out 2.4s infinite}
-  @keyframes emShimmer{0%,55%,100%{background-position:100% 0}22%{background-position:0% 0}}
-  .hero-underline{position:absolute;left:-2%;bottom:-.1em;width:104%;height:.16em;overflow:visible;color:var(--accent)}
-  .hero-underline path{stroke-dasharray:100;stroke-dashoffset:100;animation:underlineDraw 1.1s cubic-bezier(.5,0,.2,1) 1.5s forwards}
-  @keyframes underlineDraw{to{stroke-dashoffset:0}}
-
-  .hero-sub{margin-top:34px;font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.62;color:#D8CFC0;max-width:56ch;animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.05s both}
-  .hero-sub b{color:var(--white);font-weight:600}
-
-  .kill-line{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:34px;
-    font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
-    animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.15s both}
-  .kill{position:relative;white-space:nowrap}
-  .kill::after{content:"";position:absolute;left:-3%;top:52%;width:106%;height:2px;background:var(--danger);
-    transform:scaleX(0);transform-origin:left center;border-radius:2px;
-    animation:strike .5s cubic-bezier(.6,0,.3,1) forwards;animation-delay:calc(1.7s + var(--k)*.45s)}
-  @keyframes strike{to{transform:scaleX(1)}}
-  .kill-verdict{color:var(--accent);font-weight:700;display:inline-flex;align-items:center;gap:10px;
-    opacity:0;animation:riseIn .7s cubic-bezier(.2,.7,.2,1) 3.2s forwards}
-  @keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   .status-dot{position:relative;width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0}
-  .status-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 1.8s cubic-bezier(0,0,.2,1) 3.4s infinite}
+  .status-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 1.8s cubic-bezier(0,0,.2,1) infinite}
   @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
 
   .hero-ctas{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px;animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.35s both}
@@ -273,25 +279,8 @@
   .btn-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 2.2s cubic-bezier(0,0,.2,1) .4s infinite}
   @keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-  .hero-note{margin-top:18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-    animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.5s both}
-
-  .hero-proof{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin:60px auto 0;max-width:1280px;width:100%;
-    padding:26px 5vw 34px;border-top:1px solid var(--line);
-    font-family:var(--font-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .proof{display:flex;align-items:center;gap:10px;animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(1.5s + var(--p)*.12s);transition:color .3s}
-  .proof:hover{color:#e7dfd0}
-  .proof b{color:var(--white);font-weight:700}
-  .proof .ic{color:var(--accent);font-style:normal;animation:breathe 3.6s ease-in-out infinite;animation-delay:calc(var(--p)*.5s);display:inline-block}
   @keyframes breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.18);opacity:.75}}
 
-  .scroll-hint{position:absolute;right:5vw;bottom:110px;display:flex;flex-direction:column;align-items:center;gap:12px;
-    font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-    animation:rise 1s ease 2s both}
-  .scroll-hint span{writing-mode:vertical-rl}
-  .scroll-track{width:1px;height:56px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
-  .scroll-track::after{content:"";position:absolute;left:0;top:-40%;width:100%;height:40%;background:var(--accent);animation:scan 2.2s cubic-bezier(.6,0,.4,1) infinite}
-  @keyframes scan{to{top:110%}}
   @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
   /* ============ SEÇÃO 2 · FAIXA (marquee) ============ */
@@ -332,7 +321,7 @@
 
      O hero e as duas primeiras secoes ficam de fora: estao na primeira
      tela e conter o que ja vai ser pintado so adiciona trabalho. */
-  .sec:not(#problema):not(#calculadora){
+  .sec:not(#servicos){
     content-visibility:auto;
     contain-intrinsic-size:auto 900px;
   }
@@ -340,7 +329,7 @@
   /* will-change fixo mantem uma camada de GPU viva para sempre. Ele so
      vale durante a animacao; parado, e memoria de video presa. */
   @media(max-width:900px){
-    .sec:not(#problema):not(#calculadora){contain-intrinsic-size:auto 1200px}
+    .sec:not(#servicos){contain-intrinsic-size:auto 1200px}
 
     /* Enfeite que pisca para sempre custa composicao a cada quadro e
        nao carrega informacao nenhuma. No celular, onde a GPU e menor e
@@ -350,7 +339,7 @@
     }
   }
   .sec-inner{max-width:1280px;margin:0 auto}
-  .sec h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.6vw,3.7rem);line-height:1.05;letter-spacing:-.03em;margin-top:26px;max-width:20ch}
+  .sec h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,4.8vw,3.9rem);line-height:1.03;letter-spacing:-.045em;margin-top:26px;max-width:20ch}
   .sec .lead{margin-top:26px;font-size:clamp(1.02rem,1.4vw,1.22rem);line-height:1.65;color:#D8CFC0;max-width:60ch}
   .sec .lead b{color:var(--white)}
   .sec.light{background:var(--cream);color:var(--ink)}
@@ -359,8 +348,9 @@
   .sec.light .eyebrow-bar{background:linear-gradient(90deg,#141210,transparent)}
   .sec.light .lead{color:#4a453c}
   .sec.light .lead b{color:var(--ink)}
-  .lm{color:var(--accent)}
-  .sec.light .lm{background:rgba(227,179,65,.55);color:var(--ink);padding:0 10px;border-radius:8px}
+  /* palavra de destaque no titulo: serif italico dourado */
+  .lm{font-family:var(--font-script);font-style:italic;font-weight:400;font-size:1.1em;letter-spacing:-.02em;line-height:.9;color:var(--accent)}
+  .sec.light .lm{color:#8A6412}
 
   /* reveal on scroll */
   .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
@@ -377,20 +367,8 @@
     .site-nav .brand-chip{width:48px;height:48px;font-size:22px}
     .site-nav.is-scrolled{padding:12px 6vw}
     .site-nav.is-scrolled .brand-chip{width:40px;height:40px;font-size:18px}
-    .scroll-hint{display:none}
-    .hero-inner{padding-top:clamp(78px,11vh,105px)}
-    .hero-title{margin-top:16px}
-    .hero-sub{margin-top:20px}
-    .kill-line{margin-top:18px}
-    .hero-ctas{margin-top:20px}
-    .hero-note{margin-top:14px}
-    .hero .eyebrow{flex-wrap:wrap}
-    .type-wrap{flex:0 0 100%;margin-top:7px;min-width:0}
-    .type{font-size:9.5px;letter-spacing:0;flex-shrink:0;animation-name:typingM}
-    .caret{margin-bottom:2px}
-    .hero-proof{flex-direction:column;align-items:flex-start;gap:18px;padding-top:22px}
-    .proof{display:block;line-height:1.9}
-    .proof .ic{margin-right:10px}
+    .hero-inner{padding-top:112px;padding-bottom:40px}
+    .hx-eyebrow{letter-spacing:.16em;font-size:11px}
     .sec{padding:80px 6vw}
   }
   @media(prefers-reduced-motion:reduce){
@@ -479,14 +457,27 @@
   .btn-dark:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 36px 80px -22px rgba(20,18,16,.65)}
   .final .mini{margin-top:22px;font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(20,18,16,.74);position:relative}
 
-  footer{background:#070605;padding:44px 5vw;border-top:1px solid var(--line)}
-  .foot-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .foot-inner .brand b{font-size:17px}
-  .foot-links{display:flex;gap:26px;font-size:14px}
-  .foot-links a{color:var(--muted);text-decoration:none;transition:color .3s}
-  .foot-links a:hover{color:var(--accent)}
-  .foot-legal{width:100%;margin-top:18px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:#8a8172}
-  .foot-links a{padding:10px 0;display:inline-block}
+  /* CTA final: degrau 4 ao lado de um degrau mais baixo */
+  .final-ctas{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin-top:44px;position:relative}
+  .final-ctas .btn-dark{margin-top:0}
+  .btn-ghost-ink{display:inline-flex;align-items:center;min-height:64px;padding:0 30px;border-radius:60px;border:1.5px solid rgba(20,18,16,.4);
+    color:var(--ink);font-weight:700;font-size:16px;text-decoration:none;transition:border-color .25s ease,background .25s ease}
+  .btn-ghost-ink:hover{border-color:var(--ink);background:rgba(20,18,16,.06)}
+
+  /* rodape em colunas: marca, servicos, trabalhos, contato */
+  footer{background:#070605;padding:64px clamp(20px,5vw,56px) 30px;border-top:1px solid var(--line)}
+  .ft{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+  footer .brand-chip{width:48px;height:48px}
+  footer .brand b{font-size:17px}
+  .ft-sobre p{margin-top:18px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.5);max-width:36ch}
+  .ft h4{font:700 12px/1 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--white);margin-bottom:14px}
+  .ft ul{list-style:none;display:grid;gap:2px}
+  .ft ul a{display:inline-block;padding:7px 0;font-size:14px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .25s}
+  .ft ul a:hover{color:var(--accent)}
+  .ft-base{max-width:1280px;margin:48px auto 0;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font:400 11.5px/1.6 var(--font-mono);letter-spacing:.04em;color:#8a8172}
+  @media(max-width:900px){ .ft{grid-template-columns:1fr 1fr} .ft-sobre{grid-column:1/-1} }
+  @media(max-width:480px){ .ft{grid-template-columns:1fr} }
 
   /* ============ CTA flutuante do WhatsApp (mobile) ============ */
   .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;
@@ -523,7 +514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <b>Theatrum</b>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#problema" data-en="Problem">Problema</a></li>
+    <li><a href="#servicos" data-en="Services">Serviços</a></li>
     <li><a href="#calculadora" data-en="Calculator">Calculadora</a></li>
     <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
     <li><a href="portfolio/" data-en="Work">Trabalhos</a></li>
@@ -546,103 +537,190 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
     <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
   </button>
-  <a href="portfolio/" data-en="Work">Trabalhos</a>
-  <a href="#problema" data-en="Problem">Problema</a>
+  <a href="#servicos" data-en="Services">Serviços</a>
   <a href="#calculadora" data-en="Calculator">Calculadora</a>
-  <a href="#investimento" data-en="Pricing">Investimento</a>
-  <a href="#como-funciona" data-en="How it works">Como funciona</a>
   <a href="#sistema" data-en="Demo">Demonstração</a>
+  <a href="portfolio/" data-en="Work">Trabalhos</a>
+  <a href="#como-funciona" data-en="How it works">Como funciona</a>
+  <a href="#investimento" data-en="Pricing">Investimento</a>
   <a href="#faq" data-en="FAQ">FAQ</a>
   <a class="mm-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
 </div>
 
-<!-- ============ 1 · HERO ============ -->
+<!-- ============ 1 · HERO ============
+     Texto a esquerda, card de entrada a direita. O card oferece tres
+     degraus da escada ao mesmo tempo: calculadora (2), sites no ar (1)
+     e WhatsApp (4). Nenhuma animacao infinita aqui: so entradas. -->
 <header class="hero" id="top">
   <div class="hero-bg"></div>
-  <div class="fx-parallax"><div class="hero-light"></div><div class="hero-beam"></div></div>
-  <div class="fx-parallax-2"><div class="hero-light-2"></div><div class="hero-beam-2"></div></div>
-  <div class="hero-vignette"></div>
-  <div class="hero-grain"></div>
+  <div class="hero-grid"></div>
 
   <div class="hero-inner">
-    <p class="eyebrow">
-      <span class="eyebrow-bar"></span>
-      <span class="eyebrow-tag">[01]</span>
-      <span class="type-wrap"><span class="type" id="typeText" style="--tlen:44" data-en="site, google and whatsapp working for you">site, google e whatsapp trabalhando por você</span><span class="caret"></span></span>
-    </p>
-
-    <h1 class="hero-title" data-en='<span class="word" style="--i:0">A</span> <span class="word" style="--i:1"><em class="hero-em">digital<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span> <span class="word" style="--i:2">identity</span> <span class="word" style="--i:3">that</span> <span class="word" style="--i:4">turns</span> <span class="word" style="--i:5">into</span> <span class="word" style="--i:6"><em class="hero-em">new<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span> <span class="word" style="--i:7">clients.</span>'>
-      <span class="word" style="--i:0">Uma</span>
-      <span class="word" style="--i:1"><em class="hero-em">identidade<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span>
-      <span class="word" style="--i:2">digital</span>
-      <span class="word" style="--i:3">que</span>
-      <span class="word" style="--i:4">vira</span>
-      <span class="word" style="--i:5"><em class="hero-em">cliente<svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 Q 45 2 95 7 T 197 9" fill="none" pathLength="100" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></svg></em></span>
-      <span class="word" style="--i:6">novo.</span>
-    </h1>
-
-    <p class="hero-sub" data-en="Theatrum doesn't sell pretty posts or empty promises. We deploy the <b>predictable system</b> that turns whoever searches for your business into a <b>new client every month</b>, anywhere in Brazil, without depending on referrals.">A Theatrum não vende post bonito nem promessa vazia. A gente implanta o <b>sistema previsível</b> que transforma quem procura o seu negócio em <b>cliente novo todo mês</b>, sem depender de indicação.</p>
-
-    <div class="kill-line">
-      <span class="kill" style="--k:0" data-en="random posts">posts soltos</span>
-      <span class="kill" style="--k:1" data-en="stalled followers">seguidor parado</span>
-      <span class="kill" style="--k:2" data-en="vague diagnosis">diagnóstico vago</span>
-      <span class="kill-verdict" data-en='<span class="status-dot"></span>client closing the deal'><span class="status-dot"></span>cliente fechando negócio</span>
+    <div class="hx-texto">
+      <p class="hx-eyebrow" data-en="<b>[01]</b> websites · systems · automation"><b>[01]</b> sites · sistemas · automação</p>
+      <h1 class="hx-title" data-en='Websites and systems that <em class="hx-em">work</em> for your business.'>Sites e sistemas que <em class="hx-em">trabalham</em> pelo seu negócio.</h1>
+      <p class="hx-sub" data-en="A fast website, a system built to measure and a WhatsApp that answers on its own. Theatrum <b>develops, launches and runs</b> it, so whoever searches for you becomes a client.">Site rápido, sistema sob medida e WhatsApp que responde sozinho. A Theatrum <b>desenvolve, coloca no ar e opera</b>, para quem procura você virar cliente.</p>
+      <ul class="hx-chips">
+        <li data-en="built to measure">feito sob medida</li>
+        <li data-en="on your own domain">no seu domínio</li>
+        <li data-en="portuguese and english">português e inglês</li>
+      </ul>
     </div>
 
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="#calculadora" data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
-        Ver quanto eu perco por mês
-        <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
-      </a>
-      <a class="btn btn-secondary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>Talk on WhatsApp'><span class="btn-dot"></span>Falar no WhatsApp</a>
-    </div>
-    <p class="hero-note" data-en="takes 40 seconds · no sign-up">leva 40 segundos · sem cadastro</p>
-  </div>
-
-  <div class="scroll-hint"><span>scroll</span><div class="scroll-track"></div></div>
-
-  <div class="hero-proof">
-    <span class="proof" style="--p:0" data-en='<i class="ic">✦</i><b>all of Brazil</b> · remote, no borders'><i class="ic">✦</i><b>todo o Brasil</b> · remoto, sem fronteiras</span>
-    <span class="proof" style="--p:1" data-en='<i class="ic">⚡</i><b>replies in seconds</b> to your client'><i class="ic">⚡</i><b>resposta em segundos</b> para o seu cliente</span>
-    <span class="proof" style="--p:2" data-en='<i class="ic">◎</i>free diagnosis · <b>no strings attached</b>'><i class="ic">◎</i>diagnóstico gratuito · <b>sem compromisso</b></span>
+    <aside class="hx-card" aria-label="Por onde começar">
+      <div class="hx-top">
+        <div class="hx-code" aria-hidden="true">
+          <span class="hx-dots"><i></i><i></i><i></i></span>
+          <code data-en="<b>$</b> deploy your-business"><b>$</b> deploy seu-negocio</code>
+          <code class="ok" data-en="✓ site live">✓ site no ar</code>
+          <code class="ok" data-en="✓ system running">✓ sistema rodando</code>
+        </div>
+        <span class="hx-pill" data-en="<i></i>free diagnosis"><i></i>diagnóstico gratuito</span>
+        <p class="hx-card-t" data-en="Start wherever you like.">Comece por onde quiser.</p>
+        <p class="hx-card-p" data-en="None of the three below asks for a sign-up.">Nenhum dos três caminhos abaixo pede cadastro.</p>
+      </div>
+      <div class="hx-bot">
+        <a class="hx-b1" href="#calculadora" data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+        <a class="hx-b2" href="portfolio/" data-en="See the sites that are live">Ver os sites no ar</a>
+        <a class="hx-wa" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
+          <span class="hx-wa-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.43-9.9 9.88 0 1.74.45 3.44 1.32 4.95L2 22l5.32-1.4a9.87 9.87 0 0 0 4.72 1.2h.01c5.45 0 9.89-4.43 9.89-9.88 0-2.64-1.03-5.12-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg></span>
+          <span class="hx-wa-t" data-en="Talk on WhatsApp<small>the person replying is the one who builds it</small>">Falar no WhatsApp<small>quem responde é quem desenvolve</small></span>
+          <span class="seta" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </aside>
   </div>
 </header>
 
-<!-- ============ 2 · FAIXA DE CREDIBILIDADE ============ -->
+<!-- ============ LETREIRO ============ -->
 <section class="strip" aria-label="O que a Theatrum entrega">
   <div class="mq">
     <div class="mq-track">
-      <span class="mq-item" data-en='Professional website <span class="star">✦</span>'>Site profissional <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Custom websites <span class="star">✦</span>'>Sites sob medida <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Web systems <span class="star">✦</span>'>Sistemas web <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Online stores <span class="star">✦</span>'>Lojas online <span class="star">✦</span></span>
+      <span class="mq-item" data-en='AI on WhatsApp <span class="star">✦</span>'>IA no WhatsApp <span class="star">✦</span></span>
       <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Google Ads <span class="star">✦</span>'>Google Ads <span class="star">✦</span></span>
-      <span class="mq-item" data-en='LinkedIn B2B <span class="star">✦</span>'>LinkedIn B2B <span class="star">✦</span></span>
-      <span class="mq-item" data-en='SEO + AI <span class="star">✦</span>'>SEO + IA <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Client reactivation <span class="star">✦</span>'>Reativação de clientes <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Automation <span class="star">✦</span>'>Automação <span class="star">✦</span></span>
       <span aria-hidden="true" style="display:contents">
-        <span class="mq-item" data-en='Professional website <span class="star">✦</span>'>Site profissional <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Custom websites <span class="star">✦</span>'>Sites sob medida <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Web systems <span class="star">✦</span>'>Sistemas web <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Online stores <span class="star">✦</span>'>Lojas online <span class="star">✦</span></span>
+        <span class="mq-item" data-en='AI on WhatsApp <span class="star">✦</span>'>IA no WhatsApp <span class="star">✦</span></span>
         <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Google Ads <span class="star">✦</span>'>Google Ads <span class="star">✦</span></span>
-        <span class="mq-item" data-en='LinkedIn B2B <span class="star">✦</span>'>LinkedIn B2B <span class="star">✦</span></span>
-        <span class="mq-item" data-en='SEO + AI <span class="star">✦</span>'>SEO + IA <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Client reactivation <span class="star">✦</span>'>Reativação de clientes <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Automation <span class="star">✦</span>'>Automação <span class="star">✦</span></span>
       </span>
     </div>
   </div>
-  <div class="mq rev">
-    <div class="mq-track">
-      <span class="mq-item" data-en='new client <b>every month</b> <span class="star">✦</span>'>cliente novo <b>todo mês</b> <span class="star">✦</span></span>
-      <span class="mq-item" data-en='replies in <b>seconds</b> <span class="star">✦</span>'>resposta em <b>segundos</b> <span class="star">✦</span></span>
-      <span class="mq-item" data-en='<b>predictable</b> <span class="star">✦</span>'><b>previsível</b> <span class="star">✦</span></span>
-      <span class="mq-item" data-en='no referrals needed <span class="star">✦</span>'>sem depender de indicação <span class="star">✦</span></span>
-      <span class="mq-item" data-en='ai working <b>24/7</b> <span class="star">✦</span>'>ia operando <b>24/7</b> <span class="star">✦</span></span>
-      <span aria-hidden="true" style="display:contents">
-        <span class="mq-item" data-en='new client <b>every month</b> <span class="star">✦</span>'>cliente novo <b>todo mês</b> <span class="star">✦</span></span>
-        <span class="mq-item" data-en='replies in <b>seconds</b> <span class="star">✦</span>'>resposta em <b>segundos</b> <span class="star">✦</span></span>
-        <span class="mq-item" data-en='<b>predictable</b> <span class="star">✦</span>'><b>previsível</b> <span class="star">✦</span></span>
-        <span class="mq-item" data-en='no referrals needed <span class="star">✦</span>'>sem depender de indicação <span class="star">✦</span></span>
-        <span class="mq-item" data-en='ai working <b>24/7</b> <span class="star">✦</span>'>ia operando <b>24/7</b> <span class="star">✦</span></span>
-      </span>
+</section>
+
+<!-- ============ 2 · O QUE FAZEMOS ============
+     Site e sistema em destaque (cards grandes, escuros); o resto em
+     cards menores. Os itens de cada card grande so citam o que existe
+     no ar no portfolio. -->
+<style>
+  .sv-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:52px}
+  .sv-main{position:relative;overflow:hidden;border-radius:28px;padding:34px 32px 30px;color:var(--white);
+    background:linear-gradient(145deg,#26231F 0%,#171512 55%,#201D19 100%);border:1px solid #3A352C;
+    box-shadow:0 22px 55px rgba(20,18,16,.16);display:flex;flex-direction:column}
+  .sv-main::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(227,179,65,.16),transparent 70%);pointer-events:none}
+  .sv-cab{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    padding-bottom:20px;border-bottom:1px dashed rgba(255,255,255,.18)}
+  .sv-n{font:700 12px/1 var(--font-mono);letter-spacing:.2em;color:var(--accent)}
+  .sv-tag{border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:7px 12px;
+    font:600 10px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .sv-main h3{font:700 clamp(1.9rem,3.2vw,2.7rem)/1.02 var(--font-display);letter-spacing:-.045em;margin-top:22px}
+  .sv-main h3 em{font-family:var(--font-script);font-style:italic;font-weight:400;color:var(--accent);font-size:1.08em}
+  .sv-main > p{margin-top:12px;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.68);max-width:44ch}
+  .sv-inc{margin-top:auto;padding-top:24px}
+  .sv-inc div{border-radius:18px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.045);padding:18px}
+  .sv-inc small{display:block;font:600 10px/1 var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .sv-inc ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:14px}
+  .sv-inc li{position:relative;padding-left:24px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.86)}
+  .sv-inc li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .sv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:18px}
+  .sv-card{background:#fff;border:1px solid #E6DFCF;border-radius:22px;padding:26px 22px;
+    transition:box-shadow .3s ease,border-color .3s ease,transform .3s ease}
+  .sv-card:hover{border-color:#D5CAB2;box-shadow:0 18px 40px rgba(20,18,16,.08);transform:translateY(-3px)}
+  .sv-ic{width:46px;height:46px;border-radius:12px;background:var(--ink);color:var(--accent);display:grid;place-items:center}
+  .sv-card .sv-n{display:block;margin-top:22px;color:#8A6412}
+  .sv-card h3{font:700 19px/1.2 var(--font-display);letter-spacing:-.02em;color:var(--ink);margin-top:8px}
+  .sv-card p{font-size:14.5px;line-height:1.55;color:#5A5448;margin-top:8px}
+  .sv-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px;align-items:center}
+  .btn-line{color:var(--ink);border:1px solid rgba(20,18,16,.22);background:transparent}
+  .btn-line:hover{border-color:var(--ink);transform:translateY(-2px)}
+  @media(max-width:980px){ .sv-top{grid-template-columns:1fr} .sv-grid{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){ .sv-grid{grid-template-columns:1fr} .sv-inc ul{grid-template-columns:1fr} .sv-main{padding:26px 22px 22px} }
+</style>
+<section class="sec light" id="servicos">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>what we do'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>o que fazemos</p>
+    <h2 class="rv" style="--d:.08s" data-en='Website and system first. <span class="lm">Everything else revolves around them.</span>'>Site e sistema primeiro. <span class="lm">O resto gira em volta.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='The website is where the client decides. The system is what keeps working when you are not looking. Theatrum <b>develops both</b> and connects them to whatever brings people in.'>O site é onde o cliente decide. O sistema é o que trabalha quando você não está olhando. A Theatrum <b>desenvolve os dois</b> e liga no que traz gente até eles.</p>
+
+    <div class="sv-top">
+      <article class="sv-main rv" style="--d:.1s">
+        <div class="sv-cab"><span class="sv-n">01</span><span class="sv-tag" data-en="the starting point">o ponto de partida</span></div>
+        <h3 data-en='Websites <em>built to measure</em>'>Sites <em>sob medida</em></h3>
+        <p data-en="A fast website, designed to turn a visit into a contact. Not a ready-made theme with your logo on it.">Site rápido, desenhado para virar contato. Não é tema pronto com o seu logo em cima.</p>
+        <div class="sv-inc"><div>
+          <small data-en="comes with">vem com</small>
+          <ul>
+            <li data-en="design made for your niche">design feito para o seu nicho</li>
+            <li data-en="ready for mobile and Google">pronto para celular e Google</li>
+            <li data-en="portuguese and english">português e inglês</li>
+            <li data-en="domain in your name">domínio no seu nome</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="sv-main rv" style="--d:.18s">
+        <div class="sv-cab"><span class="sv-n">02</span><span class="sv-tag" data-en="where the site becomes a tool">onde o site vira ferramenta</span></div>
+        <h3 data-en='Web <em>systems</em>'>Sistemas <em>web</em></h3>
+        <p data-en="The part of your process that today lives in spreadsheets and loose messages becomes a system, inside your own site.">A parte do seu processo que hoje é planilha e mensagem solta vira sistema, dentro do seu próprio site.</p>
+        <div class="sv-inc"><div>
+          <small data-en="for example">por exemplo</small>
+          <ul>
+            <li data-en="quote calculator">calculadora de orçamento</li>
+            <li data-en="catalogue, cart and checkout">catálogo, carrinho e checkout</li>
+            <li data-en="area unlocked by code">área liberada por código</li>
+            <li data-en="lead and goals dashboard">painel de leads e metas</li>
+          </ul>
+        </div></div>
+      </article>
+    </div>
+
+    <div class="sv-grid">
+      <article class="sv-card rv" style="--d:.05s">
+        <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span class="sv-n">03</span>
+        <h3 data-en="AI on WhatsApp">IA no WhatsApp</h3>
+        <p data-en="Replies in seconds, answers questions and books, even after hours.">Responde em segundos, tira dúvida e agenda, até fora do horário.</p>
+      </article>
+      <article class="sv-card rv" style="--d:.1s">
+        <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        <span class="sv-n">04</span>
+        <h3 data-en="Google and SEO">Google e SEO</h3>
+        <p data-en="Business Profile set up and a site that shows up to whoever is searching.">Google Meu Negócio montado e site que aparece para quem procura.</p>
+      </article>
+      <article class="sv-card rv" style="--d:.15s">
+        <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17l5.5-5.5 3.5 3.5L21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="sv-n">05</span>
+        <h3 data-en="Paid traffic">Tráfego pago</h3>
+        <p data-en="Ads that send people to the site, measured by contacts, not likes.">Anúncio que leva gente ao site, medido em contato, não em curtida.</p>
+      </article>
+      <article class="sv-card rv" style="--d:.2s">
+        <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10a8 8 0 0114-4.5M20 14a8 8 0 01-14 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18 2v4h-4M6 22v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="sv-n">06</span>
+        <h3 data-en="Reactivation">Reativação</h3>
+        <p data-en="Whoever already bought from you gets called back and returns.">Quem já comprou de você é chamado de volta e volta.</p>
+      </article>
+    </div>
+
+    <div class="sv-ctas rv" style="--d:.1s">
+      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20um%20site%20ou%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='I want a website or system <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Quero um site ou sistema <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+      <a class="btn btn-line" href="#calculadora" data-en="First, see how much I lose">Antes, ver quanto eu perco</a>
     </div>
   </div>
 </section>
@@ -684,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec" id="problema">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>the problem and the fix'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>o problema e a solução</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>the problem and the fix'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>o problema e a solução</p>
     <h2 class="rv" style="--d:.08s" data-en='People are searching for what you sell.<br>They <span class="lm">never reach you.</span>'>Tem gente procurando o que você vende.<br>Ela <span class="lm">não chega até você.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='For one of three reasons. Theatrum <b>fixes all three</b> and runs it for you.'>Por um de três motivos. A Theatrum <b>conserta os três</b> e opera tudo por você.</p>
 
@@ -870,7 +948,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec" id="calculadora">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>the maths'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>o cálculo</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>the maths'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>o cálculo</p>
     <h2 class="rv" style="--d:.08s" data-en='How much is your business leaving <span class="lm">on the table</span> every month?'>Quanto o seu negócio deixa <span class="lm">na mesa</span> todo mês?</h2>
     <p class="lead rv" style="--d:.16s" data-en='Four questions. No sign-up. The number shows up on the spot.'>Quatro perguntas. Nenhum cadastro. O número aparece na hora.</p>
 
@@ -1460,7 +1538,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec light" id="sistema">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>demonstração</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>demonstração</p>
     <h2 class="rv" style="--d:.08s" data-en='See the system <span class="lm">at work.</span>'>Vê o sistema <span class="lm">trabalhando.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en="It's not a promise: it's a demonstration. All of this keeps running on its own once Theatrum is in your business.">Não é promessa: é demonstração. Isso tudo fica rodando sozinho quando a Theatrum entra no seu negócio.</p>
 
@@ -2472,16 +2550,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 3 · CONVITE PARA O PORTFOLIO ============ -->
+<!-- ============ 6 · TRABALHOS (convite para o portfolio, sem imagem) ============
+     A vitrine com imagem mora em /portfolio/. Aqui ficam tres janelas de
+     navegador desenhadas em CSS, sem nenhum arquivo: o que custava 484 KB
+     de imagem nao volta para a home. Cada uma mostra o sistema que roda
+     dentro do site, que e o ponto forte da casa. -->
+<style>
+  .tb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
+  .tb-card{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);
+    background:#1E1C19;text-decoration:none;color:var(--white);box-shadow:0 24px 50px rgba(0,0,0,.35);
+    transition:border-color .3s ease,transform .3s ease}
+  .tb-card:hover{border-color:rgba(227,179,65,.4);transform:translateY(-4px)}
+  .tb-bar{display:flex;align-items:center;gap:6px;padding:11px 14px;background:#262420;border-bottom:1px solid rgba(255,255,255,.05)}
+  .tb-bar i{width:10px;height:10px;border-radius:50%;background:#E0524B;flex-shrink:0}
+  .tb-bar i:nth-child(2){background:#E5B842}
+  .tb-bar i:nth-child(3){background:#4DB861}
+  .tb-bar b{flex:1;min-width:0;margin-left:8px;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 10px;
+    font:500 11px/1.2 var(--font-mono);color:rgba(255,255,255,.45);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tb-tela{position:relative;aspect-ratio:16/10;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;
+    background:radial-gradient(90% 80% at 85% 0%,rgba(227,179,65,.13),transparent 60%),linear-gradient(160deg,#1B1916,#12110E)}
+  .tb-ui{position:absolute;top:22px;left:22px;right:22px;display:grid;gap:8px;justify-items:start}
+  .tb-ui span{display:block;height:8px;border-radius:4px;background:rgba(255,255,255,.08);width:72%}
+  .tb-ui span:nth-child(2){width:54%}
+  .tb-ui span:nth-child(3){width:63%}
+  .tb-ui em{display:block;width:84px;height:22px;border-radius:6px;background:var(--accent);opacity:.85;margin-top:4px}
+  .tb-sis{font:600 10.5px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .tb-tela strong{font:700 clamp(18px,1.7vw,21px)/1.18 var(--font-display);letter-spacing:-.02em;max-width:22ch}
+  .tb-pe{display:block;padding:14px 16px;border-top:1px solid rgba(255,255,255,.06);font-size:13.5px;color:var(--muted)}
+  .tb-pe b{color:var(--white);font-weight:600;margin-right:6px}
+  .tb-rodape{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:34px}
+  @media(max-width:980px){ .tb-grid{grid-template-columns:1fr 1fr} }
+  @media(max-width:640px){ .tb-grid{grid-template-columns:1fr} }
+</style>
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Five markets, sixteen sites. <span class="lm">All of them live.</span>'>Cinco mercados, dezesseis sites. <span class="lm">Todos no ar.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Real estate, fitted furniture, nutrition and an online store. They are working sites, not pictures: open any one and browse it from top to bottom.'>Imobiliário, móveis planejados, nutrição e loja online. São sites que funcionam, não figuras: abra qualquer um e navegue do topo ao rodapé.</p>
-    <a class="btn btn-primary rv" style="--d:.24s;margin-top:34px" href="portfolio/" data-en='See the portfolio <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
-      Ver o portfólio
-      <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
-    </a>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>trabalhos</p>
+    <h2 class="rv" style="--d:.08s" data-en='Sixteen sites live. <span class="lm">Several with a system inside.</span>'>Dezesseis sites no ar. <span class="lm">Vários com sistema dentro.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Real estate, fitted furniture, nutrition, solar energy and an online store. They are demonstrations with invented brands, but they work: open any one and use it from top to bottom.'>Imobiliário, móveis planejados, nutrição, energia solar e loja online. São demonstrações com marca fictícia, mas funcionam: abra qualquer uma e use do topo ao rodapé.</p>
+
+    <div class="tb-grid rv" style="--d:.2s">
+      <a class="tb-card" href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener">
+        <span class="tb-bar" aria-hidden="true"><i></i><i></i><i></i><b>caparaosolar.com.br</b></span>
+        <span class="tb-tela">
+          <span class="tb-ui" aria-hidden="true"><span></span><span></span><span></span><em></em></span>
+          <span class="tb-sis" data-en="system inside">sistema no site</span>
+          <strong data-en="Calculator that sizes the plant and the payback">Calculadora que dimensiona a usina e o retorno</strong>
+        </span>
+        <span class="tb-pe" data-en="<b>Caparaó Solar</b> solar energy &rarr;"><b>Caparaó Solar</b> energia solar &rarr;</span>
+      </a>
+      <a class="tb-card" href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener">
+        <span class="tb-bar" aria-hidden="true"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
+        <span class="tb-tela">
+          <span class="tb-ui" aria-hidden="true"><span></span><span></span><span></span><em></em></span>
+          <span class="tb-sis" data-en="system inside">sistema no site</span>
+          <strong data-en="Filterable catalogue, cart and checkout">Catálogo filtrável, carrinho e checkout</strong>
+        </span>
+        <span class="tb-pe" data-en="<b>Seis Panos</b> online store &rarr;"><b>Seis Panos</b> loja online &rarr;</span>
+      </a>
+      <a class="tb-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener">
+        <span class="tb-bar" aria-hidden="true"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
+        <span class="tb-tela">
+          <span class="tb-ui" aria-hidden="true"><span></span><span></span><span></span><em></em></span>
+          <span class="tb-sis" data-en="system inside">sistema no site</span>
+          <strong data-en="Private listings, unlocked by code">Carteira reservada, liberada por código</strong>
+        </span>
+        <span class="tb-pe" data-en="<b>Vértice</b> real estate &rarr;"><b>Vértice</b> imóveis &rarr;</span>
+      </a>
+    </div>
+
+    <div class="tb-rodape rv" style="--d:.26s">
+      <a class="btn btn-primary" href="portfolio/" data-en='See all sixteen <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
+        Ver os dezesseis
+        <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -2539,7 +2681,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec" id="entregas" style="display:none">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>delivered'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>entregas</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>delivered'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>entregas</p>
     <h2 class="rv" style="--d:.08s" data-en='Proof is <span class="lm">what is already live.</span>'>Prova é o que <span class="lm">já está no ar.</span></h2>
 
     <div class="ent-grid rv" style="--d:.15s" id="entGrid"></div>
@@ -2617,7 +2759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 8 · QUEM FAZ ============ -->
 <section class="sec light" id="quem-faz">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>who does it'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>quem faz</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>who does it'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>quem faz</p>
     <h2 class="rv" style="--d:.08s" data-en='Who is going to touch <span class="lm">your business.</span>'>Quem vai mexer <span class="lm">no seu negócio.</span></h2>
 
     <div class="qf rv" style="--d:.15s">
@@ -2671,7 +2813,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 6 · COMO FUNCIONA ============ -->
 <section class="sec" id="como-funciona">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>how it works'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>como funciona</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>how it works'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>como funciona</p>
     <h2 class="rv" style="--d:.08s" data-en='From diagnosis to your<br>digital identity <span class="lm">live.</span>'>Do diagnóstico à sua<br>identidade digital <span class="lm">no ar.</span></h2>
 
     <div class="steps">
@@ -2716,7 +2858,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 8 · FAQ ============ -->
 <section class="sec" id="faq">
   <div class="sec-inner">
-    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>straight answers'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>perguntas diretas</p>
+    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>straight answers'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>perguntas diretas</p>
     <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto" data-en='What every business owner<br>asks <span class="lm">before closing.</span>'>O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
 
     <div class="faq rv" style="--d:.15s">
@@ -2760,19 +2902,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <summary data-en='Do I need to show up, record video, produce content? <span class="pl">+</span>'>Preciso aparecer, gravar vídeo, produzir conteúdo? <span class="pl">+</span></summary>
         <div class="ans" data-en='No. The system works without you being on camera. If you want to appear, it helps. If you do not, it still works.'>Não. O sistema funciona sem você na frente da câmera. Se quiser aparecer, ajuda. Se não quiser, funciona do mesmo jeito.</div>
       </details>
+      <details>
+        <summary data-en='Do you only build websites, or systems too? <span class="pl">+</span>'>Vocês fazem só site ou fazem sistema também? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Both. The website is the start; when your process calls for it, a system comes in: a quote calculator, a catalogue with cart and checkout, a booking calendar, a lead board, an area unlocked by code. <b>All on your own domain, built for your case.</b> The portfolio has live examples of each.'>Os dois. O site é o começo; quando o seu processo pede, entra sistema: calculadora de orçamento, catálogo com carrinho e checkout, agenda, painel de leads, área liberada por código. <b>Tudo no seu domínio, feito para o seu caso.</b> O portfólio tem exemplo no ar de cada um.</div>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- ============ 9 · CTA FINAL ============ -->
 <section class="final" id="diagnostico">
-  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>the next step'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>o próximo passo</p>
-  <h2 class="rv" style="--d:.08s" data-en="Want to know how much revenue your business is missing out on every month?">Quer saber quanto seu negócio deixa de faturar todo mês?</h2>
+  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>let&apos;s talk'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>vamos conversar</p>
+  <h2 class="rv" style="--d:.08s" data-en="Let's get your website and your system off the drawing board?">Vamos tirar o seu site e o seu sistema do papel?</h2>
   <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows your business's leaks and what the system would do about each one. No obligation, no runaround.">O diagnóstico gratuito mostra os vazamentos do seu negócio e o que o sistema faria com cada um. Sem compromisso, sem enrolação.</p>
-  <a class="btn-dark rv" style="--d:.24s" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
-    Quero meu diagnóstico gratuito
-    <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
+  <div class="final-ctas rv" style="--d:.24s">
+    <a class="btn-dark" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+      Quero meu diagnóstico gratuito
+      <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a class="btn-ghost-ink" href="#calculadora" data-en="Or see how much I lose per month">Ou ver quanto eu perco por mês</a>
+  </div>
   <div class="mini rv" style="--d:.3s" data-en="replies in minutes · straight on whatsapp">responde em minutos · direto no whatsapp</div>
 </section>
 
@@ -2959,20 +3108,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <footer>
-  <div class="foot-inner">
-    <a class="brand" href="#top">
-      <span class="brand-chip"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt="Theatrum"/><i></i></span>
-      <b>Theatrum</b>
-    </a>
-    <div class="foot-links">
-      <!-- PLACEHOLDER: trocar pelo link real do LinkedIn -->
-      <a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="#top" data-en="Back to top">Voltar ao topo</a>
+  <div class="ft">
+    <div class="ft-sobre">
+      <a class="brand" href="#top">
+        <span class="brand-chip"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" loading="lazy" alt="Theatrum"/><i></i></span>
+        <b>Theatrum</b>
+      </a>
+      <p data-en="Websites and systems built to measure for service businesses in Brazil and the United States. Developed, launched and run by the same person.">Sites e sistemas sob medida para negócios de serviço no Brasil e nos Estados Unidos. Desenvolvidos, colocados no ar e operados pela mesma pessoa.</p>
     </div>
-    <div class="foot-legal" data-en="Theatrum · digital identity for businesses across Brazil. © 2026.<br>Matheus Ananias de Souza · Brazilian company ID (CNPJ) 61.978.753/0001-60">Theatrum · identidade digital para negócios em todo o Brasil. © 2026.<br>Responsável: Matheus Ananias de Souza · CNPJ 61.978.753/0001-60</div>
+    <div>
+      <h4 data-en="Services">Serviços</h4>
+      <ul>
+        <li><a href="#servicos" data-en="Custom websites">Sites sob medida</a></li>
+        <li><a href="#servicos" data-en="Web systems">Sistemas web</a></li>
+        <li><a href="#sistema" data-en="AI on WhatsApp">IA no WhatsApp</a></li>
+        <li><a href="#calculadora" data-en="Leak calculator">Calculadora de vazamento</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-en="Work">Trabalhos</h4>
+      <ul>
+        <li><a href="portfolio/" data-en="Portfolio">Portfólio</a></li>
+        <li><a href="moveis-planejados/" data-en="Custom furniture">Móveis planejados</a></li>
+        <li><a href="us/">Theatrum US</a></li>
+        <li><a href="blog/">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-en="Contact">Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#faq" data-en="Questions">Perguntas</a></li>
+        <li><a href="#top" data-en="Back to top">Voltar ao topo</a></li>
+      </ul>
+    </div>
   </div>
+  <div class="ft-base" data-en="<span>Theatrum · websites and systems for service businesses. © 2026.</span><span>Matheus Ananias de Souza · Brazilian company ID (CNPJ) 61.978.753/0001-60</span>"><span>Theatrum · sites e sistemas para negócios de serviço. © 2026.</span><span>Responsável: Matheus Ananias de Souza · CNPJ 61.978.753/0001-60</span></div>
 </footer>
 
 <script>
@@ -2985,10 +3157,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // idioma: PT (padrão) <-> EN, troca innerHTML de tudo que tem data-en
   (function(){
-    const I18N_TITLE = { pt: document.title, en: 'Theatrum | Digital identity for businesses anywhere in Brazil' };
+    const I18N_TITLE = { pt: document.title, en: 'Theatrum | Custom websites and systems for service businesses' };
     const I18N_DESC = {
       pt: document.querySelector('meta[name="description"]').content,
-      en: 'Theatrum builds the predictable system that turns anyone searching for your business into a new client every month — anywhere in Brazil, in Portuguese or English, no referrals needed. Free diagnosis.'
+      en: 'Theatrum develops custom websites and systems for service businesses, launches and runs them: calculators, catalogues, booking and a WhatsApp that answers on its own. Free diagnosis.'
     };
     const nodes = [...document.querySelectorAll('[data-en]')];
     nodes.forEach(el => { el.dataset.pt = el.innerHTML; });
@@ -3066,7 +3238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // destaca no menu a seção visível
   const navAnchors = [...document.querySelectorAll('.nav-links a'), ...document.querySelectorAll('.mobile-menu a[href^="#"]')];
-  const navSections = ['problema','calculadora','solucao','sistema','trabalhos','como-funciona','investimento','faq']
+  const navSections = ['servicos','problema','calculadora','solucao','sistema','trabalhos','como-funciona','investimento','faq']
     .map(id => document.getElementById(id)).filter(Boolean);
   const setActiveLink = (id) => navAnchors.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
   const navIo = new IntersectionObserver((entries) => {
@@ -3095,17 +3267,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const STILL = new URLSearchParams(location.search).get('still');
   if (STILL) {
     const st = document.createElement('style');
-    st.textContent = '*,*::before,*::after{animation-delay:0s!important;animation-duration:.01s!important;transition:none!important}.rv,.rv-l,.rv-r,.rv-u{opacity:1!important;transform:none!important}.leaks::before{opacity:1!important}.leak::before{transform:scaleX(1)!important}.hero{min-height:920px!important}';
+    st.textContent = '*,*::before,*::after{animation-delay:0s!important;animation-duration:.01s!important;transition:none!important}.rv,.rv-l,.rv-r,.rv-u{opacity:1!important;transform:none!important}.leaks::before{opacity:1!important}.leak::before{transform:scaleX(1)!important}.hero{min-height:920px!important}.sec{content-visibility:visible!important}';
     document.head.appendChild(st);
   }
-  // parallax sutil das luzes/feixes (segue o mouse)
-  const root = document.documentElement;
-  addEventListener('pointermove', (e) => {
-    const x = (e.clientX / innerWidth - .5) * 2;
-    const y = (e.clientY / innerHeight - .5) * 2;
-    root.style.setProperty('--mx', x.toFixed(3));
-    root.style.setProperty('--my', y.toFixed(3));
-  }, { passive: true });
+  // letreiro: animação infinita só roda enquanto está na tela
+  const strip = document.querySelector('.strip');
+  if (strip) new IntersectionObserver(es => {
+    es.forEach(e => strip.classList.toggle('is-off', !e.isIntersecting));
+  }).observe(strip);
   // reveal on scroll (inclui os reveals direcionais da seção problema)
   const io = new IntersectionObserver((es) => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
