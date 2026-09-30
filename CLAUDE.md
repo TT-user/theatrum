@@ -182,7 +182,7 @@ diferente conforme de onde a pessoa clicou:
 |---|---|---|
 | `/imoveis/demos/` | 4 | imobiliário |
 | `/moveis-planejados/demos/` | 6 | móveis planejados |
-| `/nutricao/demos/` | 4 + 1 prévia | nutrição |
+| `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar |
 
@@ -191,11 +191,6 @@ barra de volta, e um `.htaccess` com `X-Robots-Tag: noindex`. **O noindex não �
 detalhe:** são negócios fictícios, e indexados eles competem na busca com
 clientes reais e alguém pode cair num consultório que não existe vindo do
 Google.
-
-`/nutricao/demos/cintia-antunes/` não é demo fictícia: é prévia feita para
-uma nutricionista real, com as fotos dela, e não entra no `/portfolio/` sem
-autorização. Por isso passa o próprio aviso para a barra em `data-aviso` na tag
-do `_demo.js`.
 
 O parâmetro `?de=` diz de onde a pessoa veio e decide para onde ela volta:
 `portfolio`, `us` (em inglês), `home`, ou a landing do segmento onde ela
