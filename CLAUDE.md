@@ -200,6 +200,12 @@ diferente conforme de onde a pessoa clicou:
   `.htaccess` com noindex e os dados que faltam aparecem como placeholder
   amarelo, nunca inventados. Briefing, README de pendências e `netlify.toml`
   ficam em `cliente AML/`, que não é commitada.
+- `/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
+  refúgio romântico), para vender o projeto. Mesmo padrão da AML: `.htaccess`
+  com noindex, faixa de demonstração no topo e placeholder amarelo para todo
+  dado que falta. Fotos só as do Instagram dela, em WebP; onde falta foto há um
+  quadro `[FOTO]`. O `#reservar` é só o contêiner: o motor de reserva com
+  adaptadores (WhatsApp, iCal, PMS, planilha) é a próxima etapa do briefing.
 
 ### As demonstrações, uma pasta por área
 
