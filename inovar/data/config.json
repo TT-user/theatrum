@@ -1,11 +1,6 @@
 {
   "_leia": "Números no formato 55 + DDD + número, sem espaço. Em 'rotas', use o id de um veterinário, 'loja' (vai para a loja escolhida) ou 'escolher' (a pessoa escolhe o veterinário na hora).",
 
-  "catalogo": {
-    "fonte": "json",
-    "planilha_csv": ""
-  },
-
   "lojas": [
     { "id": "dores", "nome": "Dores do Rio Preto", "whatsapp": "5528999558305" },
     { "id": "guacui", "nome": "Guaçuí", "whatsapp": "5528999320305" }
@@ -18,7 +13,6 @@
 
   "rotas": {
     "_pendente": "[DEFINIR COM O CLIENTE QUAL NÚMERO RECEBE CADA TIPO DE PEDIDO]",
-    "produto_com_receita": "escolher",
     "agendamento_na_loja": "loja",
     "agendamento_na_propriedade": "escolher",
     "emergencia": "escolher"

@@ -222,11 +222,11 @@ diferente conforme de onde a pessoa clicou:
 
 - `/inovar/` — demo do site da Inovar Agroveterinária (agropecuária, farmácia e
   clínica veterinária, lojas em Dores do Rio Preto e Guaçuí, ES). Mesmo padrão:
-  `.htaccess` com noindex, faixa de demonstração e placeholder amarelo. Catálogo
-  com "minha lista" enviada ao WhatsApp da loja escolhida (sem pagamento),
-  agendamento de veterinário em 5 passos e calendário do rebanho. Números e
-  rotas de cada pedido em `data/config.json`; produtos em `data/produtos.json`
-  (ou planilha do Google em CSV); calendário em `data/calendario.json`, todo
+  `.htaccess` com noindex, faixa de demonstração e placeholder amarelo. Produtos
+  só informativos (categorias + "perguntar no WhatsApp"): o cliente pediu para
+  tirar catálogo, lista de pedido e seletor de loja. Agendamento de veterinário
+  em 5 passos e calendário do rebanho (setas e arraste, sem barra). Números e
+  rotas em `data/config.json`; calendário em `data/calendario.json`, todo
   marcado para revisão dos veterinários. Pendências em `cliente Inovar/README.md`,
   não commitada.
 

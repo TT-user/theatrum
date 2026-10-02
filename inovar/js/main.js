@@ -1,4 +1,4 @@
-/* Inovar: núcleo da página. Loja escolhida, WhatsApp, menus e diálogos.
+/* Inovar: núcleo da página. Loja preferida, WhatsApp, menus e diálogos.
    Os outros scripts usam window.Inovar depois que Inovar.pronto resolver. */
 (function () {
   'use strict';
@@ -115,24 +115,6 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !waMenu.hidden) { waAbrir(false); waBtn.focus(); } });
 
-  // ---------- Seletor de loja ----------
-  var status = document.getElementById('store-status');
-  var statusPadrao = status.innerHTML;
-  function pintarLoja(id) {
-    document.querySelectorAll('.store-btn').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.loja === id); });
-    var l = lojaPorId(id);
-    if (l) {
-      status.innerHTML = '';
-      status.append('Seus pedidos vão para a ');
-      var s = document.createElement('strong'); s.textContent = 'loja ' + l.nome; status.append(s);
-      status.append('. Toque na outra para trocar.');
-    } else status.innerHTML = statusPadrao;
-  }
-  document.querySelectorAll('.store-btn').forEach(function (b) {
-    b.addEventListener('click', function () { setLoja(b.dataset.loja); });
-  });
-  ouvintesLoja.push(pintarLoja);
-
   // ---------- Entrada discreta ----------
   var revs = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -157,6 +139,5 @@
     destino: destino
   };
 
-  pronto.then(function () { pintarLoja(loja()); })
-    .catch(function (e) { console.error('Inovar: não carregou data/config.json', e); });
+  pronto.catch(function (e) { console.error('Inovar: não carregou data/config.json', e); });
 })();
