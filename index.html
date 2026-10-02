@@ -766,23 +766,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      leva nada junto. Sem JS, todos os paineis aparecem empilhados. -->
 <style>
   .ds{margin-top:44px}
-  /* abas de pasta: presas ao topo do painel. A aba ativa tem o mesmo
-     fundo do painel e cobre a borda de cima dele (o painel sobe 1px por
-     baixo das abas), entao as duas pecas leem como um objeto so. */
-  .ds-tabs{display:flex;align-items:flex-end;gap:4px;overflow-x:auto;scrollbar-width:none;position:relative;z-index:2;
-    -webkit-overflow-scrolling:touch}
+  /* janela de macOS: barra de titulo com os tres botoes (fechar,
+     minimizar, ampliar) e abas no estilo do Safari; o painel e o corpo
+     da janela. Mesmo motivo das janelas desenhadas no [06]. As bolinhas
+     sao enfeite (aria-hidden) e ficam fora da lista rolavel. */
+  .ds-janela{display:flex;align-items:center;gap:14px;position:relative;z-index:2;
+    background:#262420;border:1px solid #33302A;border-bottom-color:#1A1815;border-radius:14px 14px 0 0;padding:9px 10px 9px 16px}
+  .ds-janela[hidden]{display:none}
+  .ds-luzes{display:flex;gap:8px;flex-shrink:0}
+  .ds-luzes i{width:12px;height:12px;border-radius:50%;background:#FF5F57;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.25)}
+  .ds-luzes i:nth-child(2){background:#FEBC2E}
+  .ds-luzes i:nth-child(3){background:#28C840}
+  .ds-tabs{flex:1;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    background:rgba(0,0,0,.22);border-radius:9px;padding:3px}
   .ds-tabs::-webkit-scrollbar{display:none}
-  .ds-tabs[hidden]{display:none}
-  .ds-tab{flex-shrink:0;cursor:pointer;position:relative;border:1px solid #2a251d;border-bottom:0;border-radius:14px 14px 0 0;
-    background:#131110;color:#A39B8D;padding:14px 22px;margin-bottom:1px;font:600 15px/1 var(--font-body);
+  .ds-tab{flex:1 0 auto;cursor:pointer;position:relative;border:0;border-radius:7px;background:transparent;
+    color:#A39B8D;padding:9px 16px;font:500 14px/1 var(--font-body);text-align:center;white-space:nowrap;
     transition:background .2s ease,color .2s ease}
-  .ds-tab:hover{background:#1A1714;color:var(--white)}
-  .ds-tab[aria-selected=true]{background:var(--card);color:var(--white);margin-bottom:0;padding-bottom:15px;
-    box-shadow:inset 0 2px 0 var(--accent)}
-  .ds-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px 14px 0 0}
+  /* divisoria fina entre abas inativas, como no Safari */
+  .ds-tab + .ds-tab::before{content:"";position:absolute;left:-2px;top:25%;bottom:25%;width:1px;background:rgba(255,255,255,.1)}
+  .ds-tab[aria-selected=true]::before,.ds-tab[aria-selected=true] + .ds-tab::before{display:none}
+  .ds-tab:hover{background:rgba(255,255,255,.05);color:var(--white)}
+  .ds-tab[aria-selected=true]{background:#3A3630;color:var(--white);font-weight:600;
+    box-shadow:0 1px 2px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)}
+  .ds-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:7px}
   .ds-painel{margin-top:18px;background:var(--card);border:1px solid #2a251d;border-radius:24px;padding:clamp(24px,3.4vw,40px);position:relative;z-index:1}
   .ds-painel + .ds-painel{margin-top:18px}
-  .ds-tabs:not([hidden]) ~ .ds-painel{margin-top:-1px;border-top-left-radius:0}
+  .ds-janela:not([hidden]) ~ .ds-painel{margin-top:0;border-top:0;border-radius:0 0 18px 18px}
   .ds-painel[hidden]{display:none}
   .ds-painel h3{font:800 clamp(1.5rem,2.6vw,2.1rem)/1.15 var(--font-display);letter-spacing:-.005em;color:var(--white)}
   .ds-intro{margin-top:10px;font-size:clamp(16px,1.6vw,18px);line-height:1.65;color:#D8CFC0;max-width:62ch}
@@ -802,7 +812,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .ds-longo{margin-top:22px;padding:18px 22px;border-left:3px solid var(--accent);border-radius:0 14px 14px 0;
     background:rgba(255,255,255,.03);font-size:16px;line-height:1.7;color:#E2DACB}
   .ds-longo span{display:block;font:600 13px/1 var(--font-mono);color:var(--accent);margin-bottom:8px}
-  @media(max-width:760px){ .ds-cols{grid-template-columns:1fr} .ds-tab{padding:13px 16px;font-size:14.5px} .ds-tab[aria-selected=true]{padding-bottom:14px} }
+  @media(max-width:760px){ .ds-cols{grid-template-columns:1fr} .ds-janela{gap:10px;padding:8px 8px 8px 12px} .ds-luzes{gap:6px} .ds-luzes i{width:10px;height:10px} .ds-tab{padding:9px 13px;font-size:13.5px} }
 
   .inv{margin-top:64px;padding-top:44px;border-top:1px solid var(--line)}
   .inv h3{font:800 clamp(22px,2.8vw,28px)/1.2 var(--font-display);letter-spacing:-.02em;color:var(--white)}
@@ -827,11 +837,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="lead rv" style="--d:.16s" data-en='Pick a channel and see the difference between done badly and done well. In each one, Theatrum <b>sets it up, runs it and follows it</b>.'>Escolha o canal e veja a diferença entre o mal feito e o bem feito. Em cada um, a Theatrum <b>configura, opera e acompanha</b>.</p>
 
     <div class="ds rv" style="--d:.2s" id="solucao">
-      <div class="ds-tabs" role="tablist" aria-label="Canais" hidden>
+      <div class="ds-janela" hidden>
+      <span class="ds-luzes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <div class="ds-tabs" role="tablist" aria-label="Canais">
         <button class="ds-tab" type="button" role="tab" id="ds-t-google" aria-controls="ds-google" aria-selected="true" data-en="Google Business Profile">Google Meu Negócio</button>
         <button class="ds-tab" type="button" role="tab" id="ds-t-trafego" aria-controls="ds-trafego" aria-selected="false" tabindex="-1" data-en="Paid traffic">Tráfego pago</button>
         <button class="ds-tab" type="button" role="tab" id="ds-t-site" aria-controls="ds-site" aria-selected="false" tabindex="-1" data-en="Website">Site</button>
         <button class="ds-tab" type="button" role="tab" id="ds-t-atend" aria-controls="ds-atend" aria-selected="false" tabindex="-1" data-en="WhatsApp service">Atendimento</button>
+      </div>
       </div>
 
       <div class="ds-painel" id="ds-google" role="tabpanel" aria-labelledby="ds-t-google">
@@ -945,7 +958,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var abas = [].slice.call(lista.querySelectorAll('.ds-tab'));
       var paineis = abas.map(function(a){ return document.getElementById(a.getAttribute('aria-controls')); });
       if (new URLSearchParams(location.search).get('still')) return;   /* QA: tudo empilhado */
-      lista.hidden = false;
+      raiz.querySelector('.ds-janela').hidden = false;
       function abre(i, foca){
         abas.forEach(function(a, j){
           var on = i === j;
