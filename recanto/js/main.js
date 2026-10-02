@@ -120,6 +120,79 @@
     el.hidden = false;
   }
 
+  /* ---------- como chegar: rota no mapa ---------- */
+  // O mapa embutido do Google aceita origem e destino sem chave de API e
+  // desenha o percurso com o trânsito do momento. A navegação com GPS, curva a
+  // curva, fica no app do Google Maps (botão "Abrir no Google Maps").
+  var frame = document.getElementById('mapa-frame');
+  var mapa = document.getElementById('mapa');
+  var status = document.getElementById('rota-status');
+  var reset = document.getElementById('rota-reset');
+  var gps = document.getElementById('rota-gps');
+  var nav = document.getElementById('rota-nav');
+  var mapaInicial = frame ? frame.src : '';
+
+  function destino() {
+    var info = window.recanto && window.recanto.info;
+    if (info && info.rotaDestino) return info.rotaDestino;
+    var c = (info && info.coordenadas) || { lat: -20.440611, lng: -41.890722 };
+    return c.lat + ',' + c.lng;
+  }
+  function marcarCidade(origem) {
+    document.querySelectorAll('[data-origem]').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-origem') === origem ? 'true' : 'false');
+    });
+  }
+  function mostrarRota(origem, rotulo) {
+    frame.src = 'https://maps.google.com/maps?saddr=' + encodeURIComponent(origem) +
+      '&daddr=' + encodeURIComponent(destino()) + '&output=embed&hl=pt-BR';
+    nav.href = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(origem) +
+      '&destination=' + encodeURIComponent(destino()) + '&travelmode=driving';
+    mapa.classList.add('rota-on');
+    reset.hidden = false;
+    status.textContent = 'Caminho ' + rotulo + ', com o trânsito de agora. Para seguir com GPS, toque em "Abrir no Google Maps".';
+    // No celular o mapa fica acima da lista: traz ele de volta à vista.
+    if (mapa.getBoundingClientRect().top < 0 || mapa.getBoundingClientRect().bottom > window.innerHeight) {
+      mapa.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  if (frame) {
+    gps.addEventListener('click', function () {
+      if (!navigator.geolocation) {
+        status.textContent = 'Este navegador não informa a localização. Toque numa das cidades ou abra no Google Maps.';
+        return;
+      }
+      status.textContent = 'Procurando onde vocês estão…';
+      gps.disabled = true;
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        gps.disabled = false;
+        marcarCidade(null);
+        mostrarRota(pos.coords.latitude.toFixed(5) + ',' + pos.coords.longitude.toFixed(5), 'a partir de onde vocês estão');
+      }, function () {
+        gps.disabled = false;
+        status.textContent = 'Não conseguimos a sua localização. Toque numa das cidades ao lado ou abra no Google Maps.';
+      }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 });
+    });
+
+    document.querySelectorAll('[data-origem]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var origem = b.getAttribute('data-origem');
+        marcarCidade(origem);
+        mostrarRota(origem, 'saindo de ' + b.querySelector('span').textContent);
+      });
+    });
+
+    reset.addEventListener('click', function () {
+      frame.src = mapaInicial;
+      nav.href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(destino()) + '&travelmode=driving';
+      mapa.classList.remove('rota-on');
+      reset.hidden = true;
+      status.textContent = '';
+      marcarCidade(null);
+    });
+  }
+
   /* ---------- carrossel de avaliações ---------- */
   document.querySelectorAll('[data-carousel]').forEach(function (c) {
     var track = c.querySelector('.r-track');

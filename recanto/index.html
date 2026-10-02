@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
 <link rel="preload" as="image" href="assets/fotos/chale-1/entardecer-633.webp" imagesrcset="assets/fotos/chale-1/entardecer-420.webp 420w, assets/fotos/chale-1/entardecer-633.webp 633w" imagesizes="(min-width: 960px) 600px, 100vw">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 
 <script>document.documentElement.classList.remove('no-js')</script>
 
@@ -63,6 +63,7 @@
   <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4v-9ZM10 20v-5h4v5"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h4"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15L6 16.5ZM10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-nav" viewBox="0 0 24 24"><path d="M20.5 3.5 3.5 10.6l7 2.4 2.4 7 7.6-16.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></symbol>
 </svg>
 
@@ -245,17 +246,26 @@
     </header>
 
     <div class="arrive">
-      <div class="map reveal">
-        <iframe title="Mapa do Recanto Alto Caparaó" src="https://maps.google.com/maps?q=-20.440611,-41.890722&amp;z=13&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="map-link" href="https://maps.app.goo.gl/mxqedS4iccAojoGL8" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg> Abrir rota no Google Maps</a>
+      <div class="map-col reveal">
+        <div class="map" id="mapa">
+          <iframe id="mapa-frame" title="Mapa do Recanto Alto Caparaó" src="https://maps.google.com/maps?q=-20.440611,-41.890722&amp;z=13&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- Rota: js/main.js troca o mapa pelo percurso, com o trânsito de agora -->
+        <div class="rota">
+          <button class="btn btn-amber" type="button" id="rota-gps"><svg class="ico"><use href="#i-nav"/></svg>Como chegar daqui</button>
+          <a class="btn btn-line" id="rota-nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=-20.440611,-41.890722&amp;travelmode=driving" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg>Abrir no Google Maps</a>
+          <button class="rota-reset" type="button" id="rota-reset" hidden>Ver só o mapa</button>
+          <p class="rota-status" id="rota-status" aria-live="polite"></p>
+        </div>
       </div>
       <div class="arrive-info reveal">
         <h3>Distâncias aproximadas</h3>
+        <p class="dist-hint">Toque numa cidade para ver o caminho no mapa.</p>
         <ul class="dist">
-          <li><span>Belo Horizonte</span><span class="ph">[CONFIRMAR] km</span></li>
-          <li><span>Rio de Janeiro</span><span class="ph">[CONFIRMAR] km</span></li>
-          <li><span>Vitória</span><span class="ph">[CONFIRMAR] km</span></li>
-          <li><span>Juiz de Fora</span><span class="ph">[CONFIRMAR] km</span></li>
+          <li><button type="button" data-origem="Belo Horizonte, MG"><span>Belo Horizonte</span><span class="ph">[CONFIRMAR] km</span><svg class="ico"><use href="#i-arrow"/></svg></button></li>
+          <li><button type="button" data-origem="Rio de Janeiro, RJ"><span>Rio de Janeiro</span><span class="ph">[CONFIRMAR] km</span><svg class="ico"><use href="#i-arrow"/></svg></button></li>
+          <li><button type="button" data-origem="Vitória, ES"><span>Vitória</span><span class="ph">[CONFIRMAR] km</span><svg class="ico"><use href="#i-arrow"/></svg></button></li>
+          <li><button type="button" data-origem="Juiz de Fora, MG"><span>Juiz de Fora</span><span class="ph">[CONFIRMAR] km</span><svg class="ico"><use href="#i-arrow"/></svg></button></li>
         </ul>
         <p class="tip"><svg class="ico"><use href="#i-road"/></svg><span><strong>Dica de estrada:</strong> <span class="ph">[PREENCHER: trecho de terra, carro baixo, chegar antes de escurecer]</span></span></p>
       </div>
@@ -326,7 +336,7 @@
 
 <a class="wa-float" href="#" data-wa="Olá! Vim pelo site e quero saber a disponibilidade dos chalés." aria-label="Conversar no WhatsApp"><svg class="ico"><use href="#i-wa"/></svg></a>
 
-<script src="js/render.js?v=4" defer></script>
-<script src="js/main.js?v=4" defer></script>
+<script src="js/render.js?v=5" defer></script>
+<script src="js/main.js?v=5" defer></script>
 </body>
 </html>

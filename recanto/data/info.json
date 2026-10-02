@@ -10,6 +10,8 @@
   "uf": "MG",
   "coordenadas": { "lat": -20.440611, "lng": -41.890722 },
   "mapa": "https://maps.app.goo.gl/mxqedS4iccAojoGL8",
+  "rotaDestino": "",
+  "_rotaDestino": "Vazio, a rota vai até as coordenadas e o Google mostra o nome que ele tem para o ponto. Quando o Perfil da Empresa no Google existir, pôr aqui o nome exato dele (ex.: Chalés Recanto Alto Caparaó, Alto Caparaó - MG) para o destino aparecer com o nome do Recanto.",
   "cnpj": "[CNPJ]",
   "privacidade": "[LINK DA POLÍTICA DE PRIVACIDADE]",
 
