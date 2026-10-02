@@ -6,9 +6,10 @@
 window.AML = {
   whatsGeral: '', // TODO: [WHATSAPP] da central ou da unidade principal
   unidades: {
-    cataguases: { nome: 'Cataguases', whats: '' }, // TODO: [WHATSAPP]
-    leopoldina: { nome: 'Leopoldina', whats: '' }, // TODO: [WHATSAPP]
-    muriae:     { nome: 'Muriaé',     whats: '' }  // TODO: [WHATSAPP]
+    // mapa: coordenadas do pin, copiadas do link do Google Maps (o trecho !3d<lat>!4d<lng>).
+    cataguases: { nome: 'Cataguases', whats: '', mapa: null }, // TODO: [WHATSAPP], [LOCALIZAÇÃO]
+    leopoldina: { nome: 'Leopoldina', whats: '', mapa: { lat: -21.5269101, lng: -42.6343843 } }, // TODO: [WHATSAPP]; mapa é só exemplo, trocar pelo endereço real
+    muriae:     { nome: 'Muriaé',     whats: '', mapa: null }  // TODO: [WHATSAPP], [LOCALIZAÇÃO]
   },
   waLink: function (unidade, texto) {
     var u = this.unidades[unidade];
@@ -25,11 +26,48 @@ window.AML = {
     a.href = AML.waLink(a.getAttribute('data-wa'), a.getAttribute('data-msg'));
   });
 
+  /* ----- mapas das unidades ----- */
+  document.querySelectorAll('[data-unidade]').forEach(function (card) {
+    var u = AML.unidades[card.getAttribute('data-unidade')];
+    var box = card.querySelector('.unit-map');
+    if (!u || !u.mapa) {
+      box.insertAdjacentHTML('beforeend', '<span class="map-ph ph">[LOCALIZAÇÃO]</span>');
+      return;
+    }
+    var ll = u.mapa.lat + ',' + u.mapa.lng;
+    box.classList.add('real');
+    box.innerHTML = '<iframe title="Mapa da unidade ' + u.nome + '" src="https://maps.google.com/maps?q=' + ll + '&z=16&hl=pt-BR&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    card.querySelector('dl').insertAdjacentHTML('afterend',
+      '<a class="route" href="https://www.google.com/maps/dir/?api=1&destination=' + ll + '" target="_blank" rel="noopener">Como chegar →</a>');
+  });
+
   /* ----- header ----- */
   var header = document.querySelector('.header');
   var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 10); };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  /* ----- destaque no menu da seção visível ----- */
+  var navLinks = document.querySelectorAll('.nav a, .mobile-menu a:not(.btn)');
+  var spySections = Array.prototype.map.call(document.querySelectorAll('.nav a'), function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+  var spyTick = false;
+  var spy = function () {
+    spyTick = false;
+    var line = window.innerHeight * 0.35;
+    var atual = null;
+    spySections.forEach(function (sec) { if (sec.getBoundingClientRect().top <= line) atual = sec.id; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) atual = spySections[spySections.length - 1].id;
+    navLinks.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + atual;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  };
+  window.addEventListener('scroll', function () { if (!spyTick) { spyTick = true; requestAnimationFrame(spy); } }, { passive: true });
+  window.addEventListener('resize', spy);
+  spy();
 
   /* ----- menu mobile ----- */
   var burger = document.querySelector('.burger');
