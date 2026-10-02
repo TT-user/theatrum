@@ -54,6 +54,13 @@
     { "inicio": "2027-07-01", "fim": "2027-07-31", "nome": "Férias de julho [CONFIRMAR]" }
   ],
 
+  "novosChales": {
+    "_obs": "Faixa da lista dos primeiros, mostrada enquanto houver chalé com status \"oculto\". mostrar: false esconde a faixa.",
+    "mostrar": true,
+    "previsao": "[PREVISÃO DE ABERTURA]",
+    "vantagem": "[OPCIONAL: condição especial para quem está na lista, ex.: desconto na primeira estadia]"
+  },
+
   "disponibilidade": {
     "_obs": "Usado pelo simulador de reserva (próxima etapa). fonte: \"planilha\", \"ical\" ou as duas.",
     "fonte": ["planilha"],

@@ -49,26 +49,35 @@
   }
 
   /* ---------- chalés ---------- */
-  function renderChales(lista) {
+  // status: "ativo" aparece e reserva; "pre-agendamento" aparece com selo e
+  // o botão da lista dos primeiros; "oculto" não aparece (só conta para a
+  // faixa de novos chalés). "em-breve" é o nome antigo de pre-agendamento.
+  var EXTENSO = ['', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis'];
+  var MSG_LISTA = 'Olá! Vim pelo site. Quero entrar na lista dos primeiros a reservar os novos chalés do Recanto.';
+  function statusDe(c) { return c.status === 'em-breve' ? 'pre-agendamento' : c.status; }
+
+  function renderChales(todos, info) {
     var box = $('#lista-chales');
-    var ativos = lista.filter(function (c) { return c.status === 'ativo'; });
+    var lista = todos.filter(function (c) { return statusDe(c) !== 'oculto'; });
+    var ativos = lista.filter(function (c) { return statusDe(c) === 'ativo'; });
+    var ocultos = todos.filter(function (c) { return statusDe(c) === 'oculto'; });
     box.setAttribute('data-n', lista.length);
-    $('#qtd-chales').textContent = ativos.length === 1 ? 'Um chalé' : ['', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis'][ativos.length] + ' chalés';
+    $('#qtd-chales').textContent = ativos.length === 1 ? 'Um chalé' : (EXTENSO[ativos.length] || ativos.length) + ' chalés';
 
     box.innerHTML = lista.map(function (c) {
-      var breve = c.status === 'em-breve';
+      var pre = statusDe(c) === 'pre-agendamento';
       var slides = c.fotos.map(function (f) {
         return '<figure class="g-slide">' + foto(f, '(min-width: 960px) 540px, 100vw') + '</figure>';
       }).join('');
       var amen = c.comodidades.map(function (a) { return '<li>' + ico(icone(a)) + '<span>' + t(a) + '</span></li>'; }).join('');
       var preco = aPartirDe(c);
-      var foot = breve
-        ? '<p class="price">abre em <strong>' + t(c.previsao || '[EM BREVE]') + '</strong></p>' +
-          '<a class="btn btn-line" href="#" data-wa="Olá! Vim pelo site. Quero saber quando o novo chalé abrir reservas.">' + ico('bell') + 'Quero ser avisado</a>'
+      var foot = pre
+        ? '<p class="price">abre em <strong>' + t(c.previsao || '[PREVISÃO DE ABERTURA]') + '</strong></p>' +
+          '<a class="btn btn-line" href="#" data-wa="' + attr(MSG_LISTA) + '">' + ico('bell') + 'Quero ser um dos primeiros</a>'
         : '<p class="price">a partir de <strong>' + brl(preco, '[DIÁRIA]') + '</strong> / noite</p>' +
           '<a class="btn btn-dark" href="#reservar" data-chale="' + c.id + '">Ver datas deste chalé</a>';
-      return '<article class="chale' + (breve ? ' chale-breve' : '') + '">' +
-        '<div class="gallery" data-gallery>' + (breve ? '<span class="selo">Em breve</span>' : '') +
+      return '<article class="chale' + (pre ? ' chale-breve' : '') + '">' +
+        '<div class="gallery" data-gallery>' + (pre ? '<span class="selo">Pré-agendamento</span>' : '') +
           '<div class="g-track">' + slides + '</div><div class="g-dots" aria-hidden="true"></div></div>' +
         '<div class="chale-body">' +
           '<h3>' + t(c.nome) + '</h3>' +
@@ -79,6 +88,28 @@
           '<div class="chale-foot">' + foot + '</div>' +
         '</div></article>';
     }).join('');
+
+    // Faixa da lista dos primeiros: só enquanto houver chalé oculto.
+    var faixa = $('#novos-chales');
+    var cfg = info.novosChales || {};
+    if (faixa && ocultos.length && cfg.mostrar !== false) {
+      var n = ocultos.length;
+      var titulo = n === 1 ? 'Mais um chalé <em>está chegando</em>'
+        : EXTENSO[n] ? 'Mais ' + EXTENSO[n].toLowerCase() + ' chalés <em>estão chegando</em>'
+        : 'Novos chalés <em>estão chegando</em>';
+      faixa.innerHTML =
+        '<div class="novos-tri" aria-hidden="true"><span></span><span></span></div>' +
+        '<div class="novos-txt">' +
+          '<p class="kicker">Em breve · ' + t(cfg.previsao || '[PREVISÃO DE ABERTURA]') + '</p>' +
+          '<h3>' + titulo + '</h3>' +
+          '<p>Entre na lista dos primeiros: vocês recebem as datas antes de abrirem para todo mundo e escolhem as suas primeiro.' +
+            (cfg.vantagem ? ' ' + t(cfg.vantagem) : '') + '</p>' +
+        '</div>' +
+        '<a class="btn btn-amber" href="#" data-wa="' + attr(MSG_LISTA) + '">' + ico('bell') + 'Quero ser um dos primeiros</a>';
+      faixa.hidden = false;
+    } else if (faixa) {
+      faixa.hidden = true;
+    }
 
     box.querySelectorAll('[data-gallery]').forEach(galeria);
 
@@ -153,7 +184,7 @@
 
   /* ---------- schema.org a partir dos dados ---------- */
   function renderSchema(info, chales) {
-    var ativos = chales.filter(function (c) { return c.status === 'ativo'; });
+    var ativos = chales.filter(function (c) { return statusDe(c) === 'ativo'; });
     var precos = [];
     ativos.forEach(function (c) { ['semana', 'fimDeSemana', 'feriado'].forEach(function (k) { if (typeof c.diarias[k] === 'number') precos.push(c.diarias[k]); }); });
     var amen = {};
@@ -196,7 +227,7 @@
     var chales = d[0].chales.slice().sort(function (a, b) { return a.ordem - b.ordem; });
     var extras = d[1].extras, info = d[2];
     window.recanto = { chales: chales, extras: extras, info: info };
-    renderChales(chales);
+    renderChales(chales, info);
     renderExtras(extras);
     renderInfo(info);
     renderFaq(info);

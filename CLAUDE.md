@@ -212,8 +212,11 @@ diferente conforme de onde a pessoa clicou:
   LodgingBusiness são montados pelo `js/render.js` a partir de
   `data/chales.json`, `data/extras.json` e `data/info.json`; o HTML só tem os
   contêineres. Chalé novo = bloco no `chales.json` + pasta em
-  `assets/fotos/chale-N/`; o grid se ajusta de 1 a 4. Status `em-breve` mostra
-  selo e "Quero ser avisado". A cliente não quer pagamento nem sistema de
+  `assets/fotos/chale-N/`; o grid se ajusta de 1 a 4. Status: `ativo`,
+  `pre-agendamento` (card com selo e "Quero ser um dos primeiros") ou `oculto`
+  (não aparece; enquanto houver oculto, uma faixa convida para a lista dos
+  primeiros, configurada em `novosChales` no `info.json`). Os chalés 3 e 4
+  já estão no JSON como `oculto`. A cliente não quer pagamento nem sistema de
   reserva: `#reservar` ("Monte sua estadia") vai virar um simulador que manda o
   pedido pronto para o WhatsApp dela (próxima etapa do briefing v2).
 

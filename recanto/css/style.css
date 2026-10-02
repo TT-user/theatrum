@@ -231,6 +231,25 @@ ul { margin: 0; padding: 0; list-style: none; }
   .chales[data-n="3"] > :last-child .gallery { flex: 0 0 50%; }
 }
 
+/* ---------- faixa dos novos chalés (lista dos primeiros) ---------- */
+.novos { margin-top: 32px; position: relative; overflow: hidden; background: var(--grafite); color: var(--linho); border-radius: var(--r); padding: 30px 24px; display: grid; gap: 22px; }
+.novos[hidden] { display: none; }
+.novos .kicker { color: var(--dourado); margin-bottom: 10px; }
+.novos h3 { font-size: clamp(30px, 6vw, 40px); font-weight: 500; }
+.novos h3 em { color: var(--dourado); }
+.novos p:not(.kicker) { margin-top: 10px; color: var(--claro-suave); max-width: 52ch; }
+.novos .btn { justify-self: start; position: relative; z-index: 1; }
+.novos .btn .ico { width: 18px; height: 18px; }
+.novos-tri { position: absolute; right: -24px; bottom: -14px; display: flex; align-items: flex-end; gap: 6px; opacity: .16; pointer-events: none; }
+.novos-tri span { display: block; width: 120px; height: 130px; background: var(--dourado); clip-path: polygon(50% 0, 100% 100%, 0 100%, 50% 0, 50% 8%, 8% 97%, 92% 97%, 50% 8%); }
+.novos-tri span + span { width: 90px; height: 98px; }
+.novos-txt { position: relative; z-index: 1; }
+@media (min-width: 900px) {
+  .novos { grid-template-columns: 1fr auto; align-items: center; padding: 40px 44px; gap: 40px; }
+  .novos .btn { justify-self: end; }
+  .novos-tri { right: auto; left: 54%; }
+}
+
 /* ---------- experiências ---------- */
 .exps { display: grid; gap: 20px; }
 .exp { background: var(--grafite-2); border: 1px solid rgba(243,237,227,.07); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
