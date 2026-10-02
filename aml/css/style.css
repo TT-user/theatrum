@@ -495,12 +495,28 @@ legend { font-size: 14px; font-weight: 600; margin-bottom: 8px; padding: 0; }
 
 /* ---------- botão flutuante ---------- */
 .wa-float {
-  position: fixed; right: 18px; bottom: 18px; z-index: 90; width: 60px; height: 60px; border-radius: 50%;
-  background: #1FA855; color: #fff; display: grid; place-items: center; text-decoration: none;
-  box-shadow: 0 14px 30px -8px rgba(0, 0, 0, .45); transition: transform .2s ease;
+  position: fixed; right: 18px; bottom: 18px; z-index: 90; height: 60px; min-width: 60px; border-radius: 999px;
+  background: #1FA855; color: #fff; display: flex; align-items: center; justify-content: flex-end; text-decoration: none;
+  box-shadow: 0 14px 30px -8px rgba(0, 0, 0, .45);
 }
-.wa-float:hover { transform: scale(1.06); }
-.wa-float svg { width: 32px; height: 32px; }
+.wa-float svg { width: 32px; height: 32px; margin: 0 14px; flex-shrink: 0; position: relative; z-index: 1; }
+/* anel pulsante: só transform e opacity, roda no compositor */
+.wa-float::before, .wa-float::after {
+  content: ""; position: absolute; right: 0; top: 0; width: 60px; height: 60px; border-radius: 50%;
+  background: #1FA855; z-index: -1; animation: wa-ring 2.4s cubic-bezier(.2, .6, .3, 1) infinite;
+}
+.wa-float::after { animation-delay: 1.2s; }
+@keyframes wa-ring { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.75); opacity: 0; } }
+.wa-label {
+  max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0;
+  font-family: var(--f-title); font-weight: 600; font-size: 15px;
+  transition: max-width .35s ease, opacity .2s ease, padding .35s ease;
+}
+@media (hover: hover) {
+  .wa-float:hover .wa-label, .wa-float:focus-visible .wa-label { max-width: 220px; opacity: 1; padding-left: 22px; }
+  .wa-float:hover { background: #188F47; }
+  .wa-float:hover::before, .wa-float:hover::after { animation: none; opacity: 0; }
+}
 
 /* ---------- entrada ---------- */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
