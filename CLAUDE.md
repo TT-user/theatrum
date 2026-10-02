@@ -200,6 +200,10 @@ diferente conforme de onde a pessoa clicou:
   `.htaccess` com noindex e os dados que faltam aparecem como placeholder
   amarelo, nunca inventados. Briefing, README de pendências e `netlify.toml`
   ficam em `cliente AML/`, que não é commitada.
+- `/engmais/` — prévia do site da Eng+ (consultoria ambiental e segurança do
+  trabalho, Dores do Rio Preto, ES e MG), no mesmo molde da AML: noindex,
+  placeholder amarelo, diagnóstico em dois caminhos (produtor e empresa) e
+  simulação de WhatsApp. Pendências em `cliente Engmais/README.md`, não commitada.
 - `/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
   refúgio romântico), para vender o projeto. Mesmo padrão da AML: `.htaccess`
   com noindex, faixa de demonstração no topo e placeholder amarelo para todo
