@@ -198,6 +198,24 @@ diferente conforme de onde a pessoa clicou:
 | entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
+| pop-up de saída | "Vim do site da Theatrum. Quero o raio-x gratuito do meu negócio." + negócio, cidade e site/Instagram |
+
+### Pop-up de saída (raio-x em menos de 24 h)
+
+Abre quando a pessoa dá sinal de ir embora: no computador, o mouse saindo
+pelo topo; no celular, subida rápida perto do topo depois de ler 40% da
+página. Armado só depois de 8 s, uma vez por sessão (`theatrum-saida`), e
+nunca para quem já clicou num CTA ou já pediu o raio-x (`theatrum-raiox` =
+`enviado`). Tira da tela o card de 70% se ele estiver aberto, e depois dele o
+card não volta. Textos num objeto JS (`SX`), não em `data-en`.
+
+**Promete o raio-x em menos de 24 horas.** Essa promessa está publicada:
+cada pedido precisa de resposta dentro do prazo.
+
+Sem `ENDPOINT` (constante no topo do script da barra mobile), o envio abre
+o WhatsApp com o pedido escrito e a tela diz "falta um toque", nunca
+"recebido". Quando o endpoint existir, o formulário ganha o campo de
+WhatsApp sozinho e passa a confirmar o recebimento.
 
 ---
 
