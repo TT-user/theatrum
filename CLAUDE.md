@@ -294,8 +294,9 @@ quando não houver mais nada apontando para lá.
 
 ## Pendências de conteúdo
 
-1. Valores do bloco de investimento na seção `[03]`: faixa de implantação, de operação e
-   mínimo de verba de anúncio. Sem eles a seção perde a função de filtro.
+1. Mínimo de verba de anúncio no bloco de investimento da seção `[03]` (ainda
+   `R$ ___`). Implantação (a partir de R$ 1.500) e operação (a partir de
+   R$ 197/mês) já estão no ar.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[07] entregas`.
 3. Endpoint para onde o formulário do raio-x envia os leads.
