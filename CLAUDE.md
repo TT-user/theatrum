@@ -1,9 +1,11 @@
 # Projeto Theatrum
 
-Site da Theatrum (usetheatrum.com.br): desenvolvimento de sites e sistemas
-sob medida para pequenos negócios de serviço no Brasil e nos Estados Unidos.
-Site e sistema são o ponto forte e vêm primeiro; Google, tráfego, IA no
-WhatsApp e reativação giram em volta.
+Site da Theatrum (usetheatrum.com.br): criação digital sob medida para pequenos
+negócios no Brasil e no exterior, em português (principal) e inglês. O que se
+constrói vem primeiro (sites, landing pages, lojas virtuais, aplicativos e
+sistemas web); Google Meu Negócio, tráfego pago, IA no WhatsApp e reativação
+trazem gente até lá. Social media para Instagram é oferecido só como
+complemento, com peso visual menor e dito abertamente que não é o forte.
 
 > Este arquivo descreve **o que está no ar**, não um plano. Se o código e este
 > arquivo divergirem, o código está certo e este arquivo está velho — conserte-o
@@ -100,10 +102,17 @@ Duas consequências obrigatórias:
 | `--ink` | `#141210` | texto sobre fundo claro |
 | `--danger` | `#D64545` | negativos e itens riscados |
 
-Fontes: Space Grotesk (títulos), Inter (corpo), JetBrains Mono (rótulos),
-Instrument Serif (detalhe manuscrito).
+Fontes: Plus Jakarta Sans 800 (títulos), Inter (corpo), JetBrains Mono
+(rótulos), Instrument Serif (detalhe manuscrito). O Space Grotesk saiu: o
+público é dono de negócio, não dev, e o espaçamento negativo apertado dele
+atrapalhava a leitura. Com o Plus Jakarta, letter-spacing de título fica entre
+-.005em e -.012em; mais que isso as letras encostam.
 
-Rótulos de seção: minúsculo, mono, no formato `[nn] nome da seção`.
+Leitura antes de estilo: corpo e lead em 16 a 18 px, menu em Inter 14,5 px sem
+caixa-alta espaçada.
+
+Rótulos de seção: minúsculo de verdade (sem `text-transform`), mono, no formato
+`[nn] nome da seção`.
 
 ---
 
@@ -133,7 +142,7 @@ rodapé em colunas), adaptada à escada de compromisso.
 
 ```
 [01] hero (+ letreiro)                 [02] o que fazemos
-[03] o problema e a solução (+ investimento)
+[03] dores e soluções (+ investimento)
 [04] a calculadora                     [05] demonstração
 [06] trabalhos                         [07] entregas (escondida até ter cliente)
 [08] quem faz                          [09] como funciona + o raio-x
@@ -143,13 +152,20 @@ rodapé em colunas), adaptada à escada de compromisso.
 - **Hero:** título à esquerda com a palavra de destaque em serif itálico
   dourado; à direita um card (topo dourado, base escura) com três degraus:
   calculadora, sites no ar e WhatsApp.
-- **`[02]` o que fazemos (`#servicos`):** dois cards grandes e escuros, sites
-  sob medida e sistemas web, e quatro cards menores (IA no WhatsApp, Google e
-  SEO, tráfego, reativação). Os exemplos de sistema só citam o que existe no
-  portfólio (calculadora, carrinho e checkout, área por código, painel).
-- **`[03]`** junta problema, solução e investimento: cada vazamento numa linha
-  ao lado do motor que o fecha, e o preço logo abaixo, com o filtro de "é/não
-  é para você". Os ids `#solucao` e `#investimento` continuam dentro dela.
+- **`[02]` o que fazemos (`#servicos`):** três grupos em ordem de peso.
+  "Para construir": três cards grandes e escuros (sites e landing pages, lojas
+  virtuais, aplicativos e sistemas web). "Para trazer cliente": quatro cards
+  brancos (Google Meu Negócio, tráfego pago, IA no WhatsApp, reativação); os
+  dois primeiros têm "ver por quê" com `data-aba`, que abre a aba certa no
+  `[03]`. Por último, uma faixa tracejada e discreta de social media, marcada
+  "complemento".
+- **`[03]` dores e soluções (`#problema`):** abas por canal (Google Meu
+  Negócio, tráfego pago, site, atendimento). Cada painel põe "mal configurado:
+  o prejuízo" ao lado de "bem configurado: o benefício" e fecha com "no longo
+  prazo". Os botões das abas têm `data-en`, mas o estado mora no próprio botão;
+  sem JS (e em `?still=1`) os quatro painéis aparecem empilhados. O preço vem
+  logo abaixo, com o filtro de "é/não é para você". Os ids `#solucao` e
+  `#investimento` continuam dentro dela.
 - **`[06]` trabalhos:** três janelas de navegador desenhadas em CSS, sem
   imagem nenhuma, cada uma mostrando o sistema que roda dentro do demo. Os
   links levam `?de=home`.
