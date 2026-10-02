@@ -68,7 +68,7 @@ h1, h2, h3, h4 { line-height: 1.12; }
 /* marca-texto: o recurso que a Eng+ mais usa nos posts */
 .mark { background: linear-gradient(transparent 8%, var(--lime) 8%, var(--lime) 92%, transparent 92%); color: var(--forest); padding: 0 .16em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 /* títulos com entrelinha apertada: a faixa encolhe para não encostar na linha de cima */
-.hero h1 .mark { background: linear-gradient(transparent 22%, var(--lime) 22%, var(--lime) 92%, transparent 92%); }
+.hero h1 .mark { background: linear-gradient(transparent 16%, var(--lime) 16%, var(--lime) 93%, transparent 93%); }
 .hl { color: var(--lime); }
 .hl-dark { color: var(--mid-ink); }
 
