@@ -2,15 +2,18 @@
 (function () {
   'use strict';
 
-  // TODO: número da pousada com DDI e DDD, só dígitos (ex.: '5532999999999').
-  // Vazio, o wa.me abre a lista de contatos com a mensagem pronta.
-  var WHATSAPP = '';
-
+  // O número vem de data/info.json (campo whatsapp). Vazio, o wa.me abre a
+  // lista de contatos com a mensagem pronta.
   function waLink(msg) {
-    return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
+    var num = (window.recanto && window.recanto.info.whatsapp) || '';
+    return 'https://wa.me/' + num + '?text=' + encodeURIComponent(msg);
   }
 
-  document.querySelectorAll('[data-wa]').forEach(function (a) {
+  // Delegado: vale também para os botões que o render.js monta depois.
+  // O href é calculado no clique, quando o número já chegou do JSON.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-wa]');
+    if (!a) return;
     a.href = waLink(a.getAttribute('data-wa'));
     a.target = '_blank';
     a.rel = 'noopener';
@@ -97,11 +100,11 @@
     document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
   });
 
-  document.querySelectorAll('[data-chale]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      window.recantoReserva.chale = a.getAttribute('data-chale');
-      document.dispatchEvent(new CustomEvent('recanto:chale', { detail: window.recantoReserva }));
-    });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-chale]');
+    if (!a) return;
+    window.recantoReserva.chale = a.getAttribute('data-chale');
+    document.dispatchEvent(new CustomEvent('recanto:chale', { detail: window.recantoReserva }));
   });
 
   // Provisório até o motor existir: mostra as datas e oferece o WhatsApp.
@@ -116,22 +119,6 @@
       '.<br><a class="btn btn-amber" target="_blank" rel="noopener" href="' + waLink(msg) + '">Consultar pelo WhatsApp</a>';
     el.hidden = false;
   }
-
-  /* ---------- galerias dos chalés (swipe nativo + pontos) ---------- */
-  document.querySelectorAll('[data-gallery]').forEach(function (g) {
-    var track = g.querySelector('.g-track');
-    var slides = track.children;
-    var dots = g.querySelector('.g-dots');
-    for (var i = 0; i < slides.length; i++) dots.appendChild(document.createElement('i'));
-    var marks = dots.children;
-    function update() {
-      var idx = Math.round(track.scrollLeft / track.clientWidth);
-      for (var j = 0; j < marks.length; j++) marks[j].classList.toggle('on', j === idx);
-    }
-    var t;
-    track.addEventListener('scroll', function () { cancelAnimationFrame(t); t = requestAnimationFrame(update); }, { passive: true });
-    update();
-  });
 
   /* ---------- carrossel de avaliações ---------- */
   document.querySelectorAll('[data-carousel]').forEach(function (c) {

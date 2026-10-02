@@ -1,0 +1,60 @@
+{
+  "_como_usar": "Um bloco por chalé. Texto entre colchetes aparece em amarelo no site até ser preenchido. Diárias em reais, só o número (ex.: 450); null aparece como [DIÁRIA]. Foto: 'base' é o caminho sem o '-420.webp', e 'larguras' são os tamanhos gerados. Foto que ainda não existe: { \"pendente\": \"o que fotografar\" }. status: \"ativo\" ou \"em-breve\".",
+  "chales": [
+    {
+      "id": "chale-1",
+      "ordem": 1,
+      "status": "ativo",
+      "nome": "[NOME DO CHALÉ 1]",
+      "capacidade": 2,
+      "cama": "[TIPO DE CAMA]",
+      "descricaoCurta": "Banheira de frente para a serra, lareira para as noites frias e uma varanda só de vocês. [REVISAR COM A PROPRIETÁRIA]",
+      "descricaoLonga": "[PREENCHER: o que torna este chalé diferente do outro, a vista, a posição no terreno, o detalhe que os hóspedes mais comentam]",
+      "comodidades": ["Banheira", "Lareira", "Varanda com vista", "Roupa de cama e banho", "Cozinha [CONFIRMAR]", "Wi-Fi [CONFIRMAR]", "Aquecedor [CONFIRMAR]"],
+      "fotos": [
+        { "base": "assets/fotos/chale-1/entardecer", "larguras": [420, 633], "largura": 633, "altura": 852, "alt": "Chalé A-frame em Alto Caparaó com a varanda iluminada ao pôr do sol" },
+        { "pendente": "interior com banheira" },
+        { "pendente": "lareira acesa" },
+        { "pendente": "vista da janela" }
+      ],
+      "diarias": { "semana": null, "fimDeSemana": null, "feriado": null },
+      "minimoNoites": { "semana": 1, "fimDeSemana": 2, "feriado": 2 }
+    },
+    {
+      "id": "chale-2",
+      "ordem": 2,
+      "status": "ativo",
+      "nome": "[NOME DO CHALÉ 2]",
+      "capacidade": 2,
+      "cama": "[TIPO DE CAMA]",
+      "descricaoCurta": "O mesmo silêncio, a mesma banheira com vista, a mata da serra logo ali. [REVISAR COM A PROPRIETÁRIA]",
+      "descricaoLonga": "[PREENCHER: o que torna este chalé diferente do outro]",
+      "comodidades": ["Banheira", "Lareira", "Varanda com vista", "Roupa de cama e banho", "Cozinha [CONFIRMAR]", "Wi-Fi [CONFIRMAR]", "Aquecedor [CONFIRMAR]"],
+      "fotos": [
+        { "base": "assets/fotos/chale-2/chales-dia", "larguras": [420, 683], "largura": 683, "altura": 805, "alt": "Chalés triangulares de telhado preto em Alto Caparaó, com deck de madeira e jardim, no fim da tarde" },
+        { "pendente": "quarto no mezanino" },
+        { "pendente": "banheira com vista para a serra" },
+        { "pendente": "varanda de manhã" }
+      ],
+      "diarias": { "semana": null, "fimDeSemana": null, "feriado": null },
+      "minimoNoites": { "semana": 1, "fimDeSemana": 2, "feriado": 2 }
+    },
+    {
+      "id": "chale-3",
+      "ordem": 3,
+      "status": "em-breve",
+      "nome": "[NOME DO CHALÉ 3]",
+      "previsao": "[PREVISÃO DE ABERTURA]",
+      "capacidade": 2,
+      "cama": "[TIPO DE CAMA]",
+      "descricaoCurta": "Exemplo de como os próximos chalés aparecem antes de abrir: com selo, foto ou render, e um botão para quem quer ser avisado.",
+      "descricaoLonga": "",
+      "comodidades": ["Banheira", "Lareira", "Varanda com vista"],
+      "fotos": [
+        { "pendente": "render ou foto da obra do chalé novo" }
+      ],
+      "diarias": { "semana": null, "fimDeSemana": null, "feriado": null },
+      "minimoNoites": { "semana": 1, "fimDeSemana": 2, "feriado": 2 }
+    }
+  ]
+}

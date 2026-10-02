@@ -207,9 +207,15 @@ diferente conforme de onde a pessoa clicou:
 - `/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
   refúgio romântico), para vender o projeto. Mesmo padrão da AML: `.htaccess`
   com noindex, faixa de demonstração no topo e placeholder amarelo para todo
-  dado que falta. Fotos só as do Instagram dela, em WebP; onde falta foto há um
-  quadro `[FOTO]`. O `#reservar` é só o contêiner: o motor de reserva com
-  adaptadores (WhatsApp, iCal, PMS, planilha) é a próxima etapa do briefing.
+  dado que falta (qualquer texto entre colchetes nos JSON vira placeholder).
+  **Tudo vem de dados:** chalés, extras, informações, FAQ, rodapé e o schema
+  LodgingBusiness são montados pelo `js/render.js` a partir de
+  `data/chales.json`, `data/extras.json` e `data/info.json`; o HTML só tem os
+  contêineres. Chalé novo = bloco no `chales.json` + pasta em
+  `assets/fotos/chale-N/`; o grid se ajusta de 1 a 4. Status `em-breve` mostra
+  selo e "Quero ser avisado". A cliente não quer pagamento nem sistema de
+  reserva: `#reservar` ("Monte sua estadia") vai virar um simulador que manda o
+  pedido pronto para o WhatsApp dela (próxima etapa do briefing v2).
 
 ### As demonstrações, uma pasta por área
 

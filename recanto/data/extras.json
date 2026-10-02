@@ -1,0 +1,50 @@
+{
+  "_como_usar": "Um bloco por extra. preco em reais, só o número; null aparece como [VALOR]. cobranca: \"por estadia\", \"por dia\" ou \"por pessoa\". aviso: texto curto de antecedência, ou null se não precisar.",
+  "extras": [
+    {
+      "id": "cafe-cesta",
+      "nome": "Café da manhã na cesta",
+      "descricao": "Entregue na porta, para tomar na varanda, sem pressa. [O QUE VEM NA CESTA]",
+      "foto": { "pendente": "café da manhã na cesta" },
+      "preco": null,
+      "cobranca": "por dia",
+      "aviso": "[PEDIR ATÉ QUANTAS HORAS ANTES]"
+    },
+    {
+      "id": "tabua-frios",
+      "nome": "Tábua de frios e vinho",
+      "descricao": "Para a noite na varanda, com a fogueira acesa e o céu da serra inteiro por cima.",
+      "foto": { "base": "assets/fotos/extras/tabua-frios", "larguras": [420, 609], "largura": 609, "altura": 816, "alt": "Vinho, queijos e castanhas ao lado de uma fogueira sob o céu estrelado da serra do Caparaó" },
+      "preco": null,
+      "cobranca": "por estadia",
+      "aviso": "[PEDIR ATÉ QUANTAS HORAS ANTES]"
+    },
+    {
+      "id": "decoracao-romantica",
+      "nome": "Decoração romântica",
+      "descricao": "Pétalas, velas e o chalé arrumado para receber vocês. [REVISAR COM A PROPRIETÁRIA]",
+      "foto": { "pendente": "decoração romântica" },
+      "preco": null,
+      "cobranca": "por estadia",
+      "aviso": "[PEDIR ATÉ QUANTAS HORAS ANTES]"
+    },
+    {
+      "id": "decoracao-aniversario",
+      "nome": "Decoração de aniversário",
+      "descricao": "Balões, bolo e a mesa posta para comemorar mais um ano. [REVISAR COM A PROPRIETÁRIA]",
+      "foto": { "pendente": "decoração de aniversário" },
+      "preco": null,
+      "cobranca": "por estadia",
+      "aviso": "[PEDIR ATÉ QUANTAS HORAS ANTES]"
+    },
+    {
+      "id": "culinaria-local",
+      "nome": "Culinária local",
+      "descricao": "Comida mineira da serra servida no chalé. [REVISAR COM A PROPRIETÁRIA]",
+      "foto": { "pendente": "culinária local" },
+      "preco": null,
+      "cobranca": "por pessoa",
+      "aviso": null
+    }
+  ]
+}

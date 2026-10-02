@@ -1,0 +1,72 @@
+{
+  "_como_usar": "Informações gerais da casa. Texto entre colchetes aparece em amarelo no site até ser preenchido. whatsapp: só dígitos com DDI e DDD (ex.: 5532999999999); vazio, o botão abre o WhatsApp sem destinatário.",
+
+  "nome": "Chalés Recanto Alto Caparaó",
+  "whatsapp": "",
+  "whatsappExibicao": "[WHATSAPP]",
+  "instagram": "recantoaltocaparao",
+  "endereco": "[ENDEREÇO]",
+  "cidade": "Alto Caparaó",
+  "uf": "MG",
+  "coordenadas": { "lat": -20.440611, "lng": -41.890722 },
+  "mapa": "https://maps.app.goo.gl/mxqedS4iccAojoGL8",
+  "cnpj": "[CNPJ]",
+  "privacidade": "[LINK DA POLÍTICA DE PRIVACIDADE]",
+
+  "checkin": "[HORÁRIO]",
+  "checkout": "[HORÁRIO]",
+  "checkinObs": "[PREENCHER: dá para chegar mais tarde? como é feita a entrega da chave?]",
+
+  "inclusoNaDiaria": ["Roupa de cama e banho", "[PREENCHER: lenha da lareira? itens de cozinha? amenities de banho?]"],
+
+  "regras": [
+    { "titulo": "Pets", "texto": "[PREENCHER]" },
+    { "titulo": "Crianças", "texto": "[PREENCHER]" },
+    { "titulo": "Visitas", "texto": "[PREENCHER]" },
+    { "titulo": "Som", "texto": "[PREENCHER: horário de silêncio]" },
+    { "titulo": "Fumar", "texto": "[PREENCHER]" }
+  ],
+
+  "sinal": { "percentual": null, "formas": "[PREENCHER: Pix, transferência, cartão?]" },
+  "cancelamento": "[PREENCHER: política de cancelamento e devolução do sinal]",
+
+  "conexao": { "wifi": "[PREENCHER]", "celular": "[PREENCHER: quais operadoras pegam]" },
+  "estrada": "[PREENCHER: trecho de terra? carro baixo passa? melhor chegar antes de escurecer?]",
+
+  "feriados": {
+    "_obs": "Feriados nacionais. [REVISAR COM A PROPRIETÁRIA] quais têm preço de feriado e se há feriados locais.",
+    "datas": [
+      { "data": "2026-11-02", "nome": "Finados" },
+      { "data": "2026-11-15", "nome": "Proclamação da República" },
+      { "data": "2026-11-20", "nome": "Consciência Negra" },
+      { "data": "2026-12-25", "nome": "Natal" },
+      { "data": "2027-01-01", "nome": "Ano-novo" },
+      { "data": "2027-02-08", "nome": "Carnaval" },
+      { "data": "2027-02-09", "nome": "Carnaval" },
+      { "data": "2027-03-26", "nome": "Sexta-feira Santa" },
+      { "data": "2027-04-21", "nome": "Tiradentes" },
+      { "data": "2027-05-01", "nome": "Dia do Trabalho" },
+      { "data": "2027-05-27", "nome": "Corpus Christi" }
+    ]
+  },
+  "altaTemporada": [
+    { "inicio": "2026-12-20", "fim": "2027-01-10", "nome": "Fim de ano [CONFIRMAR]" },
+    { "inicio": "2027-07-01", "fim": "2027-07-31", "nome": "Férias de julho [CONFIRMAR]" }
+  ],
+
+  "disponibilidade": {
+    "_obs": "Usado pelo simulador de reserva (próxima etapa). fonte: \"planilha\", \"ical\" ou as duas.",
+    "fonte": ["planilha"],
+    "planilhaCsv": "",
+    "ical": {}
+  },
+
+  "faq": [
+    { "pergunta": "O café da manhã está incluso na diária?", "resposta": "[PREENCHER]" },
+    { "pergunta": "Dá para fazer check-in mais tarde?", "resposta": "[PREENCHER]" },
+    { "pergunta": "Como pago o sinal?", "resposta": "[PREENCHER]" },
+    { "pergunta": "Posso levar comida e cozinhar no chalé?", "resposta": "[PREENCHER]" },
+    { "pergunta": "Tem estacionamento?", "resposta": "[PREENCHER]" },
+    { "pergunta": "Dá para subir o Pico da Bandeira saindo do Recanto?", "resposta": "[PREENCHER]" }
+  ]
+}
