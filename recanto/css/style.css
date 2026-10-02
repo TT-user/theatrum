@@ -77,13 +77,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   .menu.open { opacity: 1; transform: none; visibility: visible; }
   .menu a { padding: 14px 0; border-bottom: 1px solid rgba(243, 237, 227, .08); text-decoration: none; font: 500 24px/1.2 var(--f-title); }
   .menu a:last-child { border-bottom: 0; }
+  .menu a.active { color: var(--dourado); font-style: italic; }
 }
 @media (min-width: 960px) {
   .nav-row { height: 72px; gap: 32px; }
   :root { --header-h: 100px; }
   .menu { display: flex; gap: 28px; }
   .menu a { text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: .02em; opacity: .85; transition: opacity .2s, color .2s; }
+  .menu a { position: relative; padding: 6px 0; }
+  .menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--dourado); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
   .menu a:hover { opacity: 1; color: var(--dourado); }
+  .menu a.active { opacity: 1; color: var(--dourado); }
+  .menu a.active::after { transform: scaleX(1); }
   .burger { display: none; }
 }
 

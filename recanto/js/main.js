@@ -27,6 +27,27 @@
     header.classList.add('solid');
   }
 
+  /* ---------- destaque no menu da seção visível ---------- */
+  // Considera todas as seções com id, não só as do menu: em "Datas especiais"
+  // ou no FAQ nenhum item fica aceso, em vez de o anterior ficar preso.
+  var navLinks = document.querySelectorAll('.menu a');
+  var spySections = document.querySelectorAll('main section[id]');
+  var spyTick = false;
+  function spy() {
+    spyTick = false;
+    var line = window.innerHeight * 0.35;
+    var atual = null;
+    spySections.forEach(function (sec) { if (sec.getBoundingClientRect().top <= line) atual = sec.id; });
+    navLinks.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + atual;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', function () { if (!spyTick) { spyTick = true; requestAnimationFrame(spy); } }, { passive: true });
+  window.addEventListener('resize', spy);
+  spy();
+
   /* ---------- menu do celular ---------- */
   var burger = document.querySelector('.burger');
   var menu = document.getElementById('menu');
