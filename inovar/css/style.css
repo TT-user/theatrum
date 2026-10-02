@@ -275,11 +275,11 @@ dialog::backdrop { background: rgba(15, 22, 12, .6); }
 .modal-sm { height: auto; }
 
 /* ---------- Entrada discreta ---------- */
-.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
-.js .reveal.in { opacity: 1; transform: none; }
+.rv .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.rv .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .rv .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
