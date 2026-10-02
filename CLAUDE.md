@@ -195,6 +195,11 @@ diferente conforme de onde a pessoa clicou:
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
 - `/moveis-planejados/` — landing do segmento de planejados.
+- `/aml/` — prévia do site da AML (medicina e segurança do trabalho, Cataguases,
+  Leopoldina e Muriaé), feita para vender o projeto. Cliente real, então leva
+  `.htaccess` com noindex e os dados que faltam aparecem como placeholder
+  amarelo, nunca inventados. Briefing, README de pendências e `netlify.toml`
+  ficam em `cliente AML/`, que não é commitada.
 
 ### As demonstrações, uma pasta por área
 
