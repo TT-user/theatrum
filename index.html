@@ -766,16 +766,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      leva nada junto. Sem JS, todos os paineis aparecem empilhados. -->
 <style>
   .ds{margin-top:44px}
-  .ds-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:4px;margin:0 -4px;-webkit-overflow-scrolling:touch}
+  /* abas de pasta: presas ao topo do painel. A aba ativa tem o mesmo
+     fundo do painel e cobre a borda de cima dele (o painel sobe 1px por
+     baixo das abas), entao as duas pecas leem como um objeto so. */
+  .ds-tabs{display:flex;align-items:flex-end;gap:4px;overflow-x:auto;scrollbar-width:none;position:relative;z-index:2;
+    -webkit-overflow-scrolling:touch}
   .ds-tabs::-webkit-scrollbar{display:none}
   .ds-tabs[hidden]{display:none}
-  .ds-tab{flex-shrink:0;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#CFC6B7;
-    border-radius:99px;padding:13px 20px;font:600 15px/1 var(--font-body);transition:border-color .2s ease,background .2s ease,color .2s ease}
-  .ds-tab:hover{border-color:rgba(227,179,65,.5);color:var(--white)}
-  .ds-tab[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
-  .ds-tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:99px}
-  .ds-painel{margin-top:18px;background:var(--card);border:1px solid #2a251d;border-radius:24px;padding:clamp(24px,3.4vw,40px)}
+  .ds-tab{flex-shrink:0;cursor:pointer;position:relative;border:1px solid #2a251d;border-bottom:0;border-radius:14px 14px 0 0;
+    background:#131110;color:#A39B8D;padding:14px 22px;margin-bottom:1px;font:600 15px/1 var(--font-body);
+    transition:background .2s ease,color .2s ease}
+  .ds-tab:hover{background:#1A1714;color:var(--white)}
+  .ds-tab[aria-selected=true]{background:var(--card);color:var(--white);margin-bottom:0;padding-bottom:15px;
+    box-shadow:inset 0 2px 0 var(--accent)}
+  .ds-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px 14px 0 0}
+  .ds-painel{margin-top:18px;background:var(--card);border:1px solid #2a251d;border-radius:24px;padding:clamp(24px,3.4vw,40px);position:relative;z-index:1}
   .ds-painel + .ds-painel{margin-top:18px}
+  .ds-tabs:not([hidden]) ~ .ds-painel{margin-top:-1px;border-top-left-radius:0}
   .ds-painel[hidden]{display:none}
   .ds-painel h3{font:800 clamp(1.5rem,2.6vw,2.1rem)/1.15 var(--font-display);letter-spacing:-.005em;color:var(--white)}
   .ds-intro{margin-top:10px;font-size:clamp(16px,1.6vw,18px);line-height:1.65;color:#D8CFC0;max-width:62ch}
@@ -795,7 +802,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .ds-longo{margin-top:22px;padding:18px 22px;border-left:3px solid var(--accent);border-radius:0 14px 14px 0;
     background:rgba(255,255,255,.03);font-size:16px;line-height:1.7;color:#E2DACB}
   .ds-longo span{display:block;font:600 13px/1 var(--font-mono);color:var(--accent);margin-bottom:8px}
-  @media(max-width:760px){ .ds-cols{grid-template-columns:1fr} .ds-tab{padding:12px 16px;font-size:14.5px} }
+  @media(max-width:760px){ .ds-cols{grid-template-columns:1fr} .ds-tab{padding:13px 16px;font-size:14.5px} .ds-tab[aria-selected=true]{padding-bottom:14px} }
 
   .inv{margin-top:64px;padding-top:44px;border-top:1px solid var(--line)}
   .inv h3{font:800 clamp(22px,2.8vw,28px)/1.2 var(--font-display);letter-spacing:-.02em;color:var(--white)}
