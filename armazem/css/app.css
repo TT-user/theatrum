@@ -114,6 +114,8 @@ main { max-width: 1240px; margin: 0 auto; padding: 20px 16px 80px; outline: none
 .campo.largo { grid-column: 1 / -1; }
 .campo > span { font-size: .84rem; font-weight: 600; color: var(--cafe); }
 .campo small { color: var(--muted); font-size: .8rem; }
+.campo > .rot { font-size: .84rem; font-weight: 600; color: var(--cafe); }
+.pessoa-nova .link { font-size: .84rem; font-weight: 600; }
 input[type=text], input[type=date], input[type=number], input[type=search], input:not([type]), select, textarea {
   width: 100%; padding: 9px 10px; min-height: 42px; border: 1px solid #D3CBBC; border-radius: 8px; background: #fff;
 }

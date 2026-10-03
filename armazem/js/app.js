@@ -26,8 +26,36 @@ const opts = (lista, sel, rot, val = (x) => x.id, vazio) =>
 const pessoasOrdenadas = () => D.db.pessoas.filter((p) => p.ativo !== false).sort((a, b) => a.nome.localeCompare(b.nome));
 const tiposAtivos = (incluir) => D.db.tipos.filter((t) => t.ativo || t.id === incluir);
 const dlPessoas = () => `<datalist id="dl-pessoas">${pessoasOrdenadas().map((p) => `<option value="${esc(D.nomePessoa(p))}">`).join('')}</datalist>`;
-const campoPessoa = (id, selId, rotulo, extra = '') =>
-  `<label class="campo ${extra}"><span>${esc(rotulo)}</span><input id="${id}" list="dl-pessoas" value="${selId ? esc(D.nomePessoa(D.pessoa(selId))) : ''}" placeholder="Digite o nome ou o apelido" autocomplete="off"></label>`;
+const campoPessoa = (id, selId, rotulo, extra = '', rapido = false) => rapido && pode('escrita')
+  // com cadastro rápido: pessoa nova entra sem sair da tela (ver ligação de [data-nova-pessoa] abaixo)
+  ? `<div class="campo ${extra}"><label class="rot" for="${id}">${esc(rotulo)}</label><input id="${id}" data-rapido list="dl-pessoas" value="${selId ? esc(D.nomePessoa(D.pessoa(selId))) : ''}" placeholder="Digite o nome ou o apelido" autocomplete="off"><small class="pessoa-nova" data-para="${id}">${dicaPessoaNova(id, '')}</small></div>`
+  : `<label class="campo ${extra}"><span>${esc(rotulo)}</span><input id="${id}" list="dl-pessoas" value="${selId ? esc(D.nomePessoa(D.pessoa(selId))) : ''}" placeholder="Digite o nome ou o apelido" autocomplete="off"></label>`;
+function dicaPessoaNova(id, valor) {
+  return valor && !lerPessoa(valor)
+    ? `<b>"${esc(valor)}"</b> não está cadastrado. <button type="button" class="link" data-nova-pessoa="${id}">Cadastrar agora</button>`
+    : `Não achou? <button type="button" class="link" data-nova-pessoa="${id}">Cadastrar pessoa nova</button>`;
+}
+document.addEventListener('input', (e) => {
+  if (!e.target.matches?.('input[data-rapido]')) return;
+  const dica = document.querySelector(`.pessoa-nova[data-para="${e.target.id}"]`);
+  if (dica) dica.innerHTML = dicaPessoaNova(e.target.id, e.target.value.trim());
+});
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-nova-pessoa]');
+  if (!b) return;
+  const campo = document.getElementById(b.dataset.novaPessoa);
+  const digitado = campo.value.trim();
+  modalPessoa(null, {
+    nome: digitado && !lerPessoa(digitado) ? digitado : '',
+    aoCriar: (np) => {
+      // a pessoa entra na lista e já fica escolhida; o formulário recalcula como se tivesse sido digitada
+      document.querySelectorAll('#dl-pessoas').forEach((dl) => dl.insertAdjacentHTML('beforeend', `<option value="${esc(D.nomePessoa(np))}">`));
+      campo.value = D.nomePessoa(np);
+      campo.dispatchEvent(new Event('input', { bubbles: true }));
+      campo.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+  });
+});
 function lerPessoa(valor) {
   const v = String(valor || '').trim().toLowerCase();
   if (!v) return null;
@@ -281,7 +309,7 @@ function romaneioForm(id) {
         <div class="cartao">
           <div class="campos">
             <label class="campo"><span>Data</span><input type="date" name="data" value="${r.data}" ${dis} required></label>
-            ${campoPessoa('f-pessoa', r.pessoaId, 'Produtor', 'largo').replace('<input', `<input ${dis} required`)}
+            ${campoPessoa('f-pessoa', r.pessoaId, 'Produtor', 'largo', !soLeitura).replace('<input', `<input ${dis} required`)}
             <label class="campo"><span>Motorista</span><select name="motoristaId" ${dis}>${opts(db.motoristas, r.motoristaId, (m) => `${m.nome} ${m.placa ? '· ' + m.placa : ''}`, (m) => m.id, '-')}</select></label>
             <label class="campo"><span>Pasta</span><input name="pasta" value="${esc(r.pasta)}" ${dis}></label>
           </div>
@@ -386,7 +414,7 @@ function romaneioForm(id) {
     ler(); atualizar();
     const t = r.totais;
     const faltas = [];
-    if (!r.pessoaId) faltas.push('Escolha o produtor da lista (cadastre antes em Pessoas, se for novo).');
+    if (!r.pessoaId) faltas.push('Escolha o produtor da lista. Se for novo, use "Cadastrar agora" embaixo do campo.');
     if (!t.liquidoDec) faltas.push('Lance pelo menos uma linha de quilos.');
     if (t.erros.length) faltas.push('Corrija as linhas marcadas em vermelho.');
     if (faltas.length) { app.querySelector('#erros').innerHTML = `<div class="erro">${faltas.map(esc).join('<br>')}</div>`; app.querySelector('#erros').scrollIntoView({ block: 'center' }); return; }
@@ -585,7 +613,7 @@ function rvNovo() {
     <div class="grade g2">
       <div>
         <div class="cartao"><div class="campos">
-          ${campoPessoa('rv-v', st.vendedorId, 'Vendedor', 'largo')}
+          ${campoPessoa('rv-v', st.vendedorId, 'Vendedor', 'largo', true)}
           <div id="rv-saldo" class="campo largo peq"></div>
           <label class="campo"><span>Data da compra</span><input type="date" id="rv-dc" value="${hoje()}"></label>
           <label class="campo"><span>Data do pagamento</span><input type="date" id="rv-dp" value="${hoje()}"></label>
@@ -640,7 +668,7 @@ function rvNovo() {
   };
   const desenharPartes = () => {
     $('#rv-partes').innerHTML = st.partes.map((p, i) => `<div class="campos" style="grid-template-columns:1fr 90px 40px;margin-bottom:6px;align-items:end">
-      ${campoPessoa('pt-' + i, p.pessoaId, i === 0 ? 'Titular (vendedor)' : 'Parceiro').replace('<input', `<input data-parte="${i}" ${i === 0 ? 'disabled' : ''}`)}
+      ${campoPessoa('pt-' + i, p.pessoaId, i === 0 ? 'Titular (vendedor)' : 'Parceiro', '', i > 0).replace('<input', `<input data-parte="${i}" ${i === 0 ? 'disabled' : ''}`)}
       <label class="campo"><span>%</span><input data-pct="${i}" inputmode="decimal" value="${String(p.percentual).replace('.', ',')}" ${i === 0 ? 'disabled' : ''}></label>
       ${i === 0 ? '<span></span>' : `<button type="button" class="btn peq" data-tira-parte="${i}" aria-label="Tirar parceiro">×</button>`}</div>`).join('') || '<p class="peq muted">Escolha o vendedor.</p>';
   };
@@ -715,7 +743,7 @@ function rvNovo() {
     e.preventDefault();
     const c = calcular();
     const faltas = [...c.errs];
-    if (!c.v) faltas.push('Escolha o vendedor.');
+    if (!c.v) faltas.push('Escolha o vendedor da lista. Se for novo, use "Cadastrar agora" embaixo do campo.');
     if (!st.tipoId) faltas.push('Escolha o café.');
     if (!c.peso) faltas.push('Informe a quantidade.');
     if (!c.preco || !Number.isFinite(c.preco)) faltas.push('Informe o valor da saca.');
@@ -1098,9 +1126,9 @@ function pessoas() {
   app.querySelector('#nova').onclick = () => modalPessoa();
 }
 
-function modalPessoa(p) {
+function modalPessoa(p, { nome = '', aoCriar } = {}) {
   const novo = !p;
-  p = p || { nome: '', apelido: '', doc: '', inscProdutor: '', telefone: '', endereco: '', obs: '' };
+  p = p || { nome, apelido: '', doc: '', inscProdutor: '', telefone: '', endereco: '', obs: '' };
   abrirModal(`<h2>${novo ? 'Nova pessoa' : 'Editar cadastro'}</h2>
     <div class="campos">
       <label class="campo largo"><span>Nome completo</span><input id="ps-nome" value="${esc(p.nome)}"></label>
@@ -1111,15 +1139,19 @@ function modalPessoa(p) {
       <label class="campo largo"><span>Endereço / propriedade</span><input id="ps-end" value="${esc(p.endereco)}"></label>
       <label class="campo largo"><span>Observações</span><textarea id="ps-obs">${esc(p.obs)}</textarea></label>
     </div>
-    <div class="modal-rodape"><button class="btn" data-fechar>Cancelar</button><button class="btn prim" id="ps-ok">Salvar</button></div>`,
+    ${aoCriar ? '<p class="peq muted">Só o nome é obrigatório. Conta bancária e PIX você completa depois, na ficha da pessoa.</p>' : ''}
+    <div class="modal-rodape"><button class="btn" data-fechar>Cancelar</button><button class="btn prim" id="ps-ok">${aoCriar ? 'Cadastrar e usar' : 'Salvar'}</button></div>`,
   { aoAbrir: (cx) => cx.querySelector('#ps-ok').onclick = () => {
     const v = (s) => cx.querySelector(s)?.value.trim();
     if (!v('#ps-nome')) return aviso('Informe o nome.');
+    const igual = D.db.pessoas.find((x) => x !== p && x.nome.toLowerCase() === v('#ps-nome').toLowerCase());
+    if (igual) return aviso(`Já existe "${D.nomePessoa(igual)}" no cadastro. Use um apelido ou o nome completo para diferenciar.`);
     const dados = { nome: v('#ps-nome'), apelido: v('#ps-ap'), inscProdutor: v('#ps-ins'), telefone: v('#ps-tel'), endereco: v('#ps-end'), obs: v('#ps-obs') };
     if (cx.querySelector('#ps-doc')) dados.doc = v('#ps-doc');
     if (novo) {
       const np = { id: D.uid(), doc: '', ativo: true, ...dados };
-      D.db.pessoas.push(np); D.auditar('cadastrou', 'pessoa', np.id, null, np.nome); gravar('Pessoa cadastrada.'); fecharModal(); ir('pessoa/' + np.id);
+      D.db.pessoas.push(np); D.auditar('cadastrou', 'pessoa', np.id, null, np.nome); gravar(`${np.nome} cadastrado.`); fecharModal();
+      if (aoCriar) aoCriar(np); else ir('pessoa/' + np.id);
     } else {
       const antes = { ...p }; Object.assign(p, dados); D.auditar('alterou', 'pessoa', p.id, { nome: antes.nome, apelido: antes.apelido }, { nome: p.nome, apelido: p.apelido }); gravar('Cadastro salvo.'); fecharModal(); render();
     }
