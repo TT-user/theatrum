@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0B0A08"/>
+<title>Política de privacidade | Theatrum</title>
+<meta name="description" content="Como a Theatrum mede visitas e anúncios no site usetheatrum.com.br (Google, Microsoft Ads e Microsoft Clarity), o que fazemos com os dados de formulário e como mudar a sua escolha de cookies."/>
+<link rel="canonical" href="https://usetheatrum.com.br/privacidade/"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png"/>
+<!-- Microsoft Ads UET (tag 187278315) + consentimento -->
+<script>
+  /* Microsoft Ads UET, tag 187278315.
+     1) Consentimento primeiro: anúncio negado até a pessoa aceitar no
+        aviso de cookies (js/consentimento.js). Quem já aceitou numa
+        visita anterior recebe o 'update' aqui mesmo, antes do UET.
+     2) O snippet oficial da Microsoft, sem alteração, só que disparado
+        no primeiro gesto ou quando a página fica ociosa, como o GTM da
+        home: script de medição rodando no carregamento travava a página.
+        Nada se perde: até o bat.js chegar, window.uetq é uma fila, e o
+        UET a lê inteira quando sobe. */
+  window.uetq = window.uetq || [];
+  window.uetq.push('consent', 'default', {'ad_storage': 'denied'});
+  try { if (localStorage.getItem('theatrum-cookies') === 'aceito') window.uetq.push('consent', 'update', {'ad_storage': 'granted'}); } catch (e) {}
+  (function () {
+    var subiu = false;
+    function uet() {
+      if (subiu) return; subiu = true;
+      (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"187278315", enableAutoSpaFix: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","https://bat.bing.com/bat.js","uetq");
+    }
+    ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
+      addEventListener(ev, uet, { once: true, passive: true });
+    });
+    addEventListener("load", function () {
+      if (window.requestIdleCallback) requestIdleCallback(uet, { timeout: 6000 });
+      else setTimeout(uet, 3000);
+    });
+  })();
+</script>
+<style>
+  :root{--bg:#0B0A08;--card:#1A1815;--accent:#E3B341;--cream:#F6F1E7;--muted:#A39B8D;--line:rgba(255,255,255,.10)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--cream);font:400 17px/1.7 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-underline-offset:3px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 16px;max-width:820px;margin:0 auto;border-bottom:1px solid var(--line)}
+  header a{text-decoration:none;font-weight:700;color:var(--cream)}
+  header nav{display:flex;gap:18px;font-size:14.5px}
+  header nav a{color:var(--muted);font-weight:500}
+  header nav a:hover{color:var(--accent)}
+  main{max-width:820px;margin:0 auto;padding:48px 16px 80px}
+  .rot{font:500 14px/1 ui-monospace,"JetBrains Mono",monospace;color:var(--muted)}
+  .rot b{color:var(--accent)}
+  h1{margin-top:16px;font-size:clamp(2rem,5vw,2.8rem);line-height:1.12;font-weight:800;letter-spacing:-.01em}
+  .data{margin-top:10px;color:var(--muted);font-size:15px}
+  h2{margin-top:44px;font-size:1.35rem;line-height:1.3;font-weight:800}
+  p,li{color:#DDD5C7}
+  p{margin-top:12px}
+  ul{margin-top:12px;padding-left:22px;display:grid;gap:8px}
+  li b,p b{color:#fff}
+  .caixa{margin-top:16px;padding:18px 20px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+  .caixa p:first-child{margin-top:0}
+  button{margin-top:14px;min-height:44px;padding:0 20px;border-radius:99px;border:1px solid rgba(227,179,65,.6);background:transparent;
+    color:var(--accent);font:700 15px/1 inherit;font-family:inherit;cursor:pointer}
+  button:hover{background:rgba(227,179,65,.1)}
+  .estado{margin-top:10px;font-size:14.5px;color:var(--muted)}
+  hr{margin:72px 0 0;border:0;border-top:1px solid var(--line)}
+  footer{max-width:820px;margin:0 auto;padding:28px 16px 48px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+<header>
+  <a href="../">Theatrum</a>
+  <nav><a href="#en" lang="en">English</a><a href="../">Voltar ao site</a></nav>
+</header>
+
+<main>
+  <p class="rot"><b>[privacidade]</b> como medimos o site</p>
+  <h1>Política de privacidade</h1>
+  <p class="data">Atualizada em 2 de outubro de 2026.</p>
+
+  <p>Esta página explica, em linguagem direta, o que o site <b>usetheatrum.com.br</b> mede, com quais ferramentas, para quê, e como você controla isso. Ela vale para o site principal da Theatrum. As prévias feitas para clientes e as demonstrações não usam as ferramentas de anúncio descritas aqui.</p>
+
+  <h2>Quem é o responsável</h2>
+  <p>Theatrum, CNPJ 61.978.753/0001-60, responsável Matheus Ananias de Souza. Contato: <a href="mailto:contato@usetheatrum.com.br">contato@usetheatrum.com.br</a> ou <a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp (32) 98476-2445</a>.</p>
+
+  <h2>O que medimos e por quê</h2>
+  <p>Medimos visitas e o resultado dos anúncios para saber quais páginas ajudam e quais anúncios trazem contato de verdade. Não vendemos dados a ninguém.</p>
+  <ul>
+    <li><b>Microsoft Ads (tag UET).</b> Registra que alguém chegou ao site por um anúncio da Microsoft (Bing) e se depois clicou para falar no WhatsApp ou abriu a calculadora. Serve para medir e ajustar campanhas. <b>Os cookies de anúncio dela só são gravados se você clicar em "Aceitar"</b> no aviso de cookies.</li>
+    <li><b>Microsoft Clarity.</b> Mostra, de forma agregada, como as pessoas usam as páginas: onde clicam, até onde rolam, onde travam. Serve para melhorar o site. O Clarity mascara o que é digitado em campos de formulário.</li>
+    <li><b>Google Analytics, Google Tag Manager e Google Ads.</b> Contam visitas, páginas vistas e conversões de anúncios do Google, com o mesmo objetivo.</li>
+  </ul>
+  <p>Essas ferramentas usam cookies e identificadores do navegador. Os dados são tratados pela Microsoft e pelo Google segundo as políticas deles: <a href="https://privacy.microsoft.com/pt-br/privacystatement" target="_blank" rel="noopener">privacidade da Microsoft</a> e <a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" rel="noopener">privacidade do Google</a>.</p>
+
+  <h2>Sua escolha de cookies</h2>
+  <div class="caixa">
+    <p>Na primeira visita aparece um aviso com <b>Aceitar</b> e <b>Recusar</b>. Até você escolher, os cookies de anúncio da Microsoft ficam desligados. A escolha fica guardada no seu navegador, e o aviso não volta.</p>
+    <p>Quer mudar? O botão abaixo apaga a escolha, e o aviso aparece de novo na próxima página que você abrir.</p>
+    <button type="button" id="refazer">Rever minha escolha de cookies</button>
+    <p class="estado" id="estado" aria-live="polite"></p>
+  </div>
+
+  <h2>Dados que você nos manda</h2>
+  <p>Quando você pede o raio-x do seu negócio, preenche a calculadora ou chama no WhatsApp, recebemos o que você escreveu: nome do negócio, cidade, site ou Instagram e o seu número. Usamos isso só para preparar e mandar o raio-x e conversar sobre o seu caso. Não entra em lista de terceiros. Os números que você digita na calculadora ficam no seu navegador; só saem dele se você mesmo os mandar pelo WhatsApp.</p>
+
+  <h2>Seus direitos (LGPD)</h2>
+  <p>Você pode pedir a qualquer momento para ver, corrigir ou apagar os dados que temos sobre você, e retirar o consentimento. É só escrever para <a href="mailto:contato@usetheatrum.com.br">contato@usetheatrum.com.br</a> ou chamar no WhatsApp. Respondemos em até 15 dias.</p>
+
+  <hr>
+
+  <section id="en" lang="en">
+    <p class="rot" style="margin-top:56px"><b>[privacy]</b> how we measure the site</p>
+    <h1>Privacy policy</h1>
+    <p class="data">Updated on October 2, 2026.</p>
+
+    <p>This page explains, in plain words, what the <b>usetheatrum.com.br</b> website measures, with which tools, why, and how you stay in control. It covers Theatrum's main site. Previews built for clients and demo sites do not use the ad tools described here.</p>
+
+    <h2>Who is responsible</h2>
+    <p>Theatrum, Brazilian company ID (CNPJ) 61.978.753/0001-60, run by Matheus Ananias de Souza. Contact: <a href="mailto:contato@usetheatrum.com.br">contato@usetheatrum.com.br</a> or <a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp +55 32 98476-2445</a>.</p>
+
+    <h2>What we measure and why</h2>
+    <p>We measure visits and ad results to learn which pages help and which ads bring real contacts. We do not sell data to anyone.</p>
+    <ul>
+      <li><b>Microsoft Ads (UET tag).</b> Records that someone reached the site from a Microsoft (Bing) ad and whether they then clicked to talk on WhatsApp or opened the calculator. It is used to measure and tune campaigns. <b>Its advertising cookies are only stored if you click "Accept"</b> on the cookie notice.</li>
+      <li><b>Microsoft Clarity.</b> Shows, in aggregate, how people use the pages: where they click, how far they scroll, where they get stuck. It is used to improve the site. Clarity masks what is typed into form fields.</li>
+      <li><b>Google Analytics, Google Tag Manager and Google Ads.</b> Count visits, page views and Google ad conversions, for the same purpose.</li>
+    </ul>
+    <p>These tools use cookies and browser identifiers. The data is processed by Microsoft and Google under their own policies: <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener">Microsoft privacy</a> and <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">Google privacy</a>.</p>
+
+    <h2>Your cookie choice</h2>
+    <div class="caixa">
+      <p>On your first visit a notice shows <b>Accept</b> and <b>Decline</b>. Until you choose, Microsoft advertising cookies stay off. Your choice is saved in your browser and the notice does not come back.</p>
+      <p>Want to change it? The button above, in the Portuguese section, clears your choice ("Rever minha escolha de cookies"), and the notice shows again on the next page you open.</p>
+    </div>
+
+    <h2>Data you send us</h2>
+    <p>When you ask for the x-ray of your business, use the calculator or message us on WhatsApp, we receive what you wrote: business name, city, website or Instagram and your number. We use it only to prepare and send the x-ray and to talk about your case. It is never shared with third-party lists. The numbers you type into the calculator stay in your browser unless you send them to us on WhatsApp yourself.</p>
+
+    <h2>Your rights (Brazil's LGPD)</h2>
+    <p>You can ask at any time to see, correct or delete the data we hold about you, and to withdraw consent. Just write to <a href="mailto:contato@usetheatrum.com.br">contato@usetheatrum.com.br</a> or message us on WhatsApp. We reply within 15 days.</p>
+  </section>
+</main>
+
+<footer>Theatrum · CNPJ 61.978.753/0001-60 · <a href="../">usetheatrum.com.br</a></footer>
+
+<script>
+  (function(){
+    var bt = document.getElementById('refazer'), estado = document.getElementById('estado');
+    function mostra(){
+      var v = null; try { v = localStorage.getItem('theatrum-cookies'); } catch(e){}
+      estado.textContent = v === 'aceito' ? 'Escolha atual: aceito.' : v === 'recusado' ? 'Escolha atual: recusado.' : 'Você ainda não escolheu.';
+    }
+    bt.addEventListener('click', function(){
+      try { localStorage.removeItem('theatrum-cookies'); } catch(e){}
+      estado.textContent = 'Escolha apagada. O aviso aparece na próxima página que você abrir.';
+    });
+    mostra();
+  })();
+</script>
+<script src="/js/consentimento.js" defer></script>
+<script src="/js/uet-eventos.js" defer></script>
+</body>
+</html>

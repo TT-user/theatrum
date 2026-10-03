@@ -582,6 +582,35 @@ footer a{color:var(--muted)}
   .trust{margin-top:12px}
 }
 </style>
+<!-- Microsoft Ads UET (tag 187278315) + consentimento -->
+<script>
+  /* Microsoft Ads UET, tag 187278315.
+     1) Consentimento primeiro: anúncio negado até a pessoa aceitar no
+        aviso de cookies (js/consentimento.js). Quem já aceitou numa
+        visita anterior recebe o 'update' aqui mesmo, antes do UET.
+     2) O snippet oficial da Microsoft, sem alteração, só que disparado
+        no primeiro gesto ou quando a página fica ociosa, como o GTM da
+        home: script de medição rodando no carregamento travava a página.
+        Nada se perde: até o bat.js chegar, window.uetq é uma fila, e o
+        UET a lê inteira quando sobe. */
+  window.uetq = window.uetq || [];
+  window.uetq.push('consent', 'default', {'ad_storage': 'denied'});
+  try { if (localStorage.getItem('theatrum-cookies') === 'aceito') window.uetq.push('consent', 'update', {'ad_storage': 'granted'}); } catch (e) {}
+  (function () {
+    var subiu = false;
+    function uet() {
+      if (subiu) return; subiu = true;
+      (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"187278315", enableAutoSpaFix: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","https://bat.bing.com/bat.js","uetq");
+    }
+    ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
+      addEventListener(ev, uet, { once: true, passive: true });
+    });
+    addEventListener("load", function () {
+      if (window.requestIdleCallback) requestIdleCallback(uet, { timeout: 6000 });
+      else setTimeout(uet, 3000);
+    });
+  })();
+</script>
 </head>
 <body>
 
@@ -1121,6 +1150,7 @@ footer a{color:var(--muted)}
       <a href="#planos">Planos</a>
       <a href="#faq">Dúvidas</a>
       <a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a>
+      <a href="../privacidade/">Privacidade</a>
     </div>
     <p style="font-size:.8rem;color:var(--muted)">
       Theatrum · identidade digital para marcenarias e móveis planejados em todo o Brasil<br>
@@ -1429,5 +1459,7 @@ window.addEventListener('scroll', function(){
   sticky.classList.toggle('show', passou && !dentro(planos) && !dentro(fim));
 }, {passive:true});
 </script>
+<script src="/js/consentimento.js" defer></script>
+<script src="/js/uet-eventos.js" defer></script>
 </body>
 </html>

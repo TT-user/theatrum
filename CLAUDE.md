@@ -45,8 +45,8 @@ de vários MB mais de uma vez. Adicione caminhos explícitos e confira o
 - **Este repositório é publicado como site.** Um `.env` commitado aqui fica
   servido em texto puro no domínio. Chave de API só em arquivo que case com o
   `.gitignore` — inclusive cópias e backups (`.bak` **não** casa com `*.env`).
-- **Dependências externas:** Google Fonts, GTM e gtag. Nenhuma outra, e é para
-  continuar assim. O GSAP saiu: custava 41 KB para cinco animações de entrada
+- **Dependências externas:** Google Fonts, GTM, gtag e o UET do Microsoft Ads
+  (`bat.bing.com`, tag 187278315, autorizado em 02/10/2026). Nenhuma outra. O GSAP saiu: custava 41 KB para cinco animações de entrada
   que o IntersectionObserver e o CSS já fazem. Não traga biblioteca de animação
   de volta.
 
@@ -288,7 +288,28 @@ Os quatro demos de nutrição moravam em `/moveis-planejados/demos/` por heranç
 de quando aquela esteira nasceu dentro da de planejados. Há um `RedirectMatch
 301` no `.htaccess` de planejados cobrindo os endereços antigos; pode sair
 quando não houver mais nada apontando para lá.
-- `/blog` — saída do Astro em `site/astro-site/`.
+- `/blog` — saída do Astro em `site/astro-site/`. O que entra no `<head>` do
+  blog vai no `BlogLayout.astro` (com `is:inline`) **e** nos quatro HTML já
+  gerados em `blog/`, senão some no próximo build ou não chega ao ar.
+- `/privacidade/` — política de privacidade (PT, com versão em inglês em
+  `#en`), linkada no rodapé de todas as páginas do site principal. Tem botão
+  para apagar a escolha de cookies.
+
+### Microsoft Ads (UET) e consentimento
+
+Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
+`/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
+`/inovar`, `/recanto` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+
+- No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
+  já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
+  oficial, disparado no primeiro gesto ou no ocioso, como o GTM.
+- `js/consentimento.js`: aviso de cookies (Aceitar, Recusar, Saiba mais).
+- `js/uet-eventos.js`: `whatsapp_click` (link `wa.me`/`api.whatsapp.com` ou
+  `data-whatsapp`) e `diagnostico_click` (`data-uet-diagnostico`, nos três
+  "Ver quanto eu perco por mês" da home).
+- O consentimento só controla o UET. GTM, gtag e Google Ads continuam
+  rodando sem pedir.
 
 ---
 
