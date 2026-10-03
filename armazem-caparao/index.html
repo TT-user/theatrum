@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armazém Gerais Caparaó | Compra e armazenagem de café no Caparaó</title>
+<meta name="description" content="Armazém de café no Caparaó: compra, pesagem, armazenagem e classificação do café do produtor da região. Fale com o comprador pelo WhatsApp.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1B5E2E">
+<link rel="icon" href="assets/icone-64.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap">
+<link rel="stylesheet" href="css/site.css?v=1">
+<!-- TODO quando virar o site oficial: canonical, og:image, schema LocalBusiness com endereço e horário reais, tirar o noindex -->
+</head>
+<body>
+<!-- Faixa de demonstração: apagar quando virar o site oficial -->
+<div class="demo-faixa" role="note">Prévia criada por <strong>Theatrum</strong> para o Armazém Gerais Caparaó. Os campos em amarelo esperam os dados reais.</div>
+
+<header class="topo" id="topo">
+  <div class="wrap topo-linha">
+    <a class="marca" href="#topo" aria-label="Armazém Gerais Caparaó, início"><img src="assets/logo-200.png" srcset="assets/logo-200.png 1x, assets/logo-400.png 2x" width="200" height="108" alt="Armazém Gerais Caparaó"></a>
+    <nav class="menu" id="menu" aria-label="Seções">
+      <a href="#servicos">O que fazemos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#cafes">Cafés</a>
+      <a href="#quem-somos">Quem somos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-verde btn-topo" href="https://wa.me/5532984069176?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Armaz%C3%A9m.%20Quero%20falar%20sobre%20caf%C3%A9." data-wa>WhatsApp</a>
+    <button class="btn-menu" type="button" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-linhas" viewBox="0 0 600 300" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
+      <g fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M0 300 C120 180 240 150 300 150 C360 150 480 180 600 300"/>
+        <path d="M30 300 C140 200 245 175 300 175 C355 175 460 200 570 300"/>
+        <path d="M60 300 C160 220 250 200 300 200 C350 200 440 220 540 300"/>
+        <path d="M90 300 C180 240 255 225 300 225 C345 225 420 240 510 300"/>
+        <path d="M120 300 C200 260 260 250 300 250 C340 250 400 260 480 300"/>
+      </g>
+    </svg>
+    <div class="wrap hero-grade">
+      <div>
+        <p class="sobre">Armazém de café · Caparaó <span class="ph">[CONFIRMAR CIDADE E UF]</span></p>
+        <h1>Seu café pesado na hora, guardado com saldo e <em>pago no dia combinado.</em></h1>
+        <p class="lead">Compramos e armazenamos o café dos produtores da região do Caparaó. Pesagem com romaneio em duas vias e pagamento por PIX ou TED.</p>
+        <div class="acoes">
+          <a class="btn btn-ouro" href="https://wa.me/5532984069176?text=Ol%C3%A1%2C%20vim%20pelo%20site.%20Quero%20saber%20o%20pre%C3%A7o%20do%20caf%C3%A9%20hoje." data-wa>Perguntar o preço de hoje</a>
+          <a class="btn btn-linha" href="#como-funciona">Ver como funciona</a>
+        </div>
+      </div>
+      <div class="hero-cartao">
+        <p class="cartao-rot">O que você precisa hoje?</p>
+        <a class="caminho" href="#vender"><b>Quero vender meu café</b><span>Preço do dia, pesagem e pagamento</span></a>
+        <a class="caminho" href="#guardar"><b>Quero guardar meu café</b><span>Depósito com saldo em sacas e quilos</span></a>
+        <a class="caminho" href="#comprar"><b>Quero comprar café</b><span>Torrefação, cafeteria ou revenda</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS (como a faixa de números da Atlântica, só com dado real) -->
+  <section class="numeros" aria-label="O armazém em números">
+    <div class="wrap numeros-grade">
+      <div><b><span class="ph">[ANOS]</span></b><span>anos recebendo café</span></div>
+      <div><b><span class="ph">[CAPACIDADE]</span></b><span>sacas de capacidade de armazenagem</span></div>
+      <div><b><span class="ph">[MUNICÍPIOS]</span></b><span>municípios atendidos na região</span></div>
+      <div><b>2 vias</b><span>de romaneio em cada pesagem: uma fica com você</span></div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="sec" id="servicos">
+    <div class="wrap">
+      <p class="rotulo">O que fazemos</p>
+      <h2>Do terreiro à saca vendida, num lugar só.</h2>
+      <div class="servicos">
+        <article class="servico" id="vender">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <h3>Compra de café</h3>
+          <p>Compramos o café do produtor pelo preço do dia. Cada compra recebe número de registro e comprovante, com a data do pagamento combinada na hora.</p>
+          <p class="miudo">Pagamento: PIX ou TED <span class="ph">[CONFIRMAR PRAZOS]</span></p>
+        </article>
+        <article class="servico" id="guardar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12M7 21v-7h10v7M7 17h10"/></svg>
+          <h3>Armazenagem</h3>
+          <p>Seu café fica guardado em nome do seu lote, com saldo em sacas e quilos. Você vende quando o preço estiver bom.</p>
+          <p class="miudo"><span class="ph">[CONFIRMAR: guardam café de terceiros? Há taxa de armazenagem?]</span></p>
+        </article>
+        <article class="servico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M5 6h14M7 6l-4 8a4 4 0 0 0 8 0L7 6zm10 0-4 8a4 4 0 0 0 8 0l-4-8zM8 21h8M12 6v15"/></svg>
+          <h3>Pesagem e romaneio</h3>
+          <p>Pesagem volume por volume, com o romaneio numerado em duas vias: uma fica com você, outra com o armazém. Sem conta de cabeça.</p>
+        </article>
+        <article class="servico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4.5-2-7-6-7-10a7 7 0 0 1 14 0c0 4-2.5 8-7 10zM12 7c-1.5 2-1.5 6 0 9"/></svg>
+          <h3>Classificação</h3>
+          <p>Bebida e tipo avaliados na entrada, para você saber o que está vendendo e pelo quê.</p>
+          <p class="miudo"><span class="ph">[CONFIRMAR: fazem prova de xícara? Quem classifica?]</span></p>
+        </article>
+        <article class="servico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h2a2 2 0 0 0 4 0h6a2 2 0 0 0 4 0h2v-5l-3-4h-4V5H3v12zM15 8v4h6"/></svg>
+          <h3>Busca na propriedade</h3>
+          <p>Comprou e não tem como trazer? Fale com a gente sobre a busca do café no seu sítio.</p>
+          <p class="miudo"><span class="ph">[CONFIRMAR: frota própria ou frete terceirizado? O frete é descontado?]</span></p>
+        </article>
+        <article class="servico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l-1 4H7L6 3zm1 4 1 14h8l1-14M10 11h4"/></svg>
+          <h3>Sacaria</h3>
+          <p>Sacos para a colheita, com o valor acertado no próximo pagamento.</p>
+          <p class="miudo"><span class="ph">[CONFIRMAR: vendem outros insumos?]</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="sec sec-creme" id="como-funciona">
+    <div class="wrap">
+      <p class="rotulo">Como funciona</p>
+      <h2>Quatro passos, tudo anotado.</h2>
+      <ol class="passos">
+        <li><b>Você traz, ou a gente busca</b><span>Combine pelo WhatsApp o dia de entregar o café no armazém ou da busca no sítio.</span></li>
+        <li><b>Pesagem com romaneio</b><span>Cada volume é pesado e anotado. Você sai com a sua via, com o peso em sacas e quilos.</span></li>
+        <li><b>Classificação e preço</b><span>O café é classificado e você decide: vender pelo preço do dia ou deixar guardado.</span></li>
+        <li><b>Pagamento ou saldo</b><span>Vendeu: recebe na data combinada, por PIX ou TED. Guardou: o saldo fica no seu nome até você vender.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CAFÉS -->
+  <section class="sec" id="cafes">
+    <div class="wrap">
+      <p class="rotulo">Cafés que recebemos</p>
+      <h2>Cada bebida, o seu preço.</h2>
+      <p class="intro">Recebemos o café da região do Caparaó, e cada bebida tem o seu preço. <span class="ph">[CONFIRMAR QUAIS BEBIDAS E TIPOS RECEBEM]</span> <span class="ph">[CONFIRMAR: recebem conilon? Café especial?]</span></p>
+      <div class="cafes">
+        <div class="cafe"><h3>Bebidas finas</h3><p>Estritamente mole, mole e apenas mole.</p></div>
+        <div class="cafe"><h3>Bebida dura</h3><p>Tipo 6 e tipo 7.</p></div>
+        <div class="cafe"><h3>Riado, rio e riozona</h3><p>A gente classifica e diz o preço.</p></div>
+        <div class="cafe"><h3>Bica corrida e rapa</h3><p>Café de varrição e bica corrida, pesados e pagos como qualquer outro.</p></div>
+      </div>
+      <div class="preco-dia" id="comprar">
+        <div>
+          <h3>Compra café para torrar ou revender?</h3>
+          <p>Fale com a gente sobre volume, bebida e tipo. <span class="ph">[CONFIRMAR: vendem para torrefação, cafeteria ou só para exportadoras?]</span></p>
+        </div>
+        <a class="btn btn-verde" href="https://wa.me/5532984069176?text=Ol%C3%A1%2C%20vim%20pelo%20site.%20Quero%20comprar%20caf%C3%A9." data-wa>Falar sobre compra</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEM SOMOS -->
+  <section class="sec sec-escura" id="quem-somos">
+    <div class="wrap quem">
+      <div>
+        <p class="rotulo">Quem somos</p>
+        <h2>Quem cuida do seu café.</h2>
+        <p>O Armazém Gerais Caparaó é tocado por Cristiano Xavier e Cristiano Xavier Filho. <span class="ph">[HISTÓRIA: desde quando, como começou, o que mudou de lá para cá]</span></p>
+        <p><span class="ph">[O QUE VOCÊS QUEREM QUE O PRODUTOR SAIBA DE VOCÊS]</span></p>
+      </div>
+      <div class="fotos">
+        <div class="foto ph-foto"><span class="ph">[FOTO: o armazém por fora]</span></div>
+        <div class="foto ph-foto"><span class="ph">[FOTO: Cristiano e Cristiano Filho]</span></div>
+        <div class="foto ph-foto"><span class="ph">[FOTO: a balança / as pilhas]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section class="sec" id="duvidas">
+    <div class="wrap estreito">
+      <p class="rotulo">Dúvidas</p>
+      <h2>O que o produtor costuma perguntar.</h2>
+      <details><summary>Vocês publicam o preço do café do dia?</summary><p>O preço muda todo dia. Pergunte pelo WhatsApp que a gente responde com o valor de hoje para a sua bebida. <span class="ph">[CONFIRMAR: querem publicar o preço no site?]</span></p></details>
+      <details><summary>Quanto tempo leva para receber?</summary><p>A data do pagamento é combinada na hora da compra e fica escrita no comprovante. <span class="ph">[CONFIRMAR PRAZO MAIS COMUM]</span></p></details>
+      <details><summary>Posso deixar o café guardado e vender depois?</summary><p><span class="ph">[CONFIRMAR: regras da guarda, taxa e prazo máximo]</span></p></details>
+      <details><summary>Como fica a meação com o meeiro?</summary><p>Na compra, o valor é dividido pelo percentual combinado, e cada um recebe a sua parte na própria conta.</p></details>
+      <details><summary>Vocês buscam o café no sítio?</summary><p><span class="ph">[CONFIRMAR: até onde buscam e quanto custa o frete]</span></p></details>
+      <details><summary>Preciso de nota de produtor?</summary><p><span class="ph">[CONFIRMAR COM O CONTADOR DO ARMAZÉM]</span></p></details>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="sec sec-creme" id="contato">
+    <div class="wrap contato">
+      <div>
+        <p class="rotulo">Contato</p>
+        <h2>Fale direto com quem compra.</h2>
+        <ul class="contatos">
+          <li><a href="https://wa.me/5532984069176" data-wa><b>(32) 98406-9176</b><span>Cristiano Xavier · WhatsApp</span></a></li>
+          <li><a href="https://wa.me/5532984787973" data-wa><b>(32) 98478-7973</b><span>Cristiano Xavier Filho · WhatsApp</span></a></li>
+          <li><a href="tel:+553237471007"><b>(32) 3747-1007</b><span>Telefone fixo</span></a></li>
+          <li><b><span class="ph">[ENDEREÇO DO ARMAZÉM]</span></b><span>Horário: <span class="ph">[DIAS E HORÁRIO DE RECEBIMENTO]</span></span></li>
+        </ul>
+        <div class="mapa ph-foto"><span class="ph">[MAPA: entra quando o armazém estiver no Google Meu Negócio]</span></div>
+      </div>
+      <form class="form" id="form-contato">
+        <h3>Mande sua mensagem</h3>
+        <p class="miudo">Ela abre no WhatsApp do armazém, já escrita.</p>
+        <label>Seu nome<input name="nome" required autocomplete="name"></label>
+        <label>Você quer
+          <select name="assunto">
+            <option>vender café</option>
+            <option>guardar café</option>
+            <option>comprar café</option>
+            <option>saber o preço de hoje</option>
+            <option>outro assunto</option>
+          </select>
+        </label>
+        <label>Quantas sacas, mais ou menos? <small>(opcional)</small><input name="sacas" inputmode="numeric"></label>
+        <label>Comunidade ou município<input name="local" autocomplete="address-level2"></label>
+        <button class="btn btn-verde" type="submit">Abrir no WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap rodape-grade">
+    <div><img src="assets/logo-claro-400.png" width="400" height="215" alt="Armazém Gerais Caparaó" class="rodape-logo"></div>
+    <div>
+      <h4>Contato</h4>
+      <p>(32) 98406-9176 · Cristiano Xavier<br>(32) 98478-7973 · Cristiano Xavier Filho<br>(32) 3747-1007</p>
+    </div>
+    <div>
+      <h4>Endereço</h4>
+      <p><span class="ph">[ENDEREÇO COMPLETO E CEP]</span><br><span class="ph">[CNPJ]</span></p>
+    </div>
+    <div>
+      <h4>Equipe</h4>
+      <p><a href="../armazem/">Área do armazém (sistema)</a></p>
+    </div>
+  </div>
+  <p class="wrap credito">Site por <a href="https://usetheatrum.com.br/">Theatrum</a></p>
+</footer>
+
+<a class="wa-flutuante" href="https://wa.me/5532984069176?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Armaz%C3%A9m." aria-label="Falar no WhatsApp" data-wa>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.2-.7-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.2 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1z"/></svg>
+</a>
+
+<script>
+// menu do celular
+(function () {
+  var b = document.querySelector('.btn-menu'), m = document.getElementById('menu');
+  b.addEventListener('click', function () {
+    var aberto = m.classList.toggle('aberto');
+    b.setAttribute('aria-expanded', aberto);
+  });
+  m.addEventListener('click', function (e) { if (e.target.tagName === 'A') { m.classList.remove('aberto'); b.setAttribute('aria-expanded', 'false'); } });
+})();
+// formulário vira mensagem pronta no WhatsApp (sem servidor, sem guardar nada)
+document.getElementById('form-contato').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var f = new FormData(e.target);
+  var linhas = ['Olá, vim pelo site do Armazém. Meu nome é ' + f.get('nome') + '.', 'Quero ' + f.get('assunto') + '.'];
+  if (f.get('sacas')) linhas.push('São cerca de ' + f.get('sacas') + ' sacas.');
+  if (f.get('local')) linhas.push('Sou de ' + f.get('local') + '.');
+  window.open('https://wa.me/5532984069176?text=' + encodeURIComponent(linhas.join('\n')), '_blank', 'noopener');
+});
+</script>
+</body>
+</html>

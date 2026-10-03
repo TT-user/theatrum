@@ -294,6 +294,13 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   próprio, `Desktop/armazem-caparao`, fora deste site: o modo demonstração dele leva um Postgres
   inteiro para o navegador (~5,5 MB) e não serve como link de venda. Pendências em `interno/clientes/armazem-caparao/README.md`.
 
+- `/armazem-caparao/` — prévia do site institucional do mesmo cliente (o sistema é `/armazem/`),
+  inspirada na estrutura da atlanticacoffee.com, mas para mercado interno: três caminhos (vender,
+  guardar, comprar café), serviços tirados da operação real e placeholder amarelo para tudo que
+  depende da entrevista. Contatos do cartão são reais; endereço, números e história não. `.htaccess`
+  com noindex, sem UET. O roteiro da entrevista é um artifact privado no claude.ai (link em
+  `interno/clientes/armazem-caparao/README.md`), que guarda as respostas para preencher a prévia.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
