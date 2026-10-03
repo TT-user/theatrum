@@ -1,0 +1,10 @@
+# Pasta interna: nada aqui é página do site. O repositório é publicado
+# inteiro pela Hostinger, então sem esta regra o arquivo ficaria aberto
+# no domínio (o CLAUDE.md e o PACOTE-COMPLETO.md ficaram, até 03/10/2026).
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

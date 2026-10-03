@@ -1,4 +1,20 @@
 MazyOS/
+Produto Digital/
+
+# area interna (ver interno/README.md). Versiona so os documentos de
+# processo; material de cliente, PDFs, prints e criativos ficam no disco.
+interno/clientes/
+interno/comercial/
+interno/marketing/
+interno/demos-em-producao/
+interno/arquivo/
+
+# configuracao do Claude Code: versiona instrucoes e agentes, nao as
+# skills baixadas nem as permissoes locais
+.claude/*
+!.claude/CLAUDE.md
+!.claude/agents/
+!.claude/.htaccess
 
 # Astro blog source — build output goes to /blog (tracked, is what Hostinger serves)
 site/astro-site/node_modules/

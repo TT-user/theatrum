@@ -7,7 +7,7 @@
 > checklist de venda (o que entra / o que falta decidir antes de assinar).
 
 **Como usar:** ao fechar um cliente, duplicar este arquivo com o nome dele
-(`saidas/clientes/<nome>-pacote.md` no MazyOS) e ir marcando `[x]` por módulo
+(`interno/clientes/<nome>/pacote.md`, fora do git) e ir marcando `[x]` por módulo
 conforme a implantação avança.
 
 ---

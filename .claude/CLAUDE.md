@@ -13,6 +13,25 @@ complemento, com peso visual menor e dito abertamente que não é o forte.
 
 ---
 
+## Área de trabalho
+
+Este arquivo mora em `.claude/CLAUDE.md`, e não na raiz, porque a raiz é
+servida no domínio: até 03/10/2026 ele e o `PACOTE-COMPLETO.md` estavam
+abertos em usetheatrum.com.br. `.claude/` e `interno/` têm `.htaccess`
+negando acesso. **Documento interno nunca vai para a raiz nem para pasta
+de página.**
+
+Material de trabalho (clientes, propostas, PDFs, criativos, demos que
+chegaram de fora) fica em `interno/`, mapeado em `interno/README.md`. Só
+os documentos de processo de lá são versionados; o resto é ignorado.
+
+Agentes em `.claude/agents/`: `revisor` (antes de todo push),
+`previa-de-cliente`, `demo-de-segmento`, `proposta-comercial`,
+`criativos` e `google-e-trafego`. O que cada um faz e por que não há
+agente de IA no WhatsApp nem de reativação está em `interno/README.md`.
+
+---
+
 ## Workflow de git (autorização permanente)
 
 Após concluir cada tarefa/mudança lógica no código (não a cada Edit individual),
@@ -233,11 +252,11 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   Leopoldina e Muriaé), feita para vender o projeto. Cliente real, então leva
   `.htaccess` com noindex e os dados que faltam aparecem como placeholder
   amarelo, nunca inventados. Briefing, README de pendências e `netlify.toml`
-  ficam em `cliente AML/`, que não é commitada.
+  ficam em `interno/clientes/aml/`, fora do git.
 - `/engmais/` — prévia do site da Eng+ (consultoria ambiental e segurança do
   trabalho, Dores do Rio Preto, ES e MG), no mesmo molde da AML: noindex,
   placeholder amarelo, diagnóstico em dois caminhos (produtor e empresa) e
-  simulação de WhatsApp. Pendências em `cliente Engmais/README.md`, não commitada.
+  simulação de WhatsApp. Pendências em `interno/clientes/engmais/README.md`, fora do git.
 - `/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
   refúgio romântico), para vender o projeto. Mesmo padrão da AML: `.htaccess`
   com noindex, faixa de demonstração no topo e placeholder amarelo para todo
@@ -261,7 +280,7 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   tirar catálogo, lista de pedido e seletor de loja. Agendamento de veterinário
   em 5 passos e calendário do rebanho (setas e arraste, sem barra). Números e
   rotas em `data/config.json`; calendário em `data/calendario.json`, todo
-  marcado para revisão dos veterinários. Pendências em `cliente Inovar/README.md`,
+  marcado para revisão dos veterinários. Pendências em `interno/clientes/inovar/README.md`,
   não commitada.
 
 ### As demonstrações, uma pasta por área
