@@ -16,7 +16,7 @@ interno/
   arquivo/                cópias antigas que ainda não foram apagadas
 ```
 
-Clientes hoje: `aml`, `engmais`, `inovar`, `recanto` (prévias no ar),
+Clientes hoje: `aml`, `engmais`, `inovar`, `recanto`, `armazem-caparao` (prévias no ar),
 `patricia-sacramento` (proposta de 25/06/2026) e `nutri-cintia` (proposta
 em HTML; a demo está em `/nutricao/demos/cintia-antunes/`, ainda fora do git).
 

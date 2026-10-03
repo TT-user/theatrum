@@ -283,6 +283,15 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   marcado para revisão dos veterinários. Pendências em `interno/clientes/inovar/README.md`,
   não commitada.
 
+- `/armazem/` — demo do sistema de gestão do Armazém Gerais Caparaó (romaneio,
+  estoque, caderno de RV, pendências, relação de pagamentos), para vender o
+  projeto. É sistema, não site: roda no navegador em ES modules sem build, com
+  dados no `localStorage` e seed fictício; PDF pela impressão do navegador.
+  `.htaccess` com noindex, faixa de demonstração, sem UET. As regras de cálculo
+  ficam puras em `js/calculo.js`, testadas em
+  `interno/clientes/armazem-caparao/testes/` (fora do git). A versão real (Next.js + Supabase)
+  vai para repositório próprio. Pendências em `interno/clientes/armazem-caparao/README.md`.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armazém Gerais Caparaó | Sistema de gestão (demonstração)</title>
+<meta name="description" content="Demonstração do sistema de romaneio, estoque, caderno de RV, pendências e relação de pagamentos do Armazém Gerais Caparaó.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1B6E33">
+<link rel="icon" href="assets/icone-64.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/app.css?v=1">
+<script type="module" src="js/app.js?v=1"></script>
+</head>
+<body>
+<!-- Faixa de demonstração: apagar quando virar o sistema oficial -->
+<div class="demo-faixa" role="note">Demonstração criada por <strong>Theatrum</strong> para o Armazém Gerais Caparaó. Dados fictícios, guardados só neste navegador.</div>
+
+<header class="topo">
+  <div class="topo-linha">
+    <a class="marca" href="#/" aria-label="Início">
+      <img src="assets/logo-400.png" width="400" height="215" alt="Armazém Gerais Caparaó">
+    </a>
+    <label class="perfil">
+      <span>Entrar como</span>
+      <select id="perfil">
+        <option value="admin">Administrador</option>
+        <option value="balanca">Balança / Recebimento</option>
+        <option value="financeiro">Financeiro</option>
+        <option value="consulta">Consulta</option>
+      </select>
+    </label>
+  </div>
+  <nav class="menu" id="menu" aria-label="Seções"></nav>
+</header>
+
+<main id="app" tabindex="-1"><p class="carregando">Carregando…</p></main>
+
+<div id="modal" class="modal" hidden></div>
+<div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+<div id="impressao" class="impressao"></div>
+<noscript><p class="carregando">O sistema precisa de JavaScript ligado.</p></noscript>
+</body>
+</html>
