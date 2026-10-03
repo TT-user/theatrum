@@ -289,8 +289,10 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   dados no `localStorage` e seed fictício; PDF pela impressão do navegador.
   `.htaccess` com noindex, faixa de demonstração, sem UET. As regras de cálculo
   ficam puras em `js/calculo.js`, testadas em
-  `interno/clientes/armazem-caparao/testes/` (fora do git). A versão real (Next.js + Supabase)
-  vai para repositório próprio. Pendências em `interno/clientes/armazem-caparao/README.md`.
+  `interno/clientes/armazem-caparao/testes/` (fora do git). Fica como prévia leve de venda.
+  O sistema de verdade (React + Vite + Supabase, especificação de 03/10/2026) está em repositório
+  próprio, `Desktop/armazem-caparao`, fora deste site: o modo demonstração dele leva um Postgres
+  inteiro para o navegador (~5,5 MB) e não serve como link de venda. Pendências em `interno/clientes/armazem-caparao/README.md`.
 
 ### As demonstrações, uma pasta por área
 
