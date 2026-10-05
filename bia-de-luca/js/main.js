@@ -71,11 +71,31 @@
   function escolher(c, botao) {
     opcoes.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-checked', x === botao); });
     resposta.innerHTML =
-      '<div class="resposta"><div><h3>' + c.titulo + '</h3>' +
+      '<div class="entra"><h3>' + c.titulo + '</h3>' +
       '<ul class="tags">' + c.tags.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-      '<p>' + c.texto + '</p></div>' +
-      '<a class="btn btn--violeta" target="_blank" rel="noopener" href="' + linkWa(c.msg) + '">Conversar com a Bia</a></div>';
+      '<p>' + c.texto + '</p>' +
+      '<a class="btn btn--violeta" target="_blank" rel="noopener" href="' + linkWa(c.msg) + '">Conversar sobre isso com a Bia</a></div>';
   }
+
+  // Abas das terapias
+  var abas = Array.prototype.slice.call(document.querySelectorAll('.abas [role="tab"]'));
+  function ativar(aba, foco) {
+    abas.forEach(function (t) {
+      var sel = t === aba;
+      t.setAttribute('aria-selected', sel);
+      t.tabIndex = sel ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !sel;
+    });
+    if (foco) aba.focus();
+  }
+  abas.forEach(function (t, i) {
+    t.tabIndex = i === 0 ? 0 : -1;
+    t.addEventListener('click', function () { ativar(t); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); ativar(abas[(i + d + abas.length) % abas.length], true); }
+    });
+  });
 
   // Florais: escolher temas monta a mensagem
   var TEMAS = ['Prosperidade e sucesso', 'Autoestima', 'Abundância', 'Transformação', 'Foco e concentração',
@@ -110,7 +130,7 @@
 
   // Formulário: monta a mensagem e abre o WhatsApp
   var form = document.getElementById('form');
-  if (form) form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
     var nome = form.nome.value.trim();
     if (!nome) { form.nome.setAttribute('aria-invalid', 'true'); form.nome.focus(); return; }
@@ -126,44 +146,15 @@
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) { en.target.classList.toggle('parado', !en.isIntersecting); });
     });
-    document.querySelectorAll('.hero, .contato, .comecar').forEach(function (s) { io.observe(s); });
+    document.querySelectorAll('.hero, .contato').forEach(function (s) { io.observe(s); });
 
     // Entrada suave ao rolar
-    var alvos = document.querySelectorAll('.sec-cab, .card, .guia, .passo, .difs__grid, .florais__grid, .historia__grid, .palestras__grid, .depo blockquote, .duvidas__grid, .contato__grid');
+    var alvos = document.querySelectorAll('.sec-cab, .difs__grid, .florais__grid, .historia__grid, .palestras__grid, .depo blockquote, .duvidas__grid, .contato__grid, .comecar__grid');
     var io2 = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visto'); io2.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
     alvos.forEach(function (el) { el.classList.add('revela'); io2.observe(el); });
   }
-
-  // Menu acompanha a rolagem: marcador na seção atual e barra de progresso
-  var links = Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]'));
-  var marcador = menu.querySelector('.topo__marcador');
-  var barra = document.querySelector('.topo__progresso span');
-  var alvosMenu = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-  var pendente = false;
-  function atualizarTopo() {
-    pendente = false;
-    var doc = document.documentElement;
-    var total = doc.scrollHeight - innerHeight;
-    if (barra) barra.style.transform = 'scaleX(' + (total > 0 ? scrollY / total : 0) + ')';
-    var atual = -1;
-    alvosMenu.forEach(function (el, i) { if (el && el.getBoundingClientRect().top < innerHeight * .4) atual = i; });
-    links.forEach(function (a, i) { a.classList.toggle('ativo', i === atual); });
-    if (marcador) {
-      if (atual < 0) { marcador.classList.remove('on'); return; }
-      var a = links[atual];
-      marcador.style.transform = 'translateX(' + a.offsetLeft + 'px) scaleX(' + a.offsetWidth + ')';
-      marcador.classList.add('on');
-    }
-  }
-  addEventListener('scroll', function () { if (!pendente) { pendente = true; requestAnimationFrame(atualizarTopo); } }, { passive: true });
-  addEventListener('resize', atualizarTopo);
-  atualizarTopo();
-
-  // Balão do WhatsApp aparece uma vez, depois de um tempo na página
-  var wa = document.querySelector('.wa-float');
-  setTimeout(function () { wa.classList.add('mostrar'); setTimeout(function () { wa.classList.remove('mostrar'); }, 5000); }, 9000);
 
   document.getElementById('ano').textContent = new Date().getFullYear();
 })();
