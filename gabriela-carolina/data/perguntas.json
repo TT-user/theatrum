@@ -1,0 +1,179 @@
+{
+  "_leia": "Perguntas do 'Por onde comecar?'. pesos soma pontos para cada caminho (terapeutica, reiki, limpeza, integrada). Empate = integrada. requer: so mostra a opcao se esse campo for true em servicos.json. Ajuste Theatrum: com os pesos originais o Reiki nunca vencia; por isso relaxando = reiki 2/limpeza 1 e o formato tambem pesa.",
+  "perguntas": [
+    {
+      "id": "motivo",
+      "titulo": "O que mais te trouxe até aqui hoje?",
+      "resumo": "O que me trouxe",
+      "dica": "Pode marcar até 2. Sem pressa.",
+      "tipo": "multipla",
+      "max": 2,
+      "opcoes": [
+        {
+          "id": "padroes",
+          "texto": "Padrões que se repetem na minha vida",
+          "pesos": {
+            "terapeutica": 2
+          }
+        },
+        {
+          "id": "mente",
+          "texto": "Mente acelerada, difícil desligar",
+          "pesos": {
+            "terapeutica": 1,
+            "reiki": 1
+          }
+        },
+        {
+          "id": "cansaco",
+          "texto": "Cansaço, sensação de energia pesada",
+          "pesos": {
+            "reiki": 1,
+            "limpeza": 2
+          }
+        },
+        {
+          "id": "mudanca",
+          "texto": "Um momento de mudança, perda ou recomeço",
+          "pesos": {
+            "terapeutica": 1,
+            "integrada": 1
+          }
+        },
+        {
+          "id": "habito",
+          "texto": "Um hábito que saiu do controle (ex.: apostas, celular, comida)",
+          "pesos": {
+            "terapeutica": 2
+          }
+        },
+        {
+          "id": "conhecer",
+          "texto": "Quero me conhecer melhor",
+          "pesos": {
+            "terapeutica": 1,
+            "integrada": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cuidado",
+      "titulo": "Como você prefere ser cuidada?",
+      "resumo": "Como prefiro ser cuidada",
+      "dica": "Tudo bem não saber ainda.",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "conversando",
+          "texto": "Conversando e entendendo a origem",
+          "pesos": {
+            "terapeutica": 2
+          }
+        },
+        {
+          "id": "relaxando",
+          "texto": "Relaxando e sentindo, sem precisar falar muito",
+          "pesos": {
+            "reiki": 2,
+            "limpeza": 1
+          }
+        },
+        {
+          "id": "dois",
+          "texto": "Um pouco dos dois",
+          "pesos": {
+            "integrada": 2
+          }
+        },
+        {
+          "id": "nao-sei",
+          "texto": "Ainda não sei",
+          "pesos": {
+            "integrada": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "formato",
+      "titulo": "Qual formato combina com a sua rotina?",
+      "resumo": "Formato",
+      "dica": "Escolha o que fica mais leve para você.",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "video",
+          "texto": "Online por vídeo, com horário marcado",
+          "pesos": {
+            "terapeutica": 1,
+            "reiki": 1
+          }
+        },
+        {
+          "id": "distancia",
+          "texto": "À distância, me acomodando onde eu estiver (com devolutiva em áudio)",
+          "pesos": {
+            "limpeza": 2
+          }
+        },
+        {
+          "id": "presencial",
+          "texto": "Presencial",
+          "pesos": {},
+          "requer": "presencial"
+        }
+      ]
+    },
+    {
+      "id": "periodo",
+      "titulo": "Qual o melhor período para você?",
+      "resumo": "Melhor período",
+      "dica": "Quase lá…",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "manha",
+          "texto": "Manhã",
+          "pesos": {}
+        },
+        {
+          "id": "tarde",
+          "texto": "Tarde",
+          "pesos": {}
+        },
+        {
+          "id": "noite",
+          "texto": "Noite",
+          "pesos": {}
+        },
+        {
+          "id": "tanto-faz",
+          "texto": "Tanto faz",
+          "pesos": {}
+        }
+      ]
+    },
+    {
+      "id": "experiencia",
+      "titulo": "Você já fez terapia ou Reiki antes?",
+      "resumo": "Primeira vez",
+      "dica": "Não existe resposta certa.",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "sim",
+          "texto": "Sim, já fiz",
+          "resposta": "Não",
+          "pesos": {}
+        },
+        {
+          "id": "primeira",
+          "texto": "Não, seria a primeira vez",
+          "resposta": "Sim",
+          "pesos": {}
+        }
+      ]
+    }
+  ]
+}

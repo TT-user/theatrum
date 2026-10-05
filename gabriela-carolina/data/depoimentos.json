@@ -1,0 +1,48 @@
+{
+  "_leia": "Prints de depoimentos exibidos no carrossel (marquee). So aparecem os que tiverem autorizado: true. Na demo estao todos true: [CONFIRMAR AUTORIZACAO] por escrito com a cliente.",
+  "depoimentos": [
+    {
+      "imagem": "assets/img/depoimentos/dep-1.webp", "largura": 402, "altura": 304,
+      "contexto": "Sessões terapêuticas",
+      "alt": "Print de mensagem: “Foi uma experiência única, fiquei até assustado de me sentir tão bem e conectado comigo mesmo. Aqui em casa, minha família percebeu: bem mais tranquilo. Estou tão leve nas questões que me machucavam que parece que a página está virando mesmo! Como é bom se sentir bem e em paz!”",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]"
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-2.webp", "largura": 458, "altura": 715,
+      "contexto": "Durante a sessão à distância",
+      "alt": "Story com print de conversa durante um procedimento online. A cliente responde depois: “Gratidão, amada! Tá tudo tranquilo… até que adormeci na hora.”",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]"
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-3.webp", "largura": 481, "altura": 687,
+      "contexto": "Após a devolutiva em áudio",
+      "alt": "Story com print de conversa: depois de receber a devolutiva em áudio, a cliente responde “Muito grata pelas palavras”.",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]",
+      "_revisar": "[REVISAR COM O CLIENTE] o texto do story diz que a sessão 'promove grandes mudanças' — avaliar se mantém este print"
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-4.webp", "largura": 459, "altura": 634,
+      "contexto": "Limpeza energética à distância",
+      "alt": "Story com print de mensagem: “Só pra te falar que fez muita diferença essa limpeza. Deu muita clareza, como você mesma disse. Tô mais tranquila, realmente veio uma energia boa.”",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]"
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-5.webp", "largura": 446, "altura": 711,
+      "contexto": "Procedimento online",
+      "alt": "Story com prints de conversa de clientes depois de um procedimento online: “Gratidão” e “Muitas lágrimas… mas agora muita coisa a trabalhar…”.",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]"
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-6.webp", "largura": 459, "altura": 679,
+      "contexto": "Sessão à distância",
+      "alt": "Story com print de mensagem: “Não sei que tipo de reprogramação você fez, mas saí do banho e minha mente só sabia agradecer. Passei um creme no rosto e no corpo, coisa que fazia anos que eu não tinha disposição pra fazer.”",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]"
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-7.webp", "largura": 442, "altura": 675,
+      "contexto": "Depois de ouvir os áudios",
+      "alt": "Story com print de mensagem: “Ouvi os áudios hoje com calma. Muito bom relembrar o momento que tivemos e ver como, em pouco tempo, eu já comecei a mudar meus pensamentos!”",
+      "autorizado": true, "_autorizacao": "[CONFIRMAR AUTORIZAÇÃO]"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "_leia": "Edite aqui os atendimentos. Valor vazio mostra 'Valor na conversa'. Itens entre colchetes sao placeholders a confirmar com a cliente.",
+  "presencial": false,
+  "_presencial": "[CONFIRMAR COM A CLIENTE] Se ela atender presencialmente, troque para true: a opcao 'Presencial' aparece no 'Por onde comecar?'.",
+  "servicos": [
+    {
+      "id": "terapeutica",
+      "nome": "Sessão Terapêutica",
+      "icone": "escuta",
+      "frase": "Para entender a origem do que você sente e repete.",
+      "para_quem": "Para quem percebe padrões se repetindo, mente acelerada ou um hábito difícil de controlar.",
+      "como_funciona": "Um encontro de escuta, com base na psicanálise e no comportamento, para olhar com calma para a sua história.",
+      "duracao": "[DURAÇÃO]",
+      "valor": "",
+      "formato": "Online, por vídeo",
+      "mensagem_whatsapp": "Olá, Gabi! Vim pelo site e queria saber mais sobre a Sessão Terapêutica."
+    },
+    {
+      "id": "reiki",
+      "nome": "Reiki Terapêutico",
+      "icone": "maos",
+      "frase": "Um momento para desacelerar, respirar e voltar para si.",
+      "_revisar": "[REVISAR COM O CLIENTE] frase e como_funciona falam de efeito do Reiki",
+      "para_quem": "Para quem sente o corpo cansado e quer um tempo de pausa, sem precisar falar muito.",
+      "como_funciona": "Você se acomoda em um lugar tranquilo e recebe o Reiki como cuidado complementar.",
+      "duracao": "[DURAÇÃO]",
+      "valor": "",
+      "formato": "Online / à distância [CONFIRMAR]",
+      "mensagem_whatsapp": "Olá, Gabi! Vim pelo site e queria saber mais sobre o Reiki Terapêutico."
+    },
+    {
+      "id": "limpeza",
+      "nome": "Limpeza energética à distância",
+      "icone": "lua",
+      "frase": "Você se acomoda onde estiver. Depois, recebe a devolutiva em áudio.",
+      "_revisar": "[REVISAR COM O CLIENTE] descricao da sessao multidimensional",
+      "para_quem": "Para quem sente uma energia pesada e prefere ser cuidada sem sair de casa.",
+      "como_funciona": "A sessão acontece só à distância. Ao final, a Gabi envia por áudio no WhatsApp o que percebeu.",
+      "duracao": "[DURAÇÃO]",
+      "valor": "",
+      "formato": "Somente à distância, com devolutiva em áudio",
+      "mensagem_whatsapp": "Olá, Gabi! Vim pelo site e queria saber mais sobre a Limpeza energética à distância."
+    }
+  ]
+}

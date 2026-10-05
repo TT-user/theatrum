@@ -1,0 +1,58 @@
+{
+  "_leia": "Vitrine Myano Essencia Quantica. Para trocar a ilustracao pela foto real, salve a foto em assets/img/vitrine/ e coloque o caminho em 'imagem'. Preco vazio mostra 'Preço na conversa'. Frases e descricoes: [REVISAR COM O CLIENTE] (sem promessa de efeito).",
+  "marca": "Myano · Essência Quântica",
+  "instagram": "https://instagram.com/myanoessencia",
+  "link_bio": "https://atom.bio/myanoessenciaquantica",
+  "produtos": [
+    {
+      "id": "alquimia-feminina",
+      "nome": "Alquimia Feminina",
+      "tipo": "Spray Energético Quântico",
+      "tamanho": "100 ml",
+      "frase": "Um spray para te pôr por perto quando você sentir que precisa voltar para si.",
+      "descricao": "Pensado para acompanhar momentos de reconexão, autocuidado e fortalecimento da identidade feminina.",
+      "preco": "",
+      "imagem": "",
+      "_imagem": "[TROCAR PELA FOTO DO PRODUTO] ex.: assets/img/vitrine/alquimia-feminina.webp",
+      "cor_rotulo": "#8E1F2A",
+      "selo": "Spray",
+      "placeholder": false
+    },
+    {
+      "id": "floral-desanimo",
+      "nome": "Floral Desânimo",
+      "tipo": "Floral · Essência Quântica",
+      "tamanho": "30 ml",
+      "frase": "Para os dias em que falta ânimo para começar.",
+      "descricao": "Um companheiro para momentos de recomeço, superação e motivação.",
+      "preco": "",
+      "imagem": "assets/img/vitrine/floral-desanimo.webp",
+      "selo": "Floral",
+      "placeholder": false
+    },
+    {
+      "id": "floral-clareza-mental",
+      "nome": "Floral Clareza Mental",
+      "tipo": "Floral · Essência Quântica",
+      "tamanho": "30 ml",
+      "frase": "Para quando a cabeça pede foco e um pouco de silêncio.",
+      "descricao": "Um companheiro para momentos de decisão, confiança e segurança.",
+      "preco": "",
+      "imagem": "assets/img/vitrine/floral-clareza-mental.webp",
+      "selo": "Floral",
+      "placeholder": false
+    },
+    {
+      "id": "floral-equilibrio-emocional",
+      "nome": "Floral Equilíbrio Emocional",
+      "tipo": "Floral · Essência Quântica",
+      "tamanho": "30 ml",
+      "frase": "Para os dias em que tudo pede calma e leveza.",
+      "descricao": "Um companheiro para buscar mais equilíbrio e leveza na rotina.",
+      "preco": "",
+      "imagem": "assets/img/vitrine/floral-equilibrio-emocional.webp",
+      "selo": "Floral",
+      "placeholder": false
+    }
+  ]
+}

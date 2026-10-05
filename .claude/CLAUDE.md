@@ -300,6 +300,14 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   depende da entrevista. Contatos do cartão são reais; endereço, números e história não. `.htaccess`
   com noindex, sem UET. O roteiro da entrevista é um artifact privado no claude.ai (link em
   `interno/clientes/armazem-caparao/README.md`), que guarda as respostas para preencher a prévia.
+- `/gabriela-carolina/` — prévia do site da Gabi (Gabriela Carolina: psicanálise, comportamento e
+  Reiki, atendimento online; vende também os sprays e florais da Myano). Feita fora daqui e trazida
+  em 05/10/2026. Mesmo padrão das outras prévias: `.htaccess` e meta com noindex, faixa de
+  demonstração, sem UET, placeholder amarelo. Atendimentos, "Por onde começar?" (assistente de 5
+  perguntas que monta a mensagem do WhatsApp), prints de depoimento em marquee e vitrine Myano vêm
+  de `data/*.json`. Os prints são stories que ela mesma publicou; ainda falta autorização por
+  escrito de cada cliente antes de virar site oficial. Prints originais e README do projeto em
+  `interno/clientes/gabriela-carolina/`, fora do git.
 
 ### As demonstrações, uma pasta por área
 
@@ -336,7 +344,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
