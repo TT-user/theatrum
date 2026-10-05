@@ -285,16 +285,23 @@ em { font-style: italic; }
 .card dt { color: var(--dourado); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; padding-top: 3px; }
 .card dd { margin: 0; text-align: right; color: var(--creme); }
 .card .btn { margin-top: auto; }
+/* No computador as linhas dos três cards se alinham (título, frase, texto, tabela, botão) */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 900px) {
+    .card { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; align-items: start; }
+    .card .btn { align-self: end; }
+  }
+}
 
 /* ===== Por onde começar ===== */
 #por-onde-comecar { background: var(--vinho-profundo); }
 .poc {
-  position: relative; max-width: 640px; margin: 0 auto;
+  position: relative; max-width: 860px; margin: 0 auto;
   background: var(--vinho); border: 1px solid rgba(201,164,106,.45); border-radius: 22px;
   padding: 36px 22px 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.35);
 }
 .poc::before { content: ""; position: absolute; width: 520px; height: 520px; border: 1px solid var(--dourado); opacity: .14; border-radius: 50%; right: -260px; top: -260px; pointer-events: none; }
-@media (min-width: 600px) { .poc { padding: 48px 48px 26px; } }
+@media (min-width: 600px) { .poc { padding: 56px 64px 28px; } }
 .poc__tela { position: relative; }
 .poc__tela.entrando { animation: pocFade .25s ease both; }
 @keyframes pocFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
@@ -310,7 +317,8 @@ em { font-style: italic; }
 .poc__barra { flex: 1; height: 2px; background: rgba(201,164,106,.22); border-radius: 2px; overflow: hidden; }
 .poc__barra span { display: block; height: 100%; background: var(--dourado); transition: width .35s ease; }
 .poc__opcoes { display: grid; gap: 12px; }
-.opcao { position: relative; display: block; cursor: pointer; }
+@media (min-width: 720px) { .poc__opcoes { grid-template-columns: 1fr 1fr; } }
+.opcao { position: relative; display: grid; cursor: pointer; }
 .opcao input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .opcao span {
   display: flex; align-items: center; gap: 14px; min-height: 58px; padding: 14px 18px;
@@ -336,7 +344,7 @@ em { font-style: italic; }
 .poc__voltar { background: none; border: 0; color: var(--creme-suave); font: inherit; cursor: pointer; min-height: 48px; padding: 0 6px; }
 .poc__voltar:hover { color: var(--dourado); }
 .poc__cvv { margin: 26px -22px 0; padding: 14px 22px 0; border-top: 1px solid rgba(201,164,106,.2); font-size: 14px; color: var(--creme-suave); text-align: center; }
-@media (min-width: 600px) { .poc__cvv { margin: 30px -48px 0; padding: 14px 48px 0; } }
+@media (min-width: 600px) { .poc__cvv { margin: 30px -64px 0; padding: 14px 64px 0; } }
 .poc__cvv a { color: var(--dourado-claro); }
 
 .resultado { text-align: center; }
@@ -355,7 +363,29 @@ em { font-style: italic; }
 .resultado__links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
 .resultado__links a, .resultado__links button { display: inline-flex; align-items: center; color: var(--creme-suave); background: none; border: 0; font: inherit; font-size: 15px; cursor: pointer; min-height: 48px; text-decoration: underline; text-underline-offset: 4px; padding: 0 8px; }
 .resultado__links a:hover, .resultado__links button:hover { color: var(--dourado); }
-.poc__intro .btn { margin-top: 10px; }
+/* Abertura: precisa parecer quiz à primeira vista */
+.poc__intro h2 { font-size: clamp(2.2rem, 7vw, 3.4rem); }
+.poc__selo { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px !important; padding: 7px 16px; border: 1px solid rgba(201,164,106,.55); border-radius: 999px; font-size: 13px !important; letter-spacing: .16em; text-transform: uppercase; color: var(--dourado-claro) !important; background: rgba(46,13,18,.35); }
+.poc__pulso { width: 8px; height: 8px; border-radius: 50%; background: var(--dourado); box-shadow: 0 0 0 0 rgba(201,164,106,.6); animation: pocPulso 2s ease-out infinite; }
+@keyframes pocPulso { 70% { box-shadow: 0 0 0 9px rgba(201,164,106,0); } 100% { box-shadow: 0 0 0 0 rgba(201,164,106,0); } }
+.poc__lead { max-width: 560px; margin-left: auto; margin-right: auto; }
+.poc__chips { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.poc__chips li { padding: 6px 14px; border-radius: 999px; background: rgba(201,164,106,.14); color: var(--creme); font-size: 14px; }
+.poc__amostra { margin: 30px auto 0; max-width: 640px; text-align: left; background: rgba(34,10,14,.45); border: 1px dashed rgba(201,164,106,.5); border-radius: 16px; padding: 20px; }
+.poc__amostra-rot { margin: 0 !important; font-size: 12px !important; letter-spacing: .14em; text-transform: uppercase; color: var(--dourado) !important; }
+.poc__amostra-tit { margin: 6px 0 14px !important; font-family: var(--serif); font-size: 24px !important; line-height: 1.2; color: var(--creme) !important; }
+.poc__amostra-ops { display: grid; gap: 10px; }
+@media (min-width: 600px) { .poc__amostra-ops { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 599px) { .poc__amostra-op:nth-child(n+4) { display: none; } }
+.poc__amostra-op { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 10px 14px; text-align: left; font: inherit; font-size: 16px; line-height: 1.3; color: var(--creme); background: transparent; border: 1px solid rgba(201,164,106,.55); border-radius: 12px; cursor: pointer; transition: background .2s, border-color .2s, transform .2s; }
+.poc__amostra-op::before { content: ""; flex: none; width: 20px; height: 20px; border: 1px solid var(--dourado); border-radius: 6px; }
+.poc__amostra-op:hover { background: rgba(201,164,106,.14); border-color: var(--dourado); transform: translateY(-1px); }
+.poc__amostra-op:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: 3px; }
+.poc__comecar { margin-top: 26px; min-height: 60px; padding: 0 40px; font-size: 18px; }
+.poc__comecar span { transition: transform .2s; }
+.poc__comecar:hover span { transform: translateX(4px); }
+@media (max-width: 599px) { .poc__comecar { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .poc__pulso { animation: none; } }
 
 /* Como funciona */
 #como-funciona { background: radial-gradient(ellipse at 50% 0%, #FBF6EF, var(--creme) 60%); }

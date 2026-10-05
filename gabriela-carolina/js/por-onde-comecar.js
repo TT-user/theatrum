@@ -43,12 +43,22 @@
   }
 
   function telaAbertura() {
+    var p1 = perguntas[0];
+    var amostra = p1.opcoes.slice(0, 4).map(function (o) {
+      return '<button type="button" class="poc__amostra-op" data-acao="pre" data-v="' + o.id + '">' + esc(o.texto) + '</button>';
+    }).join('');
     return '<div class="poc__intro centro">' +
-      '<img src="assets/img/emblema.svg" width="48" height="48" alt="" style="margin:0 auto 18px">' +
+      '<p class="poc__selo"><span class="poc__pulso" aria-hidden="true"></span>Quiz interativo</p>' +
       '<h2 tabindex="-1">Não sabe por onde <em>começar</em>?</h2>' +
-      '<p>Responda 5 perguntas rápidas. Eu te mostro o caminho que mais combina com o seu momento. Depois, você decide se quer conversar.</p>' +
-      '<p class="poc__mini">Leva menos de 1 minuto. Suas respostas não ficam salvas no site.</p>' +
-      '<button type="button" class="btn btn--ouro" data-acao="comecar">Começar</button>' +
+      '<p class="poc__lead">Responda ' + perguntas.length + ' perguntas rápidas e veja o caminho que mais combina com o seu momento. Depois, você decide se quer conversar.</p>' +
+      '<ul class="poc__chips"><li>' + perguntas.length + ' perguntas</li><li>menos de 1 minuto</li><li>resultado na hora</li></ul>' +
+      '<div class="poc__amostra">' +
+        '<p class="poc__amostra-rot">Pergunta 1 · toque numa resposta para começar</p>' +
+        '<p class="poc__amostra-tit">' + esc(p1.titulo) + '</p>' +
+        '<div class="poc__amostra-ops">' + amostra + '</div>' +
+      '</div>' +
+      '<button type="button" class="btn btn--ouro poc__comecar" data-acao="comecar">Começar o quiz <span aria-hidden="true">→</span></button>' +
+      '<p class="poc__mini">Suas respostas não ficam salvas no site.</p>' +
       '</div>';
   }
 
@@ -194,6 +204,7 @@
     if (!b || b.disabled) return;
     var a = b.getAttribute('data-acao');
     if (a === 'comecar') passo = 0;
+    else if (a === 'pre') { var p1 = perguntas[0]; resp[p1.id] = p1.tipo === 'multipla' ? [b.getAttribute('data-v')] : b.getAttribute('data-v'); passo = 0; }
     else if (a === 'avancar') passo++;
     else if (a === 'voltar') passo--;
     else if (a === 'refazer') { resp = {}; nome = ''; passo = 0; }
