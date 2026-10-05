@@ -308,6 +308,12 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   de `data/*.json`. Os prints são stories que ela mesma publicou; ainda falta autorização por
   escrito de cada cliente antes de virar site oficial. Prints originais e README do projeto em
   `interno/clientes/gabriela-carolina/`, fora do git.
+- `/bia-de-luca/` — prévia de redesenho do biadeluca.com.br (terapeuta vibracional quântica e
+  palestrante, São Paulo, atende a distância), feita para prospecção em 05/10/2026. Conteúdo e
+  fotos tirados do site atual dela, sem nada inventado; promessas de saúde suavizadas e aviso de
+  terapia complementar. Mesmo padrão: `.htaccess` e meta com noindex, faixa de demonstração, sem
+  UET, placeholder amarelo. "Por onde começar" e florais clicáveis montam a mensagem do WhatsApp.
+  Pendências e argumentos de venda em `interno/clientes/bia-de-luca/README.md`, fora do git.
 
 ### As demonstrações, uma pasta por área
 
@@ -344,7 +350,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
