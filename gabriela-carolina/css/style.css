@@ -92,8 +92,7 @@ em { font-style: italic; }
 
 /* Placeholder visível (a preencher com a cliente) */
 .ph { background: #FFF3C4; color: #5A4300; font-family: ui-monospace, monospace; font-size: .86em; padding: 1px 6px; border-radius: 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-.escuro .ph, .vinho .ph, .confianca .ph { background: #3A3000; color: #FFE58A; }
-
+.escuro .ph, .vinho .ph, 
 /* Botões */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -253,11 +252,6 @@ em { font-style: italic; }
 }
 
 /* Confiança */
-.confianca { background: var(--ameixa); color: var(--creme); padding: 30px 0; border-top: 1px solid rgba(201,164,106,.25); border-bottom: 1px solid rgba(201,164,106,.25); }
-.confianca__lista { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
-.confianca li { display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 1.35; }
-@media (min-width: 960px) { .confianca__lista { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 420px) { .confianca__lista { grid-template-columns: 1fr; } }
 
 /* Identificação */
 .lista-fio { margin: 34px 0 30px; }
@@ -589,6 +583,9 @@ em { font-style: italic; }
 .rodape__links { display: grid; gap: 4px; }
 .rodape__links a { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; text-decoration: none; color: var(--creme); }
 .rodape__links a:hover { color: var(--dourado); }
+.rodape__confianca { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.rodape__confianca li { display: flex; align-items: center; gap: 10px; min-height: 48px; color: var(--creme-suave); }
+.rodape__confianca .ic { color: var(--dourado); }
 .rodape__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid rgba(201,164,106,.18); padding-top: 20px; font-size: 14px; }
 .rodape__base p { margin: 0; }
 .rodape__base a { color: var(--dourado); }
