@@ -33,9 +33,6 @@
 
   var total = function () { return perguntas.length + 1; }; // + nome
 
-  function cvv() {
-    return '<p class="poc__cvv">Se você está em um momento de crise, ligue <a href="tel:188">188 (CVV)</a>, 24h.</p>';
-  }
   function progresso() {
     var atual = passo + 1;
     return '<div class="poc__progresso" aria-hidden="true"><span>' + atual + ' de ' + total() + '</span>' +
@@ -162,7 +159,7 @@
     else html = telaResultado();
 
     raiz.innerHTML = '<div class="poc__tela' + (G.reduzir ? '' : ' entrando') + '">' + html + '</div>' +
-      cvv() + '<div class="sr-only" aria-live="polite" id="poc-anuncio" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></div>';
+      '<div class="sr-only" aria-live="polite" id="poc-anuncio" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></div>';
 
     if (passo > perguntas.length) {
       var c = caminhos[raiz.getAttribute('data-caminho')];

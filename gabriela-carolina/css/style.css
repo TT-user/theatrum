@@ -298,10 +298,10 @@ em { font-style: italic; }
 .poc {
   position: relative; max-width: 860px; margin: 0 auto;
   background: var(--vinho); border: 1px solid rgba(201,164,106,.45); border-radius: 22px;
-  padding: 36px 22px 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.35);
+  padding: 36px 22px 32px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.35);
 }
 .poc::before { content: ""; position: absolute; width: 520px; height: 520px; border: 1px solid var(--dourado); opacity: .14; border-radius: 50%; right: -260px; top: -260px; pointer-events: none; }
-@media (min-width: 600px) { .poc { padding: 56px 64px 28px; } }
+@media (min-width: 600px) { .poc { padding: 56px 64px 52px; } }
 .poc__tela { position: relative; }
 .poc__tela.entrando { animation: pocFade .25s ease both; }
 @keyframes pocFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
@@ -343,10 +343,7 @@ em { font-style: italic; }
 .poc__nav .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 .poc__voltar { background: none; border: 0; color: var(--creme-suave); font: inherit; cursor: pointer; min-height: 48px; padding: 0 6px; }
 .poc__voltar:hover { color: var(--dourado); }
-.poc__cvv { margin: 26px -22px 0; padding: 14px 22px 0; border-top: 1px solid rgba(201,164,106,.2); font-size: 14px; color: var(--creme-suave); text-align: center; }
-@media (min-width: 600px) { .poc__cvv { margin: 30px -64px 0; padding: 14px 64px 0; } }
-.poc__cvv a { color: var(--dourado-claro); }
-
+@media (min-width: 600px) { 
 .resultado { text-align: center; }
 .resultado__card { background: var(--ameixa); border: 1px solid var(--dourado); border-radius: 16px; padding: 30px 22px; margin-top: 18px; position: relative; }
 .resultado__card::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(201,164,106,.2); border-radius: 12px; pointer-events: none; }
@@ -592,9 +589,6 @@ em { font-style: italic; }
 .rodape__links { display: grid; gap: 4px; }
 .rodape__links a { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; text-decoration: none; color: var(--creme); }
 .rodape__links a:hover { color: var(--dourado); }
-.rodape__avisos p { margin-bottom: 10px; }
-.cvv { color: var(--creme); }
-.cvv a { color: var(--dourado-claro); }
 .rodape__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid rgba(201,164,106,.18); padding-top: 20px; font-size: 14px; }
 .rodape__base p { margin: 0; }
 .rodape__base a { color: var(--dourado); }
