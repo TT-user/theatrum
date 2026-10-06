@@ -75,13 +75,17 @@
 
     <!-- busca do hero: escreve nos mesmos filtros do catálogo -->
     <form class="busca" id="busca" autocomplete="off">
-      <div class="busca-abas" role="group" aria-label="O que você procura">
-        <button type="button" class="aba ativa" data-fim="venda" aria-pressed="true">Comprar</button>
-        <button type="button" class="aba" data-fim="locacao" aria-pressed="false">Alugar</button>
+      <div class="busca-topo">
+        <div class="busca-abas" role="group" aria-label="O que você procura">
+          <button type="button" class="aba ativa" data-fim="venda" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-casa"/></svg>Comprar</button>
+          <button type="button" class="aba" data-fim="locacao" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chave"/></svg>Alugar</button>
+        </div>
+        <p class="busca-dica">Toque nos campos para escolher</p>
       </div>
       <div class="busca-campos">
-        <label class="campo">
-          <span>Tipo de imóvel</span>
+        <label class="cb">
+          <span class="cb-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-casa"/></svg></span>
+          <span class="cb-rot">Tipo de imóvel</span>
           <select name="tipo">
             <option value="">Todos os tipos</option>
             <option value="apartamento">Apartamento</option>
@@ -90,15 +94,19 @@
             <option value="sala">Sala comercial</option>
             <option value="terreno">Terreno</option>
           </select>
+          <span class="cb-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></span>
         </label>
-        <label class="campo">
-          <span>Região</span>
+        <label class="cb">
+          <span class="cb-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-pino"/></svg></span>
+          <span class="cb-rot">Região</span>
           <select name="regiao" data-regioes>
             <option value="">Todas as regiões</option>
           </select>
+          <span class="cb-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></span>
         </label>
-        <label class="campo">
-          <span>Quartos</span>
+        <label class="cb">
+          <span class="cb-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-cama"/></svg></span>
+          <span class="cb-rot">Quartos</span>
           <select name="quartos">
             <option value="">Qualquer</option>
             <option value="1">1 ou mais</option>
@@ -106,9 +114,10 @@
             <option value="3">3 ou mais</option>
             <option value="4">4 ou mais</option>
           </select>
+          <span class="cb-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></span>
         </label>
         <button class="btn btn-mar btn-buscar" type="submit">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lupa"/></svg>Buscar
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lupa"/></svg><span id="buscaTxt">Buscar</span>
         </button>
       </div>
     </form>
@@ -434,23 +443,58 @@
       <p class="rotulo">Contato</p>
       <h2>Passe no escritório <em>ou chame agora</em>.</h2>
       <ul class="contato-lista">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pino"/></svg><div><b>Endereço</b>Av. das Américas, 15015, sala 309<br>Recreio dos Bandeirantes, Rio de Janeiro, RJ<br>CEP 22790-701</div></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tel"/></svg><div><b>Telefone</b><a href="tel:+552134188474">(21) 3418-8474</a></div></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg><div><b>WhatsApp</b><span class="ph">[confirmar número]</span></div></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg><div><b>E-mail</b><a href="mailto:antonioscorretagem@gmail.com">antonioscorretagem@gmail.com</a></div></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-relogio"/></svg><div><b>Horário</b><span class="ph">[dias e horários]</span></div></li>
+        <li class="ct ct-largo"><a href="https://www.google.com/maps/search/?api=1&query=Av.+das+Am%C3%A9ricas%2C+15015+Recreio+dos+Bandeirantes+Rio+de+Janeiro" target="_blank" rel="noopener">
+          <span class="ct-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pino"/></svg></span>
+          <span class="ct-txt"><b>Endereço</b>Av. das Américas, 15015, sala 309<br>Recreio dos Bandeirantes, Rio de Janeiro · CEP 22790-701</span>
+          <span class="ct-acao">Abrir rota →</span></a></li>
+        <li class="ct"><a href="tel:+552134188474">
+          <span class="ct-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tel"/></svg></span>
+          <span class="ct-txt"><b>Telefone</b>(21) 3418-8474</span></a></li>
+        <li class="ct"><div>
+          <span class="ct-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg></span>
+          <span class="ct-txt"><b>WhatsApp</b><span class="ph">[confirmar número]</span></span></div></li>
+        <li class="ct"><div>
+          <span class="ct-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-relogio"/></svg></span>
+          <span class="ct-txt"><b>Horário</b><span class="ph">[dias e horários]</span></span></div></li>
+        <li class="ct ct-largo"><a href="mailto:antonioscorretagem@gmail.com">
+          <span class="ct-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg></span>
+          <span class="ct-txt"><b>E-mail</b>antonioscorretagem@gmail.com</span></a></li>
       </ul>
       <div class="contato-acoes">
         <a class="btn btn-sol btn-g" href="#" data-zap="Olá! Vim pelo site e quero falar com um corretor da Antonio's.">
           <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg>Chamar no WhatsApp
         </a>
-        <a class="btn btn-linha btn-g" href="https://www.google.com/maps/search/?api=1&query=Av.+das+Am%C3%A9ricas%2C+15015+Recreio+dos+Bandeirantes+Rio+de+Janeiro" target="_blank" rel="noopener">Como chegar</a>
+        <a class="btn btn-linha btn-g" href="https://www.google.com/maps/dir/?api=1&destination=Av.+das+Am%C3%A9ricas%2C+15015+Recreio+dos+Bandeirantes+Rio+de+Janeiro" target="_blank" rel="noopener">Como chegar</a>
       </div>
     </div>
+
+    <!-- Mapa ilustrativo (esquemático, não em escala). O mapa real do
+         Google só entra no clique: o iframe pesa mais que a página. -->
     <div class="mapa" id="mapa">
-      <img src="assets/img/contato.webp" alt="" loading="lazy" width="1600" height="1000">
+      <svg class="mapa-desenho" viewBox="0 0 640 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="640" height="560" fill="#EEF2EA"/>
+        <path d="M0 0h640v120c-60 18-120 6-180 22S330 190 250 172 90 150 0 176z" fill="#DCE6D3"/>
+        <path d="M470 40c40-30 120-26 170 0v110c-50 10-110 0-150-30s-50-56-20-80z" fill="#C9D9BF"/>
+        <path d="M0 418c80-24 170-20 250-8s180 26 270 6 90-22 120-24v168H0z" fill="#BFDDE3"/>
+        <path d="M0 418c80-24 170-20 250-8s180 26 270 6 90-22 120-24v14c-30 2-50 12-120 26s-190 6-270-6-170-16-250 8z" fill="#F3E3C3"/>
+        <g stroke="#fff" stroke-linecap="round" fill="none">
+          <path d="M0 268c120-14 260-10 400-2s200 4 240 0" stroke-width="22"/>
+          <path d="M0 392c90-18 180-16 260-6s180 18 270 2 80-16 110-18" stroke-width="10"/>
+          <g stroke-width="7"><path d="M90 150v250M200 150v248M318 160v236M430 150v250M540 110v290"/><path d="M0 330h640"/></g>
+        </g>
+        <path d="M0 268c120-14 260-10 400-2s200 4 240 0" stroke="#F2C46D" stroke-width="3" fill="none" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <g font-family="JetBrains Mono, monospace" font-size="13" fill="#51606F" letter-spacing=".04em">
+          <text x="24" y="250">Av. das Américas</text>
+          <text x="24" y="384">Av. Lúcio Costa</text>
+          <text x="40" y="480" fill="#3E7D8A">Praia do Recreio</text>
+          <text x="500" y="70" fill="#5C7A50">Pontal</text>
+        </g>
+      </svg>
+      <div class="pino-vivo" aria-hidden="true"><i></i><i></i><b></b></div>
+      <div class="mapa-etiqueta"><b>Antonio's Corretagem</b><span>Av. das Américas, 15015 · sala 309</span></div>
+      <p class="mapa-nota">mapa ilustrativo</p>
       <button type="button" class="mapa-abre" id="mapaAbre">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pino"/></svg>Ver o escritório no mapa
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pino"/></svg>Abrir no Google Maps
       </button>
     </div>
   </div>
@@ -524,6 +568,8 @@
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
   <symbol id="i-relogio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-casa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-chave" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></g></symbol>
   <symbol id="i-cama" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 15h18M7 9V6h4v3"/></g></symbol>
   <symbol id="i-carro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5zM5 16v2M19 16v2"/><circle cx="8" cy="13" r=".6"/><circle cx="16" cy="13" r=".6"/></g></symbol>
   <symbol id="i-area" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></g></symbol>

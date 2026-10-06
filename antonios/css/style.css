@@ -131,17 +131,34 @@ h2{font-size:clamp(32px,4.2vw,52px)}
 .hero h1 em{color:#FFC7A8}
 .hero .lead{font-size:clamp(17px,1.6vw,20px);margin-top:22px;max-width:560px;color:rgba(255,255,255,.9)}
 
-.busca{background:var(--branco);color:var(--tinta);border-radius:22px;box-shadow:var(--sombra-alta);padding:10px;max-width:980px}
-.busca-abas{display:flex;gap:4px;padding:4px 4px 10px}
-.aba{border:0;background:transparent;padding:9px 16px;border-radius:999px;font-weight:600;font-size:15px;color:var(--tinta-2);cursor:pointer;transition:background .2s,color .2s}
-.aba.ativa{background:var(--tinta);color:#fff}
-.busca-campos{display:grid;grid-template-columns:1.1fr 1.1fr .8fr auto;gap:8px;align-items:stretch}
-.campo{display:flex;flex-direction:column;gap:4px;background:var(--areia);border:1.5px solid transparent;border-radius:14px;padding:10px 14px;transition:border-color .2s,background .2s;min-width:0}
-.campo:focus-within{border-color:var(--mar);background:#fff}
-.campo span{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--tinta-2)}
-.campo select,.campo input{border:0;background:transparent;outline:0;font-size:16px;font-weight:500;width:100%;padding:2px 0;appearance:none;-webkit-appearance:none}
-.campo select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%2351606F' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E") right 2px center no-repeat;padding-right:20px;cursor:pointer}
-.btn-buscar{border-radius:14px;padding:0 30px;font-size:16px}
+.busca{background:var(--branco);color:var(--tinta);border-radius:22px;box-shadow:var(--sombra-alta);padding:12px;max-width:1000px}
+.busca-topo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:2px 2px 12px}
+/* Comprar/Alugar como seletor segmentado: o trilho mostra que há duas opções */
+.busca-abas{display:inline-flex;gap:2px;padding:4px;background:var(--areia-2);border:1px solid var(--linha);border-radius:999px}
+.aba{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;background:transparent;padding:9px 18px;border-radius:999px;font-weight:600;font-size:15px;color:var(--tinta-2);cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.aba svg{width:17px;height:17px}
+.aba:hover{background:#fff;color:var(--tinta)}
+.aba.ativa{background:var(--tinta);color:#fff;box-shadow:0 4px 12px -4px rgba(17,38,58,.5)}
+.busca-dica{font:500 12.5px/1.3 var(--mono);color:var(--tinta-2);display:flex;align-items:center;gap:8px}
+.busca-dica::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral);animation:pisca 2s ease-in-out infinite}
+@keyframes pisca{50%{opacity:.25}}
+.busca-campos{display:grid;grid-template-columns:1.1fr 1.1fr .85fr auto;gap:8px;align-items:stretch}
+
+/* Campo da busca: o select cobre o campo inteiro, então qualquer
+   toque abre a lista. Ícone à esquerda e seta num círculo à direita
+   dizem "isto abre"; com valor escolhido o campo fica tingido. */
+.cb{position:relative;display:block;min-height:66px;background:#fff;border:1.5px solid var(--linha-2);border-radius:14px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s;min-width:0}
+.cb:hover{border-color:var(--mar);box-shadow:0 6px 18px -10px rgba(14,90,104,.5)}
+.cb:focus-within{border-color:var(--mar);box-shadow:0 0 0 4px var(--mar-claro)}
+.cb.preenchido{border-color:var(--mar);background:#F5FAFA}
+.cb-ico{position:absolute;left:12px;top:50%;width:36px;height:36px;margin-top:-18px;border-radius:10px;background:var(--mar-claro);color:var(--mar);display:grid;place-items:center;pointer-events:none}
+.cb-ico svg{width:19px;height:19px}
+.cb-rot{position:absolute;left:58px;top:13px;font:600 12px/1 var(--sans);color:var(--tinta-2);pointer-events:none}
+.cb select{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;outline:0;appearance:none;-webkit-appearance:none;padding:26px 46px 0 58px;font:600 16px/1.2 var(--sans);color:var(--tinta);cursor:pointer;text-overflow:ellipsis}
+.cb-seta{position:absolute;right:12px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--areia-2);color:var(--tinta-2);display:grid;place-items:center;pointer-events:none;transition:background .2s,color .2s}
+.cb-seta svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cb:hover .cb-seta,.cb:focus-within .cb-seta{background:var(--mar);color:#fff}
+.btn-buscar{border-radius:14px;padding:0 28px;font-size:16px;min-height:66px}
 
 
 /* ---------- fatos ---------- */
@@ -402,18 +419,33 @@ input[type=range]{width:100%;accent-color:var(--mar);cursor:pointer;height:22px}
    CONTATO
    ============================================================ */
 .contato-in{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(36px,6vw,80px);align-items:center}
-.contato-lista{list-style:none;margin:30px 0;display:grid;gap:18px}
-.contato-lista li{display:flex;gap:14px;align-items:flex-start;font-size:16px}
-.contato-lista svg{width:22px;height:22px;color:var(--mar);flex:none;margin-top:3px}
-.contato-lista b{display:block;font-size:13px;font-weight:600;color:var(--tinta-2);margin-bottom:2px}
-.contato-lista a{text-decoration:none;font-weight:500}
-.contato-lista a:hover{color:var(--mar)}
+.contato-lista{list-style:none;margin:30px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ct>a,.ct>div{display:flex;gap:14px;align-items:center;height:100%;padding:14px 16px;background:#fff;border:1px solid var(--linha);border-radius:16px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.ct>a:hover{border-color:var(--mar);box-shadow:var(--sombra);transform:translateY(-2px)}
+.ct-largo{grid-column:1/-1}
+.ct-ico{width:42px;height:42px;border-radius:12px;background:var(--mar-claro);color:var(--mar);display:grid;place-items:center;flex:none}
+.ct-ico svg{width:21px;height:21px}
+.ct-txt{font-size:15.5px;line-height:1.45;font-weight:500;min-width:0;overflow-wrap:anywhere}
+.ct-txt b{display:block;font-size:12.5px;font-weight:600;color:var(--tinta-2);margin-bottom:2px}
+.ct-acao{margin-left:auto;font-size:14px;font-weight:600;color:var(--mar);white-space:nowrap}
 .contato-acoes{display:flex;gap:10px;flex-wrap:wrap}
-.mapa{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:8/7;box-shadow:var(--sombra-alta);background:var(--areia-2)}
-.mapa img,.mapa iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
-.mapa-abre{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;gap:10px;align-items:center;background:#fff;border:0;border-radius:999px;padding:15px 22px;font-weight:600;font-size:15.5px;cursor:pointer;box-shadow:var(--sombra-alta);transition:transform .2s}
-.mapa-abre:hover{transform:translate(-50%,-50%) scale(1.04)}
-.mapa-abre svg{width:20px;height:20px;color:var(--sol)}
+
+.mapa{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:8/7;box-shadow:var(--sombra-alta);background:#EEF2EA;isolation:isolate}
+.mapa-desenho,.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* bolinha vermelha pulsando no escritório: dois anéis defasados */
+.pino-vivo{position:absolute;left:52%;top:46%;width:22px;height:22px;margin:-11px 0 0 -11px}
+.pino-vivo b{position:absolute;inset:0;border-radius:50%;background:#E5322D;border:3px solid #fff;box-shadow:0 4px 12px rgba(229,50,45,.55)}
+.pino-vivo i{position:absolute;inset:0;border-radius:50%;background:rgba(229,50,45,.45);animation:pulsa 2.2s cubic-bezier(.2,.6,.3,1) infinite}
+.pino-vivo i+i{animation-delay:1.1s}
+@keyframes pulsa{0%{transform:scale(1);opacity:.9}100%{transform:scale(4.2);opacity:0}}
+.mapa-etiqueta{position:absolute;left:52%;top:46%;transform:translate(-50%,calc(-100% - 22px));background:#fff;border-radius:14px;padding:10px 14px;box-shadow:var(--sombra-alta);text-align:center;white-space:nowrap}
+.mapa-etiqueta::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;margin-left:-6px;background:#fff;transform:rotate(45deg)}
+.mapa-etiqueta b{display:block;font:500 16px/1.2 var(--serif)}
+.mapa-etiqueta span{font-size:13px;color:var(--tinta-2)}
+.mapa-nota{position:absolute;left:16px;top:14px;font:500 11.5px/1 var(--mono);color:var(--tinta-2);background:rgba(255,255,255,.75);padding:6px 9px;border-radius:999px}
+.mapa-abre{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:inline-flex;gap:10px;align-items:center;background:var(--tinta);color:#fff;border:0;border-radius:999px;padding:14px 22px;font-weight:600;font-size:15px;cursor:pointer;box-shadow:var(--sombra-alta);transition:background .2s,transform .2s;white-space:nowrap}
+.mapa-abre:hover{background:var(--mar)}
+.mapa-abre svg{width:19px;height:19px;color:#FF8A84}
 
 /* ============================================================
    RODAPÉ
@@ -491,7 +523,12 @@ body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:88px}
   .hero-veu{background:linear-gradient(180deg,rgba(9,24,36,.6) 0%,rgba(9,24,36,.35) 30%,rgba(9,24,36,.7) 100%)}
   .busca{padding:8px;border-radius:18px}
   .busca-campos{grid-template-columns:1fr}
-  .busca-campos .campo:nth-child(n+3){display:none}
+  .busca-campos .cb:nth-child(3){display:none}
+  .busca-dica{display:none}
+  .busca-abas{display:flex;width:100%}
+  .aba{flex:1}
+  .contato-lista{grid-template-columns:1fr}
+  .ct-acao{display:none}
   .fatos-in>div{padding:20px 12px;flex-direction:column;align-items:flex-start;gap:8px}
   .fatos-in>div:nth-child(odd){padding-left:0}
   .fatos b{font-size:28px}

@@ -440,6 +440,21 @@
     var r = form.querySelector('[name="' + nome + '"][value="' + v + '"]');
     if (r) r.checked = true;
   }
+  /* o botão diz quantos imóveis a busca vai trazer e o campo
+     escolhido fica tingido: a pessoa vê que mexer muda alguma coisa */
+  function previaBusca() {
+    var d = new FormData(busca), q = +(d.get('quartos') || 0);
+    var n = IMOVEIS.filter(function (im) {
+      return im.fim === fimHero && (!d.get('tipo') || im.tipo === d.get('tipo')) &&
+        (!d.get('regiao') || im.regiao === d.get('regiao')) && (!q || im.quartos >= q);
+    }).length;
+    $('#buscaTxt').textContent = n ? 'Ver ' + n + (n > 1 ? ' imóveis' : ' imóvel') : 'Buscar';
+    $$('.cb select', busca).forEach(function (s) { s.closest('.cb').classList.toggle('preenchido', !!s.value); });
+  }
+  busca.addEventListener('change', previaBusca);
+  $$('.aba', busca).forEach(function (a) { a.addEventListener('click', previaBusca); });
+  previaBusca();
+
   busca.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(busca);
@@ -535,6 +550,7 @@
     f.referrerPolicy = 'no-referrer-when-downgrade';
     $('#mapa').innerHTML = '';
     $('#mapa').appendChild(f);
+    f.focus();
   });
 
   /* ---------- vídeo do hero ----------
