@@ -97,6 +97,12 @@ h2{font-size:clamp(32px,4.2vw,52px)}
 .menu a{font:500 15px/1 var(--sans);text-decoration:none;padding:10px 13px;border-radius:999px;transition:background .2s}
 .menu a:hover{background:rgba(255,255,255,.14)}
 .topo.rolou .menu a:hover{background:var(--areia-2)}
+/* seção atual: pílula + pontinho coral embaixo */
+.menu a{position:relative;transition:background .25s,color .25s}
+.menu a::after{content:"";position:absolute;left:50%;bottom:3px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--coral);transform:scale(0);transition:transform .25s}
+.menu a.atual{background:rgba(255,255,255,.16)}
+.menu a.atual::after{transform:scale(1)}
+.topo.rolou .menu a.atual{background:var(--mar-claro);color:var(--mar-2)}
 .topo-cta{padding:11px 18px;font-size:14.5px}
 .abre-menu{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;margin-left:auto}
 .abre-menu span{position:absolute;left:11px;right:11px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s}
@@ -442,6 +448,8 @@ body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:88px}
   .topo-cta{display:none}
   .menu.aberto{display:flex;flex-direction:column;position:absolute;top:var(--topo-h);left:0;right:0;background:var(--areia);color:var(--tinta);padding:12px var(--gutter) 24px;box-shadow:0 20px 40px -20px rgba(17,38,58,.3);gap:2px}
   .menu.aberto a{padding:14px 12px;font-size:17px;border-bottom:1px solid var(--linha);border-radius:0}
+  .menu.aberto a.atual{background:transparent;color:var(--mar);font-weight:600;box-shadow:inset 3px 0 0 var(--coral)}
+  .menu.aberto a::after{display:none}
   .topo:has(.menu.aberto){background:var(--areia);color:var(--tinta)}
   .catalogo{grid-template-columns:1fr}
   .abre-filtros{display:inline-flex;justify-self:start}

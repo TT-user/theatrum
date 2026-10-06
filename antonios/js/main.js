@@ -563,13 +563,41 @@
 
   /* ---------- topo, menu, WhatsApp flutuante ---------- */
   var topo = $('#topo'), zapF = $('.zap-flutua');
+  /* menu acompanha a rolagem: a seção atual é a última cujo topo já
+     passou de 35% da tela. Seções fora do menu (como funciona,
+     depoimentos, dúvidas) apagam o destaque em vez de emprestar o
+     de outra, para o menu nunca apontar para o lugar errado. */
+  var links = $$('#menu a[href^="#"]');
+  var secoes = $$('main > section[id]');
+  var atual = null;
+  function marcaMenu() {
+    var linha = window.innerHeight * .35, id = null;
+    secoes.forEach(function (s) { if (s.getBoundingClientRect().top <= linha) id = s.id; });
+    /* no fim da página o contato pode não chegar à linha */
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) id = secoes[secoes.length - 1].id;
+    if (id === atual) return;
+    atual = id;
+    links.forEach(function (a) {
+      var sim = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('atual', sim);
+      if (sim) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  var pedido = false;
   function rola() {
-    var y = window.scrollY;
-    topo.classList.toggle('rolou', y > 30);
-    zapF.classList.toggle('on', y > window.innerHeight * .7);
+    if (pedido) return;
+    pedido = true;
+    requestAnimationFrame(function () {
+      pedido = false;
+      var y = window.scrollY;
+      topo.classList.toggle('rolou', y > 30);
+      zapF.classList.toggle('on', y > window.innerHeight * .7);
+      marcaMenu();
+    });
   }
   rola();
   window.addEventListener('scroll', rola, { passive:true });
+  window.addEventListener('resize', rola);
 
   var abre = $('.abre-menu'), menu = $('#menu');
   abre.addEventListener('click', function () {
