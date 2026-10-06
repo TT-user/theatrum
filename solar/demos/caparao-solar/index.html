@@ -129,7 +129,10 @@
 
   /* telhado desenhado: a demo não tem foto e um SVG leve diz o mesmo
      sem custar download nenhum */
-  .telhado{width:100%;height:auto;border-radius:20px;box-shadow:0 18px 44px rgba(15,63,88,.18)}
+  .capa-foto{position:relative;margin:0;border-radius:20px;overflow:hidden;box-shadow:0 18px 44px rgba(15,63,88,.18);aspect-ratio:1040/800;background:var(--fundo-2)}
+  .capa-foto img{width:100%;height:100%;object-fit:cover}
+  .capa-foto figcaption{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.92);font:600 13px/1 var(--corpo);color:var(--azul)}
+  .capa-foto .ponto{width:8px;height:8px;border-radius:50%;background:var(--folha)}
 
   /* ---------- calculadora ---------- */
   #calculadora{background:var(--fundo-2)}
@@ -214,7 +217,8 @@
 
   /* ---------- passos ---------- */
   .passos{counter-reset:p;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:42px}
-  .passo{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:24px 22px;counter-increment:p}
+  .passo{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:24px 22px;counter-increment:p;overflow:hidden}
+  .passo-foto{display:block;width:calc(100% + 44px);max-width:none;height:auto;aspect-ratio:16/10;object-fit:cover;margin:-24px -22px 18px}
   .passo::before{
     content:counter(p,decimal-leading-zero);display:block;margin-bottom:12px;
     font:800 13px/1 var(--display);color:var(--sol);letter-spacing:.1em;
@@ -238,7 +242,7 @@
   .faq .resp{padding:0 40px 20px 0;margin:0;font:400 15px/1.7 var(--corpo);color:var(--musgo)}
 
   /* ---------- fechamento e rodapé ---------- */
-  .fechar{background:linear-gradient(160deg,#0F3F58,#0B2F42);text-align:center;color:#EAF2F5}
+  .fechar{background:linear-gradient(160deg,rgba(15,63,88,.92),rgba(11,47,66,.95)),url(fotos/placas-fundo.webp) center/cover no-repeat,#0F3F58;text-align:center;color:#EAF2F5}
   .fechar h2{color:#FFF}
   .fechar .apoio{color:#BBD2DC}
   .fechar .botao.vazado{color:#FFF;border-color:rgba(255,255,255,.35)}
@@ -247,6 +251,8 @@
   .fechar .apoio{margin-left:auto;margin-right:auto;text-align:center}
   .fechar .capa-ctas{justify-content:center}
   footer{border-top:1px solid var(--linha);padding:40px 0;font:400 13px/1.7 var(--corpo);color:var(--musgo)}
+  footer .creditos{flex-basis:100%;font-size:12px}
+  footer .creditos a{color:inherit}
   .pe{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
 
   /* barra fixa no celular: mesma regra da home, 44 px de toque e sem
@@ -297,29 +303,10 @@
       </div>
     </div>
 
-    <svg class="telhado" viewBox="0 0 520 420" role="img" aria-label="Telhado com placas solares sob o sol, com a serra do Caparaó ao fundo">
-      <defs>
-        <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#1D2C22"/><stop offset="100%" stop-color="#0E1511"/>
-        </linearGradient>
-        <linearGradient id="placa" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#2A4258"/><stop offset="55%" stop-color="#1B2C3C"/><stop offset="100%" stop-color="#25394C"/>
-        </linearGradient>
-        <radialGradient id="brilho"><stop offset="0%" stop-color="#FFC873"/><stop offset="100%" stop-color="#F2A33C" stop-opacity="0"/></radialGradient>
-      </defs>
-      <rect width="520" height="420" fill="url(#ceu)" rx="20"/>
-      <circle cx="404" cy="96" r="80" fill="url(#brilho)" opacity=".55"/>
-      <circle cx="404" cy="96" r="27" fill="#F2A33C"/>
-      <path d="M0 300 L120 236 L214 288 L322 214 L430 268 L520 228 L520 420 L0 420 Z" fill="#16241B"/>
-      <path d="M92 356 L268 262 L470 356 L470 372 L92 372 Z" fill="#20302A"/>
-      <g>
-        <path d="M120 344 L262 268 L286 281 L144 357 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
-        <path d="M156 363 L298 287 L322 300 L180 376 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
-        <path d="M296 281 L438 357 L414 370 L272 294 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
-        <path d="M260 300 L402 376 L378 389 L236 313 Z" fill="url(#placa)" stroke="#3C5468" stroke-width="2"/>
-      </g>
-      <path d="M92 356 L268 262 L470 356" fill="none" stroke="#34473C" stroke-width="4" stroke-linejoin="round"/>
-    </svg>
+    <figure class="capa-foto">
+      <img src="fotos/telhado-1040.webp" srcset="fotos/telhado-560.webp 560w, fotos/telhado-1040.webp 1040w" sizes="(max-width: 920px) 90vw, 520px" width="1040" height="800" fetchpriority="high" alt="Equipe instalando placas solares num telhado de telha cerâmica">
+      <figcaption><span class="ponto" aria-hidden="true"></span>Instalação em andamento</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -490,18 +477,22 @@
 
     <div class="passos">
       <div class="passo">
+        <img class="passo-foto" src="fotos/passo-1.webp" width="480" height="300" loading="lazy" decoding="async" alt="Técnico de capacete conferindo a estrutura no telhado">
         <h3>Visita e projeto</h3>
         <p>A gente vai até o local, mede o telhado, confere o padrão de entrada e calcula a usina com o seu consumo real dos últimos doze meses.</p>
       </div>
       <div class="passo">
+        <img class="passo-foto" src="fotos/passo-2.webp" width="480" height="300" loading="lazy" decoding="async" alt="Placas solares chegando para a instalação">
         <h3>Orçamento fechado</h3>
         <p>Valor único, com tudo dentro: placas, inversor, estrutura, cabeamento, mão de obra e a papelada na concessionária. Sem custo que aparece depois.</p>
       </div>
       <div class="passo">
+        <img class="passo-foto" src="fotos/passo-3.webp" width="480" height="300" loading="lazy" decoding="async" alt="Instalador de capacete fixando as placas">
         <h3>Instalação</h3>
         <p>De um a três dias no telhado, conforme o tamanho. A casa fica sem energia só no momento da conexão, que leva alguns minutos.</p>
       </div>
       <div class="passo">
+        <img class="passo-foto" src="fotos/passo-4.webp" width="480" height="300" loading="lazy" decoding="async" alt="Placas instaladas, prontas para gerar">
         <h3>Homologação e monitoramento</h3>
         <p>A gente entra com o pedido na concessionária e acompanha até a troca do medidor. Depois você vê a geração pelo celular, dia a dia.</p>
       </div>
@@ -558,6 +549,7 @@
   <div class="env pe">
     <a class="marca" href="#topo"><span class="marca-sol" aria-hidden="true"></span>Caparaó Solar</a>
     <span>Energia solar para casa, sítio e comércio na região do Caparaó.</span>
+    <span class="creditos">Fotos via Wikimedia Commons, recortadas: <a href="https://commons.wikimedia.org/wiki/File:Three_men_installing_solar_panels_on_a_house.jpg" target="_blank" rel="noopener">W.carter (CC0)</a>, <a href="https://commons.wikimedia.org/wiki/File:Solar_installation_technician_on_rooftop_%285392894792%29.jpg" target="_blank" rel="noopener">CoCreatr (CC BY-SA 2.0)</a>, <a href="https://commons.wikimedia.org/wiki/File:Bringing_out_the_solar_panels_%283049030697%29.jpg" target="_blank" rel="noopener">Oregon Department of Transportation (CC BY 2.0)</a>, <a href="https://commons.wikimedia.org/wiki/File:Installing_solar_panels_%283077176261%29.jpg" target="_blank" rel="noopener">Oregon Department of Transportation (CC BY 2.0)</a> e <a href="https://commons.wikimedia.org/wiki/File:Solar_panels_%286836811485%29.jpg" target="_blank" rel="noopener">Oregon Department of Transportation (CC BY 2.0)</a>.</span>
   </div>
 </footer>
 
