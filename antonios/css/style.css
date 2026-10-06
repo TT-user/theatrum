@@ -51,10 +51,17 @@ h2{font-size:clamp(32px,4.2vw,52px)}
 /* ---------- prévia ---------- */
 .ph{background:#FFE45C;color:#3A2F00;padding:0 .35em;border-radius:5px;font-weight:600;font-style:normal;font-family:var(--sans);font-size:.92em;letter-spacing:0}
 .ph-bloco{background:#FFE45C!important;color:#3A2F00!important;font:600 12px/1 var(--sans);display:grid;place-items:center}
-#demo-bar{background:var(--tinta);color:#E9EEF2;font-size:14px;text-align:center;padding:8px var(--gutter);line-height:1.4;position:relative;z-index:60}
-.demo-marca{color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}
-.demo-marca span{font-size:.85em;opacity:.7}
-.demo-marca:hover{color:#FFC7A8;text-decoration-color:#FFC7A8}
+/* barra de prévia, fixa no rodapé, no mesmo visual das demos */
+:root{--barra-h:58px}
+body{padding-bottom:var(--barra-h)}
+.thtr-bar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:#0B0A08;border-top:1px solid #26241C;font:600 13px/1.4 var(--sans);color:#9A968A;text-align:center}
+.thtr-bar b{color:#F0EEE8;font-weight:700}
+.thtr-bar .ph{font-size:12px}
+.thtr-bar a{text-decoration:none;font-weight:700;border-radius:999px;padding:7px 16px;white-space:nowrap;transition:background .2s,border-color .2s}
+.thtr-bar .voltar{background:#D9A441;color:#150F03;border:1px solid #D9A441}
+.thtr-bar .voltar:hover{background:#EFC474;border-color:#EFC474}
+.thtr-bar .quero{color:#D9A441;border:1px solid rgba(217,164,65,.45)}
+.thtr-bar .quero:hover{background:rgba(217,164,65,.12)}
 
 /* ---------- botões ---------- */
 .btn{
@@ -117,7 +124,7 @@ h2{font-size:clamp(32px,4.2vw,52px)}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{position:relative;min-height:min(100svh,900px);display:flex;align-items:flex-end;color:#fff;isolation:isolate;overflow:hidden;padding:calc(var(--topo-h) + 60px) 0 56px}
+.hero{position:relative;min-height:min(calc(100svh - var(--barra-h)),900px);display:flex;align-items:flex-end;color:#fff;isolation:isolate;overflow:hidden;padding:calc(var(--topo-h) + 60px) 0 56px}
 .hero-midia{position:absolute;inset:0;z-index:-2;background:#2b4a5a}
 .hero-midia img,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-video{opacity:0;transition:opacity 1.2s ease}
@@ -254,7 +261,7 @@ input[type=range]{width:100%;accent-color:var(--mar);cursor:pointer;height:22px}
 .vazio-acoes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
 /* barra do comparador */
-.barra-comp{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:40;animation:sobe .3s ease}
+.barra-comp{position:fixed;left:50%;bottom:calc(var(--barra-h) + 16px);transform:translateX(-50%);z-index:40;animation:sobe .3s ease}
 @keyframes sobe{from{opacity:0;transform:translate(-50%,20px)}}
 .barra-comp-in{display:flex;align-items:center;gap:12px;background:var(--tinta);color:#fff;border-radius:999px;padding:8px 8px 8px 10px;box-shadow:var(--sombra-alta)}
 .comp-minis{display:flex}
@@ -475,10 +482,10 @@ input[type=range]{width:100%;accent-color:var(--mar);cursor:pointer;height:22px}
 .creditos summary{cursor:pointer}
 .creditos p{max-width:640px;margin-top:10px;font-size:12.5px;line-height:1.5}
 
-.zap-flutua{position:fixed;right:20px;bottom:20px;z-index:45;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.35);transform:scale(.6);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}
+.zap-flutua{position:fixed;right:20px;bottom:calc(var(--barra-h) + 16px);z-index:45;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.35);transform:scale(.6);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}
 .zap-flutua svg{width:30px;height:30px}
 .zap-flutua.on{transform:none;opacity:1;pointer-events:auto}
-body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:88px}
+body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:calc(var(--barra-h) + 84px)}
 
 /* ---------- entrada ao rolar ---------- */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
@@ -529,7 +536,7 @@ body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:88px}
   body{font-size:16.5px}
   .marca svg{width:32px;height:32px}
   .marca-txt b{font-size:20px}
-  .hero{min-height:calc(100svh - 38px);padding-bottom:28px}
+  .hero{min-height:calc(100svh - var(--barra-h));padding-bottom:28px}
   .hero-in{gap:26px}
   .sobrancelha{font-size:12px}
   .sobrancelha .longo{display:none}
@@ -565,7 +572,11 @@ body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:88px}
   .comp-tab tbody th,.comp-tab thead th:first-child{position:sticky;left:0;background:var(--areia);min-width:96px;width:96px;z-index:1}
   .comp-tab thead b{font-size:15px}
   .rodape-in{grid-template-columns:1fr}
-  .zap-flutua{right:14px;bottom:14px;width:54px;height:54px}
+  .zap-flutua{right:14px;bottom:calc(var(--barra-h) + 12px);width:54px;height:54px}
+  :root{--barra-h:52px}
+  .thtr-bar{gap:8px;padding:9px 12px}
+  .thtr-bar span{display:none}
+  .thtr-bar a{font-size:12.5px;padding:8px 14px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
