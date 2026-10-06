@@ -253,10 +253,16 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   `.htaccess` com noindex e os dados que faltam aparecem como placeholder
   amarelo, nunca inventados. Briefing, README de pendências e `netlify.toml`
   ficam em `interno/clientes/aml/`, fora do git.
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
 - `/engmais/` — prévia do site da Eng+ (consultoria ambiental e segurança do
   trabalho, Dores do Rio Preto, ES e MG), no mesmo molde da AML: noindex,
   placeholder amarelo, diagnóstico em dois caminhos (produtor e empresa) e
   simulação de WhatsApp. Pendências em `interno/clientes/engmais/README.md`, fora do git.
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
 - `/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
   refúgio romântico), para vender o projeto. Mesmo padrão da AML: `.htaccess`
   com noindex, faixa de demonstração no topo e placeholder amarelo para todo
@@ -272,6 +278,9 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   já estão no JSON como `oculto`. A cliente não quer pagamento nem sistema de
   reserva: `#reservar` ("Monte sua estadia") vai virar um simulador que manda o
   pedido pronto para o WhatsApp dela (próxima etapa do briefing v2).
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
 
 - `/inovar/` — demo do site da Inovar Agroveterinária (agropecuária, farmácia e
   clínica veterinária, lojas em Dores do Rio Preto e Guaçuí, ES). Mesmo padrão:
@@ -282,6 +291,9 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   rotas em `data/config.json`; calendário em `data/calendario.json`, todo
   marcado para revisão dos veterinários. Pendências em `interno/clientes/inovar/README.md`,
   não commitada.
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
 
 - `/armazem/` — demo do sistema de gestão do Armazém Gerais Caparaó (romaneio,
   estoque, caderno de RV, pendências, relação de pagamentos), para vender o
