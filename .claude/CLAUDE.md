@@ -353,7 +353,7 @@ WhatsApp sozinho e passa a confirmar o recebimento.
 | `/moveis-planejados/demos/` | 6 | móveis planejados |
 | `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
-| `/solar/demos/` | 1 | energia solar |
+| `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
 | `/negocios/demos/` | 4 | negócios locais |
 
 As quatro de `/negocios/demos/` são as prévias de cliente refeitas como
