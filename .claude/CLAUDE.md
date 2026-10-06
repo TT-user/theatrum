@@ -314,6 +314,15 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   terapia complementar. Mesmo padrão: `.htaccess` e meta com noindex, faixa de demonstração, sem
   UET, placeholder amarelo. "Por onde começar" e florais clicáveis montam a mensagem do WhatsApp.
   Pendências e argumentos de venda em `interno/clientes/bia-de-luca/README.md`, fora do git.
+- `/antonios/` — prévia do site da Antonio's Corretagem de Imóveis (Recreio dos Bandeirantes, RJ,
+  CNPJ ativo há 18+ anos), feita para prospecção em 06/10/2026 no molde da demo Vista Imóveis,
+  mas clara (areia, azul-petróleo, coral). Vídeo do hero montado em ffmpeg a partir de três fotos
+  do Wikimedia Commons (Recreio, Barra, Rio do alto), com crédito no rodapé; o vídeo só carrega
+  depois do `load` e pausa fora da tela. Catálogo com filtros, comparador e simulador Price na
+  gaveta do imóvel, mas os doze imóveis são **exemplo** (selo amarelo, fotos reaproveitadas das
+  demos de imóveis). Avaliação em quatro passos monta a mensagem do WhatsApp. O número do WhatsApp
+  ainda é o fixo do CNPJ (`ZAP` no topo do `js/main.js`). Mesmo padrão: `.htaccess` e meta com
+  noindex, faixa de demonstração, sem UET. Pendências em `interno/clientes/antonios/README.md`.
 
 ### As demonstrações, uma pasta por área
 
@@ -350,7 +359,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

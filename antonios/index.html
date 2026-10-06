@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antonio's Corretagem de Imóveis | Recreio dos Bandeirantes, Rio de Janeiro</title>
+<meta name="description" content="Compra, venda e avaliação de imóveis no Recreio dos Bandeirantes e na Barra da Tijuca. Mais de 18 anos de mercado, escritório na Av. das Américas, 15015.">
+<meta name="robots" content="noindex, nofollow"><!-- prévia: tirar quando virar o site oficial -->
+<meta property="og:title" content="Antonio's Corretagem de Imóveis | Recreio, RJ">
+<meta property="og:description" content="Encontre, compare e simule o financiamento antes de visitar. Ou peça a avaliação do seu imóvel em quatro passos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://usetheatrum.com.br/antonios/">
+<meta property="og:image" content="https://usetheatrum.com.br/antonios/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#FBF8F3">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="assets/img/hero.webp" media="(min-width:701px)">
+<link rel="preload" as="image" href="assets/img/hero-m.webp" media="(max-width:700px)">
+</head>
+<body>
+
+<!-- Faixa de demonstração: apague este elemento para a versão final -->
+<div id="demo-bar">Prévia criada por <strong>Theatrum</strong> para a Antonio's Corretagem · <span class="ph">amarelo</span> = falta confirmar com você</div>
+
+<!-- ============ TOPO ============ -->
+<header class="topo" id="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#inicio" aria-label="Antonio's Corretagem de Imóveis, início">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path class="m-casa" d="M8 21 20 10l12 11"/><path class="m-onda" d="M6 29c3.5 0 3.5-2.5 7-2.5s3.5 2.5 7 2.5 3.5-2.5 7-2.5 3.5 2.5 7 2.5"/></svg>
+      <span class="marca-txt"><b>Antonio's</b><small>Corretagem de Imóveis</small></span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Navegação principal">
+      <a href="#imoveis">Imóveis</a>
+      <a href="#regioes">Regiões</a>
+      <a href="#avaliar">Avaliar meu imóvel</a>
+      <a href="#sobre">A Antonio's</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-sol topo-cta" data-zap="Olá! Vim pelo site da Antonio's Corretagem." href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg>Falar com corretor
+    </a>
+    <button class="abre-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-midia" aria-hidden="true">
+    <picture>
+      <source media="(max-width:700px)" srcset="assets/img/hero-m.webp">
+      <img src="assets/img/hero.webp" alt="" class="hero-poster">
+    </picture>
+    <!-- o src entra pelo JS: celular em pé recebe o vídeo vertical, mais leve -->
+    <video class="hero-video" muted loop playsinline preload="none"
+      data-src="assets/video/hero.mp4" data-src-m="assets/video/hero-m.mp4"></video>
+  </div>
+  <div class="hero-veu"></div>
+
+  <div class="wrap hero-in">
+    <div class="hero-txt">
+      <p class="sobrancelha"><span class="ponto"></span>Recreio dos Bandeirantes<span class="longo"> · Rio de Janeiro</span></p>
+      <h1>Seu próximo endereço <em>perto do mar</em>, escolhido com quem está no Recreio.</h1>
+      <p class="lead">Compra, venda e avaliação de imóveis há mais de 18 anos, com escritório na Av. das Américas.</p>
+    </div>
+
+    <!-- busca do hero: escreve nos mesmos filtros do catálogo -->
+    <form class="busca" id="busca" autocomplete="off">
+      <div class="busca-abas" role="group" aria-label="O que você procura">
+        <button type="button" class="aba ativa" data-fim="venda" aria-pressed="true">Comprar</button>
+        <button type="button" class="aba" data-fim="locacao" aria-pressed="false">Alugar</button>
+      </div>
+      <div class="busca-campos">
+        <label class="campo">
+          <span>Tipo de imóvel</span>
+          <select name="tipo">
+            <option value="">Todos os tipos</option>
+            <option value="apartamento">Apartamento</option>
+            <option value="cobertura">Cobertura</option>
+            <option value="casa">Casa</option>
+            <option value="sala">Sala comercial</option>
+            <option value="terreno">Terreno</option>
+          </select>
+        </label>
+        <label class="campo">
+          <span>Região</span>
+          <select name="regiao" data-regioes>
+            <option value="">Todas as regiões</option>
+          </select>
+        </label>
+        <label class="campo">
+          <span>Quartos</span>
+          <select name="quartos">
+            <option value="">Qualquer</option>
+            <option value="1">1 ou mais</option>
+            <option value="2">2 ou mais</option>
+            <option value="3">3 ou mais</option>
+            <option value="4">4 ou mais</option>
+          </select>
+        </label>
+        <button class="btn btn-mar btn-buscar" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lupa"/></svg>Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+
+</section>
+
+<!-- ============ CONFIANÇA ============ -->
+<section class="fatos" aria-label="Sobre a empresa">
+  <div class="wrap fatos-in">
+    <div><b>18+</b><span>anos de empresa ativa<br>no mesmo CNPJ</span></div>
+    <div><b>Recreio</b><span>sala 309 na<br>Av. das Américas, 15015</span></div>
+    <div><b>3</b><span>frentes: compra, venda<br>e avaliação</span></div>
+    <div><b>RJ</b><span>CRECI-RJ <span class="ph">[nº]</span><br>registro da empresa</span></div>
+  </div>
+</section>
+
+<!-- ============ SISTEMA · IMÓVEIS ============ -->
+<section class="sec" id="imoveis">
+  <div class="wrap">
+    <div class="cab">
+      <p class="rotulo">Imóveis</p>
+      <h2>Encontre, compare e simule <em>antes de sair de casa</em>.</h2>
+      <p class="sub">Mexa num filtro e a lista muda na hora. Marque até três para comparar lado a lado, e abra qualquer imóvel para simular a parcela do financiamento com os seus números.</p>
+      <p class="aviso-exemplo"><span class="ph">Imóveis de exemplo para a prévia.</span> No site oficial entra a carteira da Antonio's, atualizada por vocês.</p>
+    </div>
+
+    <div class="catalogo">
+      <button class="btn btn-linha abre-filtros" type="button" id="abreFiltros" aria-controls="painel" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-filtro"/></svg>Filtros <span class="filtros-n" id="filtrosN"></span>
+      </button>
+
+      <aside class="painel" id="painel" aria-label="Filtros">
+        <div class="painel-topo">
+          <h3>Filtros</h3>
+          <button type="button" class="fecha" id="fechaFiltros" aria-label="Fechar filtros"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+        </div>
+        <form id="filtros" autocomplete="off">
+          <fieldset class="grupo">
+            <legend>Finalidade</legend>
+            <div class="pilulas">
+              <label><input type="radio" name="fim" value="" checked><span>Todas</span></label>
+              <label><input type="radio" name="fim" value="venda"><span>Comprar</span></label>
+              <label><input type="radio" name="fim" value="locacao"><span>Alugar</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend>Tipo</legend>
+            <select name="tipo">
+              <option value="">Todos os tipos</option>
+              <option value="apartamento">Apartamento</option>
+              <option value="cobertura">Cobertura</option>
+              <option value="casa">Casa</option>
+              <option value="sala">Sala comercial</option>
+              <option value="terreno">Terreno</option>
+            </select>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend>Região</legend>
+            <select name="regiao" data-regioes>
+              <option value="">Todas as regiões</option>
+            </select>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend>Quartos</legend>
+            <div class="pilulas">
+              <label><input type="radio" name="quartos" value="" checked><span>Todos</span></label>
+              <label><input type="radio" name="quartos" value="1"><span>1+</span></label>
+              <label><input type="radio" name="quartos" value="2"><span>2+</span></label>
+              <label><input type="radio" name="quartos" value="3"><span>3+</span></label>
+              <label><input type="radio" name="quartos" value="4"><span>4+</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend>Vagas</legend>
+            <div class="pilulas">
+              <label><input type="radio" name="vagas" value="" checked><span>Todas</span></label>
+              <label><input type="radio" name="vagas" value="1"><span>1+</span></label>
+              <label><input type="radio" name="vagas" value="2"><span>2+</span></label>
+              <label><input type="radio" name="vagas" value="3"><span>3+</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend>Compra até <b id="tetoTxt"></b></legend>
+            <input type="range" name="teto" id="teto" min="300000" max="3500000" step="50000" value="3500000">
+          </fieldset>
+          <fieldset class="grupo">
+            <legend>Aluguel até <b id="aluguelTxt"></b></legend>
+            <input type="range" name="tetoAluguel" id="tetoAluguel" min="1500" max="15000" step="500" value="15000">
+          </fieldset>
+          <div class="painel-pe">
+            <button class="btn btn-linha" type="reset">Limpar</button>
+            <button class="btn btn-mar ver-resultado" type="button" id="verResultado">Ver imóveis</button>
+          </div>
+        </form>
+      </aside>
+
+      <div class="resultados">
+        <div class="resultado-topo">
+          <p class="contagem" id="contagem" role="status" aria-live="polite"></p>
+          <label class="ordena">
+            <span>Ordenar</span>
+            <select id="ordem">
+              <option value="recente">Mais recentes</option>
+              <option value="menor">Menor valor</option>
+              <option value="maior">Maior valor</option>
+              <option value="area">Maior área</option>
+            </select>
+          </label>
+        </div>
+        <div class="grade" id="grade"></div>
+        <button type="button" class="btn btn-linha btn-g mais" id="maisImoveis" hidden></button>
+        <div class="vazio" id="vazio" hidden>
+          <p><b>Nenhum imóvel com esses filtros.</b> Nem todo imóvel da carteira vai para o site.</p>
+          <div class="vazio-acoes">
+            <button type="button" class="btn btn-linha" id="afrouxa">Limpar filtros</button>
+            <a class="btn btn-mar" id="vazioZap" href="#">Contar o que procuro</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- barra do comparador -->
+  <div class="barra-comp" id="barraComp" hidden>
+    <div class="barra-comp-in">
+      <div class="comp-minis" id="compMinis"></div>
+      <p class="comp-txt"><b id="compN">0</b> de 3 para comparar</p>
+      <button type="button" class="btn btn-linha btn-p" id="limpaComp">Limpar</button>
+      <button type="button" class="btn btn-sol btn-p" id="abreComp">Comparar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGIÕES ============ -->
+<section class="sec sec-areia" id="regioes">
+  <div class="wrap">
+    <div class="cab cab-lado">
+      <div>
+        <p class="rotulo">Regiões</p>
+        <h2>Do Pontal à Barra, <em>perto do mar</em>.</h2>
+      </div>
+      <p class="sub">Toque numa região para ver só os imóveis de lá. <span class="ph">[confirmar as regiões em que vocês atuam]</span></p>
+    </div>
+    <div class="regioes" id="regioesGrade"></div>
+  </div>
+</section>
+
+<!-- ============ SISTEMA · AVALIAÇÃO ============ -->
+<section class="sec sec-avaliar" id="avaliar">
+  <div class="avaliar-fundo" aria-hidden="true"></div>
+  <div class="wrap avaliar-in">
+    <div class="avaliar-txt">
+      <p class="rotulo rotulo-claro">Avaliação</p>
+      <h2>Quanto vale o seu imóvel? <em>Peça em quatro toques.</em></h2>
+      <p class="sub">Avaliar é a atividade principal da Antonio's, junto com compra e venda. Responda quatro perguntas e o pedido chega ao corretor já com tudo o que ele precisa para começar.</p>
+      <ul class="avaliar-lista">
+        <li>Sem cadastro, sem e-mail</li>
+        <li>A mensagem fica pronta, você só envia</li>
+        <li>Retorno em <span class="ph">[prazo]</span></li>
+      </ul>
+    </div>
+
+    <div class="wizard" id="wizard">
+      <div class="wz-topo">
+        <span class="wz-passo" id="wzPasso">Passo 1 de 4</span>
+        <div class="wz-barra"><i id="wzBarra"></i></div>
+      </div>
+
+      <div class="wz-tela ativa" data-tela="0">
+        <h3 tabindex="-1">O que você quer fazer com o imóvel?</h3>
+        <div class="opcoes" data-campo="objetivo">
+          <button type="button" data-v="vender">Quero vender</button>
+          <button type="button" data-v="alugar">Quero alugar</button>
+          <button type="button" data-v="avaliar">Só quero saber quanto vale</button>
+        </div>
+      </div>
+
+      <div class="wz-tela" data-tela="1">
+        <h3 tabindex="-1">Que tipo de imóvel é?</h3>
+        <div class="opcoes opcoes-2" data-campo="tipo">
+          <button type="button" data-v="apartamento">Apartamento</button>
+          <button type="button" data-v="cobertura">Cobertura</button>
+          <button type="button" data-v="casa">Casa</button>
+          <button type="button" data-v="casa em condomínio">Casa em condomínio</button>
+          <button type="button" data-v="sala comercial">Sala comercial</button>
+          <button type="button" data-v="terreno">Terreno</button>
+        </div>
+      </div>
+
+      <div class="wz-tela" data-tela="2">
+        <h3 tabindex="-1">Conte um pouco do imóvel.</h3>
+        <div class="wz-campos">
+          <label class="campo campo-cheio"><span>Bairro ou condomínio</span><input type="text" name="onde" placeholder="Ex.: Recreio, condomínio Barra Bonita"></label>
+          <label class="campo"><span>Área aproximada (m²)</span><input type="number" name="area" inputmode="numeric" min="10" max="5000" placeholder="Ex.: 110"></label>
+          <label class="campo"><span>Quartos</span>
+            <select name="quartos"><option value="">Escolha</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5 ou mais</option><option value="0">Não se aplica</option></select>
+          </label>
+        </div>
+        <button type="button" class="btn btn-mar wz-segue" data-segue>Continuar</button>
+      </div>
+
+      <div class="wz-tela" data-tela="3">
+        <h3 tabindex="-1">Como o corretor deve chamar você?</h3>
+        <div class="wz-campos">
+          <label class="campo campo-cheio"><span>Seu nome</span><input type="text" name="nome" autocomplete="given-name" placeholder="Ex.: Marcela"></label>
+          <label class="campo campo-cheio"><span>Melhor horário para conversar</span>
+            <select name="horario"><option value="">Tanto faz</option><option>de manhã</option><option>à tarde</option><option>à noite</option></select>
+          </label>
+        </div>
+        <div class="wz-previa">
+          <span>Sua mensagem</span>
+          <p id="wzMsg"></p>
+        </div>
+        <a class="btn btn-sol btn-g wz-envia" id="wzEnvia" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg>Enviar pelo WhatsApp
+        </a>
+      </div>
+
+      <button type="button" class="wz-volta" id="wzVolta" hidden>← Voltar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="sec" id="como">
+  <div class="wrap">
+    <div class="cab">
+      <p class="rotulo">Como funciona</p>
+      <h2>Da primeira conversa <em>à chave na mão</em>.</h2>
+    </div>
+    <ol class="passos">
+      <li><span>01</span><h3>Conversa</h3><p>Você conta o que procura ou o que quer vender. O corretor entende orçamento, prazo e região antes de mostrar qualquer coisa.</p></li>
+      <li><span>02</span><h3>Visitas</h3><p>Só os imóveis que fazem sentido para você, com o corretor junto para responder na hora sobre condomínio, IPTU e documentação.</p></li>
+      <li><span>03</span><h3>Proposta</h3><p>O corretor conduz a negociação com o proprietário, com valores e condições por escrito.</p></li>
+      <li><span>04</span><h3>Escritura</h3><p>Documentos do imóvel conferidos antes da assinatura, até a escritura e a entrega das chaves.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="sec sec-areia" id="sobre">
+  <div class="wrap sobre-in">
+    <figure class="sobre-foto">
+      <img src="assets/img/sobre.webp" alt="Pôr do sol na Praia do Pontal, no Recreio dos Bandeirantes" loading="lazy" width="1400" height="1000">
+      <figcaption>Praia do Pontal, Recreio</figcaption>
+    </figure>
+    <div class="sobre-txt">
+      <p class="rotulo">A Antonio's</p>
+      <h2>Mais de 18 anos <em>de corretagem</em> no Rio.</h2>
+      <p>A Antonio's Corretagem de Imóveis trabalha com compra, venda e avaliação de imóveis no Rio de Janeiro, com sala na Av. das Américas, no coração do Recreio dos Bandeirantes.</p>
+      <p><span class="ph">[história da empresa: quem é o Antonio, como começou, o que mudou nesses anos]</span></p>
+      <div class="sobre-pessoa">
+        <div class="avatar ph-bloco" aria-hidden="true">foto</div>
+        <div>
+          <b><span class="ph">[nome do corretor responsável]</span></b>
+          <small>CRECI-RJ <span class="ph">[nº]</span></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="sec" id="depoimentos">
+  <div class="wrap">
+    <div class="cab cab-lado">
+      <div>
+        <p class="rotulo">Quem já fechou</p>
+        <h2>O que dizem <em>depois da escritura</em>.</h2>
+      </div>
+      <p class="sub">Só entram depoimentos reais, com nome e autorização do cliente. <span class="ph">[ou a nota das avaliações no Google]</span></p>
+    </div>
+    <div class="vozes">
+      <blockquote class="voz-vazia"><p><span class="ph">[depoimento de cliente que comprou]</span></p><cite><span class="ph">[nome]</span> · comprou no <span class="ph">[bairro]</span></cite></blockquote>
+      <blockquote class="voz-vazia"><p><span class="ph">[depoimento de cliente que vendeu]</span></p><cite><span class="ph">[nome]</span> · vendeu no <span class="ph">[bairro]</span></cite></blockquote>
+      <blockquote class="voz-vazia"><p><span class="ph">[depoimento de quem pediu avaliação]</span></p><cite><span class="ph">[nome]</span> · avaliação</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-areia" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="cab">
+      <p class="rotulo">Dúvidas</p>
+      <h2>O que perguntam <em>antes de assinar</em>.</h2>
+      <p class="sub">Ficou alguma? <a href="#" data-zap="Olá! Tenho uma dúvida sobre compra ou venda de imóvel:">Pergunte direto ao corretor</a>.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Quanto custa vender meu imóvel com a Antonio's?</summary>
+        <p>A comissão de corretagem é <span class="ph">[percentual]</span> sobre o valor de venda.</p>
+      </details>
+      <details>
+        <summary>A avaliação do imóvel é cobrada?</summary>
+        <p><span class="ph">[gratuita para quem vai vender com a Antonio's? laudo formal para inventário ou banco tem preço à parte?]</span></p>
+      </details>
+      <details>
+        <summary>Que documentos preciso para vender?</summary>
+        <p>Em geral: certidão de ônus reais da matrícula atualizada, carnê do IPTU, declaração de quitação do condomínio e documentos pessoais dos proprietários. O corretor confere a lista do seu caso antes de anunciar, para nenhuma proposta travar depois.</p>
+      </details>
+      <details>
+        <summary>Vocês acompanham o financiamento?</summary>
+        <p>A parte do banco é do comprador, mas a documentação do imóvel precisa estar em ordem para o crédito sair. <span class="ph">[confirmar como vocês acompanham essa etapa]</span></p>
+      </details>
+      <details>
+        <summary>O que é o ITBI e quem paga?</summary>
+        <p>É o imposto municipal sobre a transferência do imóvel, pago normalmente pelo comprador antes da escritura. A alíquota e a base de cálculo são definidas pela Prefeitura do Rio.</p>
+      </details>
+      <details>
+        <summary>Vocês atendem fora do Recreio?</summary>
+        <p><span class="ph">[regiões atendidas além do Recreio e da Barra]</span></p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="sec sec-contato" id="contato">
+  <div class="wrap contato-in">
+    <div class="contato-txt">
+      <p class="rotulo">Contato</p>
+      <h2>Passe no escritório <em>ou chame agora</em>.</h2>
+      <ul class="contato-lista">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pino"/></svg><div><b>Endereço</b>Av. das Américas, 15015, sala 309<br>Recreio dos Bandeirantes, Rio de Janeiro, RJ<br>CEP 22790-701</div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tel"/></svg><div><b>Telefone</b><a href="tel:+552134188474">(21) 3418-8474</a></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg><div><b>WhatsApp</b><span class="ph">[confirmar número]</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg><div><b>E-mail</b><a href="mailto:antonioscorretagem@gmail.com">antonioscorretagem@gmail.com</a></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-relogio"/></svg><div><b>Horário</b><span class="ph">[dias e horários]</span></div></li>
+      </ul>
+      <div class="contato-acoes">
+        <a class="btn btn-sol btn-g" href="#" data-zap="Olá! Vim pelo site e quero falar com um corretor da Antonio's.">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg>Chamar no WhatsApp
+        </a>
+        <a class="btn btn-linha btn-g" href="https://www.google.com/maps/search/?api=1&query=Av.+das+Am%C3%A9ricas%2C+15015+Recreio+dos+Bandeirantes+Rio+de+Janeiro" target="_blank" rel="noopener">Como chegar</a>
+      </div>
+    </div>
+    <div class="mapa" id="mapa">
+      <img src="assets/img/contato.webp" alt="" loading="lazy" width="1600" height="1000">
+      <button type="button" class="mapa-abre" id="mapaAbre">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pino"/></svg>Ver o escritório no mapa
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <div class="rodape-marca">
+      <p class="marca marca-rodape"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="m-casa" d="M8 21 20 10l12 11"/><path class="m-onda" d="M6 29c3.5 0 3.5-2.5 7-2.5s3.5 2.5 7 2.5 3.5-2.5 7-2.5 3.5 2.5 7 2.5"/></svg><span class="marca-txt"><b>Antonio's</b><small>Corretagem de Imóveis</small></span></p>
+      <p>Compra, venda e avaliação de imóveis no Recreio dos Bandeirantes e região.</p>
+    </div>
+    <nav class="rodape-col" aria-label="Rodapé">
+      <b>Navegue</b>
+      <a href="#imoveis">Imóveis</a>
+      <a href="#regioes">Regiões</a>
+      <a href="#avaliar">Avaliar meu imóvel</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="rodape-col">
+      <b>Fale com a gente</b>
+      <a href="tel:+552134188474">(21) 3418-8474</a>
+      <a href="mailto:antonioscorretagem@gmail.com">antonioscorretagem@gmail.com</a>
+      <span>Av. das Américas, 15015, sala 309</span>
+    </div>
+  </div>
+  <div class="wrap rodape-fim">
+    <p>Antonio's Corretagem de Imóveis Ltda - EPP · CNPJ 09.469.837/0001-59 · CRECI-RJ <span class="ph">[nº]</span></p>
+    <details class="creditos">
+      <summary>Créditos das fotos da cidade</summary>
+      <p>Wikimedia Commons: Pontal do Recreio e Pedra do Pontal, Tiago Cobra (CC BY 3.0); Recreio dos Bandeirantes, Patricia de Miranda (CC BY 3.0); Praia da Barra da Tijuca, Arne Müseler (CC BY-SA 3.0 DE); Prainha e Rio visto do alto, Diego Baravelli (CC BY-SA 4.0); Praia do Pontal, Fwellisch (CC BY-SA 3.0); Barra vista da Pedra da Gávea, Caioalves1 (CC BY-SA 4.0). Vídeo do topo montado a partir dessas fotos.</p>
+    </details>
+  </div>
+</footer>
+
+<a class="zap-flutua" href="#" data-zap="Olá! Vim pelo site da Antonio's Corretagem." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg>
+</a>
+
+<!-- detalhe do imóvel (com simulador) -->
+<div class="gaveta" id="gaveta" hidden>
+  <div class="gaveta-fundo" data-fecha></div>
+  <div class="gaveta-caixa" role="dialog" aria-modal="true" aria-labelledby="gTitulo">
+    <button type="button" class="fecha fecha-flutua" data-fecha aria-label="Fechar"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+    <div id="gCorpo"></div>
+  </div>
+</div>
+
+<!-- comparação -->
+<div class="gaveta gaveta-comp" id="modalComp" hidden>
+  <div class="gaveta-fundo" data-fecha></div>
+  <div class="gaveta-caixa" role="dialog" aria-modal="true" aria-labelledby="compTitulo">
+    <div class="comp-topo">
+      <h3 id="compTitulo">Lado a lado</h3>
+      <button type="button" class="fecha" data-fecha aria-label="Fechar"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="comp-corpo" id="compCorpo"></div>
+    <div class="comp-pe"><a class="btn btn-sol" id="compZap" href="#" target="_blank" rel="noopener">Agendar visita nesses imóveis</a></div>
+  </div>
+</div>
+
+<!-- ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-zap" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.28-8.07 8.28zm4.76-6.16c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.58-1.4-.8-1.92-.21-.5-.42-.44-.58-.44h-.5c-.17 0-.45.07-.69.33-.24.26-.9.88-.9 2.15s.93 2.49 1.06 2.66c.13.17 1.83 2.79 4.43 3.91.62.27 1.1.43 1.48.55.62.2 1.19.17 1.64.1.5-.07 1.54-.63 1.75-1.24.22-.61.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3z"/></symbol>
+  <symbol id="i-lupa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></g></symbol>
+  <symbol id="i-filtro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-pino" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+  <symbol id="i-relogio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-cama" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 15h18M7 9V6h4v3"/></g></symbol>
+  <symbol id="i-carro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5zM5 16v2M19 16v2"/><circle cx="8" cy="13" r=".6"/><circle cx="16" cy="13" r=".6"/></g></symbol>
+  <symbol id="i-area" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></g></symbol>
+  <symbol id="i-banho" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 4 0"/></g></symbol>
+</svg>
+
+<script src="js/main.js"></script>
+</body>
+</html>
