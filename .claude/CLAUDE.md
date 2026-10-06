@@ -293,6 +293,8 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   O sistema de verdade (React + Vite + Supabase, especificação de 03/10/2026) está em repositório
   próprio, `Desktop/armazem-caparao`, fora deste site: o modo demonstração dele leva um Postgres
   inteiro para o navegador (~5,5 MB) e não serve como link de venda. Pendências em `interno/clientes/armazem-caparao/README.md`.
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/armazem-caparao/` — prévia do site institucional do mesmo cliente (o sistema é `/armazem/`),
   inspirada na estrutura da atlanticacoffee.com, mas para mercado interno: três caminhos (vender,
@@ -300,6 +302,8 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   depende da entrevista. Contatos do cartão são reais; endereço, números e história não. `.htaccess`
   com noindex, sem UET. O roteiro da entrevista é um artifact privado no claude.ai (link em
   `interno/clientes/armazem-caparao/README.md`), que guarda as respostas para preencher a prévia.
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 - `/gabriela-carolina/` — prévia do site da Gabi (Gabriela Carolina: psicanálise, comportamento e
   Reiki, atendimento online; vende também os sprays e florais da Myano). Feita fora daqui e trazida
   em 05/10/2026. Mesmo padrão das outras prévias: `.htaccess` e meta com noindex, faixa de
@@ -314,6 +318,8 @@ WhatsApp sozinho e passa a confirmar o recebimento.
   terapia complementar. Mesmo padrão: `.htaccess` e meta com noindex, faixa de demonstração, sem
   UET, placeholder amarelo. "Por onde começar" e florais clicáveis montam a mensagem do WhatsApp.
   Pendências e argumentos de venda em `interno/clientes/bia-de-luca/README.md`, fora do git.
+  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 - `/antonios/` — prévia do site da Antonio's Corretagem de Imóveis (Recreio dos Bandeirantes, RJ,
   CNPJ ativo há 18+ anos), feita para prospecção em 06/10/2026 no molde da demo Vista Imóveis,
   mas clara (areia, azul-petróleo, coral). Vídeo do hero montado em ffmpeg a partir de três fotos
