@@ -240,7 +240,7 @@ WhatsApp sozinho e passa a confirmar o recebimento.
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos quinze sites, em página própria. Saiu da home
+- `/portfolio/` — a vitrine dos vinte sites, em página própria. Saiu da home
   porque custava 24 KB de HTML, script próprio e 484 KB de imagem que baixavam
   assim que alguém rolava até lá. Na home ficou só o convite, sem imagem
   nenhuma. Quem abre uma demo a partir daqui volta para cá: os links levam
@@ -339,6 +339,15 @@ WhatsApp sozinho e passa a confirmar o recebimento.
 | `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar |
+| `/negocios/demos/` | 4 | negócios locais |
+
+As quatro de `/negocios/demos/` são as prévias de cliente refeitas como
+marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
+Alta (do Recanto) e Campo Vivo (da Inovar). Nome, cidade, cores, logo,
+fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
+vazios e não sobra placeholder. As prévias originais continuam intactas
+nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e
+licença no rodapé de cada demo: tirar o crédito quebra a licença.
 
 Cada pasta tem o próprio `_demo.js`, que neutraliza links de contato e põe a
 barra de volta, e um `.htaccess` com `X-Robots-Tag: noindex`. **O noindex não é

@@ -1,0 +1,36 @@
+{
+  "_leia": "Demonstração: lojas, veterinários e números são fictícios, e os WhatsApps ficam vazios. Em 'rotas', use o id de um veterinário, 'loja' (vai para a loja escolhida) ou 'escolher' (a pessoa escolhe o veterinário na hora).",
+  "lojas": [
+    {
+      "id": "patos",
+      "nome": "Patos de Minas",
+      "whatsapp": ""
+    },
+    {
+      "id": "lagoa",
+      "nome": "Lagoa Formosa",
+      "whatsapp": ""
+    }
+  ],
+  "veterinarios": [
+    {
+      "id": "henrique",
+      "nome": "Dr. Henrique Lacerda",
+      "curto": "Dr. Henrique",
+      "crmv": "CRMV-MG 18.421",
+      "whatsapp": ""
+    },
+    {
+      "id": "marina",
+      "nome": "Dra. Marina Teles",
+      "curto": "Dra. Marina",
+      "crmv": "CRMV-MG 21.307",
+      "whatsapp": ""
+    }
+  ],
+  "rotas": {
+    "agendamento_na_loja": "loja",
+    "agendamento_na_propriedade": "escolher",
+    "emergencia": "escolher"
+  }
+}

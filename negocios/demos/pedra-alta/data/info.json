@@ -1,0 +1,80 @@
+{
+  "_como_usar": "Informações gerais da casa. whatsapp: só dígitos com DDI e DDD (ex.: 5535999999999); vazio, o botão abre o WhatsApp sem destinatário. Demonstração: endereço, contatos e regras são fictícios.",
+
+  "nome": "Chalés Pedra Alta",
+  "whatsapp": "",
+  "whatsappExibicao": "(35) 99812-4470",
+  "instagram": "chalespedraalta",
+  "endereco": "Estrada do Bairro dos Mellos, km 4",
+  "cidade": "Gonçalves",
+  "uf": "MG",
+  "coordenadas": { "lat": -22.6548, "lng": -45.8563 },
+  "mapa": "",
+  "rotaDestino": "Gonçalves, MG",
+  "cnpj": "",
+  "privacidade": "",
+
+  "checkin": "14h",
+  "checkout": "12h",
+  "checkinObs": "Chegando depois das 20h, avise pelo WhatsApp: a chave fica num cofre na porta e a senha vai por mensagem.",
+
+  "inclusoNaDiaria": ["Roupa de cama e banho", "Lenha da lareira", "Itens básicos de cozinha", "Amenities de banho"],
+
+  "regras": [
+    { "titulo": "Pets", "texto": "Não aceitamos, para manter o silêncio dos dois chalés." },
+    { "titulo": "Crianças", "texto": "Os chalés são pensados para casais e não têm estrutura para crianças." },
+    { "titulo": "Visitas", "texto": "Só os hóspedes da reserva." },
+    { "titulo": "Som", "texto": "Silêncio a partir das 22h." },
+    { "titulo": "Fumar", "texto": "Só na área externa, longe da mata." }
+  ],
+
+  "sinal": { "percentual": 50, "formas": "Pix ou cartão." },
+  "cancelamento": "Cancelando até 15 dias antes, o sinal volta inteiro. Depois disso, ele vira crédito para outra data em até 6 meses.",
+
+  "conexao": { "wifi": "Wi-Fi via satélite, bom para mensagens e vídeo.", "celular": "Vivo e Claro pegam na varanda; TIM é instável." },
+  "estrada": "Os últimos 4 km são de terra batida e passam carro baixo no tempo seco. Na chuva, venha devagar e tente chegar antes de escurecer.",
+
+  "feriados": {
+    "_obs": "Feriados nacionais com preço de feriado.",
+    "datas": [
+      { "data": "2026-11-02", "nome": "Finados" },
+      { "data": "2026-11-15", "nome": "Proclamação da República" },
+      { "data": "2026-11-20", "nome": "Consciência Negra" },
+      { "data": "2026-12-25", "nome": "Natal" },
+      { "data": "2027-01-01", "nome": "Ano-novo" },
+      { "data": "2027-02-08", "nome": "Carnaval" },
+      { "data": "2027-02-09", "nome": "Carnaval" },
+      { "data": "2027-03-26", "nome": "Sexta-feira Santa" },
+      { "data": "2027-04-21", "nome": "Tiradentes" },
+      { "data": "2027-05-01", "nome": "Dia do Trabalho" },
+      { "data": "2027-05-27", "nome": "Corpus Christi" }
+    ]
+  },
+  "altaTemporada": [
+    { "inicio": "2026-12-20", "fim": "2027-01-10", "nome": "Fim de ano" },
+    { "inicio": "2027-06-01", "fim": "2027-07-31", "nome": "Inverno na serra" }
+  ],
+
+  "novosChales": {
+    "_obs": "Faixa da lista dos primeiros, mostrada enquanto houver chalé com status \"oculto\". mostrar: false esconde a faixa.",
+    "mostrar": true,
+    "previsao": "março de 2027",
+    "vantagem": "Quem está na lista ganha 15% de desconto na primeira estadia."
+  },
+
+  "disponibilidade": {
+    "_obs": "Usado pelo simulador de reserva. fonte: \"planilha\", \"ical\" ou as duas.",
+    "fonte": ["planilha"],
+    "planilhaCsv": "",
+    "ical": {}
+  },
+
+  "faq": [
+    { "pergunta": "O café da manhã está incluso na diária?", "resposta": "Não. Ele vem na cesta, como extra, e é entregue na porta do chalé na hora que vocês escolherem." },
+    { "pergunta": "Dá para fazer check-in mais tarde?", "resposta": "Dá. A chave fica num cofre na porta e a senha vai pelo WhatsApp. Só avise o horário previsto." },
+    { "pergunta": "Como pago o sinal?", "resposta": "Por Pix ou cartão. O sinal é metade do valor e o restante é pago na chegada." },
+    { "pergunta": "Posso levar comida e cozinhar no chalé?", "resposta": "Pode. Cada chalé tem cozinha compacta com cooktop, frigobar, panelas e louça." },
+    { "pergunta": "Tem estacionamento?", "resposta": "Tem, uma vaga coberta ao lado de cada chalé." },
+    { "pergunta": "Dá para fazer trilha saindo dos chalés?", "resposta": "Dá. Há uma trilha curta até o mirante do terreno, e as trilhas maiores da serra ficam a poucos minutos de carro." }
+  ]
+}

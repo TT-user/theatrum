@@ -1,0 +1,50 @@
+{
+  "_como_usar": "Um bloco por extra. preco em reais, só o número. cobranca: \"por estadia\", \"por dia\" ou \"por pessoa\". aviso: texto curto de antecedência, ou null se não precisar. Demonstração: preços fictícios.",
+  "extras": [
+    {
+      "id": "cafe-cesta",
+      "nome": "Café da manhã na cesta",
+      "descricao": "Entregue na porta, para tomar na varanda, sem pressa. Pão de queijo quente, frutas, bolo do dia, queijo da serra e café coado.",
+      "foto": { "base": "assets/fotos/extras/cafe-cesta", "larguras": [420, 609], "largura": 609, "altura": 816, "alt": "Pão de queijo, xícara de café e cesta de pães sobre a mesa" },
+      "preco": 95,
+      "cobranca": "por dia",
+      "aviso": "Pedir até as 20h da véspera."
+    },
+    {
+      "id": "tabua-frios",
+      "nome": "Tábua de frios e vinho",
+      "descricao": "Para a noite na varanda, com a lareira acesa e o céu da serra inteiro por cima.",
+      "foto": { "base": "assets/fotos/extras/tabua-frios", "larguras": [420, 609], "largura": 609, "altura": 816, "alt": "Taça e garrafa de vinho tinto com queijos sobre a mesa de madeira" },
+      "preco": 180,
+      "cobranca": "por estadia",
+      "aviso": "Pedir com 24 horas de antecedência."
+    },
+    {
+      "id": "decoracao-romantica",
+      "nome": "Decoração romântica",
+      "descricao": "Pétalas, velas e o chalé arrumado para receber vocês.",
+      "foto": { "base": "assets/fotos/extras/decoracao-romantica", "larguras": [420, 609], "largura": 609, "altura": 816, "alt": "Taças com morangos e velas acesas sobre a mesa" },
+      "preco": 250,
+      "cobranca": "por estadia",
+      "aviso": "Pedir com 48 horas de antecedência."
+    },
+    {
+      "id": "decoracao-aniversario",
+      "nome": "Decoração de aniversário",
+      "descricao": "Balões, bolo e a mesa posta para comemorar mais um ano.",
+      "foto": { "base": "assets/fotos/extras/aniversario", "larguras": [420, 609], "largura": 609, "altura": 816, "alt": "Bolo de aniversário com velas coloridas acesas" },
+      "preco": 220,
+      "cobranca": "por estadia",
+      "aviso": "Pedir com 48 horas de antecedência."
+    },
+    {
+      "id": "culinaria-local",
+      "nome": "Culinária mineira",
+      "descricao": "Almoço ou jantar mineiro feito no fogão a lenha e servido no chalé.",
+      "foto": { "base": "assets/fotos/extras/culinaria", "larguras": [420, 609], "largura": 609, "altura": 816, "alt": "Panelas de barro com comida mineira servidas na mesa" },
+      "preco": 85,
+      "cobranca": "por pessoa",
+      "aviso": null
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "_como_usar": "Um bloco por chalé. Diárias em reais, só o número (ex.: 450). Foto: 'base' é o caminho sem o '-420.webp', e 'larguras' são os tamanhos gerados. status: \"ativo\" (aparece e reserva), \"pre-agendamento\" (aparece com selo e botão da lista dos primeiros, sem reserva) ou \"oculto\" (não aparece em lugar nenhum; só alimenta a faixa \"novos chalés\" do info.json). Demonstração: chalés, preços e textos são fictícios.",
+  "chales": [
+    {
+      "id": "chale-1",
+      "ordem": 1,
+      "status": "ativo",
+      "nome": "Chalé Araucária",
+      "capacidade": 2,
+      "cama": "Queen no mezanino",
+      "descricaoCurta": "Banheira de frente para a serra, lareira para as noites frias e uma varanda só de vocês.",
+      "descricaoLonga": "O mais alto do terreno. A janela triangular do mezanino pega o nascer do sol atrás das araucárias, e à noite as luzes da fachada deixam o chalé aceso no meio da mata.",
+      "comodidades": [
+        "Banheira",
+        "Lareira",
+        "Varanda com vista",
+        "Roupa de cama e banho",
+        "Cozinha compacta",
+        "Wi-Fi",
+        "Aquecedor"
+      ],
+      "fotos": [
+        { "base": "assets/fotos/chale-1/entardecer", "larguras": [ 420, 633 ], "largura": 633, "altura": 852, "alt": "Chalé A-frame no meio da mata, com luzes acesas contornando a fachada ao anoitecer" }
+      ],
+      "diarias": {
+        "semana": 590,
+        "fimDeSemana": 690,
+        "feriado": 790
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    },
+    {
+      "id": "chale-2",
+      "ordem": 2,
+      "status": "ativo",
+      "nome": "Chalé Ipê",
+      "capacidade": 2,
+      "cama": "Queen no mezanino",
+      "descricaoCurta": "O mesmo silêncio, a mesma banheira com vista, e um deck largo para o café da manhã ao sol.",
+      "descricaoLonga": "Fica mais perto do jardim e tem o deck maior da casa. É o preferido de quem quer passar a tarde lá fora, com livro, vinho e a serra inteira na frente.",
+      "comodidades": [
+        "Banheira",
+        "Lareira",
+        "Varanda com vista",
+        "Roupa de cama e banho",
+        "Cozinha compacta",
+        "Wi-Fi",
+        "Aquecedor"
+      ],
+      "fotos": [
+        { "base": "assets/fotos/chale-2/chales-dia", "larguras": [ 420, 683 ], "largura": 683, "altura": 805, "alt": "Chalé A-frame de madeira com deck e escada, entre pinheiros, no fim da tarde" }
+      ],
+      "diarias": {
+        "semana": 550,
+        "fimDeSemana": 650,
+        "feriado": 750
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    },
+    {
+      "id": "chale-3",
+      "ordem": 3,
+      "status": "oculto",
+      "nome": "Chalé Quaresmeira",
+      "previsao": "março de 2027",
+      "capacidade": 2,
+      "cama": "Queen",
+      "descricaoCurta": "Um terceiro chalé, com ofurô aquecido na varanda.",
+      "descricaoLonga": "Em obra.",
+      "comodidades": [
+        "Banheira",
+        "Lareira",
+        "Varanda com vista"
+      ],
+      "fotos": [],
+      "diarias": {
+        "semana": null,
+        "fimDeSemana": null,
+        "feriado": null
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    },
+    {
+      "id": "chale-4",
+      "ordem": 4,
+      "status": "oculto",
+      "nome": "Chalé Cedro",
+      "previsao": "março de 2027",
+      "capacidade": 2,
+      "cama": "Queen",
+      "descricaoCurta": "O quarto chalé, no ponto mais alto do terreno.",
+      "descricaoLonga": "Em obra.",
+      "comodidades": [
+        "Banheira",
+        "Lareira",
+        "Varanda com vista"
+      ],
+      "fotos": [],
+      "diarias": {
+        "semana": null,
+        "fimDeSemana": null,
+        "feriado": null
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    }
+  ]
+}
