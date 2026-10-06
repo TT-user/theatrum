@@ -80,7 +80,7 @@ window.VEREDA = {
   var roteiro = [
     { de: 'out', txt: 'Boa noite, tenho um poço no sítio e falaram que preciso de documento. É verdade?' },
     { de: 'in',  txt: 'Boa noite! 🌱 Sou o assistente virtual da Vereda. Pode ser que sim, depende do uso. Sua propriedade fica no Espírito Santo ou em Minas Gerais?' },
-    { de: 'out', txt: 'Minas, perto de Espera Feliz' },
+    { de: 'out', txt: 'Minas, perto de Caratinga' },
     { de: 'in',  txt: 'Certo! A água do poço é usada para quê? Casa, criação, irrigação…?' },
     { de: 'out', txt: 'Irrigação do café e pro gado' },
     { de: 'in',  txt: 'Entendi. Nesse caso é bem provável que precise de outorga ou cadastro de uso da água. Sua propriedade já tem o CAR feito?' },

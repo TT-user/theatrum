@@ -225,14 +225,14 @@
   Promise.all([get('chales.json'), get('extras.json'), get('info.json')]).then(function (d) {
     var chales = d[0].chales.slice().sort(function (a, b) { return a.ordem - b.ordem; });
     var extras = d[1].extras, info = d[2];
-    window.recanto = { chales: chales, extras: extras, info: info };
+    window.pedraAlta = { chales: chales, extras: extras, info: info };
     renderChales(chales, info);
     renderExtras(extras);
     renderInfo(info);
     renderFaq(info);
     renderContato(info);
     renderSchema(info, chales);
-    document.dispatchEvent(new CustomEvent('recanto:dados', { detail: window.recanto }));
+    document.dispatchEvent(new CustomEvent('pedraAlta:dados', { detail: window.pedraAlta }));
   }).catch(function (err) {
     console.error('Pedra Alta: não carregou os dados', err);
     document.querySelectorAll('[data-render]').forEach(function (el) {

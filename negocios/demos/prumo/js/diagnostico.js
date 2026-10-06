@@ -225,7 +225,7 @@ var DIAG_CONFIG = {
           '<div class="field"><label for="d-cidade">Cidade / unidade</label><select id="d-cidade" name="cidade"><option value="">Selecione</option>' +
             Object.keys(PRUMO.unidades).map(function (k) { return '<option value="' + k + '"' + (L.cidade === k ? ' selected' : '') + '>' + PRUMO.unidades[k].nome + '</option>'; }).join('') +
           '</select></div>' +
-          '<div class="field"><label for="d-whats">WhatsApp</label><input id="d-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(32) 99999-9999" value="' + esc(L.whatsapp || '') + '"></div>' +
+          '<div class="field"><label for="d-whats">WhatsApp</label><input id="d-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(35) 99999-9999" value="' + esc(L.whatsapp || '') + '"></div>' +
         '</div>' +
         '<p class="form-error" role="alert"></p>' +
         '<button class="btn btn-red btn-block" type="submit">Ver meu diagnóstico ' + ico('i-arrow') + '</button>' +

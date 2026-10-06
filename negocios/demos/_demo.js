@@ -6,9 +6,7 @@
    /solar/. Marca a página como demonstração, devolve a pessoa
    para o lugar de onde ela veio e neutraliza links de contato.
 
-   As quatro demos daqui nasceram de prévias feitas para clientes
-   reais e foram refeitas com marca, fotos e dados fictícios. O
-   aviso diz que endereço, telefone, números e depoimentos são
+   O aviso diz que endereço, telefone, números e depoimentos são
    inventados, para ninguém procurar a empresa.
 
    O parâmetro ?de= é o sinal de origem, posto nos links da vitrine.

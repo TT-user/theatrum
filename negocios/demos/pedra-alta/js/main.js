@@ -5,7 +5,7 @@
   // O número vem de data/info.json (campo whatsapp). Vazio, o wa.me abre a
   // lista de contatos com a mensagem pronta.
   function waLink(msg) {
-    var num = (window.recanto && window.recanto.info.whatsapp) || '';
+    var num = (window.pedraAlta && window.pedraAlta.info.whatsapp) || '';
     return 'https://wa.me/' + num + '?text=' + encodeURIComponent(msg);
   }
 
@@ -87,15 +87,15 @@
   });
 
   // Guarda a escolha para o motor de reserva (próxima etapa) ler ao montar.
-  window.recantoReserva = {};
+  window.pedraAltaReserva = {};
 
   qb.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!inEl.value) { inEl.focus(); inEl.showPicker && inEl.showPicker(); return; }
     if (!outEl.value || outEl.value <= inEl.value) { outEl.value = addDays(inEl.value, 2); }
-    window.recantoReserva = { checkin: inEl.value, checkout: outEl.value, hospedes: +hospEl.value };
-    try { sessionStorage.setItem('recanto-reserva', JSON.stringify(window.recantoReserva)); } catch (err) {}
-    document.dispatchEvent(new CustomEvent('recanto:datas', { detail: window.recantoReserva }));
+    window.pedraAltaReserva = { checkin: inEl.value, checkout: outEl.value, hospedes: +hospEl.value };
+    try { sessionStorage.setItem('pedraAlta-reserva', JSON.stringify(window.pedraAltaReserva)); } catch (err) {}
+    document.dispatchEvent(new CustomEvent('pedraAlta:datas', { detail: window.pedraAltaReserva }));
     mostrarResumo();
     document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
   });
@@ -103,13 +103,13 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest('[data-chale]');
     if (!a) return;
-    window.recantoReserva.chale = a.getAttribute('data-chale');
-    document.dispatchEvent(new CustomEvent('recanto:chale', { detail: window.recantoReserva }));
+    window.pedraAltaReserva.chale = a.getAttribute('data-chale');
+    document.dispatchEvent(new CustomEvent('pedraAlta:chale', { detail: window.pedraAltaReserva }));
   });
 
   // Provisório até o motor existir: mostra as datas e oferece o WhatsApp.
   function mostrarResumo() {
-    var r = window.recantoReserva, el = document.getElementById('booking-recap');
+    var r = window.pedraAltaReserva, el = document.getElementById('booking-recap');
     if (!el || !r.checkin) return;
     var noites = Math.round((new Date(r.checkout) - new Date(r.checkin)) / 864e5);
     var msg = 'Olá! Vim pelo site e queria ver a disponibilidade de ' + br(r.checkin) + ' a ' + br(r.checkout) +
@@ -133,7 +133,7 @@
   var mapaInicial = frame ? frame.src : '';
 
   function destino() {
-    var info = window.recanto && window.recanto.info;
+    var info = window.pedraAlta && window.pedraAlta.info;
     if (info && info.rotaDestino) return info.rotaDestino;
     var c = (info && info.coordenadas) || { lat: -22.6548, lng: -45.8563 };
     return c.lat + ',' + c.lng;
