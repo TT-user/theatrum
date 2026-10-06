@@ -524,7 +524,10 @@
   $('#wzVolta').addEventListener('click', function () { vaiPara(Math.max(0, passo - 1), true); });
 
   function montaMsg() {
-    var v = function (n) { var el = wz.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+    var v = function (n) {
+      var el = wz.querySelector('[name="' + n + '"]:checked') || wz.querySelector('[name="' + n + '"]:not([type=radio])');
+      return el ? el.value.trim() : '';
+    };
     var nome = v('nome'), onde = v('onde'), area = v('area'), q = v('quartos'), hr = v('horario');
     var linhas = ['Olá! ' + (nome ? 'Sou ' + nome + '. ' : '') + 'Quero ' + (OBJ[resp.objetivo] || 'avaliar') + ' meu imóvel.'];
     var det = [resp.tipo ? resp.tipo.charAt(0).toUpperCase() + resp.tipo.slice(1) : ''];
@@ -537,21 +540,8 @@
     $('#wzMsg').textContent = msg;
     $('#wzEnvia').href = linkZap(msg);
   }
-  $$('input,select', wz).forEach(function (el) { el.addEventListener('input', function () { if (passo === 3) montaMsg(); }); });
+  ['input', 'change'].forEach(function (ev) { wz.addEventListener(ev, function () { if (passo === 3) montaMsg(); }); });
 
-  /* ---------- mapa só quando pedido ----------
-     O iframe do Google pesa mais que a página inteira; entra no
-     clique, não no carregamento. */
-  $('#mapaAbre').addEventListener('click', function () {
-    var f = document.createElement('iframe');
-    f.src = 'https://www.google.com/maps?q=' + encodeURIComponent('Av. das Américas, 15015, Recreio dos Bandeirantes, Rio de Janeiro, RJ') + '&output=embed';
-    f.title = 'Mapa do escritório da Antonio\'s na Av. das Américas';
-    f.loading = 'lazy';
-    f.referrerPolicy = 'no-referrer-when-downgrade';
-    $('#mapa').innerHTML = '';
-    $('#mapa').appendChild(f);
-    f.focus();
-  });
 
   /* ---------- vídeo do hero ----------
      Só carrega depois que a página está de pé, nunca para quem
