@@ -52,6 +52,9 @@ h2{font-size:clamp(32px,4.2vw,52px)}
 .ph{background:#FFE45C;color:#3A2F00;padding:0 .35em;border-radius:5px;font-weight:600;font-style:normal;font-family:var(--sans);font-size:.92em;letter-spacing:0}
 .ph-bloco{background:#FFE45C!important;color:#3A2F00!important;font:600 12px/1 var(--sans);display:grid;place-items:center}
 #demo-bar{background:var(--tinta);color:#E9EEF2;font-size:14px;text-align:center;padding:8px var(--gutter);line-height:1.4;position:relative;z-index:60}
+.demo-marca{color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}
+.demo-marca span{font-size:.85em;opacity:.7}
+.demo-marca:hover{color:#FFC7A8;text-decoration-color:#FFC7A8}
 
 /* ---------- botões ---------- */
 .btn{
