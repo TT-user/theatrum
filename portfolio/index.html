@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="theme-color" content="#0B0A08"/>
 <title>Portfólio | Theatrum</title>
-<meta name="description" content="Vinte sites em seis mercados: imobiliário, móveis planejados, nutrição, loja online, energia solar e negócios locais. Abra qualquer um e navegue por dentro."/>
+<meta name="description" content="Vinte e um sites em seis mercados: imobiliário, móveis planejados, nutrição, loja online, energia solar e negócios locais. Abra qualquer um e navegue por dentro."/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png"/>
 <link rel="apple-touch-icon" href="../assets/img/logo-180.png"/>
 <link rel="canonical" href="https://usetheatrum.com.br/portfolio/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://usetheatrum.com.br/portfolio/"/>
 <meta property="og:title" content="Portfólio | Theatrum"/>
-<meta property="og:description" content="Vinte sites em seis mercados. Abra qualquer um e navegue por dentro."/>
+<meta property="og:description" content="Vinte e um sites em seis mercados. Abra qualquer um e navegue por dentro."/>
 <meta property="og:locale" content="pt_BR"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -300,7 +300,7 @@
   /* cartao unico, fora de esteira: alinhado ao mesmo respiro lateral dos
      cabecalhos, sem mascara de borda e sem laco. O width vem do .vit-card,
      entao ele fica do tamanho dos outros cartoes da pagina. */
-  .vit-solo{padding:0 5vw}
+  .vit-solo{padding:0 5vw;display:flex;flex-wrap:wrap;gap:20px}
   .vit-solo .vit-card{margin-right:0}
   @media (max-width:720px){
     .vit-card{width:74vw}
@@ -727,7 +727,7 @@
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
     <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">&#9670;</span>portfolio'><span class="eyebrow-bar"></span><span class="eyebrow-tag">&#9670;</span>portfólio</p>
-    <h2 class="rv" style="--d:.08s" data-en='Six markets, twenty sites. <span class="lm">Scroll and open any of them.</span>'>Seis mercados, vinte sites. <span class="lm">Role e abra qualquer um.</span></h2>
+    <h2 class="rv" style="--d:.08s" data-en='Six markets, twenty-one sites. <span class="lm">Scroll and open any of them.</span>'>Seis mercados, vinte e um sites. <span class="lm">Role e abra qualquer um.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
   </div>
 
@@ -907,15 +907,20 @@
   <div class="vitrine rv">
     <div class="vit-cab">
       <h3 data-en="Online stores">Lojas online</h3>
-      <span class="vit-tag" data-en="one demo · cart and checkout working">uma demonstração · carrinho e checkout funcionando</span>
+      <span class="vit-tag" data-en="one demo · one client store live">uma demonstração · uma loja de cliente no ar</span>
     </div>
-    <!-- uma demo so: esteira aqui seria um cartao repetindo em loop, que
-         parece defeito. Fica um quadrado parado ate existir a segunda. -->
+    <!-- dois cartoes so: esteira aqui seria cartao repetindo em loop, que
+         parece defeito. Ficam parados lado a lado ate haver mais. -->
     <div class="vit-solo">
       <a class="vit-card" href="../lojas/demos/seis-panos/?de=portfolio" target="_blank" rel="noopener">
         <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
         <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
         <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
+      </a>
+      <a class="vit-card" href="https://littletrees-indol.vercel.app/" target="_blank" rel="noopener">
+        <span class="vit-janela"><i></i><i></i><i></i><b>littletrees-indol.vercel.app</b></span>
+        <img src="../assets/img/vitrine/little-trees-desktop.webp" alt="Catálogo de aromatizantes em que o visitante monta o kit aroma por aroma e fecha o pedido no WhatsApp" loading="lazy" width="1000" height="625">
+        <span class="vit-pe" data-en="<b>Little Trees</b><em>Air fresheners · kit builder</em>"><b>Little Trees</b><em>Aromatizantes · montador de kit</em></span>
       </a>
     </div>
   </div>

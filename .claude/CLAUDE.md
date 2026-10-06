@@ -240,11 +240,14 @@ WhatsApp sozinho e passa a confirmar o recebimento.
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos vinte sites, em página própria. Saiu da home
+- `/portfolio/` — a vitrine dos vinte e um sites, em página própria. Saiu da home
   porque custava 24 KB de HTML, script próprio e 484 KB de imagem que baixavam
   assim que alguém rolava até lá. Na home ficou só o convite, sem imagem
   nenhuma. Quem abre uma demo a partir daqui volta para cá: os links levam
   `?de=portfolio` e os três `_demo.js` conhecem essa origem.
+  Exceção: o card do Little Trees (cliente real, faixa de lojas) aponta para o
+  site dele no ar, `littletrees-indol.vercel.app`, cujo código mora em repositório
+  próprio (`Desktop/littletrees`), fora deste site.
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
 - `/moveis-planejados/` — landing do segmento de planejados.
