@@ -1,7 +1,10 @@
 # Projeto Theatrum
 
 Site da Theatrum (usetheatrum.com.br): criação digital sob medida para pequenos
-negócios no Brasil e no exterior, em português (principal) e inglês. O que se
+negócios no Brasil e no exterior, em português (principal) e inglês.
+Posicionamento desde 06/10/2026 (proposta v2): site e landing page que
+transformam visitante em cliente no WhatsApp, prontos para anúncio, com ticket
+de entrada de R$ 2.500. O que se
 constrói vem primeiro (sites, landing pages, lojas virtuais, aplicativos e
 sistemas web); Google Meu Negócio, tráfego pago, IA no WhatsApp e reativação
 trazem gente até lá. Social media para Instagram é oferecido só como
@@ -92,7 +95,7 @@ que não pode ser removida.
 
 ### A página é bilíngue — leia antes de escrever qualquer copy
 
-Há ~259 elementos com atributo `data-en`, e o botão de idioma troca o idioma
+Há ~420 elementos com atributo `data-en`, e o botão de idioma troca o idioma
 **reescrevendo o `innerHTML`** de cada um deles.
 
 Duas consequências obrigatórias:
@@ -160,32 +163,47 @@ letreiro, serviços numerados, cases, como funciona, FAQ, "vamos conversar",
 rodapé em colunas), adaptada à escada de compromisso.
 
 ```
-[01] hero (+ letreiro)                 [02] o que fazemos
-[03] dores e soluções (+ investimento)
-[04] a calculadora                     [05] demonstração
-[06] trabalhos                         [07] entregas (escondida até ter cliente)
-[08] quem faz                          [09] como funciona + o raio-x
-[10] FAQ                               [11] CTA final ("vamos conversar")
+[01] hero (+ letreiro)                 [02] não é só um site
+[03] para quem fazemos                 [04] o que fazemos
+[05] dores e soluções (+ investimento)
+[06] a calculadora                     [07] demonstração
+[08] trabalhos                         [09] entregas (escondida até ter cliente)
+[10] quem faz                          [11] como funciona + o raio-x
+[12] FAQ                               [13] CTA final ("vamos conversar")
 ```
 
 - **Hero:** título à esquerda com a palavra de destaque em serif itálico
-  dourado; à direita um card (topo dourado, base escura) com três degraus:
-  calculadora, sites no ar e WhatsApp.
-- **`[02]` o que fazemos (`#servicos`):** três grupos em ordem de peso.
+  dourado, botões "Fazer diagnóstico gratuito" (WhatsApp) e "Ver projetos"
+  (portfólio) e quatro selos; à direita um card (topo dourado, base escura)
+  com três degraus: calculadora, planos e preços, e WhatsApp.
+- **`[02]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
+  (rápido no celular, pronto para anúncio, texto que vende, cada contato
+  avisado, tudo no seu nome). Sem CTA próprio.
+- **`[03]` para quem fazemos (`#para-quem`):** um card por nicho (advogados,
+  clínicas, engenharia e arquitetura, consultorias, imobiliárias) mais o de
+  reformulação. Cada card abre o WhatsApp com o nicho na mensagem e, onde há
+  demo, tem "ver exemplo". Quando as páginas de nicho existirem, o card leva
+  para elas.
+- **`[04]` o que fazemos (`#servicos`):** três grupos em ordem de peso.
   "Para construir": três cards grandes e escuros (sites e landing pages, lojas
   virtuais, aplicativos e sistemas web). "Para trazer cliente": quatro cards
   brancos (Google Meu Negócio, tráfego pago, IA no WhatsApp, reativação); os
   dois primeiros têm "ver por quê" com `data-aba`, que abre a aba certa no
-  `[03]`. Por último, uma faixa tracejada e discreta de social media, marcada
+  `[05]`. Por último, uma faixa tracejada e discreta de social media, marcada
   "complemento".
-- **`[03]` dores e soluções (`#problema`):** abas por canal (Google Meu
+- **`[05]` dores e soluções (`#problema`):** abas por canal (Google Meu
   Negócio, tráfego pago, site, atendimento). Cada painel põe "mal configurado:
   o prejuízo" ao lado de "bem configurado: o benefício" e fecha com "no longo
   prazo". Os botões das abas têm `data-en`, mas o estado mora no próprio botão;
   sem JS (e em `?still=1`) os quatro painéis aparecem empilhados. O preço vem
-  logo abaixo, com o filtro de "é/não é para você". Os ids `#solucao` e
+  logo abaixo: três planos (Lançamento R$ 2.500 ou 3x R$ 833,33, Institucional
+  R$ 3.900, Sob medida a partir de R$ 4.900), a linha de recorrência
+  (manutenção R$ 197/mês, gestão de tráfego R$ 697/mês + verba, mínimo
+  recomendado R$ 600/mês) e o filtro de "é/não é para você". O selo do
+  Lançamento é "recomendado", não "mais escolhido": sem cliente para contar,
+  seria prova social inventada. Os ids `#solucao` e
   `#investimento` continuam dentro dela.
-- **`[06]` trabalhos:** três janelas de navegador desenhadas em CSS, sem
+- **`[08]` trabalhos:** três janelas de navegador desenhadas em CSS, sem
   imagem nenhuma, cada uma mostrando o sistema que roda dentro do demo. Os
   links levam `?de=home`.
 - Destaque em título (`.lm`) é serif itálico dourado (`#8A6412` nas seções
@@ -202,6 +220,8 @@ rodapé em colunas), adaptada à escada de compromisso.
   estatística de mercado sem fonte. Slot vazio é preferível a slot fabricado.
 - Rótulo de seção em minúsculo com índice `[nn]`.
 - Sem travessão (—) na copy publicada.
+- Palavras proibidas no site e nos anúncios: "barato", "preço baixo",
+  "promoção", "grátis" (vale "gratuito"), "a partir de R$ 99", "site em 24h".
 
 ### Mensagens do WhatsApp por origem do clique
 
@@ -210,7 +230,9 @@ diferente conforme de onde a pessoa clicou:
 
 | Origem | Mensagem |
 |---|---|
-| hero | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
+| hero (botão principal) | "Vim do site da Theatrum. Quero o diagnóstico gratuito." |
+| hero (card) | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
+| para quem fazemos | "Vim do site da Theatrum. Tenho {nicho} e quero um site que traga cliente." (reformulação: "Já tenho site, mas ele não traz cliente. Quero uma reformulação.") |
 | o que fazemos | "Vim do site da Theatrum. Quero um site ou sistema para o meu negócio." |
 | calculadora | "Vim do site. A calculadora deu R$ {N} por mês. Quero o plano." |
 | demonstração | "Vi as demonstrações no site e quero isso rodando no meu negócio." |
@@ -405,11 +427,9 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 
 ## Pendências de conteúdo
 
-1. Mínimo de verba de anúncio no bloco de investimento da seção `[03]` (ainda
-   `R$ ___`). Implantação (a partir de R$ 1.500) e operação (a partir de
-   R$ 197/mês) já estão no ar.
+1. Preços de `/us/` e `/moveis-planejados/` ainda são os da oferta anterior.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
-   seção `[07] entregas`.
+   seção `[09] entregas`.
 3. Endpoint para onde o formulário do raio-x envia os leads.
 4. Política de contrato, para a resposta do FAQ.
 5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).
