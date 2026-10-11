@@ -219,7 +219,7 @@ rodapé em colunas), adaptada à escada de compromisso.
   só baixam a atual e a próxima, quando a seção chega perto, e a troca só
   roda à vista. Para no mouse; pontinhos trocam na mão; sem rotação com
   `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
-  tem e "Ver os vinte e um" (`portfolio/?de=home`). Links das telas levam
+  tem e "Ver os vinte e dois" (`portfolio/?de=home`). Links das telas levam
   `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
   volta: 71 KB de imagem ao rolar contra 354 KB (celular) e 593 KB
   (computador), sem tarefa longa a mais.
@@ -293,7 +293,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos vinte e um sites, em página própria, em cinco
+- `/portfolio/` — a vitrine dos vinte e dois sites, em página própria, em cinco
   esteiras: planejados, nutrição, imóveis, negócios locais e, por último,
   lojas. A vitrine inteira não volta para a home (custaria 354 a 593 KB de
   imagem); a home tem a versão em dois blocos do `[08]`. Botão "Voltar para
@@ -399,17 +399,25 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   demos de imóveis). Avaliação em quatro passos monta a mensagem do WhatsApp. O número do WhatsApp
   ainda é o fixo do CNPJ (`ZAP` no topo do `js/main.js`). Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET. Pendências em `interno/clientes/antonios/README.md`.
+  A versão de portfólio, com marca fictícia, é a Maré Mansa, em `/imoveis/demos/mare-mansa/`.
 
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
 |---|---|---|
-| `/imoveis/demos/` | 4 | imobiliário |
+| `/imoveis/demos/` | 5 | imobiliário |
 | `/moveis-planejados/demos/` | 6 | móveis planejados |
 | `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
 | `/negocios/demos/` | 4 | negócios locais |
+
+A Maré Mansa (`/imoveis/demos/mare-mansa/`, desde 11/10/2026) é a prévia da
+Antonio's refeita do mesmo jeito: nome, logo, paleta (azul atlântico e dourado
+de areia), história, corretora, depoimentos, CRECI ("J-0000"), telefones e
+e-mail fictícios; sem endereço de rua nem CNPJ, e o mapa mostra só o bairro.
+O bairro (Recreio) ficou, porque o vídeo e as fotos são de lá e levam crédito
+do Wikimedia no rodapé. Códigos dos imóveis em "MM-".
 
 As quatro de `/negocios/demos/` são as prévias de cliente refeitas como
 marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
