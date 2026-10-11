@@ -400,6 +400,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   ainda é o fixo do CNPJ (`ZAP` no topo do `js/main.js`). Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET. Pendências em `interno/clientes/antonios/README.md`.
   A versão de portfólio, com marca fictícia, é a Maré Mansa, em `/imoveis/demos/mare-mansa/`.
+  **Fora do ar desde 11/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 ### As demonstrações, uma pasta por área
 
