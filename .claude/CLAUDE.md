@@ -182,7 +182,12 @@ rodapé em colunas), adaptada à escada de compromisso.
 - **Hero:** título à esquerda com a palavra de destaque em serif itálico
   dourado, botões "Fazer diagnóstico gratuito" (WhatsApp) e "Ver projetos"
   (portfólio) e quatro selos; à direita um card (topo dourado, base escura)
-  com três degraus: calculadora, planos e preços, e WhatsApp.
+  com três degraus: calculadora, planos e preços, e WhatsApp. Atrás do card,
+  colada na direita e na altura da tela, a estátua de gravura de óculos
+  dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e 119 KB): vem sobre
+  preto e entra com `mix-blend-mode:screen`, então o preto some e o fundo do
+  hero continua o mesmo. No computador o card desce (`align-self:end`) para
+  o rosto ficar à vista; abaixo de 980 px ela fica a 22% atrás do texto.
 - **`[02]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
   (rápido no celular, pronto para anúncio, texto que vende, cada contato
   avisado, tudo no seu nome). Sem CTA próprio.
