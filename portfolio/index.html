@@ -648,6 +648,16 @@
   /* a nav da home revela os links depois da primeira tela; aqui nao ha
      primeira tela para esperar */
   .site-nav{opacity:1!important;transform:none!important}
+  /* volta para a home: quem chega aqui vindo de lá precisa achar o caminho de volta
+     para a venda, sem depender do logo */
+  .pf-volta{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;padding:11px 18px;border-radius:99px;
+    border:1px solid var(--line);color:var(--white);text-decoration:none;font:600 14.5px/1 var(--font-body);
+    background:rgba(255,255,255,.03);transition:border-color .25s ease,color .25s ease}
+  .pf-volta:hover{border-color:rgba(227,179,65,.55);color:var(--accent)}
+  .pf-volta b{font-weight:400;color:var(--muted)}
+  .pf-fim{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 22px;margin:72px auto 0;padding:0 5vw;text-align:center}
+  .pf-fim p{flex-basis:100%;margin:0;font-size:17px;color:#D8CFC0}
+  .pf-fim .pf-volta{margin:0;border-color:rgba(227,179,65,.55);color:var(--accent)}
 </style>
 <noscript><style>
   .rv,.rv-l,.rv-r,.rv-u{opacity:1!important;transform:none!important}
@@ -726,6 +736,7 @@
 
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
+    <a class="pf-volta" href="../#trabalhos" data-en="&larr; Back to <b>usetheatrum.com.br</b>">&larr; Voltar para <b>usetheatrum.com.br</b></a>
     <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">&#9670;</span>portfolio'><span class="eyebrow-bar"></span><span class="eyebrow-tag">&#9670;</span>portfólio</p>
     <h2 class="rv" style="--d:.08s" data-en='Five markets, twenty-one sites. <span class="lm">Scroll and open any of them.</span>'>Cinco mercados, vinte e um sites. <span class="lm">Role e abra qualquer um.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='Each belt below is a market I work in. The sites are live, not pictures: click any card to open the whole page, top to bottom. <b>Hover to stop the belt.</b>'>Cada esteira abaixo é um mercado que eu atendo. Os sites rodam de verdade, não são figuras: clique em qualquer cartão para abrir a página inteira, do topo ao rodapé. <b>Passe o mouse para parar a esteira.</b></p>
@@ -906,27 +917,6 @@
 
   <div class="vitrine rv">
     <div class="vit-cab">
-      <h3 data-en="Online stores">Lojas online</h3>
-      <span class="vit-tag" data-en="one demo · one client store live">uma demonstração · uma loja de cliente no ar</span>
-    </div>
-    <!-- dois cartoes so: esteira aqui seria cartao repetindo em loop, que
-         parece defeito. Ficam parados lado a lado ate haver mais. -->
-    <div class="vit-solo">
-      <a class="vit-card" href="../lojas/demos/seis-panos/?de=portfolio" target="_blank" rel="noopener">
-        <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
-        <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
-        <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
-      </a>
-      <a class="vit-card" href="https://littletrees-indol.vercel.app/" target="_blank" rel="noopener">
-        <span class="vit-janela"><i></i><i></i><i></i><b>littletrees-indol.vercel.app</b></span>
-        <img src="../assets/img/vitrine/little-trees-desktop.webp" alt="Catálogo de aromatizantes em que o visitante monta o kit aroma por aroma e fecha o pedido no WhatsApp" loading="lazy" width="1000" height="625">
-        <span class="vit-pe" data-en="<b>Little Trees</b><em>Air fresheners · kit builder</em>"><b>Little Trees</b><em>Aromatizantes · montador de kit</em></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="vitrine rv">
-    <div class="vit-cab">
       <h3 data-en="Local businesses">Negócios locais</h3>
       <span class="vit-tag" data-en="five demos · fictional brands">cinco demonstrações · marcas fictícias</span>
     </div>
@@ -986,6 +976,31 @@
     </div>
   </div>
 
+  <div class="vitrine rv">
+    <div class="vit-cab">
+      <h3 data-en="Online stores">Lojas online</h3>
+      <span class="vit-tag" data-en="one demo · one client store live">uma demonstração · uma loja de cliente no ar</span>
+    </div>
+    <!-- dois cartoes so: esteira aqui seria cartao repetindo em loop, que
+         parece defeito. Ficam parados lado a lado ate haver mais. -->
+    <div class="vit-solo">
+      <a class="vit-card" href="../lojas/demos/seis-panos/?de=portfolio" target="_blank" rel="noopener">
+        <span class="vit-janela"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
+        <img src="../assets/img/vitrine/seis-panos-desktop.webp" alt="Loja de bonés importados com catálogo filtrável, carrinho e checkout" loading="lazy" width="1000" height="625">
+        <span class="vit-pe" data-en="<b>Seis Panos</b><em>Caps · cart + checkout</em>"><b>Seis Panos</b><em>Bonés · carrinho e checkout</em></span>
+      </a>
+      <a class="vit-card" href="https://littletrees-indol.vercel.app/" target="_blank" rel="noopener">
+        <span class="vit-janela"><i></i><i></i><i></i><b>littletrees-indol.vercel.app</b></span>
+        <img src="../assets/img/vitrine/little-trees-desktop.webp" alt="Catálogo de aromatizantes em que o visitante monta o kit aroma por aroma e fecha o pedido no WhatsApp" loading="lazy" width="1000" height="625">
+        <span class="vit-pe" data-en="<b>Little Trees</b><em>Air fresheners · kit builder</em>"><b>Little Trees</b><em>Aromatizantes · montador de kit</em></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="pf-fim">
+    <p data-en="Saw one that fits your business? How it works, the prices and the free diagnosis are on the main site.">Viu um que combina com o seu negócio? Como funciona, preços e o diagnóstico gratuito estão no site principal.</p>
+    <a class="pf-volta" href="../#trabalhos" data-en="&larr; Back to <b>usetheatrum.com.br</b>">&larr; Voltar para <b>usetheatrum.com.br</b></a>
+  </div>
 </section>
 
 <script>

@@ -2930,82 +2930,214 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 6 · TRABALHOS (convite para o portfolio, sem imagem) ============
-     A vitrine com imagem mora em /portfolio/. Aqui ficam tres janelas de
-     navegador desenhadas em CSS, sem nenhum arquivo: o que custava 484 KB
-     de imagem nao volta para a home. Cada uma mostra o sistema que roda
-     dentro do site, que e o ponto forte da casa. -->
+<!-- ============ 8 · TRABALHOS (vitrine em dois blocos) ============
+     Dois "espaços de anúncio", cada um passando um site por vez com
+     transição em degradê, o tipo de site escrito embaixo. O portfólio
+     inteiro (21 sites) mora em /portfolio/.
+
+     Peso, medido em 10/10/2026 contra a vitrine completa: as imagens têm
+     o tamanho em que aparecem (480 ou 800 px, por srcset), e só baixam
+     a atual e a próxima de cada bloco, quando a seção chega perto da tela.
+     A troca só roda com a seção visível e a aba aberta. Quem pede menos
+     movimento troca pelos pontinhos, sem rotação automática.
+
+     Componente com estado: os textos das telas moram no objeto VS, não
+     em data-en (a troca de idioma apagaria o estado). -->
 <style>
-  .tb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
-  .tb-card{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);
-    background:#1E1C19;text-decoration:none;color:var(--white);box-shadow:0 24px 50px rgba(0,0,0,.35);
+  .vs-blocos{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+  .vs-bloco{min-width:0}
+  .vs-tela{display:block;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);
+    background:#12110E;box-shadow:0 26px 60px rgba(0,0,0,.4);text-decoration:none;color:inherit;
     transition:border-color .3s ease,transform .3s ease}
-  .tb-card:hover{border-color:rgba(227,179,65,.4);transform:translateY(-4px)}
-  .tb-bar{display:flex;align-items:center;gap:6px;padding:11px 14px;background:#262420;border-bottom:1px solid rgba(255,255,255,.05)}
-  .tb-bar i{width:10px;height:10px;border-radius:50%;background:#E0524B;flex-shrink:0}
-  .tb-bar i:nth-child(2){background:#E5B842}
-  .tb-bar i:nth-child(3){background:#4DB861}
-  .tb-bar b{flex:1;min-width:0;margin-left:8px;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 10px;
-    font:500 11px/1.2 var(--font-mono);color:rgba(255,255,255,.45);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .tb-tela{position:relative;aspect-ratio:16/10;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;
-    background:radial-gradient(90% 80% at 85% 0%,rgba(227,179,65,.13),transparent 60%),linear-gradient(160deg,#1B1916,#12110E)}
-  .tb-ui{position:absolute;top:22px;left:22px;right:22px;display:grid;gap:8px;justify-items:start}
-  .tb-ui span{display:block;height:8px;border-radius:4px;background:rgba(255,255,255,.08);width:72%}
-  .tb-ui span:nth-child(2){width:54%}
-  .tb-ui span:nth-child(3){width:63%}
-  .tb-ui em{display:block;width:84px;height:22px;border-radius:6px;background:var(--accent);opacity:.85;margin-top:4px}
-  .tb-sis{font:600 10.5px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-  .tb-tela strong{font:700 clamp(18px,1.7vw,21px)/1.18 var(--font-display);letter-spacing:-.02em;max-width:22ch}
-  .tb-pe{display:block;padding:14px 16px;border-top:1px solid rgba(255,255,255,.06);font-size:13.5px;color:var(--muted)}
-  .tb-pe b{color:var(--white);font-weight:600;margin-right:6px}
-  .tb-rodape{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:34px}
-  @media(max-width:980px){ .tb-grid{grid-template-columns:1fr 1fr} }
-  @media(max-width:640px){ .tb-grid{grid-template-columns:1fr} }
+  .vs-tela:hover{border-color:rgba(227,179,65,.45);transform:translateY(-3px)}
+  .vs-barra{display:flex;align-items:center;gap:6px;padding:10px 13px;background:#262420;border-bottom:1px solid rgba(255,255,255,.05)}
+  .vs-barra i{width:9px;height:9px;border-radius:50%;background:#E0524B;flex-shrink:0}
+  .vs-barra i:nth-child(2){background:#E5B842}
+  .vs-barra i:nth-child(3){background:#4DB861}
+  .vs-barra b{flex:1;min-width:0;margin-left:8px;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 10px;
+    font:500 11.5px/1.2 var(--font-mono);color:rgba(255,255,255,.5);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    transition:opacity .5s ease}
+  .vs-quadro{display:block;position:relative;aspect-ratio:16/10;background:linear-gradient(160deg,#1B1916,#12110E)}
+  .vs-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
+    opacity:0;transition:opacity .9s ease}
+  .vs-quadro img.is-on{opacity:1}
+  .vs-abrir{position:absolute;right:12px;bottom:12px;z-index:2;padding:8px 12px;border-radius:99px;background:rgba(11,10,8,.82);
+    color:var(--white);font:600 13px/1 var(--font-body);opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease}
+  .vs-tela:hover .vs-abrir,.vs-tela:focus-visible .vs-abrir{opacity:1;transform:none}
+  .vs-legenda{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:16px;min-height:52px}
+  .vs-legenda div{transition:opacity .5s ease}
+  .vs-tipo{display:block;font:800 clamp(18px,1.7vw,21px)/1.2 var(--font-display);letter-spacing:-.006em;color:var(--white)}
+  .vs-nome{display:block;margin-top:4px;font-size:14.5px;color:var(--muted)}
+  .vs-nome em{font-style:normal;font:600 11.5px/1 var(--font-mono);color:var(--accent);margin-left:8px}
+  .vs-pontos{display:flex;gap:4px;flex-shrink:0;padding-top:4px}
+  .vs-pontos button{width:24px;height:24px;padding:0;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+  .vs-pontos button::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22);transition:background .3s ease,transform .3s ease}
+  .vs-pontos button[aria-current=true]::before{background:var(--accent);transform:scale(1.25)}
+  .vs-pontos button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:50%}
+  .vs-troca{opacity:0}
+  .vs-tipos{margin-top:40px;padding:24px 26px;border:1px solid var(--line);border-radius:18px;background:var(--card);
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+  .vs-tipos p{font:600 14px/1.4 var(--font-mono);color:var(--muted);margin:0 0 12px}
+  .vs-tipos ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0}
+  .vs-tipos li{font:500 14px/1 var(--font-body);color:#E2DACB;border:1px solid var(--line);border-radius:99px;padding:9px 13px}
+  @media(max-width:860px){ .vs-blocos{grid-template-columns:1fr;gap:36px} }
+  @media(max-width:600px){ .vs-legenda{flex-direction:column;gap:6px;min-height:0} .vs-pontos{padding-top:0;margin-left:-8px} }
+  @media(prefers-reduced-motion:reduce){ .vs-quadro img,.vs-legenda div,.vs-barra b{transition:none} }
 </style>
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
     <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Sixteen sites live. <span class="lm">Several with a system inside.</span>'>Dezesseis sites no ar. <span class="lm">Vários com sistema dentro.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Real estate, fitted furniture, nutrition, solar energy and an online store. They are demonstrations with invented brands, but they work: open any one and use it from top to bottom.'>Imobiliário, móveis planejados, nutrição, energia solar e loja online. São demonstrações com marca fictícia, mas funcionam: abra qualquer uma e use do topo ao rodapé.</p>
+    <h2 class="rv" style="--d:.08s" data-en='Twenty-one sites live. <span class="lm">Here are a few.</span>'>Vinte e um sites no ar. <span class="lm">Alguns deles passando aqui.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
 
-    <div class="tb-grid rv" style="--d:.2s">
-      <a class="tb-card" href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener">
-        <span class="tb-bar" aria-hidden="true"><i></i><i></i><i></i><b>caparaosolar.com.br</b></span>
-        <span class="tb-tela">
-          <span class="tb-ui" aria-hidden="true"><span></span><span></span><span></span><em></em></span>
-          <span class="tb-sis" data-en="system inside">sistema no site</span>
-          <strong data-en="Calculator that sizes the plant and the payback">Calculadora que dimensiona a usina e o retorno</strong>
-        </span>
-        <span class="tb-pe" data-en="<b>Caparaó Solar</b> solar energy &rarr;"><b>Caparaó Solar</b> energia solar &rarr;</span>
-      </a>
-      <a class="tb-card" href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener">
-        <span class="tb-bar" aria-hidden="true"><i></i><i></i><i></i><b>seispanos.com.br</b></span>
-        <span class="tb-tela">
-          <span class="tb-ui" aria-hidden="true"><span></span><span></span><span></span><em></em></span>
-          <span class="tb-sis" data-en="system inside">sistema no site</span>
-          <strong data-en="Filterable catalogue, cart and checkout">Catálogo filtrável, carrinho e checkout</strong>
-        </span>
-        <span class="tb-pe" data-en="<b>Seis Panos</b> online store &rarr;"><b>Seis Panos</b> loja online &rarr;</span>
-      </a>
-      <a class="tb-card" href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener">
-        <span class="tb-bar" aria-hidden="true"><i></i><i></i><i></i><b>verticeimoveis.com.br</b></span>
-        <span class="tb-tela">
-          <span class="tb-ui" aria-hidden="true"><span></span><span></span><span></span><em></em></span>
-          <span class="tb-sis" data-en="system inside">sistema no site</span>
-          <strong data-en="Private listings, unlocked by code">Carteira reservada, liberada por código</strong>
-        </span>
-        <span class="tb-pe" data-en="<b>Vértice</b> real estate &rarr;"><b>Vértice</b> imóveis &rarr;</span>
-      </a>
+    <div class="vs-blocos rv" style="--d:.2s" id="vsBlocos">
+      <div class="vs-bloco" data-bloco="0"></div>
+      <div class="vs-bloco" data-bloco="1"></div>
     </div>
 
-    <div class="tb-rodape rv" style="--d:.26s">
-      <a class="btn btn-primary" href="portfolio/" data-en='See all twenty-one <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>
-        Ver os vinte e um
-        <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>
-      </a>
+    <div class="vs-tipos rv" style="--d:.24s">
+      <div>
+        <p data-en="in the full portfolio you will find">no portfólio completo você encontra</p>
+        <ul>
+          <li data-en="Online stores">Lojas online</li>
+          <li data-en="Dietitians">Nutricionistas</li>
+          <li data-en="Real estate">Imobiliárias e corretores</li>
+          <li data-en="Fitted furniture">Móveis planejados</li>
+          <li data-en="Clinics and consultancies">Clínicas e consultorias</li>
+          <li data-en="Cabins and inns">Chalés e pousadas</li>
+          <li data-en="Solar energy">Energia solar</li>
+          <li data-en="Farm and vet stores">Agropecuárias</li>
+        </ul>
+      </div>
+      <a class="btn btn-primary" href="portfolio/?de=home" data-en='See all twenty-one <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver os vinte e um <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  'use strict';
+  /* tipo: o que aparece embaixo da tela. real: cliente de verdade, link para o site dele no ar */
+  const VS = [
+    [ {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
+      {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista', en:'Website for a dietitian'},
+      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
+      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
+      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
+      {img:'caparao-solar', dom:'caparaosolar.com.br', nome:'Caparaó Solar', href:'solar/demos/caparao-solar/', pt:'Site para energia solar', en:'Website for solar energy'} ],
+    [ {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
+      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
+      {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate'},
+      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'},
+      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'},
+      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'} ]
+  ];
+  const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site'},
+               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site'} };
+  const TEMPO = 5200;                       /* quanto cada site fica na tela */
+  const PARADO = new URLSearchParams(location.search).get('still') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const src = (it, w) => 'assets/img/vitrine/home/' + it.img + '-' + w + '.webp';
+  const link = (it) => it.real ? it.href : it.href + '?de=home';
+  const raiz = document.getElementById('vsBlocos');
+  if (!raiz) return;
+
+  const blocos = [...raiz.querySelectorAll('.vs-bloco')].map((el, b) => {
+    const lista = VS[b];
+    el.innerHTML =
+      '<a class="vs-tela" target="_blank" rel="noopener">' +
+        '<span class="vs-barra" aria-hidden="true"><i></i><i></i><i></i><b></b></span>' +
+        '<span class="vs-quadro"><img alt="" decoding="async"><img alt="" decoding="async"><span class="vs-abrir"></span></span>' +
+      '</a>' +
+      '<div class="vs-legenda"><div aria-live="off"><span class="vs-tipo"></span><span class="vs-nome"></span></div>' +
+      '<span class="vs-pontos">' + lista.map(() => '<button type="button"></button>').join('') + '</span></div>';
+    return { el, lista, i: 0, camada: 0, timer: null, vez: 0, inicio: b * TEMPO / 2,
+             tela: el.querySelector('.vs-tela'), dom: el.querySelector('.vs-barra b'),
+             imgs: el.querySelectorAll('.vs-quadro img'), abrir: el.querySelector('.vs-abrir'),
+             leg: el.querySelector('.vs-legenda div'), tipo: el.querySelector('.vs-tipo'), nome: el.querySelector('.vs-nome'),
+             pontos: el.querySelectorAll('.vs-pontos button'), parado: false };
+  });
+
+  function poeImg(img, it){
+    img.sizes = '(max-width: 860px) 92vw, 600px';
+    img.srcset = src(it, 480) + ' 480w, ' + src(it, 800) + ' 800w';
+    img.src = src(it, 800);
+  }
+  /* carrega a próxima antes de trocar, para o degradê nunca cruzar com tela vazia */
+  function prepara(it){
+    const im = new Image();
+    im.sizes = '(max-width: 860px) 92vw, 600px';
+    im.srcset = src(it, 480) + ' 480w, ' + src(it, 800) + ' 800w';
+    return (im.decode ? im.decode() : Promise.resolve()).catch(() => {});
+  }
+  function textos(B){
+    const it = B.lista[B.i], T = TX[idioma()];
+    B.tipo.textContent = it[idioma()];
+    B.nome.innerHTML = it.nome + '<em>' + (it.real ? T.real : T.demo) + '</em>';
+    B.dom.textContent = it.dom;
+    B.abrir.textContent = T.abrir;
+    B.tela.href = link(it);
+    B.tela.setAttribute('aria-label', T.abrir.replace(' ↗','') + ': ' + it.nome + ', ' + it[idioma()]);
+    B.pontos.forEach((p, k) => {
+      p.setAttribute('aria-current', String(k === B.i));
+      p.setAttribute('aria-label', T.ir + ' ' + (k + 1) + ': ' + B.lista[k].nome);
+    });
+  }
+  function mostra(B, n){
+    if (n === B.i && B.imgs[B.camada].getAttribute('src')) return Promise.resolve();
+    const it = B.lista[n], vez = ++B.vez;
+    return prepara(it).then(() => {
+      if (vez !== B.vez) return;           /* chegou atrasada: outra troca já foi pedida */
+      const nova = B.imgs[1 - B.camada], velha = B.imgs[B.camada];
+      poeImg(nova, it);
+      B.leg.classList.add('vs-troca'); B.dom.classList.add('vs-troca');
+      requestAnimationFrame(() => {
+        nova.classList.add('is-on'); velha.classList.remove('is-on');
+        B.camada = 1 - B.camada; B.i = n;
+        setTimeout(() => { textos(B); B.leg.classList.remove('vs-troca'); B.dom.classList.remove('vs-troca'); }, 350);
+      });
+    });
+  }
+
+  let visivel = false, montado = false;
+  function agenda(B, atraso){
+    clearTimeout(B.timer);
+    if (PARADO || !visivel || document.hidden || B.parado) return;
+    B.timer = setTimeout(() => {
+      mostra(B, (B.i + 1) % B.lista.length).then(() => agenda(B, TEMPO));
+    }, atraso);
+  }
+  function monta(){
+    if (montado) return; montado = true;
+    blocos.forEach((B) => {
+      poeImg(B.imgs[0], B.lista[0]); B.imgs[0].classList.add('is-on');
+      textos(B);
+    });
+  }
+  function anda(){ blocos.forEach((B) => agenda(B, TEMPO + B.inicio)); }
+  function para(){ blocos.forEach((B) => clearTimeout(B.timer)); }
+
+  blocos.forEach((B) => {
+    B.pontos.forEach((p, k) => p.addEventListener('click', () => { clearTimeout(B.timer); mostra(B, k); agenda(B, TEMPO * 1.6); }));
+    /* parar no mouse: mirar um alvo que troca sozinho é frustrante */
+    B.el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { B.parado = true; clearTimeout(B.timer); } });
+    B.el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { B.parado = false; agenda(B, TEMPO / 2); } });
+    B.el.addEventListener('focusin', () => { B.parado = true; clearTimeout(B.timer); });
+    B.el.addEventListener('focusout', () => { B.parado = false; agenda(B, TEMPO); });
+  });
+
+  if (PARADO || !('IntersectionObserver' in window)) { monta(); }
+  else {
+    /* monta perto da tela (a primeira imagem de cada bloco); anda só à vista */
+    new IntersectionObserver((es) => { if (es[0].isIntersecting) monta(); }, { rootMargin: '600px 0px' }).observe(raiz);
+    new IntersectionObserver((es) => {
+      visivel = es[0].isIntersecting;
+      if (visivel) { monta(); anda(); } else para();
+    }, { threshold: .25 }).observe(raiz);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) para(); else if (visivel) anda(); });
+  }
+  new MutationObserver(() => blocos.forEach(textos)).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+})();
+</script>
 
 <!-- ============ 7 · ENTREGAS + 8 · QUEM FAZ ============ -->
 <style>
@@ -3776,6 +3908,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, 80);
     setTimeout(function(){ clearInterval(t); }, 4000);
   });
+
+  /* quem chega de outra página já com #secao no endereço (o "voltar" do
+     portfólio, os links do menu dele) cai na altura estimada: corrige
+     depois que a página carregou */
+  if (location.hash.length > 1) {
+    addEventListener("load", function(){
+      var alvo = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (alvo) setTimeout(function(){ corrigeAncora(alvo); }, 150);
+    });
+  }
 })();
 </script>
 <script src="/js/consentimento.js" defer></script>

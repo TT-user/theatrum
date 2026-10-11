@@ -77,8 +77,12 @@ de vários MB mais de uma vez. Adicione caminhos explícitos e confira o
 
 ### Orçamento de performance (regra permanente)
 
-A home travava ao abrir e engasgava ao rolar. Depois do conserto ela transfere
-**10 KB** e abre com DOM interativo em 2,1 s em 4G lento com CPU 4x. Qualquer
+A home travava ao abrir e engasgava ao rolar. Depois do conserto ela abria com
+DOM interativo em 2,1 s em 4G lento com CPU 4x. Medição de 10/10/2026 (servidor
+local com gzip, terceiros de medição bloqueados, mediana de 3): DOM interativo
+0,8 s, LCP 1,4 s, mas **~200 KB transferidos ao abrir** (o "10 KB" de antes não
+se confirmou) e **2 tarefas longas (~290 ms) ao rolar**, que já existiam antes
+da vitrine. As duas passam do teto e estão por investigar. Qualquer
 mudança daqui para frente respeita isto:
 
 | | teto |
@@ -206,9 +210,19 @@ rodapé em colunas), adaptada à escada de compromisso.
   Lançamento é "recomendado", não "mais escolhido": sem cliente para contar,
   seria prova social inventada. Os ids `#solucao` e
   `#investimento` continuam dentro dela.
-- **`[08]` trabalhos:** três janelas de navegador desenhadas em CSS, sem
-  imagem nenhuma, cada uma mostrando o sistema que roda dentro do demo. Os
-  links levam `?de=home`.
+- **`[08]` trabalhos:** vitrine em dois blocos, como espaço de anúncio:
+  cada bloco passa um site por vez (5,2 s cada, troca em degradê, o segundo
+  bloco defasado em meio tempo) com "site para {tipo}", nome e selo
+  "demonstração" ou "cliente real" embaixo. Seis sites por bloco, ordenados
+  para os dois nunca mostrarem o mesmo tipo ao mesmo tempo (lista no objeto
+  `VS`). Imagens em `assets/img/vitrine/home/` a 480 e 800 px por srcset;
+  só baixam a atual e a próxima, quando a seção chega perto, e a troca só
+  roda à vista. Para no mouse; pontinhos trocam na mão; sem rotação com
+  `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
+  tem e "Ver os vinte e um" (`portfolio/?de=home`). Links das telas levam
+  `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
+  volta: 71 KB de imagem ao rolar contra 354 KB (celular) e 593 KB
+  (computador), sem tarefa longa a mais.
 - Destaque em título (`.lm`) é serif itálico dourado (`#8A6412` nas seções
   claras), não mais marca-texto.
 - O modo QA `?still=1` desliga animações e o `content-visibility`, para print
@@ -279,11 +293,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos vinte e um sites, em página própria. Saiu da home
-  porque custava 24 KB de HTML, script próprio e 484 KB de imagem que baixavam
-  assim que alguém rolava até lá. Na home ficou só o convite, sem imagem
-  nenhuma. Quem abre uma demo a partir daqui volta para cá: os links levam
-  `?de=portfolio` e os três `_demo.js` conhecem essa origem.
+- `/portfolio/` — a vitrine dos vinte e um sites, em página própria, em cinco
+  esteiras: planejados, nutrição, imóveis, negócios locais e, por último,
+  lojas. A vitrine inteira não volta para a home (custaria 354 a 593 KB de
+  imagem); a home tem a versão em dois blocos do `[08]`. Botão "Voltar para
+  usetheatrum.com.br" no topo e no fim, levando a `../#trabalhos`; a home
+  corrige a âncora de quem chega com `#secao` no endereço. Quem abre uma demo a partir daqui volta para cá: os links levam
+  `?de=portfolio` e os seis `_demo.js` (imóveis, lojas, planejados, negócios, nutrição e solar) conhecem essa origem.
   Exceção: o card do Little Trees (cliente real, faixa de lojas) aponta para o
   site dele no ar, `littletrees-indol.vercel.app`, cujo código mora em repositório
   próprio (`Desktop/littletrees`), fora deste site.
@@ -453,3 +469,6 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)
 4. Política de contrato, para a resposta do FAQ.
 5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).
+6. Home acima do orçamento de performance (medição de 10/10/2026): ~200 KB
+   ao abrir (só o HTML em gzip tem 68 KB) e 2 tarefas longas de ~290 ms ao
+   rolar. Já era assim antes da vitrine do `[08]`; falta achar a origem.
