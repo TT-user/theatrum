@@ -65,13 +65,6 @@
       else setTimeout(sobe, 3000);
     });
   })();
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
-      a.addEventListener('click', function(){
-        gtag('event', 'clique_whatsapp', { origem: a.className || 'link' });
-      });
-    });
-  });
 </script>
 <!-- Microsoft Ads UET (tag 187278315) + consentimento -->
 <script>
@@ -3390,71 +3383,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .raiox-card .rc-ok{font:600 14px/1.5 var(--font-body);color:var(--accent);margin:0}
   @media(prefers-reduced-motion:reduce){ .raiox-card{transition:none} }
 
-  /* ---------- pop-up de saída: raio-x em menos de 24 h ----------
-     Aparece uma vez por sessão, quando a pessoa dá sinal de ir embora:
-     no computador, o mouse saindo pelo topo da janela; no celular, uma
-     rolada rápida de volta para cima depois de ter lido boa parte. Sem
-     backdrop-filter (caro em GPU de celular): o véu é cor sólida. */
-  .sx{position:fixed;inset:0;z-index:1100;display:grid;place-items:center;padding:20px;
-    background:rgba(7,6,5,.78);opacity:0;transition:opacity .28s ease}
-  .sx.is-on{opacity:1}
-  .sx-caixa{position:relative;width:min(880px,100%);max-height:calc(100svh - 40px);overflow:auto;
-    display:grid;grid-template-columns:1.05fr .95fr;border-radius:22px;border:1px solid rgba(227,179,65,.35);
-    background:#1B1A18;box-shadow:0 30px 90px rgba(0,0,0,.6);transform:translateY(16px) scale(.98);
-    transition:transform .32s cubic-bezier(.2,.7,.2,1)}
-  .sx.is-on .sx-caixa{transform:none}
-  .sx-oferta{position:relative;overflow:hidden;padding:32px 30px;color:var(--ink);
-    background:linear-gradient(140deg,var(--accent) 0%,#E6A63A 58%,#C9742A 100%)}
-  .sx-oferta::before{content:"";position:absolute;right:-40px;top:-50px;width:180px;height:180px;border-radius:50%;
-    background:rgba(255,255,255,.18);filter:blur(26px)}
-  .sx-selos{position:relative;display:flex;flex-wrap:wrap;gap:8px}
-  .sx-selo{display:inline-flex;align-items:center;gap:7px;border-radius:99px;padding:8px 12px;
-    font:700 12.5px/1 var(--font-body);background:rgba(14,13,11,.88);color:#fff}
-  .sx-selo i{width:8px;height:8px;border-radius:50%;background:#34D399;box-shadow:0 0 10px rgba(52,211,153,.8)}
-  .sx-selo.claro{background:rgba(255,255,255,.55);color:var(--ink)}
-  .sx-oferta h2{position:relative;margin-top:18px;font:800 clamp(1.6rem,3vw,2.2rem)/1.1 var(--font-display);letter-spacing:-.01em}
-  .sx-oferta h2 em{font-family:var(--font-script);font-style:italic;font-weight:400;font-size:1.12em}
-  .sx-oferta > p{position:relative;margin-top:12px;font-size:16px;line-height:1.55;color:rgba(20,18,16,.82)}
-  .sx-oferta small{position:relative;display:block;margin-top:20px;font:600 13px/1 var(--font-mono);color:rgba(20,18,16,.7)}
-  .sx-oferta ul{position:relative;list-style:none;display:grid;gap:9px;margin-top:10px}
-  .sx-oferta li{position:relative;padding-left:26px;font:600 15px/1.4 var(--font-body)}
-  .sx-oferta li::before{content:"\2713";position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;
-    background:var(--ink);color:var(--accent);font-size:11px;line-height:18px;text-align:center}
-  .sx-form{padding:32px 28px 26px;display:flex;flex-direction:column;gap:12px}
-  .sx-form b{font:800 19px/1.25 var(--font-display);color:var(--white)}
-  .sx-form > p{font-size:14.5px;line-height:1.55;color:var(--muted);margin-top:-4px}
-  .sx-campo{display:grid;gap:6px}
-  .sx-campo span{font:600 13.5px/1.2 var(--font-body);color:#D8CFC0}
-  .sx-campo span em{font-style:normal;font-weight:400;color:var(--muted)}
-  .sx-campo input{width:100%;padding:13px 14px;border-radius:11px;background:rgba(255,255,255,.05);
-    border:1px solid var(--line);color:var(--cream);font:400 15.5px/1.2 var(--font-body);outline:none;
-    -webkit-user-select:text;user-select:text}
-  .sx-campo input:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px rgba(227,179,65,.2)}
-  .sx-campo input[aria-invalid=true]{border-color:var(--danger)}
-  .sx-enviar{margin-top:6px;min-height:54px;border:0;border-radius:12px;cursor:pointer;
-    background:var(--accent);color:var(--ink);font:800 16px/1.2 var(--font-body);
-    box-shadow:0 12px 26px rgba(227,179,65,.22);transition:background .2s ease,transform .2s ease}
-  .sx-enviar:hover{background:var(--accent-soft);transform:translateY(-1px)}
-  .sx-garantia{font-size:13px;line-height:1.5;color:var(--muted);text-align:center}
-  .sx-agora-nao{align-self:center;background:none;border:0;cursor:pointer;color:var(--muted);
-    font:500 13.5px/1 var(--font-body);text-decoration:underline;text-underline-offset:3px;padding:6px}
-  .sx-agora-nao:hover{color:var(--white)}
-  .sx-fechar{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;cursor:pointer;
-    border:1px solid rgba(255,255,255,.14);background:rgba(14,13,11,.7);color:#fff;font:400 22px/1 var(--font-body)}
-  .sx-fechar:hover{background:rgba(14,13,11,.95)}
-  .sx-ok{display:flex;flex-direction:column;gap:12px;justify-content:center;height:100%}
-  .sx-ok b{color:var(--accent)}
-  .sx-ok p{font-size:15.5px;line-height:1.6;color:#D8CFC0}
-  .sx-ok a{color:var(--accent);font-weight:700}
-  @media(max-width:760px){
-    .sx{place-items:end center;padding:0}
-    .sx-caixa{grid-template-columns:1fr;border-radius:22px 22px 0 0;max-height:94svh;border-bottom:0}
-    .sx-oferta{padding:26px 22px 22px}
-    .sx-oferta ul{display:none}          /* no celular a lista vira uma linha só */
-    .sx-oferta small{display:none}
-    .sx-form{padding:22px 22px calc(18px + env(safe-area-inset-bottom))}
-  }
-  @media(prefers-reduced-motion:reduce){ .sx,.sx-caixa{transition:none} }
 </style>
 
 <div class="barra-mob" id="barraMob" aria-hidden="true">
@@ -3466,7 +3394,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function(){
   'use strict';
   const WA = '5532984762445';
-  const ENDPOINT = ''; // PREENCHER ENDPOINT (ver enviarLead, mais abaixo)
   const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
   const STILL = new URLSearchParams(location.search).get('still');
   let enviou = false;
@@ -3552,204 +3479,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           ? 'I came from the site. My business is ' + dados.negocio + '. I want the x-ray in writing.'
           : 'Vim do site. Meu negócio é ' + dados.negocio + '. Quero o raio-x por escrito.';
         card.querySelector('form').outerHTML =
-          '<a class="rc-ok" style="display:block" target="_blank" rel="noopener" href="https://wa.me/' +
+          '<a class="rc-ok" style="display:block" target="_blank" rel="noopener" data-wa-direto href="https://wa.me/' +
           WA + '?text=' + encodeURIComponent(texto) + '">' + T.semCanal + '</a>';
       }
       try { sessionStorage.setItem('theatrum-raiox','enviado'); } catch(e){}
     });
   }
 
-  /* ---------- PREENCHER ENDPOINT ----------
-     Única função que fala com o mundo. Enquanto não houver endereço,
-     ela só registra no console: melhor perder o lead de forma visível
-     do que fingir que enviou. Trocar pelo canal real de leads. */
+  /* O envio é o mesmo dos formulários do site (Web3Forms, em
+     /js/leads.js). Devolve true só se o lead de fato chegou. */
   async function enviarLead(dados){
-    if (!ENDPOINT) { console.warn('[theatrum] lead sem endpoint configurado:', dados); return false; }
-    try {
-      const r = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(dados),
-      });
-      return r.ok;
-    } catch (err) { console.error('[theatrum] falha ao enviar o lead:', err); return false; }
-  }
-
-
-  /* ---------- pop-up de saída: raio-x em menos de 24 h ----------
-     Uma vez por sessão (marca 'theatrum-saida'). Não aparece para quem
-     já pediu o raio-x (por aqui ou pelo card de 70%) nem para quem já
-     clicou num CTA. Se o card de 70% estiver aberto, o pop-up o tira da
-     tela, e depois do pop-up o card não volta.
-
-     Componente com estado: os textos moram aqui, não em data-en, e ele
-     é montado no idioma da hora em que abre.
-
-     Sem ENDPOINT o pedido não chega a lugar nenhum por conta própria.
-     Nesse caso o envio abre o WhatsApp com o pedido escrito, ainda
-     dentro do clique (senão o navegador bloqueia a aba nova), e a tela
-     diz que falta tocar em enviar. Nada de "recebido" que não é verdade. */
-  const SX = {
-    pt:{ selo:'raio-x gratuito', prazo:'em menos de 24 h',
-         t:'Antes de sair, leve o <em>raio-x</em> do seu negócio.',
-         p:'Uma prévia por escrito de como site, Google, anúncio e atendimento funcionariam no seu caso. Chega no seu WhatsApp em menos de 24 horas.',
-         vem:'o que vem nele',
-         itens:['Como o seu negócio aparece no Google hoje','Onde o cliente se perde: site, Google, anúncio ou WhatsApp','O que os concorrentes mais próximos fazem que você não faz','A prévia do que a Theatrum faria no seu caso, com prazo'],
-         ft:'Peça o seu raio-x', fp:'Três dados e pronto. Sem cadastro, sem senha.',
-         n:'Nome do seu negócio', c:'Cidade', l:'Site ou Instagram', opc:'(se tiver)', w:'Seu WhatsApp',
-         ph_n:'Ex.: Clínica Sorriso', ph_c:'Ex.: Muriaé, MG', ph_l:'Ex.: @seunegocio', ph_w:'(32) 9 9999-9999',
-         b:'Quero meu raio-x gratuito', g:'Gratuito e sem compromisso. Se não fizer sentido, o raio-x fica com você.',
-         nao:'Agora não', f:'Fechar',
-         okT:'Pedido recebido.', okP:'O raio-x do seu negócio chega no seu WhatsApp em menos de 24 horas.',
-         zapT:'Falta um toque.', zapP:'Abrimos o WhatsApp com o seu pedido já escrito. É só tocar em enviar, e o raio-x chega em menos de 24 horas.',
-         zapL:'Não abriu? Toque aqui para enviar →',
-         msg:(d)=>'Vim do site da Theatrum. Quero o raio-x gratuito do meu negócio.\nNegócio: '+d.negocio+'\nCidade: '+d.cidade+(d.link?'\nSite ou Instagram: '+d.link:'') },
-    en:{ selo:'free x-ray', prazo:'in under 24 h',
-         t:'Before you go, take the <em>x-ray</em> of your business.',
-         p:'A written preview of how website, Google, ads and customer service would work in your case. It reaches your WhatsApp in under 24 hours.',
-         vem:'what it covers',
-         itens:['How your business shows up on Google today','Where clients get lost: website, Google, ads or WhatsApp','What your closest competitors do that you do not','A preview of what Theatrum would do in your case, with a timeline'],
-         ft:'Ask for your x-ray', fp:'Three details and done. No sign-up, no password.',
-         n:'Business name', c:'City', l:'Website or Instagram', opc:'(if any)', w:'Your WhatsApp',
-         ph_n:'E.g. Bright Smile Dental', ph_c:'E.g. Austin, TX', ph_l:'E.g. @yourbusiness', ph_w:'+1 512 555 0123',
-         b:'I want my free x-ray', g:'Free, no strings attached. If it does not make sense, you keep the x-ray.',
-         nao:'Not now', f:'Close',
-         okT:'Request received.', okP:'The x-ray of your business reaches your WhatsApp in under 24 hours.',
-         zapT:'One tap left.', zapP:'We opened WhatsApp with your request already written. Just tap send, and the x-ray arrives in under 24 hours.',
-         zapL:'Did not open? Tap here to send →',
-         msg:(d)=>'I came from the Theatrum site. I want the free x-ray of my business.\nBusiness: '+d.negocio+'\nCity: '+d.cidade+(d.link?'\nWebsite or Instagram: '+d.link:'') }
-  };
-
-  let saidaVista = false;
-  try { saidaVista = sessionStorage.getItem('theatrum-saida') === 'visto'; } catch(e){}
-  function abrirSaida(){
-    if (saidaVista || enviou || clicou || STILL) return;
-    if (document.getElementById('mobileMenu')?.classList.contains('is-open')) return;
-    saidaVista = true; mostrado = true;   /* depois do pop-up, o card de 70% não aparece mais */
-    try { sessionStorage.setItem('theatrum-saida','visto'); } catch(e){}
-    document.querySelectorAll('.raiox-card').forEach((c) => c.remove());
-    if (window.gtag) gtag('event', 'raiox_popup', { acao:'aberto' });
-
-    const T = SX[idioma()];
-    const esc = (v) => v.replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    const campo = (nome, rot, ph, tipo, auto, obrig, opc) =>
-      '<label class="sx-campo"><span>' + rot + (opc ? ' <em>' + opc + '</em>' : '') + '</span>' +
-      '<input name="' + nome + '" type="' + tipo + '" placeholder="' + ph + '" autocomplete="' + auto + '"' + (obrig ? ' required' : '') + '></label>';
-
-    const veu = document.createElement('div');
-    veu.className = 'sx';
-    veu.innerHTML =
-      '<div class="sx-caixa" role="dialog" aria-modal="true" aria-labelledby="sxTitulo">' +
-        '<button class="sx-fechar" type="button" aria-label="' + T.f + '">&times;</button>' +
-        '<div class="sx-oferta">' +
-          '<div class="sx-selos"><span class="sx-selo"><i></i>' + T.selo + '</span><span class="sx-selo claro">' + T.prazo + '</span></div>' +
-          '<h2 id="sxTitulo">' + T.t + '</h2><p>' + T.p + '</p>' +
-          '<small>' + T.vem + '</small><ul>' + T.itens.map((i) => '<li>' + i + '</li>').join('') + '</ul>' +
-        '</div>' +
-        '<form class="sx-form" novalidate>' +
-          '<b>' + T.ft + '</b><p>' + T.fp + '</p>' +
-          campo('negocio', T.n, T.ph_n, 'text', 'organization', true) +
-          campo('cidade', T.c, T.ph_c, 'text', 'address-level2', true) +
-          campo('link', T.l, T.ph_l, 'text', 'url', false, T.opc) +
-          (ENDPOINT ? campo('zap', T.w, T.ph_w, 'tel', 'tel', true) : '') +
-          '<button class="sx-enviar" type="submit"' + (ENDPOINT ? '' : ' data-whatsapp') + '>' + T.b + '</button>' +
-          '<p class="sx-garantia">' + T.g + '</p>' +
-          '<button class="sx-agora-nao" type="button">' + T.nao + '</button>' +
-        '</form>' +
-      '</div>';
-    document.body.appendChild(veu);
-
-    const caixa = veu.querySelector('.sx-caixa');
-    const form = veu.querySelector('form');
-    const antes = document.activeElement;
-    const rolagem = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => veu.classList.add('is-on'));
-    setTimeout(() => { const i = form.querySelector('input'); if (i && matchMedia('(pointer:fine)').matches) i.focus(); else caixa.querySelector('.sx-fechar').focus(); }, 60);
-
-    const fecha = () => {
-      veu.classList.remove('is-on');
-      document.body.style.overflow = rolagem;
-      document.removeEventListener('keydown', teclas, true);
-      setTimeout(() => veu.remove(), 300);
-      if (antes && antes.focus) antes.focus();
-    };
-    function teclas(e){
-      if (e.key === 'Escape') { e.preventDefault(); fecha(); return; }
-      if (e.key !== 'Tab') return;
-      const f = [...caixa.querySelectorAll('button,input,a[href]')].filter((x) => x.offsetParent);
-      if (!f.length) return;
-      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
-      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
-    }
-    document.addEventListener('keydown', teclas, true);
-    veu.addEventListener('click', (e) => { if (e.target === veu) fecha(); });
-    caixa.querySelector('.sx-fechar').addEventListener('click', fecha);
-    caixa.querySelector('.sx-agora-nao').addEventListener('click', fecha);
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const val = (n) => { const i = form.querySelector('[name=' + n + ']'); return i ? i.value.trim() : ''; };
-      let falta = null;
-      form.querySelectorAll('input[required]').forEach((i) => {
-        const vazio = !i.value.trim();
-        i.setAttribute('aria-invalid', String(vazio));
-        if (vazio && !falta) falta = i;
-      });
-      if (falta) { falta.focus(); return; }
-
-      const dados = { negocio:val('negocio'), cidade:val('cidade'), link:val('link'), whatsapp:val('zap'),
-                      origem:'popup-saida', idioma:idioma(), quando:new Date().toISOString() };
-      const zap = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(T.msg(dados));
-      const tela = (t, p, link) => {
-        form.innerHTML = '<div class="sx-ok"><b>' + t + '</b><p>' + p + '</p>' +
-          (link ? '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + T.zapL + '</a>' : '') + '</div>';
-      };
-      if (window.gtag) gtag('event', 'raiox_popup', { acao:'enviado' });
-      enviou = true;
-      try { sessionStorage.setItem('theatrum-raiox','enviado'); } catch(e){}
-
-      if (!ENDPOINT) {
-        /* ainda dentro do clique: o navegador deixa abrir a aba */
-        window.open(zap, '_blank', 'noopener');
-        tela(T.zapT, T.zapP, zap);
-        return;
-      }
-      const foi = await enviarLead(dados);
-      if (foi) tela(T.okT, T.okP);
-      else tela(T.zapT, T.zapP, zap);
+    if (!window.TheatrumLeads) return false;
+    const foi = await window.TheatrumLeads.enviar({
+      tipo: idioma() === 'en' ? 'Written x-ray (home card)' : 'Raio-x por escrito (card da home)',
+      empresa: dados.negocio, whatsapp: dados.whatsapp, origem: dados.origem
     });
+    if (foi) window.TheatrumLeads.evento('lead_callback', { origem: dados.origem });
+    return foi;
   }
 
-  /* gatilhos de saída. Armados só depois de 8 s: quem sai antes disso
-     não leu nada e não vai pedir raio-x. */
-  if (!STILL) {
-    const armadoEm = Date.now() + 8000;
-    const pronto = () => Date.now() > armadoEm && !saidaVista && !enviou && !clicou;
 
-    /* computador: o mouse sai pelo topo, rumo à aba ou ao X */
-    document.addEventListener('mouseout', (e) => {
-      if (!e.relatedTarget && e.clientY <= 0 && pronto()) abrirSaida();
-    });
-
-    /* celular: depois de ler 40% da página, uma subida rápida (mais de
-       uma tela em menos de meio segundo) é o gesto de quem vai embora
-       pela barra do navegador */
-    if (matchMedia('(pointer:coarse)').matches) {
-      let fundo = 0, ultY = scrollY, ultT = performance.now();
-      addEventListener('scroll', () => {
-        const y = scrollY, t = performance.now();
-        const total = document.body.scrollHeight - innerHeight;
-        if (total > 0) fundo = Math.max(fundo, y / total);
-        const veloc = (ultY - y) / Math.max(t - ultT, 1);   // px/ms, positivo = subindo
-        if (t - ultT > 60) { ultY = y; ultT = t; }
-        if (pronto() && fundo > 0.4 && veloc > innerHeight / 500 && y < innerHeight * 1.5) abrirSaida();
-      }, { passive:true });
-    }
-  }
+  /* O pop-up de saída mora em /js/leads.js desde 10/10/2026: só no
+     computador, uma vez por visita, pedindo o e-mail para as 3 melhorias. */
 
   addEventListener('scroll', () => {
     if (mostrado || clicou) return;
+    /* depois do pop-up de saída (js/leads.js), o card não aparece mais */
+    try { if (sessionStorage.getItem('theatrum-saida')) { mostrado = true; return; } } catch(e){}
     const total = document.body.scrollHeight - innerHeight;
     if (total > 0 && scrollY / total > 0.70) { mostrado = true; montar(); }
   }, { passive:true });
@@ -4024,5 +3780,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script src="/js/consentimento.js" defer></script>
 <script src="/js/uet-eventos.js" defer></script>
+<script src="/js/leads.js" defer></script>
 </body>
 </html>

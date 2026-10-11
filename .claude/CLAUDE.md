@@ -68,7 +68,10 @@ de vários MB mais de uma vez. Adicione caminhos explícitos e confira o
   servido em texto puro no domínio. Chave de API só em arquivo que case com o
   `.gitignore` — inclusive cópias e backups (`.bak` **não** casa com `*.env`).
 - **Dependências externas:** Google Fonts, GTM, gtag e o UET do Microsoft Ads
-  (`bat.bing.com`, tag 187278315, autorizado em 02/10/2026). Nenhuma outra. O GSAP saiu: custava 41 KB para cinco animações de entrada
+  (`bat.bing.com`, tag 187278315, autorizado em 02/10/2026) e o Web3Forms
+  (`api.web3forms.com`, só no envio de formulário, desde 10/10/2026). O QR
+  code usa o qrcode-generator (MIT) servido daqui, em `js/vendor/`, e só baixa
+  quando alguém abre a opção do QR. Nenhuma outra. O GSAP saiu: custava 41 KB para cinco animações de entrada
   que o IntersectionObserver e o CSS já fazem. Não traga biblioteca de animação
   de volta.
 
@@ -239,24 +242,38 @@ diferente conforme de onde a pessoa clicou:
 | entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
-| pop-up de saída | "Vim do site da Theatrum. Quero o raio-x gratuito do meu negócio." + negócio, cidade e site/Instagram |
 
-### Pop-up de saída (raio-x em menos de 24 h)
+### WhatsApp no computador, formulários e pop-up de saída (`js/leads.js`)
 
-Abre quando a pessoa dá sinal de ir embora: no computador, o mouse saindo
-pelo topo; no celular, subida rápida perto do topo depois de ler 40% da
-página. Armado só depois de 8 s, uma vez por sessão (`theatrum-saida`), e
-nunca para quem já clicou num CTA ou já pediu o raio-x (`theatrum-raiox` =
-`enviado`). Tira da tela o card de 70% se ele estiver aberto, e depois dele o
-card não volta. Textos num objeto JS (`SX`), não em `data-en`.
+Carregado em todas as páginas do site principal (as mesmas do UET). Desde
+10/10/2026.
 
-**Promete o raio-x em menos de 24 horas.** Essa promessa está publicada:
-cada pedido precisa de resposta dentro do prazo.
-
-Sem `ENDPOINT` (constante no topo do script da barra mobile), o envio abre
-o WhatsApp com o pedido escrito e a tela diz "falta um toque", nunca
-"recebido". Quando o endpoint existir, o formulário ganha o campo de
-WhatsApp sozinho e passa a confirmar o recebimento.
+- **Celular** (user agent móvel, iPad incluído, ou tela abaixo de 1024 px):
+  todo link de WhatsApp abre o `wa.me` direto.
+- **Computador:** clique simples em link `wa.me`/`api.whatsapp.com` abre um
+  modal com três opções, nesta ordem: (1) "me chame no WhatsApp" (nome,
+  empresa, WhatsApp com máscara), (2) diagnóstico por e-mail (nome, empresa,
+  e-mail, site opcional), (3) abrir mesmo assim (QR code do link clicado,
+  WhatsApp Web e o app). Ctrl/Cmd+clique passa direto.
+- **Envio:** Web3Forms, chave em `ACCESS_KEY` no topo do `js/leads.js`
+  (pública por desenho; o destino é o e-mail dono da chave, que não aparece
+  no código). Assunto "🔥 Novo lead Theatrum – {nome} – {empresa}", com
+  página e botão de origem, idioma, aparelho e gclid/utm. Honeypot
+  `botcheck`. **Sem chave, não aparece formulário nenhum:** o modal mostra só
+  a opção 3 e o pop-up de saída não arma. Falha com chave mostra "não
+  consegui enviar" e oferece o WhatsApp Web com os dados escritos.
+- **Pop-up de saída:** só no computador, mouse saindo pelo topo, armado
+  depois de 8 s, uma vez por visita (`sessionStorage` `theatrum-saida`) e
+  nunca para quem já enviou formulário (`localStorage` `theatrum-lead` =
+  `enviado`). Pede só o e-mail para "3 melhorias para o site da sua
+  empresa". O antigo pop-up do raio-x em 24 h saiu.
+- **Card do raio-x de 70% (home):** usa o mesmo envio (`TheatrumLeads.enviar`)
+  e não aparece mais depois que o pop-up de saída abriu.
+- **Promessas publicadas, valem assim que a chave entrar:** o "me chame"
+  diz "vou te chamar no WhatsApp em poucos minutos (horário comercial)";
+  o diagnóstico por e-mail e as 3 melhorias do pop-up dizem que chegam no
+  e-mail. Cada lead precisa ser atendido nesse ritmo.
+- Textos num objeto JS, não em `data-en`; a caixa abre no idioma da página.
 
 ---
 
@@ -417,11 +434,14 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
   oficial, disparado no primeiro gesto ou no ocioso, como o GTM.
 - `js/consentimento.js`: aviso de cookies (Aceitar, Recusar, Saiba mais).
-- `js/uet-eventos.js`: `whatsapp_click` (link `wa.me`/`api.whatsapp.com` ou
-  `data-whatsapp`) e `diagnostico_click` (`data-uet-diagnostico`, nos três
+- `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos três
   "Ver quanto eu perco por mês" da home).
-- O consentimento só controla o UET. GTM, gtag e Google Ads continuam
-  rodando sem pedir.
+- `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu
+  o antigo `clique_whatsapp`), `lead_callback` ("me chame" e card do raio-x)
+  e `lead_email` (diagnóstico por e-mail e pop-up de saída). Vão para GA4 e
+  UET **só para quem aceitou cookies**.
+- Fora esses eventos, o consentimento só controla o UET. GTM, gtag e Google
+  Ads continuam rodando sem pedir.
 
 ---
 
@@ -430,6 +450,7 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 1. Preços de `/us/` e `/moveis-planejados/` ainda são os da oferta anterior.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[09] entregas`.
-3. Endpoint para onde o formulário do raio-x envia os leads.
+3. Chave do Web3Forms em `ACCESS_KEY` (`js/leads.js`). Enquanto estiver
+   vazia, os formulários e o pop-up de saída ficam desligados.
 4. Política de contrato, para a resposta do FAQ.
 5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).

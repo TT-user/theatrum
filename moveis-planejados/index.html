@@ -1190,12 +1190,7 @@ document.querySelectorAll('[data-wa]').forEach(function(el){
   el.setAttribute('href', 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg));
   el.setAttribute('target', '_blank');
   el.setAttribute('rel', 'noopener');
-  el.addEventListener('click', function(){
-    if (typeof gtag === 'function') {
-      gtag('event', 'clique_whatsapp', { plano: msg.slice(0, 60) });
-    }
-    window.dataLayer.push({ event: 'clique_whatsapp', plano: msg.slice(0, 60) });
-  });
+  el.setAttribute('data-origem', msg.slice(0, 60));   /* o whatsapp_click sai do /js/leads.js */
 });
 
 /* preserva a origem do clique (gclid, utm) para o relatório */
@@ -1461,5 +1456,6 @@ window.addEventListener('scroll', function(){
 </script>
 <script src="/js/consentimento.js" defer></script>
 <script src="/js/uet-eventos.js" defer></script>
+<script src="/js/leads.js" defer></script>
 </body>
 </html>
