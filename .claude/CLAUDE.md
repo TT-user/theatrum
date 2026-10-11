@@ -219,7 +219,7 @@ rodapé em colunas), adaptada à escada de compromisso.
   só baixam a atual e a próxima, quando a seção chega perto, e a troca só
   roda à vista. Para no mouse; pontinhos trocam na mão; sem rotação com
   `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
-  tem e "Ver os vinte e dois" (`portfolio/?de=home`). Links das telas levam
+  tem e "Ver os vinte e três" (`portfolio/?de=home`). Links das telas levam
   `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
   volta: 71 KB de imagem ao rolar contra 354 KB (celular) e 593 KB
   (computador), sem tarefa longa a mais.
@@ -293,7 +293,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos vinte e dois sites, em página própria, em cinco
+- `/portfolio/` — a vitrine dos vinte e três sites, em página própria, em cinco
   esteiras: planejados, nutrição, imóveis, negócios locais e, por último,
   lojas. A vitrine inteira não volta para a home (custaria 354 a 593 KB de
   imagem); a home tem a versão em dois blocos do `[08]`. Botão "Voltar para
@@ -382,6 +382,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   de `data/*.json`. Os prints são stories que ela mesma publicou; ainda falta autorização por
   escrito de cada cliente antes de virar site oficial. Prints originais e README do projeto em
   `interno/clientes/gabriela-carolina/`, fora do git.
+  A versão de portfólio, com marca fictícia, é a Lívia Amaral, em `/negocios/demos/livia-amaral/`.
 - `/bia-de-luca/` — prévia de redesenho do biadeluca.com.br (terapeuta vibracional quântica e
   palestrante, São Paulo, atende a distância), feita para prospecção em 05/10/2026. Conteúdo e
   fotos tirados do site atual dela, sem nada inventado; promessas de saúde suavizadas e aviso de
@@ -412,7 +413,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 | `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
-| `/negocios/demos/` | 4 | negócios locais |
+| `/negocios/demos/` | 5 | negócios locais |
 
 A Maré Mansa (`/imoveis/demos/mare-mansa/`, desde 11/10/2026) é a prévia da
 Antonio's refeita do mesmo jeito: nome, logo, paleta (azul atlântico e dourado
@@ -421,9 +422,21 @@ e-mail fictícios; sem endereço de rua nem CNPJ, e o mapa mostra só o bairro.
 O bairro (Recreio) ficou, porque o vídeo e as fotos são de lá e levam crédito
 do Wikimedia no rodapé. Códigos dos imóveis em "MM-".
 
-As quatro de `/negocios/demos/` são as prévias de cliente refeitas como
+A Lívia Amaral (`/negocios/demos/livia-amaral/`, desde 11/10/2026) é a prévia da
+Gabriela Carolina refeita do mesmo jeito, e com mais cuidado, porque era o rosto
+e a voz de uma pessoa: saíram a foto dela (no lugar, um cantinho de atendimento
+do Wikimedia, CC BY 2.0, com crédito no rodapé), os prints de stories de
+clientes reais (viraram cartões de mensagem gerados, com nomes e textos
+inventados), os posts do Instagram dela, os lemas dela ("Comportamentos têm
+histórias" e companhia), o schema com telefone e a Myano, marca real, que virou
+a linha fictícia Lume, com os frascos desenhados pelo próprio main.js. Paleta
+de vinho para verde-musgo. Links de Instagram e podcast caem no aviso de
+demonstração.
+
+As cinco de `/negocios/demos/` são as prévias de cliente refeitas como
 marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
-Alta (do Recanto) e Campo Vivo (da Inovar). Nome, cidade, cores, logo,
+Alta (do Recanto), Campo Vivo (da Inovar) e Lívia Amaral (da Gabriela
+Carolina). Nome, cidade, cores, logo,
 fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
 vazios e não sobra placeholder. As prévias originais continuam intactas
 nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e

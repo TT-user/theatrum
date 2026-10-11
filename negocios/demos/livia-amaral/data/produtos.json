@@ -1,0 +1,60 @@
+{
+  "_leia": "Vitrine da Lume (marca fictícia). Sem foto: o main.js desenha o frasco com a cor do rótulo.",
+  "marca": "Lume · Essências",
+  "instagram": "#demo-cta",
+  "link_bio": "#demo-cta",
+  "produtos": [
+    {
+      "id": "pausa",
+      "nome": "Pausa",
+      "tipo": "Spray de ambiente",
+      "tamanho": "100 ml",
+      "frase": "Para marcar o começo de um tempo só seu.",
+      "descricao": "Notas de lavanda e laranja-doce, para borrifar no ambiente antes de uma pausa ou de uma sessão.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#7A4A35",
+      "selo": "Spray",
+      "placeholder": false
+    },
+    {
+      "id": "recomeco",
+      "nome": "Recomeço",
+      "tipo": "Floral · Lume",
+      "tamanho": "30 ml",
+      "frase": "Para os dias de começar de novo.",
+      "descricao": "Um companheiro para momentos de mudança e de primeiros passos.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#2C4A40",
+      "selo": "Floral",
+      "placeholder": false
+    },
+    {
+      "id": "foco",
+      "nome": "Foco",
+      "tipo": "Floral · Lume",
+      "tamanho": "30 ml",
+      "frase": "Para quando a cabeça pede silêncio.",
+      "descricao": "Um companheiro para momentos de decisão e de estudo.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#8C6A2E",
+      "selo": "Floral",
+      "placeholder": false
+    },
+    {
+      "id": "calmaria",
+      "nome": "Calmaria",
+      "tipo": "Floral · Lume",
+      "tamanho": "30 ml",
+      "frase": "Para os dias que pedem mais leveza.",
+      "descricao": "Um companheiro para a rotina corrida, sem pressa de nada.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#5B6B8C",
+      "selo": "Floral",
+      "placeholder": false
+    }
+  ]
+}

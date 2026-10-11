@@ -1,0 +1,42 @@
+{
+  "_leia": "Demonstração (marca fictícia). Valor vazio mostra \"Valor na conversa\".",
+  "presencial": false,
+  "servicos": [
+    {
+      "id": "terapeutica",
+      "nome": "Sessão Terapêutica",
+      "icone": "escuta",
+      "frase": "Para entender a origem do que você sente e repete.",
+      "para_quem": "Para quem percebe padrões se repetindo, mente acelerada ou um hábito difícil de controlar.",
+      "como_funciona": "Um encontro de escuta, com base na psicanálise e no comportamento, para olhar com calma para a sua história.",
+      "duracao": "50 minutos",
+      "valor": "",
+      "formato": "Online, por vídeo",
+      "mensagem_whatsapp": "Olá, Lívia! Vim pelo site e queria saber mais sobre a Sessão Terapêutica."
+    },
+    {
+      "id": "reiki",
+      "nome": "Reiki Terapêutico",
+      "icone": "maos",
+      "frase": "Um momento para desacelerar, respirar e voltar para si.",
+      "para_quem": "Para quem sente o corpo cansado e quer um tempo de pausa, sem precisar falar muito.",
+      "como_funciona": "Você se acomoda em um lugar tranquilo e recebe o Reiki como cuidado complementar.",
+      "duracao": "40 minutos",
+      "valor": "",
+      "formato": "Online, por vídeo ou à distância",
+      "mensagem_whatsapp": "Olá, Lívia! Vim pelo site e queria saber mais sobre o Reiki Terapêutico."
+    },
+    {
+      "id": "limpeza",
+      "nome": "Limpeza energética à distância",
+      "icone": "lua",
+      "frase": "Você se acomoda onde estiver. Depois, recebe a devolutiva em áudio.",
+      "para_quem": "Para quem sente uma energia pesada e prefere ser cuidada sem sair de casa.",
+      "como_funciona": "A sessão acontece só à distância. Ao final, a Lívia envia por áudio no WhatsApp o que percebeu.",
+      "duracao": "30 minutos",
+      "valor": "",
+      "formato": "Somente à distância, com devolutiva em áudio",
+      "mensagem_whatsapp": "Olá, Lívia! Vim pelo site e queria saber mais sobre a Limpeza energética à distância."
+    }
+  ]
+}

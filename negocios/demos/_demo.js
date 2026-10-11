@@ -90,8 +90,10 @@
      negócio fictício. */
   var CONTATO = /^(tel:|mailto:|sms:|https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com))/i;
 
+  /* Exceção: link de ajuda pública que precisa funcionar mesmo numa demo,
+     como o "ligue 188 (CVV)". Marcado com data-demo-livre no HTML. */
   function neutralizar(a) {
-    if (a.dataset.thtrDemo === '1') return;
+    if (a.dataset.thtrDemo === '1' || a.hasAttribute('data-demo-livre')) return;
     var href = a.getAttribute('href') || '';
     if (href !== '#demo-cta' && !CONTATO.test(href)) return;
     a.dataset.thtrDemo = '1';

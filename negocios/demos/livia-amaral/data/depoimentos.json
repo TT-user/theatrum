@@ -1,0 +1,53 @@
+{
+  "_leia": "Depoimentos da demonstração (marca fictícia): cartões gerados, com nomes e textos inventados.",
+  "depoimentos": [
+    {
+      "imagem": "assets/img/depoimentos/dep-1.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Sessões terapêuticas",
+      "alt": "Mensagem de Mariana S.: “Saí da sessão com a cabeça mais leve. Pela primeira vez entendi de onde vem essa minha pressa de agradar todo mundo.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-2.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Reiki à distância",
+      "alt": "Mensagem de Rosa M.: “Relaxei tanto que cochilei no fim 😅 Obrigada pelo cuidado e pelo áudio depois, ouvi duas vezes.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-3.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Depois da devolutiva",
+      "alt": "Mensagem de Thiago R.: “Ouvi a devolutiva com calma no ônibus. Anotei três coisas para levar para a nossa próxima conversa.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-4.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Primeira sessão online",
+      "alt": "Mensagem de Patrícia L.: “Eu achava que online não ia funcionar comigo. Funcionou. Me senti escutada, sem pressa nenhuma.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-5.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Jornada integrada",
+      "alt": "Mensagem de Carla F.: “Três meses depois, percebo que paro antes de responder no impulso. Parece pouco, mas para mim é muito.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-6.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Reiki",
+      "alt": "Mensagem de Denise A.: “Gostei de não precisar falar muito. Foi um tempo só meu, coisa rara na minha semana.”",
+      "autorizado": true
+    }
+  ]
+}

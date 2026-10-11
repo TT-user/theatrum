@@ -1,0 +1,41 @@
+{
+  "_leia": "Os 4 resultados do \"Por onde começar?\" (demonstração, marca fictícia).",
+  "caminhos": [
+    {
+      "id": "terapeutica",
+      "titulo": "Sessão Terapêutica",
+      "titulo_html": "Para entender a <em>história</em> por trás do que se repete.",
+      "explicacao": "Um encontro de escuta, online por vídeo, para olhar com calma para a origem dos seus padrões e emoções.",
+      "formato": "Online, por vídeo",
+      "duracao": "50 minutos",
+      "valor": ""
+    },
+    {
+      "id": "reiki",
+      "titulo": "Reiki Terapêutico",
+      "titulo_html": "Um tempo para <em>desacelerar</em> e voltar para si.",
+      "explicacao": "Você se acomoda em um lugar tranquilo e recebe o Reiki como um cuidado complementar, sem precisar falar muito.",
+      "formato": "Online, por vídeo ou à distância",
+      "duracao": "40 minutos",
+      "valor": ""
+    },
+    {
+      "id": "limpeza",
+      "titulo": "Limpeza energética à distância",
+      "titulo_html": "Você só precisa se <em>acomodar</em>.",
+      "explicacao": "A sessão acontece à distância, onde você estiver. Depois, você recebe a devolutiva em áudio no WhatsApp.",
+      "formato": "Somente à distância, com devolutiva em áudio",
+      "duracao": "30 minutos",
+      "valor": ""
+    },
+    {
+      "id": "integrada",
+      "titulo": "Jornada integrada",
+      "titulo_html": "Escuta e cuidado energético, no seu <em>tempo</em>.",
+      "explicacao": "Sessões terapêuticas e Reiki combinados, para entender a sua história e também ter um tempo de pausa.",
+      "formato": "Online, por vídeo e à distância",
+      "duracao": "50 minutos de sessão + 40 de Reiki",
+      "valor": ""
+    }
+  ]
+}
