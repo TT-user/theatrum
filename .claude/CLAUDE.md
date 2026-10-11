@@ -383,6 +383,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   escrito de cada cliente antes de virar site oficial. Prints originais e README do projeto em
   `interno/clientes/gabriela-carolina/`, fora do git.
   A versão de portfólio, com marca fictícia, é a Lívia Amaral, em `/negocios/demos/livia-amaral/`.
+  **Fora do ar desde 11/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 - `/bia-de-luca/` — prévia de redesenho do biadeluca.com.br (terapeuta vibracional quântica e
   palestrante, São Paulo, atende a distância), feita para prospecção em 05/10/2026. Conteúdo e
   fotos tirados do site atual dela, sem nada inventado; promessas de saúde suavizadas e aviso de
