@@ -2,6 +2,9 @@
 (function () {
   'use strict';
 
+  var I = window.Idioma || { en: false };
+  function T(pt, en) { return I.en ? en : pt; }
+
   // O número vem de data/info.json (campo whatsapp). Vazio, o wa.me abre a
   // lista de contatos com a mensagem pronta.
   function waLink(msg) {
@@ -56,7 +59,7 @@
   var menu = document.getElementById('menu');
   function setMenu(open) {
     burger.setAttribute('aria-expanded', open);
-    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    burger.setAttribute('aria-label', open ? T('Fechar menu', 'Close menu') : T('Abrir menu', 'Open menu'));
     menu.classList.toggle('open', open);
     if (open) header.classList.add('solid');
   }
@@ -75,7 +78,11 @@
     return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate());
   }
   function addDays(s, n) { var d = new Date(s + 'T12:00:00'); d.setDate(d.getDate() + n); return iso(d); }
-  function br(s) { return s.split('-').reverse().join('/'); }
+  /* em inglês, mês por extenso: 03/04 é março num lugar e abril no outro */
+  function br(s) {
+    if (!I.en) return s.split('-').reverse().join('/');
+    return new Date(s + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
 
   var hoje = iso(new Date());
   inEl.min = hoje;
@@ -112,11 +119,13 @@
     var r = window.pedraAltaReserva, el = document.getElementById('booking-recap');
     if (!el || !r.checkin) return;
     var noites = Math.round((new Date(r.checkout) - new Date(r.checkin)) / 864e5);
-    var msg = 'Olá! Vim pelo site e queria ver a disponibilidade de ' + br(r.checkin) + ' a ' + br(r.checkout) +
-      ' (' + noites + (noites === 1 ? ' noite' : ' noites') + '), ' + r.hospedes + (r.hospedes === 1 ? ' pessoa.' : ' pessoas.');
-    el.innerHTML = 'De <strong>' + br(r.checkin) + '</strong> a <strong>' + br(r.checkout) + '</strong>, ' +
-      noites + (noites === 1 ? ' noite' : ' noites') + ', ' + r.hospedes + (r.hospedes === 1 ? ' pessoa' : ' pessoas') +
-      '.<br><a class="btn btn-amber" target="_blank" rel="noopener" href="' + waLink(msg) + '">Consultar pelo WhatsApp</a>';
+    var nN = noites + (noites === 1 ? T(' noite', ' night') : T(' noites', ' nights'));
+    var nH = r.hospedes + (r.hospedes === 1 ? T(' pessoa', ' guest') : T(' pessoas', ' guests'));
+    var msg = T('Olá! Vim pelo site e queria ver a disponibilidade de ', "Hi! I found you through the website and I'd like to check availability from ") +
+      br(r.checkin) + T(' a ', ' to ') + br(r.checkout) + ' (' + nN + '), ' + nH + '.';
+    el.innerHTML = T('De ', 'From ') + '<strong>' + br(r.checkin) + '</strong>' + T(' a ', ' to ') + '<strong>' + br(r.checkout) + '</strong>, ' +
+      nN + ', ' + nH +
+      '.<br><a class="btn btn-amber" target="_blank" rel="noopener" href="' + waLink(msg) + '">' + T('Consultar pelo WhatsApp', 'Ask on WhatsApp') + '</a>';
     el.hidden = false;
   }
 
@@ -145,12 +154,13 @@
   }
   function mostrarRota(origem, rotulo) {
     frame.src = 'https://maps.google.com/maps?saddr=' + encodeURIComponent(origem) +
-      '&daddr=' + encodeURIComponent(destino()) + '&output=embed&hl=pt-BR';
+      '&daddr=' + encodeURIComponent(destino()) + '&output=embed&hl=' + T('pt-BR', 'en');
     nav.href = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(origem) +
       '&destination=' + encodeURIComponent(destino()) + '&travelmode=driving';
     mapa.classList.add('rota-on');
     reset.hidden = false;
-    status.textContent = 'Caminho ' + rotulo + ', com o trânsito de agora. Para seguir com GPS, toque em "Abrir no Google Maps".';
+    status.textContent = T('Caminho ' + rotulo + ', com o trânsito de agora. Para seguir com GPS, toque em "Abrir no Google Maps".',
+      'Route ' + rotulo + ', with current traffic. To follow it by GPS, tap "Open in Google Maps".');
     // No celular o mapa fica acima da lista: traz ele de volta à vista.
     if (mapa.getBoundingClientRect().top < 0 || mapa.getBoundingClientRect().bottom > window.innerHeight) {
       mapa.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -160,18 +170,20 @@
   if (frame) {
     gps.addEventListener('click', function () {
       if (!navigator.geolocation) {
-        status.textContent = 'Este navegador não informa a localização. Toque numa das cidades ou abra no Google Maps.';
+        status.textContent = T('Este navegador não informa a localização. Toque numa das cidades ou abra no Google Maps.',
+          "This browser doesn't share your location. Tap one of the cities or open Google Maps.");
         return;
       }
-      status.textContent = 'Procurando onde vocês estão…';
+      status.textContent = T('Procurando onde vocês estão…', 'Finding where you are…');
       gps.disabled = true;
       navigator.geolocation.getCurrentPosition(function (pos) {
         gps.disabled = false;
         marcarCidade(null);
-        mostrarRota(pos.coords.latitude.toFixed(5) + ',' + pos.coords.longitude.toFixed(5), 'a partir de onde vocês estão');
+        mostrarRota(pos.coords.latitude.toFixed(5) + ',' + pos.coords.longitude.toFixed(5), T('a partir de onde vocês estão', 'from where you are'));
       }, function () {
         gps.disabled = false;
-        status.textContent = 'Não conseguimos a sua localização. Toque numa das cidades ao lado ou abra no Google Maps.';
+        status.textContent = T('Não conseguimos a sua localização. Toque numa das cidades ao lado ou abra no Google Maps.',
+          "We couldn't get your location. Tap one of the cities or open Google Maps.");
       }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 });
     });
 
@@ -179,7 +191,7 @@
       b.addEventListener('click', function () {
         var origem = b.getAttribute('data-origem');
         marcarCidade(origem);
-        mostrarRota(origem, 'saindo de ' + b.querySelector('span').textContent);
+        mostrarRota(origem, T('saindo de ', 'from ') + b.querySelector('span').textContent);
       });
     });
 

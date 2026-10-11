@@ -1,0 +1,141 @@
+{
+  "_como_usar": "Inglês. Mesma estrutura de data/chales.json: preço, status e fotos mudam lá e aqui juntos.",
+  "chales": [
+    {
+      "id": "chale-1",
+      "ordem": 1,
+      "status": "ativo",
+      "nome": "Araucária Cabin",
+      "capacidade": 2,
+      "cama": "Queen bed in the loft",
+      "descricaoCurta": "A bathtub facing the mountains, a fireplace for cold nights and a porch all to yourselves.",
+      "descricaoLonga": "The highest on the property. The triangular loft window catches the sunrise behind the araucaria pines, and at night the lights on the facade keep the cabin glowing in the middle of the forest.",
+      "comodidades": [
+        "Bathtub",
+        "Fireplace",
+        "Porch with a view",
+        "Bed linen and towels",
+        "Compact kitchen",
+        "Wi-Fi",
+        "Heater"
+      ],
+      "fotos": [
+        {
+          "base": "assets/fotos/chale-1/entardecer",
+          "larguras": [
+            420,
+            633
+          ],
+          "largura": 633,
+          "altura": 852,
+          "alt": "A-frame cabin in the middle of the forest, with lights outlining the facade at dusk"
+        }
+      ],
+      "diarias": {
+        "semana": 590,
+        "fimDeSemana": 690,
+        "feriado": 790
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    },
+    {
+      "id": "chale-2",
+      "ordem": 2,
+      "status": "ativo",
+      "nome": "Ipê Cabin",
+      "capacidade": 2,
+      "cama": "Queen bed in the loft",
+      "descricaoCurta": "The same silence, the same bathtub with a view, and a wide deck for breakfast in the sun.",
+      "descricaoLonga": "It sits closer to the garden and has the largest deck on the property. The favorite of anyone who wants to spend the afternoon outside, with a book, wine and the whole mountain range ahead.",
+      "comodidades": [
+        "Bathtub",
+        "Fireplace",
+        "Porch with a view",
+        "Bed linen and towels",
+        "Compact kitchen",
+        "Wi-Fi",
+        "Heater"
+      ],
+      "fotos": [
+        {
+          "base": "assets/fotos/chale-2/chales-dia",
+          "larguras": [
+            420,
+            683
+          ],
+          "largura": 683,
+          "altura": 805,
+          "alt": "Wooden A-frame cabin with a deck and stairs, among pine trees, late in the afternoon"
+        }
+      ],
+      "diarias": {
+        "semana": 550,
+        "fimDeSemana": 650,
+        "feriado": 750
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    },
+    {
+      "id": "chale-3",
+      "ordem": 3,
+      "status": "oculto",
+      "nome": "Quaresmeira Cabin",
+      "previsao": "March 2027",
+      "capacidade": 2,
+      "cama": "Queen",
+      "descricaoCurta": "A third cabin, with a heated soaking tub on the porch.",
+      "descricaoLonga": "Under construction.",
+      "comodidades": [
+        "Bathtub",
+        "Fireplace",
+        "Porch with a view"
+      ],
+      "fotos": [],
+      "diarias": {
+        "semana": null,
+        "fimDeSemana": null,
+        "feriado": null
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    },
+    {
+      "id": "chale-4",
+      "ordem": 4,
+      "status": "oculto",
+      "nome": "Cedro Cabin",
+      "previsao": "March 2027",
+      "capacidade": 2,
+      "cama": "Queen",
+      "descricaoCurta": "The fourth cabin, at the highest point of the property.",
+      "descricaoLonga": "Under construction.",
+      "comodidades": [
+        "Bathtub",
+        "Fireplace",
+        "Porch with a view"
+      ],
+      "fotos": [],
+      "diarias": {
+        "semana": null,
+        "fimDeSemana": null,
+        "feriado": null
+      },
+      "minimoNoites": {
+        "semana": 1,
+        "fimDeSemana": 2,
+        "feriado": 2
+      }
+    }
+  ]
+}

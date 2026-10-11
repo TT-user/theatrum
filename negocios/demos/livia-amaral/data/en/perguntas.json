@@ -1,0 +1,179 @@
+{
+  "_leia": "Inglês. Perguntas do \"Por onde começar?\". Ids e pesos iguais aos de português.",
+  "perguntas": [
+    {
+      "id": "motivo",
+      "titulo": "What brought you here today, most of all?",
+      "resumo": "What brought me here",
+      "dica": "You can pick up to 2. No rush.",
+      "tipo": "multipla",
+      "max": 2,
+      "opcoes": [
+        {
+          "id": "padroes",
+          "texto": "Patterns that keep repeating in my life",
+          "pesos": {
+            "terapeutica": 2
+          }
+        },
+        {
+          "id": "mente",
+          "texto": "A racing mind, hard to switch off",
+          "pesos": {
+            "terapeutica": 1,
+            "reiki": 1
+          }
+        },
+        {
+          "id": "cansaco",
+          "texto": "Tiredness, a feeling of heavy energy",
+          "pesos": {
+            "reiki": 1,
+            "limpeza": 2
+          }
+        },
+        {
+          "id": "mudanca",
+          "texto": "A time of change, loss or new beginnings",
+          "pesos": {
+            "terapeutica": 1,
+            "integrada": 1
+          }
+        },
+        {
+          "id": "habito",
+          "texto": "A habit that got out of control (e.g. betting, phone, food)",
+          "pesos": {
+            "terapeutica": 2
+          }
+        },
+        {
+          "id": "conhecer",
+          "texto": "I want to know myself better",
+          "pesos": {
+            "terapeutica": 1,
+            "integrada": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cuidado",
+      "titulo": "How do you prefer to be cared for?",
+      "resumo": "How I prefer to be cared for",
+      "dica": "It's fine not to know yet.",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "conversando",
+          "texto": "Talking and understanding the origin",
+          "pesos": {
+            "terapeutica": 2
+          }
+        },
+        {
+          "id": "relaxando",
+          "texto": "Relaxing and feeling, without having to talk much",
+          "pesos": {
+            "reiki": 2,
+            "limpeza": 1
+          }
+        },
+        {
+          "id": "dois",
+          "texto": "A bit of both",
+          "pesos": {
+            "integrada": 2
+          }
+        },
+        {
+          "id": "nao-sei",
+          "texto": "I don't know yet",
+          "pesos": {
+            "integrada": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "formato",
+      "titulo": "Which format fits your routine?",
+      "resumo": "Format",
+      "dica": "Pick whatever feels lighter for you.",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "video",
+          "texto": "Online by video, at a set time",
+          "pesos": {
+            "terapeutica": 1,
+            "reiki": 1
+          }
+        },
+        {
+          "id": "distancia",
+          "texto": "At a distance, settling in wherever I am (with audio feedback)",
+          "pesos": {
+            "limpeza": 2
+          }
+        },
+        {
+          "id": "presencial",
+          "texto": "In person",
+          "pesos": {},
+          "requer": "presencial"
+        }
+      ]
+    },
+    {
+      "id": "periodo",
+      "titulo": "What time of day works best for you?",
+      "resumo": "Best time of day",
+      "dica": "Almost there…",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "manha",
+          "texto": "Morning",
+          "pesos": {}
+        },
+        {
+          "id": "tarde",
+          "texto": "Afternoon",
+          "pesos": {}
+        },
+        {
+          "id": "noite",
+          "texto": "Evening",
+          "pesos": {}
+        },
+        {
+          "id": "tanto-faz",
+          "texto": "Any time",
+          "pesos": {}
+        }
+      ]
+    },
+    {
+      "id": "experiencia",
+      "titulo": "Have you done therapy or Reiki before?",
+      "resumo": "First time",
+      "dica": "There is no right answer.",
+      "tipo": "unica",
+      "opcoes": [
+        {
+          "id": "sim",
+          "texto": "Yes, I have",
+          "resposta": "No",
+          "pesos": {}
+        },
+        {
+          "id": "primeira",
+          "texto": "No, it would be my first time",
+          "resposta": "Yes",
+          "pesos": {}
+        }
+      ]
+    }
+  ]
+}

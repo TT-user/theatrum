@@ -395,3 +395,15 @@ html:not(.no-js) .reveal:not(.in) img { transform: scale(1.06); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .g-slide > .g-ph, .exp-img > .g-ph { height: 100%; }
 @media (max-width: 959px) { .map.rota-on { aspect-ratio: 1 / 1.15; } }
+
+/* Idioma (PT · EN): o botão recarrega a página no outro idioma (js/idioma-demo.js na raiz).
+   No celular estreito mostra só o idioma para onde vai, para caber ao lado do Reservar. */
+.idioma { display: inline-flex; align-items: center; gap: 2px; padding: 3px; background: none; border: 1px solid rgba(232, 184, 109, .4); border-radius: 999px; color: inherit; cursor: pointer; flex: none; }
+.idioma span { font: 600 12px/1 var(--f-body); letter-spacing: .06em; padding: 8px 9px; border-radius: 999px; opacity: .75; transition: background .2s, color .2s, opacity .2s; }
+.idioma:hover span { opacity: 1; }
+html[data-idioma="pt"] .idioma [lang="pt"], html[data-idioma="en"] .idioma [lang="en"] { opacity: 1; background: var(--dourado); color: var(--grafite); }
+.idioma:focus-visible { outline: 2px solid var(--dourado); outline-offset: 2px; }
+@media (max-width: 479px) {
+  .idioma span { display: none; }
+  html[data-idioma="pt"] .idioma [lang="en"], html[data-idioma="en"] .idioma [lang="pt"] { display: block; opacity: 1; }
+}

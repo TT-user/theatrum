@@ -1,0 +1,53 @@
+{
+  "_leia": "Inglês. Cartões gerados em inglês (dep-N-en.webp), com nomes e textos inventados.",
+  "depoimentos": [
+    {
+      "imagem": "assets/img/depoimentos/dep-1-en.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Therapy sessions",
+      "alt": "Message from Mariana S.: “I left the session with a lighter head. For the first time I understood where this urge of mine to please everyone comes from.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-2-en.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Distance Reiki",
+      "alt": "Message from Rosa M.: “I relaxed so much I dozed off at the end 😅 Thank you for the care and for the audio afterwards, I listened twice.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-3-en.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "After the feedback",
+      "alt": "Message from Thiago R.: “I listened to the feedback calmly on the bus. I wrote down three things to bring to our next conversation.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-4-en.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "First online session",
+      "alt": "Message from Patrícia L.: “I thought online wouldn't work for me. It did. I felt heard, with no rush at all.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-5-en.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Integrated journey",
+      "alt": "Message from Carla F.: “Three months later, I notice I pause before reacting on impulse. It may seem small, but to me it's a lot.”",
+      "autorizado": true
+    },
+    {
+      "imagem": "assets/img/depoimentos/dep-6-en.webp",
+      "largura": 300,
+      "altura": 440,
+      "contexto": "Reiki",
+      "alt": "Message from Denise A.: “I liked not having to talk much. It was time just for me, something rare in my week.”",
+      "autorizado": true
+    }
+  ]
+}

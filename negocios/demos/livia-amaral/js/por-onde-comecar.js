@@ -6,7 +6,7 @@
   var raiz = document.getElementById('poc');
   if (!raiz) return;
   var G = window.Site;
-  var esc = G.esc, comPh = G.comPh;
+  var esc = G.esc, comPh = G.comPh, T = G.T;
 
   var perguntas = [], caminhos = {}, extras = {};
   var passo = -1;          // -1 abertura · 0..n-1 perguntas · n nome · n+1 resultado
@@ -28,14 +28,15 @@
     render(false);
   }).catch(function (e) {
     console.warn(e);
-    raiz.innerHTML = '<p>Não foi possível carregar agora. Fale direto com a Lívia: <a href="' + G.linkWhats('Olá, Lívia! Vim pelo seu site.') + '">WhatsApp</a>.</p>';
+    raiz.innerHTML = '<p>' + T('Não foi possível carregar agora. Fale direto com a Lívia: ', "This couldn't load right now. Message Lívia directly: ") +
+      '<a href="' + G.linkWhats(T('Olá, Lívia! Vim pelo seu site.', 'Hi, Lívia! I found you through your website.')) + '">WhatsApp</a>.</p>';
   });
 
   var total = function () { return perguntas.length + 1; }; // + nome
 
   function progresso() {
     var atual = passo + 1;
-    return '<div class="poc__progresso" aria-hidden="true"><span>' + atual + ' de ' + total() + '</span>' +
+    return '<div class="poc__progresso" aria-hidden="true"><span>' + atual + T(' de ', ' of ') + total() + '</span>' +
       '<div class="poc__barra"><span style="width:' + Math.round(atual / total() * 100) + '%"></span></div></div>';
   }
 
@@ -45,17 +46,18 @@
       return '<button type="button" class="poc__amostra-op" data-acao="pre" data-v="' + o.id + '">' + esc(o.texto) + '</button>';
     }).join('');
     return '<div class="poc__intro centro">' +
-      '<p class="poc__selo"><span class="poc__pulso" aria-hidden="true"></span>Quiz interativo</p>' +
-      '<h2 tabindex="-1">Não sabe por onde <em>começar</em>?</h2>' +
-      '<p class="poc__lead">Responda ' + perguntas.length + ' perguntas rápidas e veja o caminho que mais combina com o seu momento. Depois, você decide se quer conversar.</p>' +
-      '<ul class="poc__chips"><li>' + perguntas.length + ' perguntas</li><li>menos de 1 minuto</li><li>resultado na hora</li></ul>' +
+      '<p class="poc__selo"><span class="poc__pulso" aria-hidden="true"></span>' + T('Quiz interativo', 'Interactive quiz') + '</p>' +
+      '<h2 tabindex="-1">' + T('Não sabe por onde <em>começar</em>?', 'Not sure where to <em>start</em>?') + '</h2>' +
+      '<p class="poc__lead">' + T('Responda ' + perguntas.length + ' perguntas rápidas e veja o caminho que mais combina com o seu momento. Depois, você decide se quer conversar.',
+        'Answer ' + perguntas.length + ' quick questions and see the path that best fits where you are right now. Then you decide whether you want to talk.') + '</p>' +
+      '<ul class="poc__chips"><li>' + perguntas.length + T(' perguntas', ' questions') + '</li><li>' + T('menos de 1 minuto', 'under 1 minute') + '</li><li>' + T('resultado na hora', 'instant result') + '</li></ul>' +
       '<div class="poc__amostra">' +
-        '<p class="poc__amostra-rot">Pergunta 1 · toque numa resposta para começar</p>' +
+        '<p class="poc__amostra-rot">' + T('Pergunta 1 · toque numa resposta para começar', 'Question 1 · tap an answer to start') + '</p>' +
         '<p class="poc__amostra-tit">' + esc(p1.titulo) + '</p>' +
         '<div class="poc__amostra-ops">' + amostra + '</div>' +
       '</div>' +
-      '<button type="button" class="btn btn--ouro poc__comecar" data-acao="comecar">Começar o quiz <span aria-hidden="true">→</span></button>' +
-      '<p class="poc__mini">Suas respostas não ficam salvas no site.</p>' +
+      '<button type="button" class="btn btn--ouro poc__comecar" data-acao="comecar">' + T('Começar o quiz', 'Start the quiz') + ' <span aria-hidden="true">→</span></button>' +
+      '<p class="poc__mini">' + T('Suas respostas não ficam salvas no site.', 'Your answers are not saved on the site.') + '</p>' +
       '</div>';
   }
 
@@ -78,17 +80,17 @@
 
   function telaNome() {
     return progresso() +
-      '<fieldset><legend tabindex="-1">Como posso te chamar?</legend>' +
-      '<p class="poc__dica">Opcional. Só o primeiro nome.</p>' +
-      '<div class="poc__campo"><label for="poc-nome">Seu primeiro nome</label>' +
-      '<input id="poc-nome" type="text" maxlength="30" autocomplete="given-name" placeholder="Ex.: Ana" value="' + esc(nome) + '"></div>' +
-      '</fieldset>' + nav(true, 'Ver meu caminho');
+      '<fieldset><legend tabindex="-1">' + T('Como posso te chamar?', 'What should I call you?') + '</legend>' +
+      '<p class="poc__dica">' + T('Opcional. Só o primeiro nome.', 'Optional. Just your first name.') + '</p>' +
+      '<div class="poc__campo"><label for="poc-nome">' + T('Seu primeiro nome', 'Your first name') + '</label>' +
+      '<input id="poc-nome" type="text" maxlength="30" autocomplete="given-name" placeholder="' + T('Ex.: Ana', 'E.g. Ana') + '" value="' + esc(nome) + '"></div>' +
+      '</fieldset>' + nav(true, T('Ver meu caminho', 'See my path'));
   }
 
   function nav(ok, rotulo) {
     return '<div class="poc__nav">' +
-      '<button type="button" class="poc__voltar" data-acao="voltar">← Voltar</button>' +
-      '<button type="button" class="btn btn--ouro" data-acao="avancar"' + (ok ? '' : ' disabled') + '>' + (rotulo || 'Continuar') + '</button></div>';
+      '<button type="button" class="poc__voltar" data-acao="voltar">' + T('← Voltar', '← Back') + '</button>' +
+      '<button type="button" class="btn btn--ouro" data-acao="avancar"' + (ok ? '' : ' disabled') + '>' + (rotulo || T('Continuar', 'Continue')) + '</button></div>';
   }
 
   function calcular() {
@@ -116,15 +118,15 @@
   }
 
   function mensagem(c) {
-    return 'Olá, Lívia! 🌿 Vim pelo seu site e fiz o "Por onde começar".\n\n' +
-      '*Nome:* ' + (nome || 'Prefiro contar na conversa') + '\n' +
-      '*O que me trouxe:* ' + textoDe('motivo') + '\n' +
-      '*Como prefiro ser cuidada:* ' + textoDe('cuidado') + '\n' +
-      '*Caminho sugerido:* ' + c.titulo + '\n' +
-      '*Formato:* ' + textoDe('formato') + '\n' +
-      '*Melhor período:* ' + textoDe('periodo') + '\n' +
-      '*Primeira vez:* ' + textoDe('experiencia') + '\n\n' +
-      'Pode me contar como funciona e quais horários você tem?';
+    return T('Olá, Lívia! 🌿 Vim pelo seu site e fiz o "Por onde começar".', 'Hi, Lívia! 🌿 I found you through your website and took the "Where to start" quiz.') + '\n\n' +
+      T('*Nome:* ', '*Name:* ') + (nome || T('Prefiro contar na conversa', "I'll tell you in our chat")) + '\n' +
+      T('*O que me trouxe:* ', '*What brought me here:* ') + textoDe('motivo') + '\n' +
+      T('*Como prefiro ser cuidada:* ', '*How I prefer to be cared for:* ') + textoDe('cuidado') + '\n' +
+      T('*Caminho sugerido:* ', '*Suggested path:* ') + c.titulo + '\n' +
+      T('*Formato:* ', '*Format:* ') + textoDe('formato') + '\n' +
+      T('*Melhor período:* ', '*Best time of day:* ') + textoDe('periodo') + '\n' +
+      T('*Primeira vez:* ', '*First time:* ') + textoDe('experiencia') + '\n\n' +
+      T('Pode me contar como funciona e quais horários você tem?', 'Could you tell me how it works and what times you have available?');
   }
 
   function telaResultado() {
@@ -134,19 +136,19 @@
     raiz.setAttribute('data-caminho', c.id);
     raiz.setAttribute('data-mensagem', msg); // usado nos testes automatizados
     return '<div class="resultado">' +
-      '<h2 tabindex="-1" class="poc__dica" style="font-size:22px;margin:0">Pronto. Olha o que eu sugiro para você' + (nome ? ', ' + esc(nome) : '') + ':</h2>' +
+      '<h2 tabindex="-1" class="poc__dica" style="font-size:22px;margin:0">' + T('Pronto. Olha o que eu sugiro para você', "Done. Here's what I suggest for you") + (nome ? ', ' + esc(nome) : '') + ':</h2>' +
       '<div class="resultado__card">' +
         '<img src="assets/img/emblema.svg" width="44" height="44" alt="">' +
-        '<p class="rotulo"><span class="fio"></span>O caminho que mais combina com você agora<span class="fio"></span></p>' +
+        '<p class="rotulo"><span class="fio"></span>' + T('O caminho que mais combina com você agora', 'The path that fits you best right now') + '<span class="fio"></span></p>' +
         '<p class="resultado__nome">' + esc(c.titulo) + '</p>' +
         '<h3>' + c.titulo_html + '</h3>' +   /* titulo_html vem do JSON da demonstração */
         '<p>' + esc(c.explicacao) + '</p>' +
-        '<p class="resultado__info"><span>' + comPh(c.formato) + '</span><span>Duração: ' + comPh(c.duracao) + '</span><span>' + (c.valor ? comPh(c.valor) : 'Valor na conversa') + '</span></p>' +
-        (primeira ? '<p class="resultado__primeira">Primeira vez? Fica tranquila: a Lívia explica tudo antes de começar.</p>' : '') +
-        '<p class="resultado__aviso">Isso é só uma sugestão para começar. Na primeira conversa, a Lívia confirma com você o melhor caminho.</p>' +
-        '<a class="btn btn--ouro" target="_blank" rel="noopener" href="' + G.linkWhats(msg) + '"><svg class="ic ic--btn" aria-hidden="true"><use href="#i-whats"/></svg>Enviar para a Lívia no WhatsApp</a>' +
+        '<p class="resultado__info"><span>' + comPh(c.formato) + '</span><span>' + T('Duração: ', 'Length: ') + comPh(c.duracao) + '</span><span>' + (c.valor ? comPh(c.valor) : T('Valor na conversa', 'Price shared in our chat')) + '</span></p>' +
+        (primeira ? '<p class="resultado__primeira">' + T('Primeira vez? Fica tranquila: a Lívia explica tudo antes de começar.', 'First time? No worries: Lívia explains everything before you begin.') + '</p>' : '') +
+        '<p class="resultado__aviso">' + T('Isso é só uma sugestão para começar. Na primeira conversa, a Lívia confirma com você o melhor caminho.', 'This is just a suggestion to get started. In your first chat, Lívia confirms the best path with you.') + '</p>' +
+        '<a class="btn btn--ouro" target="_blank" rel="noopener" href="' + G.linkWhats(msg) + '"><svg class="ic ic--btn" aria-hidden="true"><use href="#i-whats"/></svg>' + T('Enviar para a Lívia no WhatsApp', 'Send to Lívia on WhatsApp') + '</a>' +
       '</div>' +
-      '<div class="resultado__links"><button type="button" data-acao="refazer">Refazer</button><a href="#atendimentos">Ver todos os atendimentos</a></div>' +
+      '<div class="resultado__links"><button type="button" data-acao="refazer">' + T('Refazer', 'Start over') + '</button><a href="#atendimentos">' + T('Ver todos os atendimentos', 'See all services') + '</a></div>' +
       '</div>';
   }
 
@@ -162,7 +164,7 @@
 
     if (passo > perguntas.length) {
       var c = caminhos[raiz.getAttribute('data-caminho')];
-      setTimeout(function () { document.getElementById('poc-anuncio').textContent = 'Resultado: ' + c.titulo + '.'; }, 60);
+      setTimeout(function () { document.getElementById('poc-anuncio').textContent = T('Resultado: ', 'Result: ') + c.titulo + '.'; }, 60);
     }
     if (focar) {
       var alvo = raiz.querySelector('legend, h2');

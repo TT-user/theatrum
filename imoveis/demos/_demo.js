@@ -45,7 +45,8 @@
     ? { raiz: '../../../portfolio/',         cta: '../../../#diagnostico' }
     : { raiz: '../../../',                   cta: '../../../#diagnostico' };
 
-  var EN = origem === 'us';
+  /* a demo bilíngue em inglês (js/idioma-demo.js) também fala inglês aqui */
+  var EN = origem === 'us' || !!(window.Idioma && window.Idioma.en);
   var TXT = EN
     ? { voltar: '&larr; Back to Theatrum',
         aviso: '<b>Demonstration.</b> The brand, the listings, the prices and the contacts are invented. ' +

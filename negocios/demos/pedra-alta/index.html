@@ -27,7 +27,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
 <link rel="preload" as="image" href="assets/fotos/chale-1/entardecer-633.webp" imagesrcset="assets/fotos/chale-1/entardecer-420.webp 420w, assets/fotos/chale-1/entardecer-633.webp 633w" imagesizes="(min-width: 960px) 600px, 100vw">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
+<script src="../../../js/idioma-demo.js?v=1" data-dicionario="js/en.js?v=1"></script>
 
 <script>document.documentElement.classList.remove('no-js')</script>
 
@@ -83,6 +84,7 @@
       <a href="#reservar">Reservar</a>
     </nav>
     <a class="btn btn-amber btn-sm" href="#reservar">Reservar</a>
+    <button class="idioma" type="button" data-idioma-troca aria-label="Ver o site em inglês (English)"><span lang="pt">PT</span><span lang="en">EN</span></button>
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span></button>
   </div>
 </header>
@@ -98,7 +100,7 @@
   <div class="hero-body wrap">
     <div class="hero-copy">
       <p class="eyebrow"><svg class="ico"><use href="#i-pin"/></svg> Gonçalves · Minas Gerais</p>
-      <h1 id="hero-title">Um refúgio a dois <em>na Serra da Mantiqueira</em></h1>
+      <h1 id="hero-title" data-en="A hideaway for two <em>in the Mantiqueira Mountains</em>">Um refúgio a dois <em>na Serra da Mantiqueira</em></h1>
       <p class="lede">Chalés privativos com banheira, lareira e vista para as montanhas.</p>
 
       <form class="quickbar" id="quickbar" novalidate>
@@ -135,8 +137,8 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Os chalés</p>
-      <h2 id="chales-title">Feitos para <em>dois</em>, longe de tudo</h2>
-      <p class="sec-lede"><span id="qtd-chales">Os chalés</span> em formato A, cada um com a sua varanda, a sua banheira e a sua vista. Ninguém do lado, ninguém de passagem.</p>
+      <h2 id="chales-title" data-en="Made for <em>two</em>, far from everything">Feitos para <em>dois</em>, longe de tudo</h2>
+      <p class="sec-lede"><span id="qtd-chales">Os chalés</span><span> em formato A, cada um com a sua varanda, a sua banheira e a sua vista. Ninguém do lado, ninguém de passagem.</span></p>
     </header>
     <div class="chales reveal" id="lista-chales" data-render></div>
     <aside class="novos reveal" id="novos-chales" hidden></aside>
@@ -149,7 +151,7 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Experiências</p>
-      <h2 id="exp-title">Monte a <em>sua</em> estadia</h2>
+      <h2 id="exp-title" data-en="Build <em>your</em> stay">Monte a <em>sua</em> estadia</h2>
       <p class="sec-lede">Escolha os extras na hora de reservar. Quando vocês chegarem, já está tudo pronto.</p>
     </header>
     <div class="exps reveal" id="lista-extras" data-render></div>
@@ -162,7 +164,7 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Datas especiais</p>
-      <h2 id="datas-title">Tem uma <em>surpresa</em> em mente?</h2>
+      <h2 id="datas-title" data-en="Have a <em>surprise</em> in mind?">Tem uma <em>surpresa</em> em mente?</h2>
       <p class="sec-lede">Conte o que você imaginou. A gente prepara o chalé e guarda o segredo.</p>
     </header>
     <div class="moments">
@@ -194,7 +196,7 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Informações importantes</p>
-      <h2 id="info-title">Tudo o que vocês <em>precisam saber</em></h2>
+      <h2 id="info-title" data-en="Everything you <em>need to know</em>">Tudo o que vocês <em>precisam saber</em></h2>
       <p class="sec-lede">Horários, regras da casa, sinal e o caminho até aqui. Se ficar alguma dúvida, é só chamar no WhatsApp.</p>
     </header>
     <div class="infos reveal" id="lista-info" data-render></div>
@@ -208,7 +210,7 @@
       <div>
         <span class="v-mark" aria-hidden="true"></span>
         <p class="kicker">Avaliações</p>
-        <h2 id="aval-title">Quem já <em>passou por aqui</em></h2>
+        <h2 id="aval-title" data-en="Guests who <em>stayed here</em>">Quem já <em>passou por aqui</em></h2>
       </div>
       <div class="rating">
         <p class="rating-num">4,9</p>
@@ -238,7 +240,7 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Como chegar</p>
-      <h2 id="chegar-title">No alto da <em>Mantiqueira</em></h2>
+      <h2 id="chegar-title" data-en="High up in the <em>Mantiqueira</em>">No alto da <em>Mantiqueira</em></h2>
       <p class="sec-lede">Gonçalves fica no sul de Minas, quase na divisa com São Paulo, a 1.250 metros de altitude, no meio da Serra da Mantiqueira.</p>
     </header>
 
@@ -283,7 +285,7 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Reserva direta</p>
-      <h2 id="reservar-title">Monte sua <em>estadia</em></h2>
+      <h2 id="reservar-title" data-en="Plan your <em>stay</em>">Monte sua <em>estadia</em></h2>
     </header>
     <div class="booking" id="booking">
       <!-- O motor de reserva (Prompt 2) é montado aqui. -->
@@ -297,7 +299,7 @@
     <header class="sec-head reveal">
       <span class="v-mark" aria-hidden="true"></span>
       <p class="kicker">Perguntas frequentes</p>
-      <h2 id="faq-title">Antes de <em>fazer a mala</em></h2>
+      <h2 id="faq-title" data-en="Before you <em>pack</em>">Antes de <em>fazer a mala</em></h2>
     </header>
     <div class="faq" id="lista-faq" data-render></div>
   </div>
@@ -334,8 +336,8 @@
 
 <a class="wa-float" href="#" data-wa="Olá! Vim pelo site e quero saber a disponibilidade dos chalés." aria-label="Conversar no WhatsApp"><svg class="ico"><use href="#i-wa"/></svg></a>
 
-<script src="js/render.js?v=5" defer></script>
-<script src="js/main.js?v=5" defer></script>
+<script src="js/render.js?v=6" defer></script>
+<script src="js/main.js?v=6" defer></script>
 <script src="../_demo.js"></script>
 </body>
 </html>

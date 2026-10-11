@@ -1,0 +1,160 @@
+{
+  "_como_usar": "Inglês. Mesma estrutura de data/info.json: contatos e preços mudam lá e aqui juntos.",
+  "nome": "Pedra Alta Cabins",
+  "whatsapp": "",
+  "whatsappExibicao": "(35) 99999-0000",
+  "instagram": "chalespedraalta",
+  "endereco": "Estrada do Bairro dos Mellos, km 4",
+  "cidade": "Gonçalves",
+  "uf": "MG",
+  "coordenadas": {
+    "lat": -22.6548,
+    "lng": -45.8563
+  },
+  "mapa": "",
+  "rotaDestino": "Gonçalves, MG",
+  "cnpj": "",
+  "privacidade": "",
+  "checkin": "2pm",
+  "checkout": "12pm",
+  "checkinObs": "Arriving after 8pm? Let us know on WhatsApp: the key is in a lockbox on the door and the code is sent by message.",
+  "inclusoNaDiaria": [
+    "Bed linen and towels",
+    "Firewood for the fireplace",
+    "Basic kitchen items",
+    "Bath amenities"
+  ],
+  "regras": [
+    {
+      "titulo": "Pets",
+      "texto": "Not allowed, to keep both cabins quiet."
+    },
+    {
+      "titulo": "Children",
+      "texto": "The cabins are designed for couples and are not set up for children."
+    },
+    {
+      "titulo": "Visitors",
+      "texto": "Only the guests on the booking."
+    },
+    {
+      "titulo": "Noise",
+      "texto": "Quiet hours from 10pm."
+    },
+    {
+      "titulo": "Smoking",
+      "texto": "Outdoors only, away from the forest."
+    }
+  ],
+  "sinal": {
+    "percentual": 50,
+    "formas": "Pix or card."
+  },
+  "cancelamento": "Cancel up to 15 days before and the deposit is refunded in full. After that, it becomes credit for another date within 6 months.",
+  "conexao": {
+    "wifi": "Satellite Wi-Fi, good for messages and video.",
+    "celular": "Vivo and Claro work on the porch; TIM is patchy."
+  },
+  "estrada": "The last 4 km are packed dirt and fine for low cars in dry weather. When it rains, drive slowly and try to arrive before dark.",
+  "feriados": {
+    "_obs": "Feriados nacionais com preço de feriado.",
+    "datas": [
+      {
+        "data": "2026-11-02",
+        "nome": "Finados"
+      },
+      {
+        "data": "2026-11-15",
+        "nome": "Proclamação da República"
+      },
+      {
+        "data": "2026-11-20",
+        "nome": "Consciência Negra"
+      },
+      {
+        "data": "2026-12-25",
+        "nome": "Natal"
+      },
+      {
+        "data": "2027-01-01",
+        "nome": "Ano-novo"
+      },
+      {
+        "data": "2027-02-08",
+        "nome": "Carnaval"
+      },
+      {
+        "data": "2027-02-09",
+        "nome": "Carnaval"
+      },
+      {
+        "data": "2027-03-26",
+        "nome": "Sexta-feira Santa"
+      },
+      {
+        "data": "2027-04-21",
+        "nome": "Tiradentes"
+      },
+      {
+        "data": "2027-05-01",
+        "nome": "Dia do Trabalho"
+      },
+      {
+        "data": "2027-05-27",
+        "nome": "Corpus Christi"
+      }
+    ]
+  },
+  "altaTemporada": [
+    {
+      "inicio": "2026-12-20",
+      "fim": "2027-01-10",
+      "nome": "Fim de ano"
+    },
+    {
+      "inicio": "2027-06-01",
+      "fim": "2027-07-31",
+      "nome": "Inverno na serra"
+    }
+  ],
+  "novosChales": {
+    "_obs": "Faixa da lista dos primeiros, mostrada enquanto houver chalé com status \"oculto\". mostrar: false esconde a faixa.",
+    "mostrar": true,
+    "previsao": "March 2027",
+    "vantagem": "People on the list get 15% off their first stay."
+  },
+  "disponibilidade": {
+    "_obs": "Usado pelo simulador de reserva. fonte: \"planilha\", \"ical\" ou as duas.",
+    "fonte": [
+      "planilha"
+    ],
+    "planilhaCsv": "",
+    "ical": {}
+  },
+  "faq": [
+    {
+      "pergunta": "Is breakfast included in the nightly rate?",
+      "resposta": "No. It comes in a basket, as an extra, delivered to your cabin door at the time you choose."
+    },
+    {
+      "pergunta": "Can we check in late?",
+      "resposta": "Yes. The key is in a lockbox on the door and the code is sent on WhatsApp. Just let us know your expected arrival time."
+    },
+    {
+      "pergunta": "How do I pay the deposit?",
+      "resposta": "By Pix or card. The deposit is half the total and the rest is paid on arrival."
+    },
+    {
+      "pergunta": "Can we bring food and cook in the cabin?",
+      "resposta": "Yes. Every cabin has a compact kitchen with a cooktop, minibar, pots and dishes."
+    },
+    {
+      "pergunta": "Is there parking?",
+      "resposta": "Yes, a covered space next to each cabin."
+    },
+    {
+      "pergunta": "Can we go hiking from the cabins?",
+      "resposta": "Yes. There is a short trail to the lookout on the property, and the longer mountain trails are a few minutes away by car."
+    }
+  ]
+}

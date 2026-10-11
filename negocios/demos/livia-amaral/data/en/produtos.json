@@ -1,0 +1,60 @@
+{
+  "_leia": "Inglês. Vitrine da Lume (marca fictícia).",
+  "marca": "Lume · Essências",
+  "instagram": "#demo-cta",
+  "link_bio": "#demo-cta",
+  "produtos": [
+    {
+      "id": "pausa",
+      "nome": "Pause",
+      "tipo": "Room spray",
+      "tamanho": "100 ml",
+      "frase": "To mark the start of some time just for you.",
+      "descricao": "Notes of lavender and sweet orange, to spray around the room before a break or a session.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#7A4A35",
+      "selo": "Spray",
+      "placeholder": false
+    },
+    {
+      "id": "recomeco",
+      "nome": "Fresh Start",
+      "tipo": "Floral · Lume",
+      "tamanho": "30 ml",
+      "frase": "For the days of starting over.",
+      "descricao": "A companion for times of change and first steps.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#2C4A40",
+      "selo": "Floral",
+      "placeholder": false
+    },
+    {
+      "id": "foco",
+      "nome": "Focus",
+      "tipo": "Floral · Lume",
+      "tamanho": "30 ml",
+      "frase": "For when your mind is asking for quiet.",
+      "descricao": "A companion for times of decisions and study.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#8C6A2E",
+      "selo": "Floral",
+      "placeholder": false
+    },
+    {
+      "id": "calmaria",
+      "nome": "Calm",
+      "tipo": "Floral · Lume",
+      "tamanho": "30 ml",
+      "frase": "For the days that call for a lighter touch.",
+      "descricao": "A companion for a busy routine, in no hurry at all.",
+      "preco": "",
+      "imagem": "",
+      "cor_rotulo": "#5B6B8C",
+      "selo": "Floral",
+      "placeholder": false
+    }
+  ]
+}

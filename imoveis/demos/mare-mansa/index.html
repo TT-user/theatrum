@@ -20,7 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261011a">
+<link rel="stylesheet" href="css/style.css?v=20261011b">
+<script src="../../../js/idioma-demo.js?v=1" data-dicionario="js/en.js?v=1"></script>
 <link rel="preload" as="image" href="assets/img/hero.webp" media="(min-width:701px)">
 <link rel="preload" as="image" href="assets/img/hero-m.webp" media="(max-width:700px)">
 </head>
@@ -44,6 +45,7 @@
     <a class="btn btn-sol topo-cta" data-zap="Olá! Vim pelo site da Maré Mansa Imóveis." href="#">
       <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-zap"/></svg>Falar com corretor
     </a>
+    <button class="idioma" type="button" data-idioma-troca aria-label="Ver o site em inglês (English)"><span lang="pt">PT</span><span lang="en">EN</span></button>
     <button class="abre-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
       <span></span><span></span>
     </button>
@@ -68,7 +70,7 @@
   <div class="wrap hero-in">
     <div class="hero-txt">
       <p class="sobrancelha"><span class="ponto"></span>Recreio dos Bandeirantes<span class="longo"> · Rio de Janeiro</span></p>
-      <h1>Seu próximo endereço <em>perto do mar</em>, escolhido com quem está no Recreio.</h1>
+      <h1 data-en="Your next address <em>close to the sea</em>, chosen with people who live in Recreio.">Seu próximo endereço <em>perto do mar</em>, escolhido com quem está no Recreio.</h1>
       <p class="lead">Compra, venda, locação e avaliação de imóveis há 16 anos, com corretor que mora e trabalha no bairro.</p>
     </div>
 
@@ -139,7 +141,7 @@
   <div class="wrap">
     <div class="cab">
       <p class="rotulo">Imóveis</p>
-      <h2>Encontre, compare e simule <em>antes de sair de casa</em>.</h2>
+      <h2 data-en="Find, compare and simulate <em>before you leave home</em>.">Encontre, compare e simule <em>antes de sair de casa</em>.</h2>
       <p class="sub">Mexa num filtro e a lista muda na hora. Marque até três para comparar lado a lado, e abra qualquer imóvel para simular a parcela do financiamento com os seus números.</p>
     </div>
 
@@ -199,11 +201,11 @@
             </div>
           </fieldset>
           <fieldset class="grupo">
-            <legend>Compra até <b id="tetoTxt"></b></legend>
+            <legend><span>Compra até</span> <b id="tetoTxt"></b></legend>
             <input type="range" name="teto" id="teto" min="300000" max="3500000" step="50000" value="3500000">
           </fieldset>
           <fieldset class="grupo">
-            <legend>Aluguel até <b id="aluguelTxt"></b></legend>
+            <legend><span>Aluguel até</span> <b id="aluguelTxt"></b></legend>
             <input type="range" name="tetoAluguel" id="tetoAluguel" min="1500" max="15000" step="500" value="15000">
           </fieldset>
           <div class="painel-pe">
@@ -256,7 +258,7 @@
     <div class="cab cab-lado">
       <div>
         <p class="rotulo">Regiões</p>
-        <h2>Do Pontal à Barra, <em>perto do mar</em>.</h2>
+        <h2 data-en="From Pontal to Barra, <em>close to the sea</em>.">Do Pontal à Barra, <em>perto do mar</em>.</h2>
       </div>
       <p class="sub">Toque numa região para ver só os imóveis de lá. Atendemos do Pontal à Barra, e também nas Vargens.</p>
     </div>
@@ -270,7 +272,7 @@
   <div class="wrap avaliar-in">
     <div class="avaliar-txt">
       <p class="rotulo rotulo-claro">Avaliação</p>
-      <h2>Quanto vale o seu imóvel? <em>Peça em quatro toques.</em></h2>
+      <h2 data-en="What is your property worth? <em>Ask in four taps.</em>">Quanto vale o seu imóvel? <em>Peça em quatro toques.</em></h2>
       <p class="sub">Avaliar é por onde começa quase toda venda aqui. Responda quatro perguntas e o pedido chega ao corretor já com tudo o que ele precisa para começar.</p>
       <ul class="avaliar-lista">
         <li>Sem cadastro, sem e-mail</li>
@@ -356,7 +358,7 @@
   <div class="wrap">
     <div class="cab">
       <p class="rotulo">Como funciona</p>
-      <h2>Da primeira conversa <em>à chave na mão</em>.</h2>
+      <h2 data-en="From the first chat <em>to the keys in your hand</em>.">Da primeira conversa <em>à chave na mão</em>.</h2>
     </div>
     <ol class="passos">
       <li><span>01</span><h3>Conversa</h3><p>Você conta o que procura ou o que quer vender. O corretor entende orçamento, prazo e região antes de mostrar qualquer coisa.</p></li>
@@ -376,7 +378,7 @@
     </figure>
     <div class="sobre-txt">
       <p class="rotulo">A Maré Mansa</p>
-      <h2>16 anos <em>de corretagem</em> perto do mar.</h2>
+      <h2 data-en="16 years <em>of real estate</em> by the sea.">16 anos <em>de corretagem</em> perto do mar.</h2>
       <p>A Maré Mansa nasceu em 2010, numa sala pequena no Recreio, quando a Helena Duarte decidiu atender só a região onde morava: Recreio, Barra e as Vargens. A ideia era simples: conhecer cada rua, cada condomínio e cada síndico antes de mostrar um imóvel.</p>
       <p>Hoje são seis corretores, todos moradores da região. A carteira mudou, os prédios mudaram, mas a regra continua: só mostramos o que faz sentido para quem vai morar, e a documentação é conferida antes de qualquer proposta.</p>
       <div class="sobre-pessoa">
@@ -396,7 +398,7 @@
     <div class="cab cab-lado">
       <div>
         <p class="rotulo">Quem já fechou</p>
-        <h2>O que dizem <em>depois da escritura</em>.</h2>
+        <h2 data-en="What they say <em>after the closing</em>.">O que dizem <em>depois da escritura</em>.</h2>
       </div>
       <p class="sub">Três clientes, três momentos: quem comprou, quem vendeu e quem só queria saber quanto valia.</p>
     </div>
@@ -413,7 +415,7 @@
   <div class="wrap faq-in">
     <div class="cab">
       <p class="rotulo">Dúvidas</p>
-      <h2>O que perguntam <em>antes de assinar</em>.</h2>
+      <h2 data-en="What people ask <em>before signing</em>.">O que perguntam <em>antes de assinar</em>.</h2>
       <p class="sub">Ficou alguma? <a href="#" data-zap="Olá! Tenho uma dúvida sobre compra ou venda de imóvel:">Pergunte direto ao corretor</a>.</p>
     </div>
     <div class="faq">
@@ -450,7 +452,7 @@
   <div class="wrap contato-in">
     <div class="contato-txt">
       <p class="rotulo">Contato</p>
-      <h2>Passe no escritório <em>ou chame agora</em>.</h2>
+      <h2 data-en="Drop by the office <em>or message us now</em>.">Passe no escritório <em>ou chame agora</em>.</h2>
       <p class="endereco"><span class="pino" aria-hidden="true"></span><span>Recreio dos Bandeirantes<small>Rio de Janeiro · atendimento com hora marcada</small></span></p>
       <ul class="contato-lista">
         <li class="ct"><a href="tel:+552138880000">
@@ -559,7 +561,7 @@
   <symbol id="i-banho" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 4 0"/></g></symbol>
 </svg>
 
-<script src="js/main.js?v=20261011a"></script>
+<script src="js/main.js?v=20261011b"></script>
 <script src="../_demo.js"></script>
 </body>
 </html>

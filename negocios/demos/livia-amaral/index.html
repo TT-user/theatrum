@@ -15,7 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/img/cantinho-420.webp" imagesrcset="assets/img/cantinho-420.webp 420w, assets/img/cantinho-633.webp 633w" imagesizes="(min-width: 960px) 420px, 78vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <script src="../../../js/idioma-demo.js?v=1" data-dicionario="js/en.js?v=1"></script>
 </head>
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -47,6 +48,7 @@
           <span class="marca__rotulo">Psicanálise &amp; Comportamento</span>
         </span>
       </a>
+      <button class="idioma" type="button" data-idioma-troca aria-label="Ver o site em inglês (English)"><span lang="pt">PT</span><span lang="en">EN</span></button>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
         <span></span><span></span><span></span>
       </button>
@@ -84,7 +86,7 @@
         </div>
         <div class="hero__texto">
           <p class="rotulo"><span class="fio"></span>Terapia e cuidado emocional · Online</p>
-          <h1 class="titulo-xl">Todo sentimento tem uma <em>origem</em>.</h1>
+          <h1 class="titulo-xl" data-en="Every feeling has an <em>origin</em>.">Todo sentimento tem uma <em>origem</em>.</h1>
           <p class="hero__sub">Entender é o primeiro passo. Sessões terapêuticas e Reiki, online, para você olhar com calma para o que sente e seguir com mais leveza, de onde estiver.</p>
           <div class="botoes">
             <a class="btn btn--ouro" href="#por-onde-comecar">Descobrir por onde começar</a>
@@ -115,7 +117,7 @@
     <section class="claro secao" id="para-voce">
       <div class="conteiner estreito">
         <p class="rotulo rotulo--escuro revelar"><span class="fio"></span>Para você</p>
-        <h2 class="titulo-l revelar">Talvez você esteja aqui <em>porque</em>…</h2>
+        <h2 class="titulo-l revelar" data-en="Maybe you are here <em>because</em>…">Talvez você esteja aqui <em>porque</em>…</h2>
         <ul class="lista-fio">
           <li class="revelar">os mesmos padrões se repetem, mesmo quando você jura que vai ser diferente</li>
           <li class="revelar">a mente não desliga, nem na hora de dormir</li>
@@ -135,7 +137,7 @@
       <div class="conteiner">
         <div class="cabeca cabeca--centro">
           <p class="rotulo revelar"><span class="fio"></span>Atendimentos<span class="fio"></span></p>
-          <h2 class="titulo-l revelar">Três caminhos para <em>cuidar de você</em>.</h2>
+          <h2 class="titulo-l revelar" data-en="Three ways to <em>take care of yourself</em>.">Três caminhos para <em>cuidar de você</em>.</h2>
           <p class="cabeca__sub revelar">Todos online. Se ainda não sabe qual é o seu, o “Por onde começar?” logo abaixo te ajuda a escolher.</p>
         </div>
         <!-- Cards gerados a partir de data/servicos.json -->
@@ -158,27 +160,27 @@
       <div class="conteiner">
         <div class="cabeca cabeca--centro">
           <p class="rotulo rotulo--escuro revelar"><span class="fio"></span>Como funciona<span class="fio"></span></p>
-          <h2 class="titulo-l revelar">Como funciona, <em>de onde você estiver</em>.</h2>
+          <h2 class="titulo-l revelar" data-en="How it works, <em>wherever you are</em>.">Como funciona, <em>de onde você estiver</em>.</h2>
         </div>
         <ol class="passos">
           <li class="passo revelar">
             <div class="passo__topo"><span class="passo__num">01</span><svg class="ic passo__ic" aria-hidden="true"><use href="#i-whats"/></svg></div>
-            <h3>Você me chama no <em>WhatsApp</em></h3>
+            <h3 data-en="You message me on <em>WhatsApp</em>">Você me chama no <em>WhatsApp</em></h3>
             <p>Conta um pouco do seu momento e a gente escolhe o melhor caminho e horário.</p>
           </li>
           <li class="passo revelar">
             <div class="passo__topo"><span class="passo__num">02</span><svg class="ic passo__ic" aria-hidden="true"><use href="#i-agenda"/></svg></div>
-            <h3>Combinamos o seu <em>horário</em></h3>
+            <h3 data-en="We set <em>a time</em> that suits you">Combinamos o seu <em>horário</em></h3>
             <p>Online por vídeo ou à distância, como for melhor para você.</p>
           </li>
           <li class="passo revelar">
             <div class="passo__topo"><span class="passo__num">03</span><svg class="ic passo__ic" aria-hidden="true"><use href="#i-lua"/></svg></div>
-            <h3>Você se acomoda e a sessão <em>acontece</em></h3>
+            <h3 data-en="You settle in and the session <em>happens</em>">Você se acomoda e a sessão <em>acontece</em></h3>
             <p>Na sessão à distância, basta estar em um lugar tranquilo. Muita gente relaxa tanto que adormece.</p>
           </li>
           <li class="passo revelar">
             <div class="passo__topo"><span class="passo__num">04</span><svg class="ic passo__ic" aria-hidden="true"><use href="#i-audio"/></svg></div>
-            <h3>Você recebe a <em>devolutiva</em></h3>
+            <h3 data-en="You get <em>feedback</em>">Você recebe a <em>devolutiva</em></h3>
             <p>Depois do encontro, envio por áudio o que percebi e o que pode contribuir para o seu processo.</p>
           </li>
         </ol>
@@ -186,7 +188,7 @@
           <div class="aproveitar__cabeca">
             <img src="assets/img/emblema.svg" width="44" height="44" alt="" loading="lazy">
             <p class="rotulo"><span class="fio"></span>Antes da sua sessão</p>
-            <h3>Para aproveitar <em>melhor</em></h3>
+            <h3 data-en="To make the <em>most</em> of it">Para aproveitar <em>melhor</em></h3>
             <p>Um pequeno ritual para você chegar inteira. Toque em cada item conforme for separando.</p>
           </div>
           <ul class="checklist">
@@ -223,10 +225,10 @@
         </div>
         <div class="sobre__texto">
           <p class="rotulo rotulo--escuro revelar"><span class="fio"></span>Sobre a Lívia</p>
-          <h2 class="titulo-l revelar">Escuta com <em>tempo</em> para você.</h2>
+          <h2 class="titulo-l revelar" data-en="Listening, with <em>time</em> for you.">Escuta com <em>tempo</em> para você.</h2>
           <p class="revelar">Sou a Lívia. Atendo há nove anos, sempre online, gente de todo o Brasil e de fora dele. Acredito que quase tudo o que a gente sente e repete começou em algum lugar, e que entender esse começo abre espaço para escolher diferente. Uno a escuta da psicanálise ao Reiki, como cuidado complementar, para acompanhar você no seu tempo.</p>
           <p class="formacao revelar"><strong>Formação:</strong> Psicanálise Clínica (2017) · Reiki Usui, nível 3 · especialização em Comportamento e Hábitos</p>
-          <blockquote class="citacao revelar">“Devagar também é <em>caminho</em>.”</blockquote>
+          <blockquote class="citacao revelar" data-en="“Slow is a <em>way</em> too.”">“Devagar também é <em>caminho</em>.”</blockquote>
         </div>
       </div>
     </section>
@@ -236,7 +238,7 @@
       <div class="conteiner">
         <div class="cabeca cabeca--centro">
           <p class="rotulo revelar"><span class="fio"></span>Depoimentos<span class="fio"></span></p>
-          <h2 class="titulo-l revelar">Quem já viveu, <em>conta</em>.</h2>
+          <h2 class="titulo-l revelar" data-en="In their <em>own words</em>.">Quem já viveu, <em>conta</em>.</h2>
           <p class="cabeca__sub revelar">Mensagens que chegaram depois das sessões. Toque em uma para ler em tamanho maior.</p>
         </div>
       </div>
@@ -266,7 +268,7 @@
         <div class="cabeca cabeca--centro">
           <img class="lume__logo revelar" src="assets/img/vitrine/lume-logo.svg" width="80" height="80" alt="Logo da Lume Essências" loading="lazy">
           <p class="rotulo lume__rotulo revelar"><span class="fio"></span>Vitrine · Lume Essências<span class="fio"></span></p>
-          <h2 class="titulo-l revelar">Uma essência para cada <em>movimento</em>.</h2>
+          <h2 class="titulo-l revelar" data-en="An essence for every <em>moment</em>.">Uma essência para cada <em>movimento</em>.</h2>
           <p class="cabeca__sub revelar">Spray de ambiente e florais artesanais da Lume, a linha de essências da Lívia. Para acompanhar momentos de pausa, foco e recomeço.</p>
         </div>
         <!-- Produtos gerados a partir de data/produtos.json -->
@@ -274,7 +276,7 @@
         <div class="personalizado revelar">
           <div>
             <p class="rotulo"><span class="fio"></span>Sob medida</p>
-            <h3>Essência <em>personalizada</em></h3>
+            <h3 data-en="A <em>custom</em> essence">Essência <em>personalizada</em></h3>
             <p>Conte para a Lívia o momento que você está vivendo e receba um spray pensado para ele.</p>
           </div>
           <a class="btn btn--lume-claro" href="https://wa.me/" data-wa="Olá, Lívia! Vim pelo site e queria saber sobre um spray personalizado da Lume." target="_blank" rel="noopener">Quero um personalizado</a>
@@ -288,15 +290,15 @@
       <div class="conteiner">
         <div class="cabeca">
           <p class="rotulo revelar"><span class="fio"></span>Reflexões &amp; Podcast</p>
-          <h2 class="titulo-l revelar">Reflexões para <em>levar com você</em>.</h2>
+          <h2 class="titulo-l revelar" data-en="Reflections to <em>take with you</em>.">Reflexões para <em>levar com você</em>.</h2>
           <p class="cabeca__sub revelar">Um pouco do que a Lívia compartilha toda semana no Instagram e no podcast.</p>
         </div>
         <ul class="posts">
-          <li><a href="#demo-cta"><img src="assets/img/posts/repete.webp" width="278" height="342" loading="lazy" alt="Post: O que você repete também quer te contar algo."></a></li>
-          <li><a href="#demo-cta"><img src="assets/img/posts/descansar.webp" width="278" height="342" loading="lazy" alt="Post: Descansar não é desistir."></a></li>
-          <li><a href="#demo-cta"><img src="assets/img/posts/pausa.webp" width="278" height="342" loading="lazy" alt="Post: Nem toda pausa é atraso."></a></li>
-          <li><a href="#demo-cta"><img src="assets/img/posts/reiki.webp" width="278" height="342" loading="lazy" alt="Post: Reiki, um tempo para desacelerar e voltar para si."></a></li>
-          <li><a href="#demo-cta"><img src="assets/img/posts/hoje.webp" width="278" height="342" loading="lazy" alt="Post: Você não precisa dar conta de tudo hoje."></a></li>
+          <li><a href="#demo-cta"><img src="assets/img/posts/repete.webp" data-en-src="assets/img/posts/repete-en.webp" width="278" height="342" loading="lazy" alt="Post: O que você repete também quer te contar algo."></a></li>
+          <li><a href="#demo-cta"><img src="assets/img/posts/descansar.webp" data-en-src="assets/img/posts/descansar-en.webp" width="278" height="342" loading="lazy" alt="Post: Descansar não é desistir."></a></li>
+          <li><a href="#demo-cta"><img src="assets/img/posts/pausa.webp" data-en-src="assets/img/posts/pausa-en.webp" width="278" height="342" loading="lazy" alt="Post: Nem toda pausa é atraso."></a></li>
+          <li><a href="#demo-cta"><img src="assets/img/posts/reiki.webp" data-en-src="assets/img/posts/reiki-en.webp" width="278" height="342" loading="lazy" alt="Post: Reiki, um tempo para desacelerar e voltar para si."></a></li>
+          <li><a href="#demo-cta"><img src="assets/img/posts/hoje.webp" data-en-src="assets/img/posts/hoje-en.webp" width="278" height="342" loading="lazy" alt="Post: Você não precisa dar conta de tudo hoje."></a></li>
         </ul>
         <div class="botoes botoes--centro">
           <a class="btn btn--ouro" href="#demo-cta"><svg class="ic ic--btn"><use href="#i-play"/></svg>Ouvir o podcast</a>
@@ -310,7 +312,7 @@
       <div class="conteiner estreito">
         <div class="cabeca cabeca--centro">
           <p class="rotulo rotulo--escuro revelar"><span class="fio"></span>Dúvidas<span class="fio"></span></p>
-          <h2 class="titulo-l revelar">Perguntas <em>frequentes</em>.</h2>
+          <h2 class="titulo-l revelar" data-en="Frequently asked <em>questions</em>.">Perguntas <em>frequentes</em>.</h2>
         </div>
         <div class="faq">
           <details>
@@ -354,7 +356,7 @@
       <div class="arcos arcos--centro" aria-hidden="true"><span></span><span></span></div>
       <div class="conteiner estreito centro">
         <img class="emblema-fim" src="assets/img/emblema.svg" width="52" height="52" alt="" loading="lazy">
-        <h2 class="titulo-l revelar">O primeiro passo pode ser <em>uma mensagem</em>.</h2>
+        <h2 class="titulo-l revelar" data-en="The first step can be <em>a message</em>.">O primeiro passo pode ser <em>uma mensagem</em>.</h2>
         <p class="cabeca__sub revelar">Me conta o seu momento. A gente encontra junto o melhor caminho.</p>
         <a class="btn btn--ouro btn--grande" href="https://wa.me/" data-wa="Olá, Lívia! Vim pelo seu site e queria conversar sobre o meu momento." target="_blank" rel="noopener"><svg class="ic ic--btn"><use href="#i-whats"/></svg>Conversar no WhatsApp</a>
       </div>
@@ -396,8 +398,8 @@
   </a>
 
   <script src="js/feixes.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/por-onde-comecar.js" defer></script>
+  <script src="js/main.js?v=2" defer></script>
+  <script src="js/por-onde-comecar.js?v=2" defer></script>
   <script src="../_demo.js"></script>
 </body>
 </html>

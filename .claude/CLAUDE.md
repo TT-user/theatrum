@@ -188,6 +188,13 @@ rodapé em colunas), adaptada à escada de compromisso.
   preto e entra com `mix-blend-mode:screen`, então o preto some e o fundo do
   hero continua o mesmo. No computador o card desce (`align-self:end`) para
   o rosto ficar à vista; abaixo de 980 px ela fica a 22% atrás do texto.
+  Por baixo de tudo, um vidro líquido sutil: fundo, grade e estátua ficam em
+  `.hero-fundo`, que passa pelo filtro SVG `#hx-vidro` (ondulação larga,
+  `scale` 16, `color-interpolation-filters="sRGB"`, senão o fundo escuro
+  escurece e aparece um arco avermelhado); `.hero-vidro` só põe o brilho do
+  topo. Estático de propósito: nada dentro de `.hero-fundo` pode animar,
+  porque cada quadro refaria o filtro na tela inteira. `backdrop-filter`
+  foi testado e deixava defeito de cor.
 - **`[02]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
   (rápido no celular, pronto para anúncio, texto que vende, cada contato
   avisado, tudo no seu nome). Sem CTA próprio.
@@ -388,6 +395,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   escrito de cada cliente antes de virar site oficial. Prints originais e README do projeto em
   `interno/clientes/gabriela-carolina/`, fora do git.
   A versão de portfólio, com marca fictícia, é a Lívia Amaral, em `/negocios/demos/livia-amaral/`.
+  O `css/style.css` daqui tem um `@media (min-width: 600px) {` sem fechar (linha 340) que deixa
+  metade da página sem estilo abaixo de 600 px; corrigido na Lívia em 11/10/2026, não aqui.
   **Fora do ar desde 11/10/2026:** o `.htaccess` da pasta manda para a home;
   os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 - `/bia-de-luca/` — prévia de redesenho do biadeluca.com.br (terapeuta vibracional quântica e
@@ -448,6 +457,24 @@ fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
 vazios e não sobra placeholder. As prévias originais continuam intactas
 nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e
 licença no rodapé de cada demo: tirar o crédito quebra a licença.
+
+**Demos bilíngues (PT/EN), desde 11/10/2026:** Maré Mansa, Lívia Amaral e
+Pedra Alta têm botão PT · EN no próprio topo, e o card delas no portfólio leva
+o selo "PT/EN". Motor único em `js/idioma-demo.js` (raiz), carregado no
+`<head>` com `data-dicionario="js/en.js"`. Em inglês ele baixa o `en.js` da
+demo (dicionário: texto em português → inglês), traduz nós de texto e `alt`,
+`aria-label`, `placeholder` e `title`, aplica `data-en` (frase com `<em>` no
+meio) e `data-en-src` (imagem), e segue traduzindo o que o JS desenha depois.
+Frase montada com número no meio fica no JS da demo, em `T(pt, en)`; os JSON
+vêm de `data/en/` (`Idioma.dados`), com a mesma estrutura dos de português:
+**mudou preço ou texto num, muda no outro.** Trocar de idioma recarrega a
+página com `?lang=`. Ordem da escolha: `?lang`, a última troca feita numa
+demo (`localStorage` `theatrum-demo-idioma`), `?de=us`, o idioma da home e do
+portfólio (`theatrum-lang`), português. Os `_demo.js` de `/imoveis/` e
+`/negocios/` falam inglês quando a demo está em inglês. Na Lívia, os cartões
+de depoimento e os posts são imagens e têm versão `-en.webp`, gerada no mesmo
+desenho. Para pôr outra demo em inglês: o `<script>` no head, o botão
+`.idioma` com `data-idioma-troca`, o `en.js`, `T()` no JS e `data/en/`.
 
 Cada pasta tem o próprio `_demo.js`, que neutraliza links de contato e põe a
 barra de volta, e um `.htaccess` com `X-Robots-Tag: noindex`. **O noindex não é

@@ -1,0 +1,42 @@
+{
+  "_leia": "Inglês (marca fictícia). Mesma estrutura de data/servicos.json; mude os dois juntos.",
+  "presencial": false,
+  "servicos": [
+    {
+      "id": "terapeutica",
+      "nome": "Therapy Session",
+      "icone": "escuta",
+      "frase": "To understand the origin of what you feel and repeat.",
+      "para_quem": "For anyone noticing patterns that keep repeating, a racing mind or a habit that is hard to control.",
+      "como_funciona": "A listening session, grounded in psychoanalysis and behavior, to look calmly at your story.",
+      "duracao": "50 minutes",
+      "valor": "",
+      "formato": "Online, by video",
+      "mensagem_whatsapp": "Hi, Lívia! I found you through your website and I'd like to know more about the Therapy Session."
+    },
+    {
+      "id": "reiki",
+      "nome": "Therapeutic Reiki",
+      "icone": "maos",
+      "frase": "A moment to slow down, breathe and come back to yourself.",
+      "para_quem": "For anyone whose body feels tired and who wants time to pause, without having to talk much.",
+      "como_funciona": "You settle into a quiet place and receive Reiki as complementary care.",
+      "duracao": "40 minutes",
+      "valor": "",
+      "formato": "Online, by video or at a distance",
+      "mensagem_whatsapp": "Hi, Lívia! I found you through your website and I'd like to know more about Therapeutic Reiki."
+    },
+    {
+      "id": "limpeza",
+      "nome": "Distance energy cleansing",
+      "icone": "lua",
+      "frase": "You settle in wherever you are. Afterwards, you get feedback as an audio message.",
+      "para_quem": "For anyone feeling a heavy energy who prefers to be cared for without leaving home.",
+      "como_funciona": "The session happens at a distance only. At the end, Lívia sends what she noticed as an audio message on WhatsApp.",
+      "duracao": "30 minutes",
+      "valor": "",
+      "formato": "At a distance only, with audio feedback",
+      "mensagem_whatsapp": "Hi, Lívia! I found you through your website and I'd like to know more about distance energy cleansing."
+    }
+  ]
+}

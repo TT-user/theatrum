@@ -1,0 +1,95 @@
+{
+  "_como_usar": "Inglês. Mesma estrutura de data/extras.json.",
+  "extras": [
+    {
+      "id": "cafe-cesta",
+      "nome": "Breakfast basket",
+      "descricao": "Delivered to your door, to enjoy on the porch with no rush. Warm pão de queijo, fruit, cake of the day, local mountain cheese and filter coffee.",
+      "foto": {
+        "base": "assets/fotos/extras/cafe-cesta",
+        "larguras": [
+          420,
+          609
+        ],
+        "largura": 609,
+        "altura": 816,
+        "alt": "Pão de queijo, a cup of coffee and a bread basket on the table"
+      },
+      "preco": 95,
+      "cobranca": "per day",
+      "aviso": "Order by 8pm the day before."
+    },
+    {
+      "id": "tabua-frios",
+      "nome": "Cheese board and wine",
+      "descricao": "For an evening on the porch, with the fireplace lit and the whole mountain sky overhead.",
+      "foto": {
+        "base": "assets/fotos/extras/tabua-frios",
+        "larguras": [
+          420,
+          609
+        ],
+        "largura": 609,
+        "altura": 816,
+        "alt": "A glass and a bottle of red wine with cheeses on a wooden table"
+      },
+      "preco": 180,
+      "cobranca": "per stay",
+      "aviso": "Order 24 hours in advance."
+    },
+    {
+      "id": "decoracao-romantica",
+      "nome": "Romantic decoration",
+      "descricao": "Petals, candles and the cabin set up to welcome you.",
+      "foto": {
+        "base": "assets/fotos/extras/decoracao-romantica",
+        "larguras": [
+          420,
+          609
+        ],
+        "largura": 609,
+        "altura": 816,
+        "alt": "Glasses with strawberries and lit candles on the table"
+      },
+      "preco": 250,
+      "cobranca": "per stay",
+      "aviso": "Order 48 hours in advance."
+    },
+    {
+      "id": "decoracao-aniversario",
+      "nome": "Birthday decoration",
+      "descricao": "Balloons, a cake and the table set to celebrate another year.",
+      "foto": {
+        "base": "assets/fotos/extras/aniversario",
+        "larguras": [
+          420,
+          609
+        ],
+        "largura": 609,
+        "altura": 816,
+        "alt": "Birthday cake with colorful lit candles"
+      },
+      "preco": 220,
+      "cobranca": "per stay",
+      "aviso": "Order 48 hours in advance."
+    },
+    {
+      "id": "culinaria-local",
+      "nome": "Minas Gerais cooking",
+      "descricao": "A traditional Minas lunch or dinner, cooked on a wood stove and served in your cabin.",
+      "foto": {
+        "base": "assets/fotos/extras/culinaria",
+        "larguras": [
+          420,
+          609
+        ],
+        "largura": 609,
+        "altura": 816,
+        "alt": "Clay pots of Minas Gerais food served on the table"
+      },
+      "preco": 85,
+      "cobranca": "per person",
+      "aviso": null
+    }
+  ]
+}

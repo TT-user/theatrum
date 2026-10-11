@@ -5,6 +5,11 @@
   'use strict';
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
+  /* idioma: js/idioma-demo.js traduz o HTML; os dados vêm de data/en/ e o
+     que é montado aqui com número no meio passa por T(pt, en) */
+  var I = window.Idioma || { en: false, dados: function (u) { return u; } };
+  function T(pt, en) { return I.en ? en : pt; }
+  function plural(n, um, varios) { return n + ' ' + (n === 1 ? um : varios); }
 
   // Escapa o texto e pinta de amarelo o que estiver entre colchetes.
   function t(s) {
@@ -16,7 +21,7 @@
   function attr(s) { return String(s == null ? '' : s).replace(/\[|\]/g, '').replace(/"/g, '&quot;'); }
   function brl(v, ph) {
     return typeof v === 'number'
-      ? 'R$ ' + v.toLocaleString('pt-BR', { maximumFractionDigits: 2 })
+      ? 'R$ ' + v.toLocaleString(I.en ? 'en-US' : 'pt-BR', { maximumFractionDigits: 2 })
       : 'R$ <span class="ph">' + (ph || '[VALOR]') + '</span>';
   }
 
@@ -32,10 +37,10 @@
 
   // Ícone de cada comodidade pelo nome, para o JSON continuar só com texto.
   var ICONES = [
-    [/banheira|hidro/i, 'bath'], [/lareira/i, 'fire'], [/wi-?fi|internet/i, 'wifi'],
-    [/cozinha|frigobar|cooktop/i, 'kitchen'], [/aquecedor|ar[- ]cond|climatiz/i, 'thermo'],
-    [/varanda|deck|vista/i, 'deck'], [/cama|roupa|toalha/i, 'bed'], [/caf[eé]/i, 'coffee'],
-    [/estaciona|garagem/i, 'road']
+    [/banheira|hidro|bathtub|tub/i, 'bath'], [/lareira|fireplace/i, 'fire'], [/wi-?fi|internet/i, 'wifi'],
+    [/cozinha|frigobar|cooktop|kitchen/i, 'kitchen'], [/aquecedor|ar[- ]cond|climatiz|heater/i, 'thermo'],
+    [/varanda|deck|vista|porch|view/i, 'deck'], [/cama|roupa|toalha|linen|towel/i, 'bed'], [/caf[eé]|coffee/i, 'coffee'],
+    [/estaciona|garagem|parking/i, 'road']
   ];
   function icone(nome) {
     for (var i = 0; i < ICONES.length; i++) if (ICONES[i][0].test(nome)) return ICONES[i][1];
@@ -52,8 +57,9 @@
   // status: "ativo" aparece e reserva; "pre-agendamento" aparece com selo e
   // o botão da lista dos primeiros; "oculto" não aparece (só conta para a
   // faixa de novos chalés). "em-breve" é o nome antigo de pre-agendamento.
-  var EXTENSO = ['', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis'];
-  var MSG_LISTA = 'Olá! Vim pelo site. Quero entrar na lista dos primeiros a reservar os novos chalés do Pedra Alta.';
+  var EXTENSO = I.en ? ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'] : ['', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis'];
+  var MSG_LISTA = T('Olá! Vim pelo site. Quero entrar na lista dos primeiros a reservar os novos chalés do Pedra Alta.',
+    "Hi! I found you through the website. I'd like to join the early list to book Pedra Alta's new cabins.");
   function statusDe(c) { return c.status === 'em-breve' ? 'pre-agendamento' : c.status; }
 
   function renderChales(todos, info) {
@@ -62,7 +68,7 @@
     var ativos = lista.filter(function (c) { return statusDe(c) === 'ativo'; });
     var ocultos = todos.filter(function (c) { return statusDe(c) === 'oculto'; });
     box.setAttribute('data-n', lista.length);
-    $('#qtd-chales').textContent = ativos.length === 1 ? 'Um chalé' : (EXTENSO[ativos.length] || ativos.length) + ' chalés';
+    $('#qtd-chales').textContent = ativos.length === 1 ? T('Um chalé', 'One cabin') : (EXTENSO[ativos.length] || ativos.length) + T(' chalés', ' cabins');
 
     box.innerHTML = lista.map(function (c) {
       var pre = statusDe(c) === 'pre-agendamento';
@@ -72,19 +78,19 @@
       var amen = c.comodidades.map(function (a) { return '<li>' + ico(icone(a)) + '<span>' + t(a) + '</span></li>'; }).join('');
       var preco = aPartirDe(c);
       var foot = pre
-        ? '<p class="price">abre em <strong>' + t(c.previsao || '[PREVISÃO DE ABERTURA]') + '</strong></p>' +
-          '<a class="btn btn-line" href="#" data-wa="' + attr(MSG_LISTA) + '">' + ico('bell') + 'Quero ser um dos primeiros</a>'
-        : '<p class="price">a partir de <strong>' + brl(preco, '[DIÁRIA]') + '</strong> / noite</p>' +
-          '<a class="btn btn-dark" href="#reservar" data-chale="' + c.id + '">Ver datas deste chalé</a>';
+        ? '<p class="price">' + T('abre em ', 'opens in ') + '<strong>' + t(c.previsao || '[PREVISÃO DE ABERTURA]') + '</strong></p>' +
+          '<a class="btn btn-line" href="#" data-wa="' + attr(MSG_LISTA) + '">' + ico('bell') + T('Quero ser um dos primeiros', 'I want to be one of the first') + '</a>'
+        : '<p class="price">' + T('a partir de ', 'from ') + '<strong>' + brl(preco, '[DIÁRIA]') + '</strong>' + T(' / noite', ' / night') + '</p>' +
+          '<a class="btn btn-dark" href="#reservar" data-chale="' + c.id + '">' + T('Ver datas deste chalé', 'See dates for this cabin') + '</a>';
       return '<article class="chale' + (pre ? ' chale-breve' : '') + '">' +
-        '<div class="gallery" data-gallery>' + (pre ? '<span class="selo">Pré-agendamento</span>' : '') +
+        '<div class="gallery" data-gallery>' + (pre ? '<span class="selo">' + T('Pré-agendamento', 'Pre-booking') + '</span>' : '') +
           '<div class="g-track">' + slides + '</div><div class="g-dots" aria-hidden="true"></div></div>' +
         '<div class="chale-body">' +
           '<h3>' + t(c.nome) + '</h3>' +
-          '<p class="chale-cap">' + ico('users') + 'Até ' + c.capacidade + (c.capacidade === 1 ? ' pessoa' : ' pessoas') + (c.cama ? ' · cama ' + t(c.cama) : '') + '</p>' +
+          '<p class="chale-cap">' + ico('users') + T('Até ', 'Up to ') + plural(c.capacidade, T('pessoa', 'guest'), T('pessoas', 'guests')) + (c.cama ? T(' · cama ', ' · ') + t(c.cama) : '') + '</p>' +
           '<p class="chale-desc">' + t(c.descricaoCurta) + '</p>' +
           '<ul class="amen">' + amen + '</ul>' +
-          (c.descricaoLonga ? '<details class="more"><summary>Sobre o chalé</summary><p>' + t(c.descricaoLonga) + '</p></details>' : '') +
+          (c.descricaoLonga ? '<details class="more"><summary>' + T('Sobre o chalé', 'About this cabin') + '</summary><p>' + t(c.descricaoLonga) + '</p></details>' : '') +
           '<div class="chale-foot">' + foot + '</div>' +
         '</div></article>';
     }).join('');
@@ -94,18 +100,20 @@
     var cfg = info.novosChales || {};
     if (faixa && ocultos.length && cfg.mostrar !== false) {
       var n = ocultos.length;
-      var titulo = n === 1 ? 'Mais um chalé <em>está chegando</em>'
-        : EXTENSO[n] ? 'Mais ' + EXTENSO[n].toLowerCase() + ' chalés <em>estão chegando</em>'
-        : 'Novos chalés <em>estão chegando</em>';
+      var titulo = n === 1 ? T('Mais um chalé <em>está chegando</em>', 'One more cabin <em>is on its way</em>')
+        : EXTENSO[n] ? T('Mais ', '') + EXTENSO[n] + T(' chalés <em>estão chegando</em>', ' more cabins <em>are on their way</em>')
+        : T('Novos chalés <em>estão chegando</em>', 'New cabins <em>are on their way</em>');
+      if (!I.en && EXTENSO[n] && n > 1) titulo = 'Mais ' + EXTENSO[n].toLowerCase() + ' chalés <em>estão chegando</em>';
       faixa.innerHTML =
         '<div class="novos-tri" aria-hidden="true"><span></span><span></span></div>' +
         '<div class="novos-txt">' +
-          '<p class="kicker">Em breve · ' + t(cfg.previsao || '[PREVISÃO DE ABERTURA]') + '</p>' +
+          '<p class="kicker">' + T('Em breve · ', 'Coming soon · ') + t(cfg.previsao || '[PREVISÃO DE ABERTURA]') + '</p>' +
           '<h3>' + titulo + '</h3>' +
-          '<p>Entre na lista dos primeiros: vocês recebem as datas antes de abrirem para todo mundo e escolhem as suas primeiro.' +
+          '<p>' + T('Entre na lista dos primeiros: vocês recebem as datas antes de abrirem para todo mundo e escolhem as suas primeiro.',
+            'Join the early list: you get the dates before they open to everyone and pick yours first.') +
             (cfg.vantagem ? ' ' + t(cfg.vantagem) : '') + '</p>' +
         '</div>' +
-        '<a class="btn btn-amber" href="#" data-wa="' + attr(MSG_LISTA) + '">' + ico('bell') + 'Quero ser um dos primeiros</a>';
+        '<a class="btn btn-amber" href="#" data-wa="' + attr(MSG_LISTA) + '">' + ico('bell') + T('Quero ser um dos primeiros', 'I want to be one of the first') + '</a>';
       faixa.hidden = false;
     } else if (faixa) {
       faixa.hidden = true;
@@ -118,7 +126,7 @@
     var sel = $('#qb-hosp');
     if (sel) {
       sel.innerHTML = '';
-      for (var i = 1; i <= max; i++) sel.insertAdjacentHTML('beforeend', '<option value="' + i + '"' + (i === 2 ? ' selected' : '') + '>' + i + (i === 1 ? ' pessoa' : ' pessoas') + '</option>');
+      for (var i = 1; i <= max; i++) sel.insertAdjacentHTML('beforeend', '<option value="' + i + '"' + (i === 2 ? ' selected' : '') + '>' + plural(i, T('pessoa', 'guest'), T('pessoas', 'guests')) + '</option>');
     }
   }
 
@@ -152,17 +160,17 @@
   /* ---------- informações importantes ---------- */
   function renderInfo(info) {
     var sinal = typeof info.sinal.percentual === 'number'
-      ? info.sinal.percentual + '% do valor total para confirmar a reserva.'
-      : '[PERCENTUAL DO SINAL] do valor total para confirmar a reserva.';
+      ? info.sinal.percentual + T('% do valor total para confirmar a reserva.', '% of the total to confirm the booking.')
+      : '[PERCENTUAL DO SINAL]' + T(' do valor total para confirmar a reserva.', ' of the total to confirm the booking.');
     var blocos = [
-      ['clock', 'Check-in e check-out',
-        '<dl class="hours"><div><dt>Entrada</dt><dd>a partir das ' + t(info.checkin) + '</dd></div><div><dt>Saída</dt><dd>até as ' + t(info.checkout) + '</dd></div></dl>' +
+      ['clock', T('Check-in e check-out', 'Check-in and check-out'),
+        '<dl class="hours"><div><dt>' + T('Entrada', 'Check-in') + '</dt><dd>' + T('a partir das ', 'from ') + t(info.checkin) + '</dd></div><div><dt>' + T('Saída', 'Check-out') + '</dt><dd>' + T('até as ', 'by ') + t(info.checkout) + '</dd></div></dl>' +
         (info.checkinObs ? '<p>' + t(info.checkinObs) + '</p>' : '')],
-      ['list', 'Incluso na diária', '<ul class="dots">' + info.inclusoNaDiaria.map(function (x) { return '<li>' + t(x) + '</li>'; }).join('') + '</ul>'],
-      ['house', 'Regras da casa', '<dl class="rules">' + info.regras.map(function (r) { return '<div><dt>' + t(r.titulo) + '</dt><dd>' + t(r.texto) + '</dd></div>'; }).join('') + '</dl>'],
-      ['card', 'Sinal e cancelamento', '<p>' + t(sinal) + ' ' + t(info.sinal.formas) + '</p><p>' + t(info.cancelamento) + '</p>'],
-      ['wifi', 'Wi-Fi e sinal de celular', '<dl class="rules"><div><dt>Wi-Fi</dt><dd>' + t(info.conexao.wifi) + '</dd></div><div><dt>Celular</dt><dd>' + t(info.conexao.celular) + '</dd></div></dl>'],
-      ['road', 'Estrada de acesso', '<p>' + t(info.estrada) + '</p>']
+      ['list', T('Incluso na diária', 'Included in the nightly rate'), '<ul class="dots">' + info.inclusoNaDiaria.map(function (x) { return '<li>' + t(x) + '</li>'; }).join('') + '</ul>'],
+      ['house', T('Regras da casa', 'House rules'), '<dl class="rules">' + info.regras.map(function (r) { return '<div><dt>' + t(r.titulo) + '</dt><dd>' + t(r.texto) + '</dd></div>'; }).join('') + '</dl>'],
+      ['card', T('Sinal e cancelamento', 'Deposit and cancellation'), '<p>' + t(sinal) + ' ' + t(info.sinal.formas) + '</p><p>' + t(info.cancelamento) + '</p>'],
+      ['wifi', T('Wi-Fi e sinal de celular', 'Wi-Fi and phone signal'), '<dl class="rules"><div><dt>Wi-Fi</dt><dd>' + t(info.conexao.wifi) + '</dd></div><div><dt>' + T('Celular', 'Mobile') + '</dt><dd>' + t(info.conexao.celular) + '</dd></div></dl>'],
+      ['road', T('Estrada de acesso', 'Access road'), '<p>' + t(info.estrada) + '</p>']
     ];
     $('#lista-info').innerHTML = blocos.map(function (b) {
       return '<article class="info">' + ico(b[0], 'ico-lg') + '<h3>' + b[1] + '</h3>' + b[2] + '</article>';
@@ -197,7 +205,8 @@
       name: info.nome,
       url: base,
       image: base + 'assets/og-pedra-alta.jpg',
-      description: 'Chalés A-frame privativos em Gonçalves (MG), com banheira, lareira e vista para a Serra da Mantiqueira.',
+      description: T('Chalés A-frame privativos em Gonçalves (MG), com banheira, lareira e vista para a Serra da Mantiqueira.',
+        'Private A-frame cabins in Gonçalves (MG, Brazil), with a bathtub, fireplace and views of the Mantiqueira Mountains.'),
       address: { '@type': 'PostalAddress', streetAddress: info.endereco, addressLocality: info.cidade, addressRegion: info.uf, addressCountry: 'BR' },
       geo: { '@type': 'GeoCoordinates', latitude: info.coordenadas.lat, longitude: info.coordenadas.lng },
       hasMap: info.mapa,
@@ -210,7 +219,7 @@
       })
     };
     if (info.whatsapp) s.telephone = '+' + info.whatsapp;
-    if (precos.length) s.priceRange = 'R$ ' + Math.min.apply(null, precos) + ' a R$ ' + Math.max.apply(null, precos) + ' por noite';
+    if (precos.length) s.priceRange = 'R$ ' + Math.min.apply(null, precos) + T(' a R$ ', ' to R$ ') + Math.max.apply(null, precos) + T(' por noite', ' per night');
     var el = document.createElement('script');
     el.type = 'application/ld+json';
     el.textContent = JSON.stringify(s);
@@ -220,7 +229,7 @@
   /* ---------- carga ---------- */
   // no-cache: o navegador revalida a cada visita, então a dona muda um preço
   // e ele aparece na hora, sem esperar o cache de 7 dias da Hostinger.
-  function get(f) { return fetch('data/' + f, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(f); return r.json(); }); }
+  function get(f) { return fetch(I.dados('data/' + f), { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(f); return r.json(); }); }
 
   Promise.all([get('chales.json'), get('extras.json'), get('info.json')]).then(function (d) {
     var chales = d[0].chales.slice().sort(function (a, b) { return a.ordem - b.ordem; });
@@ -236,7 +245,7 @@
   }).catch(function (err) {
     console.error('Pedra Alta: não carregou os dados', err);
     document.querySelectorAll('[data-render]').forEach(function (el) {
-      el.innerHTML = '<p class="load-err">Não conseguimos carregar esta parte agora. Fale com a gente pelo WhatsApp.</p>';
+      el.innerHTML = '<p class="load-err">' + T('Não conseguimos carregar esta parte agora. Fale com a gente pelo WhatsApp.', "We couldn't load this part right now. Message us on WhatsApp.") + '</p>';
     });
   });
 })();

@@ -596,3 +596,19 @@ body:has(.barra-comp:not([hidden])) .zap-flutua{bottom:calc(var(--barra-h) + 84p
 
 /* iniciais no lugar da foto da fundadora */
 .avatar-ini{display:grid;place-items:center;background:var(--mar);color:#fff;font:600 18px/1 var(--serif)}
+
+/* ============================================================
+   IDIOMA (PT · EN): o botão recarrega a página no outro idioma
+   (js/idioma-demo.js na raiz do site)
+   ============================================================ */
+.idioma{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid color-mix(in srgb,currentColor 35%,transparent);border-radius:999px;background:transparent;color:inherit;cursor:pointer;flex-shrink:0}
+.idioma span{font:600 12.5px/1 var(--sans);letter-spacing:.04em;padding:7px 9px;border-radius:999px;opacity:.7;transition:background .2s,color .2s,opacity .2s}
+.idioma:hover span{opacity:1}
+html[data-idioma="pt"] .idioma [lang="pt"],html[data-idioma="en"] .idioma [lang="en"]{opacity:1;background:#fff;color:var(--tinta)}
+html[data-idioma="pt"] .topo.rolou .idioma [lang="pt"],html[data-idioma="en"] .topo.rolou .idioma [lang="en"],
+html[data-idioma="pt"] .topo:has(.menu.aberto) .idioma [lang="pt"],html[data-idioma="en"] .topo:has(.menu.aberto) .idioma [lang="en"]{background:var(--tinta);color:#fff}
+.idioma:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+@media (max-width:1080px){
+  .idioma{margin-left:auto}
+  .idioma + .abre-menu{margin-left:0}
+}

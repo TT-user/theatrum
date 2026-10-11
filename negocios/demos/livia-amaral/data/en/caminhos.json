@@ -1,0 +1,41 @@
+{
+  "_leia": "Inglês. Os 4 resultados do \"Por onde começar?\" (marca fictícia).",
+  "caminhos": [
+    {
+      "id": "terapeutica",
+      "titulo": "Therapy Session",
+      "titulo_html": "To understand the <em>story</em> behind what keeps repeating.",
+      "explicacao": "A listening session, online by video, to look calmly at where your patterns and emotions come from.",
+      "formato": "Online, by video",
+      "duracao": "50 minutes",
+      "valor": ""
+    },
+    {
+      "id": "reiki",
+      "titulo": "Therapeutic Reiki",
+      "titulo_html": "Time to <em>slow down</em> and come back to yourself.",
+      "explicacao": "You settle into a quiet place and receive Reiki as complementary care, without having to talk much.",
+      "formato": "Online, by video or at a distance",
+      "duracao": "40 minutes",
+      "valor": ""
+    },
+    {
+      "id": "limpeza",
+      "titulo": "Distance energy cleansing",
+      "titulo_html": "All you need to do is <em>settle in</em>.",
+      "explicacao": "The session happens at a distance, wherever you are. Afterwards, you get feedback as an audio message on WhatsApp.",
+      "formato": "At a distance only, with audio feedback",
+      "duracao": "30 minutes",
+      "valor": ""
+    },
+    {
+      "id": "integrada",
+      "titulo": "Integrated journey",
+      "titulo_html": "Listening and energy care, at your own <em>pace</em>.",
+      "explicacao": "Therapy sessions and Reiki combined, to understand your story and also have time to pause.",
+      "formato": "Online, by video and at a distance",
+      "duracao": "50-minute session + 40 of Reiki",
+      "valor": ""
+    }
+  ]
+}

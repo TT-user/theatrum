@@ -29,8 +29,10 @@
     } catch (e) {}
   }
 
-  var EN = origem === 'us';
-  var VOLTA = EN
+  /* a demo bilíngue em inglês (js/idioma-demo.js) também fala inglês aqui */
+  var EN = origem === 'us' || !!(window.Idioma && window.Idioma.en);
+  /* o destino depende só de onde a pessoa veio; o idioma muda só o texto */
+  var VOLTA = origem === 'us'
     ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
     : origem === 'portfolio'
     ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }

@@ -4,6 +4,10 @@
 
   var WHATS = '';   /* demonstração: sem número, o _demo.js troca o link pelo aviso */
   var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* idioma: js/idioma-demo.js traduz o HTML; os dados vêm de data/en/ e o
+     que é montado aqui com variável no meio passa por T(pt, en) */
+  var I = window.Idioma || { en: false, dados: function (u) { return u; } };
+  function T(pt, en) { return I.en ? en : pt; }
   document.documentElement.classList.add('js');
 
   function linkWhats(msg) {
@@ -19,12 +23,12 @@
     return esc(s).replace(/\[[^\]]+\]/g, function (m) { return '<span class="ph">' + m + '</span>'; });
   }
   function carregar(url) {
-    return fetch(url, { cache: 'no-cache' }).then(function (r) {
+    return fetch(I.dados(url), { cache: 'no-cache' }).then(function (r) {
       if (!r.ok) throw new Error(url + ' ' + r.status);
       return r.json();
     });
   }
-  window.Site = { linkWhats: linkWhats, esc: esc, comPh: comPh, carregar: carregar, reduzir: reduzir };
+  window.Site = { linkWhats: linkWhats, esc: esc, comPh: comPh, carregar: carregar, reduzir: reduzir, T: T };
 
   /* Links de WhatsApp com mensagem pronta */
   function ligarWhats(raiz) {
@@ -53,7 +57,7 @@
   function fechar() {
     menu.classList.remove('aberto');
     btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-label', 'Abrir menu');
+    btn.setAttribute('aria-label', T('Abrir menu', 'Open menu'));
     document.body.style.overflow = '';
   }
   btn.addEventListener('click', function () {
@@ -62,7 +66,7 @@
     posMenu();
     menu.classList.add('aberto');
     btn.setAttribute('aria-expanded', 'true');
-    btn.setAttribute('aria-label', 'Fechar menu');
+    btn.setAttribute('aria-label', T('Fechar menu', 'Close menu'));
     document.body.style.overflow = 'hidden';
   });
   menu.addEventListener('click', function (e) { if (e.target.closest('a')) fechar(); });
@@ -120,7 +124,9 @@
   function contar() {
     if (!status) return;
     var n = checks.filter(function (c) { return c.getAttribute('aria-pressed') === 'true'; }).length;
-    status.innerHTML = n === checks.length ? 'Tudo pronto para a sua <span>sessão</span>.' : '<span>' + n + '</span> de ' + checks.length + ' prontos';
+    status.innerHTML = n === checks.length
+      ? T('Tudo pronto para a sua <span>sessão</span>.', 'All set for your <span>session</span>.')
+      : '<span>' + n + '</span> ' + T('de ', 'of ') + checks.length + T(' prontos', ' ready');
   }
   checks.forEach(function (c) {
     c.addEventListener('click', function () {
@@ -179,11 +185,11 @@
         '<p class="card__frase">' + esc(s.frase) + '</p>' +
         '<p class="card__txt">' + esc(s.para_quem) + ' ' + esc(s.como_funciona) + '</p>' +
         '<dl>' +
-          '<div><dt>Formato</dt><dd>' + comPh(s.formato) + '</dd></div>' +
-          '<div><dt>Duração</dt><dd>' + comPh(s.duracao) + '</dd></div>' +
-          '<div><dt>Valor</dt><dd>' + (s.valor ? comPh(s.valor) : 'Valor na conversa') + '</dd></div>' +
+          '<div><dt>' + T('Formato', 'Format') + '</dt><dd>' + comPh(s.formato) + '</dd></div>' +
+          '<div><dt>' + T('Duração', 'Length') + '</dt><dd>' + comPh(s.duracao) + '</dd></div>' +
+          '<div><dt>' + T('Valor', 'Price') + '</dt><dd>' + (s.valor ? comPh(s.valor) : T('Valor na conversa', 'Price shared in our chat')) + '</dd></div>' +
         '</dl>' +
-        '<a class="btn btn--contorno" target="_blank" rel="noopener" href="' + linkWhats(s.mensagem_whatsapp) + '">Quero saber mais</a>' +
+        '<a class="btn btn--contorno" target="_blank" rel="noopener" href="' + linkWhats(s.mensagem_whatsapp) + '">' + T('Quero saber mais', 'Tell me more') + '</a>' +
       '</article>';
     }).join('');
     var alvo = document.getElementById('cards-servicos');
@@ -201,7 +207,7 @@
 
   function itemPrint(dep, i, copia) {
     return '<button type="button" class="print" data-i="' + i + '"' + (copia ? ' tabindex="-1" aria-hidden="true"' : '') +
-      ' aria-label="Ampliar depoimento: ' + esc(dep.contexto) + '">' +
+      ' aria-label="' + T('Ampliar depoimento: ', 'Enlarge testimonial: ') + esc(dep.contexto) + '">' +
       '<img src="' + esc(dep.imagem) + '" width="' + dep.largura + '" height="' + dep.altura + '" loading="lazy" decoding="async" alt="' + (copia ? '' : esc(dep.alt)) + '">' +
       '<span class="print__ctx">' + esc(dep.contexto) + '</span></button>';
   }
@@ -228,7 +234,7 @@
   pausa.addEventListener('click', function () {
     var p = marquee.classList.toggle('pausado');
     pausa.setAttribute('aria-pressed', String(p));
-    pausa.textContent = p ? 'Continuar' : 'Pausar';
+    pausa.textContent = p ? T('Continuar', 'Resume') : T('Pausar', 'Pause');
   });
   lightbox.querySelector('.lightbox__fechar').addEventListener('click', function () { lightbox.close(); });
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) lightbox.close(); });
@@ -237,7 +243,7 @@
   function frascoSVG(cor, nome) {
     
     var n = esc(String(nome).replace(/\[[^\]]*\]\s*/g, '')).toUpperCase();
-    return '<svg viewBox="0 0 200 250" role="img" aria-label="Ilustração do frasco ' + n + '">' +
+    return '<svg viewBox="0 0 200 250" role="img" aria-label="' + T('Ilustração do frasco ', 'Illustration of the bottle ') + n + '">' +
       '<defs><linearGradient id="vd' + n.length + '" x1="0" x2="1"><stop offset="0" stop-color="#3a1608"/><stop offset=".45" stop-color="#7a3a14"/><stop offset="1" stop-color="#2a0f05"/></linearGradient></defs>' +
       '<ellipse cx="100" cy="226" rx="62" ry="8" fill="#000" opacity=".35"/>' +
       '<rect x="88" y="24" width="24" height="16" rx="3" fill="#1b1112"/>' +
@@ -258,7 +264,9 @@
       var img = p.imagem
         ? '<img src="' + esc(p.imagem) + '" alt="' + esc(p.tipo + ' ' + p.nome) + '" loading="lazy" decoding="async">'
         : frascoSVG(p.cor_rotulo || '#24453B', p.nome);
-      var msg = 'Olá, Lívia! Vim pelo site e tenho interesse no produto ' + p.nome.replace(/\[[^\]]*\]\s*/g, '') + ', da Lume. Pode me passar valor e prazo de envio?';
+      var nomeP = p.nome.replace(/\[[^\]]*\]\s*/g, '');
+      var msg = T('Olá, Lívia! Vim pelo site e tenho interesse no produto ' + nomeP + ', da Lume. Pode me passar valor e prazo de envio?',
+        "Hi, Lívia! I found you through your website and I'm interested in Lume's " + nomeP + '. Could you tell me the price and shipping time?');
       return '<li class="produto revelar' + (p.placeholder ? ' produto--exemplo' : '') + '">' +
         '<div class="produto__img">' + (p.selo ? '<span class="produto__selo">' + esc(p.selo) + '</span>' : '') + img + '</div>' +
         '<div class="produto__corpo">' +
@@ -266,8 +274,8 @@
           '<h3>' + comPh(p.nome) + '</h3>' +
           '<p class="produto__frase">' + esc(p.frase) + '</p>' +
           '<p class="produto__desc">' + comPh(p.descricao) + '</p>' +
-          '<div class="produto__rodape"><span>' + comPh(p.tamanho) + '</span><span class="produto__preco">' + (p.preco ? comPh(p.preco) : 'Preço na conversa') + '</span></div>' +
-          '<a class="btn btn--lume" target="_blank" rel="noopener" href="' + linkWhats(msg) + '">Quero este</a>' +
+          '<div class="produto__rodape"><span>' + comPh(p.tamanho) + '</span><span class="produto__preco">' + (p.preco ? comPh(p.preco) : T('Preço na conversa', 'Price on request')) + '</span></div>' +
+          '<a class="btn btn--lume" target="_blank" rel="noopener" href="' + linkWhats(msg) + '">' + T('Quero este', 'I want this one') + '</a>' +
         '</div></li>';
     }).join('');
     var alvo = document.getElementById('vitrine-lista');
