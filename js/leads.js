@@ -28,7 +28,7 @@
 (function () {
   'use strict';
 
-  var ACCESS_KEY = ''; // PREENCHER: chave do Web3Forms (web3forms.com)
+  var ACCESS_KEY = '01d73712-bd8f-4fe3-ab7b-1d858dd2d047'; // chave do Web3Forms (web3forms.com), pública por desenho
   var ENVIO = 'https://api.web3forms.com/submit';
   var QR_JS = '/js/vendor/qrcode.min.js';
   var LEAD = 'theatrum-lead';           /* localStorage: 'enviado' depois de qualquer formulário */

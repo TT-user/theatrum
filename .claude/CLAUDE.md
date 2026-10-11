@@ -450,7 +450,6 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 1. Preços de `/us/` e `/moveis-planejados/` ainda são os da oferta anterior.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[09] entregas`.
-3. Chave do Web3Forms em `ACCESS_KEY` (`js/leads.js`). Enquanto estiver
-   vazia, os formulários e o pop-up de saída ficam desligados.
+3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)
 4. Política de contrato, para a resposta do FAQ.
 5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).
