@@ -7,7 +7,8 @@
   var here = location.pathname.split('/').pop() || 'index.html';
 
   var mapa = {
-    'colecao-cozinhas.html': 'colecao.html'  /* categoria acende "Ambientes" */
+    'colecao-cozinhas.html': 'colecao.html', /* categoria acende "Ambientes" */
+    'ambiente.html': 'colecao.html'
   };
   var alvo = mapa[here] || here;
 

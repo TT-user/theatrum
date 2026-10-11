@@ -11,25 +11,20 @@ mudarem, é só rodar o script de novo.
 | Demo | Imagens | Estado |
 |---|---|---|
 | **CERNE** | 18 de 18 | **completa** |
-| **Morattá** | 23 de 47 | falta gerar 24 |
+| **Morattá** | 47 de 47 | **completa**, 24 delas tiradas do acervo (abaixo) |
 
-O saldo da API do Gemini acabou no meio do lote do Morattá. Falta:
+O saldo da API do Gemini acabou no meio do lote do Morattá, e em 11/10/2026
+o Gemini ainda dava 429 e o Higgsfield estava com 0 crédito. Para a demo
+não ficar com bloco cinza, as 24 que faltavam saíram do acervo das outras
+demos de planejados (CERNE, Casa Nobre, Ateliê Verga, Cozinha Viva, Medida
+Certa), recortadas e passadas para preto e branco pelo
+`moratta-do-acervo.mjs`. A escolha foi pelo assunto (a foto do puxador cava
+no lugar do puxador cava), e o texto das páginas foi ajustado ao que cada
+foto mostra: módulos 02, 04 e 06 da Ônix, linhas Sereno e Compacta e os
+`alt`.
 
-```
-img/hero/hero-01.jpg … hero-04.jpg          (4 · capas do slider da home)
-img/cozinhas/compacta · fresta · praca ·
-             sereno · detalhe-puxador       (5)
-img/lancamento/onix-hero · onix-capa ·
-               onix-detalhe · modulo-01…06  (9)
-img/showroom/showroom-01.jpg                (1)
-img/lojista/loja-parceira.jpg               (1)
-img/video/institucional-capa · fabrica-capa ·
-          onix-capa                          (3)
-img/og.jpg                                   (1)
-```
-
-Enquanto não existirem, o site mostra o bloco cinza com o nome do arquivo
-escrito no meio — o próprio placeholder é o checklist. Nada quebra.
+Se um dia as fotos próprias forem geradas, o caminho abaixo escreve por cima
+destas nos mesmos arquivos. Aí vale reler os textos que foram ajustados.
 
 ## Como retomar
 
@@ -67,8 +62,8 @@ sua capa `*-capa.jpg`, que também é imagem estática.
 Os prompts de vídeo estão em `prompts-cerne.md` e `prompts-moratta.md`,
 aqui nesta pasta, e valem para o Higgsfield.
 
-## Depois de completar
+## Capa da vitrine
 
-Regere as capas da vitrine — hoje a do Morattá é cortada na grade de
-ambientes justamente porque o slider do hero depende dos quatro vídeos que
-ainda não existem. Com o hero pronto, vale rever se ele não vira a capa.
+A capa do Morattá no portfólio (`assets/img/vitrine/moratta-desktop.webp`)
+foi refeita em 11/10/2026 a partir do hero, que até então era bloco cinza
+e por isso a capa mostrava a grade de ambientes.

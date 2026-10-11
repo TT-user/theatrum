@@ -525,6 +525,30 @@ body.menu-open .drawer{transform:none;opacity:1;visibility:visible}
 /* CTA final */
 .cta-final{text-align:center;display:grid;gap:20px;justify-items:center}
 
+/* página de ambiente */
+.amb-topo{margin-top:var(--header-h)}
+.amb-topo .crumb{margin-bottom:14px}
+.amb-topo .h-lg{margin-bottom:18px}
+.amb--mini{grid-template-columns:repeat(5,1fr)}
+
+/* onde comprar */
+.lojas{max-width:980px;margin:0 auto}
+.lojas__uf{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.lojas__uf button{min-width:52px;padding:10px 0;border:1px solid var(--linha);border-radius:999px;
+  font-size:12px;letter-spacing:.14em;transition:all .3s var(--ease)}
+.lojas__uf button:hover{border-color:var(--branco)}
+.lojas__uf button[aria-pressed="true"]{background:var(--branco);color:var(--preto);border-color:var(--branco)}
+.lojas__resumo{text-align:center;color:var(--cinza-300);margin:34px auto 26px;max-width:60ch}
+.lojas__lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;
+  background:var(--linha);border:1px solid var(--linha)}
+.lojas__lista li{background:var(--preto);padding:26px 24px;display:flex;flex-direction:column;gap:6px}
+.lojas__lista b{font-size:17px;font-weight:500}
+.lojas__lista span{font-size:14px;color:var(--cinza-300)}
+.lojas__lista .lojas__tipo{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cinza-500)}
+.lojas__lista a{margin-top:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.lojas__lista a::after{content:" \2192"}
+.lojas__lista a:hover{text-decoration:underline;text-underline-offset:4px}
+
 /* =========================================================
    RESPONSIVO
    ========================================================= */
@@ -533,6 +557,7 @@ body.menu-open .drawer{transform:none;opacity:1;visibility:visible}
   .header__utils{display:none}
   .burger{display:block}
   .amb{grid-template-columns:repeat(3,1fr)}
+  .amb--mini{grid-template-columns:repeat(3,1fr)}
   .footer__grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:900px){
@@ -543,6 +568,7 @@ body.menu-open .drawer{transform:none;opacity:1;visibility:visible}
   .split--rev .split__text{order:2}
   .split--rev .split__media{order:1}
   .split__media{min-height:300px}
+  .amb-topo .split__media{order:-1;min-height:0;aspect-ratio:1/1}
   .contato{grid-template-columns:1fr}
   .duo{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
@@ -556,6 +582,8 @@ body.menu-open .drawer{transform:none;opacity:1;visibility:visible}
 }
 @media (max-width:620px){
   .amb{grid-template-columns:repeat(2,1fr)}
+  .amb--mini{grid-template-columns:repeat(2,1fr)}
+  .nums li:last-child:nth-child(odd){grid-column:1/-1}
   .amb__card--wide{grid-column:span 2}
   .prods{grid-template-columns:1fr}
   .h-spaced{letter-spacing:.22em}

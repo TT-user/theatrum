@@ -131,6 +131,83 @@
     });
   });
 
+  /* ---- CTA que já diz o assunto ----
+     "Quero ser lojista", "Agendar visita" e companhia levam ao mesmo
+     formulário. Com data-assunto, a mensagem chega escrita: a pessoa
+     só confere e envia. Não apaga o que ela já tiver digitado. */
+  var msg = document.querySelector('#contato textarea');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-assunto]');
+    if (!a || !msg) return;
+    if (!msg.value || msg.dataset.auto === '1') {
+      msg.value = a.getAttribute('data-assunto');
+      msg.dataset.auto = '1';
+    }
+  });
+  if (msg) msg.addEventListener('input', function () { msg.dataset.auto = ''; });
+
+  /* ---- onde comprar ----
+     Lojas fictícias, como todo o resto da demonstração. Por estado,
+     o total da rede e as cidades em destaque; "agendar visita" leva a
+     cidade para o formulário. Os totais somam as 240 lojas do texto. */
+  var LOJAS = {
+    PR: [31, [['Curitiba', 'Batel', 'Showroom da fábrica'], ['Londrina', 'Gleba Palhano'], ['Maringá', 'Zona 7'], ['Arapongas', 'Centro']]],
+    SC: [22, [['Florianópolis', 'Agronômica'], ['Joinville', 'América'], ['Balneário Camboriú', 'Centro']]],
+    RS: [19, [['Porto Alegre', 'Moinhos de Vento'], ['Caxias do Sul', 'Exposição'], ['Passo Fundo', 'Centro']]],
+    SP: [46, [['São Paulo', 'Pinheiros'], ['São Paulo', 'Moema'], ['Campinas', 'Cambuí'], ['Ribeirão Preto', 'Jardim Botânico']]],
+    RJ: [17, [['Rio de Janeiro', 'Barra da Tijuca'], ['Niterói', 'Icaraí'], ['Petrópolis', 'Centro']]],
+    MG: [21, [['Belo Horizonte', 'Savassi'], ['Uberlândia', 'Santa Mônica'], ['Juiz de Fora', 'Cascatinha']]],
+    ES: [7, [['Vitória', 'Praia do Canto'], ['Vila Velha', 'Itapuã']]],
+    GO: [11, [['Goiânia', 'Setor Marista'], ['Anápolis', 'Jundiaí']]],
+    DF: [9, [['Brasília', 'Asa Sul'], ['Brasília', 'Águas Claras']]],
+    MS: [8, [['Campo Grande', 'Jardim dos Estados'], ['Dourados', 'Centro']]],
+    MT: [7, [['Cuiabá', 'Goiabeiras'], ['Sinop', 'Setor Comercial']]],
+    BA: [10, [['Salvador', 'Pituba'], ['Feira de Santana', 'Santa Mônica']]],
+    PE: [8, [['Recife', 'Boa Viagem'], ['Caruaru', 'Maurício de Nassau']]],
+    CE: [6, [['Fortaleza', 'Aldeota']]],
+    PB: [4, [['João Pessoa', 'Manaíra']]],
+    RN: [4, [['Natal', 'Petrópolis']]],
+    SE: [3, [['Aracaju', 'Jardins']]],
+    TO: [3, [['Palmas', 'Plano Diretor Sul']]],
+    RO: [4, [['Porto Velho', 'Olaria']]]
+  };
+  var caixa = document.querySelector('[data-lojas]');
+  if (caixa) {
+    var ufs = caixa.querySelector('.lojas__uf');
+    var resumo = caixa.querySelector('.lojas__resumo');
+    var lista = caixa.querySelector('.lojas__lista');
+    var cidade = document.querySelector('#contato [name="cidade"]');
+
+    ufs.innerHTML = Object.keys(LOJAS).map(function (uf) {
+      return '<button type="button" aria-pressed="false" data-uf="' + uf + '">' + uf + '</button>';
+    }).join('');
+
+    var mostra = function (uf) {
+      var d = LOJAS[uf];
+      ufs.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.uf === uf ? 'true' : 'false');
+      });
+      var fora = d[0] - d[1].length;
+      resumo.textContent = d[0] + ' lojas Morattá em ' + uf +
+        (fora > 0 ? '. Aqui, as ' + d[1].length + ' principais; as outras ' + fora + ' a gente indica pelo seu CEP.' : '.');
+      lista.innerHTML = d[1].map(function (l) {
+        return '<li><span class="lojas__tipo">' + (l[2] || 'Loja parceira') + '</span>' +
+          '<b>Morattá ' + l[0] + '</b><span>' + l[1] + ' · ' + l[0] + ', ' + uf + '</span>' +
+          '<a href="#contato" data-cidade="' + l[0] + ', ' + uf + '" data-assunto="Quero agendar uma visita à loja Morattá ' +
+          l[0] + ' (' + l[1] + ').">Agendar visita</a></li>';
+      }).join('');
+    };
+    ufs.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-uf]');
+      if (b) mostra(b.dataset.uf);
+    });
+    lista.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-cidade]');
+      if (a && cidade && !cidade.value) cidade.value = a.dataset.cidade;
+    });
+    mostra('PR');
+  }
+
   /* ---- reveal on scroll ---- */
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
