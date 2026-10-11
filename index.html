@@ -139,11 +139,18 @@
     pointer-events:none;mix-blend-mode:screen;opacity:.9;
     -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 26%),linear-gradient(0deg,transparent 0%,#000 18%);
     mask-image:linear-gradient(90deg,transparent 0%,#000 26%),linear-gradient(0deg,transparent 0%,#000 18%);
-    -webkit-mask-composite:source-in;mask-composite:intersect;
-    animation:hxFade 1.4s ease .2s both}
-  @keyframes hxFade{from{opacity:0}to{opacity:.9}}
+    -webkit-mask-composite:source-in;mask-composite:intersect}
   @media(min-width:981px){ .hx-card{align-self:end} }
-  @media(max-width:980px){ .hero-estatua{max-width:none;opacity:.22;animation:none} }
+  @media(max-width:980px){ .hero-estatua{max-width:none;opacity:.22} }
+  /* vidro liquido por baixo de tudo: fundo, grade e estatua ficam dentro de
+     .hero-fundo, que passa pelo filtro SVG #hx-vidro (ondulacao larga e
+     curta). Por cima, .hero-vidro so poe o brilho fino do vidro. Tudo
+     estatico de proposito: o filtro rasteriza uma vez e nao custa nada ao
+     rolar. backdrop-filter foi testado e deixava um arco avermelhado. */
+  .hero-fundo{position:absolute;inset:0;z-index:-1;pointer-events:none;filter:url(#hx-vidro)}
+  .hero-vidro{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.03) 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,.01) 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
 
   .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--white)}
   .brand-chip{width:64px;height:64px;border-radius:16px;border:1px solid rgba(255,255,255,.14);position:relative;overflow:hidden;
@@ -588,9 +595,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      degraus da escada ao mesmo tempo: calculadora (2), sites no ar (1)
      e WhatsApp (4). Nenhuma animacao infinita aqui: so entradas. -->
 <header class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <img class="hero-estatua" src="assets/img/hero/estatua-480.webp" srcset="assets/img/hero/estatua-480.webp 480w, assets/img/hero/estatua-816.webp 816w" sizes="56svh" width="816" height="1456" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
+  <div class="hero-fundo" aria-hidden="true">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <img class="hero-estatua" src="assets/img/hero/estatua-480.webp" srcset="assets/img/hero/estatua-480.webp 480w, assets/img/hero/estatua-816.webp 816w" sizes="56svh" width="816" height="1456" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
+  </div>
+  <div class="hero-vidro"></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="hx-vidro" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.001 0.005" numOctaves="1" seed="17" result="ruido"/>
+      <feGaussianBlur in="ruido" stdDeviation="3" result="mapa"/>
+      <feDisplacementMap in="SourceGraphic" in2="mapa" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
 
   <div class="hero-inner">
     <div class="hx-texto">
@@ -2992,11 +3009,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .vs-tipo{display:block;font:800 clamp(18px,1.7vw,21px)/1.2 var(--font-display);letter-spacing:-.006em;color:var(--white)}
   .vs-nome{display:block;margin-top:4px;font-size:14.5px;color:var(--muted)}
   .vs-nome em{font-style:normal;font:600 11.5px/1 var(--font-mono);color:var(--accent);margin-left:8px}
-  .vs-pontos{display:flex;gap:4px;flex-shrink:0;padding-top:4px}
-  .vs-pontos button{width:24px;height:24px;padding:0;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
-  .vs-pontos button::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22);transition:background .3s ease,transform .3s ease}
-  .vs-pontos button[aria-current=true]::before{background:var(--accent);transform:scale(1.25)}
-  .vs-pontos button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:50%}
+  .vs-pontos{display:flex;align-items:center;gap:2px;flex-shrink:0;padding-top:2px}
+  .vs-pontos button{min-width:28px;height:32px;padding:0 4px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+  .vs-pontos button::before{content:"";width:11px;height:11px;border-radius:99px;background:rgba(255,255,255,.3);
+    transition:width .35s cubic-bezier(.2,.7,.2,1),background .3s ease}
+  .vs-pontos button:hover::before{background:rgba(255,255,255,.6)}
+  .vs-pontos button[aria-current=true]::before{width:28px;background:var(--accent)}
+  .vs-pontos button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:99px}
+  /* setas nas laterais da tela: fora do link (botao dentro de <a> nao vale) */
+  .vs-palco{position:relative}
+  .vs-seta{position:absolute;top:calc(50% + 17px);z-index:3;width:44px;height:44px;margin-top:-22px;padding:0;border-radius:50%;
+    border:1px solid rgba(255,255,255,.22);background:rgba(11,10,8,.72);color:#fff;cursor:pointer;display:grid;place-items:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.35);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease}
+  .vs-seta svg{width:18px;height:18px}
+  .vs-seta.ant{left:12px}
+  .vs-seta.prox{right:12px}
+  .vs-seta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink);transform:scale(1.06)}
+  .vs-seta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .vs-troca{opacity:0}
   .vs-tipos{margin-top:40px;padding:24px 26px;border:1px solid var(--line);border-radius:18px;background:var(--card);
     display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
@@ -3054,8 +3083,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'},
       {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'} ]
   ];
-  const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site'},
-               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site'} };
+  const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site', ant:'Site anterior', prox:'Próximo site'},
+               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'} };
   const TEMPO = 5200;                       /* quanto cada site fica na tela */
   const PARADO = new URLSearchParams(location.search).get('still') || matchMedia('(prefers-reduced-motion: reduce)').matches;
   const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
@@ -3067,17 +3096,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const blocos = [...raiz.querySelectorAll('.vs-bloco')].map((el, b) => {
     const lista = VS[b];
     el.innerHTML =
+      '<div class="vs-palco">' +
       '<a class="vs-tela" target="_blank" rel="noopener">' +
         '<span class="vs-barra" aria-hidden="true"><i></i><i></i><i></i><b></b></span>' +
         '<span class="vs-quadro"><img alt="" decoding="async"><img alt="" decoding="async"><span class="vs-abrir"></span></span>' +
       '</a>' +
+      '<button type="button" class="vs-seta ant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>' +
+      '<button type="button" class="vs-seta prox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      '</div>' +
       '<div class="vs-legenda"><div aria-live="off"><span class="vs-tipo"></span><span class="vs-nome"></span></div>' +
       '<span class="vs-pontos">' + lista.map(() => '<button type="button"></button>').join('') + '</span></div>';
     return { el, lista, i: 0, camada: 0, timer: null, vez: 0, inicio: b * TEMPO / 2,
              tela: el.querySelector('.vs-tela'), dom: el.querySelector('.vs-barra b'),
              imgs: el.querySelectorAll('.vs-quadro img'), abrir: el.querySelector('.vs-abrir'),
              leg: el.querySelector('.vs-legenda div'), tipo: el.querySelector('.vs-tipo'), nome: el.querySelector('.vs-nome'),
-             pontos: el.querySelectorAll('.vs-pontos button'), parado: false };
+             pontos: el.querySelectorAll('.vs-pontos button'), ant: el.querySelector('.vs-seta.ant'),
+             prox: el.querySelector('.vs-seta.prox'), parado: false };
   });
 
   function poeImg(img, it){
@@ -3100,12 +3134,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     B.abrir.textContent = T.abrir;
     B.tela.href = link(it);
     B.tela.setAttribute('aria-label', T.abrir.replace(' ↗','') + ': ' + it.nome + ', ' + it[idioma()]);
+    B.ant.setAttribute('aria-label', T.ant); B.prox.setAttribute('aria-label', T.prox);
     B.pontos.forEach((p, k) => {
       p.setAttribute('aria-current', String(k === B.i));
       p.setAttribute('aria-label', T.ir + ' ' + (k + 1) + ': ' + B.lista[k].nome);
     });
   }
   function mostra(B, n){
+    B.alvo = n;                            /* para onde está indo, mesmo antes de chegar */
     if (n === B.i && B.imgs[B.camada].getAttribute('src')) return Promise.resolve();
     const it = B.lista[n], vez = ++B.vez;
     return prepara(it).then(() => {
@@ -3140,7 +3176,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function para(){ blocos.forEach((B) => clearTimeout(B.timer)); }
 
   blocos.forEach((B) => {
-    B.pontos.forEach((p, k) => p.addEventListener('click', () => { clearTimeout(B.timer); mostra(B, k); agenda(B, TEMPO * 1.6); }));
+    const vai = (k) => { clearTimeout(B.timer); mostra(B, k); agenda(B, TEMPO * 1.6); };
+    B.pontos.forEach((p, k) => p.addEventListener('click', () => vai(k)));
+    /* conta a partir do último pedido, não do que já está na tela: dois cliques rápidos andam dois */
+    const passo = (d) => { const n = B.lista.length; vai(((B.alvo ?? B.i) + d + n) % n); };
+    B.ant.addEventListener('click', () => passo(-1));
+    B.prox.addEventListener('click', () => passo(1));
     /* parar no mouse: mirar um alvo que troca sozinho é frustrante */
     B.el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { B.parado = true; clearTimeout(B.timer); } });
     B.el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { B.parado = false; agenda(B, TEMPO / 2); } });

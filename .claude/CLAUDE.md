@@ -229,7 +229,8 @@ rodapé em colunas), adaptada à escada de compromisso.
   para os dois nunca mostrarem o mesmo tipo ao mesmo tempo (lista no objeto
   `VS`). Imagens em `assets/img/vitrine/home/` a 480 e 800 px por srcset;
   só baixam a atual e a próxima, quando a seção chega perto, e a troca só
-  roda à vista. Para no mouse; pontinhos trocam na mão; sem rotação com
+  roda à vista. Para no mouse; setas nas laterais da tela e bolinhas
+  grandes (a atual vira pílula dourada) trocam na mão; sem rotação com
   `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
   tem e "Ver os vinte e três" (`portfolio/?de=home`). Links das telas levam
   `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
