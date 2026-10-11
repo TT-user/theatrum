@@ -657,6 +657,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .ns-card{background:#fff;border:1px solid #E6DFCF;border-radius:20px;padding:24px 20px}
   .ns-card h3{font:800 18.5px/1.25 var(--font-display);letter-spacing:-.005em;color:var(--ink);margin-top:18px}
   .ns-card p{font-size:15.5px;line-height:1.6;color:#4F493E;margin-top:8px}
+  /* hover: o card sobe 4px, a borda esquenta e o ícone inverte para dourado.
+     Usa a propriedade translate, não transform, para não brigar com o .rv */
+  .ns-card{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),translate .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s;
+    transition-delay:var(--d,0s),var(--d,0s),0s,0s,0s}
+  .ns-card .sv-ic{transition:background-color .35s,color .35s}
+  @media(hover:hover){
+    .ns-card:hover{translate:0 -4px;border-color:rgba(227,179,65,.6);box-shadow:0 14px 30px -18px rgba(20,18,16,.35)}
+    .ns-card:hover .sv-ic{background:var(--accent);color:var(--ink)}
+  }
+  @media(prefers-reduced-motion:reduce){ .ns-card:hover{translate:none} }
   @media(max-width:1180px){ .ns-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
   @media(max-width:760px){ .ns-grid{grid-template-columns:1fr 1fr} }
   @media(max-width:520px){ .ns-grid{grid-template-columns:1fr} }
