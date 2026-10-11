@@ -139,18 +139,11 @@
     pointer-events:none;mix-blend-mode:screen;opacity:.9;
     -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 26%),linear-gradient(0deg,transparent 0%,#000 18%);
     mask-image:linear-gradient(90deg,transparent 0%,#000 26%),linear-gradient(0deg,transparent 0%,#000 18%);
-    -webkit-mask-composite:source-in;mask-composite:intersect}
+    -webkit-mask-composite:source-in;mask-composite:intersect;
+    animation:hxFade 1.4s ease .2s both}
+  @keyframes hxFade{from{opacity:0}to{opacity:.9}}
   @media(min-width:981px){ .hx-card{align-self:end} }
-  @media(max-width:980px){ .hero-estatua{max-width:none;opacity:.22} }
-  /* vidro liquido por baixo de tudo: fundo, grade e estatua ficam dentro de
-     .hero-fundo, que passa pelo filtro SVG #hx-vidro (ondulacao larga e
-     curta). Por cima, .hero-vidro so poe o brilho fino do vidro. Tudo
-     estatico de proposito: o filtro rasteriza uma vez e nao custa nada ao
-     rolar. backdrop-filter foi testado e deixava um arco avermelhado. */
-  .hero-fundo{position:absolute;inset:0;z-index:-1;pointer-events:none;filter:url(#hx-vidro)}
-  .hero-vidro{position:absolute;inset:0;z-index:-1;pointer-events:none;
-    background:linear-gradient(180deg,rgba(255,255,255,.03) 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,.01) 100%);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+  @media(max-width:980px){ .hero-estatua{max-width:none;opacity:.22;animation:none} }
 
   .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--white)}
   .brand-chip{width:64px;height:64px;border-radius:16px;border:1px solid rgba(255,255,255,.14);position:relative;overflow:hidden;
@@ -595,19 +588,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      degraus da escada ao mesmo tempo: calculadora (2), sites no ar (1)
      e WhatsApp (4). Nenhuma animacao infinita aqui: so entradas. -->
 <header class="hero" id="top">
-  <div class="hero-fundo" aria-hidden="true">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <img class="hero-estatua" src="assets/img/hero/estatua-480.webp" srcset="assets/img/hero/estatua-480.webp 480w, assets/img/hero/estatua-816.webp 816w" sizes="56svh" width="816" height="1456" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
-  </div>
-  <div class="hero-vidro"></div>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <filter id="hx-vidro" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.001 0.005" numOctaves="1" seed="17" result="ruido"/>
-      <feGaussianBlur in="ruido" stdDeviation="3" result="mapa"/>
-      <feDisplacementMap in="SourceGraphic" in2="mapa" scale="16" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <img class="hero-estatua" src="assets/img/hero/estatua-480.webp" srcset="assets/img/hero/estatua-480.webp 480w, assets/img/hero/estatua-816.webp 816w" sizes="56svh" width="816" height="1456" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
 
   <div class="hero-inner">
     <div class="hx-texto">
