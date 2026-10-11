@@ -102,7 +102,7 @@ que não pode ser removida.
 
 ### A página é bilíngue — leia antes de escrever qualquer copy
 
-Há ~420 elementos com atributo `data-en`, e o botão de idioma troca o idioma
+Há ~330 elementos com atributo `data-en`, e o botão de idioma troca o idioma
 **reescrevendo o `innerHTML`** de cada um deles.
 
 Duas consequências obrigatórias:
@@ -236,6 +236,21 @@ rodapé em colunas), adaptada à escada de compromisso.
   `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
   volta: 71 KB de imagem ao rolar contra 354 KB (celular) e 593 KB
   (computador), sem tarefa longa a mais.
+- **`[07]` demonstração (`#sistema`):** desde 11/10/2026, um sistema só que
+  apresenta a proposta inteira, no lugar das 11 demos soltas de antes (que
+  ainda tinham "faturamento crescendo" e "painel de metas", da oferta
+  antiga). O visitante escolhe o nicho (os cinco do `[03]`) e acompanha um
+  cliente fictício em cinco etapas: te encontram (Google e mapa), chegam no
+  site, chamam no WhatsApp, não esfriam (retomada e reativação) e você
+  acompanha (painel, tudo no seu nome). Ao lado de cada tela, "o que a
+  Theatrum entrega aqui" com o preço daquela parte; **mudou preço no `[05]`,
+  muda no `PX_T` também.** Embaixo, a proposta em três linhas (R$ 2.500,
+  R$ 197/mês, R$ 697/mês + verba), o CTA de WhatsApp e o degrau mais baixo
+  (calculadora). Textos nos objetos `PX_N` e `PX_T`, redesenho na troca de
+  idioma. A troca de etapa é a própria barra de progresso (animação CSS):
+  pausa fora da tela, com aba escondida e mouse em cima, e para de vez no
+  primeiro clique. Selo "exemplo" no topo: os nomes e conversas são
+  ilustração, não prova social.
 - Destaque em título (`.lm`) é serif itálico dourado (`#8A6412` nas seções
   claras), não mais marca-texto.
 - O modo QA `?still=1` desliga animações e o `content-visibility`, para print

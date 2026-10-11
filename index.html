@@ -15,16 +15,6 @@
 <meta property="og:description" content="Seu site trabalhando como vendedor: rápido no celular, pronto para anúncio e entregando cliente direto no seu WhatsApp."/>
 <meta property="og:locale" content="pt_BR"/>
 <script>
-  /* Dois auxiliares de idioma, declarados aqui no topo de propósito:
-     são chamados por blocos de script que aparecem antes de onde eles
-     moravam. No caminho normal a chamada acontecia dentro de um callback
-     de animação e dava tempo; com prefers-reduced-motion ela é síncrona
-     e quebrava. */
-  function typingLabel(){ return document.documentElement.lang === 'en' ? 'typing…' : 'digitando…'; }
-  /* separador de milhar: . em pt-BR, , em inglês */
-  function moneyLocale(){ return document.documentElement.lang === 'en' ? 'en-US' : 'pt-BR'; }
-</script>
-<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -376,7 +366,7 @@
     /* Enfeite que pisca para sempre custa composicao a cada quadro e
        nao carrega informacao nenhuma. No celular, onde a GPU e menor e
        a bateria importa, ele sai. O que anima uma vez na entrada fica. */
-    .eyebrow-tag,.proof .ic,.mq-item .star,.dot-pulse,.sys-blink,.sys-pulse{
+    .eyebrow-tag,.proof .ic,.mq-item .star,.dot-pulse{
       animation:none!important;
     }
   }
@@ -1569,1404 +1559,559 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 
-<!-- ============ 7.5 · SISTEMA TRABALHANDO (demos animadas) ============ -->
+<!-- ============ 7 · DEMONSTRAÇÃO: o caminho de um cliente ============
+     A proposta v2 inteira num sistema só: o visitante escolhe o tipo de
+     negócio e acompanha um cliente em cinco etapas (Google, site,
+     WhatsApp, retomada, painel). Ao lado de cada tela, o que a Theatrum
+     entrega ali e quanto custa, com os mesmos preços do [05].
+
+     Componente com estado: todos os textos moram nos objetos PX_N e PX_T
+     e o #px é redesenhado quando o idioma muda. Nada aqui dentro usa
+     data-en. A troca automática de etapa é a própria barra de progresso
+     (animação CSS): pausa fora da tela, com a aba escondida e com o mouse
+     em cima; para de vez quando a pessoa clica numa etapa. Sem rotação
+     com prefers-reduced-motion e ?still=1. -->
 <style>
-  #sistema{
-    --sys-border:#2a251d; --sys-panel:#141210;
-    --wa-bg:#0b141a; --wa-header:#1f2c34; --wa-in:#202c33; --wa-out:#005c4b;
-    --wa-text:#e9edef; --wa-sub:#8696a0; --wa-green:#00a884;
-    --sys-ease:cubic-bezier(.2,.7,.2,1);
+  #sistema .px{margin-top:44px}
+  #sistema .px-nichos{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:18px}
+  #sistema .px-nichos-t{font:500 .8rem 'JetBrains Mono',monospace; color:#6b6355; margin-right:4px}
+  #sistema .px-nicho{
+    font:500 .9rem 'Inter',sans-serif; padding:9px 16px; border-radius:40px; cursor:pointer;
+    border:1px solid #d9d0bb; background:#fff; color:#3b362d; transition:border-color .2s, background .2s, color .2s;
   }
-  #sistema .sys-wrap{
-    display:grid; grid-template-columns:minmax(0,1fr) minmax(0,520px);
-    gap:64px; align-items:start; margin-top:52px;
-  }
-  #sistema .features{display:flex; flex-direction:column; gap:14px}
-  #sistema .feature{
-    display:flex; align-items:center; gap:16px; text-align:left;
-    background:#FFFFFF; border:1px solid #E3DDC9; border-radius:16px;
-    padding:18px 20px; cursor:pointer; width:100%;
-    font-family:inherit; color:inherit;
-    transition:border-color .35s var(--sys-ease), background .35s var(--sys-ease), box-shadow .35s var(--sys-ease);
-  }
-  #sistema .feature:hover{border-color:#c9c0a8}
-  #sistema .feature .ico{
-    width:42px; height:42px; border-radius:11px; flex:none;
-    border:1px solid #E3DDC9; background:#F6F1E7;
-    display:flex; align-items:center; justify-content:center;
-    color:#6b6355;
-    transition:color .35s, border-color .35s, background .35s;
-  }
-  #sistema .feature .f-title{color:#141210; font-weight:600; font-size:.98rem; letter-spacing:-.01em}
-  #sistema .feature .f-desc{color:#5f5a4e; font-size:.85rem; margin-top:3px; line-height:1.45}
-  #sistema .feature.active{
-    background:#141210; border-color:rgba(227,179,65,.5);
-    box-shadow:0 0 0 1px rgba(227,179,65,.18), 0 18px 44px rgba(20,18,16,.25);
-  }
-  #sistema .feature.active .f-title{color:var(--white)}
-  #sistema .feature.active .f-desc{color:#C9C0B1}
-  #sistema .feature.active .ico{color:var(--accent); border-color:rgba(227,179,65,.4); background:rgba(227,179,65,.07)}
-  #sistema .feature.extra{display:none}
-  #sistema .features.expanded .feature.extra{display:flex}
-  #sistema .more-btn{
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    background:none; border:1px dashed #c9c0a8; border-radius:16px;
-    padding:15px 20px; width:100%; cursor:pointer;
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.68rem;
-    letter-spacing:.16em; text-transform:uppercase; color:#6b6355;
-    transition:color .3s var(--sys-ease), border-color .3s var(--sys-ease);
-  }
-  #sistema .more-btn:hover{color:#141210; border-color:#8a8272}
-  #sistema .more-btn .pl{font-size:.9rem; line-height:1}
-  #sistema .sys-ctawrap{margin-top:26px}
+  #sistema .px-nicho:hover{border-color:#8a8272}
+  #sistema .px-nicho[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--cream)}
 
-  #sistema .stage{position:relative; height:680px; width:100%}
-  #sistema .panel{
-    position:absolute; inset:0; display:flex; align-items:flex-start; justify-content:center;
-    opacity:0; transform:translateY(16px) scale(.98); pointer-events:none;
-    transition:opacity .5s var(--sys-ease), transform .5s var(--sys-ease);
+  #sistema .px-app{
+    background:#12100D; border:1px solid #2a251d; border-radius:20px; overflow:hidden; color:#E9E3D6;
+    box-shadow:0 40px 80px -34px rgba(20,18,16,.5);
   }
-  #sistema .panel.active{opacity:1; transform:none; pointer-events:auto}
-  #sistema .seq{opacity:0; transform:translateY(14px) scale(.96)}
-  #sistema .seq.show{
-    opacity:1; transform:translateY(0) scale(1);
+  #sistema .px-top{display:flex; align-items:center; gap:7px; padding:12px 16px; border-bottom:1px solid #2a251d}
+  #sistema .px-top > i{width:9px; height:9px; border-radius:50%; background:#332c22}
+  #sistema .px-top .t{margin-left:8px; font:500 .74rem 'JetBrains Mono',monospace; color:#8a8172; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  #sistema .px-ex{
+    margin-left:auto; flex:none; font:600 .64rem 'JetBrains Mono',monospace; color:var(--accent);
+    border:1px solid rgba(227,179,65,.35); padding:3px 9px; border-radius:20px;
+  }
+  #sistema .px-body{display:grid; grid-template-columns:250px minmax(0,1fr) 270px}
+
+  /* etapas */
+  #sistema .px-etapas{list-style:none; margin:0; padding:14px; border-right:1px solid #2a251d; display:flex; flex-direction:column; gap:6px}
+  #sistema .px-etapa{
+    position:relative; width:100%; text-align:left; display:grid; grid-template-columns:28px 1fr; gap:2px 8px;
+    padding:12px 12px 14px; border-radius:12px; border:1px solid transparent; background:none; color:inherit;
+    cursor:pointer; font:inherit; overflow:hidden; transition:background .2s, border-color .2s;
+  }
+  #sistema .px-etapa:hover{background:#17150F}
+  #sistema .px-etapa .n{grid-row:span 2; font:700 .72rem 'JetBrains Mono',monospace; color:#6b6355; padding-top:3px}
+  #sistema .px-etapa .tt{font-weight:600; font-size:.92rem; color:#C9C0B1; letter-spacing:-.005em}
+  #sistema .px-etapa .ss{font-size:.76rem; color:#6b6355; line-height:1.4}
+  #sistema .px-etapa[aria-current="step"]{background:#1A1815; border-color:#332c22}
+  #sistema .px-etapa[aria-current="step"] .n{color:var(--accent)}
+  #sistema .px-etapa[aria-current="step"] .tt{color:#fff}
+  #sistema .px-etapa[aria-current="step"] .ss{color:#A39B8D}
+  #sistema .px-barra{display:none; position:absolute; left:12px; right:12px; bottom:5px; height:2px; border-radius:2px; background:#2a251d; overflow:hidden}
+  #sistema .px.tocando .px-etapa[aria-current="step"] .px-barra{display:block}
+  #sistema .px-barra i{display:block; height:100%; background:var(--accent); transform-origin:left; transform:scaleX(0)}
+  #sistema .px.tocando .px-etapa[aria-current="step"] .px-barra i{animation:pxBarra var(--dur,8s) linear forwards}
+  #sistema .px.pausado .px-barra i{animation-play-state:paused!important}
+  @keyframes pxBarra{to{transform:scaleX(1)}}
+
+  /* tela */
+  #sistema .px-tela{
+    position:relative; min-height:450px; padding:26px 22px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:radial-gradient(120% 80% at 50% 0%, #1A1712 0%, #12100D 70%);
+  }
+  #sistema .px-tela-t{display:none; align-self:flex-start; font:600 .72rem 'JetBrains Mono',monospace; color:var(--accent); margin-bottom:14px}
+  #sistema .px-tela .q{
+    opacity:0; transform:translateY(10px);
     transition:opacity .45s var(--sys-ease), transform .45s var(--sys-ease);
+    transition-delay:calc(var(--i,0) * .55s + var(--base,0s));
+  }
+  #sistema .px-tela.on .q{opacity:1; transform:none}
+  #sistema .px.parado .px-tela .q{transition:none}
+  #sistema .px.parado .px-cur{display:none}
+  #sistema{--sys-ease:cubic-bezier(.2,.7,.2,1)}
+  #sistema .px-ck{width:14px; height:14px; flex:none; color:var(--accent)}
+
+  /* 1 · google */
+  #sistema .px-g{width:100%; max-width:430px; display:flex; flex-direction:column; gap:12px; --base:1.3s}
+  #sistema .px-gbar{
+    display:flex; align-items:center; gap:10px; min-height:46px; padding:11px 16px; border-radius:30px;
+    background:#1E1B17; border:1px solid #332c22; font-size:.9rem; color:#fff;
+  }
+  #sistema .px-gbar svg{flex:none; color:#8a8172}
+  #sistema .px-cur{display:inline-block; width:1.5px; height:1.05em; background:#fff; margin-left:1px; vertical-align:-3px; animation:pxCur 1s steps(1) 5}
+  @keyframes pxCur{50%{opacity:0}}
+  #sistema .px-card{position:relative; background:#1A1815; border:1px solid #2a251d; border-radius:14px; padding:14px 16px}
+  #sistema .px-card.eu{border-color:rgba(227,179,65,.5); box-shadow:0 0 0 3px rgba(227,179,65,.07)}
+  #sistema .px-aqui{
+    position:absolute; top:-9px; right:12px; font:700 .6rem 'JetBrains Mono',monospace; color:var(--ink);
+    background:var(--accent); padding:2px 8px; border-radius:20px;
+  }
+  #sistema .px-card .tag{font-weight:700; font-size:.68rem; color:#fff; margin-right:6px}
+  #sistema .px-card .url{font:.7rem 'JetBrains Mono',monospace; color:#8ab4f8}
+  #sistema .px-card .tl{margin:5px 0 3px; font-weight:600; font-size:.95rem; color:#a8c7fa; letter-spacing:-.005em}
+  #sistema .px-card .ds{margin:0; font-size:.78rem; color:#A39B8D; line-height:1.5}
+  #sistema .px-card .ab{color:#81c995}
+  #sistema .px-mapa-img{
+    position:relative; height:64px; margin:-4px -6px 10px; border-radius:9px; overflow:hidden;
+    background:
+      linear-gradient(90deg, transparent 47%, #2c2820 47%, #2c2820 53%, transparent 53%),
+      linear-gradient(0deg, transparent 40%, #2c2820 40%, #2c2820 46%, transparent 46%),
+      linear-gradient(25deg, transparent 70%, #22301f 70%), #1f1c17;
+  }
+  #sistema .px-mapa-img i{
+    position:absolute; left:50%; top:38%; width:14px; height:14px; border-radius:50% 50% 50% 0; transform:translate(-50%,-50%) rotate(-45deg);
+    background:var(--accent); box-shadow:0 0 0 4px rgba(227,179,65,.18);
+  }
+  #sistema .px-mapa .tl{color:#fff}
+  #sistema .px-acoes{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+  #sistema .px-acoes span{font-size:.7rem; color:#C9C0B1; border:1px solid #332c22; border-radius:20px; padding:4px 10px}
+  #sistema .px-acoes .wa{color:var(--accent); border-color:rgba(227,179,65,.5)}
+
+  /* 2 · site */
+  #sistema .px-site{display:flex; align-items:center; justify-content:center; gap:26px; flex-wrap:wrap}
+  #sistema .px-cel{
+    width:220px; border-radius:28px; border:6px solid #2a251d; background:#F6F1E7; color:#141210; overflow:hidden;
+    box-shadow:0 30px 60px -26px rgba(0,0,0,.8);
+  }
+  #sistema .px-cel-top{display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border-bottom:1px solid #e5dcc8}
+  #sistema .px-cel-top b{font:800 .72rem var(--font-display)}
+  #sistema .px-cel-top i{width:14px; height:8px; border-top:2px solid #141210; border-bottom:2px solid #141210}
+  #sistema .px-cel-hero{padding:16px 14px 14px}
+  #sistema .px-cel-hero .k{font:600 .56rem 'JetBrains Mono',monospace; color:#8A6412}
+  #sistema .px-cel-hero .h{margin:6px 0 6px; font:800 1.02rem/1.18 var(--font-display); letter-spacing:-.008em}
+  #sistema .px-cel-hero .s{margin:0 0 12px; font-size:.68rem; color:#5f5a4e; line-height:1.45}
+  #sistema .px-cel-hero .bt{
+    display:flex; align-items:center; justify-content:center; gap:6px; padding:9px; border-radius:30px;
+    background:#1f9d55; color:#fff; font-weight:700; font-size:.7rem;
+  }
+  #sistema .px-cel-sk{display:grid; grid-template-columns:1fr 1fr; gap:7px; padding:0 14px 16px}
+  #sistema .px-cel-sk i{height:44px; border-radius:8px; background:#ebe3d2}
+  #sistema .px-cel-sk i:first-child{grid-column:span 2; height:30px}
+  #sistema .px-selos{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px}
+  #sistema .px-selos li{
+    display:flex; align-items:center; gap:9px; font-size:.82rem; color:#E9E3D6;
+    background:#1A1815; border:1px solid #2a251d; border-radius:30px; padding:8px 14px;
   }
 
-  /* celular / WhatsApp */
-  #sistema .phone-wrap{position:relative; padding-bottom:34px}
-  #sistema .phone{
-    width:320px; border-radius:42px; background:#000;
-    border:1px solid var(--sys-border);
-    box-shadow:0 40px 90px rgba(0,0,0,.6), 0 0 0 8px rgba(255,255,255,.02);
-    overflow:hidden;
+  /* 3 · whatsapp */
+  #sistema .px-wa{position:relative; width:100%; max-width:340px; padding-top:64px}
+  #sistema .px-toast{
+    position:absolute; z-index:2; top:0; left:50%; width:max-content; max-width:100%; translate:-50% 0;
+    display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:14px;
+    background:#1A1815; border:1px solid rgba(227,179,65,.45); box-shadow:0 18px 40px -12px rgba(0,0,0,.7);
   }
-  #sistema .statusbar{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:12px 22px 8px; background:var(--wa-header);
-    font-size:.7rem; font-weight:600; color:var(--wa-text);
+  #sistema .px-toast .sino{width:28px; height:28px; border-radius:50%; flex:none; background:var(--accent); color:var(--ink); display:grid; place-items:center}
+  #sistema .px-toast b{display:block; font-size:.8rem; color:#fff}
+  #sistema .px-toast small{display:block; font-size:.7rem; color:#A39B8D}
+  #sistema .px-wa-app{border-radius:18px; overflow:hidden; border:1px solid #2a251d; background:#0b141a}
+  #sistema .px-wa-h{display:flex; align-items:center; gap:10px; padding:12px 14px; background:#1f2c34}
+  #sistema .px-wa-h .av{width:32px; height:32px; border-radius:50%; background:#3b4a54; color:#e9edef; display:grid; place-items:center; font-weight:700; font-size:.8rem}
+  #sistema .px-wa-h b{display:block; font-size:.86rem; color:#e9edef}
+  #sistema .px-wa-h small{display:block; font-size:.68rem; color:#8696a0}
+  #sistema .px-wa-chat{display:flex; flex-direction:column; gap:8px; padding:14px 12px 18px; min-height:250px}
+  #sistema .px-wa-chat .dia{align-self:center; font-size:.62rem; color:#8696a0; background:#182229; padding:3px 10px; border-radius:7px}
+  #sistema .px-wa-chat .m{margin:0; max-width:86%; padding:7px 10px 5px; border-radius:9px; font-size:.78rem; line-height:1.42; color:#e9edef}
+  #sistema .px-wa-chat .m small{display:block; text-align:right; font-size:.58rem; color:#8696a0; margin-top:2px}
+  #sistema .px-wa-chat .in{align-self:flex-start; background:#202c33; border-top-left-radius:2px}
+  #sistema .px-wa-chat .out{align-self:flex-end; background:#005c4b; border-top-right-radius:2px}
+  #sistema .px-wa-chat .out em{
+    font:700 .56rem 'JetBrains Mono',monospace; font-style:normal; color:var(--ink); background:var(--accent);
+    padding:1px 5px; border-radius:4px; margin-right:6px; vertical-align:1px;
   }
-  #sistema .wa-header{display:flex; align-items:center; gap:10px; padding:8px 14px 12px; background:var(--wa-header)}
-  #sistema .wa-header .back{color:var(--wa-sub); display:flex}
-  #sistema .wa-avatar{
-    width:36px; height:36px; border-radius:50%; flex:none;
-    background:linear-gradient(135deg,#6b7c85,#4a5a63);
-    display:flex; align-items:center; justify-content:center;
-    color:#fff; font-weight:600; font-size:.95rem;
-  }
-  #sistema .contact{flex:1; min-width:0}
-  #sistema .contact .name{color:var(--wa-text); font-weight:600; font-size:.92rem}
-  #sistema .contact .status{color:var(--wa-sub); font-size:.72rem}
-  #sistema .wa-header .icons{display:flex; gap:16px; color:var(--wa-sub)}
-  #sistema .chat{
-    background:var(--wa-bg); height:400px; padding:14px 12px 10px;
-    display:flex; flex-direction:column; gap:8px; overflow:hidden;
-    background-image:radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
-    background-size:18px 18px;
-  }
-  #sistema .daychip{
-    align-self:center; background:#182229; color:var(--wa-sub);
-    font-size:.64rem; font-weight:600; letter-spacing:.06em;
-    padding:5px 12px; border-radius:8px; text-transform:uppercase;
-  }
-  #sistema .msg{
-    max-width:80%; padding:8px 10px 6px; border-radius:10px;
-    font-size:.83rem; line-height:1.42; color:var(--wa-text); position:relative;
-  }
-  #sistema .msg .meta{display:flex; align-items:center; gap:4px; justify-content:flex-end; margin-top:3px; font-size:.6rem; color:var(--wa-sub)}
-  #sistema .msg.in{align-self:flex-start; background:var(--wa-in); border-top-left-radius:3px; transform-origin:left bottom}
-  #sistema .msg.out{align-self:flex-end; background:var(--wa-out); border-top-right-radius:3px; transform-origin:right bottom}
-  #sistema .msg.out .meta .ia{
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.54rem;
-    color:rgba(233,237,239,.75); letter-spacing:.08em;
-    border:1px solid rgba(233,237,239,.28); border-radius:4px; padding:1px 4px;
-  }
-  #sistema .msg.old{opacity:.5; filter:saturate(.6)}
-  #sistema .nores{
-    align-self:flex-end; font-size:.6rem; color:#5d6a74;
-    font-style:italic; margin-top:-4px; padding-right:4px;
-  }
-  #sistema .typing{
-    align-self:flex-end; background:var(--wa-out);
-    border-radius:10px; border-top-right-radius:3px; transform-origin:right bottom;
-    padding:12px 14px; display:flex; gap:5px; align-items:center;
-  }
-  #sistema .typing i{width:6px; height:6px; border-radius:50%; background:rgba(233,237,239,.65); animation:sysBlink 1.1s infinite var(--sys-ease)}
-  #sistema .typing i:nth-child(2){animation-delay:.18s}
-  #sistema .typing i:nth-child(3){animation-delay:.36s}
-  @keyframes sysBlink{0%,70%,100%{opacity:.25; transform:translateY(0)}35%{opacity:1; transform:translateY(-3px)}}
-  #sistema .inputbar{display:flex; align-items:center; gap:10px; padding:10px 12px 16px; background:var(--wa-bg)}
-  #sistema .inputbar .field{flex:1; background:var(--wa-header); border-radius:22px; padding:10px 16px; color:var(--wa-sub); font-size:.83rem}
-  #sistema .inputbar .mic{width:40px; height:40px; border-radius:50%; background:var(--wa-green); display:flex; align-items:center; justify-content:center; color:#fff; flex:none}
-  #sistema .toast{
-    position:absolute; left:50%; bottom:0; transform:translate(-50%,20px);
-    opacity:0; width:max-content; max-width:94%;
-    background:#141210; border:1px solid var(--sys-border); border-radius:14px;
-    padding:12px 18px; display:flex; align-items:center; gap:12px;
-    box-shadow:0 24px 60px rgba(0,0,0,.65);
-    transition:opacity .5s var(--sys-ease), transform .5s var(--sys-ease); z-index:2;
-  }
-  #sistema .toast.show{opacity:1; transform:translate(-50%,0)}
-  #sistema .toast .check{width:26px; height:26px; border-radius:50%; background:var(--accent); flex:none; display:flex; align-items:center; justify-content:center}
-  #sistema .toast .t-title{color:var(--white); font-weight:700; font-size:.86rem; letter-spacing:-.01em}
-  #sistema .toast .t-sub{color:var(--muted); font-size:.72rem; margin-top:1px}
 
-  /* moldura de app */
-  #sistema .window{
-    width:100%; max-width:480px; background:var(--sys-panel);
-    border:1px solid var(--sys-border); border-radius:18px; overflow:hidden;
-    box-shadow:0 40px 90px rgba(0,0,0,.55);
+  /* 4 · retomada */
+  #sistema .px-fu{list-style:none; margin:0; padding:0 0 0 22px; width:100%; max-width:410px; position:relative}
+  #sistema .px-fu::before{content:""; position:absolute; left:5px; top:6px; bottom:10px; width:1px; background:#332c22}
+  #sistema .px-fu li{position:relative; margin-bottom:16px}
+  #sistema .px-fu li:last-child{margin-bottom:0}
+  #sistema .px-fu li::before{content:""; position:absolute; left:-21px; top:4px; width:9px; height:9px; border-radius:50%; background:#332c22; border:1px solid #4a4134}
+  #sistema .px-fu li.ok::before{background:var(--accent); border-color:var(--accent)}
+  #sistema .px-fu .qd{display:block; font:600 .66rem 'JetBrains Mono',monospace; color:#8a8172; margin-bottom:4px}
+  #sistema .px-fu li.ok .qd{color:var(--accent)}
+  #sistema .px-fu p{margin:0; font-size:.82rem; color:#C9C0B1}
+  #sistema .px-fu .bb{
+    margin-top:6px; padding:8px 11px; border-radius:10px; border-top-left-radius:2px;
+    background:#005c4b; color:#e9edef; font-size:.76rem; line-height:1.45; max-width:340px;
   }
-  #sistema .win-top{
-    display:flex; align-items:center; gap:8px;
-    padding:13px 16px; border-bottom:1px solid var(--sys-border); position:relative;
-  }
-  #sistema .win-top .dot{width:9px; height:9px; border-radius:50%; background:#332c22}
-  #sistema .win-top .url{
-    position:absolute; left:50%; transform:translateX(-50%);
-    background:#161310; border:1px solid var(--sys-border); border-radius:8px;
-    font-size:.7rem; color:var(--muted); padding:4px 16px;
-    font-family:'JetBrains Mono',monospace;
-  }
-  #sistema .app-head{
-    display:flex; align-items:center; gap:10px;
-    padding:14px 18px; border-bottom:1px solid var(--sys-border);
-  }
-  #sistema .app-head .mark{
-    width:24px; height:24px; border-radius:7px; background:#000; overflow:hidden;
-    border:1px solid rgba(255,255,255,.1); flex:none;
-    display:flex; align-items:center; justify-content:center;
-  }
-  #sistema .app-head .mark img{width:100%; height:100%; object-fit:cover; display:block}
-  #sistema .app-head .app-name{color:var(--white); font-weight:600; font-size:.88rem}
-  #sistema .app-head .app-name span{color:var(--muted); font-weight:400}
-  #sistema .app-head .live{
-    margin-left:auto; display:flex; align-items:center; gap:7px;
-    font-family:'JetBrains Mono',monospace; font-size:.64rem; color:var(--muted); letter-spacing:.1em;
-  }
-  #sistema .app-head .live i{width:7px; height:7px; border-radius:50%; background:var(--accent); animation:sysPulse 1.6s infinite}
-  @keyframes sysPulse{0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(227,179,65,.4)}50%{opacity:.6; box-shadow:0 0 0 5px rgba(227,179,65,0)}}
-  #sistema .chip-ok{
-    display:inline-flex; align-items:center; gap:8px; margin-top:20px;
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.64rem;
-    letter-spacing:.12em; text-transform:uppercase; color:var(--accent);
-    border:1px solid rgba(227,179,65,.4); border-radius:8px; padding:6px 11px;
-    opacity:0; transform:translateY(6px);
-    transition:opacity .45s var(--sys-ease), transform .45s var(--sys-ease);
-  }
-  #sistema .chip-ok.show{opacity:1; transform:none}
-  #sistema .chip-ok svg{flex:none}
+  #sistema .px-fu .bb.in{background:#202c33}
 
-  /* google */
-  #sistema .g-body{padding:26px 22px 30px; min-height:380px}
-  #sistema .g-row{display:flex; align-items:center; gap:16px; margin-bottom:22px}
-  #sistema .g-logo{font-family:'Inter',sans-serif; font-weight:700; font-size:1.5rem; letter-spacing:-.02em; user-select:none}
-  #sistema .g-search{
-    flex:1; display:flex; align-items:center; gap:10px;
-    background:#161310; border:1px solid #332c22; border-radius:24px;
-    padding:11px 16px; font-size:.9rem; color:var(--white); min-width:0;
+  /* 5 · painel */
+  #sistema .px-pn{width:100%; max-width:430px; display:flex; flex-direction:column; gap:8px}
+  #sistema .px-pn-h{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px}
+  #sistema .px-pn-h b{font-size:.9rem; color:#fff}
+  #sistema .px-pn-h span{font:.64rem 'JetBrains Mono',monospace; color:#6b6355}
+  #sistema .px-ln{
+    display:grid; grid-template-columns:30px minmax(0,1fr) auto auto; align-items:center; gap:10px;
+    padding:10px 12px; border-radius:12px; background:#1A1815; border:1px solid #2a251d;
   }
-  #sistema .g-search .q{white-space:nowrap; overflow:hidden}
-  #sistema .caret{
-    display:inline-block; width:2px; height:1.05em; background:var(--white);
-    vertical-align:text-bottom; margin-left:1px; animation:sysCaret 1s steps(1) infinite;
-  }
-  @keyframes sysCaret{50%{opacity:0}}
-  #sistema .g-results{display:flex; flex-direction:column; gap:14px}
-  #sistema .g-first{
-    position:relative; border:1px solid rgba(227,179,65,.5); border-radius:14px;
-    background:#161008; padding:16px 16px 14px;
-    box-shadow:0 0 0 1px rgba(227,179,65,.12), 0 18px 44px rgba(0,0,0,.4);
-  }
-  #sistema .g-first .rank{
-    position:absolute; top:-11px; right:14px;
-    background:var(--accent); color:var(--ink); border-radius:6px;
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.62rem;
-    letter-spacing:.1em; padding:3px 8px;
-  }
-  #sistema .g-first .r-url{font-size:.72rem; color:#8ab4f8; font-family:'JetBrains Mono',monospace}
-  #sistema .g-first .r-title{color:var(--white); font-weight:600; font-size:1rem; margin:5px 0 4px; letter-spacing:-.01em}
-  #sistema .g-first .r-desc{font-size:.8rem; color:var(--muted); line-height:1.5}
-  #sistema .g-first .r-cta{
-    display:inline-flex; align-items:center; gap:6px; margin-top:10px;
-    font-family:'JetBrains Mono',monospace; font-size:.64rem; font-weight:700;
-    letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
-  }
-  #sistema .g-skel{border:1px solid var(--sys-border); border-radius:14px; padding:16px; opacity:.55}
-  #sistema .g-skel .l{height:9px; border-radius:5px; background:#2a251d; margin-bottom:9px}
-  #sistema .g-skel .l:last-child{margin-bottom:0}
+  #sistema .px-ln .av{width:30px; height:30px; border-radius:50%; background:#2a251d; color:#E9E3D6; display:grid; place-items:center; font-weight:700; font-size:.74rem}
+  #sistema .px-ln b{display:block; font-size:.8rem; color:#fff; font-weight:600}
+  #sistema .px-ln small{display:block; font-size:.7rem; color:#8a8172; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  #sistema .px-ln .og{font:.62rem 'JetBrains Mono',monospace; color:#A39B8D; border:1px solid #332c22; padding:2px 7px; border-radius:20px}
+  #sistema .px-ln .st{font-size:.66rem; font-weight:600; padding:3px 8px; border-radius:20px; background:#241f18; color:#C9C0B1}
+  #sistema .px-ln .st.f{background:rgba(227,179,65,.14); color:var(--accent)}
+  #sistema .px-nome{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-top:8px; padding-top:12px; border-top:1px dashed #332c22}
+  #sistema .px-nome .r{font:600 .66rem 'JetBrains Mono',monospace; color:var(--accent); width:100%}
+  #sistema .px-nome span:not(.r){display:flex; align-items:center; gap:5px; font-size:.76rem; color:#C9C0B1}
 
-  /* conteúdo */
-  #sistema .c-body{padding:20px 18px 24px}
-  #sistema .c-status{display:flex; align-items:center; gap:12px; margin-bottom:12px}
-  #sistema .c-status .spin{
-    width:16px; height:16px; border-radius:50%; flex:none;
-    border:2px solid #332c22; border-top-color:var(--accent);
-    animation:sysSpin 1s linear infinite;
+  /* entrega */
+  #sistema .px-entrega{padding:24px 22px; border-left:1px solid #2a251d; display:flex; flex-direction:column; gap:16px}
+  #sistema .px-entrega h4{margin:0; font:500 .74rem 'JetBrains Mono',monospace; color:var(--accent)}
+  #sistema .px-entrega ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px}
+  #sistema .px-entrega li{display:flex; gap:9px; font-size:.88rem; line-height:1.45; color:#D9D2C3}
+  #sistema .px-entrega li .px-ck{margin-top:3px}
+  #sistema .px-preco{margin-top:auto; padding:13px 14px; border-radius:12px; background:#1A1815; border:1px solid #332c22; font-size:.78rem; color:#A39B8D; line-height:1.45}
+  #sistema .px-preco b{display:block; font-size:.94rem; color:#fff; margin-bottom:2px}
+  #sistema .px-prox{
+    align-self:flex-start; background:none; border:0; padding:0; cursor:pointer; color:#C9C0B1;
+    font:500 .74rem 'JetBrains Mono',monospace;
   }
-  #sistema .c-status.done .spin{border-color:var(--accent); animation:none; background:var(--accent)}
-  @keyframes sysSpin{to{transform:rotate(360deg)}}
-  #sistema .c-status .c-label{color:var(--white); font-size:.88rem; font-weight:500; flex:1}
-  #sistema .c-status .c-count{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.82rem; color:var(--white)}
-  #sistema .c-bar{height:4px; border-radius:3px; background:#241f18; overflow:hidden; margin-bottom:20px}
-  #sistema .c-bar i{display:block; height:100%; width:0%; border-radius:3px; background:linear-gradient(90deg,var(--accent),var(--accent-soft)); transition:width .18s linear}
-  #sistema .c-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:9px}
-  #sistema .c-tile{
-    aspect-ratio:1; border-radius:9px; background:#1b1712; border:1px solid #241f18;
-    display:flex; align-items:center; justify-content:center; color:transparent;
-    transition:background .3s var(--sys-ease), border-color .3s var(--sys-ease);
-  }
-  #sistema .c-tile.filled{
-    background:rgba(227,179,65,.08); border-color:rgba(227,179,65,.45);
-    color:var(--accent); animation:sysTilein .34s var(--sys-ease);
-  }
-  @keyframes sysTilein{0%{transform:scale(.7)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+  #sistema .px-prox:hover{color:var(--accent)}
 
-  /* crm */
-  #sistema .k-body{padding:18px 16px 22px; min-height:340px}
-  #sistema .k-cols{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
-  #sistema .k-col h5{
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.58rem;
-    letter-spacing:.14em; color:var(--muted); text-transform:uppercase;
-    margin-bottom:10px; padding-left:2px;
-  }
-  #sistema .k-stack{display:flex; flex-direction:column; gap:8px}
-  #sistema .k-card{
-    background:#161310; border:1px solid var(--sys-border); border-radius:10px;
-    padding:9px 10px;
-  }
-  #sistema .k-card .k-name{color:#C9C0B1; font-weight:600; font-size:.74rem}
-  #sistema .k-card .k-sub{color:#6b6355; font-size:.63rem; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  #sistema .k-card.ghost{opacity:.55}
-  #sistema .k-lead{
-    display:none; background:#181207; border:1px solid rgba(227,179,65,.5); border-radius:10px;
-    padding:9px 10px; box-shadow:0 0 0 1px rgba(227,179,65,.12), 0 12px 30px rgba(0,0,0,.4);
-  }
-  #sistema .k-lead .k-name{color:var(--white); font-weight:600; font-size:.74rem; display:flex; align-items:center; gap:6px}
-  #sistema .k-lead .k-name svg{flex:none}
-  #sistema .k-lead .k-sub{color:#8a8172; font-size:.63rem; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  #sistema .k-lead .tag{
-    display:inline-block; margin-top:6px;
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.52rem;
-    letter-spacing:.12em; color:var(--accent);
-    border:1px solid rgba(227,179,65,.4); border-radius:5px; padding:2px 6px;
-  }
-  #sistema .k-lead.on{display:block; animation:sysLeadin .4s var(--sys-ease)}
-  @keyframes sysLeadin{0%{opacity:0; transform:translateY(10px) scale(.94)}100%{opacity:1; transform:none}}
+  /* fallback sem JS */
+  #sistema .px-sem{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; list-style:none; padding:0; margin:0}
+  #sistema .px-sem li{background:#fff; border:1px solid #e3dac6; border-radius:14px; padding:16px; font-weight:600; font-size:.92rem}
 
-  /* metas */
-  #sistema .m-body{padding:24px 20px 24px}
-  #sistema .m-name{
-    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.6rem;
-    letter-spacing:.16em; color:var(--muted); text-transform:uppercase;
-  }
-  #sistema .m-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
-  #sistema .m-pct{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.78rem; color:var(--accent)}
-  #sistema .m-vals{display:flex; align-items:baseline; gap:7px; margin-bottom:10px}
-  #sistema .m-val{font-family:var(--font-display); font-weight:700; font-size:1.6rem; color:var(--white); letter-spacing:-.02em}
-  #sistema .m-of{font-size:.82rem; color:var(--muted)}
-  #sistema .m-bar{height:9px; border-radius:6px; background:#241f18; overflow:hidden}
-  #sistema .m-bar i{display:block; height:100%; width:0%; border-radius:6px; background:linear-gradient(90deg,var(--accent),var(--accent-soft)); transition:width 1.7s var(--sys-ease)}
-  #sistema .m-sub{display:flex; flex-direction:column; gap:15px; margin-top:24px}
-  #sistema .m-row .m-bar{height:5px}
-  #sistema .m-row .m-bar i{transition:width .9s var(--sys-ease)}
-  #sistema .m-row-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px}
-  #sistema .m-row-top .l{font-size:.82rem; color:#C9C0B1}
-  #sistema .m-row-top .r{font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted)}
-  #sistema .m-row-top .r b{color:var(--white)}
-
-  /* faturamento */
-  #sistema .f-body{padding:26px 22px 22px}
-  #sistema .f-chart{display:flex; align-items:flex-end; gap:12px; height:210px}
-  #sistema .f-col{flex:1; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:7px}
-  #sistema .f-vlabel{
-    font-family:'JetBrains Mono',monospace; font-size:.66rem; color:var(--muted);
-    opacity:0; transition:opacity .4s var(--sys-ease);
-  }
-  #sistema .f-col.on .f-vlabel{opacity:1}
-  #sistema .f-bar{
-    width:100%; max-width:46px; height:0%;
-    border-radius:6px 6px 2px 2px; background:#2e2820; border:1px solid #3a3227;
-    transition:height .65s var(--sys-ease);
-  }
-  #sistema .f-col.cur .f-bar{background:linear-gradient(180deg,var(--accent),#B8862C); border-color:transparent}
-  #sistema .f-col.cur .f-vlabel{color:var(--white); font-weight:700}
-  #sistema .f-mlabel{font-family:'JetBrains Mono',monospace; font-size:.62rem; color:#6b6355; text-transform:uppercase; letter-spacing:.08em}
-
-  /* evolução */
-  #sistema .e-body{padding:22px 18px 20px}
-  #sistema .e-line{
-    fill:none; stroke:var(--accent); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;
-    stroke-dasharray:1; stroke-dashoffset:1;
-  }
-  #sistema .e-line.draw{stroke-dashoffset:0; transition:stroke-dashoffset 2.6s cubic-bezier(.4,.1,.3,1)}
-  #sistema .e-area{opacity:0; transition:opacity .9s var(--sys-ease)}
-  #sistema .e-area.show{opacity:1}
-  #sistema .e-end{opacity:0; transition:opacity .5s var(--sys-ease)}
-  #sistema .e-end.show{opacity:1}
-  #sistema .e-txt{font-family:'JetBrains Mono',monospace; fill:#6b6355; font-size:9px; letter-spacing:.08em}
-  #sistema .e-txt.lime{fill:var(--accent)}
-
-  /* agenda */
-  #sistema .a-body{padding:18px 18px 22px}
-  #sistema .a-status{
-    display:block; font-family:'JetBrains Mono',monospace; font-size:.64rem;
-    color:var(--muted); letter-spacing:.08em; margin-bottom:12px;
-  }
-  #sistema .a-days{display:grid; grid-template-columns:repeat(6,1fr); gap:7px; margin-bottom:8px}
-  #sistema .a-days span{
-    font-family:'JetBrains Mono',monospace; font-size:.56rem; font-weight:700;
-    color:#6b6355; text-transform:uppercase; letter-spacing:.1em; text-align:center;
-  }
-  #sistema .a-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:7px}
-  #sistema .a-cell{
-    height:33px; border-radius:7px; background:#181510; border:1px dashed #2a251d;
-    display:flex; align-items:center; justify-content:center;
-    font-size:.58rem; color:transparent; overflow:hidden; white-space:nowrap;
-  }
-  #sistema .a-cell.pre{background:#241f18; border:1px solid #332c22; color:#8a8172}
-  #sistema .a-cell.on{
-    background:rgba(227,179,65,.08); border:1px solid rgba(227,179,65,.45);
-    color:var(--accent-soft); animation:sysTilein .3s var(--sys-ease);
-  }
+  /* a proposta em três linhas */
+  #sistema .px-linhas{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px}
+  #sistema .px-linha{background:#fff; border:1px solid #e3dac6; border-radius:16px; padding:18px 20px}
+  #sistema .px-linha .r{font:500 .74rem 'JetBrains Mono',monospace; color:#8A6412}
+  #sistema .px-linha b{display:block; margin:6px 0 2px; font:800 1.06rem var(--font-display); color:var(--ink); letter-spacing:-.005em}
+  #sistema .px-linha p{margin:0; font-size:.9rem; color:#5f5a4e}
+  #sistema .px-cta{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px; margin-top:28px}
+  #sistema .px-link{color:var(--ink); font-weight:600; font-size:15.5px; text-decoration:underline; text-decoration-color:#c9b98f; text-underline-offset:4px}
+  #sistema .px-link:hover{text-decoration-color:var(--ink)}
 
   @media (max-width:1080px){
-    #sistema .sys-wrap{grid-template-columns:1fr; gap:48px; justify-items:center}
-    #sistema .features{width:100%; max-width:560px}
-    #sistema .sys-ctawrap{text-align:center}
-    #sistema .stage{max-width:520px}
+    #sistema .px-body{grid-template-columns:1fr}
+    #sistema .px-etapas{flex-direction:row; border-right:0; border-bottom:1px solid #2a251d; padding:10px; gap:4px}
+    #sistema .px-etapa{grid-template-columns:1fr; text-align:center; padding:10px 6px 12px; gap:3px}
+    #sistema .px-etapa .n{grid-row:auto; padding:0}
+    #sistema .px-etapa .tt{font-size:.74rem; line-height:1.25}
+    #sistema .px-etapa .ss{display:none}
+    #sistema .px-entrega{border-left:0; border-top:1px solid #2a251d}
+    #sistema .px-sem{grid-template-columns:1fr}
   }
-  @media (max-width:560px){
-    #sistema .stage{height:640px}
-    #sistema .phone{width:min(300px,86vw)}
-    #sistema .g-body{padding:20px 14px 24px}
-    #sistema .g-row{gap:10px; margin-bottom:18px}
-    #sistema .g-logo{font-size:1.15rem}
-    #sistema .g-search{font-size:.8rem; padding:9px 12px; gap:8px}
-    #sistema .c-grid{grid-template-columns:repeat(5,1fr)}
-    #sistema .k-card .k-name, #sistema .k-lead .k-name{font-size:.68rem}
-  }
-  @media (prefers-reduced-motion:reduce){
-    #sistema .seq{opacity:1; transform:none}
-    #sistema .typing{display:none!important}
-    #sistema .toast{opacity:1; transform:translate(-50%,0)}
-    #sistema .caret{display:none}
-    #sistema .c-status .spin{animation:none}
-    #sistema .app-head .live i{animation:none}
+  @media (max-width:760px){
+    #sistema .px-linhas{grid-template-columns:1fr}
+    #sistema .px-etapa .tt{display:none}
+    #sistema .px-tela-t{display:block}
+    #sistema .px-tela{min-height:430px; padding:20px 14px}
+    #sistema .px-site{gap:16px}
+    #sistema .px-selos{flex-direction:row; flex-wrap:wrap; justify-content:center; gap:7px}
+    #sistema .px-selos li{font-size:.74rem; padding:6px 11px}
+    #sistema .px-ln{grid-template-columns:30px minmax(0,1fr) auto}
+    #sistema .px-ln .og{display:none}
   }
 </style>
 
 <section class="sec light" id="sistema">
   <div class="sec-inner">
     <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demonstração</p>
-    <h2 class="rv" style="--d:.08s" data-en='See the system <span class="lm">at work.</span>'>Vê o sistema <span class="lm">trabalhando.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en="It's not a promise: it's a demonstration. All of this keeps running on its own once Theatrum is in your business.">Não é promessa: é demonstração. Isso tudo fica rodando sozinho quando a Theatrum entra no seu negócio.</p>
+    <h2 class="rv" style="--d:.08s" data-en='The whole offer, <span class="lm">running in front of you.</span>'>A proposta inteira, <span class="lm">rodando na sua frente.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="Pick your type of business and follow one client from Google to your WhatsApp. Each step shows what Theatrum delivers there and what it costs.">Escolha o seu tipo de negócio e acompanhe um cliente do Google até o seu WhatsApp. Cada etapa mostra o que a Theatrum entrega ali e quanto custa.</p>
 
-    <div class="sys-wrap">
-      <div class="rv" style="--d:.2s">
-        <div class="features">
-          <button class="feature active" data-tab="1">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Top of search">Topo da busca</span><br>
-              <span class="f-desc" data-en="Your business in front of whoever's searching. New client every day.">Teu negócio na frente de quem procura. Cliente novo todos os dias.</span>
-            </span>
-          </button>
+    <div class="px rv pausado" id="px" style="--d:.2s">
+      <ol class="px-sem">
+        <li data-en="1. They find you on Google">1. Te encontram no Google</li>
+        <li data-en="2. They land on the site">2. Chegam no site</li>
+        <li data-en="3. They message you on WhatsApp">3. Chamam no WhatsApp</li>
+        <li data-en="4. They don't go cold">4. Não esfriam</li>
+        <li data-en="5. You keep track">5. Você acompanha</li>
+      </ol>
+    </div>
 
-          <button class="feature" data-tab="0">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="WhatsApp that answers itself">WhatsApp que atende sozinho</span><br>
-              <span class="f-desc" data-en="Replies, answers questions and books. 24h, even after hours.">Responde, tira dúvida e agenda. 24h, até fora do horário.</span>
-            </span>
-          </button>
+    <div class="px-linhas rv" style="--d:.24s">
+      <div class="px-linha"><span class="r" data-en="build once">constrói uma vez</span><b data-en="Website or landing page">Site ou landing page</b><p data-en="R$ 2,500 on the Launch plan, or 3x R$ 833.33">R$ 2.500 no Lançamento, ou 3x de R$ 833,33</p></div>
+      <div class="px-linha"><span class="r" data-en="keep it running">mantém no ar</span><b data-en="Maintenance and hosting">Manutenção e hospedagem</b><p data-en="R$ 197 a month">R$ 197/mês</p></div>
+      <div class="px-linha"><span class="r" data-en="bring people in">traz gente</span><b data-en="Traffic management">Gestão de tráfego</b><p data-en="R$ 697 a month + the ad budget in your own account">R$ 697/mês + verba na sua conta</p></div>
+    </div>
 
-          <button class="feature" data-tab="4">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 10a8 8 0 0114-4.5M20 14a8 8 0 01-14 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18 2v4h-4M6 22v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Follow-up that recovers money">Follow-up que recupera dinheiro</span><br>
-              <span class="f-desc" data-en="Stalled quotes start replying again and turn into revenue.">Orçamento parado volta a responder e vira receita.</span>
-            </span>
-          </button>
-
-          <button class="feature" data-tab="9">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="8.5" cy="13" r="1.1" fill="currentColor"/><circle cx="12" cy="13" r="1.1" fill="currentColor"/><circle cx="15.5" cy="13" r="1.1" fill="currentColor"/><circle cx="8.5" cy="16.5" r="1.1" fill="currentColor"/><circle cx="12" cy="16.5" r="1.1" fill="currentColor"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="The result: a full calendar">O resultado: agenda cheia</span><br>
-              <span class="f-desc" data-en="Everything above leads here: the week fills up on its own.">Tudo acima desemboca aqui: a semana lota sozinha.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="2">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8.5 14.5l2.2 2.2 4.6-4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Content on autopilot">Conteúdo no automático</span><br>
-              <span class="f-desc" data-en="The month's 30 posts created and scheduled at once.">Os 30 posts do mês criados e agendados de uma vez.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="3">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h16l-6.2 7.2v5.3L10.2 20v-7.8L4 5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Leads organized on their own">Leads organizados sozinhos</span><br>
-              <span class="f-desc" data-en="Every conversation becomes a card and moves itself along until it closes.">Cada conversa vira card e anda sozinha até fechar.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="5">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 9a6 6 0 10-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 19.5a2.2 2.2 0 004 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Reminders that prevent no-shows">Lembretes que evitam falta</span><br>
-              <span class="f-desc" data-en="Automatic confirmation before the appointment. No gaps in the calendar.">Confirmação automática antes do atendimento. Agenda sem furo.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="6">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.8" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Goals dashboard">Painel de metas</span><br>
-              <span class="f-desc" data-en="The month's target on screen, moving forward on its own.">A meta do mês na tela, andando sozinha.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="10">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.3-9.6C1.5 8 3.8 4.9 7 4.9c2 0 3.6 1.1 5 2.9 1.4-1.8 3-2.9 5-2.9 3.2 0 5.5 3.1 4.3 6.5C19.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Reactivation that brings clients back">Reativação que traz cliente de volta</span><br>
-              <span class="f-desc" data-en="Months after the last contact, the system reaches out and they return.">Meses depois do último contato, o sistema chama e ele volta.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="7">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V14M10 20V9M16 20V4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M20 20H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Growing revenue">Faturamento crescendo</span><br>
-              <span class="f-desc" data-en="Every month bigger than the last, with a new record on the board.">Cada mês maior que o anterior, com recorde registrado.</span>
-            </span>
-          </button>
-
-          <button class="feature extra" data-tab="8">
-            <span class="ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l5.5-5.5 3.5 3.5L21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span>
-              <span class="f-title" data-en="Long-term evolution">Evolução a longo prazo</span><br>
-              <span class="f-desc" data-en="The 12-month turnaround: before and after Theatrum.">A virada em 12 meses: antes e depois da Theatrum.</span>
-            </span>
-          </button>
-
-          <button class="more-btn" id="sysMoreBtn" data-en='<span class="pl">+</span> see the other 7 demos'>
-            <span class="pl">+</span> ver as outras 7 demonstrações
-          </button>
-        </div>
-
-        <div class="sys-ctawrap">
-          <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vi%20as%20demonstra%C3%A7%C3%B5es%20no%20site%20e%20quero%20isso%20rodando%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="I want this running in my business">Quero isso rodando no meu negócio</a>
-        </div>
-      </div>
-
-      <div class="stage rv" style="--d:.28s" id="sysStage">
-
-        <!-- WHATSAPP -->
-        <div class="panel" id="panel-0">
-          <div class="phone-wrap">
-            <div class="phone">
-              <div class="statusbar"><span>22:47</span><span>5G · 92%</span></div>
-              <div class="wa-header">
-                <span class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <div class="wa-avatar">M</div>
-                <div class="contact">
-                  <div class="name">Mariana</div>
-                  <div class="status" id="sysWaStatus">online</div>
-                </div>
-                <div class="icons">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 10.5l5-3v9l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a12 12 0 006 6L15 14l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-              </div>
-              <div class="chat" id="sysChat">
-                <div class="daychip seq" data-en="TODAY">HOJE</div>
-                <div class="msg in seq" data-en='Hi! Do you work Saturdays?<div class="meta">22:47</div>'>Oi! Vocês atendem sábado?<div class="meta">22:47</div></div>
-                <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq" data-en='Yes, we do! Saturday from 9am to 1pm. Want me to book a time for you?
-                  <div class="meta"><span class="ia">AI</span> 22:47
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Atendemos sim! Sábado das 9h às 13h. Quer que eu já reserve um horário pra você?
-                  <div class="meta"><span class="ia">IA</span> 22:47
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-                <div class="msg in seq" data-en='Could it be 10am?<div class="meta">22:48</div>'>Pode ser 10h?<div class="meta">22:48</div></div>
-                <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq" data-en='Done: Saturday at 10am. I&apos;ll send you a reminder here on Friday. 😊
-                  <div class="meta"><span class="ia">AI</span> 22:48
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Fechado: sábado às 10h. Na sexta te mando um lembrete por aqui. 😊
-                  <div class="meta"><span class="ia">IA</span> 22:48
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-              </div>
-              <div class="inputbar">
-                <div class="field" data-en="Message">Mensagem</div>
-                <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              </div>
-            </div>
-            <div class="toast" id="sysToast">
-              <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div>
-                <div class="t-title" data-en="Saturday, 10am · booked">Sábado, 10h · agendado</div>
-                <div class="t-sub" data-en="10:48pm · without you touching your phone">22h48 · sem você pegar no celular</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GOOGLE -->
-        <div class="panel active" id="panel-1">
-          <div class="window">
-            <div class="win-top">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="url">google.com</span>
-            </div>
-            <div class="g-body">
-              <div class="g-row">
-                <div class="g-logo"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
-                <div class="g-search">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#9AA3AE" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="#9AA3AE" stroke-width="2" stroke-linecap="round"/></svg>
-                  <span class="q" id="sysGQuery"></span><span class="caret" id="sysGCaret"></span>
-                </div>
-              </div>
-              <div class="g-results">
-                <div class="g-first seq">
-                  <span class="rank" data-en="YOUR SITE">TEU SITE</span>
-                  <div class="r-url">seunegocio.com.br</div>
-                  <div class="r-title" data-en="Your Business · trusted service">Seu Negócio · atendimento na sua região</div>
-                  <div class="r-desc" data-en="No-obligation quote. Book on WhatsApp and leave with everything sorted.">Avaliação sem compromisso. Agende pelo WhatsApp e saia com tudo resolvido.</div>
-                  <div class="r-cta" data-en='<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    top of search results'>
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    no topo das buscas da região
-                  </div>
-                </div>
-                <div class="g-skel seq"><div class="l" style="width:38%"></div><div class="l" style="width:72%"></div><div class="l" style="width:55%"></div></div>
-                <div class="g-skel seq"><div class="l" style="width:30%"></div><div class="l" style="width:64%"></div><div class="l" style="width:48%"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CONTEÚDO -->
-        <div class="panel" id="panel-2">
-          <div class="window">
-            <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
-              <span class="app-name" data-en='Theatrum <span>· Content engine</span>'>Theatrum <span>· Motor de conteúdo</span></span>
-              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
-            </div>
-            <div class="c-body">
-              <div class="c-status" id="sysCStatus">
-                <span class="spin"></span>
-                <span class="c-label" id="sysCLabel" data-en="Generating this month's content…">Gerando conteúdo do mês…</span>
-                <span class="c-count" id="sysCCount">0/30</span>
-              </div>
-              <div class="c-bar"><i id="sysCBar"></i></div>
-              <div class="c-grid" id="sysCGrid"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CRM -->
-        <div class="panel" id="panel-3">
-          <div class="window">
-            <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
-              <span class="app-name" data-en='Theatrum <span>· Lead CRM</span>'>Theatrum <span>· CRM de leads</span></span>
-              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
-            </div>
-            <div class="k-body">
-              <div class="k-cols">
-                <div class="k-col">
-                  <h5 data-en="New">Novo</h5>
-                  <div class="k-stack">
-                    <div class="k-lead" data-lead="0">
-                      <div class="k-name">Mariana
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="#00a884" stroke-width="2.4" stroke-linejoin="round"/></svg>
-                      </div>
-                      <div class="k-sub" data-en="Hi! Do you wor…">Oi! Vocês atend…</div>
-                      <span class="tag">WHATSAPP</span>
-                    </div>
-                    <div class="k-card ghost"><div class="k-name">Roberto</div><div class="k-sub" data-en="How much does…">Quanto custa o…</div></div>
-                  </div>
-                </div>
-                <div class="k-col">
-                  <h5 data-en="In conversation">Conversando</h5>
-                  <div class="k-stack">
-                    <div class="k-lead" data-lead="1">
-                      <div class="k-name">Mariana</div>
-                      <div class="k-sub" data-en="Could it be 10am?">Pode ser 10h?</div>
-                      <span class="tag" data-en="AI REPLYING">IA RESPONDENDO</span>
-                    </div>
-                    <div class="k-card ghost"><div class="k-name">Ana</div><div class="k-sub" data-en="Confirming ti…">Confirmando hor…</div></div>
-                  </div>
-                </div>
-                <div class="k-col">
-                  <h5 data-en="Scheduled">Agendado</h5>
-                  <div class="k-stack">
-                    <div class="k-lead" data-lead="2">
-                      <div class="k-name">Mariana</div>
-                      <div class="k-sub" data-en="Sat, 10am">Sáb, 10h</div>
-                      <span class="tag" data-en="REMINDER ON">LEMBRETE ON</span>
-                    </div>
-                    <div class="k-card ghost"><div class="k-name">Carlos</div><div class="k-sub" data-en="Tue, 2pm">Ter, 14h</div></div>
-                  </div>
-                </div>
-                <div class="k-col">
-                  <h5 data-en="Closed">Fechou</h5>
-                  <div class="k-stack">
-                    <div class="k-lead" data-lead="3">
-                      <div class="k-name">Mariana</div>
-                      <div class="k-sub" data-en="1st visit ✓">1º atendimento ✓</div>
-                      <span class="tag" data-en="CLOSED">FECHADO</span>
-                    </div>
-                    <div class="k-card ghost"><div class="k-name">Bia</div><div class="k-sub" data-en="Monthly package">Pacote mensal</div></div>
-                    <div class="k-card ghost"><div class="k-name">Felipe</div><div class="k-sub" data-en="1st visit">1º atendimento</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FOLLOW-UP -->
-        <div class="panel" id="panel-4">
-          <div class="phone-wrap">
-            <div class="phone">
-              <div class="statusbar"><span>10:04</span><span>5G · 78%</span></div>
-              <div class="wa-header">
-                <span class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <div class="wa-avatar" style="background:linear-gradient(135deg,#7c6b85,#5a4a63)">C</div>
-                <div class="contact">
-                  <div class="name">Carlos</div>
-                  <div class="status" id="sysWaStatusF">online</div>
-                </div>
-                <div class="icons">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 10.5l5-3v9l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a12 12 0 006 6L15 14l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-              </div>
-              <div class="chat" id="sysChatF" style="height:430px">
-                <div class="daychip seq" data-en="12 days ago">Há 12 dias</div>
-                <div class="msg out old seq" data-en='Your quote came to R$ 3,200. Just call if you have any questions! 👋
-                  <div class="meta">14:32
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Seu orçamento ficou em R$ 3.200. Qualquer dúvida me chama! 👋
-                  <div class="meta">14:32
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-                <div class="nores seq" data-en="seen · no reply">visualizado · sem resposta</div>
-                <div class="daychip seq" data-en="Today">Hoje</div>
-                <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq" data-en='Hi, Carlos! How&apos;s it going? 😊 Your quote is still on hold here. Want me to send you the payment options?
-                  <div class="meta"><span class="ia">AI</span> 10:04
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Oi, Carlos! Tudo bem? 😊 Teu orçamento ainda tá reservado aqui. Quer que eu te mande as opções de pagamento?
-                  <div class="meta"><span class="ia">IA</span> 10:04
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-                <div class="msg in seq" data-en='Sure, send it over! Was just looking at that<div class="meta">10:11</div>'>Pode mandar! Tava vendo isso mesmo<div class="meta">10:11</div></div>
-                <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq" data-en='Sent 👆 And if you want, I can already hold a slot for Thursday, no obligation.
-                  <div class="meta"><span class="ia">AI</span> 10:11
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Te mandei 👆 E se quiser já seguro um horário na quinta, sem compromisso.
-                  <div class="meta"><span class="ia">IA</span> 10:11
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-                <div class="msg in seq" data-en='Deal, Thursday works<div class="meta">10:12</div>'>Fechou, quinta pode ser<div class="meta">10:12</div></div>
-              </div>
-              <div class="inputbar">
-                <div class="field" data-en="Message">Mensagem</div>
-                <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              </div>
-            </div>
-            <div class="toast" id="sysToastF">
-              <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div>
-                <div class="t-title" data-en="R$ 3,200 recovered">R$ 3.200 recuperados</div>
-                <div class="t-sub" data-en="quote stalled for 12 days · fully automatic">orçamento parado há 12 dias · no automático</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LEMBRETES -->
-        <div class="panel" id="panel-5">
-          <div class="phone-wrap">
-            <div class="phone">
-              <div class="statusbar"><span>08:02</span><span>5G · 84%</span></div>
-              <div class="wa-header">
-                <span class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <div class="wa-avatar" style="background:linear-gradient(135deg,#6b8578,#4a6355)">J</div>
-                <div class="contact">
-                  <div class="name">Júlia</div>
-                  <div class="status" id="sysWaStatusL">online</div>
-                </div>
-                <div class="icons">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 10.5l5-3v9l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a12 12 0 006 6L15 14l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-              </div>
-              <div class="chat" id="sysChatL">
-                <div class="daychip seq" data-en="Today">Hoje</div>
-                <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq" data-en='Morning, Júlia! Just a reminder about your 10am appointment today 😊 Still on?
-                  <div class="meta"><span class="ia">AI</span> 08:02
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Bom dia, Júlia! Passando pra lembrar do seu horário hoje às 10h 😊 Tá confirmado?
-                  <div class="meta"><span class="ia">IA</span> 08:02
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-                <div class="msg in seq" data-en='Confirmed for sure! 👍<div class="meta">08:05</div>'>Confirmadíssimo! 👍<div class="meta">08:05</div></div>
-                <div class="msg out seq" data-en='Perfect! See you there 😊 If you need to reschedule, just let me know here.
-                  <div class="meta"><span class="ia">AI</span> 08:05
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Perfeito! Te esperamos lá 😊 Se precisar remarcar, é só me avisar por aqui.
-                  <div class="meta"><span class="ia">IA</span> 08:05
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-              </div>
-              <div class="inputbar">
-                <div class="field" data-en="Message">Mensagem</div>
-                <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              </div>
-            </div>
-            <div class="toast" id="sysToastL">
-              <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div>
-                <div class="t-title" data-en="10am appointment confirmed">Horário das 10h confirmado</div>
-                <div class="t-sub" data-en="automatic reminder · no gaps in the calendar">lembrete automático · agenda sem furo</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- METAS -->
-        <div class="panel" id="panel-6">
-          <div class="window">
-            <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
-              <span class="app-name" data-en='Theatrum <span>· This month&apos;s goals</span>'>Theatrum <span>· Metas do mês</span></span>
-              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
-            </div>
-            <div class="m-body">
-              <div class="m-top">
-                <span class="m-name" data-en="Revenue · current month">Faturamento · mês atual</span>
-                <span class="m-pct" id="sysMPct">0%</span>
-              </div>
-              <div class="m-vals">
-                <span class="m-val" id="sysMVal">R$ 0</span>
-                <span class="m-of">/ R$ 45.000</span>
-              </div>
-              <div class="m-bar"><i id="sysMBar"></i></div>
-              <div class="m-sub">
-                <div class="m-row">
-                  <div class="m-row-top"><span class="l" data-en="Appointments completed">Atendimentos realizados</span><span class="r"><b id="sysMR0">0</b>/55</span></div>
-                  <div class="m-bar"><i id="sysMB0"></i></div>
-                </div>
-                <div class="m-row">
-                  <div class="m-row-top"><span class="l" data-en="Google reviews">Avaliações no Google</span><span class="r"><b id="sysMR1">0</b>/15</span></div>
-                  <div class="m-bar"><i id="sysMB1"></i></div>
-                </div>
-                <div class="m-row">
-                  <div class="m-row-top"><span class="l" data-en="Proposals closed">Propostas fechadas</span><span class="r"><b id="sysMR2">0</b>/10</span></div>
-                  <div class="m-bar"><i id="sysMB2"></i></div>
-                </div>
-              </div>
-              <span class="chip-ok" id="sysMChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                on pace to hit the goal'>
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                no ritmo pra bater a meta
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- FATURAMENTO -->
-        <div class="panel" id="panel-7">
-          <div class="window">
-            <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
-              <span class="app-name" data-en='Theatrum <span>· Revenue</span>'>Theatrum <span>· Faturamento</span></span>
-              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
-            </div>
-            <div class="f-body">
-              <div class="f-chart" id="sysFChart"></div>
-              <span class="chip-ok" id="sysFChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                record: R$ 45k this month'>
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                recorde: R$ 45 mil no mês
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- EVOLUÇÃO -->
-        <div class="panel" id="panel-8">
-          <div class="window">
-            <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
-              <span class="app-name" data-en='Theatrum <span>· Evolution · 12 months</span>'>Theatrum <span>· Evolução · 12 meses</span></span>
-              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
-            </div>
-            <div class="e-body">
-              <svg viewBox="0 0 440 232" width="100%" role="img" aria-label="Faturamento dos últimos 12 meses: estável e baixo antes da Theatrum, crescimento contínuo depois" id="sysEChartSvg">
-                <defs>
-                  <linearGradient id="sysEGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#E3B341" stop-opacity=".3"/>
-                    <stop offset="1" stop-color="#E3B341" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <line x1="184" y1="20" x2="184" y2="205" stroke="#4a4033" stroke-dasharray="4 5"/>
-                <text class="e-txt" x="176" y="32" text-anchor="end" data-en="before">antes</text>
-                <text class="e-txt lime" x="192" y="32" data-en="with Theatrum">com a Theatrum</text>
-                <polygon class="e-area" id="sysEArea" fill="url(#sysEGrad)"
-                  points="20,176 56,170 93,179 129,167 165,175 202,155 238,134 275,112 311,91 347,70 384,53 420,38 420,205 20,205"/>
-                <polyline class="e-line" id="sysELine" pathLength="1"
-                  points="20,176 56,170 93,179 129,167 165,175 202,155 238,134 275,112 311,91 347,70 384,53 420,38"/>
-                <g class="e-end" id="sysEEnd">
-                  <circle cx="420" cy="38" r="7" fill="#141210"/>
-                  <circle cx="420" cy="38" r="4.5" fill="#E3B341"/>
-                  <text x="412" y="28" text-anchor="end" fill="#F5F5F4" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" font-size="13" data-en="R$ 58k">R$ 58 mil</text>
-                </g>
-                <text class="e-txt" x="20" y="226" data-en="12 months ago">há 12 meses</text>
-                <text class="e-txt" x="420" y="226" text-anchor="end" data-en="today">hoje</text>
-              </svg>
-              <span class="chip-ok" id="sysEChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                2.4× the revenue in 7 months'>
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                2,4× o faturamento em 7 meses
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- AGENDA -->
-        <div class="panel" id="panel-9">
-          <div class="window">
-            <div class="app-head">
-              <span class="mark"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" alt=""/></span>
-              <span class="app-name" data-en='Theatrum <span>· Week&apos;s schedule</span>'>Theatrum <span>· Agenda da semana</span></span>
-              <span class="live" data-en='<i></i> running'><i></i> rodando</span>
-            </div>
-            <div class="a-body">
-              <span class="a-status" id="sysAStatus">só 5 horários preenchidos na semana</span>
-              <div class="a-days">
-                <span data-en="Mon">seg</span><span data-en="Tue">ter</span><span data-en="Wed">qua</span><span data-en="Thu">qui</span><span data-en="Fri">sex</span><span data-en="Sat">sáb</span>
-              </div>
-              <div class="a-grid" id="sysAGrid"></div>
-              <span class="chip-ok" id="sysAChip" data-en='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                a full week, without you touching your phone'>
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#E3B341" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                semana cheia, sem você pegar no celular
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RECALL / REATIVAÇÃO -->
-        <div class="panel" id="panel-10">
-          <div class="phone-wrap">
-            <div class="phone">
-              <div class="statusbar"><span>16:20</span><span>5G · 61%</span></div>
-              <div class="wa-header">
-                <span class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <div class="wa-avatar" style="background:linear-gradient(135deg,#85806b,#63594a)">A</div>
-                <div class="contact">
-                  <div class="name">Ana</div>
-                  <div class="status" id="sysWaStatusR">online</div>
-                </div>
-                <div class="icons">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 10.5l5-3v9l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a12 12 0 006 6L15 14l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-              </div>
-              <div class="chat" id="sysChatR">
-                <div class="daychip seq" data-en="6 months after the last contact">6 meses após o último contato</div>
-                <div class="typing seq" data-typing><i></i><i></i><i></i></div>
-                <div class="msg out seq" data-en='Hi, Ana! How&apos;s it going? 😊 It&apos;s been a while since your last visit! Want to book again? I have Thursday at 2pm or Friday at 9am.
-                  <div class="meta"><span class="ia">AI</span> 16:20
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Oi, Ana! Tudo bem? 😊 Já faz um tempo desde seu último atendimento! Bora agendar de novo? Tenho quinta às 14h ou sexta às 9h.
-                  <div class="meta"><span class="ia">IA</span> 16:20
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-                <div class="msg in seq" data-en='Wow, already?? 😅 Friday at 9am then!<div class="meta">16:34</div>'>Nossa, já?? 😅 Sexta às 9h então!<div class="meta">16:34</div></div>
-                <div class="msg out seq" data-en='Done: Friday at 9am ✨ I&apos;ll send you a reminder the day before.
-                  <div class="meta"><span class="ia">AI</span> 16:34
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>'>Fechado: sexta às 9h ✨ Te mando um lembrete na véspera.
-                  <div class="meta"><span class="ia">IA</span> 16:34
-                    <svg width="15" height="10" viewBox="0 0 18 12" fill="none"><path d="M1 6.5L4 9.5L10 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6.5L10 9.5L16 2" stroke="#53bdeb" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                </div>
-              </div>
-              <div class="inputbar">
-                <div class="field" data-en="Message">Mensagem</div>
-                <div class="mic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              </div>
-            </div>
-            <div class="toast" id="sysToastR">
-              <div class="check"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div>
-                <div class="t-title" data-en="Ana is back on the calendar">Ana voltou pra agenda</div>
-                <div class="t-sub" data-en="automatic reactivation · no one had to call">reativação automática · sem ninguém precisar ligar</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <div class="px-cta rv" style="--d:.28s">
+      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vi%20as%20demonstra%C3%A7%C3%B5es%20no%20site%20e%20quero%20isso%20rodando%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="I want this running in my business">Quero isso rodando no meu negócio</a>
+      <a class="px-link" href="#calculadora" data-en="First, see my number on the calculator">Antes, ver o meu número na calculadora</a>
     </div>
   </div>
 </section>
 
 <script>
 (function(){
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-                || new URLSearchParams(location.search).has('still');
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const raiz = document.getElementById('px');
+  if(!raiz) return;
+  const parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              || new URLSearchParams(location.search).has('still');
+  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
 
-  const cards  = [...document.querySelectorAll('#sistema .feature')];
-  const panels = [...document.querySelectorAll('#sistema .panel')];
-  let gen = 0;
-
-  function setActive(i){
-    cards.forEach(c => c.classList.toggle('active', +c.dataset.tab === i));
-    panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + i));
-  }
-
-  /* WhatsApp */
-  const waItems  = [...document.querySelectorAll('#sysChat .seq')];
-  const waToast  = document.getElementById('sysToast');
-  const waStatus = document.getElementById('sysWaStatus');
-  function resetWhats(){
-    waItems.forEach(el => el.classList.remove('show'));
-    waToast.classList.remove('show');
-    waStatus.textContent = 'online';
-  }
-  async function playWhats(g){
-    const [chip, m1, t1, o1, m2, t2, o2] = waItems;
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(500)) return; chip.classList.add('show');
-    if(!await step(600)) return; m1.classList.add('show');
-    if(!await step(900)) return;
-    waStatus.textContent = typingLabel(); t1.classList.add('show');
-    if(!await step(1400)) return;
-    t1.classList.remove('show'); waStatus.textContent = 'online'; o1.classList.add('show');
-    if(!await step(1700)) return; m2.classList.add('show');
-    if(!await step(800)) return;
-    waStatus.textContent = typingLabel(); t2.classList.add('show');
-    if(!await step(1200)) return;
-    t2.classList.remove('show'); waStatus.textContent = 'online'; o2.classList.add('show');
-    if(!await step(800)) return; waToast.classList.add('show');
-    await step(2400);
-  }
-
-  /* Google */
-  const gQuery = document.getElementById('sysGQuery');
-  const gCaret = document.getElementById('sysGCaret');
-  const gSeq   = [...document.querySelectorAll('#panel-1 .seq')];
-  function QUERY(){ return document.documentElement.lang === 'en' ? 'service near me' : 'atendimento perto de mim'; }
-  function resetGoogle(){
-    gQuery.textContent = '';
-    gCaret.style.display = '';
-    gSeq.forEach(el => el.classList.remove('show'));
-  }
-  async function playGoogle(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(700)) return;
-    for(const ch of QUERY()){
-      gQuery.textContent += ch;
-      if(!await step(62)) return;
+  /* um cliente fictício por nicho; a mesma pessoa atravessa as cinco etapas */
+  const PX_N = {
+    adv:{
+      pt:{rot:'Advocacia', busca:'advogado trabalhista perto de mim', marca:'Seu Escritório', cat:'Escritório de advocacia',
+        adT:'Advogado trabalhista | Atendimento com hora marcada', adD:'Orientação clara sobre rescisão, horas extras e acordos. Fale pelo WhatsApp.',
+        h:'Orientação trabalhista clara, do primeiro contato ao fim do processo.', sub:'Atendimento com hora marcada, presencial ou online.',
+        pessoa:'Carlos', msg:'Vim do site. Fui demitido e quero entender os meus direitos.',
+        ia:'Olá, Carlos! Para adiantar: quando foi a demissão e você já assinou a rescisão?', ia2:'Obrigado. Passei o seu caso para o advogado, que te chama amanhã cedo.',
+        fu:'Oi, Carlos! Conseguiu ver a proposta de honorários? Se ficou alguma dúvida, me fala.',
+        re:'Oi, Carlos! Faz um tempo que fechamos o seu caso. Se precisar de orientação de novo, estamos aqui.',
+        resp:'Preciso, sim. Pode ser quinta?', needs:['rescisão','horas extras','acordo trabalhista','revisão de contrato']},
+      en:{rot:'Law firm', busca:'employment lawyer near me', marca:'Your Firm', cat:'Law firm',
+        adT:'Employment lawyer | Appointments by schedule', adD:'Clear guidance on dismissal, overtime and settlements. Message us on WhatsApp.',
+        h:'Clear employment advice, from the first contact to the end of the case.', sub:'Scheduled appointments, in person or online.',
+        pessoa:'Carlos', msg:'I came from the website. I was dismissed and want to understand my rights.',
+        ia:'Hi, Carlos! To get ahead: when were you dismissed, and have you signed anything yet?', ia2:'Thanks. I passed your case to the lawyer, who will call you first thing tomorrow.',
+        fu:'Hi, Carlos! Did you get a chance to look at the fee proposal? Let me know if anything is unclear.',
+        re:'Hi, Carlos! It has been a while since we closed your case. If you need advice again, we are here.',
+        resp:'I do, actually. Could we do Thursday?', needs:['dismissal','overtime','settlement','contract review']}
+    },
+    clin:{
+      pt:{rot:'Clínica', busca:'clínica de fisioterapia perto de mim', marca:'Sua Clínica', cat:'Clínica de fisioterapia',
+        adT:'Fisioterapia | Avaliação com hora marcada', adD:'Atendimento para coluna, joelho e pós-cirúrgico. Marque pelo WhatsApp.',
+        h:'Fisioterapia com hora marcada e sem fila no telefone.', sub:'Avaliação, tratamento e retorno combinados pelo WhatsApp.',
+        pessoa:'Juliana', msg:'Vim do site. Queria marcar uma avaliação para dor nas costas.',
+        ia:'Olá, Juliana! Temos horário na quarta às 9h ou na quinta às 17h. Qual fica melhor?', ia2:'Quarta às 9h reservada. Mando um lembrete no dia anterior.',
+        fu:'Oi, Juliana! Ficou alguma dúvida sobre o pacote de sessões? Posso segurar o seu horário.',
+        re:'Oi, Juliana! Já faz seis meses da sua última sessão. Que tal uma reavaliação?',
+        resp:'Quero, sim. Tem horário semana que vem?', needs:['avaliação','pacote de sessões','pilates','retorno']},
+      en:{rot:'Clinic', busca:'physiotherapy clinic near me', marca:'Your Clinic', cat:'Physiotherapy clinic',
+        adT:'Physiotherapy | Assessment by appointment', adD:'Care for back, knee and post-surgery. Book on WhatsApp.',
+        h:'Physiotherapy by appointment, without waiting on the phone.', sub:'Assessment, treatment and follow-up arranged on WhatsApp.',
+        pessoa:'Juliana', msg:'I came from the website. I would like to book an assessment for back pain.',
+        ia:'Hi, Juliana! We have Wednesday at 9am or Thursday at 5pm. Which works better?', ia2:'Wednesday at 9am is booked. I will send a reminder the day before.',
+        fu:'Hi, Juliana! Any questions about the session package? I can hold your slot.',
+        re:'Hi, Juliana! It has been six months since your last session. How about a follow-up assessment?',
+        resp:'Yes, please. Anything next week?', needs:['assessment','session package','pilates','follow-up']}
+    },
+    eng:{
+      pt:{rot:'Engenharia e arquitetura', busca:'arquiteto para reforma de apartamento', marca:'Seu Estúdio', cat:'Arquitetura e engenharia',
+        adT:'Reforma e projeto | Orçamento com visita técnica', adD:'Projeto, aprovação e obra com um só responsável. Chame no WhatsApp.',
+        h:'Projeto e obra com prazo, orçamento e um só responsável.', sub:'Do levantamento à entrega das chaves.',
+        pessoa:'Renata', msg:'Vim do site. Quero reformar um apartamento de 80 m².',
+        ia:'Que bom, Renata! Para marcar a visita: é reforma completa ou só alguns ambientes? Qual o bairro?', ia2:'Perfeito. Já mandei para o arquiteto, que te chama para marcar a visita.',
+        fu:'Oi, Renata! Conseguiu olhar o orçamento do projeto? Posso ajustar o escopo se precisar.',
+        re:'Oi, Renata! A obra fez um ano. Quer revisar algum ambiente ou começar um projeto novo?',
+        resp:'Quero fazer a cozinha agora.', needs:['reforma de apartamento','projeto de casa','regularização','laudo técnico']},
+      en:{rot:'Engineering & architecture', busca:'architect for apartment renovation', marca:'Your Studio', cat:'Architecture & engineering',
+        adT:'Renovation and design | Quote with a site visit', adD:'Design, permits and build with one person in charge. Message us on WhatsApp.',
+        h:'Design and build with a deadline, a budget and one person in charge.', sub:'From the survey to handing over the keys.',
+        pessoa:'Renata', msg:'I came from the website. I want to renovate a 900 sq ft apartment.',
+        ia:'Great, Renata! To book the visit: is it a full renovation or just some rooms? Which area?', ia2:'Perfect. I sent it to the architect, who will call you to book the visit.',
+        fu:'Hi, Renata! Did you get a chance to review the quote? I can adjust the scope if needed.',
+        re:'Hi, Renata! The build turned one year old. Want to revisit a room or start a new project?',
+        resp:'I want to do the kitchen now.', needs:['apartment renovation','house design','permits','technical report']}
+    },
+    cons:{
+      pt:{rot:'Consultoria', busca:'consultoria financeira para empresas', marca:'Sua Consultoria', cat:'Consultoria empresarial',
+        adT:'Consultoria financeira | Diagnóstico da sua empresa', adD:'Fluxo de caixa, preço e planejamento para pequenas e médias empresas.',
+        h:'As finanças da empresa em ordem, com um plano que você entende.', sub:'Diagnóstico, plano e acompanhamento mensal.',
+        pessoa:'Marcos', msg:'Vim do site. A empresa vende bem, mas o caixa nunca fecha.',
+        ia:'Entendo, Marcos. Para preparar a conversa: quantas pessoas trabalham aí e quem cuida do financeiro hoje?', ia2:'Obrigado. O consultor já recebeu e te chama para marcar o diagnóstico.',
+        fu:'Oi, Marcos! Conseguiu ver a proposta? Posso explicar as etapas numa ligação curta.',
+        re:'Oi, Marcos! O ano fechou. Quer revisar o planejamento para os próximos meses?',
+        resp:'Quero. Pode ser segunda de manhã?', needs:['fluxo de caixa','precificação','planejamento anual','diagnóstico']},
+      en:{rot:'Consulting', busca:'financial consulting for small business', marca:'Your Consultancy', cat:'Business consulting',
+        adT:'Financial consulting | A diagnosis of your company', adD:'Cash flow, pricing and planning for small and mid-sized companies.',
+        h:'Your company\'s finances in order, with a plan you understand.', sub:'Diagnosis, plan and monthly follow-up.',
+        pessoa:'Marcos', msg:'I came from the website. We sell well, but cash flow never adds up.',
+        ia:'Got it, Marcos. To prepare the call: how many people work there and who handles finance today?', ia2:'Thanks. The consultant has it and will call you to book the diagnosis.',
+        fu:'Hi, Marcos! Did you get a chance to see the proposal? I can walk you through it in a short call.',
+        re:'Hi, Marcos! The year has closed. Want to review the plan for the coming months?',
+        resp:'Yes. Monday morning?', needs:['cash flow','pricing','annual plan','diagnosis']}
+    },
+    imob:{
+      pt:{rot:'Imobiliária', busca:'apartamento 2 quartos para alugar', marca:'Sua Imobiliária', cat:'Imobiliária',
+        adT:'Apartamentos para alugar | Visita pelo WhatsApp', adD:'Opções de 1 a 3 quartos com fotos, valores e visita marcada na hora.',
+        h:'O imóvel certo, com visita marcada pelo WhatsApp.', sub:'Venda, locação e avaliação do seu imóvel.',
+        pessoa:'Paulo', msg:'Vim do site. Vi o apartamento de 2 quartos e queria visitar.',
+        ia:'Olá, Paulo! Ele está disponível. Tenho visita no sábado às 10h ou às 15h. Qual prefere?', ia2:'Sábado às 10h marcado. O corretor te encontra na portaria.',
+        fu:'Oi, Paulo! O que achou do apartamento? Separei mais duas opções no mesmo bairro.',
+        re:'Oi, Paulo! Seu contrato fez um ano. Pensando em comprar? Posso mandar opções.',
+        resp:'Pensando, sim. Manda as opções.', needs:['visita','avaliação de imóvel','locação','financiamento']},
+      en:{rot:'Real estate', busca:'2 bedroom apartment for rent', marca:'Your Agency', cat:'Real estate agency',
+        adT:'Apartments for rent | Viewings on WhatsApp', adD:'1 to 3 bedroom options with photos, prices and viewings booked on the spot.',
+        h:'The right home, with the viewing booked on WhatsApp.', sub:'Sales, rentals and valuation of your property.',
+        pessoa:'Paulo', msg:'I came from the website. I saw the 2 bedroom apartment and would like to visit.',
+        ia:'Hi, Paulo! It is available. I have Saturday at 10am or 3pm. Which do you prefer?', ia2:'Saturday at 10am is booked. The agent will meet you at the lobby.',
+        fu:'Hi, Paulo! What did you think of the apartment? I picked two more options in the same area.',
+        re:'Hi, Paulo! Your lease turned one year old. Thinking of buying? I can send options.',
+        resp:'I am, actually. Send them over.', needs:['viewing','property valuation','rental','mortgage']}
     }
-    if(!await step(500)) return;
-    gCaret.style.display = 'none';
-    gSeq[0].classList.add('show');
-    if(!await step(300)) return;
-    gSeq[1].classList.add('show');
-    if(!await step(220)) return;
-    gSeq[2].classList.add('show');
-    await step(2500);
+  };
+  const ORDEM = ['adv','clin','eng','cons','imob'];
+
+  const PX_T = {
+    pt:{nichos:'Seu negócio:', topo:'theatrum · o caminho de um cliente', ex:'exemplo', entrega:'o que a Theatrum entrega aqui',
+      prox:'próxima etapa →', denovo:'ver de novo ↺',
+      etapas:[['Te encontram','Google, mapa e anúncio'],['Chegam no site','rápido, claro, pronto para anúncio'],['Chamam no WhatsApp','mensagem pronta e aviso na hora'],['Não esfriam','retomada e reativação'],['Você acompanha','tudo medido, tudo no seu nome']],
+      itens:[
+        ['Google Meu Negócio revisado','campanha no Google e no Microsoft Ads','palavras de quem quer contratar, não de curioso'],
+        ['landing page ou site de 1 a 5 seções','texto com foco em conversão','GTM, GA4 e Pixel do Meta configurados'],
+        ['botão com a mensagem já escrita','aviso de cada contato, com a origem','IA que responde e qualifica fora do horário'],
+        ['retomada de orçamento parado','reativação de quem já foi cliente','mensagens no seu tom, aprovadas por você'],
+        ['de onde veio cada contato','domínio, site e contas no seu nome','manutenção e hospedagem do site']],
+      precos:[['Google Meu Negócio: no Lançamento','gestão de tráfego: R$ 697/mês + verba na sua conta'],['Lançamento: R$ 2.500','ou 3x de R$ 833,33'],['aviso de contato: no Lançamento','IA no WhatsApp: valor no diagnóstico'],['reativação: valor no diagnóstico','roda na sua própria base de contatos'],['manutenção: R$ 197/mês','depois da entrega']],
+      aqui:'você aparece aqui', ia:'IA', url:'seunegocio.com.br', patro:'Patrocinado', aberto:'Aberto agora', acoes:['Rota','Ligar','Site','WhatsApp'],
+      falar:'Falar no WhatsApp', selos:['abre rápido no celular','GA4 e Pixel medindo','WhatsApp em cada parte','pronto para anúncio'],
+      hoje:'hoje', novo:'Novo contato no seu celular', origem:'veio do anúncio do Google',
+      fu:['terça, 14:02','sexta, 10:00','6 meses depois'], enviado:n => 'Orçamento enviado para ' + n + '.', retoma:'Sem resposta. O sistema retoma:', reat:'Reativação:', respondeu:n => n + ' respondeu',
+      contatos:'contatos do mês', outros:['Ana','Pedro','Beatriz'], origens:['Google','anúncio','mapa','Instagram'], status:['novo','em conversa','fechado','novo'],
+      nome:'no seu nome, não no da agência', nomeItens:['domínio','site','Google Meu Negócio','conta de anúncio']},
+    en:{nichos:'Your business:', topo:'theatrum · a client\'s path', ex:'example', entrega:'what Theatrum delivers here',
+      prox:'next step →', denovo:'watch again ↺',
+      etapas:[['They find you','Google, maps and ads'],['They land on the site','fast, clear, ready for ads'],['They message you','ready-made text and instant alert'],['They don\'t go cold','follow-up and reactivation'],['You keep track','everything measured, all in your name']],
+      itens:[
+        ['Google Business Profile reviewed','campaign on Google Ads and Microsoft Ads','keywords from people ready to hire, not browsers'],
+        ['landing page or website with 1 to 5 sections','copy focused on conversion','GTM, GA4 and Meta Pixel set up'],
+        ['button with the message already written','an alert for every contact, with its source','AI that answers and qualifies after hours'],
+        ['follow-up on stalled quotes','reactivation of past clients','messages in your voice, approved by you'],
+        ['where every contact came from','domain, site and accounts in your name','website maintenance and hosting']],
+      precos:[['Business Profile: in Launch','traffic management: R$ 697/month + budget in your account'],['Launch: R$ 2,500','or 3x R$ 833.33'],['contact alerts: in Launch','AI on WhatsApp: priced in the diagnosis'],['reactivation: priced in the diagnosis','runs on your own contact list'],['maintenance: R$ 197/month','after delivery']],
+      aqui:'you show up here', ia:'AI', url:'yourbusiness.com', patro:'Sponsored', aberto:'Open now', acoes:['Directions','Call','Website','WhatsApp'],
+      falar:'Message on WhatsApp', selos:['loads fast on mobile','GA4 and Pixel tracking','WhatsApp in every part','ready for ads'],
+      hoje:'today', novo:'New contact on your phone', origem:'came from the Google ad',
+      fu:['Tuesday, 2:02pm','Friday, 10:00am','6 months later'], enviado:n => 'Quote sent to ' + n + '.', retoma:'No reply. The system follows up:', reat:'Reactivation:', respondeu:n => n + ' replied',
+      contatos:'this month\'s contacts', outros:['Ana','Pedro','Beatriz'], origens:['Google','ad','maps','Instagram'], status:['new','talking','closed','new'],
+      nome:'in your name, not the agency\'s', nomeItens:['domain','website','Business Profile','ad account']}
+  };
+  const DUR = [8500, 7500, 8500, 9000, 7500];
+
+  const CK = '<svg class="px-ck" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const LUPA = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  const ZAP = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+  const SINO = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 9a6 6 0 10-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 19.5a2.2 2.2 0 004 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+  let nicho = 'adv', etapa = 0, manual = parado, gen = 0;
+  let visivel = false, mouse = false, iniciado = false;
+
+  function tela(i, t, d){
+    const q = (n, html, cls = '') => `<div class="q ${cls}" style="--i:${n}">${html}</div>`;
+    if(i === 0) return `
+      <div class="px-g">
+        <div class="px-gbar">${LUPA}<span class="px-qtxt"></span><span class="px-cur"></span></div>
+        <div class="px-card eu q" style="--i:0"><span class="px-aqui">${t.aqui}</span><span class="tag">${t.patro}</span><span class="url">${t.url}</span><p class="tl">${d.adT}</p><p class="ds">${d.adD}</p></div>
+        <div class="px-card px-mapa eu q" style="--i:1"><span class="px-aqui">${t.aqui}</span><div class="px-mapa-img"><i></i></div><p class="tl">${d.marca}</p><p class="ds">${d.cat} · <span class="ab">${t.aberto}</span></p><div class="px-acoes">${t.acoes.map((a, k) => `<span${k === 3 ? ' class="wa"' : ''}>${a}</span>`).join('')}</div></div>
+      </div>`;
+    if(i === 1) return `
+      <div class="px-site">
+        <div class="px-cel q" style="--i:0">
+          <div class="px-cel-top"><b>${d.marca}</b><i></i></div>
+          <div class="px-cel-hero"><span class="k">${d.cat}</span><p class="h">${d.h}</p><p class="s">${d.sub}</p><span class="bt">${ZAP} ${t.falar}</span></div>
+          <div class="px-cel-sk"><i></i><i></i><i></i></div>
+        </div>
+        <ul class="px-selos">${t.selos.map((s, k) => `<li class="q" style="--i:${k * .7 + 1}">${CK}${s}</li>`).join('')}</ul>
+      </div>`;
+    if(i === 2) return `
+      <div class="px-wa">
+        <div class="px-toast q" style="--i:5"><span class="sino">${SINO}</span><span><b>${t.novo}</b><small>${t.origem} · ${d.needs[0]}</small></span></div>
+        <div class="px-wa-app">
+          <div class="px-wa-h"><span class="av">${d.pessoa[0]}</span><span><b>${d.pessoa}</b><small>online</small></span></div>
+          <div class="px-wa-chat">
+            <span class="dia q" style="--i:0">${t.hoje}</span>
+            <p class="m in q" style="--i:1">${d.msg}<small>21:47</small></p>
+            <p class="m out q" style="--i:2.6"><em>${t.ia}</em>${d.ia}<small>21:47</small></p>
+            <p class="m out q" style="--i:4"><em>${t.ia}</em>${d.ia2}<small>21:48</small></p>
+          </div>
+        </div>
+      </div>`;
+    if(i === 3) return `
+      <ol class="px-fu">
+        <li class="q" style="--i:0"><span class="qd">${t.fu[0]}</span><p>${t.enviado(d.pessoa)}</p></li>
+        <li class="q" style="--i:1.3"><span class="qd">${t.fu[1]}</span><p>${t.retoma}</p><p class="bb">${d.fu}</p></li>
+        <li class="q" style="--i:3"><span class="qd">${t.fu[2]}</span><p>${t.reat}</p><p class="bb">${d.re}</p></li>
+        <li class="q ok" style="--i:4.6"><span class="qd">${t.respondeu(d.pessoa)}</span><p class="bb in">${d.resp}</p></li>
+      </ol>`;
+    const nomes = [d.pessoa, ...t.outros];
+    return `
+      <div class="px-pn">
+        ${q(0, `<b>${t.contatos}</b><span>${t.ex}</span>`, 'px-pn-h')}
+        ${nomes.map((n, k) => q(k * .6 + .6, `<span class="av">${n[0]}</span><span><b>${n}</b><small>${d.needs[k]}</small></span><span class="og">${t.origens[k]}</span><span class="st${k === 2 ? ' f' : ''}">${t.status[k]}</span>`, 'px-ln')).join('')}
+        ${q(3.4, `<span class="r">${t.nome}</span>${t.nomeItens.map(x => `<span>${CK}${x}</span>`).join('')}`, 'px-nome')}
+      </div>`;
   }
 
-  /* Conteúdo */
-  const cGrid  = document.getElementById('sysCGrid');
-  const cCount = document.getElementById('sysCCount');
-  const cBar   = document.getElementById('sysCBar');
-  const cLabel = document.getElementById('sysCLabel');
-  const cStatus= document.getElementById('sysCStatus');
-  const ICONS = [
-    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.8"/></svg>',
-    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
-    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="7" y="7" width="13" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 16V6a2 2 0 012-2h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
-  ];
-  for(let i=0;i<30;i++){
-    const t = document.createElement('div');
-    t.className = 'c-tile';
-    t.innerHTML = ICONS[i%3];
-    cGrid.appendChild(t);
-  }
-  const tiles = [...cGrid.children];
-  function cLabelText(done){
-    const en = document.documentElement.lang === 'en';
-    if (done) return en ? '30 posts created and scheduled ✓' : '30 posts criados e agendados ✓';
-    return en ? "Generating this month's content…" : 'Gerando conteúdo do mês…';
-  }
-  function resetContent(){
-    tiles.forEach(t => t.classList.remove('filled'));
-    cCount.textContent = '0/30';
-    cBar.style.width = '0%';
-    cLabel.textContent = cLabelText(false);
-    cStatus.classList.remove('done');
-  }
-  async function playContent(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(700)) return;
-    for(let i=0;i<30;i++){
-      tiles[i].classList.add('filled');
-      cCount.textContent = (i+1)+'/30';
-      cBar.style.width = ((i+1)/30*100)+'%';
-      if(!await step(110)) return;
-    }
-    if(!await step(400)) return;
-    cLabel.textContent = cLabelText(true);
-    cStatus.classList.add('done');
-    await step(2200);
-  }
-
-  /* CRM */
-  const leads = [...document.querySelectorAll('#sistema .k-lead')];
-  function resetCrm(){ leads.forEach(l => l.classList.remove('on')); }
-  async function playCrm(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(700)) return;
-    for(let i=0;i<leads.length;i++){
-      if(i>0) leads[i-1].classList.remove('on');
-      leads[i].classList.add('on');
-      if(!await step(i===leads.length-1 ? 0 : 1700)) return;
-    }
-    await step(2300);
-  }
-
-  /* Follow-up */
-  const fItems  = [...document.querySelectorAll('#sysChatF .seq')];
-  const fToast  = document.getElementById('sysToastF');
-  const fStatus = document.getElementById('sysWaStatusF');
-  function resetFollow(){
-    fItems.forEach(el => el.classList.remove('show'));
-    fToast.classList.remove('show');
-    fStatus.textContent = 'online';
-  }
-  async function playFollow(g){
-    const [chipOld, oldMsg, nores, chipHoje, t1, ia1, in1, t2, ia2, in2] = fItems;
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(500)) return; chipOld.classList.add('show');
-    if(!await step(450)) return; oldMsg.classList.add('show');
-    if(!await step(650)) return; nores.classList.add('show');
-    if(!await step(1400)) return; chipHoje.classList.add('show');
-    if(!await step(700)) return;
-    fStatus.textContent = typingLabel(); t1.classList.add('show');
-    if(!await step(1400)) return;
-    t1.classList.remove('show'); fStatus.textContent = 'online'; ia1.classList.add('show');
-    if(!await step(1800)) return; in1.classList.add('show');
-    if(!await step(800)) return;
-    fStatus.textContent = typingLabel(); t2.classList.add('show');
-    if(!await step(1200)) return;
-    t2.classList.remove('show'); fStatus.textContent = 'online'; ia2.classList.add('show');
-    if(!await step(1500)) return; in2.classList.add('show');
-    if(!await step(900)) return; fToast.classList.add('show');
-    await step(2600);
-  }
-
-  /* Lembretes */
-  const lItems  = [...document.querySelectorAll('#sysChatL .seq')];
-  const lToast  = document.getElementById('sysToastL');
-  const lStatus = document.getElementById('sysWaStatusL');
-  function resetLembretes(){
-    lItems.forEach(el => el.classList.remove('show'));
-    lToast.classList.remove('show');
-    lStatus.textContent = 'online';
-  }
-  async function playLembretes(g){
-    const [chip, t1, ia1, in1, ia2] = lItems;
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(500)) return; chip.classList.add('show');
-    if(!await step(600)) return;
-    lStatus.textContent = typingLabel(); t1.classList.add('show');
-    if(!await step(1300)) return;
-    t1.classList.remove('show'); lStatus.textContent = 'online'; ia1.classList.add('show');
-    if(!await step(1700)) return; in1.classList.add('show');
-    if(!await step(1000)) return; ia2.classList.add('show');
-    if(!await step(900)) return; lToast.classList.add('show');
-    await step(2500);
-  }
-
-  /* Metas */
-  const mVal = document.getElementById('sysMVal'), mPct = document.getElementById('sysMPct'),
-        mBar = document.getElementById('sysMBar'), mChip = document.getElementById('sysMChip');
-  const mRows = [
-    { r:document.getElementById('sysMR0'), b:document.getElementById('sysMB0'), v:46, max:55 },
-    { r:document.getElementById('sysMR1'), b:document.getElementById('sysMB1'), v:12, max:15 },
-    { r:document.getElementById('sysMR2'), b:document.getElementById('sysMB2'), v:8,  max:10 }
-  ];
-  const M_GOAL = 45000, M_HIT = 37500;
-  function resetMetas(){
-    mVal.textContent = 'R$ 0'; mPct.textContent = '0%'; mBar.style.width = '0%';
-    mRows.forEach(x => { x.r.textContent = '0'; x.b.style.width = '0%'; });
-    mChip.classList.remove('show');
-  }
-  async function playMetas(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(600)) return;
-    mBar.style.width = (M_HIT / M_GOAL * 100) + '%';
-    const STEPS = 34;
-    for(let i = 1; i <= STEPS; i++){
-      const p = 1 - Math.pow(1 - i / STEPS, 3);
-      mVal.textContent = 'R$ ' + Math.round(M_HIT * p).toLocaleString(moneyLocale());
-      mPct.textContent = Math.round(M_HIT / M_GOAL * 100 * p) + '%';
-      if(!await step(50)) return;
-    }
-    for(const x of mRows){
-      x.b.style.width = (x.v / x.max * 100) + '%';
-      for(let i = 1; i <= 12; i++){
-        x.r.textContent = Math.round(x.v * i / 12);
-        if(!await step(45)) return;
-      }
-      if(!await step(200)) return;
-    }
-    if(!await step(300)) return; mChip.classList.add('show');
-    await step(2300);
-  }
-
-  /* Faturamento */
-  const fChart = document.getElementById('sysFChart'), fChip = document.getElementById('sysFChip');
-  const F_DATA = [
-    { m:'6m atrás', v:22 }, { m:'5m atrás', v:26 }, { m:'4m atrás', v:29 },
-    { m:'3m atrás', v:34 }, { m:'2m atrás', v:39 }, { m:'atual', v:45 }
-  ];
-  F_DATA.forEach((d, i) => {
-    const col = document.createElement('div');
-    col.className = 'f-col' + (i === F_DATA.length - 1 ? ' cur' : '');
-    col.innerHTML = '<span class="f-vlabel">' + d.v + ' mil</span><div class="f-bar"></div><span class="f-mlabel">' + d.m + '</span>';
-    fChart.appendChild(col);
-  });
-  const fCols = [...fChart.children];
-  const F_MAX = 52;
-  function resetFat(){
-    fCols.forEach(c => { c.classList.remove('on'); c.querySelector('.f-bar').style.height = '0%'; });
-    fChip.classList.remove('show');
-  }
-  async function playFat(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(600)) return;
-    for(let i = 0; i < fCols.length; i++){
-      fCols[i].classList.add('on');
-      fCols[i].querySelector('.f-bar').style.height = (F_DATA[i].v / F_MAX * 100) + '%';
-      if(!await step(300)) return;
-    }
-    if(!await step(500)) return; fChip.classList.add('show');
-    await step(2400);
-  }
-
-  /* Evolução */
-  const eLine = document.getElementById('sysELine'), eArea = document.getElementById('sysEArea'),
-        eEnd = document.getElementById('sysEEnd'), eChip = document.getElementById('sysEChip');
-  function resetEvo(){
-    eLine.classList.remove('draw');
-    eArea.classList.remove('show');
-    eEnd.classList.remove('show');
-    eChip.classList.remove('show');
-  }
-  async function playEvo(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(700)) return;
-    eLine.classList.add('draw');
-    if(!await step(2700)) return;
-    eArea.classList.add('show');
-    if(!await step(400)) return;
-    eEnd.classList.add('show');
-    if(!await step(500)) return;
-    eChip.classList.add('show');
-    await step(2400);
-  }
-
-  /* Agenda */
-  const aGrid = document.getElementById('sysAGrid'), aChip = document.getElementById('sysAChip'),
-        aStatus = document.getElementById('sysAStatus');
-  const A_NAMES = ['Mariana','Carlos','Júlia','Ana','Roberto','Bia','Felipe','Lucas','Paula','Davi','Rafaela','Nina','Pedro','Sofia','Igor','Lara'];
-  const A_PRE = [3, 9, 16, 22, 31];
-  for(let i = 0; i < 36; i++){
-    const c = document.createElement('div');
-    c.className = 'a-cell' + (A_PRE.includes(i) ? ' pre' : '');
-    c.textContent = A_NAMES[i % A_NAMES.length];
-    aGrid.appendChild(c);
-  }
-  const aCells = [...aGrid.children];
-  const aOrder = aCells.map((_, i) => i).filter(i => !A_PRE.includes(i));
-  for(let i = aOrder.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [aOrder[i], aOrder[j]] = [aOrder[j], aOrder[i]];
-  }
-  function aStatusText(phase){
-    const en = document.documentElement.lang === 'en';
-    if (phase === 'filling') return en ? 'bookings coming in…' : 'agendamentos entrando…';
-    if (phase === 'full') return en ? '36/36 slots filled' : '36/36 horários preenchidos';
-    return en ? 'only 5 slots filled this week' : 'só 5 horários preenchidos na semana';
-  }
-  function resetAgenda(){
-    aCells.forEach(c => c.classList.remove('on'));
-    aChip.classList.remove('show');
-    aStatus.textContent = aStatusText('empty');
-  }
-  async function playAgenda(g){
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(1400)) return;
-    aStatus.textContent = aStatusText('filling');
-    for(const i of aOrder){
-      aCells[i].classList.add('on');
-      if(!await step(95)) return;
-    }
-    if(!await step(400)) return;
-    aStatus.textContent = aStatusText('full');
-    aChip.classList.add('show');
-    await step(2700);
-  }
-
-  /* Recall / reativação */
-  const rItems  = [...document.querySelectorAll('#sysChatR .seq')];
-  const rToast  = document.getElementById('sysToastR');
-  const rStatus = document.getElementById('sysWaStatusR');
-  function resetRecall(){
-    rItems.forEach(el => el.classList.remove('show'));
-    rToast.classList.remove('show');
-    rStatus.textContent = 'online';
-  }
-  async function playRecall(g){
-    const [chip, t1, ia1, in1, ia2] = rItems;
-    const step = async ms => { await sleep(ms); return g === gen; };
-    if(!await step(500)) return; chip.classList.add('show');
-    if(!await step(800)) return;
-    rStatus.textContent = typingLabel(); t1.classList.add('show');
-    if(!await step(1400)) return;
-    t1.classList.remove('show'); rStatus.textContent = 'online'; ia1.classList.add('show');
-    if(!await step(1900)) return; in1.classList.add('show');
-    if(!await step(1100)) return; ia2.classList.add('show');
-    if(!await step(900)) return; rToast.classList.add('show');
-    await step(2500);
-  }
-
-  /* orquestração */
-  const resets = [resetWhats, resetGoogle, resetContent, resetCrm, resetFollow, resetLembretes, resetMetas, resetFat, resetEvo, resetAgenda, resetRecall];
-  const plays  = [playWhats,  playGoogle,  playContent,  playCrm,  playFollow,  playLembretes,  playMetas,  playFat,  playEvo,  playAgenda,  playRecall];
-
-  const VISIBLE = [1, 0, 4, 9];
-  const ALL     = [1, 0, 4, 9, 2, 3, 5, 6, 10, 7, 8];
-  let expanded = false;
-
-  async function run(i){
+  function desenha(){
+    const L = idioma(), t = PX_T[L], d = PX_N[nicho][L];
     const g = ++gen;
-    setActive(i);
-    resets[i]();
-    await sleep(400); if(g !== gen) return;
-    await plays[i](g); if(g !== gen) return;
-    await sleep(300);  if(g !== gen) return;
-    const order = expanded ? ALL : VISIBLE;
-    run(order[(order.indexOf(i) + 1) % order.length]);
-  }
+    raiz.style.setProperty('--dur', DUR[etapa] + 'ms');
+    raiz.innerHTML = `
+      <div class="px-nichos" role="group" aria-label="${t.nichos}">
+        <span class="px-nichos-t">${t.nichos}</span>
+        ${ORDEM.map(k => `<button type="button" class="px-nicho" data-nicho="${k}" aria-pressed="${k === nicho}">${PX_N[k][L].rot}</button>`).join('')}
+      </div>
+      <div class="px-app">
+        <div class="px-top"><i></i><i></i><i></i><span class="t">${t.topo}</span><span class="px-ex">${t.ex}</span></div>
+        <div class="px-body">
+          <ol class="px-etapas">
+            ${t.etapas.map((e, k) => `<li><button type="button" class="px-etapa" data-etapa="${k}"${k === etapa ? ' aria-current="step"' : ''}><span class="n">0${k + 1}</span><span class="tt">${e[0]}</span><span class="ss">${e[1]}</span><span class="px-barra"><i></i></span></button></li>`).join('')}
+          </ol>
+          <div class="px-tela">
+            <span class="px-tela-t">0${etapa + 1} · ${t.etapas[etapa][0]}</span>
+            ${tela(etapa, t, d)}
+          </div>
+          <div class="px-entrega">
+            <h4>${t.entrega}</h4>
+            <ul>${t.itens[etapa].map(x => `<li>${CK}<span>${x}</span></li>`).join('')}</ul>
+            <div class="px-preco"><b>${t.precos[etapa][0]}</b>${t.precos[etapa][1]}</div>
+            <button type="button" class="px-prox" data-prox>${etapa === 4 ? t.denovo : t.prox}</button>
+          </div>
+        </div>
+      </div>`;
+    estado();
 
-  cards.forEach(c => c.addEventListener('click', ()=>{
-    const i = +c.dataset.tab;
-    if(reduced){ setActive(i); return; }
-    run(i);
-  }));
-
-  const moreBtn  = document.getElementById('sysMoreBtn');
-  const featWrap = document.querySelector('#sistema .features');
-  moreBtn.addEventListener('click', () => {
-    expanded = !expanded;
-    featWrap.classList.toggle('expanded', expanded);
-    const en = document.documentElement.lang === 'en';
-    moreBtn.innerHTML = expanded
-      ? (en ? '<span class="pl">−</span> show less' : '<span class="pl">−</span> mostrar menos')
-      : (en ? '<span class="pl">+</span> see the other 7 demos' : '<span class="pl">+</span> ver as outras 7 demonstrações');
-    if(!expanded){
-      const cur = +document.querySelector('#sistema .feature.active').dataset.tab;
-      if(!VISIBLE.includes(cur)){ reduced ? setActive(VISIBLE[0]) : run(VISIBLE[0]); }
+    const tl = raiz.querySelector('.px-tela');
+    const qt = raiz.querySelector('.px-qtxt');
+    if(parado){
+      tl.classList.add('on');
+      if(qt) qt.textContent = d.busca;
+      return;
     }
-  });
-
-  if(reduced){
-    waItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
-    waToast.classList.add('show');
-    gQuery.textContent = QUERY();
-    gSeq.forEach(el => el.classList.add('show'));
-    tiles.forEach(t => t.classList.add('filled'));
-    cCount.textContent = '30/30'; cBar.style.width = '100%';
-    cLabel.textContent = cLabelText(true);
-    cStatus.classList.add('done');
-    leads[3].classList.add('on');
-    fItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
-    fToast.classList.add('show');
-    lItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
-    lToast.classList.add('show');
-    mVal.textContent = 'R$ ' + M_HIT.toLocaleString(moneyLocale());
-    mPct.textContent = Math.round(M_HIT / M_GOAL * 100) + '%';
-    mBar.style.width = (M_HIT / M_GOAL * 100) + '%';
-    mRows.forEach(x => { x.r.textContent = x.v; x.b.style.width = (x.v / x.max * 100) + '%'; });
-    mChip.classList.add('show');
-    fCols.forEach((c, i) => { c.classList.add('on'); c.querySelector('.f-bar').style.height = (F_DATA[i].v / F_MAX * 100) + '%'; });
-    fChip.classList.add('show');
-    eLine.style.strokeDashoffset = '0';
-    eArea.classList.add('show'); eEnd.classList.add('show'); eChip.classList.add('show');
-    aCells.forEach(c => { if(!c.classList.contains('pre')) c.classList.add('on'); });
-    aStatus.textContent = aStatusText('full');
-    aChip.classList.add('show');
-    rItems.forEach(el => { if(!el.hasAttribute('data-typing')) el.classList.add('show'); });
-    rToast.classList.add('show');
-    setActive(VISIBLE[0]);
-  } else {
-    const io = new IntersectionObserver(entries => {
-      if(entries[0].isIntersecting){ io.disconnect(); run(VISIBLE[0]); }
-    }, { threshold:.3 });
-    io.observe(document.getElementById('sysStage'));
+    requestAnimationFrame(() => requestAnimationFrame(() => { if(g === gen) tl.classList.add('on'); }));
+    if(qt){
+      let n = 0;
+      const tecla = () => {
+        if(g !== gen) return;
+        qt.textContent = d.busca.slice(0, ++n);
+        if(n < d.busca.length) setTimeout(tecla, 34);
+      };
+      setTimeout(tecla, 250);
+    }
   }
+
+  function estado(){
+    raiz.classList.toggle('parado', parado);
+    raiz.classList.toggle('tocando', !manual);
+    raiz.classList.toggle('pausado', !visivel || mouse || document.hidden);
+  }
+
+  raiz.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if(!b || !raiz.contains(b)) return;
+    if(b.dataset.nicho){ nicho = b.dataset.nicho; desenha(); return; }
+    if(b.dataset.etapa){ manual = true; etapa = +b.dataset.etapa; desenha(); return; }
+    if(b.hasAttribute('data-prox')){ manual = true; etapa = (etapa + 1) % 5; desenha(); }
+  });
+  raiz.addEventListener('animationend', e => {
+    if(e.animationName !== 'pxBarra' || manual) return;
+    etapa = (etapa + 1) % 5;
+    desenha();
+  });
+  const temMouse = window.matchMedia('(hover: hover)').matches;
+  raiz.addEventListener('mouseover', e => { if(temMouse && !mouse && e.target.closest('.px-app')){ mouse = true; estado(); } });
+  raiz.addEventListener('mouseleave', () => { mouse = false; estado(); });
+  document.addEventListener('visibilitychange', estado);
+
+  if(parado){ visivel = true; desenha(); }
+  else {
+    new IntersectionObserver(es => {
+      visivel = es[0].isIntersecting;
+      if(visivel && !iniciado){ iniciado = true; desenha(); }
+      else if(iniciado) estado();
+    }, { threshold:.3 }).observe(raiz);
+  }
+
+  new MutationObserver(() => { if(iniciado || parado) desenha(); })
+    .observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
 })();
 </script>
 
