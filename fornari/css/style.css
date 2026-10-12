@@ -120,7 +120,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .runas--lado svg { width: 10px; height: auto; }
 
 /* ---------- Contador ---------- */
-.contador { position: relative; padding: 10px 0 calc(34px + 6.1vw); background: var(--pedra); }
+.contador { position: relative; z-index: 2; margin-top: calc(clamp(110px, 15vw, 230px) * -.62); padding: 0 0 calc(4px + 6.1vw); background: transparent; }
 .contador__in { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; min-height: 74px; }
 .num { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .num__v { font: 400 clamp(36px, 6vw, 58px)/1 var(--display); color: var(--neon); letter-spacing: .03em; }
