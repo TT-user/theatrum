@@ -465,7 +465,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `index.html`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
   UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
 - `/fornari/` — prévia da landing do Felipe Fornari (Team Fornari: treinador com consultoria
-  online e presencial, sócio da Espaço Saúde, Alto Caparaó, MG), feita para prospecção em
+  online e presencial, sócio da Espaço Saúde em Caparaó, MG; presencial em Caparaó e Alto Caparaó), feita para prospecção em
   12/10/2026. Substitui o caminho bio → Linktree → Google Forms de 50 perguntas: o seguidor vê os
   resultados e faz uma aplicação de 7 perguntas (`js/aplicacao.js`, regras do plano no topo) que
   monta a mensagem do WhatsApp; a anamnese completa fica para depois do pagamento. Estética de
