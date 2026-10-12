@@ -449,6 +449,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   do banner deles: creme, dourado e grafite. Hero com a foto numa moldura em "D" (a marca deles),
   rostos da equipe num card e um marquee dourado de tratamentos, que só anda à vista
   (IntersectionObserver) e para com `prefers-reduced-motion`. O menu destaca a seção na tela.
+  Cards da equipe entram em cascata e, no hover, sobem, dão zoom, ganham um brilho dourado e
+  mostram o CRO (no celular o CRO fica sempre à vista). Atrás do site, um degradê dourado fixo
+  (`body::before`) deriva devagar só com transform; seções claras são semitransparentes para
+  ele aparecer.
   Tratamentos e equipe vêm dos objetos `TRATS` e
   `EQUIPE` do `js/main.js`; cada card e cada dentista abre o WhatsApp com mensagem própria, e o
   "Por onde começar" (três perguntas) indica o especialista e monta a mensagem. Avaliações são

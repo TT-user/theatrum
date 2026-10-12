@@ -72,10 +72,22 @@
       : 'Olá! Vim pelo site da Doctors e quero agendar uma avaliação com ' + p.nome + '.';
     var rotulo = p.gestao ? 'Dúvidas de agenda e pagamento' : 'Agendar com ' + p.nome.split(' ').slice(0, 2).join(' ');
     return '<article class="pessoa" data-esp="' + p.esp.join('|') + '">' +
-      '<img loading="lazy" src="assets/img/eq-' + p.img + '-420.webp" width="420" height="385" alt="' + p.nome + ', ' + p.esp.join(', ') + (p.cro ? ', ' + p.cro : '') + '">' +
+      '<div class="pessoa__foto"><img loading="lazy" src="assets/img/eq-' + p.img + '-420.webp" width="420" height="385" alt="' + p.nome + ', ' + p.esp.join(', ') + (p.cro ? ', ' + p.cro : '') + '">' +
+      (p.cro ? '<span class="pessoa__cro" aria-hidden="true">' + p.cro + '</span>' : '') + '</div>' +
       '<div class="pessoa__info"><div class="pessoa__tags">' + p.esp.map(function (e) { return '<span>' + e + '</span>'; }).join('') + '</div>' +
       '<a class="btn btn--linha" href="' + zap(msg) + '" target="_blank" rel="noopener">' + rotulo + '</a></div></article>';
   }).join('');
+
+  // Cards entram em cascata quando a seção aparece
+  var cards = elEquipe.querySelectorAll('.pessoa');
+  cards.forEach(function (c, i) { c.style.setProperty('--atraso', (i % 4) * 90 + 'ms'); });
+  if ('IntersectionObserver' in window) {
+    elEquipe.classList.add('animar');
+    var revela = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visivel'); revela.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    cards.forEach(function (c) { revela.observe(c); });
+  }
 
   var FILTROS = [
     ['Todos', ''], ['Implantes', 'Implantes'], ['Lentes e facetas', 'Lentes'], ['Ortodontia', 'Ortodontia'],
