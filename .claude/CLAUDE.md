@@ -187,7 +187,8 @@ rodapé em colunas), adaptada à escada de compromisso.
   dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e 119 KB): vem sobre
   preto e entra com `mix-blend-mode:screen`, então o preto some e o fundo do
   hero continua o mesmo. No computador o card desce (`align-self:end`) para
-  o rosto ficar à vista; abaixo de 980 px ela fica a 22% atrás do texto.
+  o rosto ficar à vista; abaixo de 980 px ela fica a 22% atrás do texto,
+  espelhada (olhando para o texto), com 62svh de altura e colada na direita.
   Por baixo de tudo, um vidro líquido sutil: fundo, grade e estátua ficam em
   `.hero-fundo`, que passa pelo filtro SVG `#hx-vidro` (ondulação larga,
   `scale` 16, `color-interpolation-filters="sRGB"`, senão o fundo escuro
