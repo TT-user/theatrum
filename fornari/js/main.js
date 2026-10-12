@@ -62,18 +62,22 @@
     }, { passive: true });
   }
 
-  // Brasas verdes subindo atrás dos planos; param fora da tela
-  var brasas = document.getElementById('brasas');
-  if (brasas && !semMovimento) {
-    var html = '';
-    for (var b = 0; b < 26; b++) {
-      var s = (2 + Math.random() * 3).toFixed(1);
-      html += '<span class="brasa" style="--x:' + (Math.random() * 100).toFixed(1) + '%;--s:' + s + 'px;--t:' + (7 + Math.random() * 7).toFixed(1) + 's;--d:-' + (Math.random() * 14).toFixed(1) + 's;--dx:' + (Math.random() * 80 - 40).toFixed(0) + 'px"></span>';
-    }
-    brasas.innerHTML = html;
-    var mede = function () { brasas.style.setProperty('--h', brasas.offsetHeight + 'px'); };
-    mede(); addEventListener('resize', mede);
-    new IntersectionObserver(function (e) { brasas.classList.toggle('anda', e[0].isIntersecting); }).observe(brasas);
+  // Brasas verdes subindo nas seções de fundo preto; cada grupo para fora da tela
+  if (!semMovimento) {
+    var brasaVista = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle('anda', e.isIntersecting); });
+    });
+    document.querySelectorAll('.brasas').forEach(function (grupo) {
+      var html = '';
+      for (var b = 0; b < 22; b++) {
+        var s = (2 + Math.random() * 3).toFixed(1);
+        html += '<span class="brasa" style="--x:' + (Math.random() * 100).toFixed(1) + '%;--s:' + s + 'px;--t:' + (7 + Math.random() * 7).toFixed(1) + 's;--d:-' + (Math.random() * 14).toFixed(1) + 's;--dx:' + (Math.random() * 80 - 40).toFixed(0) + 'px"></span>';
+      }
+      grupo.innerHTML = html;
+      var mede = function () { grupo.style.setProperty('--h', grupo.offsetHeight + 'px'); };
+      mede(); addEventListener('resize', mede);
+      brasaVista.observe(grupo);
+    });
   }
 
   var ph = function (t) { return '<span class="ph">' + t + '</span>'; };

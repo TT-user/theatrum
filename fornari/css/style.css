@@ -435,8 +435,8 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 35; pointer-even
 .secao--verde .arsenal svg, .secao--verde .arsenal h3, .secao--verde .arsenal p { color: var(--pedra); }
 
 /* Escolha sua forja: brasas verdes subindo */
-#planos { overflow: hidden; }
-#planos .wrap { position: relative; z-index: 1; }
+.tem-brasas { overflow: hidden; }
+.tem-brasas > :not(.brasas):not(.no-gigante) { position: relative; z-index: 1; }
 .brasas { position: absolute; inset: 0; pointer-events: none; }
 .brasa { position: absolute; bottom: -12px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; background: var(--neon); box-shadow: 0 0 10px 2px rgba(46,227,138,.55); opacity: 0; animation: brasa var(--t) linear var(--d) infinite paused; }
 .brasas.anda .brasa { animation-play-state: running; }
