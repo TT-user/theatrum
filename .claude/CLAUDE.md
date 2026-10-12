@@ -475,8 +475,11 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   serra do Caparaó com o Pico da Bandeira no rodapé, com um atleta rompendo a pedra. **Nada de
   símbolo pagão** (Odin, Thor, Valknut, Mjölnir...): ele declara fé cristã. Por isso as
   marcas do `runas.js` não são letras do Futhark: tiwaz e ansuz são runas de deuses e a
-  othala tem uso neonazista. Não troque por runas de verdade. Títulos em Bebas Neue (a fonte das artes dele), corpo em Inter. Ainda sem nenhuma
-  foto: hero e "quem é" têm o `<img>` comentado; cartas e números vêm de `data/resultados.json`
+  othala tem uso neonazista. Não troque por runas de verdade. Títulos em Bebas Neue (a fonte das artes dele), corpo em Inter. Fotos dele (retrato no
+  hero, à direita no computador e no topo no celular; academia em "quem é") vêm de
+  `assets/fotos/felipe/`, tiradas do Instagram dele para a prévia; os originais ficam em
+  `interno/clientes/fornari/originais/`. Cartas de aluno seguem placeholder (falta
+  autorização para o site), e cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
   `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).

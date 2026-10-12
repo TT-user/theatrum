@@ -13,14 +13,15 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Vem pro time | Team Fornari">
   <meta property="og:description" content="Seu melhor físico com acompanhamento de verdade. Faça a aplicação em 60 segundos.">
-  <!-- TODO: og:image com uma foto forte do Felipe (1200x630) quando as fotos chegarem -->
+  <meta property="og:image" content="https://usetheatrum.com.br/fornari/assets/fotos/felipe/og-1200.jpg">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/fotos/felipe/retrato-729.webp" imagesrcset="assets/fotos/felipe/retrato-480.webp 480w, assets/fotos/felipe/retrato-729.webp 729w" imagesizes="(min-width: 980px) 729px, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=5">
 
   <script type="application/ld+json">
   {
@@ -91,11 +92,8 @@
     <!-- 1. Hero -->
     <section class="hero" id="inicio">
       <div class="hero__fundo" aria-hidden="true">
-        <!-- TODO foto: <img class="hero__foto" src="assets/fotos/felipe/hero-1200.webp" srcset="... 720w, ... 1200w" sizes="100vw" alt="" fetchpriority="high"> -->
-        <div class="hero__vazio">
-          <svg class="hero__emblema" aria-hidden="true"><use href="#emblema"/></svg>
-          <span class="ph">[FOTO DO FELIPE: retrato de braços cruzados, na academia]</span>
-        </div>
+        <img class="hero__foto" src="assets/fotos/felipe/retrato-729.webp" srcset="assets/fotos/felipe/retrato-480.webp 480w, assets/fotos/felipe/retrato-729.webp 729w" sizes="(min-width: 980px) 729px, 100vw" width="729" height="854" alt="" fetchpriority="high">
+        <div class="hero__brilho"></div>
       </div>
       <div class="runas runas--lado hero__runas" data-runas="TEAM FORNARI" aria-hidden="true"></div>
       <div class="wrap hero__in">
@@ -186,8 +184,7 @@
     <section class="secao secao--alt" id="felipe">
       <div class="wrap sobre">
         <figure class="sobre__foto revela">
-          <!-- TODO foto: <img src="assets/fotos/felipe/treinando-640.webp" width="640" height="800" alt="Felipe Fornari treinando" loading="lazy"> -->
-          <div class="foto-vazia"><svg aria-hidden="true"><use href="#emblema"/></svg><span class="ph">[FOTO: Felipe treinando]</span></div>
+          <img src="assets/fotos/felipe/academia-640.webp" srcset="assets/fotos/felipe/academia-400.webp 400w, assets/fotos/felipe/academia-640.webp 640w" sizes="(min-width: 900px) 460px, 92vw" width="640" height="800" alt="Felipe Fornari na academia, pegando um halter" loading="lazy" decoding="async">
           <div class="runas runas--lado sobre__runas" data-runas="FELIPE" aria-hidden="true"></div>
         </figure>
         <div class="sobre__txt revela">

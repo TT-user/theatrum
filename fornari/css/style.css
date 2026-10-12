@@ -77,8 +77,18 @@ button { font: inherit; color: inherit; }
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: calc(100svh - 64px - 38px); display: flex; align-items: flex-end; overflow: hidden; margin-top: -64px; padding-top: 64px; }
 .hero__fundo { position: absolute; inset: 0; }
-.hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 20%; filter: grayscale(.35) contrast(1.12); }
-.hero__fundo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,12,.3) 0%, rgba(11,13,12,.55) 45%, var(--pedra) 96%), linear-gradient(90deg, rgba(11,13,12,.85) 0%, rgba(11,13,12,0) 70%); }
+.hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; filter: grayscale(.4) contrast(1.12) brightness(.9); }
+.hero__brilho { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 45% at 50% 30%, rgba(8,165,119,.28), transparent 70%); mix-blend-mode: screen; }
+@media (max-width: 979px) {
+  .hero__foto { bottom: auto; height: auto; aspect-ratio: 729 / 854; max-height: 78svh; object-position: 50% 10%; -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 98%); mask-image: linear-gradient(180deg, #000 50%, transparent 98%); }
+  .hero__fundo::after { background: linear-gradient(180deg, rgba(11,13,12,.35) 0%, transparent 18%); }
+  .hero .hero__in { padding-top: min(68vw, 50svh); }
+}
+@media (min-width: 980px) {
+  .hero__foto { left: auto; right: 0; width: min(52%, 729px); object-position: 50% 20%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%); mask-image: linear-gradient(90deg, transparent, #000 38%); }
+  .hero__brilho { left: auto; width: 56%; background: radial-gradient(ellipse 60% 55% at 60% 40%, rgba(8,165,119,.3), transparent 70%); }
+}
+.hero__fundo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,12,.15) 0%, rgba(11,13,12,.45) 38%, rgba(11,13,12,.9) 66%, var(--pedra) 96%), linear-gradient(90deg, rgba(11,13,12,.85) 0%, rgba(11,13,12,0) 70%); }
 .hero__vazio { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 72% 38%, rgba(8,165,119,.28), transparent 70%), radial-gradient(circle at 72% 40%, #1d2320 0%, transparent 60%); }
 .hero__emblema { position: absolute; right: -6%; top: 6%; width: min(78vw, 560px); height: auto; aspect-ratio: 64/72; color: var(--verde); opacity: .16; }
 .hero__vazio .ph { position: absolute; right: var(--gutter); top: 84px; z-index: 2; max-width: 60%; text-align: right; }
@@ -241,7 +251,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .rascunho__tag { position: absolute; top: -12px; left: 14px; background: #FFE45C; color: #3A2F00; font-size: 12.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
 .rascunho p + p { margin-top: 12px; }
 .medalhas { display: grid; gap: 12px; }
-.medalhas li { display: flex; align-items: center; gap: 12px; font-weight: 500; flex-wrap: wrap; }
+.medalhas li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
 .medalhas svg { width: 26px; height: 26px; color: var(--verde); flex: 0 0 auto; }
 
 /* ---------- Feedbacks ---------- */
