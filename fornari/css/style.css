@@ -1,6 +1,10 @@
 /* Team Fornari: prévia da Theatrum
    Guerreiro nórdico nas cores do Felipe. Todo ornamento é SVG desenhado aqui. */
 
+/* Fontes servidas daqui (OFL): Inter variável 400-700 e Bebas Neue, subconjunto latino */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../fonts/inter.woff2") format("woff2"); }
+@font-face { font-family: 'Bebas Neue'; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/bebas-neue.woff2") format("woff2"); }
+
 :root {
   --pedra: #0A0B0A;
   --pedra-2: #111412;
