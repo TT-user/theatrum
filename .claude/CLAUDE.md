@@ -435,6 +435,16 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   A versão de portfólio, com marca fictícia, é a Maré Mansa, em `/imoveis/demos/mare-mansa/`.
   **Fora do ar desde 11/10/2026:** o `.htaccess` da pasta manda para a home;
   os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+- `/doctors/` — prévia do site da Doctors Odontologia Especializada (Arapiraca Garden Shopping,
+  Arapiraca, AL), feita para prospecção em 12/10/2026 com as fotos da clínica e os cards da equipe
+  que eles mesmos publicam (sete dentistas com CRO e a gerente). Paleta e tipografia (Jost) tiradas
+  do banner deles: creme, dourado e grafite. Tratamentos e equipe vêm dos objetos `TRATS` e
+  `EQUIPE` do `js/main.js`; cada card e cada dentista abre o WhatsApp com mensagem própria, e o
+  "Por onde começar" (três perguntas) indica o especialista e monta a mensagem. Avaliações são
+  slot vazio, responsável técnico e EPAO do CRO-AL ficam como placeholder (o CFO exige no
+  anúncio). O WhatsApp (`ZAP`) é o do link da bio; o banner mostra outro número, a confirmar.
+  Mapa só carrega no clique. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
+  UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
 
 ### As demonstrações, uma pasta por área
 
@@ -517,7 +527,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
