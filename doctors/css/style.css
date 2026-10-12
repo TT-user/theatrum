@@ -248,6 +248,14 @@ p { margin: 0 0 1em; }
 .zap-flutua { position: fixed; right: 18px; bottom: 18px; z-index: 40; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 10px 26px -8px rgba(0,0,0,.45); }
 .zap-flutua svg { width: 30px; height: 30px; fill: #fff; }
 
+/* Marca d'água da Theatrum (cores da Theatrum, não da clínica) */
+.theatrum { position: fixed; left: 16px; bottom: 18px; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(11,10,8,.9); border: 1px solid rgba(227,179,65,.35); color: #E3B341; text-decoration: none; box-shadow: 0 10px 26px -10px rgba(0,0,0,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .2s, border-color .2s; }
+.theatrum:hover { transform: translateY(-2px); border-color: #E3B341; }
+.theatrum img { width: 34px; height: 34px; border-radius: 50%; }
+.theatrum span { display: flex; flex-direction: column; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.15; }
+.theatrum small { font-size: 11px; font-weight: 400; letter-spacing: .04em; text-transform: none; color: #A39B8D; }
+@media (max-width: 520px) { .theatrum { padding: 5px 13px 5px 5px; bottom: 22px; } .theatrum img { width: 30px; height: 30px; } }
+
 /* Lightbox */
 .lb { position: fixed; inset: 0; z-index: 60; background: rgba(20,18,16,.94); display: grid; place-items: center; padding: 60px 16px; }
 .lb[hidden] { display: none; }

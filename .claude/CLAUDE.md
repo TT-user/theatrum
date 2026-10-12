@@ -454,7 +454,11 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   "Por onde começar" (três perguntas) indica o especialista e monta a mensagem. Avaliações são
   slot vazio, responsável técnico e EPAO do CRO-AL ficam como placeholder (o CFO exige no
   anúncio). O WhatsApp (`ZAP`) é o do link da bio; o banner mostra outro número, a confirmar.
-  Mapa só carrega no clique. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
+  Mapa só carrega no clique. Marca d'água fixa no canto inferior esquerdo ("Site feito pela
+  Theatrum", logo em `assets/img/theatrum-64.webp`) leva à home com
+  `utm_source=previa&utm_medium=marca-dagua&utm_campaign=doctors`; sai na versão final. O
+  servidor manda o navegador guardar CSS e JS por 7 dias: mudou um dos dois, sobe o `?v=` no
+  `index.html`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
   UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
 
 ### As demonstrações, uma pasta por área
