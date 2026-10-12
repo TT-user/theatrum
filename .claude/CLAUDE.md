@@ -487,7 +487,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
   `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).
-  CSS e JS com `?v=`: mudou um deles, sobe o número no HTML. Pendências
+  CSS, JS e os `fetch` dos JSON com `?v=`: mudou um deles, sobe o número (o navegador
+  segurava o `resultados.json` antigo e o carrossel aparecia com as cartas de exemplo). Pendências
   em `interno/clientes/fornari/README.md`, fora do git.
 
 ### As demonstrações, uma pasta por área
