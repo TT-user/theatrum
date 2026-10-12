@@ -99,6 +99,8 @@
   // Carrossel: uma carta por vez no centro, as vizinhas inclinadas dos lados
   var vis = [], atual = 0, timer = null, pausa = false, aVista = false, PASSA = 3200;
   var contagem = document.getElementById('res-cont');
+  var largo = matchMedia('(min-width: 980px)');
+  largo.addEventListener('change', function () { arruma(); });
 
   function arruma() {
     var n = vis.length;
@@ -111,7 +113,7 @@
       c.style.setProperty('--a', Math.min(a, 3));
       c.style.zIndex = 20 - a;
       c.classList.toggle('ativa', o === 0);
-      c.classList.toggle('longe', a > 2);
+      c.classList.toggle('longe', a > (largo.matches ? 3 : 2));
       c.setAttribute('aria-hidden', o !== 0);
       c.querySelectorAll('a').forEach(function (l) { l.tabIndex = o === 0 ? 0 : -1; });
     });
