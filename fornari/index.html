@@ -15,13 +15,14 @@
   <meta property="og:description" content="Seu melhor físico com acompanhamento de verdade. Faça a aplicação em 60 segundos.">
   <meta property="og:image" content="https://usetheatrum.com.br/fornari/assets/fotos/felipe/og-1200.jpg">
 
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/fotos/felipe/retrato-729.webp" imagesrcset="assets/fotos/felipe/retrato-480.webp 480w, assets/fotos/felipe/retrato-729.webp 729w" imagesizes="(min-width: 980px) 729px, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=14">
 
   <script type="application/ld+json">
   {
@@ -74,9 +75,8 @@
   <header class="topo" id="topo">
     <div class="wrap topo__in">
       <a href="#inicio" class="logo" aria-label="Team Fornari, início">
-        <!-- TODO: trocar pelo assets/monograma-fe.png do Felipe; este é um marcador desenhado -->
-        <span class="mono" aria-hidden="true">Fe</span>
-        <span class="logo__txt">Team Fornari</span>
+        <img class="logo__mono" src="assets/img/monograma-128.webp" width="128" height="128" alt="">
+        <img class="logo__team" src="assets/img/team-fornari-240.webp" srcset="assets/img/team-fornari-240.webp 1x, assets/img/team-fornari-480.webp 2x" width="240" height="88" alt="">
       </a>
       <nav class="menu" aria-label="Principal">
         <a href="#resultados">Resultados</a>
@@ -134,9 +134,9 @@
         </div>
       </div>
       <div class="palco">
-        <button class="palco__seta palco__seta--ant" id="res-ant" type="button" aria-label="Resultado anterior">‹</button>
+        <button class="palco__seta palco__seta--ant" id="res-ant" type="button" aria-label="Resultado anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="2.6"/></svg></button>
         <div class="baralho" id="baralho" tabindex="0" role="region" aria-roledescription="carrossel" aria-label="Resultados dos alunos"></div>
-        <button class="palco__seta palco__seta--prox" id="res-prox" type="button" aria-label="Próximo resultado">›</button>
+        <button class="palco__seta palco__seta--prox" id="res-prox" type="button" aria-label="Próximo resultado"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.6"/></svg></button>
       </div>
       <p class="palco__cont" id="res-cont" aria-live="polite"></p>
       <p class="aviso-res wrap">Resultados individuais. Cada corpo responde no seu tempo.</p>
@@ -363,8 +363,8 @@
       </div>
       <div class="rodape__cols">
         <div class="rodape__marca">
-          <svg class="rodape__emb" aria-hidden="true"><use href="#emblema"/></svg>
-          <p>Team Fornari<br><small>Hipertrofia · Emagrecimento · Saúde e qualidade de vida</small></p>
+          <img class="rodape__mono" src="assets/img/monograma-128.webp" width="128" height="128" alt="" loading="lazy">
+          <p><img class="rodape__team" src="assets/img/team-fornari-480.webp" width="480" height="175" alt="Team Fornari" loading="lazy"><small>Hipertrofia · Emagrecimento · Saúde e qualidade de vida</small></p>
         </div>
         <nav aria-label="O clã">
           <h3>O clã</h3>
@@ -407,7 +407,7 @@
   </a>
 
   <script src="js/runas.js?v=1" defer></script>
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
   <script src="js/aplicacao.js?v=1" defer></script>
 </body>
 </html>

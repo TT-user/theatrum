@@ -481,9 +481,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `interno/clientes/fornari/originais/`. As cartas de resultado são 14 artes de antes e depois recortadas dos posts dele
   (`assets/antes-depois/`), **autorizadas só para a prévia**: no site oficial, cada aluno
   precisa autorizar o uso no site. Elas passam num carrossel (carta da vez no centro, vizinhas
-  inclinadas; troca a cada 3,2 s só à vista, para no mouse e no foco, setas e arraste), e as
+  inclinadas e girando em 3D, até a borda da tela no computador com degradê nas laterais;
+  troca a cada 3,2 s só à vista, para no mouse e no foco; setas grandes nas laterais e
+  arraste com dedo ou mouse, as cartas acompanhando), e as
   listras de nó do contador e das divisórias andam como letreiro, só na tela. Títulos de
-  seção têm a barra ornamental só em cima. Cartas e números vêm de `data/resultados.json`
+  seção têm a barra ornamental só em cima. Logos dele (monograma "FPe" e Team Fornari)
+  recortadas de print, brancas em fundo transparente, em `assets/img/`; o ícone da aba usa
+  só o "FPe" do centro. Cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
   `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).

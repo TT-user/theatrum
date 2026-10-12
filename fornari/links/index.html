@@ -7,7 +7,8 @@
   <meta name="description" content="Entre pro Team Fornari: aplicação de 60 segundos, resultados dos alunos e WhatsApp do Felipe.">
   <meta name="theme-color" content="#0B0D0C">
   <meta name="robots" content="noindex, nofollow"><!-- prévia: tirar quando virar o site oficial -->
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@500;600;700&display=swap">
@@ -22,8 +23,8 @@
     .runas { position: absolute; top: 40px; color: var(--verde); opacity: .4; line-height: 0; }
     .runas--e { left: 2px; } .runas--d { right: 2px; }
     .runas svg { width: 9px; height: auto; }
-    .mono { width: 92px; height: 92px; margin: 0 auto; border-radius: 50%; border: 3px solid var(--verde); display: grid; place-items: center; font: 700 36px/1 'Inter', system-ui, sans-serif; letter-spacing: -.03em; box-shadow: 0 0 40px -6px rgba(46,227,138,.5); background: var(--card); }
-    h1 { text-align: center; margin: 16px 0 4px; font: 400 40px/1 'Bebas Neue', Impact, sans-serif; letter-spacing: .08em; }
+    .mono { display: block; width: 116px; height: 116px; margin: 0 auto; filter: drop-shadow(0 0 22px rgba(46,227,138,.35)); }
+    h1 { margin: 14px 0 6px; line-height: 0; } h1 img { display: block; width: 230px; height: auto; margin: 0 auto; }
     .tag { text-align: center; color: var(--suave); font-size: 14.5px; margin: 0 0 26px; }
     .barra { display: block; width: 220px; height: 20px; margin: 0 auto 26px; color: var(--verde); }
     ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
@@ -45,9 +46,8 @@
   <main>
     <span class="runas runas--e" data-runas="TEAM FORNARI" aria-hidden="true"></span>
     <span class="runas runas--d" data-runas="TEAM FORNARI" aria-hidden="true"></span>
-    <!-- TODO: trocar pelo monograma-fe.png do Felipe -->
-    <div class="mono" aria-hidden="true">Fe</div>
-    <h1>Felipe Fornari</h1>
+    <img class="mono" src="../assets/img/monograma-256.webp" width="256" height="255" alt="">
+    <h1><img src="../assets/img/team-fornari-480.webp" width="480" height="175" alt="Team Fornari · Felipe Fornari"></h1>
     <p class="tag">Personal Trainer · Hipertrofia · Emagrecimento · Saúde e qualidade de vida</p>
     <svg class="barra" viewBox="0 0 260 22" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 11h96M152 11h96" stroke-width="2"/><path d="M0 11l7-5 7 5-7 5zM246 11l7-5 7 5-7 5z" fill="currentColor" stroke="none"/><path d="M30 9l3-6M38 9l3-6M46 9l3-6M30 13l3 6M38 13l3 6M46 13l3 6M211 9l3-6M219 9l3-6M227 9l3-6M211 13l3 6M219 13l3 6M227 13l3 6" stroke-width="1.6"/><path d="M130 2l9 9-9 9-9-9z" stroke-width="2"/><path d="M130 7l4 4-4 4-4-4z" fill="currentColor" stroke="none"/></svg>
     <ul>

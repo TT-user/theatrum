@@ -153,18 +153,36 @@
 
   document.getElementById('res-ant').addEventListener('click', function () { vai(-1); roda(); });
   document.getElementById('res-prox').addEventListener('click', function () { vai(1); roda(); });
+  // Arraste com o dedo ou o mouse: as cartas acompanham e encaixam na mais próxima
+  var x0 = null, dx = 0, arrastou = false;
+  function passoPx() {
+    var larg = vis.length ? vis[atual].offsetWidth : 270;
+    return largo.matches ? (innerWidth / 2 - larg * .25) / 3 : larg * .58;
+  }
+  baralho.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.target.closest('a')) return;
+    x0 = e.clientX; dx = 0; arrastou = false;
+    baralho.setPointerCapture(e.pointerId);
+  });
+  baralho.addEventListener('pointermove', function (e) {
+    if (x0 === null) return;
+    dx = e.clientX - x0;
+    if (!arrastou && Math.abs(dx) > 6) { arrastou = true; baralho.classList.add('arrastando'); clearInterval(timer); }
+    if (arrastou) baralho.style.setProperty('--d', (dx / passoPx()).toFixed(3));
+  });
+  function solta() {
+    if (x0 === null) return;
+    x0 = null; baralho.classList.remove('arrastando'); baralho.style.setProperty('--d', 0);
+    if (arrastou) { var n = Math.round(-dx / passoPx()) || (Math.abs(dx) > 40 ? (dx < 0 ? 1 : -1) : 0); if (n) vai(n); }
+    roda();
+  }
+  baralho.addEventListener('pointerup', solta);
+  baralho.addEventListener('pointercancel', solta);
   baralho.addEventListener('click', function (e) {
+    if (arrastou) { e.preventDefault(); arrastou = false; return; }
     var c = e.target.closest('.carta');
     if (!c || c.classList.contains('ativa')) return;
     e.preventDefault(); atual = vis.indexOf(c); arruma(); roda();
-  });
-  // Arraste no celular
-  var x0 = null;
-  baralho.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
-  baralho.addEventListener('pointerup', function (e) {
-    if (x0 === null) return;
-    var dx = e.clientX - x0; x0 = null;
-    if (Math.abs(dx) > 40) { vai(dx < 0 ? 1 : -1); roda(); }
   });
   baralho.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight') { vai(1); roda(); }
