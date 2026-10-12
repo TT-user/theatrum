@@ -2,7 +2,7 @@
    Guerreiro nórdico nas cores do Felipe. Todo ornamento é SVG desenhado aqui. */
 
 :root {
-  --pedra: #0B0D0C;
+  --pedra: #0A0B0A;
   --pedra-2: #111412;
   --card: #1A1D1B;
   --verde: #08A577;
@@ -17,9 +17,8 @@
   --gutter: 16px;
   --wrap: 1180px;
 
-  /* Textura de rocha: ruído fino + manchas largas, rasterizado uma vez por ladrilho */
-  --rocha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .6 0 0 0 0 .65 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  /* Grão de filme: ruído fino numa camada fixa, rasterizado uma vez */
+  --grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 
   /* Nó entrelaçado: duas tiras que passam uma por cima da outra */
   --no: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' fill='none' stroke-width='2.2'%3E%3Cpath d='M20 12C30 12 30 4 40 4' stroke='%2308A577'/%3E%3Cpath d='M0 12C10 12 10 4 20 4' stroke='%2308A577'/%3E%3Cpath d='M0 4C10 4 10 12 20 12' stroke='%230B0D0C' stroke-width='6'/%3E%3Cpath d='M0 4C10 4 10 12 20 12' stroke='%2308A577'/%3E%3Cpath d='M20 4C30 4 30 12 40 12' stroke='%230B0D0C' stroke-width='6'/%3E%3Cpath d='M20 4C30 4 30 12 40 12' stroke='%2308A577'/%3E%3C/svg%3E");
@@ -32,7 +31,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
-body { margin: 0; background-color: var(--pedra); background-image: var(--rocha); color: var(--osso); font: 400 17px/1.6 var(--sans); overflow-x: hidden; }
+body { margin: 0; background-color: var(--pedra); color: var(--osso); font: 400 17px/1.6 var(--sans); overflow-x: hidden; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }
 h1, h2, h3, p, ul, ol, figure, blockquote { margin: 0; }
@@ -117,9 +116,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .runas--lado svg { width: 10px; height: auto; }
 
 /* ---------- Contador ---------- */
-.contador { position: relative; padding: 26px 0; background: var(--pedra-2); }
-.contador::before, .contador::after { content: ""; position: absolute; left: 0; right: 0; height: 16px; background: var(--losango) center / 16px 16px no-repeat, linear-gradient(90deg, transparent, rgba(8,165,119,.4) 35%, rgba(8,165,119,.4) 65%, transparent) center / 100% 1px no-repeat; }
-.contador::before { top: -8px; } .contador::after { bottom: -8px; }
+.contador { position: relative; padding: 10px 0 calc(34px + 6.1vw); background: var(--pedra); }
 .contador__in { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; min-height: 74px; }
 .num { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .num__v { font: 400 clamp(36px, 6vw, 58px)/1 var(--display); color: var(--neon); letter-spacing: .03em; }
@@ -128,8 +125,6 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 
 /* ---------- Seções e títulos ---------- */
 .secao { position: relative; padding: clamp(72px, 10vw, 124px) 0; }
-.secao--alt { background-color: var(--pedra-2); background-image: var(--rocha); }
-.secao--alt::before { content: ""; position: absolute; top: -8px; left: 0; right: 0; height: 16px; background: var(--losango) center / 16px 16px no-repeat, linear-gradient(90deg, transparent, rgba(8,165,119,.4) 35%, rgba(8,165,119,.4) 65%, transparent) center / 100% 1px no-repeat; }
 .cab { text-align: center; margin-bottom: clamp(36px, 5vw, 56px); }
 .cab__olho { font: 600 13px/1.3 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--verde); margin-bottom: 14px; }
 .titulo { font: 400 clamp(42px, 7.5vw, 76px)/.95 var(--display); letter-spacing: .05em; text-transform: uppercase; }
@@ -173,7 +168,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .palco__seta--ant { left: var(--gutter); } .palco__seta--prox { right: var(--gutter); }
 @media (min-width: 980px) { .palco__seta { width: 76px; height: 76px; border-width: 2px; } .palco__seta--ant { left: 28px; } .palco__seta--prox { right: 28px; } }
 .palco__cont { text-align: center; font: 400 20px/1 var(--display); letter-spacing: .14em; color: var(--verde); min-height: 20px; }
-.carta__moldura { position: relative; background-color: var(--pedra); background-image: var(--rocha); border: 1.5px solid var(--verde); padding: 38px 30px 22px; text-align: center; box-shadow: 0 0 0 4px var(--pedra), 0 0 0 5px rgba(8,165,119,.4), 0 24px 50px -24px rgba(0,0,0,.9); }
+.carta__moldura { position: relative; background-color: var(--pedra); border: 1.5px solid var(--verde); padding: 38px 30px 22px; text-align: center; box-shadow: 0 0 0 4px var(--pedra), 0 0 0 5px rgba(8,165,119,.4), 0 24px 50px -24px rgba(0,0,0,.9); }
 .carta__moldura::before, .carta__moldura::after { content: ""; position: absolute; left: 8px; right: 8px; height: 16px; background: var(--no) repeat-x center; }
 .carta__moldura::before { top: 8px; } .carta__moldura::after { bottom: 6px; }
 .carta__canto { position: absolute; width: 22px; height: 25px; color: var(--ouro); background: var(--pedra); z-index: 1; }
@@ -212,7 +207,6 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 }
 
 /* ---------- Aplicação ---------- */
-#aplicacao { background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(8,165,119,.13), transparent 70%); }
 .app-moldura { max-width: 640px; margin: 0 auto; padding: 1.5px; background: linear-gradient(160deg, var(--neon), var(--verde) 40%, #054d38); clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px); }
 .app { background: var(--card); padding: 22px clamp(18px, 4vw, 34px) 30px; clip-path: polygon(15.4px 0, calc(100% - 15.4px) 0, 100% 15.4px, 100% calc(100% - 15.4px), calc(100% - 15.4px) 100%, 15.4px 100%, 0 calc(100% - 15.4px), 0 15.4px); min-height: 460px; overflow: hidden; }
 .app__topo { display: flex; justify-content: space-between; align-items: center; min-height: 36px; font-size: 13.5px; color: var(--suave); }
@@ -294,7 +288,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 /* ---------- Planos ---------- */
 .planos { display: grid; gap: 22px; max-width: 900px; margin: 0 auto; }
 @media (min-width: 820px) { .planos { grid-template-columns: 1fr 1fr; } }
-.plano { position: relative; overflow: hidden; background-color: var(--card); background-image: var(--rocha); border: 1.5px solid rgba(236,237,232,.16); padding: 34px 28px 30px; display: flex; flex-direction: column; }
+.plano { position: relative; overflow: hidden; background-color: var(--card); border: 1.5px solid rgba(236,237,232,.16); padding: 34px 28px 30px; display: flex; flex-direction: column; }
 .plano--destaque { border-color: var(--verde); box-shadow: 0 0 50px -20px rgba(46,227,138,.45); }
 .plano__emb { position: absolute; right: -20px; top: -14px; width: 130px; height: 146px; color: var(--verde); opacity: .08; }
 .plano__selo { align-self: flex-start; font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--pedra); background: var(--ouro); padding: 6px 10px; margin-bottom: 16px; }
@@ -333,7 +327,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .serra__pico { position: absolute; z-index: 3; left: 50%; bottom: 12px; transform: translateX(-50%); font: 600 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: rgba(236,237,232,.62); white-space: nowrap; }
 
 /* ---------- Rodapé ---------- */
-.rodape { background-color: var(--pedra); background-image: var(--rocha); padding: 40px 0 110px; font-size: 15.5px; }
+.rodape { background-color: var(--pedra); padding: 40px 0 110px; font-size: 15.5px; }
 .rodape__cta { text-align: center; padding: 20px 0 56px; border-bottom: 1px solid var(--linha); }
 .rodape__cta h2 { font: 400 clamp(40px, 7vw, 70px)/.95 var(--display); letter-spacing: .05em; text-transform: uppercase; }
 .rodape__cta h2::before { content: ""; display: block; width: 260px; max-width: 80%; height: 22px; margin: 0 auto 16px; background: var(--barra) center / contain no-repeat; }
@@ -370,3 +364,77 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .theatrum span { display: flex; flex-direction: column; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.15; }
 .theatrum small { font-size: 11px; font-weight: 400; letter-spacing: .04em; text-transform: none; color: #A39B8D; }
 @media (max-width: 520px) { .theatrum { padding: 5px 13px 5px 5px; bottom: 22px; } .theatrum img { width: 30px; height: 30px; } }
+
+/* =================================================================
+   Fundos das seções: ritmo e contraste
+   ================================================================= */
+
+/* Grão de filme sobre a página inteira, fixo e sem mistura de cor (não pesa a rolagem) */
+body::before { content: ""; position: fixed; inset: 0; z-index: 35; pointer-events: none; background: var(--grao); opacity: .05; }
+
+/* Hero: retrato em duotone ocupando a tela, fundindo no preto embaixo */
+.hero__foto { filter: none; }
+@media (min-width: 980px) {
+  .hero__foto { width: min(64%, 920px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%); mask-image: linear-gradient(90deg, transparent, #000 30%); }
+}
+.hero__fundo::after { background: linear-gradient(180deg, transparent 55%, var(--pedra) 98%), linear-gradient(90deg, rgba(10,11,10,.9) 0%, rgba(10,11,10,0) 62%); }
+@media (max-width: 979px) { .hero__fundo::after { background: linear-gradient(180deg, transparent 40%, var(--pedra) 75%); } }
+.hero__brilho { display: none; }
+
+/* Serra do Caparaó: três camadas e névoa */
+.serra-topo { position: relative; height: clamp(110px, 15vw, 230px); margin-top: -1px; overflow: hidden; background: var(--pedra); }
+.serra-topo__c { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; will-change: transform; }
+.serra-topo__c--fundo { fill: #12261C; }
+.serra-topo__c--meio { fill: #0F1A15; }
+.serra-topo__c--frente { fill: var(--pedra); bottom: -1px; }
+.nevoa { position: absolute; left: -10%; width: 120%; height: 60%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(255,255,255,.1), transparent 65%); animation: nevoa 16s ease-in-out infinite alternate paused; pointer-events: none; }
+.nevoa--a { top: 30%; }
+.nevoa--b { top: 52%; animation-duration: 21s; animation-delay: -7s; }
+.serra-topo.anda .nevoa { animation-play-state: running; }
+@keyframes nevoa { from { transform: translate3d(-3%, 14px, 0); opacity: .7; } to { transform: translate3d(3%, -18px, 0); opacity: 1; } }
+
+/* Cortes diagonais entre as seções escuras (3,5 graus) */
+.corte { --c: 6.1vw; z-index: 1; margin-top: calc(var(--c) * -1); padding-top: calc(clamp(72px, 10vw, 124px) + var(--c)); clip-path: polygon(0 var(--c), 100% 0, 100% 100%, 0 100%); }
+.corte--inv { clip-path: polygon(0 0, 100% var(--c), 100% 100%, 0 100%); }
+.corte::after { content: ""; position: absolute; left: -5%; width: 110%; top: calc(var(--c) / 2); height: 1.5px; background: linear-gradient(90deg, transparent, rgba(46,227,138,.45) 30%, rgba(46,227,138,.45) 70%, transparent); transform: rotate(-3.5deg); pointer-events: none; }
+.corte--inv::after { transform: rotate(3.5deg); }
+
+/* Guerreiros do clã: holofote verde atrás das cartas e reflexo embaixo */
+#resultados { background: radial-gradient(ellipse 46% 42% at 50% 64%, rgba(8,165,119,.18), transparent 72%), #0D100E; }
+.carta__moldura { -webkit-box-reflect: below 6px linear-gradient(rgba(255,255,255,.14), transparent 22%); }
+
+/* Três passos: branco-osso */
+.secao--osso { background: var(--osso); color: var(--pedra); }
+.secao--osso .cab__olho { color: var(--verde-escuro); }
+.secao--osso .titulo { color: var(--pedra); }
+.secao--osso .passo { background: #fff; border: 1px solid rgba(10,11,10,.1); border-top: 3px solid var(--verde); box-shadow: 0 18px 40px -26px rgba(10,11,10,.35); }
+.secao--osso .passo:hover { border-color: rgba(8,165,119,.55); box-shadow: 0 22px 44px -24px rgba(5,105,76,.35); }
+.secao--osso .passo__n { background: rgba(8,165,119,.08); }
+.secao--osso .passo__n b, .secao--osso .passo__rot { color: var(--verde-escuro); }
+.secao--osso .passo h3 { color: var(--pedra); }
+.secao--osso .passo p { color: #3B403C; }
+
+/* Aplicação: nó gigante atrás do card */
+#aplicacao { overflow: hidden; }
+.no-gigante { position: absolute; left: 50%; top: 58%; width: min(980px, 150vw); height: auto; transform: translate(-50%, -50%); color: var(--verde); opacity: .04; pointer-events: none; }
+#aplicacao .wrap { position: relative; }
+
+/* Quem é o Felipe: foto da academia desfocada e escurecida */
+#felipe { background: linear-gradient(rgba(10,11,10,.85), rgba(10,11,10,.85)), url("../assets/fotos/felipe/academia-blur.webp") center / cover; }
+
+/* Seu arsenal: verde sólido */
+.secao--verde { background: var(--verde); color: var(--pedra); }
+.secao--verde .cab__olho, .secao--verde .titulo { color: var(--pedra); }
+.secao--verde .titulo::before { filter: brightness(0); opacity: .85; }
+.secao--verde .arsenal li { background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1.5px var(--pedra); }
+.secao--verde .arsenal li:hover { background: rgba(255,255,255,.18); box-shadow: inset 0 0 0 2px var(--pedra); }
+.secao--verde .arsenal svg, .secao--verde .arsenal h3, .secao--verde .arsenal p { color: var(--pedra); }
+
+/* Escolha sua forja: brasas verdes subindo */
+#planos { overflow: hidden; }
+#planos .wrap { position: relative; z-index: 1; }
+.brasas { position: absolute; inset: 0; pointer-events: none; }
+.brasa { position: absolute; bottom: -12px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; background: var(--neon); box-shadow: 0 0 10px 2px rgba(46,227,138,.55); opacity: 0; animation: brasa var(--t) linear var(--d) infinite paused; }
+.brasas.anda .brasa { animation-play-state: running; }
+@keyframes brasa { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 12% { opacity: .85; } 80% { opacity: .5; } 100% { transform: translate3d(var(--dx), calc(var(--h) * -1), 0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .brasas { display: none; } }

@@ -42,6 +42,40 @@
     if (e[0].isIntersecting) serra.classList.add('estoura');
   }, { threshold: 0.35 }).observe(serra);
 
+  // Serra do Caparaó: névoa só anda à vista; camadas com parallax leve na rolagem
+  var serraTopo = document.getElementById('serra-topo');
+  if (serraTopo) {
+    var camadas = [].slice.call(serraTopo.querySelectorAll('.serra-topo__c'));
+    var fator = [26, 12, 0], serraVisivel = false, pedido = false;
+    function parallax() {
+      pedido = false;
+      var r = serraTopo.getBoundingClientRect();
+      var p = (r.top + r.height / 2) / innerHeight - .5; // -0.5 a 0.5 enquanto atravessa a tela
+      camadas.forEach(function (c, i) { c.style.transform = 'translate3d(0,' + (p * fator[i]).toFixed(1) + 'px,0)'; });
+    }
+    new IntersectionObserver(function (e) {
+      serraVisivel = e[0].isIntersecting;
+      serraTopo.classList.toggle('anda', serraVisivel && !semMovimento);
+    }).observe(serraTopo);
+    if (!semMovimento) addEventListener('scroll', function () {
+      if (serraVisivel && !pedido) { pedido = true; requestAnimationFrame(parallax); }
+    }, { passive: true });
+  }
+
+  // Brasas verdes subindo atrás dos planos; param fora da tela
+  var brasas = document.getElementById('brasas');
+  if (brasas && !semMovimento) {
+    var html = '';
+    for (var b = 0; b < 26; b++) {
+      var s = (2 + Math.random() * 3).toFixed(1);
+      html += '<span class="brasa" style="--x:' + (Math.random() * 100).toFixed(1) + '%;--s:' + s + 'px;--t:' + (7 + Math.random() * 7).toFixed(1) + 's;--d:-' + (Math.random() * 14).toFixed(1) + 's;--dx:' + (Math.random() * 80 - 40).toFixed(0) + 'px"></span>';
+    }
+    brasas.innerHTML = html;
+    var mede = function () { brasas.style.setProperty('--h', brasas.offsetHeight + 'px'); };
+    mede(); addEventListener('resize', mede);
+    new IntersectionObserver(function (e) { brasas.classList.toggle('anda', e[0].isIntersecting); }).observe(brasas);
+  }
+
   var ph = function (t) { return '<span class="ph">' + t + '</span>'; };
 
   // ---------- Contador ----------

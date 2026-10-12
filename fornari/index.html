@@ -20,9 +20,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/fotos/felipe/retrato-729.webp" imagesrcset="assets/fotos/felipe/retrato-480.webp 480w, assets/fotos/felipe/retrato-729.webp 729w" imagesizes="(min-width: 980px) 729px, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/fotos/felipe/retrato-duo-729.webp" imagesrcset="assets/fotos/felipe/retrato-duo-480.webp 480w, assets/fotos/felipe/retrato-duo-729.webp 729w" imagesizes="(min-width: 980px) 729px, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=21">
 
   <script type="application/ld+json">
   {
@@ -91,7 +91,7 @@
     <!-- 1. Hero -->
     <section class="hero" id="inicio">
       <div class="hero__fundo" aria-hidden="true">
-        <img class="hero__foto" src="assets/fotos/felipe/retrato-729.webp" srcset="assets/fotos/felipe/retrato-480.webp 480w, assets/fotos/felipe/retrato-729.webp 729w" sizes="(min-width: 980px) 729px, 100vw" width="729" height="854" alt="" fetchpriority="high">
+        <img class="hero__foto" src="assets/fotos/felipe/retrato-duo-729.webp" srcset="assets/fotos/felipe/retrato-duo-480.webp 480w, assets/fotos/felipe/retrato-duo-729.webp 729w" sizes="(min-width: 980px) 729px, 100vw" width="729" height="854" alt="" fetchpriority="high">
         <div class="hero__brilho"></div>
       </div>
       <div class="runas runas--lado hero__runas" data-runas="TEAM FORNARI" aria-hidden="true"></div>
@@ -111,13 +111,22 @@
       </div>
     </section>
 
+    <!-- Serra do Caparaó em três camadas, com névoa (Pico da Bandeira no centro) -->
+    <div class="serra-topo" id="serra-topo" aria-hidden="true">
+      <svg class="serra-topo__c serra-topo__c--fundo" viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 220V120l80-20 70 12 80-32 70 12 80-32 60 10 80-26 60 12 60-28 50 8 30-28 32 22 48-8 60 24 70-6 70 24 70-8 70 24 70-8 80 24 70-6 80 14V220Z"/></svg>
+      <span class="nevoa nevoa--a"></span>
+      <svg class="serra-topo__c serra-topo__c--meio" viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 220V150l90-18 80 14 90-30 80 14 80-26 80 14 90-22 70 14 80-26 80 16 80-22 80 20 80-8 90 24 90-10 90 22 110-8V220Z"/></svg>
+      <span class="nevoa nevoa--b"></span>
+      <svg class="serra-topo__c serra-topo__c--frente" viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 220V186l110-16 100 12 110-22 110 16 110-20 110 16 110-22 110 18 110-14 110 18 110-12 110 16 130-10V220Z"/></svg>
+    </div>
+
     <!-- Contador (números em data/config.json) -->
     <section class="contador" aria-label="Números do Team Fornari">
       <div class="wrap contador__in" id="contador"></div>
     </section>
 
     <!-- 3. Resultados -->
-    <section class="secao" id="resultados">
+    <section class="secao corte" id="resultados">
       <div class="wrap">
         <header class="cab">
           <p class="cab__olho">Resultados</p>
@@ -142,7 +151,7 @@
     </section>
 
     <!-- 4. Como funciona -->
-    <section class="secao secao--alt" id="como">
+    <section class="secao secao--osso" id="como">
       <div class="wrap">
         <header class="cab">
           <p class="cab__olho">Como funciona</p>
@@ -170,6 +179,12 @@
 
     <!-- 5. Aplicação (js/aplicacao.js) -->
     <section class="secao" id="aplicacao">
+      <svg class="no-gigante" viewBox="-300 -300 600 600" aria-hidden="true">
+        <g fill="none" stroke="currentColor">
+          <g stroke-width="26"><circle r="250"/><circle cx="-105" r="125"/><circle cx="105" r="125"/><circle cy="-105" r="125"/><circle cy="105" r="125"/></g>
+          <g stroke="#0A0B0A" stroke-width="12"><circle r="250"/><circle cx="-105" r="125"/><circle cx="105" r="125"/><circle cy="-105" r="125"/><circle cy="105" r="125"/></g>
+        </g>
+      </svg>
       <div class="wrap">
         <header class="cab">
           <p class="cab__olho">Aplicação · 60 segundos</p>
@@ -185,7 +200,7 @@
     </section>
 
     <!-- 6. Quem é o Felipe -->
-    <section class="secao secao--alt" id="felipe">
+    <section class="secao corte" id="felipe">
       <div class="wrap sobre">
         <figure class="sobre__foto revela">
           <img src="assets/fotos/felipe/academia-640.webp" srcset="assets/fotos/felipe/academia-400.webp 400w, assets/fotos/felipe/academia-640.webp 640w" sizes="(min-width: 900px) 460px, 92vw" width="640" height="800" alt="Felipe Fornari na academia, pegando um halter" loading="lazy" decoding="async">
@@ -209,7 +224,7 @@
     </section>
 
     <!-- 7. Feedbacks -->
-    <section class="secao" id="feedbacks">
+    <section class="secao corte corte--inv" id="feedbacks">
       <div class="wrap">
         <header class="cab">
           <p class="cab__olho">Feedbacks</p>
@@ -226,7 +241,7 @@
     </section>
 
     <!-- 8. O que está incluso -->
-    <section class="secao secao--alt" id="incluso">
+    <section class="secao secao--verde" id="incluso">
       <div class="wrap">
         <header class="cab">
           <p class="cab__olho">O que está incluso</p>
@@ -245,6 +260,7 @@
 
     <!-- 9. Planos -->
     <section class="secao" id="planos">
+      <div class="brasas" id="brasas" aria-hidden="true"></div>
       <div class="wrap">
         <header class="cab">
           <p class="cab__olho">Planos</p>
@@ -283,7 +299,7 @@
     </section>
 
     <!-- 10. FAQ -->
-    <section class="secao secao--alt" id="faq">
+    <section class="secao corte" id="faq">
       <div class="wrap wrap--estreito">
         <header class="cab">
           <p class="cab__olho">Dúvidas</p>
@@ -400,13 +416,13 @@
   </a>
 
   <!-- Marca d'água da Theatrum: sai na versão final -->
-  <a class="theatrum" href="https://usetheatrum.com.br/?utm_source=previa&amp;utm_medium=marca-dagua&amp;utm_campaign=fornari" target="_blank" rel="noopener" aria-label="Site feito pela Theatrum. Conheça">
+  <a class="theatrum" href="https://usetheatrum.com.br/?utm_source=previa&amp;utm_medium=marca-dagua&amp;utm_campaign=fornari" target="_blank" rel="noopener" aria-label="Site feito pela Theatrum">
     <img src="assets/img/theatrum-64.webp" width="64" height="64" alt="">
     <span><small>Site feito pela</small>Theatrum</span>
   </a>
 
   <script src="js/runas.js?v=1" defer></script>
-  <script src="js/main.js?v=7" defer></script>
+  <script src="js/main.js?v=8" defer></script>
   <script src="js/aplicacao.js?v=1" defer></script>
 </body>
 </html>
