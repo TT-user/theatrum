@@ -487,8 +487,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   divisórias (contador e troca de seção) são uma linha fina que some nas bordas, com um
   losango no centro, paradas. Títulos de
   seção têm a barra ornamental só em cima. Logos dele (monograma "FPe" e Team Fornari)
-  recortadas de print, brancas em fundo transparente, em `assets/img/`; o ícone da aba usa
-  só o "FPe" do centro. Cartas e números vêm de `data/resultados.json`
+  recortadas de print, brancas em fundo transparente, em `assets/img/`: no topo só a Team
+  Fornari; o monograma fica no rodapé e no ícone da aba (só o "FPe" do centro). Cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
   `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).
