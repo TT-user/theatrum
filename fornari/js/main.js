@@ -51,7 +51,7 @@
   var ph = function (t) { return '<span class="ph">' + t + '</span>'; };
 
   // ---------- Contador ----------
-  fetch('data/config.json').then(function (r) { return r.json(); }).then(function (c) {
+  fetch('data/config.json?v=2').then(function (r) { return r.json(); }).then(function (c) {
     var box = document.getElementById('contador');
     box.innerHTML = c.numeros.map(function (n, i) {
       var v = n.valor == null ? ph('[PREENCHER]') : '<b data-alvo="' + n.valor + '">' + (semMovimento ? n.valor.toLocaleString('pt-BR') : '0') + '</b>';
@@ -131,7 +131,7 @@
     atual = 0; arruma(); roda();
   }
 
-  fetch('data/resultados.json').then(function (r) { return r.json(); }).then(function (d) {
+  fetch('data/resultados.json?v=2').then(function (r) { return r.json(); }).then(function (d) {
     baralho.innerHTML = d.resultados.map(carta).join('');
     cartas = [].slice.call(baralho.querySelectorAll('.carta'));
     if (window.Runas) Runas.todas(baralho);
