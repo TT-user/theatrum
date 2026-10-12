@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/fotos/felipe/retrato-729.webp" imagesrcset="assets/fotos/felipe/retrato-480.webp 480w, assets/fotos/felipe/retrato-729.webp 729w" imagesizes="(min-width: 980px) 729px, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=9">
 
   <script type="application/ld+json">
   {
@@ -123,7 +123,7 @@
         <header class="cab">
           <p class="cab__olho">Resultados</p>
           <h2 class="titulo"><span>Guerreiros do clã</span></h2>
-          <p class="cab__sub">Só entram aqui alunos que autorizaram mostrar o resultado. Escolha o objetivo.</p>
+          <p class="cab__sub">Artes reais do Team Fornari, com data e peso. Escolha o objetivo.</p>
         </header>
         <div class="chips" id="filtros" role="group" aria-label="Filtrar resultados">
           <button class="chip ativo" data-filtro="todos" aria-pressed="true">Todos</button>
@@ -133,7 +133,12 @@
           <button class="chip" data-filtro="m" aria-pressed="false">Homens</button>
         </div>
       </div>
-      <div class="baralho" id="baralho" aria-live="polite"></div>
+      <div class="palco">
+        <button class="palco__seta palco__seta--ant" id="res-ant" type="button" aria-label="Resultado anterior">‹</button>
+        <div class="baralho" id="baralho" tabindex="0" role="region" aria-roledescription="carrossel" aria-label="Resultados dos alunos"></div>
+        <button class="palco__seta palco__seta--prox" id="res-prox" type="button" aria-label="Próximo resultado">›</button>
+      </div>
+      <p class="palco__cont" id="res-cont" aria-live="polite"></p>
       <p class="aviso-res wrap">Resultados individuais. Cada corpo responde no seu tempo.</p>
     </section>
 
@@ -402,7 +407,7 @@
   </a>
 
   <script src="js/runas.js?v=1" defer></script>
-  <script src="js/main.js?v=1" defer></script>
+  <script src="js/main.js?v=3" defer></script>
   <script src="js/aplicacao.js?v=1" defer></script>
 </body>
 </html>

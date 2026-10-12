@@ -478,8 +478,12 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   othala tem uso neonazista. Não troque por runas de verdade. Títulos em Bebas Neue (a fonte das artes dele), corpo em Inter. Fotos dele (retrato no
   hero, à direita no computador e no topo no celular; academia em "quem é") vêm de
   `assets/fotos/felipe/`, tiradas do Instagram dele para a prévia; os originais ficam em
-  `interno/clientes/fornari/originais/`. Cartas de aluno seguem placeholder (falta
-  autorização para o site), e cartas e números vêm de `data/resultados.json`
+  `interno/clientes/fornari/originais/`. As cartas de resultado são 14 artes de antes e depois recortadas dos posts dele
+  (`assets/antes-depois/`), **autorizadas só para a prévia**: no site oficial, cada aluno
+  precisa autorizar o uso no site. Elas passam num carrossel (carta da vez no centro, vizinhas
+  inclinadas; troca a cada 3,2 s só à vista, para no mouse e no foco, setas e arraste), e as
+  listras de nó do contador e das divisórias andam como letreiro, só na tela. Títulos de
+  seção têm a barra ornamental só em cima. Cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
   `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).

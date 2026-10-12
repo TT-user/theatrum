@@ -42,6 +42,12 @@
     if (e[0].isIntersecting) serra.classList.add('estoura');
   }, { threshold: 0.35 }).observe(serra);
 
+  // Listras de nó andando como letreiro, só enquanto estão na tela
+  var listras = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { e.target.classList.toggle('anda', e.isIntersecting); });
+  });
+  document.querySelectorAll('.contador, .secao--alt').forEach(function (el) { listras.observe(el); });
+
   var ph = function (t) { return '<span class="ph">' + t + '</span>'; };
 
   // ---------- Contador ----------
@@ -73,7 +79,7 @@
 
   function carta(r) {
     var arte = r.arquivo
-      ? '<img src="' + r.arquivo + '" alt="Antes e depois' + (r.nome ? ' de ' + r.nome : '') + '" loading="lazy" decoding="async">'
+      ? '<img src="' + r.arquivo + '" alt="Antes e depois de ' + (r.genero === 'f' ? 'uma aluna' : 'um aluno') + ' do Team Fornari, ' + CAT[r.categoria].toLowerCase() + '" width="281" height="350" loading="lazy" decoding="async">'
       : '<div class="carta__vazia"><span class="carta__ad">Antes <i></i> Depois</span>' + ph('[arte autorizada para o site]') + '</div>';
     return '<article class="carta" data-cat="' + r.categoria + '" data-gen="' + r.genero + '">' +
       '<div class="carta__moldura">' +
@@ -84,44 +90,91 @@
         '<p class="carta__cat">' + CAT[r.categoria] + '</p>' +
         '<div class="carta__arte">' + arte + '</div>' +
         '<h3 class="carta__nome">' + (r.nome || ph('[INICIAIS]')) + '</h3>' +
-        '<p class="carta__leg">' + (r.legenda || ph('[-__ kg em __ meses]')) + '</p>' +
+        (r.legenda === '' ? '' : '<p class="carta__leg">' + (r.legenda || ph('[-__ kg em __ meses]')) + '</p>') +
       '</div>' +
       '<a class="carta__cta" href="#aplicacao" data-objetivo="' + r.categoria + '">Quero um resultado assim</a>' +
     '</article>';
   }
 
+  // Carrossel: uma carta por vez no centro, as vizinhas inclinadas dos lados
+  var vis = [], atual = 0, timer = null, pausa = false, aVista = false, PASSA = 3200;
+  var contagem = document.getElementById('res-cont');
+
   function arruma() {
-    // Leque no computador: cada carta visível ganha um ângulo a partir do centro
-    var vis = cartas.filter(function (c) { return !c.hidden; });
-    var meio = (vis.length - 1) / 2;
+    var n = vis.length;
+    cartas.forEach(function (c) { if (c.hidden) c.style.cssText = ''; });
     vis.forEach(function (c, i) {
-      c.style.setProperty('--giro', ((i - meio) * 5) + 'deg');
-      c.style.setProperty('--desce', (Math.abs(i - meio) * 14) + 'px');
-      c.style.zIndex = 10 - Math.round(Math.abs(i - meio));
-      c.classList.toggle('primeira', i === 0);
+      var o = i - atual;
+      if (o > n / 2) o -= n; else if (o < -n / 2) o += n; // dá a volta
+      var a = Math.abs(o);
+      c.style.setProperty('--o', o);
+      c.style.setProperty('--a', Math.min(a, 3));
+      c.style.zIndex = 20 - a;
+      c.classList.toggle('ativa', o === 0);
+      c.classList.toggle('longe', a > 2);
+      c.setAttribute('aria-hidden', o !== 0);
+      c.querySelectorAll('a').forEach(function (l) { l.tabIndex = o === 0 ? 0 : -1; });
     });
+    if (contagem) contagem.textContent = n ? (atual + 1) + ' / ' + n : '';
+  }
+  function vai(d) { if (!vis.length) return; atual = (atual + d + vis.length) % vis.length; arruma(); }
+  function roda() {
+    clearInterval(timer); timer = null;
+    if (semMovimento || pausa || !aVista || document.hidden || vis.length < 2) return;
+    timer = setInterval(function () { vai(1); }, PASSA);
+  }
+  function filtra(f) {
+    cartas.forEach(function (c) {
+      c.hidden = !(f === 'todos' || c.getAttribute('data-cat') === f || c.getAttribute('data-gen') === f);
+    });
+    vis = cartas.filter(function (c) { return !c.hidden; });
+    atual = 0; arruma(); roda();
   }
 
   fetch('data/resultados.json').then(function (r) { return r.json(); }).then(function (d) {
     baralho.innerHTML = d.resultados.map(carta).join('');
     cartas = [].slice.call(baralho.querySelectorAll('.carta'));
     if (window.Runas) Runas.todas(baralho);
-    arruma();
+    filtra('todos');
   }).catch(function () {
     baralho.innerHTML = '<p class="wrap">' + ph('[os resultados entram aqui]') + '</p>';
   });
 
+  // Só passa sozinho à vista, com a aba aberta e sem mouse ou foco em cima
+  new IntersectionObserver(function (e) { aVista = e[0].isIntersecting; roda(); }, { threshold: 0.3 }).observe(baralho);
+  document.addEventListener('visibilitychange', roda);
+  var palco = document.getElementById('resultados');
+  palco.addEventListener('mouseenter', function () { pausa = true; roda(); });
+  palco.addEventListener('mouseleave', function () { pausa = false; roda(); });
+  palco.addEventListener('focusin', function () { pausa = true; roda(); });
+  palco.addEventListener('focusout', function () { pausa = false; roda(); });
+
+  document.getElementById('res-ant').addEventListener('click', function () { vai(-1); roda(); });
+  document.getElementById('res-prox').addEventListener('click', function () { vai(1); roda(); });
+  baralho.addEventListener('click', function (e) {
+    var c = e.target.closest('.carta');
+    if (!c || c.classList.contains('ativa')) return;
+    e.preventDefault(); atual = vis.indexOf(c); arruma(); roda();
+  });
+  // Arraste no celular
+  var x0 = null;
+  baralho.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+  baralho.addEventListener('pointerup', function (e) {
+    if (x0 === null) return;
+    var dx = e.clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) { vai(dx < 0 ? 1 : -1); roda(); }
+  });
+  baralho.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { vai(1); roda(); }
+    if (e.key === 'ArrowLeft') { vai(-1); roda(); }
+  });
+
   document.getElementById('filtros').addEventListener('click', function (e) {
     var b = e.target.closest('.chip'); if (!b) return;
-    var f = b.getAttribute('data-filtro');
     this.querySelectorAll('.chip').forEach(function (c) {
       var on = c === b; c.classList.toggle('ativo', on); c.setAttribute('aria-pressed', on);
     });
-    cartas.forEach(function (c) {
-      c.hidden = !(f === 'todos' || c.getAttribute('data-cat') === f || c.getAttribute('data-gen') === f);
-    });
-    arruma();
-    baralho.scrollTo({ left: 0, behavior: semMovimento ? 'auto' : 'smooth' });
+    filtra(b.getAttribute('data-filtro'));
   });
 
   // "Quero um resultado assim" e os cards de plano pré-preenchem a aplicação

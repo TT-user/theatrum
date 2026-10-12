@@ -1,10 +1,103 @@
 {
-  "_leia": "Uma carta por aluno que AUTORIZOU o uso da imagem no site (o Instagram não cobre). arquivo: caminho em assets/antes-depois/ (WebP, até ~150 KB). categoria: emagrecimento | massa. genero: f | m. Enquanto arquivo for null, a carta aparece como exemplo com placeholder.",
+  "_leia": "Artes de antes/depois recortadas dos posts do @felipe.fornari. Autorizadas SÓ para a prévia (12/10/2026): para o site oficial, cada aluno precisa autorizar o uso no site. legenda vazia = não mostra (data e peso já estão na arte). arquivo null = carta de exemplo com placeholder.",
   "resultados": [
-    { "arquivo": null, "categoria": "emagrecimento", "genero": "f", "nome": null, "legenda": null },
-    { "arquivo": null, "categoria": "massa", "genero": "m", "nome": null, "legenda": null },
-    { "arquivo": null, "categoria": "emagrecimento", "genero": "m", "nome": null, "legenda": null },
-    { "arquivo": null, "categoria": "massa", "genero": "f", "nome": null, "legenda": null },
-    { "arquivo": null, "categoria": "emagrecimento", "genero": "f", "nome": null, "legenda": null }
+    {
+      "arquivo": "assets/antes-depois/ad-02.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Aluna do time",
+      "legenda": "-21 kg"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-01.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-05.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Aluna do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-03.webp",
+      "categoria": "emagrecimento",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-11.webp",
+      "categoria": "massa",
+      "genero": "f",
+      "nome": "Aluna do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-06.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-09.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Aluna do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-04.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-10.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Aluna do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-08.webp",
+      "categoria": "emagrecimento",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-12.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Aluna do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-07.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-13.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-14.webp",
+      "categoria": "emagrecimento",
+      "genero": "m",
+      "nome": "Aluno do time",
+      "legenda": ""
+    }
   ]
 }
