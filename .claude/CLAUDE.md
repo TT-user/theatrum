@@ -499,7 +499,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   deixava a Performance em 85-88. Lighthouse mobile no ar: Performance 97-99,
   Acessibilidade 100 (SEO baixo é o noindex). Logos dele (monograma "FPe" e Team Fornari)
   recortadas de print, brancas em fundo transparente, em `assets/img/`: no topo só a Team
-  Fornari; o monograma fica no rodapé e no ícone da aba (só o "FPe" do centro). Cartas e números vêm de `data/resultados.json`
+  Fornari; o monograma fica só no ícone da aba e na página de links (só o "FPe" do centro). Cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
   `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).

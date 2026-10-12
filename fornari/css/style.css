@@ -340,7 +340,6 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 @media (min-width: 980px) { .rodape__cols { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; } }
 .rodape__marca { display: flex; gap: 14px; align-items: center; font: 400 26px/1.1 var(--display); letter-spacing: .1em; }
 .rodape__marca small { display: block; font: 400 13px/1.4 var(--sans); letter-spacing: 0; color: var(--suave); margin-top: 6px; }
-.rodape__mono { width: 88px; height: 88px; flex: 0 0 auto; }
 .rodape__team { width: 190px; height: auto; margin-bottom: 4px; }
 .rodape h3 { font: 600 12.5px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--verde); margin-bottom: 16px; }
 .rodape__cols nav, .rodape__cols > div:not(.rodape__marca) { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
