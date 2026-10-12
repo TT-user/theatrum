@@ -438,7 +438,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - `/doctors/` — prévia do site da Doctors Odontologia Especializada (Arapiraca Garden Shopping,
   Arapiraca, AL), feita para prospecção em 12/10/2026 com as fotos da clínica e os cards da equipe
   que eles mesmos publicam (sete dentistas com CRO e a gerente). Paleta e tipografia (Jost) tiradas
-  do banner deles: creme, dourado e grafite. Tratamentos e equipe vêm dos objetos `TRATS` e
+  do banner deles: creme, dourado e grafite. Hero com a foto numa moldura em "D" (a marca deles),
+  rostos da equipe num card e um marquee dourado de tratamentos, que só anda à vista
+  (IntersectionObserver) e para com `prefers-reduced-motion`. O menu destaca a seção na tela.
+  Tratamentos e equipe vêm dos objetos `TRATS` e
   `EQUIPE` do `js/main.js`; cada card e cada dentista abre o WhatsApp com mensagem própria, e o
   "Por onde começar" (três perguntas) indica o especialista e monta a mensagem. Avaliações são
   slot vazio, responsável técnico e EPAO do CRO-AL ficam como placeholder (o CFO exige no

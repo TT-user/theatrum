@@ -165,6 +165,26 @@
     if (e.target.tagName === 'A') { menu.classList.remove('aberto'); mb.setAttribute('aria-expanded', 'false'); }
   });
 
+  // Menu: destaca a seção que está na tela
+  var links = Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]'));
+  var secoes = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var noAr = {};
+  var spy = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { noAr[e.target.id] = e.isIntersecting; });
+    var atualId = null;
+    secoes.forEach(function (sec) { if (noAr[sec.id] && !atualId) atualId = sec.id; });
+    links.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + atualId;
+      a.classList.toggle('ativo', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secoes.forEach(function (sec) { spy.observe(sec); });
+
+  // Marquee só anda quando está à vista
+  var mq = document.getElementById('marquee');
+  new IntersectionObserver(function (es) { mq.classList.toggle('rodando', es[0].isIntersecting); }).observe(mq);
+
   // Galeria
   var fotos = Array.prototype.map.call(document.querySelectorAll('#galeria .g img'), function (img) {
     var grande = img.srcset.split(',').pop().trim().split(' ')[0];

@@ -63,6 +63,10 @@ p { margin: 0 0 1em; }
 .menu { display: flex; gap: 26px; margin-left: auto; }
 .menu a { color: var(--grafite); text-decoration: none; font-size: 15px; }
 .menu a:hover { color: var(--ouro); }
+.menu a { position: relative; transition: color .2s; }
+.menu a.ativo { color: var(--ouro); font-weight: 500; }
+.menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--ouro); border-radius: 2px; transform: scaleX(0); transition: transform .25s; }
+.menu a.ativo::after { transform: scaleX(1); }
 .menu-btn { display: none; }
 @media (max-width: 900px) {
   .topo__in { gap: 12px; }
@@ -74,10 +78,12 @@ p { margin: 0 0 1em; }
   .menu { position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--creme); border-bottom: 1px solid var(--linha); padding: 8px var(--gutter) 18px; display: none; }
   .menu.aberto { display: flex; }
   .menu a { padding: 13px 0; border-bottom: 1px solid var(--linha); font-size: 17px; }
+  .menu a::after { display: none; }
+  .menu a.ativo { padding-left: 12px; border-left: 3px solid var(--ouro); }
 }
 
 /* Hero */
-.hero { position: relative; overflow: hidden; padding: clamp(48px, 7vw, 96px) 0 clamp(56px, 7vw, 90px); }
+.hero { position: relative; overflow: hidden; padding: clamp(36px, 5vw, 64px) 0 0; }
 .hero__bokeh { position: absolute; inset: 0; pointer-events: none;
   background:
     radial-gradient(circle at 80% 22%, rgba(240,212,136,.55) 0, rgba(240,212,136,0) 15%),
@@ -94,13 +100,46 @@ p { margin: 0 0 1em; }
 .selos b { color: var(--grafite); font-weight: 600; }
 .selos li { padding-left: 16px; position: relative; }
 .selos li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--ouro-vivo); }
-.hero__foto { margin: 0; position: relative; }
-.hero__foto img { border-radius: 22px; box-shadow: 0 30px 60px -30px rgba(80,55,10,.45); aspect-ratio: 4/3; object-fit: cover; object-position: 55% center; width: 100%; }
-.hero__foto figcaption { position: absolute; left: -24px; bottom: -22px; max-width: 290px; background: var(--branco); padding: 16px 20px; border-radius: 14px; font-size: 14.5px; line-height: 1.45; box-shadow: 0 14px 30px -16px rgba(80,55,10,.35); border-left: 3px solid var(--ouro); }
-.faixa-ouro { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: var(--ouro); }
+.hero__visual { position: relative; padding: 0 0 0 28px; }
+/* Moldura em "D", a marca da clínica: lado reto à esquerda, meia-lua à direita */
+.hero__d { position: relative; aspect-ratio: 1; max-width: 520px; margin-left: auto; }
+.hero__d::before { content: ""; position: absolute; inset: 0; transform: translate(-22px, 22px); border: 14px solid var(--ouro-vivo); border-radius: 26px 50% 50% 26px; opacity: .85; }
+.hero__d img { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 26px 50% 50% 26px; box-shadow: 0 34px 70px -34px rgba(80,55,10,.55); }
+.hero__time { position: absolute; left: 0; bottom: 34px; display: flex; align-items: center; gap: 14px; background: var(--branco); padding: 12px 18px 12px 12px; border-radius: 999px; text-decoration: none; color: var(--grafite); box-shadow: 0 18px 40px -18px rgba(80,55,10,.45); transition: transform .2s; }
+.hero__time:hover { transform: translateY(-2px); }
+.hero__rostos { display: flex; }
+.hero__rostos img { width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid var(--branco); margin-left: -12px; object-fit: cover; }
+.hero__rostos img:first-child { margin-left: 0; }
+.hero__time b { display: block; font-weight: 600; font-size: 15.5px; line-height: 1.2; }
+.hero__time span:last-child { font-size: 14px; color: var(--ouro); line-height: 1.3; }
+.hero__nota { position: absolute; right: -6px; top: 18px; max-width: 230px; background: var(--grafite-2); color: #EDE6D8; padding: 14px 18px; border-radius: 16px 16px 16px 4px; font-size: 14px; line-height: 1.45; margin: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,.5); }
 @media (max-width: 980px) {
-  .hero__in { grid-template-columns: 1fr; gap: 44px; }
-  .hero__foto figcaption { left: 12px; right: 12px; max-width: none; }
+  .hero__in { grid-template-columns: 1fr; gap: 48px; }
+  .hero__visual { padding: 0 0 0 22px; }
+  .hero__d { margin: 0 auto; }
+  .hero__nota { right: 0; top: -18px; max-width: 210px; }
+}
+@media (max-width: 520px) {
+  .hero__rostos img:nth-child(n+5) { display: none; }
+  .hero__time { position: relative; left: auto; bottom: auto; width: fit-content; margin: -30px 0 0 -8px; padding: 9px 14px 9px 9px; gap: 10px; }
+  .hero__rostos img { width: 34px; height: 34px; }
+  .hero__nota { display: none; }
+}
+
+/* Marquee de tratamentos: corre só à vista (classe .rodando via IntersectionObserver) */
+.marquee { position: relative; margin-top: clamp(44px, 5vw, 60px); background: var(--ouro); color: #FFF7E6; overflow: hidden; padding: 16px 0; }
+.marquee__trilho { display: flex; width: max-content; }
+.marquee ul { display: flex; list-style: none; margin: 0; padding: 0; }
+.marquee li { font-size: 15px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; padding: 0 26px; display: flex; align-items: center; gap: 52px; }
+.marquee li::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ouro-claro); margin-right: -26px; }
+.marquee.rodando .marquee__trilho { animation: marquee 48s linear infinite; }
+.marquee:hover .marquee__trilho { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee.rodando .marquee__trilho { animation: none; }
+  .marquee__trilho { width: auto; }
+  .marquee ul { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+  .marquee ul + ul { display: none; }
 }
 
 /* Seções */
