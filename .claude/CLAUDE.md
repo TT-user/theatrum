@@ -464,6 +464,24 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   servidor manda o navegador guardar CSS e JS por 7 dias: mudou um dos dois, sobe o `?v=` no
   `index.html`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
   UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
+- `/fornari/` — prévia da landing do Felipe Fornari (Team Fornari: treinador com consultoria
+  online e presencial, sócio da Espaço Saúde, Alto Caparaó, MG), feita para prospecção em
+  12/10/2026. Substitui o caminho bio → Linktree → Google Forms de 50 perguntas: o seguidor vê os
+  resultados e faz uma aplicação de 7 perguntas (`js/aplicacao.js`, regras do plano no topo) que
+  monta a mensagem do WhatsApp; a anamnese completa fica para depois do pagamento. Estética de
+  guerreiro nórdico nas cores dele (preto-pedra, verde `#08A577`, neon `#2EE38A` em brilho e destaque, um toque
+  de ouro), tudo em SVG próprio: emblema do clã, nós entrelaçados, barras com traços e marcas de
+  inspiração rúnica desenhadas por `js/runas.js` (sem fonte extra), cartas de antes/depois em leque e a
+  serra do Caparaó com o Pico da Bandeira no rodapé, com um atleta rompendo a pedra. **Nada de
+  símbolo pagão** (Odin, Thor, Valknut, Mjölnir...): ele declara fé cristã. Por isso as
+  marcas do `runas.js` não são letras do Futhark: tiwaz e ansuz são runas de deuses e a
+  othala tem uso neonazista. Não troque por runas de verdade. Títulos em Bebas Neue (a fonte das artes dele), corpo em Inter. Ainda sem nenhuma
+  foto: hero e "quem é" têm o `<img>` comentado; cartas e números vêm de `data/resultados.json`
+  e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
+  `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
+  noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).
+  CSS e JS com `?v=`: mudou um deles, sobe o número no HTML. Pendências
+  em `interno/clientes/fornari/README.md`, fora do git.
 
 ### As demonstrações, uma pasta por área
 
@@ -546,7 +564,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

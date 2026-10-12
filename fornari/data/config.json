@@ -1,0 +1,8 @@
+{
+  "_leia": "Números da faixa abaixo do hero. Enquanto o valor for null, aparece o placeholder amarelo. Nunca preencher com estimativa: só número que o Felipe confirmar.",
+  "numeros": [
+    { "valor": null, "prefixo": "+", "sufixo": "", "rotulo": "alunos acompanhados" },
+    { "valor": null, "prefixo": "", "sufixo": " kg", "rotulo": "perdidos somados pelo time" },
+    { "valor": null, "prefixo": "", "sufixo": "", "rotulo": "anos de experiência" }
+  ]
+}

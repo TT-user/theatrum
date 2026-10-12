@@ -1,0 +1,10 @@
+{
+  "_leia": "Uma carta por aluno que AUTORIZOU o uso da imagem no site (o Instagram não cobre). arquivo: caminho em assets/antes-depois/ (WebP, até ~150 KB). categoria: emagrecimento | massa. genero: f | m. Enquanto arquivo for null, a carta aparece como exemplo com placeholder.",
+  "resultados": [
+    { "arquivo": null, "categoria": "emagrecimento", "genero": "f", "nome": null, "legenda": null },
+    { "arquivo": null, "categoria": "massa", "genero": "m", "nome": null, "legenda": null },
+    { "arquivo": null, "categoria": "emagrecimento", "genero": "m", "nome": null, "legenda": null },
+    { "arquivo": null, "categoria": "massa", "genero": "f", "nome": null, "legenda": null },
+    { "arquivo": null, "categoria": "emagrecimento", "genero": "f", "nome": null, "legenda": null }
+  ]
+}
