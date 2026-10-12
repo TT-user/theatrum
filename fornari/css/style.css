@@ -107,9 +107,9 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 .selos { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 26px; font-size: 14.5px; color: var(--suave); }
 .selos li { display: flex; align-items: center; gap: 8px; }
 .selos li + li::before { content: ""; width: 6px; height: 6px; background: var(--verde); transform: rotate(45deg); margin-right: 8px; }
-.hero__runas { display: none; }
+.hero .hero__runas { display: none; }
 @media (min-width: 980px) {
-  .hero__runas { display: block; position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--verde); opacity: .45; z-index: 2; }
+  .hero .hero__runas { display: block; position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--verde); opacity: .45; z-index: 2; }
   .hero__in { padding-left: 64px; }
 }
 @media (max-width: 600px) { .hero__ctas .btn { width: 100%; } .hero__emblema { right: -20%; top: 10%; } }
@@ -440,3 +440,21 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 35; pointer-even
 .brasas.anda .brasa { animation-play-state: running; }
 @keyframes brasa { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 12% { opacity: .85; } 80% { opacity: .5; } 100% { transform: translate3d(var(--dx), calc(var(--h) * -1), 0); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .brasas { display: none; } }
+
+/* ---------- Celular: primeira tela enxuta ---------- */
+.so-cel { display: none; }
+@media (max-width: 600px) {
+  .so-pc { display: none; }
+  .so-cel { display: inline; }
+  .hero .lead, .hero .selos { display: none; }
+  .eyebrow { margin-bottom: 12px; }
+  h1 em { font-size: 21px; margin-top: 10px; }
+  .hero__ctas { margin-top: 22px; gap: 4px; }
+  .hero__ctas .hero__sec { width: auto; align-self: center; min-height: 44px; border: 0; padding: 8px 12px; font-size: 18px; color: var(--suave); text-decoration: underline; text-underline-offset: 5px; }
+  .hero__ctas { flex-direction: column; }
+  .theatrum { padding: 4px; } .theatrum span { display: none; }
+}
+
+/* Textos não selecionáveis; campos do formulário continuam editáveis */
+body { -webkit-user-select: none; user-select: none; }
+input, textarea { -webkit-user-select: text; user-select: text; }
