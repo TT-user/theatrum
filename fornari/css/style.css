@@ -200,12 +200,21 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 
 
 /* ---------- Como funciona ---------- */
-.passos { display: grid; gap: 16px; counter-reset: p; }
-@media (min-width: 860px) { .passos { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
-.passo { position: relative; background: var(--card); padding: 30px 26px 28px; border-top: 3px solid var(--verde); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%); }
-.passo__n { display: block; font: 400 56px/1 var(--display); color: var(--verde); letter-spacing: .06em; margin-bottom: 10px; }
-.passo h3 { font: 700 20px/1.25 var(--sans); margin-bottom: 8px; }
-.passo p { color: var(--suave); font-size: 16px; }
+.passos { display: grid; gap: 18px; }
+@media (min-width: 860px) { .passos { grid-template-columns: repeat(3, 1fr); gap: 40px; } }
+.passo { position: relative; display: flex; flex-direction: column; background: linear-gradient(180deg, #212623, #191C1A); border: 1px solid rgba(8,165,119,.28); border-top: 3px solid var(--verde); padding: 28px 26px 30px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.9); transition: border-color .25s, box-shadow .25s, transform .25s; }
+.passo:hover { border-color: rgba(46,227,138,.6); box-shadow: 0 24px 50px -28px rgba(0,0,0,.9), 0 0 40px -14px rgba(46,227,138,.35); transform: translateY(-3px); }
+.passo__topo { display: flex; align-items: center; gap: 26px; margin: 10px 0 26px 11px; }
+.passo__n { flex: 0 0 auto; width: 50px; height: 50px; display: grid; place-items: center; border: 2px solid var(--verde); transform: rotate(45deg); background: rgba(8,165,119,.1); }
+.passo__n b { transform: rotate(-45deg); font: 400 26px/1 var(--display); letter-spacing: .04em; color: var(--neon); padding-top: 2px; }
+.passo__rot { font: 600 12.5px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--verde); }
+.passo h3 { font: 700 20px/1.3 var(--sans); color: var(--osso); margin-bottom: 10px; }
+@media (min-width: 860px) { .passo h3 { min-height: 2.6em; } }
+.passo p { color: #C4C9C5; font-size: 16.5px; line-height: 1.6; }
+/* seta entre os passos no computador */
+@media (min-width: 860px) {
+  .passo:not(:last-child)::after { content: ""; position: absolute; top: 50%; right: -30px; width: 18px; height: 18px; border-top: 2.5px solid var(--verde); border-right: 2.5px solid var(--verde); transform: translateY(-50%) rotate(45deg); opacity: .8; }
+}
 
 /* ---------- Aplicação ---------- */
 #aplicacao { background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(8,165,119,.13), transparent 70%); }
