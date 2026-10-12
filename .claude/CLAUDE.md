@@ -493,8 +493,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   passos" em branco-osso; nó gigante a 4% atrás da aplicação; "quem é" sobre a foto da
   academia já desfocada em arquivo (`academia-blur.webp`, 4 KB); "seu arsenal" em verde
   sólido; 26 brasas em CSS atrás dos planos, paradas fora da tela; cortes diagonais de 3,5°
-  (`.corte`) entre as seções escuras. Contraste conferido: o menor é 5,7:1. Lighthouse
-  mobile local, sem gzip: Performance 90, Acessibilidade 100 (SEO baixo é o noindex). Logos dele (monograma "FPe" e Team Fornari)
+  (`.corte`) entre as seções escuras. Contraste conferido: o menor é 5,7:1. Fontes servidas
+  daqui (`fonts/`, OFL) com preload: o Google Fonts custava a troca de fonte tardia e
+  deixava a Performance em 85-88. Lighthouse mobile no ar: Performance 97-99,
+  Acessibilidade 100 (SEO baixo é o noindex). Logos dele (monograma "FPe" e Team Fornari)
   recortadas de print, brancas em fundo transparente, em `assets/img/`: no topo só a Team
   Fornari; o monograma fica no rodapé e no ícone da aba (só o "FPe" do centro). Cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
