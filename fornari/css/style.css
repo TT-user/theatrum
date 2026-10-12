@@ -458,3 +458,12 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 35; pointer-even
 /* Textos não selecionáveis; campos do formulário continuam editáveis */
 body { -webkit-user-select: none; user-select: none; }
 input, textarea { -webkit-user-select: text; user-select: text; }
+
+/* Celular: hero na altura exata da tela, texto ancorado embaixo */
+@media (max-width: 979px) {
+  .hero { min-height: calc(100svh - 36px); }
+  .hero .hero__in { padding-top: min(56vw, 42svh); padding-bottom: max(22px, 3.5svh); }
+}
+@media (max-width: 979px) {
+  .hero .hero__foto { aspect-ratio: auto; height: 76%; max-height: none; object-position: 50% 12%; }
+}
