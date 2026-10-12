@@ -24,8 +24,8 @@
   /* Nó entrelaçado: duas tiras que passam uma por cima da outra */
   --no: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' fill='none' stroke-width='2.2'%3E%3Cpath d='M20 12C30 12 30 4 40 4' stroke='%2308A577'/%3E%3Cpath d='M0 12C10 12 10 4 20 4' stroke='%2308A577'/%3E%3Cpath d='M0 4C10 4 10 12 20 12' stroke='%230B0D0C' stroke-width='6'/%3E%3Cpath d='M0 4C10 4 10 12 20 12' stroke='%2308A577'/%3E%3Cpath d='M20 4C30 4 30 12 40 12' stroke='%230B0D0C' stroke-width='6'/%3E%3Cpath d='M20 4C30 4 30 12 40 12' stroke='%2308A577'/%3E%3C/svg%3E");
 
-  /* Faixa das divisórias: linha fina, losango e traços rúnicos, no desenho da barra dos títulos */
-  --divisa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='16' fill='none' stroke='%2308A577'%3E%3Cpath d='M0 8h20M36 8h20' stroke-width='1.4'/%3E%3Cpath d='M28 1.5l6.5 6.5-6.5 6.5-6.5-6.5z' stroke-width='1.6'/%3E%3Cpath d='M28 5.2l2.8 2.8-2.8 2.8-2.8-2.8z' fill='%2308A577' stroke='none'/%3E%3Cpath d='M6 6.5l2.5-4M11 6.5l2.5-4M42 9.5l2.5 4M47 9.5l2.5 4' stroke-width='1.2'/%3E%3C/svg%3E");
+  /* Losango único no centro das divisórias, com miolo para tapar a linha */
+  --losango: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M8 1.5 14.5 8 8 14.5 1.5 8z' fill='%230B0D0C' stroke='%2308A577' stroke-opacity='.8' stroke-width='1.3'/%3E%3Cpath d='M8 5.6 10.4 8 8 10.4 5.6 8z' fill='%2308A577' fill-opacity='.8'/%3E%3C/svg%3E");
   /* Barra ornamental com traços rúnicos, acima e abaixo dos títulos */
   --barra: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='22' fill='none' stroke='%2308A577'%3E%3Cpath d='M12 11h96M152 11h96' stroke-width='2'/%3E%3Cpath d='M0 11l7-5 7 5-7 5zM246 11l7-5 7 5-7 5z' fill='%2308A577' stroke='none'/%3E%3Cpath d='M30 9l3-6M38 9l3-6M46 9l3-6M30 13l3 6M38 13l3 6M46 13l3 6M211 9l3-6M219 9l3-6M227 9l3-6M211 13l3 6M219 13l3 6M227 13l3 6' stroke-width='1.6'/%3E%3Cpath d='M130 2l9 9-9 9-9-9z' stroke-width='2'/%3E%3Cpath d='M130 7l4 4-4 4-4-4z' fill='%2308A577' stroke='none'/%3E%3Cpath d='M108 11h6M146 11h6' stroke-width='2'/%3E%3C/svg%3E");
 }
@@ -119,12 +119,8 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 
 /* ---------- Contador ---------- */
 .contador { position: relative; padding: 26px 0; background: var(--pedra-2); }
-.contador::before, .contador::after { content: ""; position: absolute; left: 0; right: 0; height: 16px; background: var(--pedra-2) var(--divisa) repeat-x; opacity: .9; }
+.contador::before, .contador::after { content: ""; position: absolute; left: 0; right: 0; height: 16px; background: var(--losango) center / 16px 16px no-repeat, linear-gradient(90deg, transparent, rgba(8,165,119,.4) 35%, rgba(8,165,119,.4) 65%, transparent) center / 100% 1px no-repeat; }
 .contador::before { top: -8px; } .contador::after { bottom: -8px; }
-.contador::before, .contador::after, .secao--alt::before { left: -56px; will-change: transform; animation: letreiro 3s linear infinite paused; }
-.contador::after { animation-direction: reverse; }
-.anda::before, .anda::after { animation-play-state: running; }
-@keyframes letreiro { from { transform: translateX(0); } to { transform: translateX(56px); } }
 .contador__in { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; min-height: 74px; }
 .num { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .num__v { font: 400 clamp(36px, 6vw, 58px)/1 var(--display); color: var(--neon); letter-spacing: .03em; }
@@ -134,7 +130,7 @@ h1 em { display: block; font: 700 clamp(22px, 3.2vw, 34px)/1.2 var(--sans); font
 /* ---------- Seções e títulos ---------- */
 .secao { position: relative; padding: clamp(72px, 10vw, 124px) 0; }
 .secao--alt { background-color: var(--pedra-2); background-image: var(--rocha); }
-.secao--alt::before { content: ""; position: absolute; top: -8px; right: 0; height: 16px; background: var(--pedra) var(--divisa) repeat-x; opacity: .9; }
+.secao--alt::before { content: ""; position: absolute; top: -8px; left: 0; right: 0; height: 16px; background: var(--losango) center / 16px 16px no-repeat, linear-gradient(90deg, transparent, rgba(8,165,119,.4) 35%, rgba(8,165,119,.4) 65%, transparent) center / 100% 1px no-repeat; }
 .cab { text-align: center; margin-bottom: clamp(36px, 5vw, 56px); }
 .cab__olho { font: 600 13px/1.3 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--verde); margin-bottom: 14px; }
 .titulo { font: 400 clamp(42px, 7.5vw, 76px)/.95 var(--display); letter-spacing: .05em; text-transform: uppercase; }

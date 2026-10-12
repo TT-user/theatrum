@@ -42,12 +42,6 @@
     if (e[0].isIntersecting) serra.classList.add('estoura');
   }, { threshold: 0.35 }).observe(serra);
 
-  // Listras de nó andando como letreiro, só enquanto estão na tela
-  var listras = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { e.target.classList.toggle('anda', e.isIntersecting); });
-  });
-  document.querySelectorAll('.contador, .secao--alt').forEach(function (el) { listras.observe(el); });
-
   var ph = function (t) { return '<span class="ph">' + t + '</span>'; };
 
   // ---------- Contador ----------

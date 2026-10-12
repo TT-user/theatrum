@@ -484,7 +484,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   inclinadas e girando em 3D, até a borda da tela no computador com degradê nas laterais;
   troca a cada 3,2 s só à vista, para no mouse e no foco; setas grandes nas laterais e
   arraste com dedo ou mouse, as cartas acompanhando), e as
-  listras de nó do contador e das divisórias andam como letreiro, só na tela. Títulos de
+  divisórias (contador e troca de seção) são uma linha fina que some nas bordas, com um
+  losango no centro, paradas. Títulos de
   seção têm a barra ornamental só em cima. Logos dele (monograma "FPe" e Team Fornari)
   recortadas de print, brancas em fundo transparente, em `assets/img/`; o ícone da aba usa
   só o "FPe" do centro. Cartas e números vêm de `data/resultados.json`
