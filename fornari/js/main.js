@@ -177,10 +177,16 @@
   // Só passa sozinho à vista, com a aba aberta e sem mouse ou foco em cima
   new IntersectionObserver(function (e) { aVista = e[0].isIntersecting; roda(); }, { threshold: 0.3 }).observe(baralho);
   document.addEventListener('visibilitychange', roda);
+  // Para só com o mouse sobre a carta da vez, ou com foco de teclado dentro do carrossel
+  baralho.addEventListener('mouseover', function (e) {
+    var sobre = !!e.target.closest('.carta.ativa');
+    if (sobre !== pausa) { pausa = sobre; roda(); }
+  });
+  baralho.addEventListener('mouseleave', function () { if (pausa) { pausa = false; roda(); } });
   var palco = document.getElementById('resultados');
-  palco.addEventListener('mouseenter', function () { pausa = true; roda(); });
-  palco.addEventListener('mouseleave', function () { pausa = false; roda(); });
-  palco.addEventListener('focusin', function () { pausa = true; roda(); });
+  palco.addEventListener('focusin', function (e) {
+    if (e.target.matches(':focus-visible') && !e.target.closest('.palco__seta')) { pausa = true; roda(); }
+  });
   palco.addEventListener('focusout', function () { pausa = false; roda(); });
 
   document.getElementById('res-ant').addEventListener('click', function () { vai(-1); roda(); });

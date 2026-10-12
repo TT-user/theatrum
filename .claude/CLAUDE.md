@@ -482,7 +482,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   (`assets/antes-depois/`), **autorizadas só para a prévia**: no site oficial, cada aluno
   precisa autorizar o uso no site. Elas passam num carrossel (carta da vez no centro, vizinhas
   inclinadas e girando em 3D, até a borda da tela no computador com degradê nas laterais;
-  troca a cada 3,2 s só à vista, para no mouse e no foco; setas grandes nas laterais e
+  troca a cada 3,2 s só à vista, para só com o mouse sobre a carta do centro ou foco de
+  teclado (pausar na seção inteira travava o carrossel); setas grandes nas laterais e
   arraste com dedo ou mouse, as cartas acompanhando), e as
   divisórias (contador e troca de seção) são uma linha fina que some nas bordas, com um
   losango no centro, paradas. Títulos de
