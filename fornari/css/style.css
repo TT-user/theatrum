@@ -468,10 +468,9 @@ input, textarea { -webkit-user-select: text; user-select: text; }
   .hero .hero__foto { aspect-ratio: auto; height: 76%; max-height: none; object-position: 50% 12%; }
 }
 
-/* Seu arsenal: cards branco-neve sobre o verde */
-.secao--verde .arsenal li { background: #F7F8F5; box-shadow: none; padding: 28px 26px 30px; transition: transform .25s, background .25s; }
-.secao--verde .arsenal li:hover { background: #fff; box-shadow: none; transform: translateY(-3px); }
-.secao--verde .arsenal svg { width: 52px; height: 52px; padding: 10px; margin: 6px 0 20px 6px; color: var(--verde-escuro); background: rgba(8,165,119,.12); border: 1.5px solid rgba(5,105,76,.35); transform: rotate(45deg); }
-.secao--verde .arsenal svg use { transform: rotate(-45deg); transform-origin: 12px 12px; }
-.secao--verde .arsenal h3 { color: var(--pedra); }
-.secao--verde .arsenal p { color: #3B403C; }
+/* Seu arsenal: cards em preto fosco sobre o verde */
+.secao--verde .arsenal li { background: #141614; box-shadow: none; padding: 28px 26px 30px; transition: transform .25s, background .25s; }
+.secao--verde .arsenal li:hover { background: #0A0B0A; box-shadow: none; transform: translateY(-3px); }
+.secao--verde .arsenal svg { color: var(--neon); }
+.secao--verde .arsenal h3 { color: var(--osso); }
+.secao--verde .arsenal p { color: #B9BEBA; }
