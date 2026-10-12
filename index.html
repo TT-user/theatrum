@@ -2177,6 +2177,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .vs-tipos p{font:600 14px/1.4 var(--font-mono);color:var(--muted);margin:0 0 12px}
   .vs-tipos ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0}
   .vs-tipos li{font:500 14px/1 var(--font-body);color:#E2DACB;border:1px solid var(--line);border-radius:99px;padding:9px 13px}
+  /* letreiro das marcas da vitrine: logos tirados do cabecalho de cada demo, em um tom so.
+     Duas copias do trilho para a volta nao emendar; para fora da tela (.is-off), no mouse e
+     sem movimento vira grade parada. Sao marcas inventadas e o rotulo diz isso. */
+  .mc{margin-top:48px}
+  .mc-tit{font:600 14px/1.4 var(--font-mono);color:var(--muted);margin:0 0 18px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+  .mc-tit span{font-size:12px;color:var(--accent);border:1px solid rgba(227,179,65,.4);border-radius:99px;padding:4px 10px}
+  .mc-faixa{display:flex;overflow:hidden;padding:14px 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+  .mc-trilho{display:flex;flex-shrink:0;align-items:center;animation:mcAnda 75s linear infinite}
+  .mc-trilho a{display:block;margin:0 30px;opacity:.62;transition:opacity .3s}
+  .mc-trilho a:hover,.mc-trilho a:focus-visible{opacity:1}
+  .mc-trilho a:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:4px}
+  .mc-trilho img{display:block;height:auto;max-width:none}
+  .mc-faixa:hover .mc-trilho,.mc-faixa:focus-within .mc-trilho,.mc.is-off .mc-trilho{animation-play-state:paused}
+  @keyframes mcAnda{to{transform:translateX(-100%)}}
+  .mc.parado .mc-faixa{-webkit-mask-image:none;mask-image:none}
+  .mc.parado .mc-trilho{animation:none;flex-wrap:wrap;flex-shrink:1;justify-content:center;row-gap:22px}
+  .mc.parado .mc-trilho[aria-hidden]{display:none}
+  @media(prefers-reduced-motion:reduce){
+    .mc-faixa{-webkit-mask-image:none;mask-image:none}
+    .mc-trilho{animation:none;flex-wrap:wrap;flex-shrink:1;justify-content:center;row-gap:22px}
+    .mc-trilho[aria-hidden]{display:none}
+  }
+  @media(max-width:600px){ .mc-trilho a{margin:0 20px} .mc-trilho img{transform:scale(.85)} }
   @media(max-width:860px){ .vs-blocos{grid-template-columns:1fr;gap:36px} }
   @media(max-width:600px){ .vs-legenda{flex-direction:column;gap:6px;min-height:0} .vs-pontos{padding-top:0;margin-left:-8px} }
   @media(prefers-reduced-motion:reduce){ .vs-quadro img,.vs-legenda div,.vs-barra b{transition:none} }
@@ -2190,6 +2214,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="vs-blocos rv" style="--d:.2s" id="vsBlocos">
       <div class="vs-bloco" data-bloco="0"></div>
       <div class="vs-bloco" data-bloco="1"></div>
+    </div>
+
+    <div class="mc rv" style="--d:.22s" id="marcas">
+      <p class="mc-tit" data-en='the brands behind the sites in the portfolio <span>invented for demonstration</span>'>as marcas dos sites do portfólio <span>inventadas para demonstração</span></p>
+      <div class="mc-faixa">
+        <div class="mc-trilho">
+          <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="Vista Imóveis" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/atelie-verga.webp" width="158" height="28" alt="Ateliê Verga" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-infantil/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-infantil.webp" width="151" height="29" alt="Marina Bastos" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/prumo/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/prumo.webp" width="117" height="36" alt="Prumo" loading="lazy" decoding="async"></a>
+          <a href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/seis-panos.webp" width="195" height="24" alt="Seis Panos" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vertice.webp" width="146" height="30" alt="Vértice" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/casa-nobre.webp" width="244" height="21" alt="Casa Nobre" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-emagrecimento.webp" width="146" height="31" alt="Renata Salles" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/pedra-alta.webp" width="146" height="30" alt="Pedra Alta" loading="lazy" decoding="async"></a>
+          <a href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/caparao-solar.webp" width="160" height="29" alt="Caparaó Solar" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/mare-mansa.webp" width="152" height="30" alt="Maré Mansa" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cerne.webp" width="118" height="37" alt="Cerne" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-clinica/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-clinica.webp" width="174" height="26" alt="Camila Prado" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/vereda/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vereda.webp" width="201" height="24" alt="Vereda" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/reserva-aurora.webp" width="211" height="22" alt="Reserva Aurora" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="Cozinha Viva" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="Lívia Amaral" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="Ethan Reyes" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="Bruno Tavares" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="Morattá" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/campo-vivo/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/campo-vivo.webp" width="136" height="33" alt="Campo Vivo" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/medida-certa.webp" width="209" height="22" alt="Medida Certa" loading="lazy" decoding="async"></a>
+        </div>
+        <div class="mc-trilho" aria-hidden="true">
+          <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/atelie-verga.webp" width="158" height="28" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-infantil/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-infantil.webp" width="151" height="29" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/prumo/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/prumo.webp" width="117" height="36" alt="" loading="lazy" decoding="async"></a>
+          <a href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/seis-panos.webp" width="195" height="24" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vertice.webp" width="146" height="30" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/casa-nobre.webp" width="244" height="21" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-emagrecimento.webp" width="146" height="31" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/pedra-alta.webp" width="146" height="30" alt="" loading="lazy" decoding="async"></a>
+          <a href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/caparao-solar.webp" width="160" height="29" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/mare-mansa.webp" width="152" height="30" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cerne.webp" width="118" height="37" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-clinica/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-clinica.webp" width="174" height="26" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/vereda/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vereda.webp" width="201" height="24" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/reserva-aurora.webp" width="211" height="22" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/campo-vivo/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/campo-vivo.webp" width="136" height="33" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/medida-certa.webp" width="209" height="22" alt="" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
     </div>
 
     <div class="vs-tipos rv" style="--d:.24s">
@@ -3025,6 +3103,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if (strip) new IntersectionObserver(es => {
     es.forEach(e => strip.classList.toggle('is-off', !e.isIntersecting));
   }).observe(strip);
+  // marcas da vitrine: mesmo cuidado do letreiro; em ?still=1 vira grade parada
+  const mc = document.getElementById('marcas');
+  if (mc) {
+    /* lazy sozinho deixaria o logo que ainda esta fora do trilho entrar em branco */
+    const perto = new IntersectionObserver(es => {
+      if (!es.some(e => e.isIntersecting)) return;
+      mc.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+      perto.disconnect();
+    }, { rootMargin: '900px 0px' });
+    perto.observe(mc);
+    if (STILL) mc.classList.add('parado');
+    else new IntersectionObserver(es => {
+      es.forEach(e => mc.classList.toggle('is-off', !e.isIntersecting));
+    }).observe(mc);
+  }
   // reveal on scroll (inclui os reveals direcionais da seção problema)
   const io = new IntersectionObserver((es) => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

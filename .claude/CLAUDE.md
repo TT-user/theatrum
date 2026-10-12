@@ -232,7 +232,15 @@ rodapé em colunas), adaptada à escada de compromisso.
   roda à vista. Para no mouse; setas nas laterais da tela e bolinhas
   grandes (a atual vira pílula dourada) trocam na mão; sem rotação com
   `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
-  tem e "Ver os vinte e três" (`portfolio/?de=home`). Links das telas levam
+  tem e "Ver os vinte e três" (`portfolio/?de=home`). Entre os blocos e
+  essa lista, desde 12/10/2026, um letreiro com os logos das 22 demos
+  (`#marcas`, "inventadas para demonstração"; nunca "parceiras", são
+  marcas fictícias). Cada logo foi recortado do cabeçalho da própria demo
+  e passado para um tom creme, em `assets/img/marcas/`: exibido entre 20
+  e 40 px de altura (mais baixo quanto mais largo) e salvo a 2x disso
+  (62 KB no total, só baixa quando a seção chega perto). Para fora da
+  tela, no mouse e no foco do teclado; sem movimento e em `?still=1`
+  vira grade parada. Logo de demo mudou, refaça o recorte dela. Links das telas levam
   `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
   volta: 71 KB de imagem ao rolar contra 354 KB (celular) e 593 KB
   (computador), sem tarefa longa a mais.
