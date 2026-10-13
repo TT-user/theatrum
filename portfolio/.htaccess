@@ -1,0 +1,11 @@
+# DESATIVADA em 13/10/2026: os vinte e quatro sites passam em quatro blocos na
+# home ([08] trabalhos). Os arquivos ficam aqui, mas quem abre o link (inclusive
+# a volta das demos com ?de=portfolio) vai para a home, na seção de trabalhos.
+# Para reativar, apague este bloco.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^ https://usetheatrum.com.br/#trabalhos [R=302,NE,L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+  Require all denied
+</IfModule>

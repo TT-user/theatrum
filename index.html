@@ -554,7 +554,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#problema" data-en="Solutions">Soluções</a></li>
     <li><a href="#calculadora" data-en="Calculator">Calculadora</a></li>
     <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
-    <li><a href="portfolio/" data-en="Work">Trabalhos</a></li>
+    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
     <li><a href="#investimento" data-en="Pricing">Investimento</a></li>
     <li><a href="#faq" data-en="FAQ">FAQ</a></li>
   </ul>
@@ -577,7 +577,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#problema" data-en="Solutions">Soluções</a>
   <a href="#calculadora" data-en="Calculator">Calculadora</a>
   <a href="#sistema" data-en="Demo">Demonstração</a>
-  <a href="portfolio/" data-en="Work">Trabalhos</a>
+  <a href="#trabalhos" data-en="Work">Trabalhos</a>
   <a href="#como-funciona" data-en="How it works">Como funciona</a>
   <a href="#investimento" data-en="Pricing">Investimento</a>
   <a href="#faq" data-en="FAQ">FAQ</a>
@@ -610,7 +610,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="hx-sub" data-en="We build it, launch it and leave it <b>ready for ads</b>, with tracking, copy that sells and an alert for every new contact. <span class='hx-fecho'>You take care of the business.</span>">Criamos, colocamos no ar e deixamos <b>pronto para anúncio</b>, com rastreamento, texto que vende e aviso de cada novo contato. <span class="hx-fecho">Você cuida do negócio.</span></p>
       <div class="hero-ctas hx-ctas">
         <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='Get a free diagnosis <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Fazer diagnóstico gratuito <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
-        <a class="btn btn-secondary" href="portfolio/" data-en="See projects">Ver projetos</a>
+        <a class="btn btn-secondary" href="#trabalhos" data-en="See projects">Ver projetos</a>
       </div>
       <ul class="hx-chips">
         <li data-en="Ready for Google and Meta Ads">Pronto para Google e Meta Ads</li>
@@ -2119,15 +2119,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 8 · TRABALHOS (vitrine em dois blocos) ============
-     Dois "espaços de anúncio", cada um passando um site por vez com
-     transição em degradê, o tipo de site escrito embaixo. O portfólio
-     inteiro (24 sites) mora em /portfolio/.
+<!-- ============ 8 · TRABALHOS (vitrine em quatro blocos) ============
+     Quatro "espaços de anúncio", cada um passando um site por vez com
+     transição em degradê, o tipo de site escrito embaixo. Os vinte e
+     quatro sites passam aqui (seis por bloco); /portfolio/ está desativada.
 
      Peso, medido em 10/10/2026 contra a vitrine completa: as imagens têm
      o tamanho em que aparecem (480 ou 800 px, por srcset), e só baixam
-     a atual e a próxima de cada bloco, quando a seção chega perto da tela.
-     A troca só roda com a seção visível e a aba aberta. Quem pede menos
+     a atual e a próxima de cada bloco, quando aquele bloco chega perto da
+     tela. A troca só roda com o bloco visível e a aba aberta. Os blocos
+     trocam defasados em um quarto de tempo, e a ordem no VS foi montada
+     para dois deles não mostrarem o mesmo tipo de site ao mesmo tempo. Quem pede menos
      movimento troca pelos pontinhos, sem rotação automática.
 
      Componente com estado: os textos das telas moram no objeto VS, não
@@ -2212,16 +2214,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
     <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Twenty-four sites live. <span class="lm">Here are a few.</span>'>Vinte e quatro sites no ar. <span class="lm">Alguns deles passando aqui.</span></h2>
+    <h2 class="rv" style="--d:.08s" data-en='Twenty-four sites live. <span class="lm">All of them, right here.</span>'>Vinte e quatro sites no ar. <span class="lm">Todos passando aqui.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
 
     <div class="vs-blocos rv" style="--d:.2s" id="vsBlocos">
       <div class="vs-bloco" data-bloco="0"></div>
       <div class="vs-bloco" data-bloco="1"></div>
+      <div class="vs-bloco" data-bloco="2"></div>
+      <div class="vs-bloco" data-bloco="3"></div>
     </div>
 
     <div class="mc rv" style="--d:.22s" id="marcas">
-      <p class="mc-tit" data-en='the brands behind the sites in the portfolio <span>invented for demonstration</span>'>as marcas dos sites do portfólio <span>inventadas para demonstração</span></p>
+      <p class="mc-tit" data-en='the brands behind these sites <span>invented for demonstration</span>'>as marcas desses sites <span>inventadas para demonstração</span></p>
       <div class="mc-faixa">
         <div class="mc-trilho">
           <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="Vista Imóveis" loading="lazy" decoding="async"></a>
@@ -2278,7 +2282,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="vs-tipos rv" style="--d:.24s">
       <div>
-        <p data-en="in the full portfolio you will find">no portfólio completo você encontra</p>
+        <p data-en="in these twenty-four sites you will find">nestes vinte e quatro sites você encontra</p>
         <ul>
           <li data-en="Online stores">Lojas online</li>
           <li data-en="Dietitians">Nutricionistas</li>
@@ -2291,7 +2295,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li data-en="Personal trainers">Personal trainers</li>
         </ul>
       </div>
-      <a class="btn btn-primary" href="portfolio/?de=home" data-en='See all twenty-four <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver os vinte e quatro <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
     </div>
   </div>
 </section>
@@ -2300,18 +2303,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   'use strict';
   /* tipo: o que aparece embaixo da tela. real: cliente de verdade, link para o site dele no ar */
   const VS = [
-    [ {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
-      {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista', en:'Website for a dietitian'},
-      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
-      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
+    [ {img:'caparao-solar', dom:'caparaosolar.com.br', nome:'Caparaó Solar', href:'solar/demos/caparao-solar/', pt:'Site para energia solar', en:'Website for solar energy'},
+      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian'},
+      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery'},
+      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker'},
+      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US'},
+      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices'} ],
+    [ {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory'},
+      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist'},
+      {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens'},
+      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'},
+      {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
+      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'} ],
+    [ {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency'},
+      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store'},
+      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer'},
       {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
-      {img:'caparao-solar', dom:'caparaosolar.com.br', nome:'Caparaó Solar', href:'solar/demos/caparao-solar/', pt:'Site para energia solar', en:'Website for solar energy'} ],
+      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
+      {img:'reserva-aurora', dom:'reservaaurora.com.br', nome:'Reserva Aurora', href:'imoveis/demos/reserva-aurora/', pt:'Site para lançamento imobiliário', en:'Website for a property launch'} ],
     [ {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
-      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
       {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate'},
-      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'},
-      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'},
-      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'} ]
+      {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian'},
+      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
+      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
+      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'} ]
   ];
   const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site', ant:'Site anterior', prox:'Próximo site'},
                en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'} };
@@ -2336,7 +2351,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       '</div>' +
       '<div class="vs-legenda"><div aria-live="off"><span class="vs-tipo"></span><span class="vs-nome"></span></div>' +
       '<span class="vs-pontos">' + lista.map(() => '<button type="button"></button>').join('') + '</span></div>';
-    return { el, lista, i: 0, camada: 0, timer: null, vez: 0, inicio: b * TEMPO / 2,
+    return { el, lista, i: 0, camada: 0, timer: null, vez: 0, inicio: b * TEMPO / 4, visivel: false, montado: false,
              tela: el.querySelector('.vs-tela'), dom: el.querySelector('.vs-barra b'),
              imgs: el.querySelectorAll('.vs-quadro img'), abrir: el.querySelector('.vs-abrir'),
              leg: el.querySelector('.vs-legenda div'), tipo: el.querySelector('.vs-tipo'), nome: el.querySelector('.vs-nome'),
@@ -2387,23 +2402,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }
 
-  let visivel = false, montado = false;
   function agenda(B, atraso){
     clearTimeout(B.timer);
-    if (PARADO || !visivel || document.hidden || B.parado) return;
+    if (PARADO || !B.visivel || document.hidden || B.parado) return;
     B.timer = setTimeout(() => {
       mostra(B, (B.i + 1) % B.lista.length).then(() => agenda(B, TEMPO));
     }, atraso);
   }
-  function monta(){
-    if (montado) return; montado = true;
-    blocos.forEach((B) => {
-      poeImg(B.imgs[0], B.lista[0]); B.imgs[0].classList.add('is-on');
-      textos(B);
-    });
+  function monta(B){
+    if (B.montado) return; B.montado = true;
+    poeImg(B.imgs[0], B.lista[0]); B.imgs[0].classList.add('is-on');
   }
-  function anda(){ blocos.forEach((B) => agenda(B, TEMPO + B.inicio)); }
-  function para(){ blocos.forEach((B) => clearTimeout(B.timer)); }
+  function anda(B){ agenda(B, TEMPO + B.inicio); }
+  function para(B){ clearTimeout(B.timer); }
 
   blocos.forEach((B) => {
     const vai = (k) => { clearTimeout(B.timer); mostra(B, k); agenda(B, TEMPO * 1.6); };
@@ -2419,15 +2430,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     B.el.addEventListener('focusout', () => { B.parado = false; agenda(B, TEMPO); });
   });
 
-  if (PARADO || !('IntersectionObserver' in window)) { monta(); }
+  blocos.forEach(textos);
+  if (PARADO || !('IntersectionObserver' in window)) { blocos.forEach(monta); }
   else {
-    /* monta perto da tela (a primeira imagem de cada bloco); anda só à vista */
-    new IntersectionObserver((es) => { if (es[0].isIntersecting) monta(); }, { rootMargin: '600px 0px' }).observe(raiz);
-    new IntersectionObserver((es) => {
-      visivel = es[0].isIntersecting;
-      if (visivel) { monta(); anda(); } else para();
-    }, { threshold: .25 }).observe(raiz);
-    document.addEventListener('visibilitychange', () => { if (document.hidden) para(); else if (visivel) anda(); });
+    /* cada bloco por si: no celular os quatro ficam empilhados, e o de baixo
+       só baixa a imagem e começa a trocar quando ele mesmo chega perto da tela */
+    const deBloco = (el) => blocos.find((B) => B.el === el);
+    const perto = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { monta(deBloco(e.target)); perto.unobserve(e.target); }
+    }), { rootMargin: '600px 0px' });
+    const vista = new IntersectionObserver((es) => es.forEach((e) => {
+      const B = deBloco(e.target); B.visivel = e.isIntersecting;
+      if (B.visivel) { monta(B); anda(B); } else para(B);
+    }), { threshold: .25 });
+    blocos.forEach((B) => { perto.observe(B.el); vista.observe(B.el); });
+    document.addEventListener('visibilitychange', () => blocos.forEach((B) => { if (document.hidden) para(B); else if (B.visivel) anda(B); }));
   }
   new MutationObserver(() => blocos.forEach(textos)).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
 })();
@@ -2962,7 +2979,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h4 data-en="Work">Trabalhos</h4>
       <ul>
-        <li><a href="portfolio/" data-en="Portfolio">Portfólio</a></li>
+        <li><a href="#trabalhos" data-en="Portfolio">Portfólio</a></li>
         <li><a href="moveis-planejados/" data-en="Custom furniture">Móveis planejados</a></li>
         <li><a href="us/">Theatrum US</a></li>
         <li><a href="blog/">Blog</a></li>

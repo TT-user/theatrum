@@ -223,18 +223,22 @@ rodapé em colunas), adaptada à escada de compromisso.
   Lançamento é "recomendado", não "mais escolhido": sem cliente para contar,
   seria prova social inventada. Os ids `#solucao` e
   `#investimento` continuam dentro dela.
-- **`[08]` trabalhos:** vitrine em dois blocos, como espaço de anúncio:
-  cada bloco passa um site por vez (5,2 s cada, troca em degradê, o segundo
-  bloco defasado em meio tempo) com "site para {tipo}", nome e selo
-  "demonstração" ou "cliente real" embaixo. Seis sites por bloco, ordenados
-  para os dois nunca mostrarem o mesmo tipo ao mesmo tempo (lista no objeto
-  `VS`). Imagens em `assets/img/vitrine/home/` a 480 e 800 px por srcset;
-  só baixam a atual e a próxima, quando a seção chega perto, e a troca só
-  roda à vista. Para no mouse; setas nas laterais da tela e bolinhas
-  grandes (a atual vira pílula dourada) trocam na mão; sem rotação com
-  `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
-  tem e "Ver os vinte e quatro" (`portfolio/?de=home`). Entre os blocos e
-  essa lista, desde 12/10/2026, um letreiro com os logos das 23 demos
+- **`[08]` trabalhos:** desde 13/10/2026, os vinte e quatro sites em quatro
+  blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
+  cada bloco passa um site por vez (5,2 s cada, troca em degradê, cada bloco
+  defasado um quarto de tempo do anterior) com "site para {tipo}", nome e selo
+  "demonstração" ou "cliente real" embaixo. Seis sites por bloco (lista no
+  objeto `VS`), ordenados para dois blocos não mostrarem o mesmo tipo ao mesmo
+  tempo. Com seis de planejados isso só fecha separando marcenaria (Ateliê
+  Verga, Cerne) de planejados; a busca é por força bruta, então mexeu na
+  lista, confira de novo. Imagens em `assets/img/vitrine/home/` a 480 e
+  800 px por srcset (redução do `*-desktop.webp`, WebP q72); cada bloco só
+  baixa a atual e a próxima quando ele mesmo chega perto da tela, e só troca
+  à vista. Nada baixa ao abrir a página. Para no mouse; setas nas laterais
+  da tela e bolinhas grandes (a atual vira pílula dourada) trocam na mão;
+  sem rotação com `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos
+  de negócio desses sites, sem botão (o `/portfolio/` está desativado).
+  Entre os blocos e essa lista, desde 12/10/2026, um letreiro com os logos das 23 demos
   (`#marcas`, "inventadas para demonstração"; nunca "parceiras", são
   marcas fictícias). Cada logo foi recortado do cabeçalho da própria demo
   e passado para um tom creme, em `assets/img/marcas/`: exibido entre 20
@@ -242,9 +246,7 @@ rodapé em colunas), adaptada à escada de compromisso.
   (68 KB no total, só baixa quando a seção chega perto). Para fora da
   tela, no mouse e no foco do teclado; sem movimento e em `?still=1`
   vira grade parada. Logo de demo mudou, refaça o recorte dela. Links das telas levam
-  `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
-  volta: 71 KB de imagem ao rolar contra 354 KB (celular) e 593 KB
-  (computador), sem tarefa longa a mais.
+  `?de=home`.
 - **`[07]` demonstração (`#sistema`):** desde 11/10/2026, um sistema só que
   apresenta a proposta inteira, no lugar das 11 demos soltas de antes (que
   ainda tinham "faturamento crescendo" e "painel de metas", da oferta
@@ -330,10 +332,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos vinte e quatro sites, em página própria, em cinco
+- `/portfolio/` — **desativada desde 13/10/2026:** o `.htaccess` da pasta manda
+  para `/#trabalhos`, onde os vinte e quatro passam em quatro blocos, e a
+  home não linka mais para cá. Para reativar, apague o bloco "DESATIVADA" e
+  volte os links "Trabalhos" e "Portfólio" da home para `portfolio/`. A
+  página: a vitrine dos vinte e quatro sites, em cinco
   esteiras: planejados, nutrição, imóveis, negócios locais e, por último,
-  lojas. A vitrine inteira não volta para a home (custaria 354 a 593 KB de
-  imagem); a home tem a versão em dois blocos do `[08]`. Botão "Voltar para
+  lojas. Botão "Voltar para
   usetheatrum.com.br" no topo e no fim, levando a `../#trabalhos`; a home
   corrige a âncora de quem chega com `#secao` no endereço. Quem abre uma demo a partir daqui volta para cá: os links levam
   `?de=portfolio` e os seis `_demo.js` (imóveis, lojas, planejados, negócios, nutrição e solar) conhecem essa origem.
