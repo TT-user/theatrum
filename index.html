@@ -1985,8 +1985,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const ZAP = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
   const SINO = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 9a6 6 0 10-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 19.5a2.2 2.2 0 004 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
-  let nicho = 'adv', etapa = 0, manual = parado, gen = 0;
-  let visivel = false, mouse = false, iniciado = false;
+  let nicho = 'adv', etapa = 0, gen = 0;
+  let visivel = false, iniciado = false;
 
   function tela(i, t, d){
     const q = (n, html, cls = '') => `<div class="q ${cls}" style="--i:${n}">${html}</div>`;
@@ -2084,25 +2084,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function estado(){
     raiz.classList.toggle('parado', parado);
-    raiz.classList.toggle('tocando', !manual);
-    raiz.classList.toggle('pausado', !visivel || mouse || document.hidden);
+    raiz.classList.toggle('tocando', !parado);
+    raiz.classList.toggle('pausado', !visivel || document.hidden);
   }
 
   raiz.addEventListener('click', e => {
     const b = e.target.closest('button');
     if(!b || !raiz.contains(b)) return;
     if(b.dataset.nicho){ nicho = b.dataset.nicho; desenha(); return; }
-    if(b.dataset.etapa){ manual = true; etapa = +b.dataset.etapa; desenha(); return; }
-    if(b.hasAttribute('data-prox')){ manual = true; etapa = (etapa + 1) % 5; desenha(); }
+    /* clique só pula de etapa: a passagem automática segue a partir dela */
+    if(b.dataset.etapa){ etapa = +b.dataset.etapa; desenha(); return; }
+    if(b.hasAttribute('data-prox')){ etapa = (etapa + 1) % 5; desenha(); }
   });
   raiz.addEventListener('animationend', e => {
-    if(e.animationName !== 'pxBarra' || manual) return;
+    if(e.animationName !== 'pxBarra' || parado) return;
     etapa = (etapa + 1) % 5;
     desenha();
   });
-  const temMouse = window.matchMedia('(hover: hover)').matches;
-  raiz.addEventListener('mouseover', e => { if(temMouse && !mouse && e.target.closest('.px-app')){ mouse = true; estado(); } });
-  raiz.addEventListener('mouseleave', () => { mouse = false; estado(); });
   document.addEventListener('visibilitychange', estado);
 
   if(parado){ visivel = true; desenha(); }

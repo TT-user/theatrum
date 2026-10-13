@@ -262,8 +262,9 @@ rodapé em colunas), adaptada à escada de compromisso.
   R$ 197/mês, R$ 697/mês + verba), o CTA de WhatsApp e o degrau mais baixo
   (calculadora). Textos nos objetos `PX_N` e `PX_T`, redesenho na troca de
   idioma. A troca de etapa é a própria barra de progresso (animação CSS):
-  pausa fora da tela, com aba escondida e mouse em cima, e para de vez no
-  primeiro clique. Selo "exemplo" no topo: os nomes e conversas são
+  pausa fora da tela e com aba escondida, e nada mais a para: desde
+  13/10/2026 o mouse em cima não pausa e o clique numa etapa só pula para
+  ela, e a passagem segue sozinha dali. Selo "exemplo" no topo: os nomes e conversas são
   ilustração, não prova social.
 - Destaque em título (`.lm`) é serif itálico dourado (`#8A6412` nas seções
   claras), não mais marca-texto.
