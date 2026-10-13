@@ -67,7 +67,7 @@ O que cada campo quer dizer:
 | `tags` | Assuntos do artigo, um por linha, começando com `- `. | não |
 | `cover` | Imagem de capa, se você tiver uma (veja o passo 2). | não |
 | `coverAlt` | Descrição da capa para quem não enxerga a imagem. | não |
-| `cta` | O convite do artigo: `diagnostico`, `planos` ou o endereço de uma página de nicho, como `/moveis-planejados/`. | não (sem ele, vale `diagnostico`) |
+| `cta` | O convite do artigo: `diagnostico`, `planos` ou o endereço de uma página de nicho que esteja no ar (hoje não há nenhuma; página desativada o build recusa). | não (sem ele, vale `diagnostico`) |
 | `ctaTitulo` | Frase do convite, adaptada ao assunto. Ex.: "Quer saber quanto custaria o seu?" | não |
 | `ctaTexto` | Uma ou duas frases embaixo do título do convite. | não |
 | `ctaBotao` | Texto do botão. | não |

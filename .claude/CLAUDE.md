@@ -391,7 +391,12 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   próprio (`Desktop/littletrees`), fora deste site.
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
-- `/moveis-planejados/` — landing do segmento de planejados.
+- `/moveis-planejados/` — landing do segmento de planejados. **Desativada desde
+  13/10/2026:** o `.htaccess` da pasta manda só a landing para a home; as seis
+  demos em `demos/` seguem no ar (vitrine da home). O `_demo.js` de lá, sem
+  `?de=`, devolve para a home. Saiu do rodapé da home e do blog e do sitemap.
+  Para reativar, apague o bloco "DESATIVADA" e volte o link do rodapé e a
+  linha em `PAGINAS_SITE` do `scripts/blog/build.mjs`.
 - `/aml/` — prévia do site da AML (medicina e segurança do trabalho, Cataguases,
   Leopoldina e Muriaé), feita para vender o projeto. Cliente real, então leva
   `.htaccess` com noindex e os dados que faltam aparecem como placeholder
@@ -694,7 +699,7 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 
 ## Pendências de conteúdo
 
-1. Preços de `/us/` e `/moveis-planejados/` ainda são os da oferta anterior.
+1. Preços de `/us/` (e de `/moveis-planejados/`, desativada) ainda são os da oferta anterior.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[09] entregas`.
 3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)

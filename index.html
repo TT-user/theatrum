@@ -752,7 +752,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 2 · TRABALHOS (vitrine em quatro blocos) ============
      Quatro "espaços de anúncio", cada um passando um site por vez com
      transição em degradê, o tipo de site escrito embaixo. Os vinte e
-     quatro sites passam aqui (seis por bloco); /portfolio/ está desativada.
+     cinco sites passam aqui (seis por bloco, sete no último, que só tem
+     tipos que não aparecem nos outros três); /portfolio/ está desativada.
 
      Peso, medido em 10/10/2026 contra a vitrine completa: as imagens têm
      o tamanho em que aparecem (480 ou 800 px, por srcset), e só baixam
@@ -808,7 +809,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .vs-seta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink);transform:scale(1.06)}
   .vs-seta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .vs-troca{opacity:0}
-  /* tipos de negocio dos 24 sites: rotulo centralizado e, embaixo, uma linha so de selos
+  /* tipos de negocio dos 25 sites: rotulo centralizado e, embaixo, uma linha so de selos
      amarelos, acima dos blocos. Sem caber (celular), a linha rola de lado dentro dela
      mesma, nunca a pagina; a margem automatica centraliza sem cortar o comeco. */
   .vs-tipos{margin-top:34px;text-align:center}
@@ -853,7 +854,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
 
     <div class="vs-tipos rv" style="--d:.18s">
-      <p data-en="in these twenty-four sites you will find">nestes vinte e quatro sites você encontra</p>
+      <p data-en="in these twenty-five sites you will find">nestes vinte e cinco sites você encontra</p>
       <div class="vs-tipos-faixa"><ul>
         <li data-en="Online stores">Lojas online</li>
         <li data-en="Dietitians">Nutricionistas</li>
@@ -896,6 +897,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="Cozinha Viva" loading="lazy" decoding="async"></a>
           <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="Lívia Amaral" loading="lazy" decoding="async"></a>
           <a href="negocios/demos/cla-valente/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cla-valente.webp" width="117" height="36" alt="Clã Valente" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/arco/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/arco.webp" width="117" height="27" alt="Arco Odontologia" loading="lazy" decoding="async"></a>
           <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="Ethan Reyes" loading="lazy" decoding="async"></a>
           <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="Bruno Tavares" loading="lazy" decoding="async"></a>
           <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="Morattá" loading="lazy" decoding="async"></a>
@@ -921,6 +923,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="" loading="lazy" decoding="async"></a>
           <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="" loading="lazy" decoding="async"></a>
           <a href="negocios/demos/cla-valente/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cla-valente.webp" width="117" height="36" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/arco/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/arco.webp" width="117" height="27" alt="" loading="lazy" decoding="async"></a>
           <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="" loading="lazy" decoding="async"></a>
           <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="" loading="lazy" decoding="async"></a>
           <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="" loading="lazy" decoding="async"></a>
@@ -937,29 +940,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* tipo: o que aparece embaixo da tela. real: cliente de verdade, link para o site dele no ar */
   const VS = [
     [ {img:'caparao-solar', dom:'caparaosolar.com.br', nome:'Caparaó Solar', href:'solar/demos/caparao-solar/', pt:'Site para energia solar', en:'Website for solar energy'},
-      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian'},
-      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery'},
-      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker'},
-      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US'},
-      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices'} ],
-    [ {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory'},
-      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist'},
-      {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens'},
-      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'},
       {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
-      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'} ],
-    [ {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency'},
-      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store'},
-      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer'},
-      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
-      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
       {img:'reserva-aurora', dom:'reservaaurora.com.br', nome:'Reserva Aurora', href:'imoveis/demos/reserva-aurora/', pt:'Site para lançamento imobiliário', en:'Website for a property launch'} ],
-    [ {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
+      {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
+      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'} ],
+      {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory'} ],
+    [ {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens'},
+      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
+      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'},
+      {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency'},
       {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate'},
-      {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian'},
+      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US'} ],
+    [ {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian'},
+      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices'} ],
+      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian'},
+      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
+      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery'},
+      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker'} ],
+    [ {img:'arco', dom:'arcoodontologia.com.br', nome:'Arco', href:'negocios/demos/arco/', pt:'Site para clínica odontológica', en:'Website for a dental clinic'},
+      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'},
+      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist'},
+      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store'},
       {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
-      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
-      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'} ]
+      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer'},
+      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'} ]
   ];
   const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site', ant:'Site anterior', prox:'Próximo site'},
                en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'} };
@@ -3016,7 +3020,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4 data-en="Work">Trabalhos</h4>
       <ul>
         <li><a href="#trabalhos" data-en="Portfolio">Portfólio</a></li>
-        <li><a href="moveis-planejados/" data-en="Custom furniture">Móveis planejados</a></li>
         <li><a href="us/">Theatrum US</a></li>
         <li><a href="blog/">Blog</a></li>
       </ul>

@@ -143,7 +143,6 @@ function rodape() {
       <h4>Trabalhos</h4>
       <ul>
         <li><a href="/#trabalhos">Portfólio</a></li>
-        <li><a href="/moveis-planejados/">Móveis planejados</a></li>
         <li><a href="/us/">Theatrum US</a></li>
         <li><a href="/blog/">Blog</a></li>
       </ul>

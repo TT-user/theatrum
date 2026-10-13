@@ -36,7 +36,6 @@ const PRESERVAR_IMG = new Set(['posts']);   /* slides do Instagram (MazyOS) */
 const PAGINAS_SITE = [
   ['/', 'index.html', '1.0'],
   ['/us/', 'us/index.html', '0.7'],
-  ['/moveis-planejados/', 'moveis-planejados/index.html', '0.7'],
   ['/privacidade/', 'privacidade/index.html', '0.2'],
 ];
 
@@ -107,7 +106,11 @@ function valida(fm, onde, arq) {
     erros.push(`${onde}: "cta" precisa ser diagnostico, planos ou o caminho de uma página, como /moveis-planejados/ (veio "${p.cta}").`);
   } else if (p.cta.startsWith('/')) {
     if (!p.cta.endsWith('/')) p.cta += '/';
-    if (!fs.existsSync(path.join(RAIZ, p.cta, 'index.html'))) erros.push(`${onde}: a página do "cta" (${p.cta}) não existe neste site.`);
+    const pasta = path.join(RAIZ, p.cta);
+    if (!fs.existsSync(path.join(pasta, 'index.html'))) erros.push(`${onde}: a página do "cta" (${p.cta}) não existe neste site.`);
+    else if (/DESATIVADA/.test(fs.existsSync(path.join(pasta, '.htaccess')) ? fs.readFileSync(path.join(pasta, '.htaccess'), 'utf8') : '')) {
+      erros.push(`${onde}: a página do "cta" (${p.cta}) está desativada (bloco DESATIVADA no .htaccess dela).`);
+    }
   }
   if (p.title.length > 70) avisos.push(`${onde}: título com ${p.title.length} caracteres; o Google costuma cortar depois de uns 60.`);
   if (/—/.test(p.title + p.description + p.ctaTitulo + p.ctaTexto)) avisos.push(`${onde}: tem travessão (—) no título, descrição ou CTA; a regra da marca é não usar.`);

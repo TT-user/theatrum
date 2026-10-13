@@ -23,8 +23,8 @@
 
      O parâmetro ?de=home é o sinal confiável, posto nos links da home.
      O referrer é o plano B, para link compartilhado ou colado à mão.
-     Sem nenhum dos dois, mantém o comportamento antigo: a maior parte
-     do tráfego dos demos ainda vem da página de planejados. */
+     Sem nenhum dos dois, volta para a home: a landing de planejados
+     está desativada desde 13/10/2026 (o .htaccess dela manda para a home). */
   var origem = BUSCA.get('de');
   if (!origem && document.referrer) {
     try {
@@ -44,7 +44,7 @@
 
     : origem === 'portfolio'
     ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
-    : { raiz: '../../',       cta: '../../#planos' };
+    : { raiz: '../../../',    cta: '../../../#diagnostico' };
 
   var EN = origem === 'us';
   var TXT = EN

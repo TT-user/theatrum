@@ -1,6 +1,15 @@
 # Regras válidas SOMENTE para /moveis-planejados/ e suas subpastas.
 # A home e o blog continuam com a configuração que já tinham.
 
+# DESATIVADA em 13/10/2026: a landing de planejados sai do ar e quem abre o
+# link vai para a home. Só a landing: as seis demos em demos/ continuam no ar,
+# porque passam na vitrine de trabalhos da home. Para reativar, apague este
+# bloco.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(index\.html)?$ https://usetheatrum.com.br/ [R=302,L]
+</IfModule>
+
 # ---------- cache ----------
 <IfModule mod_expires.c>
   ExpiresActive On
