@@ -257,13 +257,13 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   plano serve, não que "o valor exato sai no diagnóstico" (contradizia os
   preços fechados logo abaixo).
 - **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
-  `[08]`). Desde 13/10/2026, os vinte e quatro sites em quatro
+  `[08]`). Desde 13/10/2026, os vinte e seis sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
   cada bloco passa um site por vez (troca em degradê, cada bloco defasado
   1,3 s do anterior) com "site para {tipo}", nome e selo "demonstração" ou
-  "cliente real" embaixo. Seis sites por bloco (lista no objeto `VS`).
-  Todo bloco dá a volta no mesmo tempo (`CICLO`, o bloco mais longo x
-  5,2 s): se um bloco tiver menos sites, segura cada um por mais tempo.
+  "cliente real" embaixo. Sete sites nos dois primeiros blocos e seis nos
+  outros (lista no objeto `VS`). Todo bloco dá a volta no mesmo tempo
+  (`CICLO`, 7 x 5,2 s): o de sete segura cada site 5,2 s e o de seis, 6,1 s.
   Com tempo igual por site, blocos de tamanhos diferentes se desencontram e
   toda combinação acaba acontecendo. A ordem foi achada por busca
   (recozimento simulado, simulando o relógio) para dois blocos nunca
@@ -279,13 +279,13 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   os tipos de negócio desses sites numa linha só de selos amarelos,
   centralizada (no celular ela rola de lado dentro dela mesma), sem botão
   (o `/portfolio/` está desativado). Embaixo dos blocos, desde 12/10/2026,
-  um letreiro com os logos das 23 demos (`#marcas`, título centralizado
+  um letreiro com os logos das 25 demos (`#marcas`, título centralizado
   "as marcas desses sites"; o selo "inventadas para demonstração" saiu em
   13/10/2026 a pedido, mas nunca chame de "parceiras": são marcas
   fictícias, e o lead da seção já diz "marcas inventadas"). Cada logo foi recortado do cabeçalho da própria demo
   e passado para um tom creme, em `assets/img/marcas/`: exibido entre 20
   e 40 px de altura (mais baixo quanto mais largo) e salvo a 2x disso
-  (68 KB no total, só baixa quando a seção chega perto). Para fora da
+  (cerca de 80 KB no total, só baixa quando a seção chega perto). Para fora da
   tela, no mouse e no foco do teclado; sem movimento e em `?still=1`
   vira grade parada. Logo de demo mudou, refaça o recorte dela. Links das telas levam
   `?de=home`.
@@ -382,7 +382,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 ## Demais páginas do domínio
 
 - `/portfolio/` — **desativada desde 13/10/2026:** o `.htaccess` da pasta manda
-  para `/#trabalhos`, onde os vinte e quatro passam em quatro blocos, e a
+  para `/#trabalhos`, onde os vinte e seis passam em quatro blocos, e a
   home não linka mais para cá. Para reativar, apague o bloco "DESATIVADA" e
   volte os links "Trabalhos" e "Portfólio" da home para `portfolio/`. A
   página: a vitrine dos vinte e quatro sites, em cinco
@@ -578,7 +578,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 |---|---|---|
 | `/imoveis/demos/` | 5 | imobiliário |
 | `/moveis-planejados/demos/` | 6 | móveis planejados |
-| `/nutricao/demos/` | 4 | nutrição |
+| `/nutricao/demos/` | 6 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
 | `/negocios/demos/` | 7 | negócios locais |
@@ -632,6 +632,20 @@ Z-Image-Turbo no AI Horde (anônimo, fila de 10 a 15 min); Higgsfield e
 Gemini estavam sem saldo. O nome do cliente não aparece em arquivo público
 da demo. Avaliações e FAQ preenchidos com texto fictício, mapa mostra só a
 cidade, Instagram é texto.
+
+A Beatriz Lemos e a Lara Mendonça (`/nutricao/demos/beatriz-lemos/` e
+`lara-mendonca/`, desde 13/10/2026) são prévias de nutricionistas reais
+refeitas como marca fictícia: a Beatriz era a da Cíntia Antunes (proposta em
+`interno/clientes/nutri-cintia/`), agora em Lavras, MG, verde-azulado e
+terracota, monograma "BL" em SVG; a Lara era a da Isa Rodrigues, agora
+nutricionista bariátrica no fictício Centro Clínico Alameda, em Campos dos
+Goytacazes, RJ, ameixa e damasco. Só a nutricionista do hero tem rosto, gerado
+por IA (Z-Image-Turbo no AI Horde); as outras fotos são mão, prato e
+consultório, também por IA, e o rodapé diz isso. Os posts do Instagram da Lara
+são cartões desenhados em HTML. CRN "0000", telefones "0000-0000", Instagram
+é texto, mapa só da cidade. As prévias originais, com as fotos delas, estão
+em `interno/clientes/nutri-cintia/previa-demos/` e
+`interno/clientes/isa-rodrigues/previa/`, fora do git; nunca publique.
 
 **Demos bilíngues (PT/EN), desde 11/10/2026:** Maré Mansa, Lívia Amaral e
 Pedra Alta têm botão PT · EN no próprio topo, e o card delas no portfólio leva
