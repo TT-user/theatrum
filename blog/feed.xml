@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Blog Theatrum</title>
+  <link>https://usetheatrum.com.br/blog/</link>
+  <atom:link href="https://usetheatrum.com.br/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Como transformar visita em cliente: site, Google e anúncio para pequenos negócios.</description>
+  <language>pt-BR</language>
+  <lastBuildDate>Tue, 13 Oct 2026 12:00:00 GMT</lastBuildDate>
+  <item>
+    <title><![CDATA[Site que não traz cliente: 5 sinais de que ele perde contato]]></title>
+    <link>https://usetheatrum.com.br/blog/site-bonito-que-nao-traz-cliente/</link>
+    <guid isPermaLink="true">https://usetheatrum.com.br/blog/site-bonito-que-nao-traz-cliente/</guid>
+    <pubDate>Tue, 13 Oct 2026 12:00:00 GMT</pubDate>
+    <category><![CDATA[Dor do negócio]]></category>
+    <description><![CDATA[Visita sem mensagem quase sempre tem causa. Veja os 5 sinais mais comuns de que o seu site está deixando cliente escapar e o que fazer com cada um.]]></description>
+    <enclosure url="https://usetheatrum.com.br/blog/img/site-bonito-que-nao-traz-cliente/capa-og.jpg" length="53553" type="image/jpeg"/>
+  </item>
+  <item>
+    <title><![CDATA[Atrair, converter e fidelizar: como parar de perder cliente]]></title>
+    <link>https://usetheatrum.com.br/blog/3-motores-atrair-converter-fidelizar/</link>
+    <guid isPermaLink="true">https://usetheatrum.com.br/blog/3-motores-atrair-converter-fidelizar/</guid>
+    <pubDate>Sat, 25 Jul 2026 12:00:00 GMT</pubDate>
+    <category><![CDATA[Decisão]]></category>
+    <description><![CDATA[Atrair, converter e fidelizar: como essas 3 frentes funcionam juntas para fechar os vazamentos que fazem o seu negócio perder cliente.]]></description>
+    <enclosure url="https://usetheatrum.com.br/blog/img/3-motores-atrair-converter-fidelizar/capa-og.jpg" length="51950" type="image/jpeg"/>
+  </item>
+  <item>
+    <title><![CDATA[Os 3 vazamentos que fazem seu negócio perder cliente sem perceber]]></title>
+    <link>https://usetheatrum.com.br/blog/3-vazamentos-negocio-local/</link>
+    <guid isPermaLink="true">https://usetheatrum.com.br/blog/3-vazamentos-negocio-local/</guid>
+    <pubDate>Sat, 25 Jul 2026 12:00:00 GMT</pubDate>
+    <category><![CDATA[Dor do negócio]]></category>
+    <description><![CDATA[Ninguém te acha no Google, o cliente esfria na demora da resposta, e quem já comprou não volta. Veja os 3 vazamentos e como fechar cada um.]]></description>
+    <enclosure url="https://usetheatrum.com.br/blog/img/3-vazamentos-negocio-local/capa-og.jpg" length="58071" type="image/jpeg"/>
+  </item>
+  <item>
+    <title><![CDATA[Como funciona contratar a Theatrum: do diagnóstico ao site no ar]]></title>
+    <link>https://usetheatrum.com.br/blog/como-funciona-theatrum/</link>
+    <guid isPermaLink="true">https://usetheatrum.com.br/blog/como-funciona-theatrum/</guid>
+    <pubDate>Sat, 25 Jul 2026 12:00:00 GMT</pubDate>
+    <category><![CDATA[Decisão]]></category>
+    <description><![CDATA[As 4 etapas, do diagnóstico gratuito à prévia antes de pagar, à publicação em 7 a 10 dias úteis e aos primeiros contatos chegando no WhatsApp.]]></description>
+    <enclosure url="https://usetheatrum.com.br/blog/img/como-funciona-theatrum/capa-og.jpg" length="55166" type="image/jpeg"/>
+  </item>
+</channel>
+</rss>

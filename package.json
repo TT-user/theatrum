@@ -1,0 +1,16 @@
+{
+  "name": "theatrum-site",
+  "private": true,
+  "type": "module",
+  "description": "Ferramentas locais do site. O site em si não tem build; só o blog é gerado (scripts/blog).",
+  "scripts": {
+    "build:blog": "node scripts/blog/build.mjs",
+    "ver:blog": "node scripts/blog/servidor.mjs"
+  },
+  "devDependencies": {
+    "js-yaml": "^5.4.3",
+    "marked": "^18.1.1",
+    "playwright-core": "^1.64.0",
+    "sharp": "^0.35.5"
+  }
+}

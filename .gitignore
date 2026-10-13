@@ -53,3 +53,6 @@ skills-lock.json
 # brutos do Flow: chegam em 1080p com audio e alguns MB. O que o site
 # serve e a versao do converter-video.mjs, dentro da demo.
 **/_fotos/video-*/
+
+# dependencias das ferramentas locais (npm run build:blog)
+node_modules/

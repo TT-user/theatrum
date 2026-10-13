@@ -138,7 +138,9 @@ atrapalhava a leitura. Com o Plus Jakarta, letter-spacing de título fica entre
 -.005em e -.012em; mais que isso as letras encostam.
 
 Leitura antes de estilo: corpo e lead em 16 a 18 px, menu em Inter 14,5 px sem
-caixa-alta espaçada.
+caixa-alta espaçada. O menu da home tem oito links (o último é Blog) e vira
+hambúrguer abaixo de 1340 px: com menos que isso o CTA sai da tela. Link novo
+no menu, meça de novo.
 
 Rótulos de seção: minúsculo de verdade (sem `text-transform`), mono, no formato
 `[nn] nome da seção`.
@@ -331,6 +333,8 @@ diferente conforme de onde a pessoa clicou:
 | entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
+| blog (topo, menu e rodapé) | "Vim do blog da Theatrum. Quero o diagnóstico gratuito." |
+| blog (CTA do artigo) | "Vim do blog da Theatrum, do artigo "{título}". Quero o diagnóstico gratuito." |
 
 ### WhatsApp no computador, formulários e pop-up de saída (`js/leads.js`)
 
@@ -638,9 +642,27 @@ Os quatro demos de nutrição moravam em `/moveis-planejados/demos/` por heranç
 de quando aquela esteira nasceu dentro da de planejados. Há um `RedirectMatch
 301` no `.htaccess` de planejados cobrindo os endereços antigos; pode sair
 quando não houver mais nada apontando para lá.
-- `/blog` — saída do Astro em `site/astro-site/`. O que entra no `<head>` do
-  blog vai no `BlogLayout.astro` (com `is:inline`) **e** nos quatro HTML já
-  gerados em `blog/`, senão some no próximo build ou não chega ao ar.
+- `/blog` — gerado por `npm run build:blog` (`scripts/blog/`, Node com marked,
+  js-yaml, sharp e playwright-core; dependências na raiz, `node_modules/` fora
+  do git) a partir de `content/blog/*.md`, desde 13/10/2026. **Nunca edite o
+  HTML de `blog/`:** o build refaz a pasta inteira e apaga a página de artigo
+  que saiu do `content/`. Exceção: `blog/img/posts/`, slides do Instagram que o
+  MazyOS publica (o `postar-instagram.js` busca as imagens por essa URL). Topo,
+  rodapé, medição e CSS (embutido) ficam em `scripts/blog/modelos.mjs` e
+  `estilo.css`: mudou o topo ou o rodapé da home, mude lá e rode o build. O
+  build também escreve o `sitemap.xml` da raiz (páginas do site principal
+  listadas em `PAGINAS_SITE` no `build.mjs`) e o `blog/feed.xml`. Capa sem
+  `cover` é desenhada pelo Chrome instalado (`capa.mjs`); cada capa sai em WebP
+  (1200 e 640) e em JPG só para o `og:image`, porque WhatsApp e LinkedIn não
+  mostram WebP com segurança. CTA do artigo pelo campo `cta` (diagnostico,
+  planos ou caminho de página de nicho), no meio (antes do 3º H2) e no fim,
+  sempre com a calculadora ao lado. Categorias em `CATEGORIAS` no
+  `modelos.mjs`; só ganha chip e página a que tem artigo. Só em português.
+  Passo a passo para o Matheus em `docs/como-publicar-artigo.md`. `content/`,
+  `docs/` e `scripts/` têm `.htaccess` negando acesso. O blog antigo em Astro
+  (`site/astro-site/`) está aposentado e continua no git, com `site/.htaccess`
+  negando acesso (apagar a pasta fica para o Matheus decidir); o `npm run
+  deploy` de lá sobrescreveria `blog/`. Os três artigos dele migraram com as mesmas URLs.
 - `/privacidade/` — política de privacidade (PT, com versão em inglês em
   `#en`), linkada no rodapé de todas as páginas do site principal. Tem botão
   para apagar a escolha de cookies.
@@ -655,6 +677,10 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
   oficial, disparado no primeiro gesto ou no ocioso, como o GTM.
 - `js/consentimento.js`: aviso de cookies (Aceitar, Recusar, Saiba mais).
+- Blog: `blog_cta_click` nos CTAs dos artigos e no bloco do fim do `/blog`
+  (`data-blog-cta`), pelo `TheatrumLeads.evento`, com a mesma regra de
+  consentimento. O compartilhar no WhatsApp leva `data-compartilhar`, que o
+  `leads.js` deixa passar sem modal nem evento.
 - `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos três
   "Ver quanto eu perco por mês" da home).
 - `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu

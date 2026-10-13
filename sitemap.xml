@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gerado por scripts/blog/build.mjs (npm run build:blog). Não edite à mão: a próxima publicação sobrescreve. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://usetheatrum.com.br/</loc><lastmod>2026-10-13</lastmod><priority>1.0</priority></url>
+  <url><loc>https://usetheatrum.com.br/us/</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://usetheatrum.com.br/moveis-planejados/</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://usetheatrum.com.br/privacidade/</loc><lastmod>2026-10-10</lastmod><priority>0.2</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/categoria/dor-do-negocio/</loc><lastmod>2026-10-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/categoria/decisao/</loc><lastmod>2026-10-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/site-bonito-que-nao-traz-cliente/</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/3-motores-atrair-converter-fidelizar/</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/3-vazamentos-negocio-local/</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://usetheatrum.com.br/blog/como-funciona-theatrum/</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
+</urlset>

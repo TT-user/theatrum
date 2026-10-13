@@ -25,7 +25,10 @@ em HTML; a demo está em `/nutricao/demos/cintia-antunes/`, ainda fora do git).
 - `MazyOS/` e `Produto Digital/`: repositórios git próprios, ignorados aqui.
 - `conta-frases/`: esteira do @explicologo, outro negócio. Fica no site
   porque a API do Instagram exige URL pública para a mídia.
-- `site/astro-site/`: fonte do blog; a saída publicada é `blog/`.
+- `content/blog/`: fonte do blog (um `.md` por artigo); `npm run build:blog`
+  gera `blog/` e o `sitemap.xml`. Passo a passo em `docs/como-publicar-artigo.md`.
+- `site/astro-site/`: o blog antigo em Astro, aposentado em 13/10/2026. Não
+  rode o `npm run deploy` de lá: ele sobrescreve `blog/` com a versão velha.
 
 ## Agentes (`.claude/agents/`)
 

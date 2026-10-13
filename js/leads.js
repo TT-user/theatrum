@@ -429,6 +429,7 @@
     var el = e.target && e.target.closest ? e.target.closest('a, button') : null;
     if (!el) return;
     if (el.hasAttribute('data-wa-direto')) { evento('whatsapp_click', { origem: 'modal-computador' }); return; }
+    if (el.hasAttribute('data-compartilhar')) return;   /* compartilhar artigo do blog: não é contato */
     var href = el.getAttribute('href') || '';
     var ehWa = /(^|\/\/|\.)wa\.me\/|api\.whatsapp\.com/i.test(href);
     if (!ehWa && !el.hasAttribute('data-whatsapp')) return;
