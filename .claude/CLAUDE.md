@@ -192,7 +192,8 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
 
 - **Hero:** título à esquerda com a palavra de destaque em serif itálico
   dourado, botões "Fazer diagnóstico gratuito" (WhatsApp) e "Ver projetos"
-  (`#trabalhos`, logo abaixo) e quatro selos; à direita um card (topo dourado, base escura)
+  (`#trabalhos`, logo abaixo) e três selos (prévia antes de pagar, no ar em 7 a
+  10 dias úteis, tudo no seu nome: o que o site faz fica para o `[03]`); à direita um card (topo dourado, base escura)
   com três degraus: calculadora, planos e preços, e WhatsApp. Atrás do card,
   colada na direita e na altura da tela, a estátua de gravura de óculos
   dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e 119 KB): vem sobre
@@ -215,9 +216,11 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   piscos por descarga (abaixo de 3 por segundo, por fotossensibilidade).
   Só roda com o hero à vista e a aba aberta; desligado com
   `prefers-reduced-motion` e `?still=1`.
-- **`[03]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
+- **`[03]` não é só um site (`#nao-e-so-um-site`):** quatro cards claros
   (rápido no celular, pronto para anúncio, texto que vende, cada contato
-  avisado, tudo no seu nome). Sem CTA próprio. Sem jargão de ferramenta: o
+  avisado); "tudo no seu nome" saiu em 13/10/2026 porque já está no hero e no
+  FAQ. O lead é o "no longo prazo" da antiga aba Site do `[06]` (o site é o
+  único canal inteiramente seu). Sem CTA próprio. Sem jargão de ferramenta: o
   card de anúncio diz "você sabe qual anúncio, busca ou post trouxe cada
   contato", não GTM, GA4 e Pixel.
 - **`[04]` para quem fazemos (`#para-quem`):** um card por nicho (advogados,
@@ -234,11 +237,12 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   dois primeiros têm "ver por quê" com `data-aba`, que abre a aba certa no
   `[06]`, logo abaixo. Por último, uma faixa tracejada e discreta de social media, marcada
   "complemento".
-- **`[06]` dores e soluções (`#problema`):** abas por canal (Google Meu
-  Negócio, tráfego pago, site, atendimento). Cada painel põe "mal configurado:
+- **`[06]` dores e soluções (`#problema`):** abas por canal que traz cliente
+  (Google Meu Negócio, tráfego pago, atendimento). A aba Site saiu em
+  13/10/2026: repetia o `[03]` ponto por ponto. Cada painel põe "mal configurado:
   o prejuízo" ao lado de "bem configurado: o benefício" e fecha com "no longo
   prazo". Os botões das abas têm `data-en`, mas o estado mora no próprio botão;
-  sem JS (e em `?still=1`) os quatro painéis aparecem empilhados. O id
+  sem JS (e em `?still=1`) os três painéis aparecem empilhados. O id
   `#solucao` continua dentro dela.
 - **`[09]` investimento (`#investimento`):** seção própria desde 13/10/2026,
   com fundo `--bg-2` para não emendar com a calculadora (os estilos `.inv` e
@@ -352,8 +356,12 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   nunca para quem já enviou formulário (`localStorage` `theatrum-lead` =
   `enviado`). Pede só o e-mail para "3 melhorias para o site da sua
   empresa". O antigo pop-up do raio-x em 24 h saiu.
-- **Card do raio-x de 70% (home):** usa o mesmo envio (`TheatrumLeads.enviar`)
-  e não aparece mais depois que o pop-up de saída abriu.
+- **Card do raio-x de 70% (home), "Não quer falar agora?":** usa o mesmo envio
+  (`TheatrumLeads.enviar`) e não aparece mais depois que o pop-up de saída
+  abriu. Desde 13/10/2026 não fica preso no canto: sai sozinho quando a
+  pessoa rola mais de uma tela sem tocar nele e quando chega no CTA final ou
+  no rodapé (cobria a coluna de contato). Quem clica num campo fica com ele
+  até fechar. Saiu uma vez, não volta na visita.
 - **Promessas publicadas, valem assim que a chave entrar:** o "me chame"
   diz "vou te chamar no WhatsApp em poucos minutos (horário comercial)";
   o diagnóstico por e-mail e as 3 melhorias do pop-up dizem que chegam no
