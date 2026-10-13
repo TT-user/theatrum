@@ -2,14 +2,3 @@
 <IfModule mod_headers.c>
   Header set X-Robots-Tag "noindex, nofollow"
 </IfModule>
-
-# DESATIVADA em 13/10/2026: os arquivos ficam aqui, mas quem abre o link vai
-# para a home. A versão de portfólio, com marca fictícia, é o Clã Valente, em
-# /negocios/demos/cla-valente/. Para reativar, apague este bloco.
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteRule ^ https://usetheatrum.com.br/ [R=302,L]
-</IfModule>
-<IfModule !mod_rewrite.c>
-  Require all denied
-</IfModule>

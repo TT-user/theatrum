@@ -553,8 +553,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   CSS, JS e os `fetch` dos JSON com `?v=`: mudou um deles, sobe o número (o navegador
   segurava o `resultados.json` antigo e o carrossel aparecia com as cartas de exemplo). Pendências
   em `interno/clientes/fornari/README.md`, fora do git.
-  **Fora do ar desde 13/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  Saiu do ar em 13/10/2026 e voltou no mesmo dia, a pedido (bloco "DESATIVADA"
+  apagado do `.htaccess`; o noindex continua).
   A versão de portfólio, com marca fictícia, é o Clã Valente, em `/negocios/demos/cla-valente/`.
 
 ### As demonstrações, uma pasta por área
