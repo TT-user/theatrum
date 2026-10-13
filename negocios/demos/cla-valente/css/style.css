@@ -35,7 +35,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
-body { margin: 0; background-color: var(--pedra); color: var(--osso); font: 400 17px/1.6 var(--sans); overflow-x: hidden; }
+body { margin: 0; background-color: var(--pedra); color: var(--osso); font: 400 17px/1.6 var(--sans); overflow-x: clip; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }
 h1, h2, h3, p, ul, ol, figure, blockquote { margin: 0; }
@@ -487,5 +487,13 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 .selos b { color: var(--osso); }
 /* menu legível sobre a foto laranja */
 .topo::before { content: ""; position: absolute; inset: 0 0 -40px; z-index: -1; background: linear-gradient(180deg, rgba(10,11,10,.85), rgba(10,11,10,0)); pointer-events: none; }
-.topo .menu a { color: #D9DCD9; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+.topo .menu a { color: #AEB3AF; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
 .zap-flutua { bottom: 86px; }
+
+/* Menu: destaca a seção que está na tela */
+@media (min-width: 900px) and (max-width: 1099px) { .menu { display: none; } }
+.menu { gap: 24px; }
+.menu a { position: relative; padding: 6px 0; }
+.menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--verde); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+.topo .menu a.atual { color: #fff; }
+.menu a.atual::after { transform: scaleX(1); }

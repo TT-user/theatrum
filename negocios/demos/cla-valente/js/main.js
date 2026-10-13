@@ -79,6 +79,28 @@
     });
   }
 
+  // Menu: a seção que cruza a faixa a 35% da altura da tela fica destacada
+  var links = [].slice.call(document.querySelectorAll('.menu a[href^="#"]'));
+  var alvos = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var pedidoMenu = false;
+  function marcaMenu() {
+    pedidoMenu = false;
+    var faixa = innerHeight * .35, atual = -1;
+    alvos.forEach(function (el, i) {
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      if (r.top <= faixa && r.bottom > faixa) atual = i;
+    });
+    links.forEach(function (a, i) {
+      var on = i === atual;
+      a.classList.toggle('atual', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  addEventListener('scroll', function () { if (!pedidoMenu) { pedidoMenu = true; requestAnimationFrame(marcaMenu); } }, { passive: true });
+  addEventListener('resize', marcaMenu);
+  marcaMenu();
+
   var ph = function (t) { return '<span class="ph">' + t + '</span>'; };
 
   // ---------- Contador ----------
