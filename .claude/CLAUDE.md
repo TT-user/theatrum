@@ -233,13 +233,13 @@ rodapé em colunas), adaptada à escada de compromisso.
   roda à vista. Para no mouse; setas nas laterais da tela e bolinhas
   grandes (a atual vira pílula dourada) trocam na mão; sem rotação com
   `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos que o portfólio
-  tem e "Ver os vinte e três" (`portfolio/?de=home`). Entre os blocos e
-  essa lista, desde 12/10/2026, um letreiro com os logos das 22 demos
+  tem e "Ver os vinte e quatro" (`portfolio/?de=home`). Entre os blocos e
+  essa lista, desde 12/10/2026, um letreiro com os logos das 23 demos
   (`#marcas`, "inventadas para demonstração"; nunca "parceiras", são
   marcas fictícias). Cada logo foi recortado do cabeçalho da própria demo
   e passado para um tom creme, em `assets/img/marcas/`: exibido entre 20
   e 40 px de altura (mais baixo quanto mais largo) e salvo a 2x disso
-  (62 KB no total, só baixa quando a seção chega perto). Para fora da
+  (68 KB no total, só baixa quando a seção chega perto). Para fora da
   tela, no mouse e no foco do teclado; sem movimento e em `?still=1`
   vira grade parada. Logo de demo mudou, refaça o recorte dela. Links das telas levam
   `?de=home`. Medido em 10/10/2026 contra trazer a vitrine inteira de
@@ -330,7 +330,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 
 ## Demais páginas do domínio
 
-- `/portfolio/` — a vitrine dos vinte e três sites, em página própria, em cinco
+- `/portfolio/` — a vitrine dos vinte e quatro sites, em página própria, em cinco
   esteiras: planejados, nutrição, imóveis, negócios locais e, por último,
   lojas. A vitrine inteira não volta para a home (custaria 354 a 593 KB de
   imagem); a home tem a versão em dois blocos do `[08]`. Botão "Voltar para
@@ -508,6 +508,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   CSS, JS e os `fetch` dos JSON com `?v=`: mudou um deles, sobe o número (o navegador
   segurava o `resultados.json` antigo e o carrossel aparecia com as cartas de exemplo). Pendências
   em `interno/clientes/fornari/README.md`, fora do git.
+  **Fora do ar desde 13/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  A versão de portfólio, com marca fictícia, é o Clã Valente, em `/negocios/demos/cla-valente/`.
 
 ### As demonstrações, uma pasta por área
 
@@ -518,7 +521,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 | `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
-| `/negocios/demos/` | 5 | negócios locais |
+| `/negocios/demos/` | 6 | negócios locais |
 
 A Maré Mansa (`/imoveis/demos/mare-mansa/`, desde 11/10/2026) é a prévia da
 Antonio's refeita do mesmo jeito: nome, logo, paleta (azul atlântico e dourado
@@ -538,14 +541,25 @@ a linha fictícia Lume, com os frascos desenhados pelo próprio main.js. Paleta
 de vinho para verde-musgo. Links de Instagram e podcast caem no aviso de
 demonstração.
 
-As cinco de `/negocios/demos/` são as prévias de cliente refeitas como
+As seis de `/negocios/demos/` são as prévias de cliente refeitas como
 marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
-Alta (do Recanto), Campo Vivo (da Inovar) e Lívia Amaral (da Gabriela
-Carolina). Nome, cidade, cores, logo,
+Alta (do Recanto), Campo Vivo (da Inovar), Lívia Amaral (da Gabriela
+Carolina) e Clã Valente (do Felipe Fornari). Nome, cidade, cores, logo,
 fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
 vazios e não sobra placeholder. As prévias originais continuam intactas
 nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e
 licença no rodapé de cada demo: tirar o crédito quebra a licença.
+
+O Clã Valente (`/negocios/demos/cla-valente/`, desde 13/10/2026) é o
+`/fornari/` refeito: o treinador Caio Valente, da Forja Academia, em Juiz de
+Fora; paleta trocada do verde para laranja de brasa. Ninguém real aparece:
+o hero é uma mão com halter (Nenad Stojkovic, CC BY 2.0) e "quem vai te
+treinar" mostra halteres (CC0), sem rosto no papel do treinador. Os doze
+antes e depois são **ilustrados**, desenhados por parâmetro em
+`interno/clientes/fornari/demo-fotos/artes.py` (fora do git), com nomes,
+datas e pesos inventados; o rodapé diz isso. A logo é SVG no próprio HTML.
+Instagram, mapa e e-mail são texto, não link; o WhatsApp cai no `_demo.js`.
+A página de links (`links/`) não carrega o `_demo.js`: tem barra própria.
 
 **Demos bilíngues (PT/EN), desde 11/10/2026:** Maré Mansa, Lívia Amaral e
 Pedra Alta têm botão PT · EN no próprio topo, e o card delas no portfólio leva

@@ -1,0 +1,23 @@
+{
+  "_leia": "Números fictícios da demonstração.",
+  "numeros": [
+    {
+      "valor": 340,
+      "prefixo": "+",
+      "sufixo": "",
+      "rotulo": "alunos acompanhados"
+    },
+    {
+      "valor": 2180,
+      "prefixo": "",
+      "sufixo": " kg",
+      "rotulo": "perdidos somados pelo clã"
+    },
+    {
+      "valor": 9,
+      "prefixo": "",
+      "sufixo": "",
+      "rotulo": "anos de experiência"
+    }
+  ]
+}

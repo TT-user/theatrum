@@ -1,0 +1,89 @@
+{
+  "_leia": "Demonstração: pessoas, datas e pesos fictícios; antes e depois ilustrados.",
+  "resultados": [
+    {
+      "arquivo": "assets/antes-depois/ad-01.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Renata M.",
+      "legenda": "-14 kg em 6 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-02.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Diego S.",
+      "legenda": "+7 kg em 5 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-03.webp",
+      "categoria": "emagrecimento",
+      "genero": "m",
+      "nome": "Marcos A.",
+      "legenda": "-18 kg em 8 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-04.webp",
+      "categoria": "massa",
+      "genero": "f",
+      "nome": "Patrícia L.",
+      "legenda": "+4 kg de massa em 6 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-05.webp",
+      "categoria": "emagrecimento",
+      "genero": "m",
+      "nome": "Thiago R.",
+      "legenda": "-11 kg em 4 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-06.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Juliana C.",
+      "legenda": "-9 kg em 5 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-07.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Lucas F.",
+      "legenda": "+6 kg em 6 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-08.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Camila B.",
+      "legenda": "-16 kg em 7 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-09.webp",
+      "categoria": "emagrecimento",
+      "genero": "m",
+      "nome": "André P.",
+      "legenda": "-13 kg em 6 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-10.webp",
+      "categoria": "massa",
+      "genero": "f",
+      "nome": "Bianca T.",
+      "legenda": "+5 kg de massa em 7 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-11.webp",
+      "categoria": "massa",
+      "genero": "m",
+      "nome": "Rafael G.",
+      "legenda": "+8 kg em 7 meses"
+    },
+    {
+      "arquivo": "assets/antes-depois/ad-12.webp",
+      "categoria": "emagrecimento",
+      "genero": "f",
+      "nome": "Fernanda O.",
+      "legenda": "-12 kg em 6 meses"
+    }
+  ]
+}
