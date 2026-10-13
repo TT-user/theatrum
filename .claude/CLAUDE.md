@@ -175,7 +175,7 @@ rodapé em colunas), adaptada à escada de compromisso.
 [05] dores e soluções (+ investimento)
 [06] a calculadora                     [07] demonstração
 [08] trabalhos                         [09] entregas (escondida até ter cliente)
-[10] quem faz                          [11] como funciona + o raio-x
+[10] quem faz                          [11] como funciona
 [12] FAQ                               [13] CTA final ("vamos conversar")
 ```
 
@@ -236,11 +236,14 @@ rodapé em colunas), adaptada à escada de compromisso.
   baixa a atual e a próxima quando ele mesmo chega perto da tela, e só troca
   à vista. Nada baixa ao abrir a página. Para no mouse; setas nas laterais
   da tela e bolinhas grandes (a atual vira pílula dourada) trocam na mão;
-  sem rotação com `prefers-reduced-motion` e `?still=1`. Embaixo, os tipos
-  de negócio desses sites, sem botão (o `/portfolio/` está desativado).
-  Entre os blocos e essa lista, desde 12/10/2026, um letreiro com os logos das 23 demos
-  (`#marcas`, "inventadas para demonstração"; nunca "parceiras", são
-  marcas fictícias). Cada logo foi recortado do cabeçalho da própria demo
+  sem rotação com `prefers-reduced-motion` e `?still=1`. Acima dos blocos,
+  os tipos de negócio desses sites numa linha só de selos amarelos,
+  centralizada (no celular ela rola de lado dentro dela mesma), sem botão
+  (o `/portfolio/` está desativado). Embaixo dos blocos, desde 12/10/2026,
+  um letreiro com os logos das 23 demos (`#marcas`, título centralizado
+  "as marcas desses sites"; o selo "inventadas para demonstração" saiu em
+  13/10/2026 a pedido, mas nunca chame de "parceiras": são marcas
+  fictícias, e o lead da seção já diz "marcas inventadas"). Cada logo foi recortado do cabeçalho da própria demo
   e passado para um tom creme, em `assets/img/marcas/`: exibido entre 20
   e 40 px de altura (mais baixo quanto mais largo) e salvo a 2x disso
   (68 KB no total, só baixa quando a seção chega perto). Para fora da
