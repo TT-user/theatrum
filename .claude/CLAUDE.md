@@ -195,7 +195,15 @@ rodapé em colunas), adaptada à escada de compromisso.
   escurece e aparece um arco avermelhado); `.hero-vidro` só põe o brilho do
   topo. Estático de propósito: nada dentro de `.hero-fundo` pode animar,
   porque cada quadro refaria o filtro na tela inteira. `backdrop-filter`
-  foi testado e deixava defeito de cor.
+  foi testado e deixava defeito de cor. Desde 13/10/2026, relâmpagos no
+  fundo, em `.hero-raio`, camada própria fora do `.hero-fundo`, atrás do
+  texto: uma descarga a cada 4 a 10 s, com o raio desenhado em SVG na hora
+  (sem imagem) e um clarão em degradê, só a opacidade anima. No computador
+  cai atrás da estátua (64 a 94% da largura), longe do título; no celular
+  vai a 40% da intensidade porque passa atrás do texto. No máximo dois
+  piscos por descarga (abaixo de 3 por segundo, por fotossensibilidade).
+  Só roda com o hero à vista e a aba aberta; desligado com
+  `prefers-reduced-motion` e `?still=1`.
 - **`[02]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
   (rápido no celular, pronto para anúncio, texto que vende, cada contato
   avisado, tudo no seu nome). Sem CTA próprio.
