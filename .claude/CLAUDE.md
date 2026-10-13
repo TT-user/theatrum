@@ -259,13 +259,18 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
 - **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
   `[08]`). Desde 13/10/2026, os vinte e quatro sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
-  cada bloco passa um site por vez (5,2 s cada, troca em degradê, cada bloco
-  defasado um quarto de tempo do anterior) com "site para {tipo}", nome e selo
-  "demonstração" ou "cliente real" embaixo. Seis sites por bloco (lista no
-  objeto `VS`), ordenados para dois blocos não mostrarem o mesmo tipo ao mesmo
-  tempo. Com seis de planejados isso só fecha separando marcenaria (Ateliê
-  Verga, Cerne) de planejados; a busca é por força bruta, então mexeu na
-  lista, confira de novo. Imagens em `assets/img/vitrine/home/` a 480 e
+  cada bloco passa um site por vez (troca em degradê, cada bloco defasado
+  1,3 s do anterior) com "site para {tipo}", nome e selo "demonstração" ou
+  "cliente real" embaixo. Seis sites por bloco (lista no objeto `VS`).
+  Todo bloco dá a volta no mesmo tempo (`CICLO`, o bloco mais longo x
+  5,2 s): se um bloco tiver menos sites, segura cada um por mais tempo.
+  Com tempo igual por site, blocos de tamanhos diferentes se desencontram e
+  toda combinação acaba acontecendo. A ordem foi achada por busca
+  (recozimento simulado, simulando o relógio) para dois blocos nunca
+  mostrarem o mesmo tipo ao mesmo tempo, contando marcenaria (Ateliê Verga,
+  Cerne) como tipo separado de planejados: mexeu na lista, rode a busca de
+  novo. A Caparaó Solar saiu da vitrine em 13/10/2026, a pedido (a demo
+  continua no ar). Imagens em `assets/img/vitrine/home/` a 480 e
   800 px por srcset (redução do `*-desktop.webp`, WebP q72); cada bloco só
   baixa a atual e a próxima quando ele mesmo chega perto da tela, e só troca
   à vista. Nada baixa ao abrir a página. Para no mouse; setas nas laterais
@@ -519,6 +524,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   servidor manda o navegador guardar CSS e JS por 7 dias: mudou um dos dois, sobe o `?v=` no
   `index.html`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
   UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
+  A versão de portfólio, com marca fictícia, é a Arco, em `/negocios/demos/arco/`.
 - `/fornari/` — prévia da landing do Felipe Fornari (Team Fornari: treinador com consultoria
   online e presencial, sócio da Espaço Saúde em Caparaó, MG; presencial em Caparaó e Alto Caparaó), feita para prospecção em
   12/10/2026. Substitui o caminho bio → Linktree → Google Forms de 50 perguntas: o seguidor vê os
@@ -575,7 +581,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 | `/nutricao/demos/` | 4 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
-| `/negocios/demos/` | 6 | negócios locais |
+| `/negocios/demos/` | 7 | negócios locais |
 
 A Maré Mansa (`/imoveis/demos/mare-mansa/`, desde 11/10/2026) é a prévia da
 Antonio's refeita do mesmo jeito: nome, logo, paleta (azul atlântico e dourado
@@ -595,10 +601,10 @@ a linha fictícia Lume, com os frascos desenhados pelo próprio main.js. Paleta
 de vinho para verde-musgo. Links de Instagram e podcast caem no aviso de
 demonstração.
 
-As seis de `/negocios/demos/` são as prévias de cliente refeitas como
+As sete de `/negocios/demos/` são as prévias de cliente refeitas como
 marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
 Alta (do Recanto), Campo Vivo (da Inovar), Lívia Amaral (da Gabriela
-Carolina) e Clã Valente (do Felipe Fornari). Nome, cidade, cores, logo,
+Carolina), Clã Valente (do Felipe Fornari) e Arco (da Doctors). Nome, cidade, cores, logo,
 fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
 vazios e não sobra placeholder. As prévias originais continuam intactas
 nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e
@@ -614,6 +620,18 @@ antes e depois são **ilustrados**, desenhados por parâmetro em
 datas e pesos inventados; o rodapé diz isso. A logo é SVG no próprio HTML.
 Instagram, mapa e e-mail são texto, não link; o WhatsApp cai no `_demo.js`.
 A página de links (`links/`) não carrega o `_demo.js`: tem barra própria.
+
+A Arco Odontologia (`/negocios/demos/arco/`, desde 13/10/2026) é o
+`/doctors/` refeito: clínica no fictício Shopping Jardins do Vale, em
+Petrolina, PE; paleta trocada do dourado para verde-azulado e areia, e a
+moldura em "D" (marca da Doctors) virou um arco. **Todas as fotos são
+geradas por IA**, pessoas e ambientes, e o rodapé diz isso: os sete
+dentistas e a gerente têm nome inventado e CRO "CRO-PE 0000". Saíram do
+FLUX.1-schnell (Hugging Face, cota anônima de poucas imagens) e do
+Z-Image-Turbo no AI Horde (anônimo, fila de 10 a 15 min); Higgsfield e
+Gemini estavam sem saldo. O nome do cliente não aparece em arquivo público
+da demo. Avaliações e FAQ preenchidos com texto fictício, mapa mostra só a
+cidade, Instagram é texto.
 
 **Demos bilíngues (PT/EN), desde 11/10/2026:** Maré Mansa, Lívia Amaral e
 Pedra Alta têm botão PT · EN no próprio topo, e o card delas no portfólio leva
