@@ -564,11 +564,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <b>Theatrum</b>
   </a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
     <li><a href="#servicos" data-en="Services">Serviços</a></li>
     <li><a href="#problema" data-en="Solutions">Soluções</a></li>
-    <li><a href="#calculadora" data-en="Calculator">Calculadora</a></li>
     <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
-    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
+    <li><a href="#calculadora" data-en="Calculator">Calculadora</a></li>
     <li><a href="#investimento" data-en="Pricing">Investimento</a></li>
     <li><a href="#faq" data-en="FAQ">FAQ</a></li>
   </ul>
@@ -587,13 +587,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
     <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
   </button>
+  <a href="#trabalhos" data-en="Work">Trabalhos</a>
   <a href="#servicos" data-en="Services">Serviços</a>
   <a href="#problema" data-en="Solutions">Soluções</a>
-  <a href="#calculadora" data-en="Calculator">Calculadora</a>
   <a href="#sistema" data-en="Demo">Demonstração</a>
-  <a href="#trabalhos" data-en="Work">Trabalhos</a>
-  <a href="#como-funciona" data-en="How it works">Como funciona</a>
+  <a href="#calculadora" data-en="Calculator">Calculadora</a>
   <a href="#investimento" data-en="Pricing">Investimento</a>
+  <a href="#como-funciona" data-en="How it works">Como funciona</a>
   <a href="#faq" data-en="FAQ">FAQ</a>
   <a class="mm-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
 </div>
@@ -645,7 +645,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <span class="hx-pill" data-en="<i></i>free diagnosis"><i></i>diagnóstico gratuito</span>
         <p class="hx-card-t" data-en="Start wherever you like.">Comece por onde quiser.</p>
-        <p class="hx-card-p" data-en="None of the three below asks for a sign-up.">Nenhum dos três caminhos abaixo pede cadastro.</p>
+        <p class="hx-card-p" data-en="Three ways in, none of them commits you to anything.">Três jeitos de começar, nenhum compromete você.</p>
       </div>
       <div class="hx-bot">
         <a class="hx-b1" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
@@ -747,6 +747,340 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ============ 2 · TRABALHOS (vitrine em quatro blocos) ============
+     Quatro "espaços de anúncio", cada um passando um site por vez com
+     transição em degradê, o tipo de site escrito embaixo. Os vinte e
+     quatro sites passam aqui (seis por bloco); /portfolio/ está desativada.
+
+     Peso, medido em 10/10/2026 contra a vitrine completa: as imagens têm
+     o tamanho em que aparecem (480 ou 800 px, por srcset), e só baixam
+     a atual e a próxima de cada bloco, quando aquele bloco chega perto da
+     tela. A troca só roda com o bloco visível e a aba aberta. Os blocos
+     trocam defasados em um quarto de tempo, e a ordem no VS foi montada
+     para dois deles não mostrarem o mesmo tipo de site ao mesmo tempo. Quem pede menos
+     movimento troca pelos pontinhos, sem rotação automática.
+
+     Componente com estado: os textos das telas moram no objeto VS, não
+     em data-en (a troca de idioma apagaria o estado). -->
+<style>
+  .vs-blocos{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+  .vs-bloco{min-width:0}
+  .vs-tela{display:block;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);
+    background:#12110E;box-shadow:0 26px 60px rgba(0,0,0,.4);text-decoration:none;color:inherit;
+    transition:border-color .3s ease,transform .3s ease}
+  .vs-tela:hover{border-color:rgba(227,179,65,.45);transform:translateY(-3px)}
+  .vs-barra{display:flex;align-items:center;gap:6px;padding:10px 13px;background:#262420;border-bottom:1px solid rgba(255,255,255,.05)}
+  .vs-barra i{width:9px;height:9px;border-radius:50%;background:#E0524B;flex-shrink:0}
+  .vs-barra i:nth-child(2){background:#E5B842}
+  .vs-barra i:nth-child(3){background:#4DB861}
+  .vs-barra b{flex:1;min-width:0;margin-left:8px;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 10px;
+    font:500 11.5px/1.2 var(--font-mono);color:rgba(255,255,255,.5);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    transition:opacity .5s ease}
+  .vs-quadro{display:block;position:relative;aspect-ratio:16/10;background:linear-gradient(160deg,#1B1916,#12110E)}
+  .vs-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
+    opacity:0;transition:opacity .9s ease}
+  .vs-quadro img.is-on{opacity:1}
+  .vs-abrir{position:absolute;right:12px;bottom:12px;z-index:2;padding:8px 12px;border-radius:99px;background:rgba(11,10,8,.82);
+    color:var(--white);font:600 13px/1 var(--font-body);opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease}
+  .vs-tela:hover .vs-abrir,.vs-tela:focus-visible .vs-abrir{opacity:1;transform:none}
+  .vs-legenda{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:16px;min-height:52px}
+  .vs-legenda div{transition:opacity .5s ease}
+  .vs-tipo{display:block;font:800 clamp(18px,1.7vw,21px)/1.2 var(--font-display);letter-spacing:-.006em;color:var(--white)}
+  .vs-nome{display:block;margin-top:4px;font-size:14.5px;color:var(--muted)}
+  .vs-nome em{font-style:normal;font:600 11.5px/1 var(--font-mono);color:var(--accent);margin-left:8px}
+  .vs-pontos{display:flex;align-items:center;gap:2px;flex-shrink:0;padding-top:2px}
+  .vs-pontos button{min-width:28px;height:32px;padding:0 4px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+  .vs-pontos button::before{content:"";width:11px;height:11px;border-radius:99px;background:rgba(255,255,255,.3);
+    transition:width .35s cubic-bezier(.2,.7,.2,1),background .3s ease}
+  .vs-pontos button:hover::before{background:rgba(255,255,255,.6)}
+  .vs-pontos button[aria-current=true]::before{width:28px;background:var(--accent)}
+  .vs-pontos button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:99px}
+  /* setas nas laterais da tela: fora do link (botao dentro de <a> nao vale) */
+  .vs-palco{position:relative}
+  .vs-seta{position:absolute;top:calc(50% + 17px);z-index:3;width:44px;height:44px;margin-top:-22px;padding:0;border-radius:50%;
+    border:1px solid rgba(255,255,255,.22);background:rgba(11,10,8,.72);color:#fff;cursor:pointer;display:grid;place-items:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.35);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease}
+  .vs-seta svg{width:18px;height:18px}
+  .vs-seta.ant{left:12px}
+  .vs-seta.prox{right:12px}
+  .vs-seta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink);transform:scale(1.06)}
+  .vs-seta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .vs-troca{opacity:0}
+  /* tipos de negocio dos 24 sites: rotulo centralizado e, embaixo, uma linha so de selos
+     amarelos, acima dos blocos. Sem caber (celular), a linha rola de lado dentro dela
+     mesma, nunca a pagina; a margem automatica centraliza sem cortar o comeco. */
+  .vs-tipos{margin-top:34px;text-align:center}
+  .vs-tipos p{font:600 13px/1.4 var(--font-mono);color:var(--muted);margin:0 0 12px}
+  .vs-tipos-faixa{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .vs-tipos-faixa::-webkit-scrollbar{display:none}
+  .vs-tipos ul{list-style:none;display:flex;flex-wrap:nowrap;gap:6px;margin:0 auto;padding:0}
+  .vs-tipos li{flex-shrink:0;white-space:nowrap;font:600 11.5px/1 var(--font-mono);color:var(--accent);
+    border:1px solid rgba(227,179,65,.4);border-radius:99px;padding:6px 9px}
+  .vs-tipos + .vs-blocos{margin-top:24px}
+  /* letreiro das marcas da vitrine: logos tirados do cabecalho de cada demo, em um tom so.
+     Duas copias do trilho para a volta nao emendar; para fora da tela (.is-off), no mouse e
+     sem movimento vira grade parada. Sao marcas inventadas e o rotulo diz isso. */
+  .mc{margin-top:48px}
+  .mc-tit{font:600 14px/1.4 var(--font-mono);color:var(--muted);margin:0 0 18px;text-align:center}
+  .mc-faixa{display:flex;overflow:hidden;padding:14px 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+  .mc-trilho{display:flex;flex-shrink:0;align-items:center;animation:mcAnda 75s linear infinite}
+  .mc-trilho a{display:block;margin:0 30px;opacity:.62;transition:opacity .3s}
+  .mc-trilho a:hover,.mc-trilho a:focus-visible{opacity:1}
+  .mc-trilho a:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:4px}
+  .mc-trilho img{display:block;height:auto;max-width:none}
+  .mc-faixa:hover .mc-trilho,.mc-faixa:focus-within .mc-trilho,.mc.is-off .mc-trilho{animation-play-state:paused}
+  @keyframes mcAnda{to{transform:translateX(-100%)}}
+  .mc.parado .mc-faixa{-webkit-mask-image:none;mask-image:none}
+  .mc.parado .mc-trilho{animation:none;flex-wrap:wrap;flex-shrink:1;justify-content:center;row-gap:22px}
+  .mc.parado .mc-trilho[aria-hidden]{display:none}
+  @media(prefers-reduced-motion:reduce){
+    .mc-faixa{-webkit-mask-image:none;mask-image:none}
+    .mc-trilho{animation:none;flex-wrap:wrap;flex-shrink:1;justify-content:center;row-gap:22px}
+    .mc-trilho[aria-hidden]{display:none}
+  }
+  @media(max-width:600px){ .mc-trilho a{margin:0 20px} .mc-trilho img{transform:scale(.85)} }
+  @media(max-width:860px){ .vs-blocos{grid-template-columns:1fr;gap:36px} }
+  @media(max-width:600px){ .vs-legenda{flex-direction:column;gap:6px;min-height:0} .vs-pontos{padding-top:0;margin-left:-8px} }
+  @media(prefers-reduced-motion:reduce){ .vs-quadro img,.vs-legenda div,.vs-barra b{transition:none} }
+</style>
+<section class="sec" id="trabalhos">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>trabalhos</p>
+    <h2 class="rv" style="--d:.08s" data-en='Twenty-four sites live. <span class="lm">All of them, right here.</span>'>Vinte e quatro sites no ar. <span class="lm">Todos passando aqui.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
+
+    <div class="vs-tipos rv" style="--d:.18s">
+      <p data-en="in these twenty-four sites you will find">nestes vinte e quatro sites você encontra</p>
+      <div class="vs-tipos-faixa"><ul>
+        <li data-en="Online stores">Lojas online</li>
+        <li data-en="Dietitians">Nutricionistas</li>
+        <li data-en="Real estate">Imobiliárias</li>
+        <li data-en="Fitted furniture">Móveis planejados</li>
+        <li data-en="Clinics and consultancies">Clínicas e consultorias</li>
+        <li data-en="Cabins and inns">Chalés e pousadas</li>
+        <li data-en="Solar energy">Energia solar</li>
+        <li data-en="Farm and vet stores">Agropecuárias</li>
+        <li data-en="Personal trainers">Personal trainers</li>
+      </ul></div>
+    </div>
+
+    <div class="vs-blocos rv" style="--d:.2s" id="vsBlocos">
+      <div class="vs-bloco" data-bloco="0"></div>
+      <div class="vs-bloco" data-bloco="1"></div>
+      <div class="vs-bloco" data-bloco="2"></div>
+      <div class="vs-bloco" data-bloco="3"></div>
+    </div>
+
+    <div class="mc rv" style="--d:.22s" id="marcas">
+      <p class="mc-tit" data-en="the brands behind these sites">as marcas desses sites</p>
+      <div class="mc-faixa">
+        <div class="mc-trilho">
+          <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="Vista Imóveis" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/atelie-verga.webp" width="158" height="28" alt="Ateliê Verga" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-infantil/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-infantil.webp" width="151" height="29" alt="Marina Bastos" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/prumo/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/prumo.webp" width="117" height="36" alt="Prumo" loading="lazy" decoding="async"></a>
+          <a href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/seis-panos.webp" width="195" height="24" alt="Seis Panos" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vertice.webp" width="146" height="30" alt="Vértice" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/casa-nobre.webp" width="244" height="21" alt="Casa Nobre" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-emagrecimento.webp" width="146" height="31" alt="Renata Salles" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/pedra-alta.webp" width="146" height="30" alt="Pedra Alta" loading="lazy" decoding="async"></a>
+          <a href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/caparao-solar.webp" width="160" height="29" alt="Caparaó Solar" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/mare-mansa.webp" width="152" height="30" alt="Maré Mansa" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cerne.webp" width="118" height="37" alt="Cerne" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-clinica/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-clinica.webp" width="174" height="26" alt="Camila Prado" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/vereda/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vereda.webp" width="201" height="24" alt="Vereda" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/reserva-aurora.webp" width="211" height="22" alt="Reserva Aurora" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="Cozinha Viva" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="Lívia Amaral" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/cla-valente/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cla-valente.webp" width="117" height="36" alt="Clã Valente" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="Ethan Reyes" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="Bruno Tavares" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="Morattá" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/campo-vivo/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/campo-vivo.webp" width="136" height="33" alt="Campo Vivo" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/medida-certa.webp" width="209" height="22" alt="Medida Certa" loading="lazy" decoding="async"></a>
+        </div>
+        <div class="mc-trilho" aria-hidden="true">
+          <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/atelie-verga.webp" width="158" height="28" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-infantil/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-infantil.webp" width="151" height="29" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/prumo/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/prumo.webp" width="117" height="36" alt="" loading="lazy" decoding="async"></a>
+          <a href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/seis-panos.webp" width="195" height="24" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vertice.webp" width="146" height="30" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/casa-nobre.webp" width="244" height="21" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-emagrecimento.webp" width="146" height="31" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/pedra-alta.webp" width="146" height="30" alt="" loading="lazy" decoding="async"></a>
+          <a href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/caparao-solar.webp" width="160" height="29" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/mare-mansa.webp" width="152" height="30" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cerne.webp" width="118" height="37" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-clinica/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-clinica.webp" width="174" height="26" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/vereda/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vereda.webp" width="201" height="24" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/reserva-aurora.webp" width="211" height="22" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/cla-valente/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cla-valente.webp" width="117" height="36" alt="" loading="lazy" decoding="async"></a>
+          <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="" loading="lazy" decoding="async"></a>
+          <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="" loading="lazy" decoding="async"></a>
+          <a href="negocios/demos/campo-vivo/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/campo-vivo.webp" width="136" height="33" alt="" loading="lazy" decoding="async"></a>
+          <a href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/medida-certa.webp" width="209" height="22" alt="" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  'use strict';
+  /* tipo: o que aparece embaixo da tela. real: cliente de verdade, link para o site dele no ar */
+  const VS = [
+    [ {img:'caparao-solar', dom:'caparaosolar.com.br', nome:'Caparaó Solar', href:'solar/demos/caparao-solar/', pt:'Site para energia solar', en:'Website for solar energy'},
+      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian'},
+      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery'},
+      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker'},
+      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US'},
+      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices'} ],
+    [ {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory'},
+      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist'},
+      {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens'},
+      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'},
+      {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
+      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'} ],
+    [ {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency'},
+      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store'},
+      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer'},
+      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
+      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
+      {img:'reserva-aurora', dom:'reservaaurora.com.br', nome:'Reserva Aurora', href:'imoveis/demos/reserva-aurora/', pt:'Site para lançamento imobiliário', en:'Website for a property launch'} ],
+    [ {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
+      {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate'},
+      {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian'},
+      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
+      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
+      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'} ]
+  ];
+  const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site', ant:'Site anterior', prox:'Próximo site'},
+               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'} };
+  const TEMPO = 5200;                       /* quanto cada site fica na tela */
+  const PARADO = new URLSearchParams(location.search).get('still') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const src = (it, w) => 'assets/img/vitrine/home/' + it.img + '-' + w + '.webp';
+  const link = (it) => it.real ? it.href : it.href + '?de=home';
+  const raiz = document.getElementById('vsBlocos');
+  if (!raiz) return;
+
+  const blocos = [...raiz.querySelectorAll('.vs-bloco')].map((el, b) => {
+    const lista = VS[b];
+    el.innerHTML =
+      '<div class="vs-palco">' +
+      '<a class="vs-tela" target="_blank" rel="noopener">' +
+        '<span class="vs-barra" aria-hidden="true"><i></i><i></i><i></i><b></b></span>' +
+        '<span class="vs-quadro"><img alt="" decoding="async"><img alt="" decoding="async"><span class="vs-abrir"></span></span>' +
+      '</a>' +
+      '<button type="button" class="vs-seta ant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>' +
+      '<button type="button" class="vs-seta prox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      '</div>' +
+      '<div class="vs-legenda"><div aria-live="off"><span class="vs-tipo"></span><span class="vs-nome"></span></div>' +
+      '<span class="vs-pontos">' + lista.map(() => '<button type="button"></button>').join('') + '</span></div>';
+    return { el, lista, i: 0, camada: 0, timer: null, vez: 0, inicio: b * TEMPO / 4, visivel: false, montado: false,
+             tela: el.querySelector('.vs-tela'), dom: el.querySelector('.vs-barra b'),
+             imgs: el.querySelectorAll('.vs-quadro img'), abrir: el.querySelector('.vs-abrir'),
+             leg: el.querySelector('.vs-legenda div'), tipo: el.querySelector('.vs-tipo'), nome: el.querySelector('.vs-nome'),
+             pontos: el.querySelectorAll('.vs-pontos button'), ant: el.querySelector('.vs-seta.ant'),
+             prox: el.querySelector('.vs-seta.prox'), parado: false };
+  });
+
+  function poeImg(img, it){
+    img.sizes = '(max-width: 860px) 92vw, 600px';
+    img.srcset = src(it, 480) + ' 480w, ' + src(it, 800) + ' 800w';
+    img.src = src(it, 800);
+  }
+  /* carrega a próxima antes de trocar, para o degradê nunca cruzar com tela vazia */
+  function prepara(it){
+    const im = new Image();
+    im.sizes = '(max-width: 860px) 92vw, 600px';
+    im.srcset = src(it, 480) + ' 480w, ' + src(it, 800) + ' 800w';
+    return (im.decode ? im.decode() : Promise.resolve()).catch(() => {});
+  }
+  function textos(B){
+    const it = B.lista[B.i], T = TX[idioma()];
+    B.tipo.textContent = it[idioma()];
+    B.nome.innerHTML = it.nome + '<em>' + (it.real ? T.real : T.demo) + '</em>';
+    B.dom.textContent = it.dom;
+    B.abrir.textContent = T.abrir;
+    B.tela.href = link(it);
+    B.tela.setAttribute('aria-label', T.abrir.replace(' ↗','') + ': ' + it.nome + ', ' + it[idioma()]);
+    B.ant.setAttribute('aria-label', T.ant); B.prox.setAttribute('aria-label', T.prox);
+    B.pontos.forEach((p, k) => {
+      p.setAttribute('aria-current', String(k === B.i));
+      p.setAttribute('aria-label', T.ir + ' ' + (k + 1) + ': ' + B.lista[k].nome);
+    });
+  }
+  function mostra(B, n){
+    B.alvo = n;                            /* para onde está indo, mesmo antes de chegar */
+    if (n === B.i && B.imgs[B.camada].getAttribute('src')) return Promise.resolve();
+    const it = B.lista[n], vez = ++B.vez;
+    return prepara(it).then(() => {
+      if (vez !== B.vez) return;           /* chegou atrasada: outra troca já foi pedida */
+      const nova = B.imgs[1 - B.camada], velha = B.imgs[B.camada];
+      poeImg(nova, it);
+      B.leg.classList.add('vs-troca'); B.dom.classList.add('vs-troca');
+      requestAnimationFrame(() => {
+        nova.classList.add('is-on'); velha.classList.remove('is-on');
+        B.camada = 1 - B.camada; B.i = n;
+        setTimeout(() => { textos(B); B.leg.classList.remove('vs-troca'); B.dom.classList.remove('vs-troca'); }, 350);
+      });
+    });
+  }
+
+  function agenda(B, atraso){
+    clearTimeout(B.timer);
+    if (PARADO || !B.visivel || document.hidden || B.parado) return;
+    B.timer = setTimeout(() => {
+      mostra(B, (B.i + 1) % B.lista.length).then(() => agenda(B, TEMPO));
+    }, atraso);
+  }
+  function monta(B){
+    if (B.montado) return; B.montado = true;
+    poeImg(B.imgs[0], B.lista[0]); B.imgs[0].classList.add('is-on');
+  }
+  function anda(B){ agenda(B, TEMPO + B.inicio); }
+  function para(B){ clearTimeout(B.timer); }
+
+  blocos.forEach((B) => {
+    const vai = (k) => { clearTimeout(B.timer); mostra(B, k); agenda(B, TEMPO * 1.6); };
+    B.pontos.forEach((p, k) => p.addEventListener('click', () => vai(k)));
+    /* conta a partir do último pedido, não do que já está na tela: dois cliques rápidos andam dois */
+    const passo = (d) => { const n = B.lista.length; vai(((B.alvo ?? B.i) + d + n) % n); };
+    B.ant.addEventListener('click', () => passo(-1));
+    B.prox.addEventListener('click', () => passo(1));
+    /* parar no mouse: mirar um alvo que troca sozinho é frustrante */
+    B.el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { B.parado = true; clearTimeout(B.timer); } });
+    B.el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { B.parado = false; agenda(B, TEMPO / 2); } });
+    B.el.addEventListener('focusin', () => { B.parado = true; clearTimeout(B.timer); });
+    B.el.addEventListener('focusout', () => { B.parado = false; agenda(B, TEMPO); });
+  });
+
+  blocos.forEach(textos);
+  if (PARADO || !('IntersectionObserver' in window)) { blocos.forEach(monta); }
+  else {
+    /* cada bloco por si: no celular os quatro ficam empilhados, e o de baixo
+       só baixa a imagem e começa a trocar quando ele mesmo chega perto da tela */
+    const deBloco = (el) => blocos.find((B) => B.el === el);
+    const perto = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { monta(deBloco(e.target)); perto.unobserve(e.target); }
+    }), { rootMargin: '600px 0px' });
+    const vista = new IntersectionObserver((es) => es.forEach((e) => {
+      const B = deBloco(e.target); B.visivel = e.isIntersecting;
+      if (B.visivel) { monta(B); anda(B); } else para(B);
+    }), { threshold: .25 });
+    blocos.forEach((B) => { perto.observe(B.el); vista.observe(B.el); });
+    document.addEventListener('visibilitychange', () => blocos.forEach((B) => { if (document.hidden) para(B); else if (B.visivel) anda(B); }));
+  }
+  new MutationObserver(() => blocos.forEach(textos)).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+})();
+</script>
+
 <!-- ============ 2 · NAO E SO UM SITE ============
      O que separa o site da Theatrum de um tema pronto, dito em
      linguagem de dono de negocio. Cinco cards, sem CTA proprio: a
@@ -785,7 +1119,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec light" id="nao-e-so-um-site">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>not just a website'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>não é só um site</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>not just a website'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>não é só um site</p>
     <h2 class="rv" style="--d:.08s" data-en='Your website working <span class="lm">as a salesperson.</span>'>Seu site trabalhando <span class="lm">como vendedor.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='Fast on mobile, ready for ads and delivering clients straight to your WhatsApp. What a ready-made template <b>does not do</b>:'>Rápido no celular, pronto para anúncio e entregando cliente direto no seu WhatsApp. O que um modelo pronto <b>não faz</b>:</p>
     <div class="ns-grid">
@@ -797,7 +1131,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="ns-card rv" style="--d:0.09s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17l5.5-5.5 3.5 3.5L21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <h3 data-en="Ready for ads">Pronto para anúncio</h3>
-        <p data-en="Google Tag Manager, GA4 and the Meta Pixel already set up. Your ads are measured from day one.">Google Tag Manager, GA4 e Pixel do Meta já configurados. O anúncio fica medido desde o primeiro dia.</p>
+        <p data-en="You know which ad, search or post brought each contact. Your ads are measured from day one.">Você sabe qual anúncio, busca ou post trouxe cada contato. O anúncio fica medido desde o primeiro dia.</p>
       </article>
       <article class="ns-card rv" style="--d:0.13s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16v4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="1.7"/></svg></span>
@@ -824,7 +1158,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      existirem, o card passa a levar para elas. -->
 <section class="sec" id="para-quem">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>who we build for'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>para quem fazemos</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>who we build for'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>para quem fazemos</p>
     <h2 class="rv" style="--d:.08s" data-en='For whoever needs to <span class="lm">earn trust first.</span>'>Para quem precisa <span class="lm">passar confiança primeiro.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en="The client researches before calling. The right website shows authority in your field before the first conversation.">O cliente pesquisa antes de ligar. O site certo mostra autoridade no seu segmento antes da primeira conversa.</p>
     <div class="pq-grid">
@@ -929,9 +1263,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec light" id="servicos">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>what we do'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>o que fazemos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Everything your business needs online. <span class="lm">Built to measure.</span>'>Tudo o que o seu negócio precisa no digital. <span class="lm">Feito sob medida.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='From the first website to the system that runs your process. What gets built comes first; what brings people to it <b>comes along</b>.'>Do primeiro site ao sistema que roda o seu processo. O que se constrói vem primeiro; o que traz gente até ele <b>vem junto</b>.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>what we do'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>o que fazemos</p>
+    <h2 class="rv" style="--d:.08s" data-en='What we build, <span class="lm">and what brings clients to it.</span>'>O que a gente constrói, <span class="lm">e o que leva cliente até lá.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='The website comes first, because that is where the client decides. Google, ads and WhatsApp <b>come along</b> to bring people to it.'>Primeiro o site, porque é nele que o cliente decide. Google, anúncio e WhatsApp <b>vêm junto</b> para levar gente até ele.</p>
 
     <p class="sv-grupo rv" data-en="<b>To build</b><span>where the client decides to hire you</span>"><b>Para construir</b><span>onde o cliente decide contratar você</span></p>
     <div class="sv-top">
@@ -1105,7 +1439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec" id="problema">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>pains and solutions'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>dores e soluções</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>pains and solutions'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>dores e soluções</p>
     <h2 class="rv" style="--d:.08s" data-en='Where clients get lost. <span class="lm">And how each gap closes.</span>'>Onde o cliente se perde. <span class="lm">E como cada buraco fecha.</span></h2>
     <p class="lead rv" style="--d:.16s" data-en='Pick a channel and see the difference between done badly and done well. In each one, Theatrum <b>sets it up, runs it and follows it</b>.'>Escolha o canal e veja a diferença entre o mal feito e o bem feito. Em cada um, a Theatrum <b>configura, opera e acompanha</b>.</p>
 
@@ -1260,384 +1594,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     })();
     </script>
 
-    <div class="inv rv" id="investimento">
-      <h3 data-en="What it costs">Quanto custa</h3>
-      <!-- Planos definidos pelo Matheus em 06/10/2026 (proposta v2).
-           Desconto so na forma de pagamento, nunca no valor. -->
-      <p class="inv-preco" data-en="Three plans, depending on the size of the project. The exact figure comes out of the free diagnosis.">Três planos, conforme o tamanho do projeto. O valor exato sai no diagnóstico gratuito.</p>
-
-      <div class="pl-grid">
-        <article class="pl-card pl-dest">
-          <span class="pl-selo" data-en="recommended">recomendado</span>
-          <h4 data-en="Launch">Lançamento</h4>
-          <p class="pl-para" data-en="For whoever wants to start advertising or replace a site that does not convert.">Para quem quer começar a anunciar ou trocar um site que não converte.</p>
-          <p class="pl-valor"><b>R$ 2.500</b><span data-en="or 3x R$ 833.33">ou 3x de R$ 833,33</span></p>
-          <ul>
-            <li data-en="landing page or website with 1 to 5 sections">landing page ou site de 1 a 5 seções</li>
-            <li data-en="copy focused on conversion">texto com foco em conversão</li>
-            <li data-en="GTM + GA4 + Meta Pixel set up">GTM + GA4 + Pixel do Meta configurados</li>
-            <li data-en="WhatsApp and form with an alert for every contact">WhatsApp e formulário com aviso de cada contato</li>
-            <li data-en="Google Business Profile reviewed">Google Meu Negócio revisado</li>
-            <li data-en="1st campaign setup + 1st month of management at 50% off">setup da 1ª campanha + 1º mês de gestão com 50% de desconto</li>
-          </ul>
-        </article>
-        <article class="pl-card">
-          <h4 data-en="Institutional">Institucional</h4>
-          <p class="pl-para" data-en="For companies with several services, locations or niches.">Para empresas com vários serviços, unidades ou nichos.</p>
-          <p class="pl-valor"><b>R$ 3.900</b></p>
-          <ul>
-            <li data-en="everything in Launch">tudo do Lançamento</li>
-            <li data-en="several pages: one per service or location">várias páginas: uma por serviço ou unidade</li>
-            <li data-en="blog or content hub">blog ou central de conteúdo</li>
-            <li data-en="local SEO">SEO local</li>
-          </ul>
-        </article>
-        <article class="pl-card">
-          <h4 data-en="Custom">Sob medida</h4>
-          <p class="pl-para" data-en="For whoever needs a system along with the website.">Para quem precisa de sistema junto com o site.</p>
-          <p class="pl-valor"><small data-en="from">a partir de</small><b>R$ 4.900</b></p>
-          <ul>
-            <li data-en="everything in Institutional">tudo do Institucional</li>
-            <li data-en="custom feature: assessment, catalogue, booking or scheduling">funcionalidade sob medida: diagnóstico, catálogo, reserva ou agendamento</li>
-          </ul>
-        </article>
-      </div>
-      <p class="pl-depois" data-en="After delivery: maintenance and hosting for R$ 197 a month. Traffic management for R$ 697 a month + the ad budget in your own account (recommended minimum of R$ 600 a month).">Depois da entrega: manutenção e hospedagem por R$ 197/mês. Gestão de tráfego por R$ 697/mês + verba de anúncio na sua conta (mínimo recomendado de R$ 600/mês).</p>
-
-      <div class="inv-cols">
-        <div class="inv-col inv-sim">
-          <h4 data-en="it is for you if">é para você se</h4>
-          <ul>
-            <li data-en="you sell a service or a product and want clients">você vende serviço ou produto e quer cliente</li>
-            <li data-en="you have someone to serve whoever gets in touch">tem quem atenda quem chega</li>
-            <li data-en="you want to advertise with predictability">quer anunciar com previsibilidade</li>
-          </ul>
-        </div>
-        <div class="inv-col inv-nao">
-          <h4 data-en="it is not for you if">não é para você se</h4>
-          <ul>
-            <li data-en="you are looking for the cheapest website possible">procura o site mais em conta possível</li>
-            <li data-en="you expect results in seven days">espera resultado em sete dias</li>
-            <li data-en="you do not plan to invest in promotion">não pretende investir em divulgação</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="inv-ctas">
-        <a class="btn btn-primary" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
-        <a class="btn btn-secondary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>Talk on WhatsApp'><span class="btn-dot"></span>Falar no WhatsApp</a>
-      </div>
-    </div>
   </div>
 </section>
-
-<!-- ============ 3 · A CALCULADORA ============ -->
-<style>
-  /* ---------- [06] calculadora de vazamento ----------
-     Componente com estado. Por isso ele NÃO usa data-en: a troca de
-     idioma reescreve o innerHTML de tudo que tem esse atributo, e
-     levaria junto os listeners e o que a pessoa já respondeu. Os
-     textos dele moram num objeto JS e ele se redesenha quando o
-     idioma muda. Ver CLAUDE.md, "a página é bilíngue". */
-  .calc{
-    margin-top:44px;display:grid;gap:22px;
-    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start;
-  }
-  @media(max-width:900px){ .calc{grid-template-columns:1fr;gap:18px} }
-
-  .calc-perguntas{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;
-    padding:28px 26px;display:grid;gap:26px;
-  }
-  .calc-q > label,.calc-q > .calc-legenda{
-    display:block;font:600 14px/1.4 var(--font-body);color:var(--cream);margin-bottom:14px;
-  }
-  .calc-valor{
-    float:right;font:700 14px/1.4 var(--font-mono);color:var(--accent);
-    font-variant-numeric:tabular-nums;
-  }
-
-  /* range: pista fina, polegar dourado, foco visível pelo teclado */
-  .calc-q input[type=range]{
-    -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;
-    background:rgba(255,255,255,.14);outline:none;margin:0;
-  }
-  .calc-q input[type=range]::-webkit-slider-thumb{
-    -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
-    background:var(--accent);border:3px solid var(--bg);cursor:grab;
-    box-shadow:0 2px 10px rgba(0,0,0,.45);
-  }
-  .calc-q input[type=range]::-moz-range-thumb{
-    width:22px;height:22px;border-radius:50%;background:var(--accent);
-    border:3px solid var(--bg);cursor:grab;box-shadow:0 2px 10px rgba(0,0,0,.45);
-  }
-  .calc-q input[type=range]:focus-visible{box-shadow:0 0 0 3px rgba(227,179,65,.35)}
-
-  .calc-moeda{position:relative;display:flex;align-items:center}
-  .calc-moeda span{
-    position:absolute;left:14px;font:700 15px/1 var(--font-mono);color:var(--muted);pointer-events:none;
-  }
-  .calc-moeda input{
-    width:100%;padding:13px 14px 13px 42px;border-radius:11px;
-    background:rgba(255,255,255,.04);border:1px solid var(--line);
-    color:var(--cream);font:700 16px/1 var(--font-mono);
-    font-variant-numeric:tabular-nums;outline:none;
-  }
-  .calc-moeda input:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px rgba(227,179,65,.2)}
-
-  .calc-opcoes{display:flex;flex-wrap:wrap;gap:8px}
-  .calc-opcoes button{
-    flex:1 1 auto;padding:11px 14px;border-radius:99px;cursor:pointer;
-    background:transparent;border:1px solid var(--line);color:var(--muted);
-    font:600 13px/1.2 var(--font-body);transition:border-color .2s ease,color .2s ease,background .2s ease;
-  }
-  .calc-opcoes button:hover{border-color:rgba(227,179,65,.5);color:var(--cream)}
-  .calc-opcoes button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
-  .calc-opcoes button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
-  /* ---------- resultado ---------- */
-  .calc-saida{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;
-    padding:28px 26px;position:sticky;top:96px;
-  }
-  @media(max-width:900px){ .calc-saida{position:static} }
-
-  .calc-linha{
-    display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-    padding:13px 0;border-bottom:1px solid var(--line);
-  }
-  .calc-linha b{font:600 14px/1.3 var(--font-body);color:var(--muted)}
-  .calc-linha i{
-    font-style:normal;font:700 15px/1.3 var(--font-mono);color:var(--cream);
-    font-variant-numeric:tabular-nums;white-space:nowrap;
-  }
-
-  .calc-total{margin-top:22px}
-  .calc-total p{font:600 13px/1.5 var(--font-body);color:var(--muted);margin:0 0 6px}
-  .calc-total strong{
-    display:block;font:800 clamp(2rem,6vw,3rem)/1.05 var(--font-display);
-    color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em;
-  }
-  .calc-nota{margin-top:16px;font:400 12px/1.6 var(--font-body);color:var(--muted)}
-
-  .calc-cta{
-    display:inline-flex;align-items:center;gap:10px;margin-top:20px;
-    padding:14px 22px;border-radius:99px;text-decoration:none;
-    background:var(--accent);color:var(--ink);font:700 14px/1 var(--font-body);
-    transition:background .2s ease,transform .2s ease;
-  }
-  .calc-cta:hover{background:var(--accent-soft);transform:translateY(-1px)}
-  .calc-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
-  /* enquanto o componente não montou, o espaço já existe: evita o
-     pulo de layout quando ele entra */
-  .calc-esqueleto{min-height:420px}
-
-  @media(prefers-reduced-motion:reduce){ .calc-cta{transition:none} }
-</style>
-
-<section class="sec" id="calculadora">
-  <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>the maths'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>o cálculo</p>
-    <h2 class="rv" style="--d:.08s" data-en='How much is your business leaving <span class="lm">on the table</span> every month?'>Quanto o seu negócio deixa <span class="lm">na mesa</span> todo mês?</h2>
-    <p class="lead rv" style="--d:.16s" data-en='Four questions. No sign-up. The number shows up on the spot.'>Quatro perguntas. Nenhum cadastro. O número aparece na hora.</p>
-
-    <div class="calc calc-esqueleto" id="calc" role="group" aria-label="Calculadora de vazamento"></div>
-  </div>
-</section>
-
-<script>
-(function(){
-  'use strict';
-
-  /* ---------- constantes do cálculo ----------
-     Ficam aqui em cima, soltas e comentadas, porque são o que muda
-     quando quisermos calibrar a conta. Nenhuma delas vem de pesquisa
-     de mercado: são os fatores que a Theatrum assume, e o texto do
-     resultado diz isso na cara do visitante. Não invente fonte. */
-  const F = {
-    SEMANAS_MES: 4.33,          // média de semanas num mês
-
-    /* quanto do que ele já fatura se perde por demorar a responder */
-    DEMORA: { minutos: 0, horas: 0.15, dia: 0.30, depois: 0.45 },
-
-    /* contatos que nunca chegam porque o negócio não aparece na busca.
-       Proporcional ao que ele já fatura, que é a leitura mais
-       conservadora: quem fatura pouco perde pouco nesta linha. */
-    INVISIVEL: 0.35,
-
-    /* cliente antigo que não volta porque ninguém o chamou de volta */
-    REATIVAR: 0.20,
-  };
-
-  /* ---------- textos ----------
-     Fora do sistema data-en de propósito: a troca de idioma reescreve
-     innerHTML e mataria o estado deste componente. */
-  const CIFRAO_EN = String.fromCharCode(36);
-  const T = {
-    pt: {
-      q1: 'Quantas pessoas chamam seu negócio por semana?',
-      q2: 'De cada 10 que chamam, quantas fecham?',
-      q3: 'Quanto vale, em média, um cliente para você?',
-      q4: 'Em quanto tempo você costuma responder?',
-      opcoes: { minutos:'em minutos', horas:'em algumas horas', dia:'no fim do dia', depois:'no dia seguinte ou mais' },
-      esfria: 'o cliente esfria',
-      acha: 'ninguém te acha',
-      volta: 'ninguém volta',
-      totalRotulo: 'seu negócio deixa de faturar cerca de',
-      porMes: '/mês',
-      nota: 'Estimativa a partir do que você respondeu. Não é promessa de resultado: é a ordem de grandeza do buraco.',
-      cta: 'Quero o plano para fechar esses ',
-      wa: (n) => 'Vim do site. A calculadora deu ' + n + ' por mês. Quero o plano.',
-      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'pt-BR',
-    },
-    en: {
-      q1: 'How many people reach out to your business per week?',
-      q2: 'Out of every 10 who reach out, how many close?',
-      q3: 'On average, what is a client worth to you?',
-      q4: 'How long do you usually take to reply?',
-      opcoes: { minutos:'within minutes', horas:'within a few hours', dia:'by end of day', depois:'next day or later' },
-      esfria: 'the client goes cold',
-      acha: 'nobody finds you',
-      volta: 'nobody comes back',
-      totalRotulo: 'your business is missing out on roughly',
-      porMes: '/mo',
-      nota: 'Estimated from what you answered. Not a promise of results: it is the order of magnitude of the hole.',
-      cta: 'I want the plan to close that ',
-      wa: (n) => 'I came from the site. The calculator showed ' + n + ' per month. I want the plan.',
-      /* Moeda continua em real mesmo em inglês. A home vende no Brasil e
-         o inglês aqui é tradução, não outro mercado: trocar para dólar
-         redenominaria, sem avisar, o número que a pessoa digitou em
-         reais. Quem vende em dólar tem a landing /us/, que é separada. */
-      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'en-US',
-    }
-  };
-
-  const WA = '5532984762445';
-  const caixa = document.getElementById('calc');
-  if (!caixa) return;
-
-  /* resposta guardada só enquanto a aba viver. Nada de localStorage:
-     é número de faturamento de quem está do outro lado. */
-  const CHAVE = 'theatrum-calc';
-  let estado = { contatos: 20, fecha: 3, ticket: 800, resposta: 'horas' };
-  try { const s = sessionStorage.getItem(CHAVE); if (s) estado = Object.assign(estado, JSON.parse(s)); } catch(e){}
-
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
-  const dinheiro = (v) => {
-    const t = T[idioma()];
-    return Number(v).toLocaleString(t.locale, { style:'currency', currency:t.moeda, maximumFractionDigits:0 });
-  };
-
-  function conta(){
-    const contatosMes = estado.contatos * F.SEMANAS_MES;
-    const receita = contatosMes * (estado.fecha / 10) * estado.ticket;
-    const esfria = receita * F.DEMORA[estado.resposta];
-    const acha = receita * F.INVISIVEL;
-    const volta = receita * F.REATIVAR;
-    return { esfria, acha, volta, total: esfria + acha + volta };
-  }
-
-  /* conta subindo até o valor. Só o texto muda; o número usa
-     tabular-nums e a caixa não muda de tamanho, então não há
-     recálculo de layout a cada quadro. */
-  function anima(el, ate){
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = dinheiro(ate); el.dataset.v = ate; return; }
-    const de = Number(el.dataset.v || 0), t0 = performance.now(), dur = 620;
-    el.dataset.v = ate;
-    (function passo(t){
-      const p = Math.min(1, (t - t0) / dur);
-      const suave = 1 - Math.pow(1 - p, 3);
-      el.textContent = dinheiro(de + (ate - de) * suave);
-      if (p < 1) requestAnimationFrame(passo);
-    })(t0);
-  }
-
-  function desenha(){
-    const t = T[idioma()];
-    caixa.classList.remove('calc-esqueleto');
-    caixa.innerHTML =
-      '<div class="calc-perguntas">' +
-        '<div class="calc-q"><label for="cq1">' + t.q1 + '<span class="calc-valor" id="cv1"></span></label>' +
-          '<input type="range" id="cq1" min="0" max="100" step="1"></div>' +
-        '<div class="calc-q"><label for="cq2">' + t.q2 + '<span class="calc-valor" id="cv2"></span></label>' +
-          '<input type="range" id="cq2" min="0" max="10" step="1"></div>' +
-        '<div class="calc-q"><label for="cq3">' + t.q3 + '</label>' +
-          '<div class="calc-moeda"><span>' + t.simbolo + '</span>' +
-          '<input type="text" id="cq3" inputmode="numeric" autocomplete="off"></div></div>' +
-        '<div class="calc-q"><p class="calc-legenda" id="cq4rot">' + t.q4 + '</p>' +
-          '<div class="calc-opcoes" role="group" aria-labelledby="cq4rot">' +
-            Object.keys(t.opcoes).map(k =>
-              '<button type="button" data-r="' + k + '" aria-pressed="false">' + t.opcoes[k] + '</button>').join('') +
-          '</div></div>' +
-      '</div>' +
-      '<div class="calc-saida" aria-live="polite">' +
-        '<div class="calc-linha"><b>' + t.esfria + '</b><i id="cr1"></i></div>' +
-        '<div class="calc-linha"><b>' + t.acha + '</b><i id="cr2"></i></div>' +
-        '<div class="calc-linha"><b>' + t.volta + '</b><i id="cr3"></i></div>' +
-        '<div class="calc-total"><p>' + t.totalRotulo + '</p><strong id="crt"></strong></div>' +
-        '<p class="calc-nota">' + t.nota + '</p>' +
-        '<a class="calc-cta" id="ccta" target="_blank" rel="noopener"><span id="cctat"></span><span aria-hidden="true">&rarr;</span></a>' +
-      '</div>';
-
-    const q1 = caixa.querySelector('#cq1'), q2 = caixa.querySelector('#cq2'), q3 = caixa.querySelector('#cq3');
-    q1.value = estado.contatos; q2.value = estado.fecha;
-    q3.value = Number(estado.ticket).toLocaleString(t.locale);
-
-    q1.addEventListener('input', () => { estado.contatos = +q1.value; atualiza(); });
-    q2.addEventListener('input', () => { estado.fecha = +q2.value; atualiza(); });
-    q3.addEventListener('input', () => {
-      const so = q3.value.replace(/\D/g, '');
-      estado.ticket = so ? Math.min(+so, 9999999) : 0;
-      q3.value = estado.ticket ? estado.ticket.toLocaleString(T[idioma()].locale) : '';
-      atualiza();
-    });
-    caixa.querySelectorAll('.calc-opcoes button').forEach(b => {
-      b.addEventListener('click', () => { estado.resposta = b.dataset.r; atualiza(); });
-    });
-
-    atualiza(true);
-  }
-
-  function atualiza(primeira){
-    const t = T[idioma()], r = conta();
-    caixa.querySelector('#cv1').textContent = estado.contatos;
-    caixa.querySelector('#cv2').textContent = estado.fecha + '/10';
-    caixa.querySelectorAll('.calc-opcoes button').forEach(b =>
-      b.setAttribute('aria-pressed', String(b.dataset.r === estado.resposta)));
-
-    [['#cr1', r.esfria], ['#cr2', r.acha], ['#cr3', r.volta], ['#crt', r.total]].forEach(([sel, v]) => {
-      const el = caixa.querySelector(sel);
-      if (primeira) el.dataset.v = 0;
-      anima(el, v);
-    });
-
-    const n = dinheiro(r.total);
-    caixa.querySelector('#cctat').textContent = t.cta + n + t.porMes;
-    caixa.querySelector('#ccta').href =
-      'https://wa.me/' + WA + '?text=' + encodeURIComponent(t.wa(n));
-
-    try { sessionStorage.setItem(CHAVE, JSON.stringify(estado)); } catch(e){}
-  }
-
-  /* monta só quando entra em cena */
-  let montado = false;
-  const monta = () => { if (!montado) { montado = true; desenha(); } };
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((es) => {
-      if (es.some(e => e.isIntersecting)) { io.disconnect(); monta(); }
-    }, { rootMargin: '250px' });
-    io.observe(caixa);
-  } else monta();
-
-  /* redesenha no idioma novo, guardando o que a pessoa já respondeu.
-     Observar o atributo lang do <html> evita mexer na IIFE do
-     seletor de idioma, que é fechada. */
-  new MutationObserver(() => { if (montado) desenha(); })
-    .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-})();
-</script>
-
 
 <!-- ============ 7 · DEMONSTRAÇÃO: o caminho de um cliente ============
      A proposta v2 inteira num sistema só: o visitante escolhe o tipo de
@@ -2025,8 +1983,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       prox:'próxima etapa →', denovo:'ver de novo ↺',
       etapas:[['Te encontram','Google, mapa e anúncio'],['Chegam no site','rápido, claro, pronto para anúncio'],['Chamam no WhatsApp','mensagem pronta e aviso na hora'],['Não esfriam','retomada e reativação'],['Você acompanha','tudo medido, tudo no seu nome']],
       itens:[
-        ['Google Meu Negócio revisado','campanha no Google e no Microsoft Ads','palavras de quem quer contratar, não de curioso'],
-        ['landing page ou site de 1 a 5 seções','texto com foco em conversão','GTM, GA4 e Pixel do Meta configurados'],
+        ['Google Meu Negócio revisado','campanha no Google e no Meta (Instagram e Facebook)','palavras de quem quer contratar, não de curioso'],
+        ['landing page ou site de 1 a 5 seções','texto com foco em conversão','medição pronta: você sabe de onde veio cada contato'],
         ['botão com a mensagem já escrita','aviso de cada contato, com a origem','IA que responde e qualifica fora do horário'],
         ['retomada de orçamento parado','reativação de quem já foi cliente','mensagens no seu tom, aprovadas por você'],
         ['de onde veio cada contato','domínio, site e contas no seu nome','manutenção e hospedagem do site']],
@@ -2041,8 +1999,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       prox:'next step →', denovo:'watch again ↺',
       etapas:[['They find you','Google, maps and ads'],['They land on the site','fast, clear, ready for ads'],['They message you','ready-made text and instant alert'],['They don\'t go cold','follow-up and reactivation'],['You keep track','everything measured, all in your name']],
       itens:[
-        ['Google Business Profile reviewed','campaign on Google Ads and Microsoft Ads','keywords from people ready to hire, not browsers'],
-        ['landing page or website with 1 to 5 sections','copy focused on conversion','GTM, GA4 and Meta Pixel set up'],
+        ['Google Business Profile reviewed','campaign on Google and Meta (Instagram and Facebook)','keywords from people ready to hire, not browsers'],
+        ['landing page or website with 1 to 5 sections','copy focused on conversion','tracking ready: you know where each contact came from'],
         ['button with the message already written','an alert for every contact, with its source','AI that answers and qualifies after hours'],
         ['follow-up on stalled quotes','reactivation of past clients','messages in your voice, approved by you'],
         ['where every contact came from','domain, site and accounts in your name','website maintenance and hosting']],
@@ -2193,339 +2151,396 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- ============ 8 · TRABALHOS (vitrine em quatro blocos) ============
-     Quatro "espaços de anúncio", cada um passando um site por vez com
-     transição em degradê, o tipo de site escrito embaixo. Os vinte e
-     quatro sites passam aqui (seis por bloco); /portfolio/ está desativada.
-
-     Peso, medido em 10/10/2026 contra a vitrine completa: as imagens têm
-     o tamanho em que aparecem (480 ou 800 px, por srcset), e só baixam
-     a atual e a próxima de cada bloco, quando aquele bloco chega perto da
-     tela. A troca só roda com o bloco visível e a aba aberta. Os blocos
-     trocam defasados em um quarto de tempo, e a ordem no VS foi montada
-     para dois deles não mostrarem o mesmo tipo de site ao mesmo tempo. Quem pede menos
-     movimento troca pelos pontinhos, sem rotação automática.
-
-     Componente com estado: os textos das telas moram no objeto VS, não
-     em data-en (a troca de idioma apagaria o estado). -->
+<!-- ============ 3 · A CALCULADORA ============ -->
 <style>
-  .vs-blocos{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
-  .vs-bloco{min-width:0}
-  .vs-tela{display:block;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);
-    background:#12110E;box-shadow:0 26px 60px rgba(0,0,0,.4);text-decoration:none;color:inherit;
-    transition:border-color .3s ease,transform .3s ease}
-  .vs-tela:hover{border-color:rgba(227,179,65,.45);transform:translateY(-3px)}
-  .vs-barra{display:flex;align-items:center;gap:6px;padding:10px 13px;background:#262420;border-bottom:1px solid rgba(255,255,255,.05)}
-  .vs-barra i{width:9px;height:9px;border-radius:50%;background:#E0524B;flex-shrink:0}
-  .vs-barra i:nth-child(2){background:#E5B842}
-  .vs-barra i:nth-child(3){background:#4DB861}
-  .vs-barra b{flex:1;min-width:0;margin-left:8px;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 10px;
-    font:500 11.5px/1.2 var(--font-mono);color:rgba(255,255,255,.5);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-    transition:opacity .5s ease}
-  .vs-quadro{display:block;position:relative;aspect-ratio:16/10;background:linear-gradient(160deg,#1B1916,#12110E)}
-  .vs-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
-    opacity:0;transition:opacity .9s ease}
-  .vs-quadro img.is-on{opacity:1}
-  .vs-abrir{position:absolute;right:12px;bottom:12px;z-index:2;padding:8px 12px;border-radius:99px;background:rgba(11,10,8,.82);
-    color:var(--white);font:600 13px/1 var(--font-body);opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease}
-  .vs-tela:hover .vs-abrir,.vs-tela:focus-visible .vs-abrir{opacity:1;transform:none}
-  .vs-legenda{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:16px;min-height:52px}
-  .vs-legenda div{transition:opacity .5s ease}
-  .vs-tipo{display:block;font:800 clamp(18px,1.7vw,21px)/1.2 var(--font-display);letter-spacing:-.006em;color:var(--white)}
-  .vs-nome{display:block;margin-top:4px;font-size:14.5px;color:var(--muted)}
-  .vs-nome em{font-style:normal;font:600 11.5px/1 var(--font-mono);color:var(--accent);margin-left:8px}
-  .vs-pontos{display:flex;align-items:center;gap:2px;flex-shrink:0;padding-top:2px}
-  .vs-pontos button{min-width:28px;height:32px;padding:0 4px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
-  .vs-pontos button::before{content:"";width:11px;height:11px;border-radius:99px;background:rgba(255,255,255,.3);
-    transition:width .35s cubic-bezier(.2,.7,.2,1),background .3s ease}
-  .vs-pontos button:hover::before{background:rgba(255,255,255,.6)}
-  .vs-pontos button[aria-current=true]::before{width:28px;background:var(--accent)}
-  .vs-pontos button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:99px}
-  /* setas nas laterais da tela: fora do link (botao dentro de <a> nao vale) */
-  .vs-palco{position:relative}
-  .vs-seta{position:absolute;top:calc(50% + 17px);z-index:3;width:44px;height:44px;margin-top:-22px;padding:0;border-radius:50%;
-    border:1px solid rgba(255,255,255,.22);background:rgba(11,10,8,.72);color:#fff;cursor:pointer;display:grid;place-items:center;
-    box-shadow:0 8px 22px rgba(0,0,0,.35);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease}
-  .vs-seta svg{width:18px;height:18px}
-  .vs-seta.ant{left:12px}
-  .vs-seta.prox{right:12px}
-  .vs-seta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink);transform:scale(1.06)}
-  .vs-seta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .vs-troca{opacity:0}
-  /* tipos de negocio dos 24 sites: rotulo centralizado e, embaixo, uma linha so de selos
-     amarelos, acima dos blocos. Sem caber (celular), a linha rola de lado dentro dela
-     mesma, nunca a pagina; a margem automatica centraliza sem cortar o comeco. */
-  .vs-tipos{margin-top:34px;text-align:center}
-  .vs-tipos p{font:600 13px/1.4 var(--font-mono);color:var(--muted);margin:0 0 12px}
-  .vs-tipos-faixa{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .vs-tipos-faixa::-webkit-scrollbar{display:none}
-  .vs-tipos ul{list-style:none;display:flex;flex-wrap:nowrap;gap:6px;margin:0 auto;padding:0}
-  .vs-tipos li{flex-shrink:0;white-space:nowrap;font:600 11.5px/1 var(--font-mono);color:var(--accent);
-    border:1px solid rgba(227,179,65,.4);border-radius:99px;padding:6px 9px}
-  .vs-tipos + .vs-blocos{margin-top:24px}
-  /* letreiro das marcas da vitrine: logos tirados do cabecalho de cada demo, em um tom so.
-     Duas copias do trilho para a volta nao emendar; para fora da tela (.is-off), no mouse e
-     sem movimento vira grade parada. Sao marcas inventadas e o rotulo diz isso. */
-  .mc{margin-top:48px}
-  .mc-tit{font:600 14px/1.4 var(--font-mono);color:var(--muted);margin:0 0 18px;text-align:center}
-  .mc-faixa{display:flex;overflow:hidden;padding:14px 0;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-  .mc-trilho{display:flex;flex-shrink:0;align-items:center;animation:mcAnda 75s linear infinite}
-  .mc-trilho a{display:block;margin:0 30px;opacity:.62;transition:opacity .3s}
-  .mc-trilho a:hover,.mc-trilho a:focus-visible{opacity:1}
-  .mc-trilho a:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:4px}
-  .mc-trilho img{display:block;height:auto;max-width:none}
-  .mc-faixa:hover .mc-trilho,.mc-faixa:focus-within .mc-trilho,.mc.is-off .mc-trilho{animation-play-state:paused}
-  @keyframes mcAnda{to{transform:translateX(-100%)}}
-  .mc.parado .mc-faixa{-webkit-mask-image:none;mask-image:none}
-  .mc.parado .mc-trilho{animation:none;flex-wrap:wrap;flex-shrink:1;justify-content:center;row-gap:22px}
-  .mc.parado .mc-trilho[aria-hidden]{display:none}
-  @media(prefers-reduced-motion:reduce){
-    .mc-faixa{-webkit-mask-image:none;mask-image:none}
-    .mc-trilho{animation:none;flex-wrap:wrap;flex-shrink:1;justify-content:center;row-gap:22px}
-    .mc-trilho[aria-hidden]{display:none}
+  /* ---------- [06] calculadora de vazamento ----------
+     Componente com estado. Por isso ele NÃO usa data-en: a troca de
+     idioma reescreve o innerHTML de tudo que tem esse atributo, e
+     levaria junto os listeners e o que a pessoa já respondeu. Os
+     textos dele moram num objeto JS e ele se redesenha quando o
+     idioma muda. Ver CLAUDE.md, "a página é bilíngue". */
+  .calc{
+    margin-top:44px;display:grid;gap:22px;
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start;
   }
-  @media(max-width:600px){ .mc-trilho a{margin:0 20px} .mc-trilho img{transform:scale(.85)} }
-  @media(max-width:860px){ .vs-blocos{grid-template-columns:1fr;gap:36px} }
-  @media(max-width:600px){ .vs-legenda{flex-direction:column;gap:6px;min-height:0} .vs-pontos{padding-top:0;margin-left:-8px} }
-  @media(prefers-reduced-motion:reduce){ .vs-quadro img,.vs-legenda div,.vs-barra b{transition:none} }
+  @media(max-width:900px){ .calc{grid-template-columns:1fr;gap:18px} }
+
+  .calc-perguntas{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:28px 26px;display:grid;gap:26px;
+  }
+  .calc-q > label,.calc-q > .calc-legenda{
+    display:block;font:600 14px/1.4 var(--font-body);color:var(--cream);margin-bottom:14px;
+  }
+  .calc-valor{
+    float:right;font:700 14px/1.4 var(--font-mono);color:var(--accent);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* range: pista fina, polegar dourado, foco visível pelo teclado */
+  .calc-q input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;
+    background:rgba(255,255,255,.14);outline:none;margin:0;
+  }
+  .calc-q input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--accent);border:3px solid var(--bg);cursor:grab;
+    box-shadow:0 2px 10px rgba(0,0,0,.45);
+  }
+  .calc-q input[type=range]::-moz-range-thumb{
+    width:22px;height:22px;border-radius:50%;background:var(--accent);
+    border:3px solid var(--bg);cursor:grab;box-shadow:0 2px 10px rgba(0,0,0,.45);
+  }
+  .calc-q input[type=range]:focus-visible{box-shadow:0 0 0 3px rgba(227,179,65,.35)}
+
+  .calc-moeda{position:relative;display:flex;align-items:center}
+  .calc-moeda span{
+    position:absolute;left:14px;font:700 15px/1 var(--font-mono);color:var(--muted);pointer-events:none;
+  }
+  .calc-moeda input{
+    width:100%;padding:13px 14px 13px 42px;border-radius:11px;
+    background:rgba(255,255,255,.04);border:1px solid var(--line);
+    color:var(--cream);font:700 16px/1 var(--font-mono);
+    font-variant-numeric:tabular-nums;outline:none;
+  }
+  .calc-moeda input:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px rgba(227,179,65,.2)}
+
+  .calc-opcoes{display:flex;flex-wrap:wrap;gap:8px}
+  .calc-opcoes button{
+    flex:1 1 auto;padding:11px 14px;border-radius:99px;cursor:pointer;
+    background:transparent;border:1px solid var(--line);color:var(--muted);
+    font:600 13px/1.2 var(--font-body);transition:border-color .2s ease,color .2s ease,background .2s ease;
+  }
+  .calc-opcoes button:hover{border-color:rgba(227,179,65,.5);color:var(--cream)}
+  .calc-opcoes button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .calc-opcoes button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- resultado ---------- */
+  .calc-saida{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:28px 26px;position:sticky;top:96px;
+  }
+  @media(max-width:900px){ .calc-saida{position:static} }
+
+  .calc-linha{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+    padding:13px 0;border-bottom:1px solid var(--line);
+  }
+  .calc-linha b{font:600 14px/1.3 var(--font-body);color:var(--muted)}
+  .calc-linha i{
+    font-style:normal;font:700 15px/1.3 var(--font-mono);color:var(--cream);
+    font-variant-numeric:tabular-nums;white-space:nowrap;
+  }
+
+  .calc-total{margin-top:22px}
+  .calc-total p{font:600 13px/1.5 var(--font-body);color:var(--muted);margin:0 0 6px}
+  .calc-total strong{
+    display:block;font:800 clamp(2rem,6vw,3rem)/1.05 var(--font-display);
+    color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  }
+  .calc-nota{margin-top:16px;font:400 12px/1.6 var(--font-body);color:var(--muted)}
+
+  .calc-cta{
+    display:inline-flex;align-items:center;gap:10px;margin-top:20px;
+    padding:14px 22px;border-radius:99px;text-decoration:none;
+    background:var(--accent);color:var(--ink);font:700 14px/1 var(--font-body);
+    transition:background .2s ease,transform .2s ease;
+  }
+  .calc-cta:hover{background:var(--accent-soft);transform:translateY(-1px)}
+  .calc-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* enquanto o componente não montou, o espaço já existe: evita o
+     pulo de layout quando ele entra */
+  .calc-esqueleto{min-height:420px}
+
+  @media(prefers-reduced-motion:reduce){ .calc-cta{transition:none} }
 </style>
-<section class="sec" id="trabalhos">
+
+<section class="sec" id="calculadora">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Twenty-four sites live. <span class="lm">All of them, right here.</span>'>Vinte e quatro sites no ar. <span class="lm">Todos passando aqui.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>the maths'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o cálculo</p>
+    <h2 class="rv" style="--d:.08s" data-en='How much is your business leaving <span class="lm">on the table</span> every month?'>Quanto o seu negócio deixa <span class="lm">na mesa</span> todo mês?</h2>
+    <p class="lead rv" style="--d:.16s" data-en='Four questions. No sign-up. The number shows up on the spot.'>Quatro perguntas. Nenhum cadastro. O número aparece na hora.</p>
 
-    <div class="vs-tipos rv" style="--d:.18s">
-      <p data-en="in these twenty-four sites you will find">nestes vinte e quatro sites você encontra</p>
-      <div class="vs-tipos-faixa"><ul>
-        <li data-en="Online stores">Lojas online</li>
-        <li data-en="Dietitians">Nutricionistas</li>
-        <li data-en="Real estate">Imobiliárias</li>
-        <li data-en="Fitted furniture">Móveis planejados</li>
-        <li data-en="Clinics and consultancies">Clínicas e consultorias</li>
-        <li data-en="Cabins and inns">Chalés e pousadas</li>
-        <li data-en="Solar energy">Energia solar</li>
-        <li data-en="Farm and vet stores">Agropecuárias</li>
-        <li data-en="Personal trainers">Personal trainers</li>
-      </ul></div>
-    </div>
+    <div class="calc calc-esqueleto" id="calc" role="group" aria-label="Calculadora de vazamento"></div>
+  </div>
+</section>
 
-    <div class="vs-blocos rv" style="--d:.2s" id="vsBlocos">
-      <div class="vs-bloco" data-bloco="0"></div>
-      <div class="vs-bloco" data-bloco="1"></div>
-      <div class="vs-bloco" data-bloco="2"></div>
-      <div class="vs-bloco" data-bloco="3"></div>
-    </div>
+<script>
+(function(){
+  'use strict';
 
-    <div class="mc rv" style="--d:.22s" id="marcas">
-      <p class="mc-tit" data-en="the brands behind these sites">as marcas desses sites</p>
-      <div class="mc-faixa">
-        <div class="mc-trilho">
-          <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="Vista Imóveis" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/atelie-verga.webp" width="158" height="28" alt="Ateliê Verga" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-infantil/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-infantil.webp" width="151" height="29" alt="Marina Bastos" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/prumo/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/prumo.webp" width="117" height="36" alt="Prumo" loading="lazy" decoding="async"></a>
-          <a href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/seis-panos.webp" width="195" height="24" alt="Seis Panos" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vertice.webp" width="146" height="30" alt="Vértice" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/casa-nobre.webp" width="244" height="21" alt="Casa Nobre" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-emagrecimento.webp" width="146" height="31" alt="Renata Salles" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/pedra-alta.webp" width="146" height="30" alt="Pedra Alta" loading="lazy" decoding="async"></a>
-          <a href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/caparao-solar.webp" width="160" height="29" alt="Caparaó Solar" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/mare-mansa.webp" width="152" height="30" alt="Maré Mansa" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cerne.webp" width="118" height="37" alt="Cerne" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-clinica/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-clinica.webp" width="174" height="26" alt="Camila Prado" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/vereda/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vereda.webp" width="201" height="24" alt="Vereda" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/reserva-aurora.webp" width="211" height="22" alt="Reserva Aurora" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="Cozinha Viva" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="Lívia Amaral" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/cla-valente/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/cla-valente.webp" width="117" height="36" alt="Clã Valente" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="Ethan Reyes" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="Bruno Tavares" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="Morattá" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/campo-vivo/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/campo-vivo.webp" width="136" height="33" alt="Campo Vivo" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/medida-certa.webp" width="209" height="22" alt="Medida Certa" loading="lazy" decoding="async"></a>
+  /* ---------- constantes do cálculo ----------
+     Ficam aqui em cima, soltas e comentadas, porque são o que muda
+     quando quisermos calibrar a conta. Nenhuma delas vem de pesquisa
+     de mercado: são os fatores que a Theatrum assume, e o texto do
+     resultado diz isso na cara do visitante. Não invente fonte. */
+  const F = {
+    SEMANAS_MES: 4.33,          // média de semanas num mês
+
+    /* quanto do que ele já fatura se perde por demorar a responder */
+    DEMORA: { minutos: 0, horas: 0.15, dia: 0.30, depois: 0.45 },
+
+    /* contatos que nunca chegam porque o negócio não aparece na busca.
+       Proporcional ao que ele já fatura, que é a leitura mais
+       conservadora: quem fatura pouco perde pouco nesta linha. */
+    INVISIVEL: 0.35,
+
+    /* cliente antigo que não volta porque ninguém o chamou de volta */
+    REATIVAR: 0.20,
+  };
+
+  /* ---------- textos ----------
+     Fora do sistema data-en de propósito: a troca de idioma reescreve
+     innerHTML e mataria o estado deste componente. */
+  const CIFRAO_EN = String.fromCharCode(36);
+  const T = {
+    pt: {
+      q1: 'Quantas pessoas chamam seu negócio por semana?',
+      q2: 'De cada 10 que chamam, quantas fecham?',
+      q3: 'Quanto vale, em média, um cliente para você?',
+      q4: 'Em quanto tempo você costuma responder?',
+      opcoes: { minutos:'em minutos', horas:'em algumas horas', dia:'no fim do dia', depois:'no dia seguinte ou mais' },
+      esfria: 'o cliente esfria',
+      acha: 'ninguém te acha',
+      volta: 'ninguém volta',
+      totalRotulo: 'seu negócio deixa de faturar cerca de',
+      porMes: '/mês',
+      nota: 'Estimativa a partir do que você respondeu. Não é promessa de resultado: é a ordem de grandeza do buraco.',
+      cta: 'Quero o plano para fechar esses ',
+      wa: (n) => 'Vim do site. A calculadora deu ' + n + ' por mês. Quero o plano.',
+      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'pt-BR',
+    },
+    en: {
+      q1: 'How many people reach out to your business per week?',
+      q2: 'Out of every 10 who reach out, how many close?',
+      q3: 'On average, what is a client worth to you?',
+      q4: 'How long do you usually take to reply?',
+      opcoes: { minutos:'within minutes', horas:'within a few hours', dia:'by end of day', depois:'next day or later' },
+      esfria: 'the client goes cold',
+      acha: 'nobody finds you',
+      volta: 'nobody comes back',
+      totalRotulo: 'your business is missing out on roughly',
+      porMes: '/mo',
+      nota: 'Estimated from what you answered. Not a promise of results: it is the order of magnitude of the hole.',
+      cta: 'I want the plan to close that ',
+      wa: (n) => 'I came from the site. The calculator showed ' + n + ' per month. I want the plan.',
+      /* Moeda continua em real mesmo em inglês. A home vende no Brasil e
+         o inglês aqui é tradução, não outro mercado: trocar para dólar
+         redenominaria, sem avisar, o número que a pessoa digitou em
+         reais. Quem vende em dólar tem a landing /us/, que é separada. */
+      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'en-US',
+    }
+  };
+
+  const WA = '5532984762445';
+  const caixa = document.getElementById('calc');
+  if (!caixa) return;
+
+  /* resposta guardada só enquanto a aba viver. Nada de localStorage:
+     é número de faturamento de quem está do outro lado. */
+  const CHAVE = 'theatrum-calc';
+  let estado = { contatos: 20, fecha: 3, ticket: 800, resposta: 'horas' };
+  try { const s = sessionStorage.getItem(CHAVE); if (s) estado = Object.assign(estado, JSON.parse(s)); } catch(e){}
+
+  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const dinheiro = (v) => {
+    const t = T[idioma()];
+    return Number(v).toLocaleString(t.locale, { style:'currency', currency:t.moeda, maximumFractionDigits:0 });
+  };
+
+  function conta(){
+    const contatosMes = estado.contatos * F.SEMANAS_MES;
+    const receita = contatosMes * (estado.fecha / 10) * estado.ticket;
+    const esfria = receita * F.DEMORA[estado.resposta];
+    const acha = receita * F.INVISIVEL;
+    const volta = receita * F.REATIVAR;
+    return { esfria, acha, volta, total: esfria + acha + volta };
+  }
+
+  /* conta subindo até o valor. Só o texto muda; o número usa
+     tabular-nums e a caixa não muda de tamanho, então não há
+     recálculo de layout a cada quadro. */
+  function anima(el, ate){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = dinheiro(ate); el.dataset.v = ate; return; }
+    const de = Number(el.dataset.v || 0), t0 = performance.now(), dur = 620;
+    el.dataset.v = ate;
+    (function passo(t){
+      const p = Math.min(1, (t - t0) / dur);
+      const suave = 1 - Math.pow(1 - p, 3);
+      el.textContent = dinheiro(de + (ate - de) * suave);
+      if (p < 1) requestAnimationFrame(passo);
+    })(t0);
+  }
+
+  function desenha(){
+    const t = T[idioma()];
+    caixa.classList.remove('calc-esqueleto');
+    caixa.innerHTML =
+      '<div class="calc-perguntas">' +
+        '<div class="calc-q"><label for="cq1">' + t.q1 + '<span class="calc-valor" id="cv1"></span></label>' +
+          '<input type="range" id="cq1" min="0" max="100" step="1"></div>' +
+        '<div class="calc-q"><label for="cq2">' + t.q2 + '<span class="calc-valor" id="cv2"></span></label>' +
+          '<input type="range" id="cq2" min="0" max="10" step="1"></div>' +
+        '<div class="calc-q"><label for="cq3">' + t.q3 + '</label>' +
+          '<div class="calc-moeda"><span>' + t.simbolo + '</span>' +
+          '<input type="text" id="cq3" inputmode="numeric" autocomplete="off"></div></div>' +
+        '<div class="calc-q"><p class="calc-legenda" id="cq4rot">' + t.q4 + '</p>' +
+          '<div class="calc-opcoes" role="group" aria-labelledby="cq4rot">' +
+            Object.keys(t.opcoes).map(k =>
+              '<button type="button" data-r="' + k + '" aria-pressed="false">' + t.opcoes[k] + '</button>').join('') +
+          '</div></div>' +
+      '</div>' +
+      '<div class="calc-saida" aria-live="polite">' +
+        '<div class="calc-linha"><b>' + t.esfria + '</b><i id="cr1"></i></div>' +
+        '<div class="calc-linha"><b>' + t.acha + '</b><i id="cr2"></i></div>' +
+        '<div class="calc-linha"><b>' + t.volta + '</b><i id="cr3"></i></div>' +
+        '<div class="calc-total"><p>' + t.totalRotulo + '</p><strong id="crt"></strong></div>' +
+        '<p class="calc-nota">' + t.nota + '</p>' +
+        '<a class="calc-cta" id="ccta" target="_blank" rel="noopener"><span id="cctat"></span><span aria-hidden="true">&rarr;</span></a>' +
+      '</div>';
+
+    const q1 = caixa.querySelector('#cq1'), q2 = caixa.querySelector('#cq2'), q3 = caixa.querySelector('#cq3');
+    q1.value = estado.contatos; q2.value = estado.fecha;
+    q3.value = Number(estado.ticket).toLocaleString(t.locale);
+
+    q1.addEventListener('input', () => { estado.contatos = +q1.value; atualiza(); });
+    q2.addEventListener('input', () => { estado.fecha = +q2.value; atualiza(); });
+    q3.addEventListener('input', () => {
+      const so = q3.value.replace(/\D/g, '');
+      estado.ticket = so ? Math.min(+so, 9999999) : 0;
+      q3.value = estado.ticket ? estado.ticket.toLocaleString(T[idioma()].locale) : '';
+      atualiza();
+    });
+    caixa.querySelectorAll('.calc-opcoes button').forEach(b => {
+      b.addEventListener('click', () => { estado.resposta = b.dataset.r; atualiza(); });
+    });
+
+    atualiza(true);
+  }
+
+  function atualiza(primeira){
+    const t = T[idioma()], r = conta();
+    caixa.querySelector('#cv1').textContent = estado.contatos;
+    caixa.querySelector('#cv2').textContent = estado.fecha + '/10';
+    caixa.querySelectorAll('.calc-opcoes button').forEach(b =>
+      b.setAttribute('aria-pressed', String(b.dataset.r === estado.resposta)));
+
+    [['#cr1', r.esfria], ['#cr2', r.acha], ['#cr3', r.volta], ['#crt', r.total]].forEach(([sel, v]) => {
+      const el = caixa.querySelector(sel);
+      if (primeira) el.dataset.v = 0;
+      anima(el, v);
+    });
+
+    const n = dinheiro(r.total);
+    caixa.querySelector('#cctat').textContent = t.cta + n + t.porMes;
+    caixa.querySelector('#ccta').href =
+      'https://wa.me/' + WA + '?text=' + encodeURIComponent(t.wa(n));
+
+    try { sessionStorage.setItem(CHAVE, JSON.stringify(estado)); } catch(e){}
+  }
+
+  /* monta só quando entra em cena */
+  let montado = false;
+  const monta = () => { if (!montado) { montado = true; desenha(); } };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      if (es.some(e => e.isIntersecting)) { io.disconnect(); monta(); }
+    }, { rootMargin: '250px' });
+    io.observe(caixa);
+  } else monta();
+
+  /* redesenha no idioma novo, guardando o que a pessoa já respondeu.
+     Observar o atributo lang do <html> evita mexer na IIFE do
+     seletor de idioma, que é fechada. */
+  new MutationObserver(() => { if (montado) desenha(); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
+
+
+<!-- ============ 9 · INVESTIMENTO ============
+     Seção própria desde 13/10/2026 (antes ficava no fim de "dores e soluções"):
+     o preço vem depois da prova, da demonstração e da calculadora. Os estilos
+     .inv e .pl-* continuam no bloco de dores e soluções. Fundo --bg-2 para
+     não emendar com a calculadora, que também é escura. -->
+<style>
+  #investimento{background:var(--bg-2)}
+  #investimento .inv{margin-top:44px;padding-top:0;border-top:0}
+</style>
+<section class="sec" id="investimento">
+  <div class="sec-inner">
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>pricing'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>investimento</p>
+    <h2 class="rv" style="--d:.08s" data-en='What it costs, <span class="lm">with the price on the table.</span>'>Quanto custa, <span class="lm">com o preço na mesa.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="Three plans, depending on the size of the project. In the free diagnosis we tell you which one fits your case.">Três planos, conforme o tamanho do projeto. No diagnóstico gratuito a gente diz qual deles serve para o seu caso.</p>
+    <div class="inv rv" style="--d:.2s">
+      <!-- Planos definidos pelo Matheus em 06/10/2026 (proposta v2).
+           Desconto so na forma de pagamento, nunca no valor. -->
+
+      <div class="pl-grid">
+        <article class="pl-card pl-dest">
+          <span class="pl-selo" data-en="recommended">recomendado</span>
+          <h4 data-en="Launch">Lançamento</h4>
+          <p class="pl-para" data-en="For whoever wants to start advertising or replace a site that does not convert.">Para quem quer começar a anunciar ou trocar um site que não converte.</p>
+          <p class="pl-valor"><b>R$ 2.500</b><span data-en="or 3x R$ 833.33">ou 3x de R$ 833,33</span></p>
+          <ul>
+            <li data-en="landing page or website with 1 to 5 sections">landing page ou site de 1 a 5 seções</li>
+            <li data-en="copy focused on conversion">texto com foco em conversão</li>
+            <li data-en="ad tracking ready: you know where each contact came from">medição pronta: você sabe de onde veio cada contato</li>
+            <li data-en="WhatsApp and form with an alert for every contact">WhatsApp e formulário com aviso de cada contato</li>
+            <li data-en="Google Business Profile reviewed">Google Meu Negócio revisado</li>
+            <li data-en="1st campaign setup + 1st month of management at 50% off">setup da 1ª campanha + 1º mês de gestão com 50% de desconto</li>
+          </ul>
+        </article>
+        <article class="pl-card">
+          <h4 data-en="Institutional">Institucional</h4>
+          <p class="pl-para" data-en="For companies with several services, locations or niches.">Para empresas com vários serviços, unidades ou nichos.</p>
+          <p class="pl-valor"><b>R$ 3.900</b></p>
+          <ul>
+            <li data-en="everything in Launch">tudo do Lançamento</li>
+            <li data-en="several pages: one per service or location">várias páginas: uma por serviço ou unidade</li>
+            <li data-en="blog or content hub">blog ou central de conteúdo</li>
+            <li data-en="local SEO">SEO local</li>
+          </ul>
+        </article>
+        <article class="pl-card">
+          <h4 data-en="Custom">Sob medida</h4>
+          <p class="pl-para" data-en="For whoever needs a system along with the website.">Para quem precisa de sistema junto com o site.</p>
+          <p class="pl-valor"><small data-en="from">a partir de</small><b>R$ 4.900</b></p>
+          <ul>
+            <li data-en="everything in Institutional">tudo do Institucional</li>
+            <li data-en="custom feature: assessment, catalogue, booking or scheduling">funcionalidade sob medida: diagnóstico, catálogo, reserva ou agendamento</li>
+          </ul>
+        </article>
+      </div>
+      <p class="pl-depois" data-en="After delivery: maintenance and hosting for R$ 197 a month. Traffic management for R$ 697 a month + the ad budget in your own account (recommended minimum of R$ 600 a month).">Depois da entrega: manutenção e hospedagem por R$ 197/mês. Gestão de tráfego por R$ 697/mês + verba de anúncio na sua conta (mínimo recomendado de R$ 600/mês).</p>
+
+      <div class="inv-cols">
+        <div class="inv-col inv-sim">
+          <h4 data-en="it is for you if">é para você se</h4>
+          <ul>
+            <li data-en="you sell a service or a product and want clients">você vende serviço ou produto e quer cliente</li>
+            <li data-en="you have someone to serve whoever gets in touch">tem quem atenda quem chega</li>
+            <li data-en="you want to advertise with predictability">quer anunciar com previsibilidade</li>
+          </ul>
         </div>
-        <div class="mc-trilho" aria-hidden="true">
-          <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/atelie-verga/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/atelie-verga.webp" width="158" height="28" alt="" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-infantil/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-infantil.webp" width="151" height="29" alt="" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/prumo/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/prumo.webp" width="117" height="36" alt="" loading="lazy" decoding="async"></a>
-          <a href="lojas/demos/seis-panos/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/seis-panos.webp" width="195" height="24" alt="" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/vertice/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vertice.webp" width="146" height="30" alt="" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/casa-nobre/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/casa-nobre.webp" width="244" height="21" alt="" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-emagrecimento/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-emagrecimento.webp" width="146" height="31" alt="" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/pedra-alta.webp" width="146" height="30" alt="" loading="lazy" decoding="async"></a>
-          <a href="solar/demos/caparao-solar/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/caparao-solar.webp" width="160" height="29" alt="" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/mare-mansa.webp" width="152" height="30" alt="" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/cerne/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cerne.webp" width="118" height="37" alt="" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-clinica/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-clinica.webp" width="174" height="26" alt="" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/vereda/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/vereda.webp" width="201" height="24" alt="" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/reserva-aurora/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/reserva-aurora.webp" width="211" height="22" alt="" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cozinha-viva.webp" width="190" height="25" alt="" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/livia-amaral/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/livia-amaral.webp" width="123" height="36" alt="" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/cla-valente/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/cla-valente.webp" width="117" height="36" alt="" loading="lazy" decoding="async"></a>
-          <a href="nutricao/demos/nutri-usa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/nutri-usa.webp" width="40" height="40" alt="" loading="lazy" decoding="async"></a>
-          <a href="imoveis/demos/bruno-tavares/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/bruno-tavares.webp" width="175" height="26" alt="" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/moratta/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/moratta.webp" width="186" height="25" alt="" loading="lazy" decoding="async"></a>
-          <a href="negocios/demos/campo-vivo/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/campo-vivo.webp" width="136" height="33" alt="" loading="lazy" decoding="async"></a>
-          <a href="moveis-planejados/demos/medida-certa/?de=home" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/marcas/medida-certa.webp" width="209" height="22" alt="" loading="lazy" decoding="async"></a>
+        <div class="inv-col inv-nao">
+          <h4 data-en="it is not for you if">não é para você se</h4>
+          <ul>
+            <li data-en="you are looking for the cheapest website possible">procura o site mais em conta possível</li>
+            <li data-en="you expect results in seven days">espera resultado em sete dias</li>
+            <li data-en="you do not plan to invest in promotion">não pretende investir em divulgação</li>
+          </ul>
         </div>
+      </div>
+
+      <div class="inv-ctas">
+        <a class="btn btn-primary" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+        <a class="btn btn-secondary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>Talk on WhatsApp'><span class="btn-dot"></span>Falar no WhatsApp</a>
       </div>
     </div>
   </div>
 </section>
-<script>
-(function(){
-  'use strict';
-  /* tipo: o que aparece embaixo da tela. real: cliente de verdade, link para o site dele no ar */
-  const VS = [
-    [ {img:'caparao-solar', dom:'caparaosolar.com.br', nome:'Caparaó Solar', href:'solar/demos/caparao-solar/', pt:'Site para energia solar', en:'Website for solar energy'},
-      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian'},
-      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery'},
-      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker'},
-      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US'},
-      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices'} ],
-    [ {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory'},
-      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist'},
-      {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens'},
-      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'},
-      {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
-      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'} ],
-    [ {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency'},
-      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store'},
-      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer'},
-      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
-      {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
-      {img:'reserva-aurora', dom:'reservaaurora.com.br', nome:'Reserva Aurora', href:'imoveis/demos/reserva-aurora/', pt:'Site para lançamento imobiliário', en:'Website for a property launch'} ],
-    [ {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
-      {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate'},
-      {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian'},
-      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
-      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
-      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'} ]
-  ];
-  const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site', ant:'Site anterior', prox:'Próximo site'},
-               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'} };
-  const TEMPO = 5200;                       /* quanto cada site fica na tela */
-  const PARADO = new URLSearchParams(location.search).get('still') || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
-  const src = (it, w) => 'assets/img/vitrine/home/' + it.img + '-' + w + '.webp';
-  const link = (it) => it.real ? it.href : it.href + '?de=home';
-  const raiz = document.getElementById('vsBlocos');
-  if (!raiz) return;
-
-  const blocos = [...raiz.querySelectorAll('.vs-bloco')].map((el, b) => {
-    const lista = VS[b];
-    el.innerHTML =
-      '<div class="vs-palco">' +
-      '<a class="vs-tela" target="_blank" rel="noopener">' +
-        '<span class="vs-barra" aria-hidden="true"><i></i><i></i><i></i><b></b></span>' +
-        '<span class="vs-quadro"><img alt="" decoding="async"><img alt="" decoding="async"><span class="vs-abrir"></span></span>' +
-      '</a>' +
-      '<button type="button" class="vs-seta ant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>' +
-      '<button type="button" class="vs-seta prox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>' +
-      '</div>' +
-      '<div class="vs-legenda"><div aria-live="off"><span class="vs-tipo"></span><span class="vs-nome"></span></div>' +
-      '<span class="vs-pontos">' + lista.map(() => '<button type="button"></button>').join('') + '</span></div>';
-    return { el, lista, i: 0, camada: 0, timer: null, vez: 0, inicio: b * TEMPO / 4, visivel: false, montado: false,
-             tela: el.querySelector('.vs-tela'), dom: el.querySelector('.vs-barra b'),
-             imgs: el.querySelectorAll('.vs-quadro img'), abrir: el.querySelector('.vs-abrir'),
-             leg: el.querySelector('.vs-legenda div'), tipo: el.querySelector('.vs-tipo'), nome: el.querySelector('.vs-nome'),
-             pontos: el.querySelectorAll('.vs-pontos button'), ant: el.querySelector('.vs-seta.ant'),
-             prox: el.querySelector('.vs-seta.prox'), parado: false };
-  });
-
-  function poeImg(img, it){
-    img.sizes = '(max-width: 860px) 92vw, 600px';
-    img.srcset = src(it, 480) + ' 480w, ' + src(it, 800) + ' 800w';
-    img.src = src(it, 800);
-  }
-  /* carrega a próxima antes de trocar, para o degradê nunca cruzar com tela vazia */
-  function prepara(it){
-    const im = new Image();
-    im.sizes = '(max-width: 860px) 92vw, 600px';
-    im.srcset = src(it, 480) + ' 480w, ' + src(it, 800) + ' 800w';
-    return (im.decode ? im.decode() : Promise.resolve()).catch(() => {});
-  }
-  function textos(B){
-    const it = B.lista[B.i], T = TX[idioma()];
-    B.tipo.textContent = it[idioma()];
-    B.nome.innerHTML = it.nome + '<em>' + (it.real ? T.real : T.demo) + '</em>';
-    B.dom.textContent = it.dom;
-    B.abrir.textContent = T.abrir;
-    B.tela.href = link(it);
-    B.tela.setAttribute('aria-label', T.abrir.replace(' ↗','') + ': ' + it.nome + ', ' + it[idioma()]);
-    B.ant.setAttribute('aria-label', T.ant); B.prox.setAttribute('aria-label', T.prox);
-    B.pontos.forEach((p, k) => {
-      p.setAttribute('aria-current', String(k === B.i));
-      p.setAttribute('aria-label', T.ir + ' ' + (k + 1) + ': ' + B.lista[k].nome);
-    });
-  }
-  function mostra(B, n){
-    B.alvo = n;                            /* para onde está indo, mesmo antes de chegar */
-    if (n === B.i && B.imgs[B.camada].getAttribute('src')) return Promise.resolve();
-    const it = B.lista[n], vez = ++B.vez;
-    return prepara(it).then(() => {
-      if (vez !== B.vez) return;           /* chegou atrasada: outra troca já foi pedida */
-      const nova = B.imgs[1 - B.camada], velha = B.imgs[B.camada];
-      poeImg(nova, it);
-      B.leg.classList.add('vs-troca'); B.dom.classList.add('vs-troca');
-      requestAnimationFrame(() => {
-        nova.classList.add('is-on'); velha.classList.remove('is-on');
-        B.camada = 1 - B.camada; B.i = n;
-        setTimeout(() => { textos(B); B.leg.classList.remove('vs-troca'); B.dom.classList.remove('vs-troca'); }, 350);
-      });
-    });
-  }
-
-  function agenda(B, atraso){
-    clearTimeout(B.timer);
-    if (PARADO || !B.visivel || document.hidden || B.parado) return;
-    B.timer = setTimeout(() => {
-      mostra(B, (B.i + 1) % B.lista.length).then(() => agenda(B, TEMPO));
-    }, atraso);
-  }
-  function monta(B){
-    if (B.montado) return; B.montado = true;
-    poeImg(B.imgs[0], B.lista[0]); B.imgs[0].classList.add('is-on');
-  }
-  function anda(B){ agenda(B, TEMPO + B.inicio); }
-  function para(B){ clearTimeout(B.timer); }
-
-  blocos.forEach((B) => {
-    const vai = (k) => { clearTimeout(B.timer); mostra(B, k); agenda(B, TEMPO * 1.6); };
-    B.pontos.forEach((p, k) => p.addEventListener('click', () => vai(k)));
-    /* conta a partir do último pedido, não do que já está na tela: dois cliques rápidos andam dois */
-    const passo = (d) => { const n = B.lista.length; vai(((B.alvo ?? B.i) + d + n) % n); };
-    B.ant.addEventListener('click', () => passo(-1));
-    B.prox.addEventListener('click', () => passo(1));
-    /* parar no mouse: mirar um alvo que troca sozinho é frustrante */
-    B.el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { B.parado = true; clearTimeout(B.timer); } });
-    B.el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { B.parado = false; agenda(B, TEMPO / 2); } });
-    B.el.addEventListener('focusin', () => { B.parado = true; clearTimeout(B.timer); });
-    B.el.addEventListener('focusout', () => { B.parado = false; agenda(B, TEMPO); });
-  });
-
-  blocos.forEach(textos);
-  if (PARADO || !('IntersectionObserver' in window)) { blocos.forEach(monta); }
-  else {
-    /* cada bloco por si: no celular os quatro ficam empilhados, e o de baixo
-       só baixa a imagem e começa a trocar quando ele mesmo chega perto da tela */
-    const deBloco = (el) => blocos.find((B) => B.el === el);
-    const perto = new IntersectionObserver((es) => es.forEach((e) => {
-      if (e.isIntersecting) { monta(deBloco(e.target)); perto.unobserve(e.target); }
-    }), { rootMargin: '600px 0px' });
-    const vista = new IntersectionObserver((es) => es.forEach((e) => {
-      const B = deBloco(e.target); B.visivel = e.isIntersecting;
-      if (B.visivel) { monta(B); anda(B); } else para(B);
-    }), { threshold: .25 });
-    blocos.forEach((B) => { perto.observe(B.el); vista.observe(B.el); });
-    document.addEventListener('visibilitychange', () => blocos.forEach((B) => { if (document.hidden) para(B); else if (B.visivel) anda(B); }));
-  }
-  new MutationObserver(() => blocos.forEach(textos)).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
-})();
-</script>
 
 <!-- ============ 7 · ENTREGAS + 8 · QUEM FAZ ============ -->
 <style>
@@ -2732,28 +2747,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </details>
       <details>
         <summary data-en='How soon will I see results? <span class="pl">+</span>'>Em quanto tempo vejo resultado? <span class="pl">+</span></summary>
-        <div class="ans" data-en="The website goes live within <b>7 to 10 business days</b>, and the first contacts start arriving as soon as the ads run. Traction grows month by month as the system learns what works for your business. Anyone promising a miracle in the first week of ads is selling likes, not results.">O site fica no ar em <b>7 a 10 dias úteis</b>, e os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês conforme o sistema aprende o que funciona pro seu negócio. Quem promete milagre na primeira semana de anúncio está vendendo curtida, não resultado.</div>
+        <div class="ans" data-en="The website goes live within <b>7 to 10 business days</b>, and the first contacts start arriving as soon as the ads run. Traction grows month by month as the campaign learns what works for your business. Anyone promising a miracle in the first week of ads is selling likes, not results.">O site fica no ar em <b>7 a 10 dias úteis</b>, e os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês conforme a campanha aprende o que funciona pro seu negócio. Quem promete milagre na primeira semana de anúncio está vendendo curtida, não resultado.</div>
       </details>
       <details>
         <summary data-en='I&apos;ve already hired an agency or freelancer and got burned. Why would this be different? <span class="pl">+</span>'>Já contratei agência ou freelancer e me decepcionei. Por que seria diferente? <span class="pl">+</span></summary>
         <div class="ans" data-en="Because they probably delivered pretty posts and a likes report. Theatrum looks at your <b>business's growth as a whole</b>: website, Google, traffic and client reactivation. Every deliverable exists to move one of those needles. If it doesn't drive real results, we don't even propose it.">Porque provavelmente entregaram post bonito e relatório de curtida. A Theatrum olha para o <b>crescimento do seu negócio como um todo</b>: site, Google, tráfego e reativação de cliente. Cada entrega existe para mover um desses ponteiros. Se não gera resultado real, a gente nem propõe.</div>
       </details>
       <details>
-        <summary data-en='Do you work outside Minas Gerais? <span class="pl">+</span>'>Vocês atendem fora de MG? <span class="pl">+</span></summary>
+        <summary data-en='Do you serve my city? <span class="pl">+</span>'>Vocês atendem a minha cidade? <span class="pl">+</span></summary>
         <div class="ans" data-en='<b>Yes, all of Brazil, online.</b> And the United States too, in English and Portuguese. Clinic, office, consultancy, real estate, store: if your client searches for you online and closes on WhatsApp, on the phone or in person, <b>it applies, wherever you are.</b>'><b>Sim, todo o Brasil, online.</b> E também os Estados Unidos, em inglês e em português. Clínica, escritório, consultoria, imobiliária, loja: se o seu cliente procura você na internet e fecha pelo WhatsApp, pelo telefone ou pessoalmente, <b>se aplica, esteja você onde estiver.</b></div>
       </details>
       <details>
         <summary data-en='I work alone and don&apos;t have a team. Can I keep up with this? <span class="pl">+</span>'>Trabalho sozinho e não tenho equipe. Consigo tocar isso? <span class="pl">+</span></summary>
-        <div class="ans" data-en="<b>Yes.</b> That's exactly what the system is for. The AI answers WhatsApp, Google Business Profile and ads bring in new clients, and reactivation runs on its own. You get the client ready to close, without having to become a marketing team."><b>Sim.</b> É justamente pra isso que o sistema existe. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
+        <div class="ans" data-en="<b>Yes.</b> That's exactly what it is built for. The AI answers WhatsApp, Google Business Profile and ads bring in new clients, and reactivation runs on its own. You get the client ready to close, without having to become a marketing team."><b>Sim.</b> É justamente para isso que tudo é montado. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
       </details>
       <details>
         <summary data-en='Will the AI say something stupid to my client? <span class="pl">+</span>'>A IA vai falar besteira com o meu cliente? <span class="pl">+</span></summary>
         <div class="ans" data-en='The script is <b>approved by you before it goes live</b>, the conversation transfers to a human at any moment, and you read every conversation. The AI answers what was agreed and hands over what was not.'>O roteiro é <b>aprovado por você antes de subir</b>, a conversa passa para humano a qualquer momento, e você lê todas as conversas. A IA responde o que foi combinado e passa adiante o que não foi.</div>
       </details>
-      <details>
-        <summary data-en='Am I locked into a contract? <span class="pl">+</span>'>Fico preso em contrato? <span class="pl">+</span></summary>
-        <div class="ans" data-en='CONFIRM WITH MATHEUS: fill in the actual policy here (notice period, minimum term, cancellation).'>// CONFIRMAR COM O MATHEUS: preencher aqui a política real (aviso prévio, prazo mínimo, cancelamento).</div>
-      </details>
+      <!-- "Fico preso em contrato?" saiu em 13/10/2026: a resposta era um lembrete interno.
+           Volta quando a política de contrato existir (pendência 4 do CLAUDE.md). -->
       <details>
         <summary data-en='Whose name are the domain and accounts in? <span class="pl">+</span>'>O domínio e as contas ficam em nome de quem? <span class="pl">+</span></summary>
         <div class="ans" data-en='Yours. <b>Domain, hosting, Google, Meta and ad accounts are in your name, always.</b> Including the Google Business Profile.'>No seu. <b>Domínio, hospedagem, Google, Meta e contas de anúncio ficam no seu nome, sempre.</b> Inclusive o Google Meu Negócio.</div>
@@ -2768,11 +2781,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </details>
       <details>
         <summary data-en='Do I need to show up, record video, produce content? <span class="pl">+</span>'>Preciso aparecer, gravar vídeo, produzir conteúdo? <span class="pl">+</span></summary>
-        <div class="ans" data-en='No. The system works without you being on camera. If you want to appear, it helps. If you do not, it still works.'>Não. O sistema funciona sem você na frente da câmera. Se quiser aparecer, ajuda. Se não quiser, funciona do mesmo jeito.</div>
+        <div class="ans" data-en='No. It all works without you being on camera. If you want to appear, it helps. If you do not, it still works.'>Não. Tudo funciona sem você na frente da câmera. Se quiser aparecer, ajuda. Se não quiser, funciona do mesmo jeito.</div>
       </details>
       <details>
         <summary data-en='Do you only build websites, or stores, apps and systems too? <span class="pl">+</span>'>Vocês fazem só site ou fazem loja, aplicativo e sistema também? <span class="pl">+</span></summary>
-        <div class="ans" data-en='All of it. Business website, campaign landing page, online store with cart and checkout, and web apps and systems: a quote calculator, booking, a lead board, a client area. <b>All on your own domain, built for your case.</b> The portfolio has live examples.'>Tudo isso. Site institucional, landing page de campanha, loja virtual com carrinho e checkout, e aplicativos e sistemas web: calculadora de orçamento, agenda, painel de leads, área do cliente. <b>Tudo no seu domínio, feito para o seu caso.</b> O portfólio tem exemplo no ar.</div>
+        <div class="ans" data-en='All of it. Business website, campaign landing page, online store with cart and checkout, and web apps and systems: a quote calculator, booking, a lead board, a client area. <b>All on your own domain, built for your case.</b> The work further up is live for you to open and use.'>Tudo isso. Site institucional, landing page de campanha, loja virtual com carrinho e checkout, e aplicativos e sistemas web: calculadora de orçamento, agenda, painel de leads, área do cliente. <b>Tudo no seu domínio, feito para o seu caso.</b> Os trabalhos lá em cima estão no ar para você abrir e usar.</div>
       </details>
       <details>
         <summary data-en='Do you set up my Google Business Profile? <span class="pl">+</span>'>Vocês configuram o meu Google Meu Negócio? <span class="pl">+</span></summary>
@@ -2789,8 +2802,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 9 · CTA FINAL ============ -->
 <section class="final" id="diagnostico">
   <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>let&apos;s talk'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>vamos conversar</p>
-  <h2 class="rv" style="--d:.08s" data-en="Let's get your website and your system off the drawing board?">Vamos tirar o seu site e o seu sistema do papel?</h2>
-  <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows your business's leaks and what the system would do about each one. No obligation, no runaround.">O diagnóstico gratuito mostra os vazamentos do seu negócio e o que o sistema faria com cada um. Sem compromisso, sem enrolação.</p>
+  <h2 class="rv" style="--d:.08s" data-en="Shall we make your website bring in clients?">Vamos fazer o seu site trazer cliente?</h2>
+  <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows where your business loses clients today and what the website, Google and ads would do about each point. No obligation, no runaround.">O diagnóstico gratuito mostra onde o seu negócio perde cliente hoje e o que o site, o Google e o anúncio fariam com cada ponto. Sem compromisso, sem enrolação.</p>
   <div class="final-ctas rv" style="--d:.24s">
     <a class="btn-dark" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
       Quero meu diagnóstico gratuito
@@ -3123,7 +3136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // destaca no menu a seção visível
   const navAnchors = [...document.querySelectorAll('.nav-links a'), ...document.querySelectorAll('.mobile-menu a[href^="#"]')];
-  const navSections = ['servicos','problema','calculadora','solucao','sistema','trabalhos','como-funciona','investimento','faq']
+  const navSections = ['trabalhos','servicos','problema','solucao','sistema','calculadora','investimento','como-funciona','faq']
     .map(id => document.getElementById(id)).filter(Boolean);
   const setActiveLink = (id) => navAnchors.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
   const navIo = new IntersectionObserver((entries) => {

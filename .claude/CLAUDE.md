@@ -170,18 +170,29 @@ letreiro, serviços numerados, cases, como funciona, FAQ, "vamos conversar",
 rodapé em colunas), adaptada à escada de compromisso.
 
 ```
-[01] hero (+ letreiro)                 [02] não é só um site
-[03] para quem fazemos                 [04] o que fazemos
-[05] dores e soluções (+ investimento)
-[06] a calculadora                     [07] demonstração
-[08] trabalhos                         [09] entregas (escondida até ter cliente)
-[10] quem faz                          [11] como funciona
-[12] FAQ                               [13] CTA final ("vamos conversar")
+[01] hero (+ letreiro)                 [02] trabalhos
+[03] não é só um site                  [04] para quem fazemos
+[05] o que fazemos                     [06] dores e soluções
+[07] demonstração                      [08] a calculadora
+[09] investimento                      [10] quem faz
+[11] como funciona                     [12] FAQ
+[13] CTA final ("vamos conversar")
 ```
+
+Reordenada em 13/10/2026, depois de uma revisão do site lido como cliente:
+a prova (trabalhos) vem logo depois do hero, e o preço só depois da
+demonstração e da calculadora, em seção própria. A ordem segue ver que
+funciona, ver que é para você, entender o que recebe, ver o próprio número,
+ver o preço, conhecer quem faz. A seção `[09] entregas` está escondida e o
+rótulo dela repete o `[09]`: quando ela voltar, renumere.
+
+Palavra "sistema" ficou só onde é sistema mesmo (aplicativos e sistemas web,
+o plano Sob medida). Para falar da oferta, é site, Google e anúncio: o CTA
+final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
 
 - **Hero:** título à esquerda com a palavra de destaque em serif itálico
   dourado, botões "Fazer diagnóstico gratuito" (WhatsApp) e "Ver projetos"
-  (portfólio) e quatro selos; à direita um card (topo dourado, base escura)
+  (`#trabalhos`, logo abaixo) e quatro selos; à direita um card (topo dourado, base escura)
   com três degraus: calculadora, planos e preços, e WhatsApp. Atrás do card,
   colada na direita e na altura da tela, a estátua de gravura de óculos
   dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e 119 KB): vem sobre
@@ -204,34 +215,43 @@ rodapé em colunas), adaptada à escada de compromisso.
   piscos por descarga (abaixo de 3 por segundo, por fotossensibilidade).
   Só roda com o hero à vista e a aba aberta; desligado com
   `prefers-reduced-motion` e `?still=1`.
-- **`[02]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
+- **`[03]` não é só um site (`#nao-e-so-um-site`):** cinco cards claros
   (rápido no celular, pronto para anúncio, texto que vende, cada contato
-  avisado, tudo no seu nome). Sem CTA próprio.
-- **`[03]` para quem fazemos (`#para-quem`):** um card por nicho (advogados,
+  avisado, tudo no seu nome). Sem CTA próprio. Sem jargão de ferramenta: o
+  card de anúncio diz "você sabe qual anúncio, busca ou post trouxe cada
+  contato", não GTM, GA4 e Pixel.
+- **`[04]` para quem fazemos (`#para-quem`):** um card por nicho (advogados,
   clínicas, engenharia e arquitetura, consultorias, imobiliárias) mais o de
   reformulação. Cada card abre o WhatsApp com o nicho na mensagem e, onde há
   demo, tem "ver exemplo". Quando as páginas de nicho existirem, o card leva
   para elas.
-- **`[04]` o que fazemos (`#servicos`):** três grupos em ordem de peso.
+- **`[05]` o que fazemos (`#servicos`):** título "O que a gente constrói, e o
+  que leva cliente até lá" (não mais "tudo o que o seu negócio precisa").
+  Três grupos em ordem de peso.
   "Para construir": três cards grandes e escuros (sites e landing pages, lojas
   virtuais, aplicativos e sistemas web). "Para trazer cliente": quatro cards
   brancos (Google Meu Negócio, tráfego pago, IA no WhatsApp, reativação); os
   dois primeiros têm "ver por quê" com `data-aba`, que abre a aba certa no
-  `[05]`. Por último, uma faixa tracejada e discreta de social media, marcada
+  `[06]`, logo abaixo. Por último, uma faixa tracejada e discreta de social media, marcada
   "complemento".
-- **`[05]` dores e soluções (`#problema`):** abas por canal (Google Meu
+- **`[06]` dores e soluções (`#problema`):** abas por canal (Google Meu
   Negócio, tráfego pago, site, atendimento). Cada painel põe "mal configurado:
   o prejuízo" ao lado de "bem configurado: o benefício" e fecha com "no longo
   prazo". Os botões das abas têm `data-en`, mas o estado mora no próprio botão;
-  sem JS (e em `?still=1`) os quatro painéis aparecem empilhados. O preço vem
-  logo abaixo: três planos (Lançamento R$ 2.500 ou 3x R$ 833,33, Institucional
+  sem JS (e em `?still=1`) os quatro painéis aparecem empilhados. O id
+  `#solucao` continua dentro dela.
+- **`[09]` investimento (`#investimento`):** seção própria desde 13/10/2026,
+  com fundo `--bg-2` para não emendar com a calculadora (os estilos `.inv` e
+  `.pl-*` continuam no bloco do `[06]`). Três planos (Lançamento R$ 2.500 ou 3x R$ 833,33, Institucional
   R$ 3.900, Sob medida a partir de R$ 4.900), a linha de recorrência
   (manutenção R$ 197/mês, gestão de tráfego R$ 697/mês + verba, mínimo
   recomendado R$ 600/mês) e o filtro de "é/não é para você". O selo do
   Lançamento é "recomendado", não "mais escolhido": sem cliente para contar,
-  seria prova social inventada. Os ids `#solucao` e
-  `#investimento` continuam dentro dela.
-- **`[08]` trabalhos:** desde 13/10/2026, os vinte e quatro sites em quatro
+  seria prova social inventada. O lead diz que o diagnóstico indica qual
+  plano serve, não que "o valor exato sai no diagnóstico" (contradizia os
+  preços fechados logo abaixo).
+- **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
+  `[08]`). Desde 13/10/2026, os vinte e quatro sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
   cada bloco passa um site por vez (5,2 s cada, troca em degradê, cada bloco
   defasado um quarto de tempo do anterior) com "site para {tipo}", nome e selo
@@ -261,11 +281,11 @@ rodapé em colunas), adaptada à escada de compromisso.
 - **`[07]` demonstração (`#sistema`):** desde 11/10/2026, um sistema só que
   apresenta a proposta inteira, no lugar das 11 demos soltas de antes (que
   ainda tinham "faturamento crescendo" e "painel de metas", da oferta
-  antiga). O visitante escolhe o nicho (os cinco do `[03]`) e acompanha um
+  antiga). O visitante escolhe o nicho (os cinco do `[04]`) e acompanha um
   cliente fictício em cinco etapas: te encontram (Google e mapa), chegam no
   site, chamam no WhatsApp, não esfriam (retomada e reativação) e você
   acompanha (painel, tudo no seu nome). Ao lado de cada tela, "o que a
-  Theatrum entrega aqui" com o preço daquela parte; **mudou preço no `[05]`,
+  Theatrum entrega aqui" com o preço daquela parte; **mudou preço no `[09]`,
   muda no `PX_T` também.** Embaixo, a proposta em três linhas (R$ 2.500,
   R$ 197/mês, R$ 697/mês + verba), o CTA de WhatsApp e o degrau mais baixo
   (calculadora). Textos nos objetos `PX_N` e `PX_T`, redesenho na troca de
@@ -644,8 +664,11 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[09] entregas`.
 3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)
-4. Política de contrato, para a resposta do FAQ.
+4. Política de contrato. A pergunta "Fico preso em contrato?" saiu do FAQ
+   em 13/10/2026 porque a resposta publicada era o lembrete interno
+   "CONFIRMAR COM O MATHEUS"; volta quando a política existir (há um
+   comentário no lugar dela no `index.html`).
 5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).
 6. Home acima do orçamento de performance (medição de 10/10/2026): ~200 KB
    ao abrir (só o HTML em gzip tem 68 KB) e 2 tarefas longas de ~290 ms ao
-   rolar. Já era assim antes da vitrine do `[08]`; falta achar a origem.
+   rolar. Já era assim antes da vitrine de trabalhos; falta achar a origem.
