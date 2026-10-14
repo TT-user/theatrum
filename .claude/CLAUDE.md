@@ -593,7 +593,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   ninguém confirmou), diagnóstico rápido em `js/diagnostico.js` (montado por
   `[data-diagnostico]`, reaproveitável na `/oficina`; os serviços ao lado são blocos curtos em
   duas colunas, com `nomeCurto` e `curto` do `servicos.json`, e o texto longo fica para a
-  `/oficina`; o prazo é uma linha só, `prazos` no `config.js`, placeholder enquanto `null`)., antes/depois arrastável,
+  `/oficina`; o prazo é uma linha só, `prazos` no `config.js`, placeholder enquanto `null`), antes/depois arrastável,
   vitrine em cartuchos, InCubo com o "warp" de entrada, high scores e mapa só no clique. O título do hero vai em linhas curtas e
   caixa-alta: em Press Start, frase longa em minúscula não se lê.
   No pé da Oficina, uma corrida de enfeite (`#corrida`): o Nerdinho, robozinho de pixel
