@@ -413,6 +413,25 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @keyframes nc-turbo { 0%, 42.5% { opacity: 1; } 43%, 99% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes nc-moeda { 0%, 88% { opacity: 0; } 88.5%, 100% { opacity: 1; } }
 
+/* ---------- Moedas secretas ---------- */
+.secao { position: relative; }
+.moeda-secreta { position: absolute; z-index: 4; width: 36px; height: 36px; margin: -10px; padding: 0; display: grid; place-items: center; background: none; border: 0; cursor: pointer; }
+.moeda-secreta[hidden] { display: none; }
+.moeda-secreta svg { width: 16px; height: 16px; filter: drop-shadow(0 0 4px rgba(255, 210, 63, .45)); transition: transform .15s; }
+.moeda-secreta:hover svg, .moeda-secreta:focus-visible svg { transform: translateY(-3px) scale(1.15); }
+.moeda-secreta.pega { pointer-events: none; animation: moeda-pega .5s steps(5) forwards; }
+@keyframes moeda-pega { 0% { transform: none; opacity: 1; } 60% { transform: translateY(-34px) scale(1.4); opacity: 1; } 100% { transform: translateY(-46px) scale(1.4); opacity: 0; } }
+.moeda-aviso { position: fixed; left: 50%; top: calc(var(--hud-h) + 14px); z-index: 70; transform: translate(-50%, -8px); padding: 10px 16px; font: 400 11px/1.4 var(--pixel); color: var(--amarelo); background: #000; border: 3px solid var(--amarelo); box-shadow: 4px 4px 0 var(--roxo); white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+.hud__coins--cupom { cursor: pointer; text-decoration: underline dotted; text-underline-offset: 4px; }
+.moeda-aviso.mostra { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 480px) { .moeda-aviso { font-size: 9px; white-space: normal; width: max-content; max-width: calc(100vw - 32px); text-align: center; } }
+.cupom__estrelas { margin: 0 0 6px; font: 400 18px/1 var(--pixel); color: var(--amarelo); letter-spacing: .3em; }
+.cupom__caixa { margin: 4px 0 18px; padding: 16px 12px; border: 3px dashed var(--amarelo); border-radius: 6px; background: rgba(255, 210, 63, .06); }
+.cupom__codigo { margin: 0; font: 400 20px/1.4 var(--pixel); color: #fff; word-break: break-all; }
+.cupom__beneficio { margin: 10px 0 0; font-size: 16px; color: var(--suave); }
+.cupom__acoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 12px; }
+.cupom__acoes:empty { display: none; }
+
 /* ---------- Rodapé ---------- */
 .rodape { position: relative; background: #07051A; border-top: 2px solid var(--roxo); padding: 56px 0 120px; font-size: 16px; color: var(--suave); }
 .rodape__grid { display: grid; gap: 36px; }

@@ -19,7 +19,7 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fonts/press-start-2p.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=11">
 
   <script type="application/ld+json">
   {
@@ -134,9 +134,23 @@
     </div>
   </div>
 
+  <!-- Moedas secretas: aparece quando a pessoa junta todas (js/moedas.js) -->
+  <div class="pausa cupom" id="cupom" role="dialog" aria-modal="true" aria-labelledby="cupom-titulo" hidden>
+    <div class="pausa__caixa">
+      <p class="cupom__estrelas" aria-hidden="true">★ ★ ★</p>
+      <p class="pausa__titulo" id="cupom-titulo">ACHOU TODAS!</p>
+      <p class="pausa__sub"><span id="cupom-total">8</span> moedas secretas · <span id="cupom-sub">cupom desbloqueado</span></p>
+      <div class="cupom__caixa" id="cupom-caixa"></div>
+      <div class="cupom__acoes" id="cupom-acoes"></div>
+      <button class="pausa__item" type="button" data-fecha-cupom>CONTINUAR</button>
+    </div>
+  </div>
+  <div class="moeda-aviso" id="moeda-aviso" role="status" aria-live="polite"></div>
+
   <main id="inicio">
     <!-- [1] Hero -->
     <section class="hero">
+      <button class="moeda-secreta" type="button" data-moeda="m1" style="bottom:22px;left:44%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="hero__ceu" aria-hidden="true"><div class="hero__sol"></div><div class="hero__chao"></div></div>
       <div class="wrap hero__in">
         <div>
@@ -168,6 +182,7 @@
 
     <!-- [2] Seleção de missão: setas do teclado andam entre os cards, Enter entra -->
     <section class="secao" id="missoes" aria-labelledby="missoes-t">
+      <button class="moeda-secreta" type="button" data-moeda="m2" style="top:26px;right:7%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="wrap">
         <p class="rotulo">SELECT YOUR QUEST</p>
         <h2 class="titulo" id="missoes-t">Escolha sua missão</h2>
@@ -223,6 +238,7 @@
 
     <!-- [3] Oficina + diagnóstico rápido -->
     <section class="secao oficina" id="oficina" aria-labelledby="oficina-t">
+      <button class="moeda-secreta" type="button" data-moeda="m3" style="top:28px;left:54%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="wrap oficina__in">
         <div>
           <p class="rotulo">A OFICINA</p>
@@ -258,6 +274,7 @@
 
     <!-- [5] Vitrine em destaque -->
     <section class="secao vitrine" id="vitrine" aria-labelledby="vitrine-t">
+      <button class="moeda-secreta" type="button" data-moeda="m4" style="top:24px;right:24%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="wrap">
         <p class="rotulo">NOVIDADES NO ESTOQUE</p>
         <h2 class="titulo" id="vitrine-t">Direto da prateleira</h2>
@@ -281,6 +298,7 @@
 
     <!-- [6] Mundo 2: InCubo. A paleta muda ao entrar ("warp zone") -->
     <section class="secao incubo" id="incubo" aria-labelledby="incubo-t">
+      <button class="moeda-secreta" type="button" data-moeda="m5" style="top:30px;right:6%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="incubo__warp" aria-hidden="true"></div>
       <div class="wrap">
         <p class="rotulo">WARP ZONE · MUNDO 2</p>
@@ -297,6 +315,7 @@
 
     <!-- [7] High scores: só avaliação real -->
     <section class="secao recordes" id="recordes" aria-labelledby="recordes-t">
+      <button class="moeda-secreta" type="button" data-moeda="m6" style="bottom:26px;right:38%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="wrap">
         <p class="rotulo">HIGH SCORES</p>
         <h2 class="titulo" id="recordes-t">Quem já passou por aqui</h2>
@@ -307,6 +326,7 @@
 
     <!-- [8] Continue? Visite a loja -->
     <section class="secao visite" id="visite" aria-labelledby="visite-t">
+      <button class="moeda-secreta" type="button" data-moeda="m7" style="top:24px;left:30%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
       <div class="wrap visite__in">
         <div>
           <p class="rotulo">CONTINUE?</p>
@@ -332,6 +352,7 @@
   </main>
 
   <footer class="rodape" id="contato">
+      <button class="moeda-secreta" type="button" data-moeda="m8" style="top:16px;left:72%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
     <div class="wrap">
       <div class="rodape__grid">
         <div>
@@ -377,9 +398,10 @@
     <span><small>Site feito pela</small>Theatrum</span>
   </a>
 
-  <script src="js/config.js?v=2"></script>
+  <script src="js/config.js?v=3"></script>
   <script src="js/main.js?v=4" defer></script>
   <script src="js/diagnostico.js?v=2" defer></script>
+  <script src="js/moedas.js?v=3" defer></script>
   <script src="js/home.js?v=5" defer></script>
 </body>
 </html>

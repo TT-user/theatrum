@@ -26,8 +26,12 @@ window.NC = {
   instagramIncubo: 'incubocubo',
   shopee: 'https://shopee.com.br/shop/1194840850',
 
-  // Easter egg (Fase 5). Sem cupom, o cheat mostra só a tela.
-  cupom: null
+  // Prêmio de quem acha as 8 moedas escondidas no site (e, na Fase 5, do Konami).
+  // Enquanto codigo for null, a tela final mostra placeholder e não oferece WhatsApp.
+  cupom: {
+    codigo: null,    // ex.: 'MOEDA10'
+    beneficio: null  // ex.: '10% de desconto em acessórios'
+  }
 };
 
 /* Link de WhatsApp único do site. `origem` vai para a medição. */

@@ -597,7 +597,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   vitrine em cartuchos, InCubo com o "warp" de entrada, high scores e mapa só no clique. O título do hero vai em linhas curtas e
   caixa-alta: em Press Start, frase longa em minúscula não se lê. O menu do topo e o de
   pausa acendem a seção à vista (`aria-current`; restauração conta como oficina, rodapé
-  como visite) e o botão de som mostra ON/OFF.
+  como visite) e o botão de som mostra ON/OFF. Oito moedas secretas (`[data-moeda]`,
+  `js/moedas.js`) ficam nas faixas vazias entre as seções; quem clica descobre o jogo
+  (aviso "1/8"), e quem junta todas abre a tela do cupom (`NC.cupom` no `config.js`,
+  `codigo` e `beneficio`). Sem código, a tela mostra placeholder e não oferece WhatsApp,
+  para ninguém pedir à loja um cupom que não existe. Progresso no `localStorage`
+  `nc-moedas-secretas`; quem já juntou todas reabre o cupom clicando no COINS do topo.
+  Press Start não tem Ê nem Ó maiúsculos: texto em pixel sem eles.
   No pé da Oficina, uma corrida de enfeite (`#corrida`): o Nerdinho, robozinho de pixel
   original, junta moedas fugindo de duas bolas de poeira, pega a ventoinha turbo e a
   poeira foge. Foi pedido "tipo Pac-Man" e saiu assim de propósito: Pac-Man é da Bandai
