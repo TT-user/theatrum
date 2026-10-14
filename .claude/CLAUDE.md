@@ -595,7 +595,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   duas colunas, com `nomeCurto` e `curto` do `servicos.json`, e o texto longo fica para a
   `/oficina`; o prazo é uma linha só, `prazos` no `config.js`, placeholder enquanto `null`), antes/depois arrastável,
   vitrine em cartuchos, InCubo com o "warp" de entrada, high scores e mapa só no clique. O título do hero vai em linhas curtas e
-  caixa-alta: em Press Start, frase longa em minúscula não se lê.
+  caixa-alta: em Press Start, frase longa em minúscula não se lê. O menu do topo e o de
+  pausa acendem a seção à vista (`aria-current`; restauração conta como oficina, rodapé
+  como visite) e o botão de som mostra ON/OFF.
   No pé da Oficina, uma corrida de enfeite (`#corrida`): o Nerdinho, robozinho de pixel
   original, junta moedas fugindo de duas bolas de poeira, pega a ventoinha turbo e a
   poeira foge. Foi pedido "tipo Pac-Man" e saiu assim de propósito: Pac-Man é da Bandai

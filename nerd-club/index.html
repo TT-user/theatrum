@@ -15,7 +15,7 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fonts/press-start-2p.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=8">
 
   <script type="application/ld+json">
   {
@@ -79,7 +79,6 @@
     <symbol id="i-sacola" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h16l-1 13H5Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></g></symbol>
     <symbol id="i-pino" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 0 0-14 0c0 5.4 7 12 7 12Z"/><circle cx="12" cy="10" r="2.6"/></g></symbol>
     <symbol id="i-relogio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
-    <symbol id="i-som" viewBox="0 0 24 24" shape-rendering="crispEdges"><path fill="currentColor" d="M3 9h4l5-4h2v14h-2l-5-4h-3z"/><path class="som-on" fill="currentColor" d="M16 9h2v6h-2zM19 7h2v10h-2z"/><path class="som-off" fill="currentColor" d="M16 9h2v2h-2zM20 9h2v2h-2zM18 11h2v2h-2zM16 13h2v2h-2zM20 13h2v2h-2z"/></symbol>
   </svg>
 
   <header class="hud" id="topo">
@@ -102,8 +101,10 @@
         <span class="hud__coins" title="Moedas que você junta explorando o site">COINS: <b id="coins">0000</b></span>
         <span class="hud__sep" aria-hidden="true">|</span>
         <span class="hud__local">📍 TERESÓPOLIS</span>
-        <button class="hud__btn" type="button" id="som" aria-pressed="false" aria-label="Som do site">
-          <svg aria-hidden="true"><use href="#i-som"/></svg>
+        <button class="hud__btn hud__som" type="button" id="som" aria-pressed="false" aria-label="Efeitos sonoros">
+          <!-- desenho inline: o CSS não alcança o que fica dentro de um <use> -->
+          <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M3 9h4l5-4h2v14h-2l-5-4h-4z"/><path class="som-on" fill="currentColor" d="M16 9h2v6h-2zM19 7h2v10h-2z"/><path class="som-off" fill="currentColor" d="M16 9h2v2h-2zM20 9h2v2h-2zM18 11h2v2h-2zM16 13h2v2h-2zM20 13h2v2h-2z"/></svg>
+          <span class="hud__som-txt" aria-hidden="true">OFF</span>
         </button>
         <button class="hud__btn hud__pause" type="button" id="abre-pausa" aria-haspopup="dialog" aria-controls="pausa"><i aria-hidden="true"></i><span>MENU</span></button>
         <a href="https://wa.me/5524998273443" class="btn hud__cta" data-zap="topo" data-msg="Olá Nerd Club! Vim pelo site.">WHATSAPP</a>
@@ -373,7 +374,7 @@
   </a>
 
   <script src="js/config.js?v=2"></script>
-  <script src="js/main.js?v=2" defer></script>
+  <script src="js/main.js?v=4" defer></script>
   <script src="js/diagnostico.js?v=2" defer></script>
   <script src="js/home.js?v=5" defer></script>
 </body>

@@ -66,7 +66,9 @@
   window.NCsom = som;
   function mostraSom() {
     botaoSom.setAttribute('aria-pressed', somLigado ? 'true' : 'false');
-    botaoSom.setAttribute('aria-label', somLigado ? 'Desligar som do site' : 'Ligar som do site');
+    var t = botaoSom.querySelector('.hud__som-txt');
+    if (t) t.textContent = somLigado ? 'ON' : 'OFF';
+    botaoSom.title = somLigado ? 'Efeitos sonoros ligados' : 'Efeitos sonoros desligados';
   }
   if (botaoSom) {
     mostraSom();
@@ -135,6 +137,26 @@
     });
     // passou para tela grande com o menu aberto: fecha
     window.matchMedia('(min-width: 1100px)').addEventListener('change', function (m) { if (m.matches && !pausa.hidden) fechaPausa(); });
+  }
+
+  /* ---------- Menu marca a seção que está na tela ----------
+     Uma linha imaginária a 40% da altura da tela; a seção que ela cruza acende o link.
+     Seções sem link próprio apontam para a vizinha (restauração faz parte da oficina). */
+  var DONO = { restauracao: 'oficina', contato: 'visite' };
+  var links = Array.prototype.slice.call(document.querySelectorAll('.hud__nav a[href^="#"], .pausa li a[href^="#"]'));
+  function marca(id) {
+    links.forEach(function (a) {
+      if (id && a.getAttribute('href') === '#' + id && !a.hasAttribute('data-filtro')) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  if (links.length && 'IntersectionObserver' in window) {
+    var espia = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.isIntersecting) marca(DONO[en.target.id] || en.target.id);
+      });
+    }, { rootMargin: '-40% 0px -59% 0px' });
+    document.querySelectorAll('main > section, footer').forEach(function (s) { espia.observe(s); });
   }
 
   if (reduz) document.documentElement.classList.add('sem-movimento');
