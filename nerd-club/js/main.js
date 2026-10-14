@@ -22,7 +22,7 @@
 
   /* ---------- WhatsApp: todo link com data-zap="origem" e data-msg ---------- */
   function ligaZap(el) {
-    el.href = window.whatsappLink(el.getAttribute('data-msg') || 'Olá Nerd Club! Vim pelo site.');
+    el.href = window.whatsappLink(el.getAttribute('data-msg') || 'Olá Nerd Club! Vim pelo site.', el.getAttribute('data-numero'));
     el.target = '_blank';
     el.rel = 'noopener';
   }
@@ -30,7 +30,7 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest('[data-zap]');
     if (!a) return;
-    if (a.hasAttribute('data-msg')) a.href = window.whatsappLink(a.getAttribute('data-msg'));
+    if (a.hasAttribute('data-msg')) a.href = window.whatsappLink(a.getAttribute('data-msg'), a.getAttribute('data-numero'));
     evento('whatsapp_click', { origem: a.getAttribute('data-zap') });
     som('coin');
   });

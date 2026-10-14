@@ -585,9 +585,14 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   todos exemplo; avaliações e antes/depois ficam vazios até virem reais (o "guia de
   limpeza" do Instagram tem "depois" de banco de imagem). Desbloqueio fora da prévia
   (`ativo: false`): os flyers prometem "jogos infinitos". O COINS do HUD é moeda que o
-  visitante junta explorando, não número da loja. Em fases: a 1 (base: HUD, menu de
-  pausa, rodapé, moeda do WhatsApp) está no ar; home, `/oficina`, `/loja` e `/incubo`
-  vêm depois. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET,
+  visitante junta explorando, não número da loja. Em fases: 1 (base) e 2 (home)
+  no ar; `/oficina`, `/loja` e `/incubo` vêm na 3, e até lá os cards e o menu levam
+  às seções da home. A home: abertura de 1,7 s (uma vez por sessão, pulável, nunca com
+  movimento reduzido nem em `?still=1`, que desliga tudo que se mexe), seleção de
+  missão com setas do teclado e atributos tirados dos flyers (nada de "garantia", que
+  ninguém confirmou), diagnóstico rápido em `js/diagnostico.js` (montado por
+  `[data-diagnostico]`, reaproveitável na `/oficina`), antes/depois arrastável,
+  vitrine em cartuchos, InCubo com o "warp" de entrada, high scores e mapa só no clique. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET,
   marca d'água com `utm_campaign=nerd-club`. Brief, prints e pendências em
   `interno/clientes/nerd-club/`, fora do git. A foto da fachada veio
   de um print que o Matheus mandou junto com o brief.

@@ -15,7 +15,7 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fonts/press-start-2p.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=3">
 
   <script type="application/ld+json">
   {
@@ -31,6 +31,29 @@
   </script>
 </head>
 <body>
+  <!-- Tela de abertura: 1x por sessão, pulável, nunca com movimento reduzido nem em ?still=1 -->
+  <div class="boot" id="boot" hidden>
+    <div class="boot__in">
+      <p class="boot__logo"><span>NERD</span><span>CLUB</span></p>
+      <div class="boot__barra" aria-hidden="true"><i></i></div>
+      <p class="boot__status">STATUS: CARREGANDO… SÓ QUE JÁ ESTAMOS PRONTOS!</p>
+      <p class="boot__start">PRESS START</p>
+    </div>
+    <button type="button" class="boot__pular" id="boot-pular">PULAR ▸▸</button>
+  </div>
+  <script>
+    (function () {
+      var d = document.documentElement, still = /[?&]still=1/.test(location.search);
+      if (still) d.classList.add('still');
+      var viu = false; try { viu = sessionStorage.getItem('nc-boot') === '1'; sessionStorage.setItem('nc-boot', '1'); } catch (e) {}
+      if (still || viu || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var b = document.getElementById('boot'); b.hidden = false; d.classList.add('com-boot');
+      function sai() { if (b.hidden) return; b.classList.add('boot--sai'); d.classList.remove('com-boot'); setTimeout(function () { b.hidden = true; }, 260); }
+      setTimeout(sai, 1700);
+      b.addEventListener('click', sai);
+      addEventListener('keydown', sai, { once: true });
+    })();
+  </script>
   <!-- Faixa de demonstração: apague este elemento para a versão final -->
   <div id="demo-bar"><span class="so-pc">Demonstração criada pela <strong>Theatrum</strong> para a Nerd Club · </span><span class="so-cel">Demonstração <strong>Theatrum</strong> · </span><span class="ph">amarelo</span> <span class="so-pc">= falta confirmar</span><span class="so-cel">= a confirmar</span></div>
 
@@ -47,6 +70,10 @@
     <symbol id="px-chave" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" fill-rule="evenodd" d="M10 1h4v1h-2v1h-1v2h2v-1h1v-2h1v4h-1v1h-3v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-2h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-3h1z"/></symbol>
     <symbol id="px-bau" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" fill-rule="evenodd" d="M3 2h10v1h1v4h-12v-4h1zM2 8h12v6h-12zM7 8h2v3h-2z"/></symbol>
     <symbol id="px-cubo" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M8 1.5 14.5 5v6.5L8 15 1.5 11.5V5Z"/><path d="M1.5 5 8 8.5 14.5 5M8 8.5V15"/></g></symbol>
+    <symbol id="px-cartucho" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" fill-rule="evenodd" d="M3 1h10v1h1v13h-12v-13h1zM5 4h6v5h-6zM4 12h1v2h-1zM6 12h1v2h-1zM9 12h1v2h-1zM11 12h1v2h-1z"/></symbol>
+    <symbol id="px-portatil" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" fill-rule="evenodd" d="M3 1h10v13h-1v1h-9zM5 3h6v5h-6zM5 10h1v1h1v1h-1v1h-1v-1h-1v-1h1zM10 10h1v1h-1zM11 12h1v1h-1z"/></symbol>
+    <symbol id="px-fone" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M5 1h6v1h2v1h1v2h1v9h-4v-6h2v-3h-1v-1h-1v-1h-6v1h-1v1h-1v3h2v6h-4v-9h1v-2h1v-1h2z"/></symbol>
+    <symbol id="px-estrela" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M7 1h2v4h5v2h-1v1h-1v1h-1v2h1v4h-2v-1h-1v-1h-2v1h-1v1h-2v-4h1v-2h-1v-1h-1v-1h-1v-2h5z"/></symbol>
     <symbol id="i-zap" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
     <symbol id="i-insta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></g></symbol>
     <symbol id="i-sacola" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h16l-1 13H5Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></g></symbol>
@@ -64,11 +91,11 @@
       <span class="hud__vidas" aria-hidden="true">♥♥♥</span>
 
       <nav class="hud__nav" aria-label="Principal">
-        <a href="#loja">LOJA</a>
+        <a href="#vitrine">LOJA</a>
         <a href="#oficina">OFICINA</a>
-        <a href="#loot">LOOT</a>
         <a href="#incubo">INCUBO</a>
-        <a href="#contato">CONTATO</a>
+        <a href="#recordes">RECORDES</a>
+        <a href="#visite">VISITE</a>
       </nav>
 
       <div class="hud__stats">
@@ -91,18 +118,19 @@
       <p class="pausa__sub">escolha uma opção</p>
       <ul>
         <li><button class="pausa__item" type="button" data-fecha-pausa>CONTINUAR</button></li>
-        <li><a href="#loja" data-fecha-pausa>LOJA</a></li>
+        <li><a href="#vitrine" data-fecha-pausa>LOJA</a></li>
         <li><a href="#oficina" data-fecha-pausa>OFICINA</a></li>
-        <li><a href="#loot" data-fecha-pausa>LOOT LENDÁRIO</a></li>
+        <li><a href="#vitrine" data-filtro="colecionaveis" data-fecha-pausa>LOOT LENDÁRIO</a></li>
         <li><a href="#incubo" data-fecha-pausa>INCUBO</a></li>
-        <li><a href="#contato" data-fecha-pausa>CONTATO</a></li>
+        <li><a href="#recordes" data-fecha-pausa>HIGH SCORES</a></li>
+        <li><a href="#visite" data-fecha-pausa>VISITE A LOJA</a></li>
       </ul>
       <a href="https://wa.me/5524998273443" class="btn pausa__zap" data-zap="menu" data-msg="Olá Nerd Club! Vim pelo site."><svg aria-hidden="true"><use href="#i-zap"/></svg>FALAR NO WHATSAPP</a>
     </div>
   </div>
 
   <main id="inicio">
-    <!-- [1] Hero. Casca da Fase 1: boot screen, HUD completo e animações entram na Fase 2 -->
+    <!-- [1] Hero -->
     <section class="hero">
       <div class="hero__ceu" aria-hidden="true"><div class="hero__sol"></div><div class="hero__chao"></div></div>
       <div class="wrap hero__in">
@@ -132,36 +160,154 @@
       </div>
     </section>
 
-    <!-- [2] Seleção de missão. Casca: navegação por setas, atributos e som entram na Fase 2 -->
+    <!-- [2] Seleção de missão: setas do teclado andam entre os cards, Enter entra -->
     <section class="secao" id="missoes" aria-labelledby="missoes-t">
       <div class="wrap">
         <p class="rotulo">SELECT YOUR QUEST</p>
         <h2 class="titulo" id="missoes-t">Escolha sua missão</h2>
-        <div class="missoes">
-          <a class="missao" id="loja" href="#loja">
+        <p class="lead">Quatro frentes, uma loja só. Use o mouse, o dedo ou as setas do teclado.</p>
+        <div class="missoes" id="missoes-grade">
+          <a class="missao" href="#vitrine">
+            <span class="missao__p1" aria-hidden="true">P1</span>
             <svg aria-hidden="true"><use href="#px-controle"/></svg>
             <h3>A LOJA</h3>
             <p>Consoles e jogos, do Game Boy ao PS5. Novos, seminovos e retrô.</p>
+            <dl class="atributos" aria-hidden="true">
+              <dt>Clássicos</dt><dd><i style="--n:5"></i></dd>
+              <dt>Lançamentos</dt><dd><i style="--n:5"></i></dd>
+            </dl>
             <span class="missao__ir">ver vitrine ▸</span>
           </a>
-          <a class="missao" id="oficina" href="#oficina">
+          <a class="missao" href="#oficina">
+            <span class="missao__p1" aria-hidden="true">P1</span>
             <svg aria-hidden="true"><use href="#px-chave"/></svg>
             <h3>A OFICINA DO DR. FRANKENSTEIN NERD</h3>
             <p>Seu console tá tossindo poeira? Limpeza, conserto de controle e restauração.</p>
-            <span class="missao__ir">pedir orçamento ▸</span>
+            <dl class="atributos" aria-hidden="true">
+              <dt>Agilidade</dt><dd><i style="--n:5"></i></dd>
+              <dt>Cuidado</dt><dd><i style="--n:5"></i></dd>
+            </dl>
+            <span class="missao__ir">fazer diagnóstico ▸</span>
           </a>
-          <a class="missao" id="loot" href="#loot">
+          <a class="missao" href="#vitrine" data-filtro="colecionaveis">
+            <span class="missao__p1" aria-hidden="true">P1</span>
             <svg aria-hidden="true"><use href="#px-bau"/></svg>
             <h3>O LOOT LENDÁRIO</h3>
             <p>Action figures, estátuas e decoração para a estante que tá triste.</p>
+            <dl class="atributos" aria-hidden="true">
+              <dt>Raridade</dt><dd><i style="--n:5"></i></dd>
+              <dt>Estilo</dt><dd><i style="--n:5"></i></dd>
+            </dl>
             <span class="missao__ir">ver colecionáveis ▸</span>
           </a>
-          <a class="missao missao--incubo" id="incubo" href="#incubo">
+          <a class="missao missao--incubo" href="#incubo">
+            <span class="missao__p1" aria-hidden="true">P1</span>
             <svg aria-hidden="true"><use href="#px-cubo"/></svg>
             <h3>MUNDO 2: INCUBO</h3>
             <p>Impressão 3D sob encomenda. Se você imagina, a gente imprime.</p>
+            <dl class="atributos" aria-hidden="true">
+              <dt>Criatividade</dt><dd><i style="--n:5"></i></dd>
+              <dt>Sob encomenda</dt><dd><i style="--n:5"></i></dd>
+            </dl>
             <span class="missao__ir">orçar peça ▸</span>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- [3] Oficina + diagnóstico rápido -->
+    <section class="secao oficina" id="oficina" aria-labelledby="oficina-t">
+      <div class="wrap oficina__in">
+        <div>
+          <p class="rotulo">A OFICINA</p>
+          <h2 class="titulo" id="oficina-t">Seu console tá tossindo poeira?</h2>
+          <p class="lead">Manutenção de videogame, portátil, controle, celular e computador, na bancada da própria loja.</p>
+          <ul class="powerups" id="powerups"></ul>
+        </div>
+        <div class="dialogo" data-diagnostico="home"></div>
+      </div>
+    </section>
+
+    <!-- [4] Restauração: antes e depois arrastável -->
+    <section class="secao restauracao" id="restauracao" aria-labelledby="restauracao-t">
+      <div class="wrap">
+        <p class="rotulo">RESTAURAÇÃO</p>
+        <h2 class="titulo" id="restauracao-t">Antes e depois da bancada</h2>
+        <p class="lead">Arraste a barra para ver o mesmo aparelho antes e depois.</p>
+        <div class="casos" id="casos"></div>
+      </div>
+    </section>
+
+    <!-- [5] Vitrine em destaque -->
+    <section class="secao vitrine" id="vitrine" aria-labelledby="vitrine-t">
+      <div class="wrap">
+        <p class="rotulo">NOVIDADES NO ESTOQUE</p>
+        <h2 class="titulo" id="vitrine-t">Direto da prateleira</h2>
+        <div class="vitrine__topo">
+          <div class="abas" role="group" aria-label="Filtrar vitrine">
+            <button type="button" aria-pressed="true" data-cat="destaque">DESTAQUES</button>
+            <button type="button" aria-pressed="false" data-cat="colecionaveis">LOOT LENDÁRIO</button>
+          </div>
+          <div class="setas">
+            <button type="button" class="seta" data-rola="-1" aria-label="Produtos anteriores">◀</button>
+            <button type="button" class="seta" data-rola="1" aria-label="Próximos produtos">▶</button>
+          </div>
+        </div>
+        <ul class="trilho" id="trilho" tabindex="0" aria-label="Produtos em destaque"></ul>
+        <div class="vitrine__links">
+          <a class="btn btn--amarelo" href="https://shopee.com.br/shop/1194840850" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-sacola"/></svg>COMPRAR NA SHOPEE</a>
+          <a class="link-tela" href="https://www.instagram.com/lojanerdclub/" target="_blank" rel="noopener">ver o que chegou no Instagram ▸</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- [6] Mundo 2: InCubo. A paleta muda ao entrar ("warp zone") -->
+    <section class="secao incubo" id="incubo" aria-labelledby="incubo-t">
+      <div class="incubo__warp" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="rotulo">WARP ZONE · MUNDO 2</p>
+        <h2 class="titulo" id="incubo-t">InCubo: se você imagina, a gente imprime</h2>
+        <p class="lead">Impressão 3D da marca parceira da Nerd Club. Peças prontas e sob encomenda, de estátua pintada à mão a peça de reposição para console retrô.</p>
+        <span class="selo-frete">FRETE GRÁTIS PARA TODO O BRASIL</span>
+        <ul class="cubos" id="cubos"></ul>
+        <div class="incubo__ctas">
+          <a href="https://wa.me/5524998273443" class="btn btn--azul" data-zap="incubo" data-incubo data-msg="Olá InCubo! Vim pelo site da Nerd Club. Quero orçar uma peça em impressão 3D."><svg aria-hidden="true"><use href="#i-zap"/></svg>ORÇAR MINHA PEÇA</a>
+          <a class="link-tela" href="https://www.instagram.com/incubocubo/" target="_blank" rel="noopener">ver as peças no @incubocubo ▸</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- [7] High scores: só avaliação real -->
+    <section class="secao recordes" id="recordes" aria-labelledby="recordes-t">
+      <div class="wrap">
+        <p class="rotulo">HIGH SCORES</p>
+        <h2 class="titulo" id="recordes-t">Quem já passou por aqui</h2>
+        <div class="placar" id="placar"></div>
+        <ul class="contadores" id="contadores"></ul>
+      </div>
+    </section>
+
+    <!-- [8] Continue? Visite a loja -->
+    <section class="secao visite" id="visite" aria-labelledby="visite-t">
+      <div class="wrap visite__in">
+        <div>
+          <p class="rotulo">CONTINUE?</p>
+          <h2 class="titulo" id="visite-t">Visite a loja</h2>
+          <p class="visite__galeria">Fica <strong>dentro da galeria</strong>: entre pela R. Duque de Caxias, 77 e procure a fachada roxa, lojas 42 e 43.</p>
+          <ul class="visite__dados">
+            <li><svg aria-hidden="true"><use href="#i-pino"/></svg><span>R. Duque de Caxias, 77, Loja 42/43<br>Várzea, Teresópolis, RJ · 25953-390</span></li>
+            <li><svg aria-hidden="true"><use href="#i-relogio"/></svg><span data-cfg="horario"></span></li>
+          </ul>
+          <div class="visite__ctas">
+            <a class="btn btn--ciano" href="https://www.google.com/maps/dir/?api=1&amp;destination=-22.4117774,-42.9678887" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pino"/></svg>COMO CHEGAR</a>
+            <a href="https://wa.me/5524998273443" class="btn" data-zap="visite" data-msg="Olá Nerd Club! Vim pelo site. Quero passar na loja."><svg aria-hidden="true"><use href="#i-zap"/></svg>WHATSAPP</a>
+          </div>
+        </div>
+        <div class="visite__midia">
+          <img class="visite__foto" src="assets/img/prateleira-480.webp" srcset="assets/img/prateleira-480.webp 480w, assets/img/prateleira-668.webp 668w" sizes="(min-width: 900px) 300px, 45vw" width="668" height="820" alt="Prateleira da loja com PS Vita, PSP, Switch, fones e mouses" loading="lazy" decoding="async">
+          <div class="mapa" id="mapa">
+            <button type="button" class="mapa__abre" id="abre-mapa"><svg aria-hidden="true"><use href="#i-pino"/></svg><span>VER NO MAPA</span><small>carrega o Google Maps</small></button>
+          </div>
         </div>
       </div>
     </section>
@@ -214,6 +360,8 @@
   </a>
 
   <script src="js/config.js?v=1"></script>
-  <script src="js/main.js?v=1" defer></script>
+  <script src="js/main.js?v=2" defer></script>
+  <script src="js/diagnostico.js?v=2" defer></script>
+  <script src="js/home.js?v=2" defer></script>
 </body>
 </html>
