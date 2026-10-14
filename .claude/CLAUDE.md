@@ -582,7 +582,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   logos de console, o site não. Contato, horário e cupom em `js/config.js` (null vira
   placeholder) e um `whatsappLink()` só; vitrine, serviços, InCubo, avaliações e
   antes/depois em `data/*.json`, com `_leia` dizendo o que pode entrar. Os produtos são
-  todos exemplo; avaliações e antes/depois ficam vazios até virem reais (o "guia de
+  todos exemplo; antes/depois fica vazio até vir foto real. As avaliações são 5 reais do
+  Google Maps (as que aparecem sem login, de 52, nota 5,0), texto igual ao original e
+  sobrenome abreviado; horário também veio do perfil do Google. Sem `aggregateRating` no
+  JSON-LD: o Google não aceita nota da própria empresa marcada no site dela (o "guia de
   limpeza" do Instagram tem "depois" de banco de imagem). Desbloqueio fora da prévia
   (`ativo: false`): os flyers prometem "jogos infinitos". O COINS do HUD é moeda que o
   visitante junta explorando, não número da loja. Em fases: 1 (base) e 2 (home)

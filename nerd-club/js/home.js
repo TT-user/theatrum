@@ -2,7 +2,7 @@
    Os dados vêm de data/*.json; mudou um JSON, suba o V. */
 (function () {
   'use strict';
-  var V = '?v=3';
+  var V = '?v=6';
   var NC = window.NC;
   var still = document.documentElement.classList.contains('still');
   var reduz = still || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -147,16 +147,18 @@
     var placar = document.getElementById('placar');
     if (placar) {
       var linhas = d.avaliacoes.map(function (r, i) {
-        return '<tr><td class="placar__pos">' + (i + 1) + 'º</td><td>' + esc(r.nome) + '</td><td class="placar__nota"><span aria-hidden="true">' + '★'.repeat(r.nota) + '</span><span class="sr">' + r.nota + ' de 5</span></td><td>' + esc(r.trecho) + '</td></tr>';
+        return '<tr><td class="placar__pos">' + (i + 1) + 'º</td><td>' + esc(r.nome) + '</td><td class="placar__nota"><span aria-hidden="true">' + '★'.repeat(r.nota) + '</span><span class="sr">' + r.nota + ' de 5</span></td><td class="placar__recado">' + esc(r.trecho) + (r.assunto === 'oficina' ? ' <span class="placar__tag">OFICINA</span>' : '') + '</td></tr>';
       }).join('');
       if (!linhas) linhas = '<tr class="placar__vazio"><td class="placar__pos">1º</td><td colspan="3">' + PH('avaliações reais do Google, com autorização') + '</td></tr>';
-      var busca = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Nerd Club Teresópolis');
+      var f = d.fonte || {};
+      var busca = f.link || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Nerd Club Teresópolis');
       placar.innerHTML = '<table><caption class="sr">Avaliações de clientes no Google</caption><thead><tr><th>RANK</th><th>JOGADOR</th><th>NOTA</th><th>RECADO</th></tr></thead><tbody>' + linhas + '</tbody></table>' +
-        '<a class="link-tela" href="' + busca + '" target="_blank" rel="noopener">ver e deixar avaliação no Google ▸</a>';
+        (f.nota ? '<p class="placar__fonte">Avaliações reais do Google, copiadas como estão. Nota ' + esc(f.nota) + ' em ' + esc(f.total) + ' avaliações (' + esc(f.coletado) + ').</p>' : '') +
+        '<a class="link-tela" href="' + busca + '" target="_blank" rel="noopener">ver todas e deixar a sua no Google ▸</a>';
     }
     var cont = document.getElementById('contadores');
     if (cont) cont.innerHTML = d.contadores.map(function (c) {
-      return '<li><span class="contador__v">' + (c.valor != null ? Number(c.valor).toLocaleString('pt-BR') : PH()) + '</span>' +
+      return '<li><span class="contador__v">' + (c.valor == null ? PH() : typeof c.valor === 'number' ? c.valor.toLocaleString('pt-BR') : esc(c.valor)) + '</span>' +
         '<span class="contador__r">' + esc(c.rotulo) + '</span>' + (c.fonte ? '<span class="contador__f">' + esc(c.fonte) + '</span>' : '') + '</li>';
     }).join('');
   }).catch(function () {});

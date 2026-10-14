@@ -27,9 +27,10 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fonts/press-start-2p.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=17">
 
-  <!-- Horário entra como openingHoursSpecification quando a loja confirmar -->
+  <!-- Horário do perfil da loja no Google Maps (14/10/2026). Sem aggregateRating: o Google
+       não aceita nota da própria empresa marcada no site dela -->
   <script type="application/ld+json">
   {
    "@context": "https://schema.org",
@@ -47,6 +48,22 @@
      "image": "https://usetheatrum.com.br/nerd-club/og-image.jpg",
      "logo": "https://usetheatrum.com.br/nerd-club/apple-touch-icon.png",
      "telephone": "+55 24 99827-3443",
+     "openingHoursSpecification": [
+      {
+       "@type": "OpeningHoursSpecification",
+       "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+       ],
+       "opens": "09:00",
+       "closes": "19:00"
+      }
+     ],
+     "hasMap": "https://maps.google.com/?cid=9048964466626157945",
      "address": {
       "@type": "PostalAddress",
       "streetAddress": "R. Duque de Caxias, 77, Loja 42/43",
@@ -513,10 +530,10 @@
     <span><small>Site feito pela </small>Theatrum</span>
   </a>
 
-  <script src="js/config.js?v=3"></script>
+  <script src="js/config.js?v=4"></script>
   <script src="js/main.js?v=4" defer></script>
   <script src="js/diagnostico.js?v=2" defer></script>
   <script src="js/moedas.js?v=3" defer></script>
-  <script src="js/home.js?v=6" defer></script>
+  <script src="js/home.js?v=9" defer></script>
 </body>
 </html>

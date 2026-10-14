@@ -1,9 +1,57 @@
 {
-  "_leia": "High scores. Só avaliação real do Google, copiada como está, com autorização. Lista vazia = a seção mostra o slot vazio e o link para avaliar. Nunca inventar.",
-  "avaliacoes": [],
+  "_leia": "High scores. Avaliações reais do Google Maps, texto copiado como está (o \"…\" no fim é o próprio Google cortando o texto longo). Nome com sobrenome abreviado: são pessoas reais e ainda não autorizaram por escrito; para o site oficial, pedir autorização ou manter assim. Sem login o Google só mostra 5 das 52: para trazer outras, copiar à mão do perfil. Nunca inventar nem editar o texto.",
+  "fonte": {
+    "nota": "5,0",
+    "total": 52,
+    "coletado": "14/10/2026",
+    "link": "https://maps.google.com/?cid=9048964466626157945"
+  },
+  "avaliacoes": [
+    {
+      "nome": "Marcello S.",
+      "nota": 5,
+      "assunto": "loja",
+      "trecho": "ótimas opções de acessórios e jogos retrô. o atendimento é ótimo tb! recomendo a loja para todos que são amantes de games clássicos."
+    },
+    {
+      "nome": "Luiz Fernando C.",
+      "nota": 5,
+      "assunto": "oficina",
+      "trecho": "Atendimento muito bom, estava com problema em dois cartuchos de 64, prontamente a fita foi limpa e explicado que tudo está funcionando! Desejo sucesso à loja!"
+    },
+    {
+      "nome": "Raphael M.",
+      "nota": 5,
+      "assunto": "oficina",
+      "trecho": "Meu Nintendo 64 estava com problema no som, era só chiados, e resolveram, muito obrigado!"
+    },
+    {
+      "nome": "João Pedro A.",
+      "nota": 5,
+      "assunto": "loja",
+      "trecho": "Ótimo atendimento e produtos de qualidade! aconselho todos de Teresópolis frequentar esta loja!"
+    },
+    {
+      "nome": "walker 76",
+      "nota": 5,
+      "assunto": "loja",
+      "trecho": "A loja está de parabéns! Nota 10 pelo atendimento. São gentis, conheci vários jogos retro e jogos atuais. Comprei jogos semi-novos testei e valeu apena ter comprado. 👍🏼👍🏼👍🏼 …"
+    }
+  ],
   "contadores": [
-    { "valor": 4041, "rotulo": "seguidores no Instagram", "fonte": "@lojanerdclub em 14/10/2026" },
-    { "valor": null, "rotulo": "anos de loja" },
-    { "valor": null, "rotulo": "consoles consertados" }
+    {
+      "valor": "5,0",
+      "rotulo": "nota no Google, com 52 avaliações",
+      "fonte": "Google Maps em 14/10/2026"
+    },
+    {
+      "valor": 4041,
+      "rotulo": "seguidores no Instagram",
+      "fonte": "@lojanerdclub em 14/10/2026"
+    },
+    {
+      "valor": null,
+      "rotulo": "consoles consertados"
+    }
   ]
 }

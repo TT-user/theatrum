@@ -18,7 +18,7 @@ window.NC = {
     cep: '25953-390',
     geo: { lat: -22.4117774, lng: -42.9678887 }
   },
-  horario: null, // ex.: 'Seg a sex 9h às 18h · Sáb 9h às 14h'
+  horario: 'Seg a sáb, 9h às 19h · domingo fechado', // do perfil da loja no Google Maps, 14/10/2026
   cnpj: null,
   prazos: null, // ex.: 'limpeza em até 2 dias úteis; orçamento sem compromisso'
 
