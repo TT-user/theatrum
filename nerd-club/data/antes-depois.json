@@ -1,0 +1,8 @@
+{
+  "_leia": "Restauração. Só par de fotos reais da bancada da loja, do mesmo aparelho. O 'guia de limpeza do Xbox' do Instagram NÃO entra: os 'depois' são imagem de banco. Foto em null mostra a moldura vazia.",
+  "casos": [
+    { "id": "n64", "titulo": "Nintendo 64", "legenda": "Restauração de um N64 que chegou coberto de sujeira.", "antes": null, "depois": null, "_nota": "Existe o post de antes/depois no @lojanerdclub: pedir as fotos originais." },
+    { "id": "caso-2", "titulo": null, "legenda": null, "antes": null, "depois": null },
+    { "id": "caso-3", "titulo": null, "legenda": null, "antes": null, "depois": null }
+  ]
+}

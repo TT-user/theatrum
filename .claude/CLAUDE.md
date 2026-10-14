@@ -571,6 +571,26 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Saiu do ar em 13/10/2026 e voltou no mesmo dia, a pedido (bloco "DESATIVADA"
   apagado do `.htaccess`; o noindex continua).
   A versão de portfólio, com marca fictícia, é o Clã Valente, em `/negocios/demos/cla-valente/`.
+- `/nerd-club/` — prévia do site da Nerd Club (loja de games, oficina de videogame e
+  colecionáveis na Várzea, Teresópolis, RJ) com a InCubo (impressão 3D, marca parceira),
+  para prospecção, desde 14/10/2026. O brief do cliente pedia Astro + Tailwind + Vercel;
+  ficou estático no molde da casa, Astro só se ele fechar com domínio próprio. Conceito
+  "INSERT COIN": fliperama synthwave (roxo `#5B1A9A`, fundo `#0B0820`, neon magenta,
+  ciano e amarelo; a InCubo vira "Mundo 2" em azul `#2B3BFF` e vermelho `#E8232A`),
+  Press Start 2P só em título curto e botão, VT323 em detalhe de tela, Inter no corpo,
+  as três servidas daqui. Pixel art **só original**: os flyers deles usam Mario, Link e
+  logos de console, o site não. Contato, horário e cupom em `js/config.js` (null vira
+  placeholder) e um `whatsappLink()` só; vitrine, serviços, InCubo, avaliações e
+  antes/depois em `data/*.json`, com `_leia` dizendo o que pode entrar. Os produtos são
+  todos exemplo; avaliações e antes/depois ficam vazios até virem reais (o "guia de
+  limpeza" do Instagram tem "depois" de banco de imagem). Desbloqueio fora da prévia
+  (`ativo: false`): os flyers prometem "jogos infinitos". O COINS do HUD é moeda que o
+  visitante junta explorando, não número da loja. Em fases: a 1 (base: HUD, menu de
+  pausa, rodapé, moeda do WhatsApp) está no ar; home, `/oficina`, `/loja` e `/incubo`
+  vêm depois. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET,
+  marca d'água com `utm_campaign=nerd-club`. Brief, prints e pendências em
+  `interno/clientes/nerd-club/`, fora do git. A foto da fachada veio
+  de um print que o Matheus mandou junto com o brief.
 
 ### As demonstrações, uma pasta por área
 
@@ -708,7 +728,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

@@ -1,0 +1,14 @@
+{
+  "_leia": "InCubo. Categorias tiradas do flyer de impressão 3D e do Instagram @incubocubo. A galeria fica vazia até a InCubo mandar as fotos das peças (nada de print do Instagram com marca de outra conta). Nome de personagem não entra em título nem em SEO.",
+  "categorias": [
+    { "id": "colecionaveis", "nome": "Colecionáveis e estátuas", "texto": "Miniaturas e estátuas pintadas à mão, de games, anime e filmes." },
+    { "id": "cosplay", "nome": "Cosplay e props", "texto": "Máscaras, armas e acessórios de cosplay." },
+    { "id": "gamer", "nome": "Acessórios gamer", "texto": "Suportes para controle e fone, organizadores." },
+    { "id": "decoracao", "nome": "Decoração e luminárias", "texto": "Luminárias, quadros e peças para a estante." },
+    { "id": "reposicao", "nome": "Peças de reposição", "texto": "Carcaças de consoles retrô, botões customizados e partes de reparo." },
+    { "id": "prototipos", "nome": "Protótipos e maquetes", "texto": "Modelos arquitetônicos, maquetes e protótipos funcionais." }
+  ],
+  "tamanhos": ["P (até 10 cm)", "M (até 20 cm)", "G (até 30 cm)", "Gigante"],
+  "acabamentos": ["Sem pintura", "Só primer", "Pintada à mão"],
+  "itens": []
+}

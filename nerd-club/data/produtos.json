@@ -1,0 +1,14 @@
+{
+  "_leia": "Vitrine. TODOS os itens abaixo são EXEMPLO (exemplo: true mostra o selo amarelo) até a loja mandar a lista real. foto em null mostra a moldura vazia. preco em null mostra 'consulte'. condicao: novo, seminovo, retro ou ultima. categoria: consoles, jogos, retro, portateis, acessorios, colecionaveis.",
+  "produtos": [
+    { "id": "ps-vita", "nome": "PS Vita", "categoria": "portateis", "condicao": "seminovo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "psp", "nome": "PSP edição especial", "categoria": "portateis", "condicao": "seminovo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "switch-oled", "nome": "Nintendo Switch OLED", "categoria": "consoles", "condicao": "novo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "n64", "nome": "Nintendo 64 restaurado", "categoria": "retro", "condicao": "retro", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "gba-sp", "nome": "Game Boy Advance SP", "categoria": "retro", "condicao": "ultima", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "mouse-sem-fio", "nome": "Mouse gamer sem fio", "categoria": "acessorios", "condicao": "novo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "fone-bt", "nome": "Fone bluetooth", "categoria": "acessorios", "condicao": "novo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": false, "exemplo": true },
+    { "id": "quadro-controle", "nome": "Quadro de controle desmontado", "categoria": "colecionaveis", "condicao": "novo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": true, "exemplo": true },
+    { "id": "action-figure", "nome": "Action figure articulado", "categoria": "colecionaveis", "condicao": "novo", "preco": null, "foto": null, "descricao": "", "shopee": null, "destaque": false, "exemplo": true }
+  ]
+}
