@@ -592,7 +592,14 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   missão com setas do teclado e atributos tirados dos flyers (nada de "garantia", que
   ninguém confirmou), diagnóstico rápido em `js/diagnostico.js` (montado por
   `[data-diagnostico]`, reaproveitável na `/oficina`), antes/depois arrastável,
-  vitrine em cartuchos, InCubo com o "warp" de entrada, high scores e mapa só no clique. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET,
+  vitrine em cartuchos, InCubo com o "warp" de entrada, high scores e mapa só no clique.
+  No pé da Oficina, uma corrida de enfeite (`#corrida`): o Nerdinho, robozinho de pixel
+  original, junta moedas fugindo de duas bolas de poeira, pega a ventoinha turbo e a
+  poeira foge. Foi pedido "tipo Pac-Man" e saiu assim de propósito: Pac-Man é da Bandai
+  Namco, e a mecânica pode, o personagem não. A poeira é bola redonda com fiapos e
+  fica bege no susto: a primeira versão, de saia ondulada que ficava azul, era o fantasma. Ciclo de 16 s só em transform e opacidade,
+  anda só à vista e com a aba aberta; as moedas são montadas no `home.js` com o atraso
+  calculado pela largura (mudou o tempo no CSS, muda `CICLO` lá). Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET,
   marca d'água com `utm_campaign=nerd-club`. Brief, prints e pendências em
   `interno/clientes/nerd-club/`, fora do git. A foto da fachada veio
   de um print que o Matheus mandou junto com o brief.

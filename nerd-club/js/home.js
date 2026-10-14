@@ -163,6 +163,47 @@
     }).join('');
   }).catch(function () {});
 
+  /* ---------- Corrida de enfeite: moedas somem quando o Nerdinho passa ---------- */
+  var corrida = document.getElementById('corrida');
+  var moedasBox = document.getElementById('corrida-moedas');
+  if (corrida && moedasBox) {
+    var CICLO = 16; // segundos, igual ao CSS
+    var montaMoedas = function () {
+      var W = corrida.clientWidth;
+      var n = Math.max(6, Math.round(W / 52));
+      var html = '';
+      for (var i = 0; i < n; i++) {
+        var p = .05 + (.83 * i) / (n - 1);
+        var x = p * W;
+        // o herói vai de -60px a (W - 56px) em 45% do ciclo; a frente dele (48px) apanha a moeda
+        var f = Math.max(0, (x - 44 + 60) / (W - 56 + 60)) * .45;
+        html += '<i class="corrida__moeda" style="left:' + (p * 100).toFixed(2) + '%;animation-delay:' + (f * CICLO).toFixed(2) + 's"></i>';
+      }
+      moedasBox.innerHTML = html;
+    };
+    montaMoedas();
+    if (!reduz) {
+      var religa = function () {
+        corrida.classList.remove('corrida--on');
+        montaMoedas();
+        void corrida.offsetWidth; // zera o relógio de todo mundo junto
+        corrida.classList.add('corrida--on');
+      };
+      religa();
+      var largura = corrida.clientWidth, tResize;
+      window.addEventListener('resize', function () {
+        clearTimeout(tResize);
+        tResize = setTimeout(function () { if (corrida.clientWidth !== largura) { largura = corrida.clientWidth; religa(); } }, 200);
+      });
+      var visivel = false;
+      var anda = function () { corrida.classList.toggle('anda', visivel && !document.hidden); };
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; anda(); }).observe(corrida);
+      }
+      document.addEventListener('visibilitychange', anda);
+    }
+  }
+
   /* ---------- [8] Mapa só no clique ---------- */
   var abreMapa = document.getElementById('abre-mapa');
   if (abreMapa) abreMapa.addEventListener('click', function () {

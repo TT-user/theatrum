@@ -15,7 +15,7 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fonts/press-start-2p.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 
   <script type="application/ld+json">
   {
@@ -226,6 +226,17 @@
         </div>
         <div class="dialogo" data-diagnostico="home"></div>
       </div>
+
+      <!-- Corrida de enfeite: o Nerdinho junta moedas fugindo da poeira, pega a ventoinha
+           turbo e vira o jogo. Personagens originais; só anda à vista (home.js) -->
+      <div class="corrida" id="corrida" aria-hidden="true">
+        <span class="corrida__hud">SALVE O CONSOLE · FASE 1</span>
+        <div class="corrida__moedas" id="corrida-moedas"></div>
+        <svg class="corrida__turbo" viewBox="0 0 12 12" shape-rendering="crispEdges"><path fill="#22E5FF" fill-rule="evenodd" d="M1 1h10v10h-10zM2 2v8h8v-8z"/><path fill="#F1EDFF" d="M5 3h2v2h-2zM7 5h2v2h-2zM5 7h2v2h-2zM3 5h2v2h-2z"/><path fill="#FFD23F" d="M5 5h2v2h-2z"/></svg>
+        <div class="ator ator--poeira2"><svg class="sprite" viewBox="0 0 12 12" shape-rendering="crispEdges"><g class="p-brava"><path fill="#A39A8A" d="M4 1h4v1h2v1h1v2h1v3h-1v2h-1v1h-2v1h-4v-1h-2v-1h-1v-2h-1v-3h1v-2h1v-1h2z"/><path fill="#7A7466" d="M2 0h1v2h-1zM10 0h1v1h-1zM11 1h1v1h-1zM0 6h1v1h-1zM5 11h1v1h-1zM3 4h1v1h-1zM8 9h1v1h-1zM6 2h1v1h-1z"/><path fill="#05040F" d="M4 5h1v2h-1zM7 5h1v2h-1zM3 3h1v1h-1zM4 4h1v1h-1zM8 3h1v1h-1zM7 4h1v1h-1zM5 8h2v1h-2z"/></g><g class="p-medo"><path fill="#A39A8A" d="M4 1h4v1h2v1h1v2h1v3h-1v2h-1v1h-2v1h-4v-1h-2v-1h-1v-2h-1v-3h1v-2h1v-1h2z"/><path fill="#7A7466" d="M2 0h1v2h-1zM10 0h1v1h-1zM11 1h1v1h-1zM0 6h1v1h-1zM5 11h1v1h-1zM3 4h1v1h-1zM8 9h1v1h-1zM6 2h1v1h-1z"/><path fill="#fff" d="M3 4h2v2h-2zM7 4h2v2h-2z"/><path fill="#05040F" d="M3 5h1v1h-1zM7 5h1v1h-1zM5 7h2v2h-2z"/><path fill="#22E5FF" d="M10 3h1v2h-1zM1 2h1v1h-1z"/></g></svg></div>
+        <div class="ator ator--poeira1"><svg class="sprite" viewBox="0 0 12 12" shape-rendering="crispEdges"><g class="p-brava"><path fill="#A39A8A" d="M4 1h4v1h2v1h1v2h1v3h-1v2h-1v1h-2v1h-4v-1h-2v-1h-1v-2h-1v-3h1v-2h1v-1h2z"/><path fill="#7A7466" d="M2 0h1v2h-1zM10 0h1v1h-1zM11 1h1v1h-1zM0 6h1v1h-1zM5 11h1v1h-1zM3 4h1v1h-1zM8 9h1v1h-1zM6 2h1v1h-1z"/><path fill="#05040F" d="M4 5h1v2h-1zM7 5h1v2h-1zM3 3h1v1h-1zM4 4h1v1h-1zM8 3h1v1h-1zM7 4h1v1h-1zM5 8h2v1h-2z"/></g><g class="p-medo"><path fill="#A39A8A" d="M4 1h4v1h2v1h1v2h1v3h-1v2h-1v1h-2v1h-4v-1h-2v-1h-1v-2h-1v-3h1v-2h1v-1h2z"/><path fill="#7A7466" d="M2 0h1v2h-1zM10 0h1v1h-1zM11 1h1v1h-1zM0 6h1v1h-1zM5 11h1v1h-1zM3 4h1v1h-1zM8 9h1v1h-1zM6 2h1v1h-1z"/><path fill="#fff" d="M3 4h2v2h-2zM7 4h2v2h-2z"/><path fill="#05040F" d="M3 5h1v1h-1zM7 5h1v1h-1zM5 7h2v2h-2z"/><path fill="#22E5FF" d="M10 3h1v2h-1zM1 2h1v1h-1z"/></g></svg></div>
+        <div class="ator ator--heroi"><svg class="sprite" viewBox="0 0 16 12" shape-rendering="crispEdges"><path fill="#FF2BD6" d="M6 0h1v1h-1z"/><path fill="#B9B0DA" d="M6 1h1v1h-1z"/><path fill="#7A2BC4" d="M2 2h9v7h-9zM11 5h1v2h-1z"/><path fill="#5B1A9A" d="M2 8h9v1h-9z"/><path fill="#0B0820" d="M3 3h7v3h-7z"/><path fill="#22E5FF" d="M6 4h1v1h-1zM8 4h1v1h-1z"/><path class="h-pe-a" fill="#F1EDFF" d="M3 9h2v2h-2zM8 9h2v2h-2z"/><path class="h-pe-b" fill="#F1EDFF" d="M4 9h2v2h-2zM7 9h2v2h-2z"/><path class="h-vento" fill="#22E5FF" d="M13 3h2v1h-2zM12 5h3v1h-3zM13 7h2v1h-2z"/></svg></div>
+      </div>
     </section>
 
     <!-- [4] Restauração: antes e depois arrastável -->
@@ -362,6 +373,6 @@
   <script src="js/config.js?v=1"></script>
   <script src="js/main.js?v=2" defer></script>
   <script src="js/diagnostico.js?v=2" defer></script>
-  <script src="js/home.js?v=2" defer></script>
+  <script src="js/home.js?v=3" defer></script>
 </body>
 </html>

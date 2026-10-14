@@ -354,6 +354,47 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .still *, .still *::before, .still *::after { animation: none !important; transition: none !important; }
 .still body::after { display: none; }
 
+/* ---------- Corrida de enfeite (fim da Oficina) ----------
+   Um ciclo de 16 s, tudo em transform e opacidade. As animações só existem com
+   .corrida--on (home.js liga, e religa no resize para manter o relógio comum) e
+   só andam com .anda (seção à vista e aba aberta). Sem movimento: cena parada. */
+.corrida { position: relative; height: 76px; margin-top: 64px; overflow: hidden; border-top: 2px dashed rgba(122, 43, 196, .55); background: linear-gradient(180deg, rgba(91, 26, 154, .14), transparent); }
+.corrida__hud { position: absolute; right: var(--gutter); top: 8px; font: 400 17px/1 var(--tela); color: rgba(185, 176, 218, .6); }
+.corrida__moedas { position: absolute; left: 0; right: 0; bottom: 22px; height: 10px; }
+.corrida__moeda { position: absolute; bottom: 0; width: 10px; height: 10px; margin-left: -5px; background: var(--amarelo); box-shadow: inset -2px -2px 0 #C99A0C, inset 2px 2px 0 #FFF2A8; }
+.corrida__turbo { position: absolute; left: 93%; bottom: 15px; width: 24px; height: 24px; filter: drop-shadow(0 0 6px var(--ciano)); }
+.ator { position: absolute; left: 0; bottom: 12px; width: 100%; height: 36px; pointer-events: none; }
+.ator .sprite { position: absolute; left: 0; bottom: 0; height: 36px; }
+.ator--heroi .sprite { width: 48px; }
+.ator--poeira1 .sprite, .ator--poeira2 .sprite { width: 36px; }
+/* cena parada (sem movimento ou antes de ligar) */
+.ator--heroi { transform: translateX(46%); }
+.ator--poeira1 { transform: translateX(calc(46% - 80px)); }
+.ator--poeira2 { transform: translateX(calc(46% - 150px)); }
+.p-medo, .h-pe-b, .h-vento { opacity: 0; }
+
+.corrida--on .ator--heroi { animation: nc-heroi 16s linear infinite; }
+.corrida--on .ator--poeira1 { animation: nc-poeira1 16s linear infinite; }
+.corrida--on .ator--poeira2 { animation: nc-poeira2 16s linear infinite; }
+.corrida--on .sprite { animation: nc-vira 16s linear infinite; }
+.corrida--on .p-brava { animation: nc-brava 16s linear infinite; }
+.corrida--on .p-medo, .corrida--on .h-vento { animation: nc-medo 16s linear infinite; }
+.corrida--on .h-pe-a { animation: nc-pe .32s linear infinite; }
+.corrida--on .h-pe-b { animation: nc-pe .32s linear -.16s infinite; }
+.corrida--on .corrida__turbo { animation: nc-turbo 16s linear infinite; }
+.corrida--on .corrida__moeda { animation: nc-moeda 16s linear infinite; }
+.corrida:not(.anda) * { animation-play-state: paused !important; }
+
+@keyframes nc-heroi { 0% { transform: translateX(-60px); } 45%, 50% { transform: translateX(calc(100% - 56px)); } 95%, 100% { transform: translateX(-60px); } }
+@keyframes nc-poeira1 { 0% { transform: translateX(-130px); } 45%, 48% { transform: translateX(calc(100% - 150px)); } 93% { transform: translateX(-160px); } 100% { transform: translateX(-130px); } }
+@keyframes nc-poeira2 { 0% { transform: translateX(-200px); } 45%, 48% { transform: translateX(calc(100% - 230px)); } 90% { transform: translateX(-240px); } 100% { transform: translateX(-200px); } }
+@keyframes nc-vira { 0%, 47% { transform: scaleX(1); } 47.5%, 99.5% { transform: scaleX(-1); } 100% { transform: scaleX(1); } }
+@keyframes nc-brava { 0%, 46% { opacity: 1; } 46.5%, 97% { opacity: 0; } 97.5%, 100% { opacity: 1; } }
+@keyframes nc-medo { 0%, 46% { opacity: 0; } 46.5%, 97% { opacity: 1; } 97.5%, 100% { opacity: 0; } }
+@keyframes nc-pe { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes nc-turbo { 0%, 42.5% { opacity: 1; } 43%, 99% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes nc-moeda { 0%, 88% { opacity: 0; } 88.5%, 100% { opacity: 1; } }
+
 /* ---------- Rodapé ---------- */
 .rodape { position: relative; background: #07051A; border-top: 2px solid var(--roxo); padding: 56px 0 120px; font-size: 16px; color: var(--suave); }
 .rodape__grid { display: grid; gap: 36px; }
