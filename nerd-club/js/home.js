@@ -102,12 +102,11 @@
     var lista = produtos.filter(function (p) { return cat === 'destaque' ? p.destaque : p.categoria === cat; });
     trilho.innerHTML = lista.map(cartucho).join('') || '<li class="cart cart--vazio">' + PH('produtos desta categoria') + '</li>';
     trilho.querySelectorAll('[data-zap]').forEach(function (a) { if (window.NCzap) window.NCzap.liga(a); });
-    trilho.scrollLeft = 0;
     document.querySelectorAll('.abas [data-cat]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cat') === cat ? 'true' : 'false'); });
   }
   json('produtos').then(function (d) { produtos = d.produtos; filtra('destaque'); }).catch(function () {});
   document.querySelectorAll('.abas [data-cat]').forEach(function (b) {
-    b.addEventListener('click', function () { filtra(b.getAttribute('data-cat')); if (window.NCsom) window.NCsom('select'); });
+    b.addEventListener('click', function () { filtra(b.getAttribute('data-cat')); if (trilho) trilho.scrollLeft = 0; if (window.NCsom) window.NCsom('select'); });
   });
   // "Loot lendário" no menu e no card de missão já chega com o filtro
   document.addEventListener('click', function (e) {
@@ -180,6 +179,7 @@
       }
       moedasBox.innerHTML = html;
     };
+    var liga = function () {
     montaMoedas();
     if (!reduz) {
       var religa = function () {
@@ -201,6 +201,15 @@
       }
       document.addEventListener('visibilitychange', anda);
     }
+    };
+    if ('IntersectionObserver' in window) {
+      var perto = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return;
+        perto.disconnect();
+        liga();
+      }, { rootMargin: '400px 0px' });
+      perto.observe(corrida);
+    } else liga();
   }
 
   /* ---------- [8] Mapa só no clique ---------- */

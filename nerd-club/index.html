@@ -3,15 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerd Club | Loja de games, conserto de videogame e impressão 3D em Teresópolis</title>
-  <meta name="description" content="Consoles e jogos novos, seminovos e retrô, conserto e limpeza de videogame, colecionáveis e impressão 3D sob encomenda com a InCubo. Na Várzea, em Teresópolis, com envio para todo o Brasil.">
+  <title>Nerd Club Teresópolis | Games, conserto de videogame e 3D</title>
+  <meta name="description" content="Loja de games em Teresópolis: consoles novos, seminovos e retrô, conserto de videogame, colecionáveis e impressão 3D. Envio para todo o Brasil.">
   <meta name="theme-color" content="#0B0820">
-  <meta name="robots" content="noindex, nofollow"><!-- prévia: tirar quando virar o site oficial -->
+  <meta name="robots" content="noindex, nofollow"><!-- prévia: tirar quando virar o site oficial, e pôr o canonical do domínio -->
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Nerd Club | Bem-vindo ao clube">
-  <meta property="og:description" content="Loja de games, oficina de videogame e impressão 3D em Teresópolis.">
+  <meta property="og:site_name" content="Nerd Club">
+  <meta property="og:title" content="Nerd Club | Loja de games, oficina e impressão 3D em Teresópolis">
+  <meta property="og:description" content="Consoles do Game Boy ao PS5, conserto de videogame e colecionáveis. Fale direto no WhatsApp.">
+  <meta property="og:url" content="https://usetheatrum.com.br/nerd-club/">
+  <meta property="og:image" content="https://usetheatrum.com.br/nerd-club/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fachada roxa da Nerd Club e o texto Loja de games, oficina e impressão 3D">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://usetheatrum.com.br/nerd-club/og-image.jpg">
 
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
@@ -19,18 +27,122 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fonts/press-start-2p.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=16">
 
+  <!-- Horário entra como openingHoursSpecification quando a loja confirmar -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "ElectronicsStore",
-    "name": "Nerd Club",
-    "slogan": "Restaurando memórias e criando novas histórias",
-    "telephone": "+55 24 99827-3443",
-    "address": { "@type": "PostalAddress", "streetAddress": "R. Duque de Caxias, 77, Loja 42/43", "addressLocality": "Teresópolis", "addressRegion": "RJ", "postalCode": "25953-390", "addressCountry": "BR" },
-    "geo": { "@type": "GeoCoordinates", "latitude": -22.4117774, "longitude": -42.9678887 },
-    "sameAs": ["https://www.instagram.com/lojanerdclub/", "https://shopee.com.br/shop/1194840850"]
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": [
+      "ElectronicsStore",
+      "LocalBusiness"
+     ],
+     "@id": "#nerd-club",
+     "name": "Nerd Club",
+     "slogan": "Restaurando memórias e criando novas histórias",
+     "description": "Loja de games, assistência técnica de videogame e colecionáveis em Teresópolis, RJ.",
+     "url": "https://usetheatrum.com.br/nerd-club/",
+     "image": "https://usetheatrum.com.br/nerd-club/og-image.jpg",
+     "logo": "https://usetheatrum.com.br/nerd-club/apple-touch-icon.png",
+     "telephone": "+55 24 99827-3443",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "R. Duque de Caxias, 77, Loja 42/43",
+      "addressLocality": "Teresópolis",
+      "addressRegion": "RJ",
+      "postalCode": "25953-390",
+      "addressCountry": "BR"
+     },
+     "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -22.4117774,
+      "longitude": -42.9678887
+     },
+     "areaServed": [
+      {
+       "@type": "City",
+       "name": "Teresópolis"
+      },
+      {
+       "@type": "Country",
+       "name": "Brasil"
+      }
+     ],
+     "sameAs": [
+      "https://www.instagram.com/lojanerdclub/",
+      "https://shopee.com.br/shop/1194840850"
+     ],
+     "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços da oficina",
+      "itemListElement": [
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Limpeza completa e troca de pasta térmica"
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Conserto de controle e drift"
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Superaquecimento"
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Troca de carcaça e botões"
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Restauração de console retrô"
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Manutenção de celular e computador"
+        }
+       }
+      ]
+     },
+     "department": {
+      "@id": "#incubo"
+     }
+    },
+    {
+     "@type": "LocalBusiness",
+     "@id": "#incubo",
+     "name": "InCubo",
+     "description": "Impressão 3D sob encomenda: colecionáveis, cosplay, acessórios gamer, decoração, peças de reposição e protótipos.",
+     "sameAs": [
+      "https://www.instagram.com/incubocubo/"
+     ],
+     "areaServed": {
+      "@type": "Country",
+      "name": "Brasil"
+     },
+     "parentOrganization": {
+      "@id": "#nerd-club"
+     }
+    }
+   ]
   }
   </script>
 </head>
@@ -87,8 +199,8 @@
 
   <header class="hud" id="topo">
     <div class="wrap hud__in">
-      <a href="#inicio" class="logo glitch" aria-label="Nerd Club, início">
-        <span class="logo__txt"><span>NERD</span><span>CLUB</span></span>
+      <a href="#inicio" class="logo glitch">
+        <span class="logo__txt"><span>NERD</span> <span>CLUB</span></span>
         <svg aria-hidden="true"><use href="#controle-logo"/></svg>
       </a>
       <span class="hud__vidas" aria-hidden="true">♥♥♥</span>
@@ -105,10 +217,10 @@
         <span class="hud__coins" title="Moedas que você junta explorando o site">COINS: <b id="coins">0000</b></span>
         <span class="hud__sep" aria-hidden="true">|</span>
         <span class="hud__local">📍 TERESÓPOLIS</span>
-        <button class="hud__btn hud__som" type="button" id="som" aria-pressed="false" aria-label="Efeitos sonoros">
+        <button class="hud__btn hud__som" type="button" id="som" aria-pressed="false">
           <!-- desenho inline: o CSS não alcança o que fica dentro de um <use> -->
           <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M3 9h4l5-4h2v14h-2l-5-4h-4z"/><path class="som-on" fill="currentColor" d="M16 9h2v6h-2zM19 7h2v10h-2z"/><path class="som-off" fill="currentColor" d="M16 9h2v2h-2zM20 9h2v2h-2zM18 11h2v2h-2zM16 13h2v2h-2zM20 13h2v2h-2z"/></svg>
-          <span class="hud__som-txt" aria-hidden="true">OFF</span>
+          <span class="sr">Efeitos sonoros</span><span class="hud__som-txt">OFF</span>
         </button>
         <button class="hud__btn hud__pause" type="button" id="abre-pausa" aria-haspopup="dialog" aria-controls="pausa"><i aria-hidden="true"></i><span>MENU</span></button>
         <a href="https://wa.me/5524998273443" class="btn hud__cta" data-zap="topo" data-msg="Olá Nerd Club! Vim pelo site.">WHATSAPP</a>
@@ -147,11 +259,14 @@
   </div>
   <div class="moeda-aviso" id="moeda-aviso" role="status" aria-live="polite"></div>
 
+  <!-- Fundo da página: o chão synthwave do hero, fixo e parado, aparece entre as seções -->
+  <div class="fundo" aria-hidden="true"><div class="fundo__horizonte"></div><div class="fundo__chao"></div></div>
+
   <main id="inicio">
     <!-- [1] Hero -->
     <section class="hero">
       <button class="moeda-secreta" type="button" data-moeda="m1" style="bottom:22px;left:44%" aria-label="Moeda escondida"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#000" d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/><path fill="#FFD23F" d="M2 1h4v1h1v4h-1v1h-4v-1h-1v-4h1z"/><path fill="#C99A0C" d="M4 2h1v4h-1z"/><path fill="#FFF2A8" d="M2 2h1v2h-1z"/></svg></button>
-      <div class="hero__ceu" aria-hidden="true"><div class="hero__sol"></div><div class="hero__chao"></div></div>
+      <div class="hero__ceu" aria-hidden="true"><div class="hero__sol"></div></div>
       <div class="wrap hero__in">
         <div>
           <p class="hero__ola cursor">PLAYER 1, BEM-VINDO AO CLUBE</p>
@@ -171,7 +286,7 @@
         <figure class="hero__tela">
           <div class="crt">
             <div class="crt__vidro">
-              <img src="assets/img/fachada-674.webp" srcset="assets/img/fachada-480.webp 480w, assets/img/fachada-674.webp 674w" sizes="(min-width: 900px) 412px, calc(100vw - 60px)" width="674" height="810" alt="Fachada roxa da Nerd Club na galeria, com a vitrine de action figures e consoles" fetchpriority="high">
+              <img src="assets/img/fachada-674.webp" srcset="assets/img/fachada-480.webp 480w, assets/img/fachada-560.webp 560w, assets/img/fachada-674.webp 674w" sizes="(min-width: 900px) 412px, calc(100vw - 60px)" width="674" height="810" alt="Fachada roxa da Nerd Club na galeria, com a vitrine de action figures e consoles" fetchpriority="high">
             </div>
             <span class="crt__led" aria-hidden="true"></span>
           </div>
@@ -186,7 +301,7 @@
       <div class="wrap">
         <p class="rotulo">SELECT YOUR QUEST</p>
         <h2 class="titulo" id="missoes-t">Escolha sua missão</h2>
-        <p class="lead">Quatro frentes, uma loja só. Use o mouse, o dedo ou as setas do teclado.</p>
+        <p class="lead">Quatro frentes, uma loja só. Escolha por onde começar.</p>
         <div class="missoes" id="missoes-grade">
           <a class="missao" href="#vitrine">
             <span class="missao__p1" aria-hidden="true">P1</span>
@@ -243,7 +358,7 @@
         <div>
           <p class="rotulo">A OFICINA</p>
           <h2 class="titulo" id="oficina-t">Seu console tá tossindo poeira?</h2>
-          <p class="lead">Manutenção de videogame, portátil, controle, celular e computador, na bancada da própria loja.</p>
+          <p class="lead">Conserto e manutenção de videogame, portátil, controle, celular e computador, na bancada da própria loja em Teresópolis.</p>
           <ul class="powerups" id="powerups"></ul>
           <p class="powerups__nota">Prazo e valor de cada serviço: <span data-cfg="prazos"></span></p>
         </div>
@@ -356,8 +471,8 @@
     <div class="wrap">
       <div class="rodape__grid">
         <div>
-          <a href="#inicio" class="logo" aria-label="Nerd Club, início">
-            <span class="logo__txt"><span>NERD</span><span>CLUB</span></span>
+          <a href="#inicio" class="logo">
+            <span class="logo__txt"><span>NERD</span> <span>CLUB</span></span>
             <svg aria-hidden="true"><use href="#controle-logo"/></svg>
           </a>
           <p style="margin-top:18px">Restaurando memórias e criando novas histórias.</p>
@@ -393,15 +508,15 @@
   </a>
 
   <!-- Marca d'água da Theatrum: sai na versão final -->
-  <a class="theatrum" href="https://usetheatrum.com.br/?utm_source=previa&amp;utm_medium=marca-dagua&amp;utm_campaign=nerd-club" target="_blank" rel="noopener" aria-label="Site feito pela Theatrum">
+  <a class="theatrum" href="https://usetheatrum.com.br/?utm_source=previa&amp;utm_medium=marca-dagua&amp;utm_campaign=nerd-club" target="_blank" rel="noopener">
     <img src="assets/img/theatrum-64.webp" width="64" height="64" alt="">
-    <span><small>Site feito pela</small>Theatrum</span>
+    <span><small>Site feito pela </small>Theatrum</span>
   </a>
 
   <script src="js/config.js?v=3"></script>
   <script src="js/main.js?v=4" defer></script>
   <script src="js/diagnostico.js?v=2" defer></script>
   <script src="js/moedas.js?v=3" defer></script>
-  <script src="js/home.js?v=5" defer></script>
+  <script src="js/home.js?v=6" defer></script>
 </body>
 </html>

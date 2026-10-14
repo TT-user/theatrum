@@ -3,6 +3,11 @@
 @font-face { font-family: "Press Start 2P"; src: url(../fonts/press-start-2p.woff2) format("woff2"); font-display: swap; }
 @font-face { font-family: "VT323"; src: url(../fonts/vt323.woff2) format("woff2"); font-display: swap; }
 @font-face { font-family: "Inter"; src: url(../fonts/inter.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+/* Reservas com a mesma largura das fontes de verdade (medido no Chrome): o texto não muda
+   de tamanho quando a fonte chega, e o layout não pula (era o CLS de 0,23 no hero). */
+@font-face { font-family: "Pixel Reserva"; src: local("Courier New"), local("Courier"), local("Liberation Mono"), local("Noto Sans Mono"), local("Droid Sans Mono"), local("Menlo"); size-adjust: 166.6%; ascent-override: 60%; descent-override: 0%; }
+@font-face { font-family: "Tela Reserva"; src: local("Courier New"), local("Courier"), local("Liberation Mono"), local("Noto Sans Mono"), local("Droid Sans Mono"), local("Menlo"); size-adjust: 66.65%; }
+@font-face { font-family: "Inter Reserva"; src: local("Arial"), local("Helvetica"); size-adjust: 102%; }
 
 :root {
   /* marca */
@@ -21,9 +26,9 @@
   --azul: #2B3BFF;
   --vermelho: #E8232A;
 
-  --pixel: "Press Start 2P", ui-monospace, monospace;
-  --tela: "VT323", ui-monospace, monospace;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pixel: "Press Start 2P", "Pixel Reserva", ui-monospace, monospace;
+  --tela: "VT323", "Tela Reserva", ui-monospace, monospace;
+  --sans: "Inter", "Inter Reserva", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --gutter: 16px;
   --max: 1200px;
@@ -154,9 +159,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 
 /* ---------- Hero (casca da Fase 1; a Fase 2 completa) ---------- */
 .hero { position: relative; overflow: hidden; padding: 48px 0 72px; isolation: isolate; }
-.hero__ceu { position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 50% at 70% 30%, rgba(91, 26, 154, .55), transparent 70%), linear-gradient(180deg, #0B0820 0%, #1B0B3A 55%, #2A0B45 70%, #0B0820 100%); }
+.hero__ceu { position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 50% at 70% 30%, rgba(91, 26, 154, .55), transparent 70%), linear-gradient(180deg, #0B0820 0%, rgba(27, 11, 58, .9) 50%, rgba(42, 11, 69, .45) 78%, transparent 100%); }
 .hero__sol { position: absolute; left: 50%; bottom: 30%; width: min(420px, 80vw); aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: linear-gradient(180deg, #FFD23F 0%, #FF7A59 45%, #FF2BD6 100%); --faixas: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 64%, transparent 64% 69%, #000 69% 76%, transparent 76% 82%, #000 82% 87%, transparent 87%); -webkit-mask: var(--faixas); mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 64%, transparent 64% 69%, #000 69% 76%, transparent 76% 82%, #000 82% 87%, transparent 87%); opacity: .5; filter: blur(.3px); }
-.hero__chao { position: absolute; left: -50%; right: -50%; bottom: 0; height: 34%; background: linear-gradient(transparent, rgba(255, 43, 214, .12)), repeating-linear-gradient(90deg, rgba(255, 43, 214, .55) 0 2px, transparent 2px 60px), repeating-linear-gradient(0deg, rgba(255, 43, 214, .55) 0 2px, transparent 2px 40px); transform: perspective(300px) rotateX(58deg); transform-origin: top; -webkit-mask: linear-gradient(to bottom, transparent, #000 40%); mask: linear-gradient(to bottom, transparent, #000 40%); }
 .hero__in { display: grid; gap: 40px; align-items: center; }
 .hero__ola { font: 400 24px/1 var(--tela); color: var(--ciano); margin: 0 0 16px; }
 .hero h1 { font: 400 clamp(19px, 5.4vw, 40px)/1.3 var(--pixel); margin: 0 0 22px; text-shadow: 0 0 18px rgba(255, 43, 214, .55), 4px 4px 0 #000; }
@@ -208,7 +212,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .missao--incubo .atributos i { background: repeating-linear-gradient(90deg, var(--vermelho) 0 calc(20% - 3px), transparent calc(20% - 3px) 20%); }
 
 /* ---------- Oficina ---------- */
-.oficina { background: var(--bg-2); border-top: 2px solid #000; border-bottom: 2px solid #000; }
+.oficina { background: linear-gradient(180deg, transparent, rgba(18, 13, 46, .82) 140px, rgba(18, 13, 46, .82) calc(100% - 140px), transparent); }
 .oficina__in { display: grid; gap: 48px; align-items: start; }
 @media (min-width: 980px) { .oficina__in { grid-template-columns: 1fr 1fr; gap: 56px; } .dialogo { position: sticky; top: calc(var(--hud-h) + 36px); } }
 .powerups { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -226,7 +230,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .dialogo__quem, .dialogo__passo { padding: 6px 10px; font: 400 9px/1.4 var(--pixel); background: var(--roxo); border: 3px solid #000; color: #fff; }
 .dialogo__passo { background: #000; color: var(--amarelo); }
 .dialogo__quem, .dialogo__passo { white-space: nowrap; }
-@media (max-width: 420px) { .dialogo__quem, .dialogo__passo { font-size: 7.5px; padding: 6px 7px; } }
+@media (max-width: 420px) { .dialogo__quem, .dialogo__passo { font-size: 8px; padding: 6px 7px; } }
 .dialogo__fala { font: 400 15px/1.6 var(--pixel); margin: 0 0 18px; }
 .dialogo__fala::before { content: "▶ "; color: var(--magenta); }
 .dialogo__fala--ok { color: var(--amarelo); font-size: 20px; text-shadow: 3px 3px 0 #000; }
@@ -280,7 +284,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .cart__selo { position: absolute; left: 6px; bottom: 6px; padding: 3px 6px; font: 400 8px/1.5 var(--pixel); background: var(--ciano); color: #001A1F; border: 2px solid #000; }
 .cart__selo--seminovo { background: var(--amarelo); color: #2A2000; }
 .cart__selo--retro { background: var(--magenta); color: #12002A; }
-.cart__selo--ultima { background: var(--vermelho); color: #fff; }
+.cart__selo--ultima { background: #B5121B; color: #fff; }
 .cart__exemplo { position: absolute; right: 6px; top: 6px; }
 .cart__corpo { display: flex; flex-direction: column; gap: 6px; padding-top: 12px; flex: 1; }
 .cart h3 { font: 700 16px/1.3 var(--sans); margin: 0; }
@@ -292,7 +296,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .link-tela:hover { text-decoration: underline; }
 
 /* ---------- Mundo 2: InCubo ---------- */
-.incubo { position: relative; overflow: hidden; background: radial-gradient(70% 60% at 85% 0%, rgba(43, 59, 255, .35), transparent 70%), linear-gradient(180deg, #070B2E, #0A0F3D); border-top: 3px solid var(--azul); border-bottom: 3px solid var(--vermelho); }
+.incubo { position: relative; overflow: hidden; background: radial-gradient(70% 50% at 85% 18%, rgba(43, 59, 255, .32), transparent 70%), linear-gradient(180deg, transparent, rgba(7, 11, 46, .9) 160px, rgba(10, 15, 61, .9) calc(100% - 160px), transparent); }
+/* a borda do Mundo 2 vira um brilho que some nas pontas */
+.incubo::before, .incubo::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; pointer-events: none; }
+.incubo::before { top: 36px; background: linear-gradient(90deg, transparent, var(--azul), transparent); }
+.incubo::after { bottom: 36px; background: linear-gradient(90deg, transparent, var(--vermelho), transparent); }
 .incubo .rotulo { color: #8FA0FF; }
 .incubo .rotulo::before { color: var(--vermelho); }
 .incubo .titulo { text-shadow: 0 0 16px rgba(43, 59, 255, .7), 3px 3px 0 #000; }
@@ -332,7 +340,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .contador__f { font: 400 17px/1.2 var(--tela); color: var(--suave); }
 
 /* ---------- Visite a loja ---------- */
-.visite { background: linear-gradient(180deg, var(--bg), #1A0B33); }
+.visite { background: linear-gradient(180deg, transparent, rgba(26, 11, 51, .55)); }
 .visite__in { display: grid; gap: 36px; align-items: center; }
 @media (min-width: 900px) { .visite__in { grid-template-columns: 1fr 1fr; gap: 56px; } }
 .visite__galeria { font-size: 18px; margin: 0 0 20px; }
@@ -413,9 +421,38 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @keyframes nc-turbo { 0%, 42.5% { opacity: 1; } 43%, 99% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes nc-moeda { 0%, 88% { opacity: 0; } 88.5%, 100% { opacity: 1; } }
 
+/* ---------- Celular: blocos mais curtos (a página passava de 10 mil px em 360) ---------- */
+@media (max-width: 639px) {
+  /* missões em 2x2: ícone, nome e o "ir"; atributos e descrição ficam para telas maiores */
+  .missoes { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .missao { padding: 16px 12px; gap: 10px; }
+  .missao p, .missao .atributos, .missao__p1 { display: none; }
+  .missao svg { width: 34px; height: 34px; }
+  .missao h3 { font-size: 10px; }
+  .missao__ir { font-size: 18px; }
+  /* antes e depois de lado, um por vez */
+  .casos { grid-auto-flow: column; grid-auto-columns: 82%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(var(--gutter) * -1); padding: 4px var(--gutter) 12px; scroll-padding: 0 var(--gutter); }
+  .caso { scroll-snap-align: start; }
+  /* categorias da InCubo em duas colunas, só o nome */
+  .cubos { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cubo { padding: 14px 12px; }
+  .cubo p { display: none; }
+  .cubo svg { width: 24px; height: 24px; margin-bottom: 8px; }
+  .cubo h3 { font-size: 9px; margin: 0; }
+  .selo-frete { font-size: 9px; }
+}
+
+/* ---------- Fundo da página: o chão do hero segue por trás de tudo ----------
+   Fixo e parado (nada anima aqui): vira uma camada só no compositor e a rolagem não repinta. */
+.fundo { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
+.fundo__horizonte { position: absolute; left: 0; right: 0; bottom: 40vh; height: 30vh; background: radial-gradient(60% 100% at 50% 100%, rgba(255, 43, 214, .16), transparent 70%); }
+.fundo__chao { position: absolute; left: -50%; right: -50%; bottom: 0; height: 42vh; background: linear-gradient(transparent, rgba(255, 43, 214, .1)), repeating-linear-gradient(90deg, rgba(255, 43, 214, .5) 0 2px, transparent 2px 60px), repeating-linear-gradient(0deg, rgba(255, 43, 214, .5) 0 2px, transparent 2px 40px); transform: perspective(300px) rotateX(58deg); transform-origin: top; -webkit-mask: linear-gradient(to bottom, transparent, #000 45%); mask: linear-gradient(to bottom, transparent, #000 45%); opacity: .7; }
+/* seções sem fundo próprio ganham um véu leve para o texto não brigar com a grade */
+#missoes, .restauracao, .vitrine, .recordes { background: linear-gradient(180deg, transparent, rgba(11, 8, 32, .5) 120px, rgba(11, 8, 32, .5) calc(100% - 120px), transparent); }
+
 /* ---------- Moedas secretas ---------- */
 .secao { position: relative; }
-.moeda-secreta { position: absolute; z-index: 4; width: 36px; height: 36px; margin: -10px; padding: 0; display: grid; place-items: center; background: none; border: 0; cursor: pointer; }
+.moeda-secreta { position: absolute; z-index: 4; width: 44px; height: 44px; margin: -14px; padding: 0; display: grid; place-items: center; background: none; border: 0; cursor: pointer; }
 .moeda-secreta[hidden] { display: none; }
 .moeda-secreta svg { width: 16px; height: 16px; filter: drop-shadow(0 0 4px rgba(255, 210, 63, .45)); transition: transform .15s; }
 .moeda-secreta:hover svg, .moeda-secreta:focus-visible svg { transform: translateY(-3px) scale(1.15); }
@@ -433,7 +470,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .cupom__acoes:empty { display: none; }
 
 /* ---------- Rodapé ---------- */
-.rodape { position: relative; background: #07051A; border-top: 2px solid var(--roxo); padding: 56px 0 120px; font-size: 16px; color: var(--suave); }
+.rodape { position: relative; background: linear-gradient(180deg, rgba(7, 5, 26, .55), #07051A 180px); padding: 56px 0 120px; font-size: 16px; color: var(--suave); }
 .rodape__grid { display: grid; gap: 36px; }
 @media (min-width: 760px) { .rodape__grid { grid-template-columns: 1.2fr 1fr 1fr; } }
 .rodape h2 { font: 400 12px/1.5 var(--pixel); color: var(--amarelo); margin: 0 0 16px; }
@@ -463,7 +500,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .theatrum img { width: 34px; height: 34px; border-radius: 50%; }
 .theatrum span { display: flex; flex-direction: column; font: 600 14px/1.15 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
 .theatrum small { font-size: 11px; font-weight: 400; letter-spacing: .04em; text-transform: none; color: #A39B8D; }
-@media (max-width: 520px) { .theatrum { padding: 4px; } .theatrum span { display: none; } }
+@media (max-width: 520px) { .theatrum { padding: 4px; } .theatrum span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
 
 /* ---------- Movimento ---------- */
 @media (prefers-reduced-motion: reduce) {

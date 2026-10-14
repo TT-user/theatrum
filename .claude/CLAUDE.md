@@ -603,7 +603,16 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `codigo` e `beneficio`). Sem código, a tela mostra placeholder e não oferece WhatsApp,
   para ninguém pedir à loja um cupom que não existe. Progresso no `localStorage`
   `nc-moedas-secretas`; quem já juntou todas reabre o cupom clicando no COINS do topo.
-  Press Start não tem Ê nem Ó maiúsculos: texto em pixel sem eles.
+  O Press Start tem as maiúsculas acentuadas, mas desenha pequenas e parecem minúsculas ("VOCê"):
+  evite Ê e Ó em título de pixel. Não tem ★ ▶ ◀ ♥ (caem na fonte do sistema).
+  Desde a auditoria de 14/10/2026 (`interno/clientes/nerd-club/auditoria-2026-10-14.md`):
+  Lighthouse mobile 97 / acessibilidade 100 / CLS 0; SEO 100 numa cópia sem noindex. O
+  CLS era o título do hero mudando de altura quando a fonte de pixel chegava: as fontes
+  de reserva (`Pixel Reserva`, `Tela Reserva`, `Inter Reserva`) têm a largura medida das
+  de verdade, não tire. O chão synthwave é um fundo fixo da página (`.fundo`), parado, e
+  as seções têm fundo translúcido com bordas em degradê para ele aparecer entre elas.
+  No celular, missões em 2x2, antes/depois em carrossel e categorias da InCubo em duas
+  colunas. Cache no `.htaccess` da pasta; JSON fica em 1 hora porque o dono edita.
   No pé da Oficina, uma corrida de enfeite (`#corrida`): o Nerdinho, robozinho de pixel
   original, junta moedas fugindo de duas bolas de poeira, pega a ventoinha turbo e a
   poeira foge. Foi pedido "tipo Pac-Man" e saiu assim de propósito: Pac-Man é da Bandai

@@ -1,0 +1,6 @@
+Fontes servidas daqui, todas sob a SIL Open Font License 1.1
+(https://openfontlicense.org). Pode usar, embutir e redistribuir; não pode vender a fonte sozinha.
+
+- Press Start 2P, de CodeMan38 (Cody "CodeMan38" Boisclair). https://fonts.google.com/specimen/Press+Start+2P
+- VT323, de Peter Hull. https://fonts.google.com/specimen/VT323
+- Inter, de Rasmus Andersson. https://rsms.me/inter/
