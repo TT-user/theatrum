@@ -1,12 +1,83 @@
 {
-  "_leia": "Serviços da oficina, tirados dos flyers da loja. prazo e precoDesde em null viram placeholder amarelo: só preencher com o que a loja confirmar. ativo=false não aparece no site.",
+  "_leia": "Serviços da oficina, tirados dos flyers da loja. nomeCurto e curto aparecem nos blocos da home; nome e texto ficam para a página /oficina. prazo e precoDesde (só na /oficina; na home o prazo é uma linha única, NC.prazos no config.js) em null viram placeholder amarelo: só preencher com o que a loja confirmar. ativo=false não aparece no site.",
   "servicos": [
-    { "id": "limpeza", "icone": "ventoinha", "nome": "Limpeza completa + pasta térmica", "texto": "Tira a poeira do ventilador e do dissipador e troca a pasta térmica. O console volta a respirar e para de gritar.", "prazo": null, "precoDesde": null, "ativo": true },
-    { "id": "controle", "icone": "controle", "nome": "Conserto de controle e drift", "texto": "Personagem andando sozinho, botão que não responde, gatilho frouxo. Analógico trocado ou calibrado.", "prazo": null, "precoDesde": null, "ativo": true },
-    { "id": "superaquecimento", "icone": "chama", "nome": "Superaquecimento", "texto": "Console desligando no meio da partida ou com cooler no máximo o tempo todo. A gente acha a causa antes de mexer.", "prazo": null, "precoDesde": null, "ativo": true },
-    { "id": "carcaca", "icone": "cubo", "nome": "Troca de carcaça e botões", "texto": "Carcaça rachada, botão gasto ou vontade de mudar o visual. Peças de reposição, inclusive impressas pela InCubo.", "prazo": null, "precoDesde": null, "ativo": true },
-    { "id": "retro", "icone": "bau", "nome": "Restauração de retrô", "texto": "Console antigo amarelado, sujo ou parado na gaveta. Limpeza, reparo e cuidado para voltar a funcionar.", "prazo": null, "precoDesde": null, "ativo": true },
-    { "id": "celular-pc", "icone": "chave", "nome": "Manutenção de celular e PC", "texto": "Além dos videogames, a bancada atende celular e computador.", "prazo": null, "precoDesde": null, "ativo": true },
-    { "id": "desbloqueio", "icone": "cadeado", "nome": "Desbloqueio e sistema paralelo", "texto": "Instalação de sistema paralelo (homebrew) com o sistema original preservado, além de traduções e emuladores.", "prazo": null, "precoDesde": null, "ativo": false, "_nota": "Fora da prévia até conversar com a loja: os flyers prometem 'jogos infinitos', o que derruba anúncio no Google e na Meta." }
+    {
+      "id": "limpeza",
+      "icone": "ventoinha",
+      "nome": "Limpeza completa + pasta térmica",
+      "nomeCurto": "Limpeza + pasta térmica",
+      "texto": "Tira a poeira do ventilador e do dissipador e troca a pasta térmica. O console volta a respirar e para de gritar.",
+      "curto": "Poeira fora, pasta térmica nova.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": true
+    },
+    {
+      "id": "controle",
+      "icone": "controle",
+      "nome": "Conserto de controle e drift",
+      "nomeCurto": "Controle e drift",
+      "texto": "Personagem andando sozinho, botão que não responde, gatilho frouxo. Analógico trocado ou calibrado.",
+      "curto": "Analógico, botões e gatilhos.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": true
+    },
+    {
+      "id": "superaquecimento",
+      "icone": "chama",
+      "nome": "Superaquecimento",
+      "nomeCurto": "Superaquecimento",
+      "texto": "Console desligando no meio da partida ou com cooler no máximo o tempo todo. A gente acha a causa antes de mexer.",
+      "curto": "Desliga sozinho? A gente acha a causa.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": true
+    },
+    {
+      "id": "carcaca",
+      "icone": "cubo",
+      "nome": "Troca de carcaça e botões",
+      "nomeCurto": "Carcaça e botões",
+      "texto": "Carcaça rachada, botão gasto ou vontade de mudar o visual. Peças de reposição, inclusive impressas pela InCubo.",
+      "curto": "Peças de reposição, até impressas pela InCubo.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": true
+    },
+    {
+      "id": "retro",
+      "icone": "bau",
+      "nome": "Restauração de retrô",
+      "nomeCurto": "Restauração de retrô",
+      "texto": "Console antigo amarelado, sujo ou parado na gaveta. Limpeza, reparo e cuidado para voltar a funcionar.",
+      "curto": "Limpeza e reparo de console antigo.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": true
+    },
+    {
+      "id": "celular-pc",
+      "icone": "chave",
+      "nome": "Manutenção de celular e PC",
+      "nomeCurto": "Celular e PC",
+      "texto": "Além dos videogames, a bancada atende celular e computador.",
+      "curto": "A bancada também atende.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": true
+    },
+    {
+      "id": "desbloqueio",
+      "icone": "cadeado",
+      "nome": "Desbloqueio e sistema paralelo",
+      "nomeCurto": "Sistema paralelo",
+      "texto": "Instalação de sistema paralelo (homebrew) com o sistema original preservado, além de traduções e emuladores.",
+      "curto": "Homebrew com o original preservado.",
+      "prazo": null,
+      "precoDesde": null,
+      "ativo": false,
+      "_nota": "Fora da prévia até conversar com a loja: os flyers prometem 'jogos infinitos', o que derruba anúncio no Google e na Meta."
+    }
   ]
 }

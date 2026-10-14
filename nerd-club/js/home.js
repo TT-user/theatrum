@@ -2,7 +2,7 @@
    Os dados vêm de data/*.json; mudou um JSON, suba o V. */
 (function () {
   'use strict';
-  var V = '?v=1';
+  var V = '?v=3';
   var NC = window.NC;
   var still = document.documentElement.classList.contains('still');
   var reduz = still || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -44,8 +44,7 @@
     if (!ul) return;
     ul.innerHTML = d.servicos.filter(function (s) { return s.ativo; }).map(function (s) {
       return '<li class="powerup">' + icone(ICONE_SERV[s.icone] || 'px-chave') +
-        '<div><h3>' + esc(s.nome) + '</h3><p>' + esc(s.texto) + '</p>' +
-        '<p class="powerup__meta">prazo médio: ' + (s.prazo ? esc(s.prazo) : PH()) + '</p></div></li>';
+        '<h3>' + esc(s.nomeCurto || s.nome) + '</h3><p>' + esc(s.curto || s.texto) + '</p></li>';
     }).join('');
   }).catch(function () {});
 

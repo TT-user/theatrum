@@ -20,6 +20,7 @@ window.NC = {
   },
   horario: null, // ex.: 'Seg a sex 9h às 18h · Sáb 9h às 14h'
   cnpj: null,
+  prazos: null, // ex.: 'limpeza em até 2 dias úteis; orçamento sem compromisso'
 
   instagram: 'lojanerdclub',
   instagramIncubo: 'incubocubo',
