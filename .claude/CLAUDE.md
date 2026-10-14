@@ -592,6 +592,21 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `interno/clientes/nerd-club/`, fora do git. A foto da fachada veio
   de um print que o Matheus mandou junto com o brief.
 
+- `/ths/` — prévia do site da THS Engenharia e Construtora (projeto, administração e execução
+  de obras, Manhuaçu, MG), feita para prospecção em 14/10/2026 a partir do Instagram
+  (@engenhariaths: serviços e endereço na bio), do letreiro e do Linktree (WhatsApp, e-mail,
+  Facebook). `og:image` em JPG (`assets/og.jpg`) por causa do WhatsApp. Cores do letreiro:
+  preto, branco e o laranja da marca (`#EE7A2A`; `#B9541A` sobre fundo claro); logo redesenhado
+  em SVG (`#ths-marca` no próprio HTML e `favicon.svg`). Barlow e Barlow Condensed em caixa-alta,
+  como nos posts deles, e os títulos são frases dos próprios posts. Seções: hero, números
+  (placeholder), três serviços, sistema em EPS, "por onde começar" (três perguntas que montam a
+  mensagem do WhatsApp), obras (galeria com filtro por etapa e lightbox, lista `OBRAS` no
+  `js/main.js`; nomes dos destaques do Instagram), como trabalhamos, quem somos e contato (mapa
+  só no clique). As 20 fotos em `assets/fotos/` são recortes dos prints do feed, sem texto nem
+  logo, ampliados 2x: baixa resolução, pedir os originais para o site oficial. Mesmo padrão:
+  `.htaccess` e meta com noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água
+  com `utm_campaign=ths`. Prints e pendências em `interno/clientes/ths/`, fora do git.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
@@ -728,7 +743,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
