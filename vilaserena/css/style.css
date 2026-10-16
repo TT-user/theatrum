@@ -108,11 +108,15 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); }
 .hero { position: relative; min-height: min(100svh, 900px); display: flex; align-items: flex-end; color: #fff; isolation: isolate; overflow: hidden; padding: calc(var(--topo-h) + 60px) 0 56px; }
 .hero-midia { position: absolute; inset: 0; z-index: -2; background: var(--tinta); }
 .hero-midia img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% 45%; }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+.hero-video.pronto { opacity: 1; }
 .hero-veu { position: absolute; inset: 0; z-index: -1; background:
   linear-gradient(180deg, rgba(20, 22, 24, .7) 0%, rgba(20, 22, 24, .25) 18%, rgba(20, 22, 24, 0) 32%),
   linear-gradient(90deg, rgba(20, 22, 24, .72) 0%, rgba(20, 22, 24, .28) 55%, rgba(20, 22, 24, 0) 100%),
   linear-gradient(0deg, rgba(20, 22, 24, .65) 0%, rgba(20, 22, 24, 0) 45%); }
-.selo-hero { top: auto; bottom: 16px; right: 16px; }
+/* alto à direita, longe do botão do WhatsApp; o texto acompanha o trecho do vídeo */
+.selo-hero { top: calc(var(--topo-h) + 12px); right: var(--gutter); transition: opacity .3s; }
+.selo-hero.trocando { opacity: 0; }
 .hero-in { display: grid; gap: 40px; width: 100%; }
 .hero-txt { max-width: 860px; }
 .hero-local { display: inline-flex; align-items: center; gap: 10px; font: 500 13.5px/1 var(--mono); padding: 9px 14px; border-radius: 999px; background: rgba(20, 22, 24, .4); border: 1px solid rgba(255, 255, 255, .22); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); margin-bottom: 26px; }
@@ -120,7 +124,6 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); }
 .hero h1 { font-size: clamp(36px, 4.6vw, 62px); line-height: 1.04; text-wrap: balance; text-shadow: 0 2px 30px rgba(0, 0, 0, .25); }
 .hero h1 em { color: var(--ambar-txt); }
 .hero .lead { font-size: clamp(17px, 1.6vw, 20px); margin-top: 22px; max-width: 580px; color: rgba(255, 255, 255, .92); }
-@media (max-width: 760px) { .selo-hero { top: calc(var(--topo-h) + 8px); bottom: auto; } }
 
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn-vidro { background: rgba(255, 255, 255, .12); color: #fff; border-color: rgba(255, 255, 255, .45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
@@ -332,6 +335,16 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); }
 .rodape-col a:hover { color: var(--ambar-txt); }
 .rodape-base { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 24px; font-size: 13.5px; color: #9C958A; }
 @media (max-width: 860px) { .rodape-in { grid-template-columns: 1fr; gap: 30px; } }
+
+/* ---------- bolinha vermelha do "Como chegar" ---------- */
+.pulso { position: relative; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #E5322D; flex: none; margin-right: 8px; vertical-align: 1px; }
+.pulso::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #E5322D; animation: pulso 1.6s ease-out infinite; }
+@keyframes pulso { 0% { transform: scale(1); opacity: .75; } 100% { transform: scale(2.8); opacity: 0; } }
+.btn .pulso { margin-right: 0; }
+.creditos { padding-top: 18px; font-size: 13px; color: #9C958A; }
+.creditos summary { cursor: pointer; }
+.creditos p { margin-top: 10px; max-width: 900px; }
+.creditos a { color: #CFC8BD; }
 
 /* ---------- WhatsApp flutuante e marca d'água ---------- */
 .zap-flutua { position: fixed; right: 16px; bottom: 16px; z-index: 40; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #25D366; color: #fff; box-shadow: 0 8px 24px rgba(0, 0, 0, .3); }

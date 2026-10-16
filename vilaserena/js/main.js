@@ -53,6 +53,42 @@
     document.querySelectorAll('main > section[id]').forEach(function (s) { io.observe(s); });
   }
 
+  /* ---------- vídeo do hero ----------
+     Só carrega depois que a página está de pé, nunca para quem pediu menos
+     movimento ou está economizando dados, e pausa fora da tela ou com a aba
+     escondida. Começa na fileira, que é o pôster, então a troca não aparece. */
+  var video = $('.hero-video');
+  var poupa = (navigator.connection && navigator.connection.saveData) ||
+    (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) || /[?&]still=1/.test(location.search);
+  if (video && !poupa) {
+    var visivel = true;
+    var toca = function () { if (visivel && !document.hidden) { var q = video.play(); if (q && q.catch) q.catch(function () {}); } else video.pause(); };
+    var carrega = function () {
+      video.src = matchMedia('(max-width: 700px) and (orientation: portrait)').matches ? video.dataset.srcM : video.dataset.src;
+      video.addEventListener('playing', function () { video.classList.add('pronto'); }, { once: true });
+      // O selo diz o que está na tela: render ou o lugar da foto. Cada trecho
+      // dura 4,6 s com fusão de 1 s (passo de 3,6 s); a troca cai no meio da fusão.
+      var ROTULOS = ['Imagem ilustrativa do projeto', 'Serra do Caparaó, perto do Pico da Bandeira',
+        'Imagem ilustrativa do projeto', 'Pico da Bandeira ao amanhecer', 'Imagem ilustrativa do projeto',
+        'Alto Caparaó, MG', 'Imagem ilustrativa do projeto', 'Pico da Bandeira'];
+      var selo = $('.selo-hero'), atual = -1;
+      video.addEventListener('timeupdate', function () {
+        var i = Math.max(0, Math.floor((video.currentTime - 0.5) / 3.6)) % ROTULOS.length;
+        if (i === atual) return;
+        atual = i;
+        selo.classList.add('trocando');
+        setTimeout(function () { selo.textContent = ROTULOS[i]; selo.classList.remove('trocando'); }, 300);
+      });
+      toca();
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; toca(); }).observe(video);
+      }
+      document.addEventListener('visibilitychange', toca);
+    };
+    if (document.readyState === 'complete') setTimeout(carrega, 300);
+    else window.addEventListener('load', function () { setTimeout(carrega, 300); });
+  }
+
   /* ---------- mapa só no clique ---------- */
   $('#mapa-btn').addEventListener('click', function () {
     $('#mapa').innerHTML = '<iframe title="Cabanas Vila Serena no mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=' +
@@ -295,7 +331,7 @@
 
   }
 
-  function json(u) { return fetch(u + '?v=6').then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
+  function json(u) { return fetch(u + '?v=8').then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
 
   json('data/info.json').then(renderInfo).catch(function (e) { console.error(e); });
   json('data/cabanas.json').then(function (d) { renderCabanas(d.cabanas); }).catch(function (e) { console.error(e); });

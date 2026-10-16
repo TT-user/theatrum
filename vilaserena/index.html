@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/renders/fileira-g.webp" imagesrcset="assets/renders/fileira-640.webp 640w, assets/renders/fileira-g.webp 1094w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Jost:wght@300;400&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=9">
 
   <script type="application/ld+json">
   {
@@ -84,7 +84,7 @@
         <a href="#lancamento">Lista de espera</a>
         <a href="#cafe">Café da Vila</a>
         <a href="#duvidas">Dúvidas</a>
-        <a href="#localizacao">Como chegar</a>
+        <a href="#localizacao" class="com-pulso"><span class="pulso" aria-hidden="true"></span>Como chegar</a>
       </nav>
       <a class="btn btn-ambar topo-cta" href="#lancamento"><svg aria-hidden="true"><use href="#i-estrela"/></svg>Quero reservar primeiro</a>
       <button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
@@ -96,6 +96,8 @@
     <section class="hero" id="inicio">
       <div class="hero-midia" aria-hidden="true">
         <img src="assets/renders/fileira-g.webp" srcset="assets/renders/fileira-640.webp 640w, assets/renders/fileira-g.webp 1094w" sizes="100vw" width="1094" height="618" alt="" fetchpriority="high">
+        <!-- renders e fotos da região (Wikimedia Commons); começa e termina na fileira, que é o pôster -->
+        <video class="hero-video" muted loop playsinline preload="none" data-src="assets/video/hero.mp4" data-src-m="assets/video/hero-m.mp4"></video>
       </div>
       <div class="hero-veu" aria-hidden="true"></div>
       <span class="selo-render selo-hero">Imagens ilustrativas do projeto</span>
@@ -286,7 +288,7 @@
               <span class="ct-txt"><b>De carro, a partir de</b><span class="dist" id="distancias"></span></span></div></li>
           </ul>
           <div class="contato-acoes">
-            <a class="btn btn-ambar btn-g" href="https://www.google.com/maps/dir/?api=1&amp;destination=Av.+Vereador+Inim%C3%A1+Novaes+de+Campos%2C+240%2C+Alto+Capara%C3%B3+MG%2C+36979-000" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Como chegar</a>
+            <a class="btn btn-ambar btn-g" href="https://www.google.com/maps/dir/?api=1&amp;destination=Av.+Vereador+Inim%C3%A1+Novaes+de+Campos%2C+240%2C+Alto+Capara%C3%B3+MG%2C+36979-000" target="_blank" rel="noopener"><span class="pulso" aria-hidden="true"></span>Como chegar</a>
             <a class="btn btn-linha btn-g" href="https://wa.me/5532998541677" data-zap="Olá! Vim pelo site da Vila Serena."><svg aria-hidden="true"><use href="#i-zap"/></svg>Chamar no WhatsApp</a>
           </div>
         </div>
@@ -327,6 +329,17 @@
       <p>Cabanas Vila Serena · CNPJ <span data-info="cnpj"><span class="ph">[CNPJ]</span></span> · Alto Caparaó, MG</p>
       <p>Imagens ilustrativas do projeto arquitetônico · prévia feita por <a href="https://usetheatrum.com.br/" target="_blank" rel="noopener">Theatrum</a></p>
     </div>
+    <div class="wrap">
+      <details class="creditos">
+        <summary>Créditos das fotos da região</summary>
+        <p>Fotos do vídeo de abertura, via Wikimedia Commons:
+          <a href="https://commons.wikimedia.org/wiki/File:Mountain_view_in_the_surroundings_of_Pico_da_Bandeira..jpg" target="_blank" rel="noopener">serra perto do Pico da Bandeira</a>, de Macolybr (CC BY-SA 4.0);
+          <a href="https://commons.wikimedia.org/wiki/File:Pico_da_Bandeira_-_Amanhecer.JPG" target="_blank" rel="noopener">Pico da Bandeira ao amanhecer</a>, de Dedo83 (CC BY-SA 3.0);
+          <a href="https://commons.wikimedia.org/wiki/File:Alto_Capara%C3%B3-MG_(50940846116).jpg" target="_blank" rel="noopener">Alto Caparaó</a>, de Rômulo Gama Ferreira (CC BY 2.0);
+          <a href="https://commons.wikimedia.org/wiki/File:Pico_da_Bandeira_2.jpg" target="_blank" rel="noopener">Pico da Bandeira</a>, de Bernardo Guedes Pereira Araujo (CC BY-SA 4.0).
+          Fotos recortadas e animadas no vídeo.</p>
+      </details>
+    </div>
   </footer>
 
   <a class="zap-flutua" href="https://wa.me/5532998541677" data-zap="Olá! Vim pelo site da Vila Serena." aria-label="Falar pelo WhatsApp"><svg aria-hidden="true"><use href="#i-zap"/></svg></a>
@@ -337,6 +350,6 @@
     <span><small>Site feito pela</small>Theatrum</span>
   </a>
 
-  <script src="js/main.js?v=6" defer></script>
+  <script src="js/main.js?v=9" defer></script>
 </body>
 </html>

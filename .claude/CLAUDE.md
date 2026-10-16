@@ -680,7 +680,16 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   renders do projeto e levam o selo de imagem ilustrativa (a `og.jpg` também, gravado nela); um render tem o letreiro antigo
   "Vila da Serra chalés" e entra cortado: esse nome não aparece no site. Dúvidas, distâncias,
   por perto e obra vêm do `info.json`; colchete vira placeholder. Distâncias são estimativa
-  marcada para confirmar. Carrossel arrasta com o mouse. O WhatsApp mora no `ZAP` do `main.js` e nos links do HTML, não no `info.json`. Mesmo padrão: `.htaccess` e meta com
+  marcada para confirmar. Carrossel arrasta com o mouse. O hero tem vídeo
+  (`assets/video/hero.mp4`, 1280x720, e `hero-m.mp4`, 540x960 para celular em pé; ~2,7 MB e
+  ~1,5 MB): renders alternados com quatro fotos da região do Wikimedia Commons (serra, Pico da
+  Bandeira e uma rua de Alto Caparaó), créditos no rodapé. Começa e termina na fileira, que é o
+  pôster. Carrega depois do `load`, nunca com movimento reduzido, economia de dados ou
+  `?still=1`, e pausa fora da tela. O vídeo não tem texto gravado (o corte do `cover` comia o
+  rótulo): o selo do HTML troca de texto pelo tempo do vídeo (`ROTULOS` no `main.js`, passo de
+  3,6 s); mudou a ordem ou a duração dos trechos, mude lá. Script do vídeo e fotos em
+  `interno/clientes/vila-serena/video/`. "Como chegar" (menu e botão) tem bolinha vermelha
+  pulsando, a pedido. O WhatsApp mora no `ZAP` do `main.js` e nos links do HTML, não no `info.json`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders
   originais e pendências em `interno/clientes/vila-serena/`, fora do git.
 
