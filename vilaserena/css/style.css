@@ -188,7 +188,8 @@ h2 em, h1 em { font-style: normal; color: var(--ambar-esc); }
 .local__end { display: flex; gap: 12px; margin: 26px 0; color: #E4DED5; }
 .local__end svg { width: 26px; height: 26px; flex: none; color: var(--ambar-txt); }
 .local h3 { font-size: 13px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--claro-suave); }
-.dist { list-style: none; padding: 0; margin: 12px 0 30px; }
+.dist { list-style: none; padding: 0; margin: 12px 0 0; }
+.local__ctas { margin-top: 28px; }
 .dist li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(244, 241, 236, .12); }
 .mapa { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--grafite-2); }
 .mapa img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
@@ -221,16 +222,15 @@ h2 em, h1 em { font-style: normal; color: var(--ambar-esc); }
 .obra__fotos { display: grid; place-items: center; min-height: 140px; border: 1px dashed var(--madeira); border-radius: 6px; padding: 20px; }
 @media (max-width: 860px) { .obra__in { grid-template-columns: 1fr; gap: 40px; } }
 
-/* CTA final com a crista da serra */
+/* CTA final */
 .final { background: var(--off); text-align: center; padding-top: clamp(80px, 10vw, 128px); }
-.final__in { padding-bottom: 72px; }
+.final__in { padding-bottom: clamp(80px, 10vw, 128px); }
 .final h2 em { display: block; }
 .final p { color: var(--suave); }
 .final .hero__ctas { justify-content: center; }
-.crista { display: block; width: 100%; height: clamp(64px, 14vw, 210px); margin-bottom: -1px; }
 
 /* Rodapé */
-.rodape { background: var(--grafite); color: #DCD5CA; padding: 40px 0 110px; font-size: 15px; }
+.rodape { background: var(--grafite); color: #DCD5CA; padding: 56px 0 110px; font-size: 15px; }
 .rodape__in { display: grid; grid-template-columns: 1.1fr 1fr 1.2fr; gap: 36px; }
 .logo--rodape { margin: 0 0 16px; }
 .rodape__links { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
