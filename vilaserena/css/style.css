@@ -224,7 +224,7 @@ h2 em, h1 em { font-style: normal; color: var(--ambar-esc); }
 .final h2 em { display: block; }
 .final p { color: var(--suave); }
 .final .hero__ctas { justify-content: center; }
-.crista { display: block; width: 100%; height: clamp(60px, 8vw, 120px); margin-bottom: -1px; }
+.crista { display: block; width: 100%; height: clamp(64px, 14vw, 210px); margin-bottom: -1px; }
 
 /* Rodapé */
 .rodape { background: var(--grafite); color: #DCD5CA; padding: 40px 0 110px; font-size: 15px; }
