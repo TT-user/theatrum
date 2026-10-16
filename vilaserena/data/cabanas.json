@@ -1,0 +1,24 @@
+{
+  "_como_usar": "Um bloco por tipo de cabana. Texto entre colchetes aparece em amarelo no site até ser preenchido. diariaDesde em reais, só o número (ex.: 590); null aparece como [DIÁRIA]. foto: nome do arquivo em assets/renders/ sem o '-640.webp'.",
+  "cabanas": [
+    {
+      "id": "a-frame",
+      "nome": "[NOME DO TIPO DE CABANA]",
+      "foto": "cabana-lago",
+      "capacidade": "[CAPACIDADE]",
+      "cama": "[TIPO DE CAMA]",
+      "descricao": "Fachada de vidro do chão ao teto, mezanino com guarda-corpo e um deck de madeira na frente. A serra entra pela janela. [REVISAR COM O CLIENTE]",
+      "comodidades": [
+        "Fachada de vidro",
+        "Mezanino",
+        "Deck com poltronas",
+        "Lâmina d'água [CONFIRMAR: em quais cabanas?]",
+        "Banheira ou hidro [CONFIRMAR]",
+        "Lareira [CONFIRMAR]",
+        "Cozinha [CONFIRMAR]",
+        "Wi-Fi [CONFIRMAR]"
+      ],
+      "diariaDesde": null
+    }
+  ]
+}

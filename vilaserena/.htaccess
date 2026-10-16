@@ -1,0 +1,4 @@
+# Prévia de cliente: não indexar (vale se a pasta for servida pela Hostinger)
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

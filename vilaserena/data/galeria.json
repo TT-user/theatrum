@@ -1,0 +1,14 @@
+{
+  "_como_usar": "Imagens do site. tipo: \"render\" (leva o selo de imagem ilustrativa) ou \"foto\" (registro real, aparece primeiro). arquivo: nome em assets/renders/ (ou assets/fotos/) sem o '-640.webp'. Quando chegar foto real, acrescente um bloco com tipo \"foto\" e a pasta.",
+  "imagens": [
+    { "arquivo": "fileira", "tipo": "render", "w": 1094, "h": 618, "legenda": "As cabanas em fileira", "alt": "Fileira de cabanas A-frame com decks de madeira e a serra ao fundo" },
+    { "arquivo": "cabana-lago", "tipo": "render", "w": 1161, "h": 661, "legenda": "Cabana com deck e lâmina d'água", "alt": "Cabana A-frame com telhado metálico escuro, deck e lâmina d'água em frente" },
+    { "arquivo": "cabana-frente", "tipo": "render", "w": 977, "h": 707, "legenda": "Cabana de frente", "alt": "Cabana A-frame vista de frente, com fachada de vidro e duas poltronas no deck" },
+    { "arquivo": "porta-vidro", "tipo": "render", "w": 1162, "h": 606, "legenda": "Pela porta de vidro", "alt": "Porta de vidro contornada por luz âmbar, com a montanha refletida" },
+    { "arquivo": "cabana-deck", "tipo": "render", "w": 952, "h": 775, "legenda": "Vista do mezanino", "alt": "Mezanino envidraçado com guarda-corpo sobre o deck de madeira" },
+    { "arquivo": "recepcao", "tipo": "render", "w": 1209, "h": 607, "legenda": "Fachada", "alt": "Entrada da Vila Serena com marquise branca e letreiro em painel de madeira" },
+    { "arquivo": "recepcao-terraco", "tipo": "render", "w": 980, "h": 778, "legenda": "Recepção e terraço", "alt": "Recepção com painel de madeira, pedra e terraço com ombrelones no andar de cima" },
+    { "arquivo": "cafe-deck", "tipo": "render", "w": 1217, "h": 609, "legenda": "Café da Vila", "alt": "Deck do Café da Vila com mesas de madeira e ombrelones" },
+    { "arquivo": "cafe-fachada", "tipo": "render", "w": 965, "h": 561, "legenda": "Fachada do Café da Vila", "alt": "Fachada do Café da Vila com pilar de pedra e vidro" }
+  ]
+}

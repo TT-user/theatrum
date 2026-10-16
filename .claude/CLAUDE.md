@@ -663,6 +663,21 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `.htaccess` e meta com noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água
   com `utm_campaign=ths`. Prints e pendências em `interno/clientes/ths/`, fora do git.
 
+- `/vilaserena/` — prévia do site das Cabanas Vila Serena (cabanas A-frame em construção em
+  Alto Caparaó, MG, na mesma cidade do Recanto), desde 16/10/2026, a partir de um briefing em
+  quatro etapas (só a 1 feita: estrutura e página). Todas as imagens são renders do projeto e
+  levam o selo "Imagem ilustrativa do projeto"; um render tem o letreiro antigo "Vila da Serra
+  chalés" e entra cortado: esse nome não aparece no site. Identidade dos renders: grafite do
+  telhado, madeira âmbar, off-white da marquise, Jost fino e espaçado como o letreiro; o
+  triângulo do A-frame (rótulos, recorte da foto da cabana) e a linha de LED das portas
+  (brilho âmbar no hover). Tipos de cabana, informações, distâncias e linha do tempo da obra
+  vêm de `data/*.json` (colchete vira placeholder); `galeria.json` tem `tipo` render ou foto,
+  e foto real entra primeiro. `#lancamento` ainda é só um botão de WhatsApp: a lista de espera
+  em passos e o simulador de reserva (`modo` no `info.json`) são a etapa 2. Distâncias são
+  estimativa marcada para confirmar. Mesmo padrão: `.htaccess` e meta com noindex, faixa de
+  prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders originais e pendências
+  em `interno/clientes/vila-serena/`, fora do git.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
@@ -799,7 +814,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

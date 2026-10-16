@@ -1,0 +1,59 @@
+{
+  "_como_usar": "Informações gerais da Vila Serena. Texto entre colchetes aparece em amarelo no site até ser preenchido. whatsapp: só dígitos com DDI e DDD.",
+
+  "nome": "Cabanas Vila Serena",
+  "whatsapp": "5532998541677",
+  "whatsappExibicao": "(32) 99854-1677",
+  "instagram": "cabanasvilaserena",
+  "endereco": "Av. Vereador Inimá Novaes de Campos, 240",
+  "cidade": "Alto Caparaó",
+  "uf": "MG",
+  "cep": "36979-000",
+  "cnpj": "[CNPJ]",
+
+  "_modo": "\"lista-de-espera\" enquanto as reservas não abrem; \"reservas\" liga o simulador de reserva (Prompt 2).",
+  "modo": "lista-de-espera",
+  "inauguracao": "[PREVISÃO]",
+  "quantidadeCabanas": "[7 CABANAS? CONFIRMAR]",
+
+  "checkin": "[HORÁRIO]",
+  "checkout": "[HORÁRIO]",
+  "checkinObs": "[PREENCHER: dá para chegar mais tarde? como é a entrega da chave?]",
+  "minimoNoites": "[PREENCHER: mínimo de noites no fim de semana e no feriado]",
+
+  "regras": [
+    { "titulo": "Pets", "texto": "[PREENCHER: aceitam? porte? taxa?]" },
+    { "titulo": "Crianças", "texto": "[PREENCHER: a partir de que idade? o mezanino tem guarda-corpo, mas é seguro para crianças pequenas?]" },
+    { "titulo": "Visitas", "texto": "[PREENCHER]" },
+    { "titulo": "Silêncio", "texto": "[PREENCHER: horário de silêncio]" }
+  ],
+
+  "sinal": "[PREENCHER: quanto do valor e por onde (Pix, cartão)]",
+  "cancelamento": "[PREENCHER: até quando dá para cancelar e o que acontece com o sinal]",
+
+  "cafe": {
+    "texto": "[CONFIRMAR: café da manhã dos hóspedes, aberto ao público ou os dois?]",
+    "horario": "[HORÁRIO]"
+  },
+
+  "distancias": [
+    { "de": "Vitória", "km": "[~260 km · CONFIRMAR]" },
+    { "de": "Juiz de Fora", "km": "[~300 km · CONFIRMAR]" },
+    { "de": "Belo Horizonte", "km": "[~330 km · CONFIRMAR]" },
+    { "de": "Rio de Janeiro", "km": "[~430 km · CONFIRMAR]" }
+  ],
+
+  "perto": [
+    { "titulo": "Parque Nacional do Caparaó", "texto": "A portaria do lado mineiro fica em Alto Caparaó. [REVISAR COM O CLIENTE: quantos minutos da Vila?]" },
+    { "titulo": "Pico da Bandeira", "texto": "O terceiro ponto mais alto do Brasil, com 2.892 m. A subida começa dentro do parque. [REVISAR COM O CLIENTE]" },
+    { "titulo": "Cachoeiras", "texto": "[REVISAR COM O CLIENTE: quais indicam e a que distância]" },
+    { "titulo": "Cafés especiais", "texto": "A região é produtora de café de montanha. [REVISAR COM O CLIENTE: fazendas e cafeterias que indicam]" }
+  ],
+
+  "obra": [
+    { "etapa": "Projeto", "texto": "Projeto arquitetônico das cabanas e da área comum. [CONFIRMAR DATA]", "feito": true },
+    { "etapa": "Obra", "texto": "[PREENCHER: em que fase está a obra hoje]", "feito": false },
+    { "etapa": "Reservas abertas", "texto": "Quem está na lista de espera reserva primeiro. [DATA]", "feito": false },
+    { "etapa": "Inauguração", "texto": "[PREVISÃO]", "feito": false }
+  ]
+}
