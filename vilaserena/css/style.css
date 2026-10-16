@@ -217,7 +217,8 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); }
 .calmo { margin-top: 26px; font: italic 500 19px/1.4 var(--serif); color: var(--ambar-txt); }
 @media (max-width: 960px) { .escura-in { grid-template-columns: 1fr; } }
 
-.passo-card { position: relative; background: var(--areia); color: var(--tinta); border-radius: 24px; padding: 28px; box-shadow: var(--sombra-alta); min-height: 440px; display: flex; flex-direction: column; }
+.passo-card { position: relative; background: var(--areia); color: var(--tinta); border-radius: 24px; padding: 28px; box-shadow: var(--sombra-alta); min-height: 552px; display: flex; flex-direction: column; }
+/* altura fixa na maior etapa (ocasião e tela final): trocar de passo não mexe a seção */
 .passo-card::before { content: ""; position: absolute; top: 0; left: 28px; right: 28px; height: 2px; background: var(--led); box-shadow: 0 0 12px 1px rgba(242, 181, 109, .9); border-radius: 2px; }
 .passo-topo { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; font: 500 12.5px/1 var(--mono); color: var(--tinta-2); }
 .passo-barra { flex: 1; height: 4px; border-radius: 4px; background: var(--linha); overflow: hidden; }
@@ -229,6 +230,9 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); }
 .opcao::after { content: "→"; color: var(--tinta-2); font-weight: 400; }
 .opcao:hover { border-color: var(--ambar); box-shadow: 0 0 0 1px var(--ambar); }
 .opcao.marcada { border-color: var(--madeira); box-shadow: 0 0 0 1px var(--madeira); background: var(--madeira-claro); }
+.opcoes-2 { gap: 8px; }
+.opcoes-2 .opcao { min-height: 46px; padding: 11px 14px; font-size: 15px; }
+.opcoes-2 .opcao::after { display: none; }
 .opcao small { display: block; font-weight: 400; font-size: 13.5px; color: var(--tinta-2); margin-top: 2px; }
 .campos { display: grid; gap: 12px; }
 .campos label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
@@ -244,7 +248,7 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); }
 .passo-txt { color: var(--tinta-2); margin-bottom: 18px; }
 .erro { color: #A3321E; font-size: 14px; font-weight: 600; }
 .campos input[aria-invalid="true"] { border-color: #A3321E; box-shadow: 0 0 0 1px #A3321E; }
-@media (max-width: 520px) { .passo-card { padding: 24px 18px; } .opcoes-2 { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .passo-card { padding: 24px 18px; min-height: 608px; } }
 
 /* ---------- como reservar / obra ---------- */
 .passos { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
