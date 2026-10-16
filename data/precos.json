@@ -1,0 +1,16 @@
+{
+  "_leia": "Condição de lançamento para os 10 primeiros clientes. Com vagasPreenchidas de 0 a 2 vale precoLancamento, de 3 a 9 vale precoIntermediario, e em 10 a faixa de lançamento some e volta o precoCheio, sem risco. Valores em reais, sem ponto nem vírgula.",
+  "vagasTotal": 10,
+  "vagasPreenchidas": 0,
+  "faixas": [
+    { "de": 1, "ate": 3, "preco": "precoLancamento" },
+    { "de": 4, "ate": 10, "preco": "precoIntermediario" },
+    { "de": 11, "ate": null, "preco": "precoCheio" }
+  ],
+  "planos": {
+    "essencial": { "precoCheio": 1500, "precoLancamento": 990, "precoIntermediario": 1200 },
+    "completo": { "precoCheio": 2500, "precoLancamento": 1500, "precoIntermediario": 1800, "parcelas": 3 },
+    "sobMedida": { "precoCheio": 4900, "precoLancamento": 2500, "precoIntermediario": 2500, "aPartirDe": true },
+    "manutencao": { "precoCheio": 197, "precoLancamento": 97, "precoIntermediario": 97, "mensal": true }
+  }
+}

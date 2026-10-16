@@ -21,8 +21,8 @@ Reaproveite o `proposta.html` e o `gerar-pdf.js` delas: mesmo formato
   catálogo da Theatrum.
 - Escopo em entregas concretas (o que vai existir no fim), com prazo.
 - **Preço:** use só valores que o fundador passou para este cliente ou
-  que estão publicados no site (implantação a partir de R$ 1.500,
-  operação a partir de R$ 197/mês). Valor que não foi passado vira
+  que estão publicados no site (tabela em `data/precos.json`: Essencial,
+  Completo, Sob medida e manutenção, com o preço da faixa de vagas atual). Valor que não foi passado vira
   `[PREÇO A DEFINIR]` em destaque. Nunca estime preço por conta própria.
 - Se existe prévia no ar (`/<cliente>/`), a proposta aponta para ela.
 - Nada de prova social inventada, nem "clientes atendidos", nem

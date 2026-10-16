@@ -3,8 +3,9 @@
 Site da Theatrum (usetheatrum.com.br): criação digital sob medida para pequenos
 negócios no Brasil e no exterior, em português (principal) e inglês.
 Posicionamento desde 06/10/2026 (proposta v2): site e landing page que
-transformam visitante em cliente no WhatsApp, prontos para anúncio, com ticket
-de entrada de R$ 2.500. O que se
+transformam visitante em cliente no WhatsApp, prontos para anúncio. Desde 16/10/2026,
+condição de lançamento para os 10 primeiros clientes: entrada de R$ 990
+(Essencial) e R$ 1.500 (Completo), cheios de R$ 1.500 e R$ 2.500. O que se
 constrói vem primeiro (sites, landing pages, lojas virtuais, aplicativos e
 sistemas web); Google Meu Negócio, tráfego pago, IA no WhatsApp e reativação
 trazem gente até lá. Social media para Instagram é oferecido só como
@@ -248,14 +249,33 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   `#solucao` continua dentro dela.
 - **`[09]` investimento (`#investimento`):** seção própria desde 13/10/2026,
   com fundo `--bg-2` para não emendar com a calculadora (os estilos `.inv` e
-  `.pl-*` continuam no bloco do `[06]`). Três planos (Lançamento R$ 2.500 ou 3x R$ 833,33, Institucional
-  R$ 3.900, Sob medida a partir de R$ 4.900), a linha de recorrência
-  (manutenção R$ 197/mês, gestão de tráfego R$ 697/mês + verba, mínimo
-  recomendado R$ 600/mês) e o filtro de "é/não é para você". O selo do
-  Lançamento é "recomendado", não "mais escolhido": sem cliente para contar,
-  seria prova social inventada. O lead diz que o diagnóstico indica qual
-  plano serve, não que "o valor exato sai no diagnóstico" (contradizia os
-  preços fechados logo abaixo).
+  `.pl-*` continuam no bloco do `[06]`). Desde 16/10/2026, condição de
+  lançamento para os 10 primeiros clientes. **Todo preço da home sai do
+  `data/precos.json`** (núcleo `window.TheatrumPrecos`, script "PREÇOS: um
+  lugar só" antes do `[07]`; o `PADRAO` de lá é o mesmo JSON com zero vagas,
+  para o primeiro desenho e para falha no fetch; o JSON só baixa quando o
+  `[07]` ou o `[09]` chegam perto). O Matheus só mexe em `vagasPreenchidas`
+  (passo a passo em `docs/como-atualizar-vagas.md`): de 0 a 2 vale o preço de
+  lançamento (Essencial R$ 990, Completo R$ 1.500 ou 3x R$ 500, Sob medida a
+  partir de R$ 2.500, manutenção R$ 97/mês), de 3 a 9 o intermediário
+  (R$ 1.200, R$ 1.800, R$ 2.500, R$ 97), e em 10 a faixa e o "Por que esse
+  preço?" somem e voltam os cheios sem risco (R$ 1.500, R$ 2.500, a partir de
+  R$ 4.900, R$ 197). O intermediário do Sob medida (R$ 2.500) não foi
+  definido pelo Matheus: é o mesmo do lançamento até ele decidir. Acima dos
+  cards, a faixa com "X de 10 vagas abertas", barra de 10 segmentos e a
+  escada do Completo com o degrau atual marcado; cheio em `<del>`, novo em
+  `<strong>`, com texto só para leitor de tela. No celular o Completo vem
+  primeiro. Embaixo: manutenção (fidelidade de 12 meses), "Por que esse
+  preço?" (depoimento em 30 dias, portfólio com antes e depois, fidelidade),
+  letra miúda (10 dias úteis, 2 rodadas, fora do escopo) e a gestão de
+  tráfego (R$ 697/mês + verba, mínimo R$ 600/mês). Tudo que tem número é
+  desenhado pelo script do fim da seção (objeto `TX`, sem `data-en`); o HTML
+  é o estado com zero vagas. O selo do Completo é "recomendado", não "mais
+  escolhido": com zero cliente seria prova social inventada (o pedido de
+  16/10/2026 dizia "Mais escolhido"; ficou "recomendado"). Cada card abre o
+  WhatsApp citando plano e preço e dispara `plano_click`.
+  Mudou valor de plano (não só as vagas)? Mude também o `PADRAO` e o HTML
+  estático do `[09]`, que é o que aparece sem JS ou se o fetch falhar.
 - **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
   `[08]`). Desde 13/10/2026, os vinte e seis sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
@@ -297,8 +317,8 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   site, chamam no WhatsApp, não esfriam (retomada e reativação) e você
   acompanha (painel, tudo no seu nome). Ao lado de cada tela, "o que a
   Theatrum entrega aqui" com o preço daquela parte; **mudou preço no `[09]`,
-  muda no `PX_T` também.** Embaixo, a proposta em três linhas (R$ 2.500,
-  R$ 197/mês, R$ 697/mês + verba), o CTA de WhatsApp e o degrau mais baixo
+  vem do `data/precos.json` pelo `precosPX()`.** Embaixo, a proposta em três linhas (Completo,
+  manutenção, R$ 697/mês + verba; as duas primeiras desenhadas pelo mesmo núcleo), o CTA de WhatsApp e o degrau mais baixo
   (calculadora). Textos nos objetos `PX_N` e `PX_T`, redesenho na troca de
   idioma. A troca de etapa é a própria barra de progresso (animação CSS):
   pausa fora da tela e com aba escondida, e nada mais a para: desde
@@ -338,6 +358,7 @@ diferente conforme de onde a pessoa clicou:
 | entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
+| investimento (cards) | "Olá! Vi a condição de lançamento e quero o plano {plano} ({preço})." (depois das 10 vagas: "Olá! Vim do site da Theatrum e quero o plano...") |
 | blog (topo, menu e rodapé) | "Vim do blog da Theatrum. Quero o diagnóstico gratuito." |
 | blog (CTA do artigo) | "Vim do blog da Theatrum, do artigo "{título}". Quero o diagnóstico gratuito." |
 
@@ -788,6 +809,8 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   (`data-blog-cta`), pelo `TheatrumLeads.evento`, com a mesma regra de
   consentimento. O compartilhar no WhatsApp leva `data-compartilhar`, que o
   `leads.js` deixa passar sem modal nem evento.
+- `plano_click` (`data-plano` nos cards do `[09]`, com o plano e o `data-origem`
+  do botão), pelo `TheatrumLeads.evento`, só com consentimento.
 - `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos três
   "Ver quanto eu perco por mês" da home).
 - `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu
@@ -805,7 +828,8 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[09] entregas`.
 3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)
-4. Política de contrato. A pergunta "Fico preso em contrato?" saiu do FAQ
+4. Política de contrato. Desde 16/10/2026 a manutenção da condição de
+   lançamento tem fidelidade de 12 meses, publicada no `[09]`. A pergunta "Fico preso em contrato?" saiu do FAQ
    em 13/10/2026 porque a resposta publicada era o lembrete interno
    "CONFIRMAR COM O MATHEUS"; volta quando a política existir (há um
    comentário no lugar dela no `index.html`).
