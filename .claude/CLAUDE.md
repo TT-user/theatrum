@@ -666,15 +666,14 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - `/vilaserena/` — prévia do site das Cabanas Vila Serena (cabanas A-frame em construção em
   Alto Caparaó, MG, na mesma cidade do Recanto), desde 16/10/2026, a partir de um briefing em
   quatro etapas. **Divisão e visual copiados da demo Maré Mansa** (`/imoveis/demos/mare-mansa/`),
-  a pedido: Fraunces, Inter e rótulo mono, hero com card branco embaixo, faixa de fatos, cards
+  a pedido: Fraunces, Inter e rótulo mono, hero com dois botões (o card branco de busca da Maré Mansa saiu: na Vila só repetia a lista de espera), faixa de fatos, cards
   altos de foto ("por dentro da Vila", no lugar das regiões), seção escura com passo a passo,
   quatro passos ligados (como reservar e obra), sobre (Café da Vila), dúvidas em sanfona e
   contato com mapa; as cores são as dos renders (grafite, madeira `#8A5426` no claro, âmbar nos
   botões) e o logo fica em Jost fino, como o letreiro. O card de cada cabana segue o da Pousada
   do Bezerra (concorrente): duas fotos, texto e uma fileira de comodidades com ícone desenhado
   aqui (`c-*` no HTML, nome em `icone` no `cabanas.json`). A lista de espera (etapa 2 do
-  briefing) já existe: quatro passos que montam a mensagem do WhatsApp; o card do hero faz as
-  três primeiras perguntas e pula o que já foi respondido. A tela final diz "falta só enviar",
+  briefing) já existe: quatro passos que montam a mensagem do WhatsApp. A tela final diz "falta só enviar",
   não "vocês estão na lista", porque só entra quem envia. Sem campo de WhatsApp: a mensagem já
   sai do número da pessoa. Condição de inauguração só aparece se `condicaoInauguracao` tiver
   texto; o simulador de reserva (`modo: "reservas"`) ainda não existe. Todas as imagens são

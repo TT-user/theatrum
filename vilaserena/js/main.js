@@ -290,49 +290,12 @@
       });
       if (foco) { var alvo = box.querySelector('h3'); if (alvo) { alvo.setAttribute('tabindex', '-1'); alvo.focus({ preventScroll: true }); } }
     }
-    function proximo() {
-      // pula o que o card do hero já respondeu
-      passo++;
-      while (passo < 3 && resp[PERGUNTAS[passo].id]) passo++;
-      render(true);
-    }
+    function proximo() { passo++; render(true); }
     render(false);
 
-    /* card do hero: as mesmas três perguntas em menus */
-    function opcoesSelect(p) {
-      var html = '<option value="">Escolher</option>';
-      p.ops.forEach(function (o) {
-        if (o.v === 'feriado') {
-          html += '<optgroup label="Num feriado">' + feriados.map(function (f) { return '<option value="' + attr(f) + '">' + attr(f) + '</option>'; }).join('') + '</optgroup>';
-        } else {
-          html += '<option value="' + attr(o.v) + '">' + attr(o.l + (o.s && p.id === 'grupo' ? ' (' + o.s + ')' : '')) + '</option>';
-        }
-      });
-      return html;
-    }
-    $('#b-quando').innerHTML = opcoesSelect(PERGUNTAS[0]);
-    $('#b-grupo').innerHTML = opcoesSelect(PERGUNTAS[1]);
-    $('#b-ocasiao').innerHTML = opcoesSelect(PERGUNTAS[2]);
-    // o valor do select guarda o texto sem colchete; a mensagem usa o da pergunta
-    function valorReal(i, v) {
-      var o = PERGUNTAS[i].ops.filter(function (x) { return attr(x.v) === v; })[0];
-      return o ? o.v : v;
-    }
-    $('#busca').addEventListener('submit', function (e) {
-      e.preventDefault();
-      ['quando', 'grupo', 'ocasiao'].forEach(function (k, i) {
-        var v = $('#b-' + k).value;
-        if (v) resp[k] = valorReal(i, v); else delete resp[k];
-      });
-      passo = 0; escolhendoFeriado = false;
-      while (passo < 3 && resp[PERGUNTAS[passo].id]) passo++;
-      render(false);
-      $('#lancamento').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(function () { var a = box.querySelector('h3'); if (a) { a.setAttribute('tabindex', '-1'); a.focus({ preventScroll: true }); } }, 600);
-    });
   }
 
-  function json(u) { return fetch(u + '?v=5').then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
+  function json(u) { return fetch(u + '?v=6').then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
 
   json('data/info.json').then(renderInfo).catch(function (e) { console.error(e); });
   json('data/cabanas.json').then(function (d) { renderCabanas(d.cabanas); }).catch(function (e) { console.error(e); });
