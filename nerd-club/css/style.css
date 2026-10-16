@@ -189,26 +189,32 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .missoes { display: grid; gap: 16px; }
 @media (min-width: 640px) { .missoes { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1000px) { .missoes { grid-template-columns: repeat(4, 1fr); } }
-.missao { display: flex; flex-direction: column; gap: 12px; padding: 22px 20px; border: 3px solid var(--roxo); border-radius: 8px; background: var(--card); text-decoration: none; box-shadow: 0 0 0 2px #000; transition: border-color .15s, transform .15s; }
-.missao:hover, .missao:focus-visible { border-color: var(--magenta); transform: translateY(-3px); outline: none; }
-.missao svg { width: 44px; height: 44px; color: var(--amarelo); }
-.missao h3 { font: 400 13px/1.6 var(--pixel); margin: 0; }
-.missao p { margin: 0; color: var(--suave); font-size: 16px; }
-.missao__ir { margin-top: auto; font: 400 21px/1 var(--tela); color: var(--ciano); }
-.missao--incubo { border-color: var(--azul); }
-.missao--incubo svg { color: var(--vermelho); }
-
-/* Card de missão: atributos em barra e moldura que pisca no foco */
-.missao { position: relative; }
-.missao__p1 { position: absolute; top: -12px; left: 14px; padding: 2px 8px; font: 400 9px/1.6 var(--pixel); background: var(--magenta); color: #12002A; border: 2px solid #000; opacity: 0; }
+/* Caixa de jogo: amarelo de cartucho, moldura preta com canto em degrau (as quatro
+   sombras de 4px deixam o canto vazado), relevo claro em cima e escuro embaixo, e
+   sombra dura. Sem border-radius: canto redondo não existe em pixel. */
+.missao { position: relative; display: flex; flex-direction: column; gap: 12px; margin: 4px; padding: 22px 20px; background: var(--amarelo); color: #12002A; text-decoration: none; box-shadow: inset 4px 4px 0 #FFF2A8, inset -4px -4px 0 #C99A0C, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000, 8px 10px 0 rgba(0, 0, 0, .7); transition: transform .12s steps(2), box-shadow .12s steps(2); }
+.missao:hover, .missao:focus-visible { transform: translate(-2px, -3px); outline: none; box-shadow: inset 4px 4px 0 #FFF2A8, inset -4px -4px 0 #C99A0C, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000, 11px 14px 0 rgba(0, 0, 0, .7), 0 0 0 8px var(--magenta); }
+.missao:active { transform: translate(3px, 4px); box-shadow: inset 4px 4px 0 #C99A0C, inset -4px -4px 0 #FFF2A8, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000; }
+.missao svg { width: 44px; height: 44px; color: #12002A; }
+.missao h3 { font: 400 13px/1.6 var(--pixel); margin: 0; padding-bottom: 10px; border-bottom: 4px dotted rgba(18, 0, 42, .35); }
+.missao p { margin: 0; color: #2A1A45; font-size: 16px; font-weight: 500; }
+.missao__ir { margin-top: auto; align-self: flex-start; padding: 4px 10px 5px; font: 400 21px/1 var(--tela); color: var(--amarelo); background: #12002A; }
+.missao__p1 { position: absolute; top: -16px; right: 14px; padding: 2px 8px; font: 400 9px/1.6 var(--pixel); background: var(--magenta); color: #12002A; border: 3px solid #000; opacity: 0; }
 .missao:hover .missao__p1, .missao:focus-visible .missao__p1 { opacity: 1; }
-.missao:focus-visible { border-color: var(--magenta); box-shadow: 0 0 0 2px #000, 0 0 0 5px var(--amarelo); }
-@media (prefers-reduced-motion: no-preference) { .missao:focus-visible, .missao:hover { animation: moldura .5s steps(1) infinite; } }
-@keyframes moldura { 50% { border-color: var(--amarelo); } }
-.missao--incubo:hover, .missao--incubo:focus-visible { border-color: var(--azul); }
-.atributos { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; margin: 4px 0 0; font: 400 19px/1 var(--tela); color: var(--suave); }
-.atributos dd { margin: 0; }
-.atributos i { display: block; height: 10px; width: 100%; background: repeating-linear-gradient(90deg, var(--ciano) 0 calc(20% - 3px), transparent calc(20% - 3px) 20%); -webkit-mask: linear-gradient(90deg, #000 calc(var(--n) * 20%), rgba(0,0,0,.18) 0); mask: linear-gradient(90deg, #000 calc(var(--n) * 20%), rgba(0,0,0,.18) 0); }
+@media (prefers-reduced-motion: no-preference) { .missao:hover .missao__p1, .missao:focus-visible .missao__p1 { animation: p1-pisca .5s steps(1) infinite; } }
+@keyframes p1-pisca { 50% { background: var(--ciano); } }
+/* Mundo 2 mantém a paleta da InCubo, na mesma caixa */
+.missao--incubo { background: var(--azul); color: #fff; box-shadow: inset 4px 4px 0 #6E7BFF, inset -4px -4px 0 #1A24A8, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000, 8px 10px 0 rgba(0, 0, 0, .7); }
+.missao--incubo:hover, .missao--incubo:focus-visible { box-shadow: inset 4px 4px 0 #6E7BFF, inset -4px -4px 0 #1A24A8, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000, 11px 14px 0 rgba(0, 0, 0, .7), 0 0 0 8px var(--vermelho); }
+.missao--incubo:active { box-shadow: inset 4px 4px 0 #1A24A8, inset -4px -4px 0 #6E7BFF, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000; }
+.missao--incubo svg { color: #fff; }
+.missao--incubo h3 { border-bottom-color: rgba(255, 255, 255, .4); }
+.missao--incubo p { color: #E4E7FF; }
+.missao--incubo .missao__ir { color: #fff; background: var(--vermelho); }
+.atributos { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; margin: 4px 0 0; font: 400 19px/1 var(--tela); color: #2A1A45; }
+.atributos dd { margin: 0; padding: 2px; background: #12002A; }
+.atributos i { display: block; height: 10px; width: 100%; background: repeating-linear-gradient(90deg, var(--magenta) 0 calc(20% - 3px), transparent calc(20% - 3px) 20%); -webkit-mask: linear-gradient(90deg, #000 calc(var(--n) * 20%), rgba(0,0,0,.18) 0); mask: linear-gradient(90deg, #000 calc(var(--n) * 20%), rgba(0,0,0,.18) 0); }
+.missao--incubo .atributos { color: #E4E7FF; }
 .missao--incubo .atributos i { background: repeating-linear-gradient(90deg, var(--vermelho) 0 calc(20% - 3px), transparent calc(20% - 3px) 20%); }
 
 /* ---------- Oficina ---------- */
@@ -216,10 +222,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .oficina__in { display: grid; gap: 48px; align-items: start; }
 @media (min-width: 980px) { .oficina__in { grid-template-columns: 1fr 1fr; gap: 56px; } .dialogo { position: sticky; top: calc(var(--hud-h) + 36px); } }
 .powerups { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.powerup { display: flex; flex-direction: column; gap: 6px; padding: 14px 12px; background: rgba(91, 26, 154, .16); border: 2px solid rgba(122, 43, 196, .45); border-radius: 4px; }
-.powerup svg { width: 26px; height: 26px; color: var(--amarelo); }
-.powerup h3 { font: 700 15px/1.3 var(--sans); margin: 0; }
-.powerup p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--suave); }
+.powerups { gap: 14px; padding: 4px; }
+.powerup { display: flex; flex-direction: column; gap: 6px; padding: 14px 12px; background: var(--amarelo); color: #12002A; box-shadow: inset 3px 3px 0 #FFF2A8, inset -3px -3px 0 #C99A0C, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000, 3px 0 0 #000, 5px 6px 0 rgba(0, 0, 0, .7); }
+.powerup svg { width: 26px; height: 26px; color: #12002A; }
+.powerup h3 { font: 800 15px/1.3 var(--sans); margin: 0; }
+.powerup p { margin: 0; font-size: 14px; line-height: 1.45; color: #2A1A45; font-weight: 500; }
 .powerups__nota .ph { white-space: nowrap; }
 .powerups__nota { margin: 14px 0 0; font: 400 19px/1.3 var(--tela); color: var(--ciano); }
 @media (min-width: 560px) { .powerup { padding: 16px; } .powerup h3 { font-size: 16px; } .powerup p { font-size: 15px; } }

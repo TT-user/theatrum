@@ -612,7 +612,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   às seções da home. A home: abertura de 1,7 s (uma vez por sessão, pulável, nunca com
   movimento reduzido nem em `?still=1`, que desliga tudo que se mexe), seleção de
   missão com setas do teclado e atributos tirados dos flyers (nada de "garantia", que
-  ninguém confirmou), diagnóstico rápido em `js/diagnostico.js` (montado por
+  ninguém confirmou; desde 16/10/2026 os cards da missão e os serviços da
+  oficina são caixas de jogo amarelas, com canto em degrau feito por sombra, sem
+  border-radius, e a da InCubo fica azul), diagnóstico rápido em `js/diagnostico.js` (montado por
   `[data-diagnostico]`, reaproveitável na `/oficina`; os serviços ao lado são blocos curtos em
   duas colunas, com `nomeCurto` e `curto` do `servicos.json`, e o texto longo fica para a
   `/oficina`; o prazo é uma linha só, `prazos` no `config.js`, placeholder enquanto `null`), antes/depois arrastável,
