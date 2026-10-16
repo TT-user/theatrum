@@ -119,8 +119,11 @@ h2 em, h1 em { font-style: normal; color: var(--ambar-esc); }
 
 /* Carrossel das cabanas */
 .carrossel { margin-top: 44px; }
-.carrossel__trilho { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: max(16px, (100% - 1180px) / 2); padding: 0 max(16px, (100% - 1180px) / 2) 6px; scrollbar-width: none; }
+.carrossel__trilho { position: relative; display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: max(16px, (100% - 1180px) / 2); padding: 0 max(16px, (100% - 1180px) / 2) 6px; scrollbar-width: none; }
 .carrossel__trilho::-webkit-scrollbar { display: none; }
+@media (pointer: fine) { .carrossel__trilho { cursor: grab; } }
+.carrossel__trilho.arrastando { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+.carrossel__trilho img { -webkit-user-drag: none; }
 .slide { position: relative; flex: 0 0 min(82vw, 860px); scroll-snap-align: start; margin: 0; }
 .slide img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: var(--pedra); }
 .slide figcaption { margin-top: 10px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }

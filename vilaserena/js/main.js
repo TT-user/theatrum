@@ -76,6 +76,42 @@
     if (e.key === 'ArrowRight') { e.preventDefault(); passo(1); }
   });
 
+  // Arrastar com o mouse (no toque o navegador já rola sozinho). O snap sai
+  // durante o arraste e, ao soltar, o trilho vai para o slide mais perto,
+  // um adiante ou atrás se o arraste passou de 60 px.
+  var arr = null;
+  trilho.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    arr = { x: e.clientX, ini: trilho.scrollLeft, dx: 0 };
+    trilho.classList.add('arrastando');
+    trilho.setPointerCapture(e.pointerId);
+  });
+  trilho.addEventListener('pointermove', function (e) {
+    if (!arr) return;
+    arr.dx = e.clientX - arr.x;
+    trilho.scrollLeft = arr.ini - arr.dx;
+  });
+  function solta() {
+    if (!arr) return;
+    var slides = [].slice.call(trilho.querySelectorAll('.slide'));
+    var pad = parseFloat(getComputedStyle(trilho).paddingLeft) || 0;
+    var pos = slides.map(function (s) { return s.offsetLeft - pad; });
+    var i = 0;
+    pos.forEach(function (p, k) { if (Math.abs(p - arr.ini) < Math.abs(pos[i] - arr.ini)) i = k; });
+    if (arr.dx < -60) i++;
+    if (arr.dx > 60) i--;
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    var arrastou = Math.abs(arr.dx) > 5;
+    arr = null;
+    trilho.scrollTo({ left: pos[i], behavior: 'smooth' });
+    setTimeout(function () { trilho.classList.remove('arrastando'); }, 450);
+    // Arraste não vira clique numa imagem
+    if (arrastou) trilho.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, { capture: true, once: true });
+  }
+  trilho.addEventListener('pointerup', solta);
+  trilho.addEventListener('pointercancel', solta);
+  trilho.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
   function renderCarrossel(imgs) {
     // Fotos reais primeiro; áreas comuns ficam para o café e a galeria.
     var cabanas = imgs.filter(function (i) { return /^(fileira|cabana|porta)/.test(i.arquivo) || i.tipo === 'foto'; });
