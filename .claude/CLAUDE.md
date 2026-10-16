@@ -258,17 +258,15 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   (passo a passo em `docs/como-atualizar-vagas.md`): de 0 a 2 vale o preço de
   lançamento (Essencial R$ 990, Completo R$ 1.500 ou 3x R$ 500, Sob medida a
   partir de R$ 2.500, manutenção R$ 97/mês), de 3 a 9 o intermediário
-  (R$ 1.200, R$ 1.800, R$ 2.500, R$ 97), e em 10 a faixa e o "Por que esse
-  preço?" somem e voltam os cheios sem risco (R$ 1.500, R$ 2.500, a partir de
+  (R$ 1.200, R$ 1.800, R$ 2.500, R$ 97), e em 10 voltam os cheios sem risco (R$ 1.500, R$ 2.500, a partir de
   R$ 4.900, R$ 197). O intermediário do Sob medida (R$ 2.500) não foi
-  definido pelo Matheus: é o mesmo do lançamento até ele decidir. Acima dos
-  cards, a faixa com "X de 10 vagas abertas", barra de 10 segmentos e a
-  escada do Completo com o degrau atual marcado; cheio em `<del>`, novo em
-  `<strong>`, com texto só para leitor de tela. No celular o Completo vem
-  primeiro. Embaixo: manutenção (fidelidade de 12 meses), "Por que esse
-  preço?" (depoimento em 30 dias, portfólio com antes e depois, fidelidade),
-  letra miúda (10 dias úteis, 2 rodadas, fora do escopo) e a gestão de
-  tráfego (R$ 697/mês + verba, mínimo R$ 600/mês). Tudo que tem número é
+  definido pelo Matheus: é o mesmo do lançamento até ele decidir. Cheio em
+  `<del>`, novo em `<strong>`, com texto só para leitor de tela. No celular
+  o Completo vem primeiro. Embaixo dos cards, só a faixa da manutenção
+  (fidelidade de 12 meses). A faixa com o contador de vagas e a escada de
+  preço, o "Por que esse preço?", a letra miúda (prazo, rodadas, fora do
+  escopo) e a linha da gestão de tráfego saíram em 16/10/2026, a pedido;
+  a gestão de tráfego segue no `[07]`. Tudo que tem número é
   desenhado pelo script do fim da seção (objeto `TX`, sem `data-en`); o HTML
   é o estado com zero vagas. O selo do Completo é "recomendado", não "mais
   escolhido": com zero cliente seria prova social inventada (o pedido de

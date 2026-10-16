@@ -2553,26 +2553,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   #investimento [hidden]{display:none!important}
   #investimento .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-  /* faixa de lançamento: contador honesto, tirado do data/precos.json */
-  .lc{border:1px solid rgba(227,179,65,.45);border-radius:20px;padding:24px 26px;
-      background:linear-gradient(180deg,rgba(227,179,65,.09),rgba(227,179,65,.02));
-      display:grid;gap:22px 32px;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);align-items:center}
-  .lc h3{font:800 clamp(21px,2.4vw,26px)/1.22 var(--font-display);letter-spacing:-.008em;color:var(--white)}
-  .lc-vagas{margin-top:12px;font-size:16px;line-height:1.4;color:#D8CFC0}
-  .lc-vagas b{color:var(--accent);font-variant-numeric:tabular-nums}
-  .lc-barra{margin-top:10px;display:grid;grid-template-columns:repeat(var(--n,10),1fr);gap:4px;max-width:320px}
-  .lc-barra i{height:9px;border-radius:3px;background:var(--accent)}
-  .lc-barra i.f{background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
-  .lc-esc-t{font:600 12.5px/1.3 var(--font-mono);color:var(--muted);margin-bottom:10px}
-  .lc-escada{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .lc-escada li{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(11,10,8,.45)}
-  .lc-escada .q{display:block;font:500 14px/1.3 var(--font-body);color:#C9C0B1}
-  .lc-escada b{display:block;margin-top:6px;font:800 21px/1 var(--font-display);color:#D8CFC0;font-variant-numeric:tabular-nums}
-  .lc-escada .st{display:block;margin-top:7px;font:600 12px/1.2 var(--font-mono);color:var(--muted)}
-  .lc-escada li[aria-current]{border-color:var(--accent);background:rgba(227,179,65,.13)}
-  .lc-escada li[aria-current] b,.lc-escada li[aria-current] .st{color:var(--accent)}
-  .lc-escada li.ok b{text-decoration:line-through;color:var(--muted)}
-
   /* preço cheio riscado em cima, o de lançamento grande embaixo */
   #investimento .pl-grid{align-items:stretch}
   #investimento .pl-card{display:flex;flex-direction:column}
@@ -2589,27 +2569,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   #investimento .pl-man .pl-valor strong{font-size:1.75rem}
   .pl-man-t{font-size:16px;line-height:1.6;color:#D8CFC0;max-width:70ch}
 
-  .pl-porque{margin-top:16px;border-left:3px solid var(--accent);padding:4px 0 4px 20px}
-  .pl-porque h4{font:800 20px/1.2 var(--font-display);letter-spacing:-.005em;color:var(--white)}
-  .pl-porque p{margin-top:10px;font-size:16.5px;line-height:1.6;color:#D8CFC0;max-width:70ch}
-  .pl-porque ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
-  .pl-porque li{position:relative;padding-left:24px;font-size:16px;line-height:1.5;color:#D8CFC0}
-  .pl-porque li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
-  .pl-letra{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:5px}
-  .pl-letra li{font-size:14px;line-height:1.55;color:var(--muted)}
-  .pl-letra li::before{content:"· ";color:var(--accent)}
-
   @media(max-width:980px){
-    .lc{grid-template-columns:1fr}
     #investimento .pl-dest{order:-1}      /* no celular, o Completo vem primeiro */
     .pl-man{grid-template-columns:1fr}
-  }
-  @media(max-width:560px){
-    .lc{padding:20px 18px}
-    .lc-escada{grid-template-columns:1fr;gap:6px}
-    .lc-escada li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 14px}
-    .lc-escada b{margin-top:0;grid-row:span 2;font-size:20px}
-    .lc-escada .st{margin-top:0}
   }
 </style>
 <section class="sec" id="investimento">
@@ -2620,27 +2582,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="inv rv" style="--d:.2s">
       <!-- Condição de lançamento desde 16/10/2026: os 10 primeiros clientes
            pagam menos em troca de depoimento, portfólio e fidelidade de 12
-           meses na manutenção. Tudo que tem número aqui (faixa, valores,
-           links dos botões) é desenhado pelo script do fim da seção a partir
+           meses na manutenção. Tudo que tem número aqui (valores e links
+           dos botões) é desenhado pelo script do fim da seção a partir
            do data/precos.json; o HTML abaixo é o estado com zero vagas
            preenchidas, para quem chega sem JS. Por isso esses elementos não
            têm data-en: os textos moram no objeto TX. -->
-
-      <div class="lc" data-pr-lanc>
-        <div>
-          <h3 data-pr="titulo">Condição de lançamento: 10 primeiros clientes</h3>
-          <p class="lc-vagas" data-pr="vagas"><b>10</b> de 10 vagas abertas</p>
-          <div class="lc-barra" data-pr="barra" role="img" aria-label="0 de 10 vagas preenchidas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-        <div>
-          <p class="lc-esc-t" data-pr="escada-t">o preço sobe conforme as vagas fecham (plano Completo)</p>
-          <ol class="lc-escada" data-pr="escada">
-            <li aria-current="step"><span class="q">Clientes 1 a 3</span><b>R$ 1.500</b><span class="st">agora</span></li>
-            <li><span class="q">Clientes 4 a 10</span><b>R$ 1.800</b><span class="st"></span></li>
-            <li><span class="q">A partir do 11º</span><b>R$ 2.500</b><span class="st"></span></li>
-          </ol>
-        </div>
-      </div>
 
       <div class="pl-grid">
         <article class="pl-card">
@@ -2688,22 +2634,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="pl-man-t" data-pr="manutencao-t">Para os 10 primeiros clientes, mantido enquanto o contrato estiver ativo. Inclui hospedagem, segurança, backup e até 2 ajustes por mês. Fidelidade de 12 meses.</p>
       </div>
 
-      <div class="pl-porque" data-pr-lanc>
-        <h4 data-en="Why this price?">Por que esse preço?</h4>
-        <p data-pr="porque">A Theatrum está abrindo a carteira. Os 10 primeiros clientes pagam menos e, em troca, nos ajudam a mostrar o trabalho:</p>
-        <ul>
-          <li data-en="A testimonial after 30 days with the site live (video or text).">Depoimento depois de 30 dias de site no ar (vídeo ou texto).</li>
-          <li data-en="Permission to show the project in the portfolio, with the before and after.">Autorização para mostrar o projeto no portfólio e o antes e depois.</li>
-          <li data-en="Maintenance with a 12-month commitment.">Manutenção com fidelidade de 12 meses.</li>
-        </ul>
-      </div>
-      <ul class="pl-letra">
-        <li data-en="Delivery in 10 business days after we receive your material.">Prazo de 10 dias úteis após receber o material.</li>
-        <li data-en="Up to 2 rounds of changes.">Até 2 rodadas de ajustes.</li>
-        <li data-en="Outside the scope of Essential and Complete: custom systems, multi-page websites, blog and city-by-city SEO (quoted separately).">Fora do escopo do Essencial e do Completo: sistemas sob medida, sites com várias páginas, blog e SEO por cidade (orçados à parte).</li>
-      </ul>
-
-      <p class="pl-depois" data-en="Traffic management for R$ 697 a month + the ad budget in your own account (recommended minimum of R$ 600 a month).">Gestão de tráfego por R$ 697/mês + verba de anúncio na sua conta (mínimo recomendado de R$ 600/mês).</p>
 
       <div class="inv-cols">
         <div class="inv-col inv-sim">
@@ -2732,7 +2662,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 <script>
-/* [09] investimento: desenha faixa, valores e links a partir do
+/* [09] investimento: desenha valores e links a partir do
    data/precos.json (núcleo "PREÇOS: um lugar só", antes do [07]). */
 (function(){
   const sec = document.getElementById('investimento');
@@ -2740,30 +2670,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const P = window.TheatrumPrecos;
   const WA = '5532984762445';
   const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
-  const ord = n => n + (n % 100 > 10 && n % 100 < 14 ? 'th' : ({ 1:'st', 2:'nd', 3:'rd' })[n % 10] || 'th');
   const TX = {
-    pt:{ titulo:t => 'Condição de lançamento: ' + t + ' primeiros clientes',
-         vagas:(r, t) => '<b>' + r + '</b> de ' + t + ' vagas abertas',
-         barra:(f, t) => f + ' de ' + t + ' vagas preenchidas',
-         escadaT:'o preço sobe conforme as vagas fecham (plano Completo)',
-         degrau:f => f.ate == null ? 'A partir do ' + f.de + 'º' : 'Clientes ' + f.de + ' a ' + f.ate,
-         agora:'agora', fechou:'preenchido',
-         de:'de ', cheio:'preço cheio: ', lanc:'preço de lançamento: ', aPartir:'a partir de',
+    pt:{ de:'de ', cheio:'preço cheio: ', lanc:'preço de lançamento: ', aPartir:'a partir de',
          parc:(n, v) => 'ou ' + n + 'x de ' + v, mes:'/mês',
          manut:(lanc, t) => (lanc ? 'Para os ' + t + ' primeiros clientes, mantido enquanto o contrato estiver ativo. ' : '')
-           + 'Inclui hospedagem, segurança, backup e até 2 ajustes por mês.' + (lanc ? ' Fidelidade de 12 meses.' : ''),
-         porque:t => 'A Theatrum está abrindo a carteira. Os ' + t + ' primeiros clientes pagam menos e, em troca, nos ajudam a mostrar o trabalho:' },
-    en:{ titulo:t => 'Launch offer: first ' + t + ' clients',
-         vagas:(r, t) => '<b>' + r + '</b> of ' + t + ' spots open',
-         barra:(f, t) => f + ' of ' + t + ' spots taken',
-         escadaT:'the price goes up as spots fill (Complete plan)',
-         degrau:f => f.ate == null ? 'From the ' + ord(f.de) + ' on' : 'Clients ' + f.de + ' to ' + f.ate,
-         agora:'now', fechou:'filled',
-         de:'was ', cheio:'full price: ', lanc:'launch price: ', aPartir:'from',
+           + 'Inclui hospedagem, segurança, backup e até 2 ajustes por mês.' + (lanc ? ' Fidelidade de 12 meses.' : '') },
+    en:{ de:'was ', cheio:'full price: ', lanc:'launch price: ', aPartir:'from',
          parc:(n, v) => 'or ' + n + 'x ' + v, mes:'/month',
          manut:(lanc, t) => (lanc ? 'For the first ' + t + ' clients, kept for as long as the contract is active. ' : '')
-           + 'Includes hosting, security, backup and up to 2 changes a month.' + (lanc ? ' 12-month commitment.' : ''),
-         porque:t => 'Theatrum is opening its client list. The first ' + t + ' clients pay less and, in return, help us show the work:' }
+           + 'Includes hosting, security, backup and up to 2 changes a month.' + (lanc ? ' 12-month commitment.' : '') }
   };
   /* a mensagem do WhatsApp fica em português, como em todo o site */
   const NOME = { essencial:'Essencial', completo:'Completo', sobMedida:'Sob medida' };
@@ -2784,27 +2699,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function desenha(e){
     const L = idioma(), t = TX[L];
-    sec.querySelectorAll('[data-pr-lanc]').forEach(el => { el.hidden = !e.lanc; });
-
-    put('titulo', t.titulo(e.total));
-    put('vagas', t.vagas(e.restantes, e.total));
-    const barra = q('barra');
-    if (barra) {
-      barra.style.setProperty('--n', e.total);
-      barra.setAttribute('aria-label', t.barra(e.feitas, e.total));
-      barra.innerHTML = Array.from({ length:e.total }, (_, k) => k < e.feitas ? '<i class="f"></i>' : '<i></i>').join('');
-    }
-    put('escada-t', t.escadaT);
-    const c = e.dados.planos.completo;
-    put('escada', e.faixas.map((f, k) => {
-      const atual = k === e.faixa, ok = k < e.faixa;
-      return '<li' + (atual ? ' aria-current="step"' : '') + (ok ? ' class="ok"' : '') + '><span class="q">' + t.degrau(f)
-        + '</span><b>' + P.fmt(c[f.preco], L) + '</b><span class="st">' + (atual ? t.agora : ok ? t.fechou : '') + '</span></li>';
-    }).join(''));
-
     ['essencial', 'completo', 'sobMedida', 'manutencao'].forEach(id => { if (e.planos[id]) put(id, valor(e.planos[id], L, t)); });
     put('manutencao-t', t.manut(e.lanc, e.total));
-    put('porque', t.porque(e.total));
 
     sec.querySelectorAll('[data-plano]').forEach(a => {
       const id = a.dataset.plano, p = e.planos[id];
