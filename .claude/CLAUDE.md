@@ -665,18 +665,25 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 
 - `/vilaserena/` — prévia do site das Cabanas Vila Serena (cabanas A-frame em construção em
   Alto Caparaó, MG, na mesma cidade do Recanto), desde 16/10/2026, a partir de um briefing em
-  quatro etapas (só a 1 feita: estrutura e página). Todas as imagens são renders do projeto e
-  levam o selo "Imagem ilustrativa do projeto"; um render tem o letreiro antigo "Vila da Serra
-  chalés" e entra cortado: esse nome não aparece no site. Identidade dos renders: grafite do
-  telhado, madeira âmbar, off-white da marquise, Jost fino e espaçado como o letreiro; o
-  triângulo do A-frame (rótulos, recorte da foto da cabana) e a linha de LED das portas
-  (brilho âmbar no hover). Tipos de cabana, informações, distâncias e linha do tempo da obra
-  vêm de `data/*.json` (colchete vira placeholder); `galeria.json` tem `tipo` render ou foto,
-  e foto real entra primeiro. `#lancamento` ainda é só um botão de WhatsApp: a lista de espera
-  em passos e o simulador de reserva (`modo` no `info.json`) são a etapa 2. Distâncias são
-  estimativa marcada para confirmar. Mesmo padrão: `.htaccess` e meta com noindex, faixa de
-  prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders originais e pendências
-  em `interno/clientes/vila-serena/`, fora do git.
+  quatro etapas. **Divisão e visual copiados da demo Maré Mansa** (`/imoveis/demos/mare-mansa/`),
+  a pedido: Fraunces, Inter e rótulo mono, hero com card branco embaixo, faixa de fatos, cards
+  altos de foto ("por dentro da Vila", no lugar das regiões), seção escura com passo a passo,
+  quatro passos ligados (como reservar e obra), sobre (Café da Vila), dúvidas em sanfona e
+  contato com mapa; as cores são as dos renders (grafite, madeira `#8A5426` no claro, âmbar nos
+  botões) e o logo fica em Jost fino, como o letreiro. O card de cada cabana segue o da Pousada
+  do Bezerra (concorrente): duas fotos, texto e uma fileira de comodidades com ícone desenhado
+  aqui (`c-*` no HTML, nome em `icone` no `cabanas.json`). A lista de espera (etapa 2 do
+  briefing) já existe: quatro passos que montam a mensagem do WhatsApp; o card do hero faz as
+  três primeiras perguntas e pula o que já foi respondido. A tela final diz "falta só enviar",
+  não "vocês estão na lista", porque só entra quem envia. Sem campo de WhatsApp: a mensagem já
+  sai do número da pessoa. Condição de inauguração só aparece se `condicaoInauguracao` tiver
+  texto; o simulador de reserva (`modo: "reservas"`) ainda não existe. Todas as imagens são
+  renders do projeto e levam o selo de imagem ilustrativa (a `og.jpg` também, gravado nela); um render tem o letreiro antigo
+  "Vila da Serra chalés" e entra cortado: esse nome não aparece no site. Dúvidas, distâncias,
+  por perto e obra vêm do `info.json`; colchete vira placeholder. Distâncias são estimativa
+  marcada para confirmar. Carrossel arrasta com o mouse. O WhatsApp mora no `ZAP` do `main.js` e nos links do HTML, não no `info.json`. Mesmo padrão: `.htaccess` e meta com
+  noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders
+  originais e pendências em `interno/clientes/vila-serena/`, fora do git.
 
 ### As demonstrações, uma pasta por área
 

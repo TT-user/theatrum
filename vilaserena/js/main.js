@@ -1,5 +1,6 @@
-/* Cabanas Vila Serena: prévia. Cabanas, galeria e informações vêm de
-   data/*.json; o HTML só tem os contêineres e o estado com placeholder. */
+/* Cabanas Vila Serena: prévia. Cabanas, galeria, dúvidas e a lista de
+   espera vêm de data/*.json; o HTML só tem os contêineres e o estado com
+   placeholder. */
 (function () {
   'use strict';
 
@@ -15,6 +16,7 @@
       .replace(/\[[^\]]+\]/g, function (m) { return '<span class="ph">' + m + '</span>'; });
   }
   function attr(s) { return String(s == null ? '' : s).replace(/\[|\]/g, '').replace(/"/g, '&quot;'); }
+  function temPh(s) { return /\[[^\]]+\]/.test(String(s || '')); }
 
   function ligaZap(raiz) {
     (raiz || document).querySelectorAll('[data-zap]').forEach(function (a) {
@@ -25,36 +27,30 @@
   }
   ligaZap();
 
-  /* ---------- topo: transparente sobre o hero, grafite ao rolar ---------- */
+  /* ---------- topo ---------- */
   var topo = $('#topo');
-  var barra = $('#demo-bar');
-  var barH = barra ? barra.offsetHeight : 0;
-  document.documentElement.style.setProperty('--bar-h', barH + 'px');
-  function rolou() { topo.classList.toggle('solido', window.scrollY > barH + 10); }
+  function rolou() { topo.classList.toggle('rolou', window.scrollY > 40); }
   window.addEventListener('scroll', rolou, { passive: true });
   rolou();
 
   var menu = $('#menu'), menuBtn = $('#menu-btn');
+  function fechaMenu() { menu.classList.remove('aberto'); topo.classList.remove('aberto'); menuBtn.setAttribute('aria-expanded', 'false'); }
   menuBtn.addEventListener('click', function () {
     var aberto = menu.classList.toggle('aberto');
+    topo.classList.toggle('aberto', aberto);
     menuBtn.setAttribute('aria-expanded', aberto);
-    if (aberto) topo.classList.add('solido'); else rolou();
   });
-  menu.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') { menu.classList.remove('aberto'); menuBtn.setAttribute('aria-expanded', 'false'); }
-  });
+  menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') fechaMenu(); });
 
   if ('IntersectionObserver' in window) {
     var links = {};
     menu.querySelectorAll('a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        if (e.isIntersecting) {
-          Object.keys(links).forEach(function (k) { links[k].classList.toggle('ativo', k === e.target.id); });
-        }
+        if (e.isIntersecting) Object.keys(links).forEach(function (k) { links[k].classList.toggle('atual', k === e.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    Object.keys(links).concat('inicio', 'informacoes', 'obra').forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+    document.querySelectorAll('main > section[id]').forEach(function (s) { io.observe(s); });
   }
 
   /* ---------- mapa só no clique ---------- */
@@ -65,15 +61,25 @@
 
   /* ---------- carrossel das cabanas ---------- */
   var trilho = $('#trilho');
-  function passo(dir) {
-    var s = trilho.querySelector('.slide');
-    if (s) trilho.scrollBy({ left: dir * (s.offsetWidth + 16), behavior: 'smooth' });
+  function posicoes() {
+    var pad = parseFloat(getComputedStyle(trilho).paddingLeft) || 0;
+    return [].map.call(trilho.querySelectorAll('.slide'), function (s) { return s.offsetLeft - pad; });
   }
-  $('#seta-ant').addEventListener('click', function () { passo(-1); });
-  $('#seta-prox').addEventListener('click', function () { passo(1); });
+  function maisPerto(x) {
+    var pos = posicoes(), i = 0;
+    pos.forEach(function (p, k) { if (Math.abs(p - x) < Math.abs(pos[i] - x)) i = k; });
+    return i;
+  }
+  function vaiPara(i) {
+    var pos = posicoes();
+    i = Math.max(0, Math.min(pos.length - 1, i));
+    trilho.scrollTo({ left: pos[i], behavior: 'smooth' });
+  }
+  $('#seta-ant').addEventListener('click', function () { vaiPara(maisPerto(trilho.scrollLeft) - 1); });
+  $('#seta-prox').addEventListener('click', function () { vaiPara(maisPerto(trilho.scrollLeft) + 1); });
   trilho.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); passo(-1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); passo(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); vaiPara(maisPerto(trilho.scrollLeft) - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); vaiPara(maisPerto(trilho.scrollLeft) + 1); }
   });
 
   // Arrastar com o mouse (no toque o navegador já rola sozinho). O snap sai
@@ -93,19 +99,13 @@
   });
   function solta() {
     if (!arr) return;
-    var slides = [].slice.call(trilho.querySelectorAll('.slide'));
-    var pad = parseFloat(getComputedStyle(trilho).paddingLeft) || 0;
-    var pos = slides.map(function (s) { return s.offsetLeft - pad; });
-    var i = 0;
-    pos.forEach(function (p, k) { if (Math.abs(p - arr.ini) < Math.abs(pos[i] - arr.ini)) i = k; });
+    var i = maisPerto(arr.ini);
     if (arr.dx < -60) i++;
     if (arr.dx > 60) i--;
-    i = Math.max(0, Math.min(slides.length - 1, i));
     var arrastou = Math.abs(arr.dx) > 5;
     arr = null;
-    trilho.scrollTo({ left: pos[i], behavior: 'smooth' });
+    vaiPara(i);
     setTimeout(function () { trilho.classList.remove('arrastando'); }, 450);
-    // Arraste não vira clique numa imagem
     if (arrastou) trilho.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, { capture: true, once: true });
   }
   trilho.addEventListener('pointerup', solta);
@@ -113,39 +113,45 @@
   trilho.addEventListener('dragstart', function (e) { e.preventDefault(); });
 
   function renderCarrossel(imgs) {
-    // Fotos reais primeiro; áreas comuns ficam para o café e a galeria.
-    var cabanas = imgs.filter(function (i) { return /^(fileira|cabana|porta)/.test(i.arquivo) || i.tipo === 'foto'; });
-    cabanas.sort(function (a, b) { return (a.tipo === 'foto' ? 0 : 1) - (b.tipo === 'foto' ? 0 : 1); });
-    trilho.innerHTML = cabanas.map(function (i) {
+    // Fotos reais primeiro; áreas comuns ficam para o café e "por dentro da vila".
+    var lista = imgs.filter(function (i) { return /^(fileira|cabana|porta)/.test(i.arquivo) || i.tipo === 'foto'; });
+    lista.sort(function (a, b) { return (a.tipo === 'foto' ? 0 : 1) - (b.tipo === 'foto' ? 0 : 1); });
+    trilho.innerHTML = lista.map(function (i) {
       var pasta = i.tipo === 'foto' ? 'assets/fotos/' : 'assets/renders/';
       return '<figure class="slide">' +
-        '<img loading="lazy" src="' + pasta + i.arquivo + '-g.webp" srcset="' + pasta + i.arquivo + '-640.webp 640w, ' + pasta + i.arquivo + '-g.webp ' + i.w + 'w" sizes="(max-width: 1000px) 82vw, 860px" width="' + i.w + '" height="' + i.h + '" alt="' + attr(i.alt) + '">' +
+        '<img loading="lazy" src="' + pasta + i.arquivo + '-g.webp" srcset="' + pasta + i.arquivo + '-640.webp 640w, ' + pasta + i.arquivo + '-g.webp ' + i.w + 'w" sizes="(max-width: 1000px) 84vw, 880px" width="' + i.w + '" height="' + i.h + '" alt="' + attr(i.alt) + '">' +
         (i.tipo === 'render' ? '<span class="selo-render">Imagem ilustrativa do projeto</span>' : '') +
         '<figcaption>' + t(i.legenda) + '</figcaption></figure>';
     }).join('');
   }
 
-  /* ---------- tipos de cabana ---------- */
+  /* ---------- acomodações: fotos, texto e comodidades com ícone ---------- */
   function renderCabanas(lista) {
     $('#lista-cabanas').innerHTML = lista.map(function (c) {
       var preco = typeof c.diariaDesde === 'number'
-        ? 'a partir de <b>R$ ' + c.diariaDesde.toLocaleString('pt-BR') + '</b> a diária'
-        : 'a partir de <b>R$ <span class="ph">[DIÁRIA]</span></b> a diária';
-      var msg = 'Olá! Vim pelo site da Vila Serena e quero saber mais da cabana ' + attr(c.nome) + '.';
-      return '<article class="tipo">' +
-        '<div class="tipo__foto"><img loading="lazy" src="assets/renders/' + c.foto + '-640.webp" width="640" height="364" alt="Cabana A-frame da Vila Serena">' +
-        '<span class="selo-render">Imagem ilustrativa do projeto</span></div>' +
-        '<div class="tipo__txt"><h3>' + t(c.nome) + '</h3>' +
-        '<p class="tipo__meta">Até ' + t(c.capacidade) + ' pessoas · ' + t(c.cama) + '</p>' +
-        '<p>' + t(c.descricao) + '</p>' +
-        '<ul>' + c.comodidades.map(function (x) { return '<li>' + t(x) + '</li>'; }).join('') + '</ul>' +
-        '<p class="tipo__preco">' + preco + '</p>' +
-        '<a class="btn btn--ambar" href="#lancamento">Quero reservar primeiro</a> ' +
+        ? 'a partir de<b>R$ ' + c.diariaDesde.toLocaleString('pt-BR') + '</b>a diária'
+        : 'a partir de<b>R$ <span class="ph">[DIÁRIA]</span></b>a diária';
+      var fotos = (c.fotos || []).slice(0, 2).map(function (f) {
+        return '<figure><img loading="lazy" src="assets/renders/' + f + '-640.webp" width="640" height="364" alt="Cabana A-frame da Vila Serena">' +
+          '<span class="selo-render">Imagem ilustrativa</span></figure>';
+      }).join('');
+      var comods = c.comodidades.map(function (x) {
+        return '<li><svg aria-hidden="true"><use href="#c-' + x.icone + '"/></svg><span>' + t(x.nome) + '</span></li>';
+      }).join('');
+      return '<article class="acomod">' +
+        '<div class="acomod-fotos">' + fotos + '</div>' +
+        '<div class="acomod-corpo">' +
+          '<p class="acomod-meta">Cabana A-frame · até ' + t(c.capacidade) + ' pessoas · ' + t(c.cama) + '</p>' +
+          '<h3>' + t(c.nome) + '</h3>' +
+          '<p class="acomod-desc">' + t(c.descricao) + '</p>' +
+          '<ul class="comods">' + comods + '</ul>' +
+          '<div class="acomod-pe"><p class="acomod-preco">' + preco + '</p>' +
+          '<a class="btn btn-grafite" href="#lancamento">Quero reservar primeiro</a></div>' +
         '</div></article>';
     }).join('');
   }
 
-  /* ---------- informações, localização e obra ---------- */
+  /* ---------- informações ---------- */
   function caminho(o, k) { return k.split('.').reduce(function (a, p) { return a && a[p]; }, o); }
 
   function renderInfo(info) {
@@ -154,30 +160,179 @@
       if (v != null && v !== '') el.innerHTML = t(v);
     });
 
-    var blocos = [
-      { h: 'Check-in e check-out', p: ['Entrada a partir de ' + info.checkin + ' · saída até ' + info.checkout, info.checkinObs] },
-      { h: 'Mínimo de noites', p: [info.minimoNoites] },
-      { h: 'Sinal', p: [info.sinal] },
-      { h: 'Cancelamento', p: [info.cancelamento] }
-    ].concat(info.regras.map(function (r) { return { h: r.titulo, p: [r.texto] }; }));
-    $('#infos').innerHTML = blocos.map(function (b) {
-      return '<div class="info"><h3>' + t(b.h) + '</h3>' + b.p.filter(Boolean).map(function (x) { return '<p>' + t(x) + '</p>'; }).join('') + '</div>';
+    var faq = [
+      { p: 'Qual o horário de check-in e check-out?', r: 'Entrada a partir de ' + info.checkin + ' e saída até ' + info.checkout + '. ' + info.checkinObs },
+      { p: 'Tem mínimo de noites?', r: info.minimoNoites },
+      { p: 'Como funciona o sinal?', r: info.sinal },
+      { p: 'E se eu precisar cancelar?', r: info.cancelamento }
+    ].concat(info.regras.map(function (r) { return { p: r.titulo, r: r.texto }; }), info.duvidas || []);
+    var nomes = { Pets: 'Posso levar meu pet?', 'Crianças': 'Crianças podem vir?', Visitas: 'Posso receber visitas?', 'Silêncio': 'Tem horário de silêncio?' };
+    $('#faq').innerHTML = faq.map(function (f, i) {
+      return '<details' + (i === 0 ? ' open' : '') + '><summary>' + t(nomes[f.p] || f.p) + '</summary><p>' + t(f.r) + '</p></details>';
     }).join('');
 
     $('#distancias').innerHTML = info.distancias.map(function (d) {
-      return '<li><span>' + t(d.de) + '</span><span>' + t(d.km) + '</span></li>';
+      return '<span><span>' + t(d.de) + '</span><span>' + t(d.km) + '</span></span>';
     }).join('');
 
     $('#perto').innerHTML = info.perto.map(function (p) {
-      return '<article><h4>' + t(p.titulo) + '</h4><p>' + t(p.texto) + '</p></article>';
+      return '<article><h3>' + t(p.titulo) + '</h3><p>' + t(p.texto) + '</p></article>';
     }).join('');
 
-    $('#linha-obra').innerHTML = info.obra.map(function (o) {
-      return '<li' + (o.feito ? ' class="feito"' : '') + '><h3>' + t(o.etapa) + '</h3><p>' + t(o.texto) + '</p></li>';
+    $('#linha-obra').innerHTML = info.obra.map(function (o, i) {
+      return '<li' + (o.feito ? ' class="feito"' : '') + '><span>' + String(i + 1).padStart(2, '0') + (o.feito ? ' · feito' : '') + '</span><h3>' + t(o.etapa) + '</h3><p>' + t(o.texto) + '</p></li>';
     }).join('');
+
+    montaEspera(info);
   }
 
-  function json(u) { return fetch(u + '?v=1').then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
+  /* ---------- lista de espera: quatro passos que montam a mensagem ---------- */
+  function montaEspera(info) {
+    var mes = info.mesInauguracao;
+    var cap = info.capacidadeMax;
+    var PERGUNTAS = [
+      { id: 'quando', t: 'Quando vocês pensam em vir?', ops: [
+        { v: temPh(mes) ? 'Mês da inauguração' : mes, l: 'No mês da inauguração', s: mes },
+        { v: 'Mês seguinte à inauguração', l: 'No mês seguinte' },
+        { v: 'feriado', l: 'Num feriado', s: 'Escolha qual na próxima tela' },
+        { v: 'Ainda não sei', l: 'Ainda não sei' }
+      ] },
+      { id: 'grupo', t: 'Quem vem?', ops: [
+        { v: 'Casal', l: 'Casal' },
+        { v: 'Casal com criança', l: 'Casal com criança' },
+        { v: 'Amigos', l: 'Amigos', s: 'até ' + cap + ' pessoas' }
+      ] },
+      { id: 'ocasiao', t: 'Qual a ocasião?', ops: [
+        { v: 'Descanso', l: 'Descanso' },
+        { v: 'Aniversário', l: 'Aniversário' },
+        { v: 'Lua de mel', l: 'Lua de mel' },
+        { v: 'Pedido de casamento', l: 'Pedido de casamento' },
+        { v: 'Outra', l: 'Outra' }
+      ] }
+    ];
+    var feriados = info.feriados || [];
+    var resp = {};
+    var box = $('#espera');
+    var passo = 0, escolhendoFeriado = false;
+
+    function topoPasso(n) {
+      return '<div class="passo-topo"><span>Passo ' + (n + 1) + ' de 4</span><span class="passo-barra"><i style="width:' + ((n + 1) * 25) + '%"></i></span></div>';
+    }
+
+    function render(foco) {
+      var h;
+      if (passo < 3) {
+        var p = PERGUNTAS[passo];
+        var ops = p.ops;
+        var titulo = p.t;
+        if (passo === 0 && escolhendoFeriado) {
+          titulo = 'Qual feriado?';
+          ops = feriados.map(function (f) { return { v: f, l: f }; });
+        }
+        h = topoPasso(passo) + '<h3>' + titulo + '</h3>' +
+          '<div class="opcoes' + (ops.length > 5 ? ' opcoes-2' : '') + '">' +
+          ops.map(function (o) {
+            return '<button type="button" class="opcao' + (resp[p.id] === o.v ? ' marcada' : '') + '" aria-pressed="' + (resp[p.id] === o.v) + '" data-v="' + attr(o.v) + '">' +
+              '<span>' + t(o.l) + (o.s ? '<small>' + t(o.s) + '</small>' : '') + '</span></button>';
+          }).join('') + '</div>' +
+          '<div class="passo-acoes">' + (passo || escolhendoFeriado ? '<button type="button" class="voltar" data-voltar>← voltar</button>' : '<span></span>') + '</div>';
+      } else if (passo === 3) {
+        h = topoPasso(3) + '<h3>Para quem a gente guarda o lugar?</h3>' +
+          '<form class="campos" id="espera-form" novalidate>' +
+          '<label>Nome<input name="nome" autocomplete="name" required value="' + attr(resp.nome) + '"></label>' +
+          '<label>Cidade de onde vocês vêm<input name="cidade" autocomplete="address-level2" required value="' + attr(resp.cidade) + '"></label>' +
+          '<p class="erro" id="espera-erro" role="alert"></p></form>' +
+          '<div class="passo-acoes"><button type="button" class="voltar" data-voltar>← voltar</button>' +
+          '<button type="submit" form="espera-form" class="btn btn-grafite">Ver a mensagem</button></div>';
+      } else {
+        var msg = 'Olá! Quero entrar na lista de espera das Cabanas Vila Serena 🏔️\n' +
+          '*Quando:* ' + resp.quando + '\n' +
+          '*Quem vem:* ' + resp.grupo + '\n' +
+          '*Ocasião:* ' + resp.ocasiao + '\n' +
+          '*Nome:* ' + resp.nome + ' · *Cidade:* ' + resp.cidade;
+        h = '<div class="passo-topo"><span>Pronto para enviar</span><span class="passo-barra"><i style="width:100%"></i></span></div>' +
+          '<h3>Falta só enviar.</h3>' +
+          '<p class="passo-txt">Com a mensagem enviada, vocês entram na lista de espera da Vila Serena. Assim que as reservas abrirem, chamamos vocês primeiro.</p>' +
+          '<ul class="resumo"><li><b>Quando:</b> ' + t(resp.quando) + '</li><li><b>Quem vem:</b> ' + t(resp.grupo) + '</li><li><b>Ocasião:</b> ' + t(resp.ocasiao) + '</li><li><b>Nome:</b> ' + t(resp.nome) + ' · ' + t(resp.cidade) + '</li></ul>' +
+          (info.condicaoInauguracao ? '<p class="condicao">' + t(info.condicaoInauguracao) + '</p>' : '') +
+          '<a class="btn btn-ambar btn-g" target="_blank" rel="noopener" href="' + zap(msg) + '"><svg aria-hidden="true"><use href="#i-zap"/></svg>Confirmar pelo WhatsApp</a>' +
+          '<div class="passo-acoes"><button type="button" class="voltar" data-voltar>← corrigir</button><button type="button" class="voltar" data-recomeca>↺ recomeçar</button></div>';
+      }
+      box.innerHTML = h;
+
+      box.querySelectorAll('.opcao').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute('data-v');
+          if (passo === 0 && !escolhendoFeriado && v === 'feriado') { escolhendoFeriado = true; render(true); return; }
+          resp[PERGUNTAS[passo].id] = v;
+          escolhendoFeriado = false;
+          proximo();
+        });
+      });
+      var v = box.querySelector('[data-voltar]');
+      if (v) v.addEventListener('click', function () {
+        if (escolhendoFeriado) escolhendoFeriado = false; else passo--;
+        render(true);
+      });
+      var r = box.querySelector('[data-recomeca]');
+      if (r) r.addEventListener('click', function () { resp = {}; passo = 0; render(true); });
+      var f = box.querySelector('#espera-form');
+      if (f) f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nome = f.nome.value.trim(), cidade = f.cidade.value.trim();
+        var erro = box.querySelector('#espera-erro');
+        f.nome.setAttribute('aria-invalid', !nome);
+        f.cidade.setAttribute('aria-invalid', !cidade);
+        if (!nome) { erro.textContent = 'Escreva o nome de quem vai reservar.'; f.nome.focus(); return; }
+        if (!cidade) { erro.textContent = 'Diga de que cidade vocês vêm.'; f.cidade.focus(); return; }
+        resp.nome = nome; resp.cidade = cidade;
+        passo = 4; render(true);
+      });
+      if (foco) { var alvo = box.querySelector('h3'); if (alvo) { alvo.setAttribute('tabindex', '-1'); alvo.focus({ preventScroll: true }); } }
+    }
+    function proximo() {
+      // pula o que o card do hero já respondeu
+      passo++;
+      while (passo < 3 && resp[PERGUNTAS[passo].id]) passo++;
+      render(true);
+    }
+    render(false);
+
+    /* card do hero: as mesmas três perguntas em menus */
+    function opcoesSelect(p) {
+      var html = '<option value="">Escolher</option>';
+      p.ops.forEach(function (o) {
+        if (o.v === 'feriado') {
+          html += '<optgroup label="Num feriado">' + feriados.map(function (f) { return '<option value="' + attr(f) + '">' + attr(f) + '</option>'; }).join('') + '</optgroup>';
+        } else {
+          html += '<option value="' + attr(o.v) + '">' + attr(o.l + (o.s && p.id === 'grupo' ? ' (' + o.s + ')' : '')) + '</option>';
+        }
+      });
+      return html;
+    }
+    $('#b-quando').innerHTML = opcoesSelect(PERGUNTAS[0]);
+    $('#b-grupo').innerHTML = opcoesSelect(PERGUNTAS[1]);
+    $('#b-ocasiao').innerHTML = opcoesSelect(PERGUNTAS[2]);
+    // o valor do select guarda o texto sem colchete; a mensagem usa o da pergunta
+    function valorReal(i, v) {
+      var o = PERGUNTAS[i].ops.filter(function (x) { return attr(x.v) === v; })[0];
+      return o ? o.v : v;
+    }
+    $('#busca').addEventListener('submit', function (e) {
+      e.preventDefault();
+      ['quando', 'grupo', 'ocasiao'].forEach(function (k, i) {
+        var v = $('#b-' + k).value;
+        if (v) resp[k] = valorReal(i, v); else delete resp[k];
+      });
+      passo = 0; escolhendoFeriado = false;
+      while (passo < 3 && resp[PERGUNTAS[passo].id]) passo++;
+      render(false);
+      $('#lancamento').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () { var a = box.querySelector('h3'); if (a) { a.setAttribute('tabindex', '-1'); a.focus({ preventScroll: true }); } }, 600);
+    });
+  }
+
+  function json(u) { return fetch(u + '?v=5').then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
 
   json('data/info.json').then(renderInfo).catch(function (e) { console.error(e); });
   json('data/cabanas.json').then(function (d) { renderCabanas(d.cabanas); }).catch(function (e) { console.error(e); });
