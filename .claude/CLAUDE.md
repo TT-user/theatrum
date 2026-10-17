@@ -681,10 +681,12 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   "Vila da Serra chalés" e entra cortado: esse nome não aparece no site. Dúvidas, distâncias,
   por perto e obra vêm do `info.json`; colchete vira placeholder. Distâncias são estimativa
   marcada para confirmar. Carrossel arrasta com o mouse. O hero tem vídeo
-  (`assets/video/hero.mp4`, 1280x720, e `hero-m.mp4`, 540x960 para celular em pé; ~2,7 MB e
-  ~1,5 MB): renders alternados com quatro fotos da região do Wikimedia Commons (serra, Pico da
+  (`assets/video/hero.mp4`, 1280x720, e `hero-m.mp4`, 540x960 para celular em pé; ~2,6 MB e
+  ~1,6 MB): renders alternados com quatro fotos da região do Wikimedia Commons (serra, Pico da
   Bandeira e uma rua de Alto Caparaó), créditos no rodapé. Começa e termina na fileira, que é o
-  pôster. Carrega depois do `load`, nunca com movimento reduzido, economia de dados ou
+  pôster. Cada quadro é gerado no Pillow com recorte fracionado, a 30 fps: o zoompan do
+  ffmpeg arredonda o recorte para o pixel e o zoom lento tremia. Mudou o vídeo, sobe o `?v=` do
+  `data-src`. Carrega depois do `load`, nunca com movimento reduzido, economia de dados ou
   `?still=1`, e pausa fora da tela. O vídeo não tem texto gravado (o corte do `cover` comia o
   rótulo): o selo do HTML troca de texto pelo tempo do vídeo (`ROTULOS` no `main.js`, passo de
   3,6 s); mudou a ordem ou a duração dos trechos, mude lá. Script do vídeo e fotos em
