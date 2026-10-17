@@ -1,0 +1,11 @@
+{
+  "_leia": "Antes e depois. O site só mostra os itens com autorizado true E as duas imagens preenchidas (caminho dentro de assets/resultados/). Sem nenhum item assim, a prévia mostra os cards de exemplo, sem foto. filtro: id do tratamento (criomodel, estrias, labial, harmonizacao, sobrancelhas...). sessoes: número ou null. Nunca publique foto sem a autorização escrita da cliente.",
+  "itens": [
+    { "imagemAntes": null, "imagemDepois": null, "procedimento": "CrioModel", "filtro": "criomodel", "categoria": "corporal", "profissional": "amanda", "legenda": "tratamento iniciado em [mês e ano]", "sessoes": null, "autorizado": false },
+    { "imagemAntes": null, "imagemDepois": null, "procedimento": "Preenchimento labial", "filtro": "labial", "categoria": "facial", "profissional": "grazi", "legenda": "[quantos ml, se ela quiser dizer]", "sessoes": null, "autorizado": false },
+    { "imagemAntes": null, "imagemDepois": null, "procedimento": "Estrias", "filtro": "estrias", "categoria": "corporal", "profissional": "amanda", "legenda": "Método Amanda Simiqueli", "sessoes": null, "autorizado": false },
+    { "imagemAntes": null, "imagemDepois": null, "procedimento": "Harmonização facial", "filtro": "harmonizacao", "categoria": "facial", "profissional": "grazi", "legenda": "[regiões tratadas]", "sessoes": null, "autorizado": false },
+    { "imagemAntes": null, "imagemDepois": null, "procedimento": "Sobrancelhas", "filtro": "sobrancelhas", "categoria": "facial", "profissional": "grazi", "legenda": "[técnica usada]", "sessoes": null, "autorizado": false },
+    { "imagemAntes": null, "imagemDepois": null, "procedimento": "CrioModel", "filtro": "criomodel", "categoria": "corporal", "profissional": "amanda", "legenda": "[região tratada]", "sessoes": null, "autorizado": false }
+  ]
+}

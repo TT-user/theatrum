@@ -1,0 +1,9 @@
+{
+  "_leia": "Faixa do Chá Autoestima, logo depois dos resultados. ativo false esconde a faixa inteira. data, local e vagas são texto livre; null vira placeholder.",
+  "chaAutoestima": {
+    "ativo": true,
+    "data": null,
+    "local": null,
+    "vagas": null
+  }
+}

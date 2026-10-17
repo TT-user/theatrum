@@ -1,0 +1,37 @@
+{
+  "_leia": "As duas profissionais. registro null vira placeholder. whatsapp: se cada uma tiver o seu número, troque aqui; o site manda a mensagem para o número de quem foi escolhida. fraseRevisar true deixa a frase inteira em amarelo até ela confirmar.",
+  "pessoas": [
+    {
+      "id": "grazi",
+      "nome": "Grazi Santana",
+      "curto": "Grazi",
+      "especialidade": "Harmonização Facial e Corporal",
+      "registro": null,
+      "whatsapp": "5532998817813",
+      "foto": "grazi-mesa",
+      "fotoW": 663,
+      "fotoH": 716,
+      "rosto": "rosto-grazi",
+      "principais": ["Harmonização facial", "Preenchimento labial", "Jato de plasma"],
+      "frase": "Harmonização é sobre realçar a sua beleza, não transformar quem você é.",
+      "fraseRevisar": true,
+      "sala": "Sala própria, com o espelho em arco e o lustre de cristal."
+    },
+    {
+      "id": "amanda",
+      "nome": "Amanda Simiqueli",
+      "curto": "Amanda",
+      "especialidade": "Harmonização Corporal",
+      "registro": null,
+      "whatsapp": "5532998817813",
+      "foto": "amanda-mesa",
+      "fotoW": 675,
+      "fotoH": 814,
+      "rosto": "rosto-amanda",
+      "principais": ["CrioModel (criolipólise 360°)", "Estrias, Método Amanda Simiqueli", "Drenagem linfática"],
+      "frase": "Eu não olho para uma região do corpo de forma isolada.",
+      "fraseRevisar": true,
+      "sala": "Sala própria, com a criolipólise 360° e os equipamentos do corpo."
+    }
+  ]
+}

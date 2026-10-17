@@ -695,6 +695,32 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders
   originais e pendências em `interno/clientes/vila-serena/`, fora do git.
 
+- `/esteticaef/` — prévia do site da Clínica Estética Facial e Corporal (Centro de Espera Feliz,
+  MG; Grazi Santana no facial, Amanda Simiqueli no corporal; eleita a melhor clínica de estética
+  da cidade em 2025), desde 16/10/2026, a partir de um briefing em quatro prompts. Estrutura da
+  Arco/Doctors (hero com foto em arco e chip da equipe, letreiro, faixa de confiança,
+  tratamentos, "por onde começar", equipe, resultados com a faixa do Chá Autoestima, clínica,
+  avaliações e prêmio, consulta online, dúvidas, como chegar e CTA final), identidade tirada das fotos da
+  clínica: off-white, greige, café `#3B302A`, nude `#C9A99A` e o dourado do espelho em arco
+  (`#B08D57`, só em fio e ícone; texto dourado usa `#7D5F33`, e o taupe de texto é `#6E6155`,
+  porque o `#8F8174` do briefing dá 3,4:1). Bodoni Moda e Jost servidas daqui (`fonts/`, OFL).
+  Mármore da "A clínica" é SVG de turbulência no CSS, sem imagem. Tudo que a clínica muda fica
+  em dados: contato e horário em `js/config.js` (null vira placeholder), tratamentos, equipe
+  (com WhatsApp por profissional, hoje os dois iguais), triagem, antes e depois e o Chá
+  Autoestima em `data/*.json`, com `_leia` em cada um. Triagem de três perguntas
+  (`data/triagem.json`: opção → tratamento → profissional) monta a mensagem e manda para a
+  profissional indicada. Antes e depois só mostra item com `autorizado: true` e as duas
+  imagens; sem nenhum, a prévia mostra cards de exemplo sem foto, com o comparador
+  funcionando. `eventos.json` com `ativo: false` remove a faixa do Chá. Fora do briefing, de
+  propósito: o modal de WhatsApp da Theatrum (`js/leads.js`) não entra, porque mandaria lead
+  da clínica para o e-mail da Theatrum; o `aggregateRating` também não (nota da própria
+  empresa no schema, mesmo caso da Nerd Club); o evento `triagem_concluida` só sai com
+  `EF.rastrear = true`, no site oficial. Os rostos do chip foram recortados do post
+  "Atendimento online". OG em `assets/og-image-v1.jpg`. Mesmo padrão: `.htaccess` e meta com
+  noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água com
+  `utm_campaign=esteticaef`. Fotos originais e pendências em `interno/clientes/esteticaef/`,
+  fora do git.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
@@ -831,7 +857,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

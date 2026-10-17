@@ -1,0 +1,41 @@
+{
+  "_leia": "Triagem do 'Por onde começar'. Na pergunta 1, cada opção leva a um tratamento (id do tratamentos.json, ou null para avaliação geral) e a uma profissional (grazi, amanda ou ambas). frase é o que aparece no resultado; revisar true deixa em amarelo. Opção nova: copie um bloco da pergunta 1.",
+  "perguntas": [
+    {
+      "id": "incomoda",
+      "titulo": "O que mais te incomoda hoje?",
+      "rotulo": "O que me incomoda",
+      "opcoes": [
+        { "texto": "Gordura localizada que não sai nem com treino", "icone": "silhueta", "tratamento": "criomodel", "profissional": "amanda", "sugestao": "CrioModel", "frase": "Antes de qualquer crio, a Amanda faz uma análise corporal para definir onde e como tratar." },
+        { "texto": "Estrias", "icone": "linhas", "tratamento": "estrias", "profissional": "amanda", "sugestao": "Método Amanda Simiqueli para estrias", "frase": "A Amanda avalia as suas estrias antes de indicar o tratamento.", "revisar": true },
+        { "texto": "Inchaço e retenção de líquido", "icone": "gota", "tratamento": "drenagem", "profissional": "amanda", "sugestao": "Drenagem linfática", "frase": "Na avaliação, a Amanda entende de onde vem o inchaço e monta o plano.", "revisar": true },
+        { "texto": "Flacidez no corpo", "icone": "silhueta", "tratamento": "gordura", "profissional": "amanda", "sugestao": "Avaliação corporal", "frase": "A flacidez tem causas diferentes. A avaliação corporal mostra o caminho para o seu caso." },
+        { "texto": "Lábios finos ou sem contorno", "icone": "labios", "tratamento": "labial", "profissional": "grazi", "sugestao": "Preenchimento labial", "frase": "A Grazi planeja volume e contorno a partir do seu rosto, do seu jeito." },
+        { "texto": "Quero o rosto mais harmônico", "icone": "rosto", "tratamento": "harmonizacao", "profissional": "grazi", "sugestao": "Harmonização facial", "frase": "A Grazi começa entendendo seus traços para realçar, não transformar." },
+        { "texto": "Textura, manchinhas ou rugas finas", "icone": "brilho", "tratamento": "jato", "profissional": "grazi", "sugestao": "Jato de plasma", "frase": "A Grazi avalia a sua pele antes de indicar o jato de plasma.", "revisar": true },
+        { "texto": "Sobrancelhas", "icone": "sobrancelha", "tratamento": "sobrancelhas", "profissional": "grazi", "sugestao": "Sobrancelhas", "frase": "A Grazi desenha a partir do formato do seu rosto." },
+        { "texto": "Não sei, quero uma avaliação geral", "icone": "duvida", "tratamento": null, "profissional": "ambas", "sugestao": "Avaliação geral", "frase": "Numa avaliação geral você fala do rosto e do corpo e sai sabendo por onde começar." }
+      ]
+    },
+    {
+      "id": "antes",
+      "titulo": "Já fez algum procedimento estético antes?",
+      "rotulo": "Já fiz procedimento antes",
+      "opcoes": [
+        { "texto": "Nunca fiz", "resposta": "Nunca fiz" },
+        { "texto": "Já fiz, quero continuar", "resposta": "Já fiz e quero continuar" },
+        { "texto": "Já fiz e não gostei do resultado", "resposta": "Já fiz e não gostei do resultado", "nota": "Conte na avaliação o que aconteceu. Isso ajuda a planejar com mais cuidado." }
+      ]
+    },
+    {
+      "id": "comeco",
+      "titulo": "Como prefere começar?",
+      "rotulo": "Como quero começar",
+      "opcoes": [
+        { "texto": "Avaliação presencial em Espera Feliz", "resposta": "Avaliação presencial", "modo": "presencial" },
+        { "texto": "Consulta online (moro em outra cidade ou tenho pouco tempo)", "resposta": "Consulta online", "modo": "online", "nota": "Na consulta online você tira as dúvidas e já chega na clínica com o plano pronto." },
+        { "texto": "Quero só tirar uma dúvida pelo WhatsApp", "resposta": "Só tirar uma dúvida", "modo": "duvida", "nota": "Pode mandar a sua dúvida direto, sem compromisso." }
+      ]
+    }
+  ]
+}

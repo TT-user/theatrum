@@ -1,0 +1,15 @@
+{
+  "_leia": "Um bloco por tratamento. categoria: facial, corporal ou online. profissional: grazi, amanda ou ambas (id do equipe.json). icone: rosto, labios, perfil, brilho, sobrancelha, floco, linhas, gota, silhueta, video. revisar true deixa a frase em amarelo até a clínica confirmar. Tratamento novo: copie um bloco, troque os campos e salve; o card e o filtro aparecem sozinhos.",
+  "itens": [
+    { "id": "harmonizacao", "nome": "Harmonização facial", "curto": "Harmonização", "categoria": "facial", "profissional": "grazi", "icone": "rosto", "descricao": "Proporção e equilíbrio, sem perder seus traços.", "destaque": true },
+    { "id": "labial", "nome": "Preenchimento labial", "curto": "Lábios", "categoria": "facial", "profissional": "grazi", "icone": "labios", "descricao": "Lábios hidratados e contornados, do seu jeito." },
+    { "id": "mento", "nome": "Mento", "categoria": "facial", "profissional": "grazi", "icone": "perfil", "descricao": "Equilíbrio do perfil a partir do queixo.", "revisar": true },
+    { "id": "jato", "nome": "Jato de plasma", "categoria": "facial", "profissional": "grazi", "icone": "brilho", "descricao": "Estimula a pele para melhorar textura e firmeza.", "revisar": true },
+    { "id": "sobrancelhas", "nome": "Sobrancelhas", "categoria": "facial", "profissional": "grazi", "icone": "sobrancelha", "descricao": "Alinhadas ao formato do seu rosto." },
+    { "id": "criomodel", "nome": "CrioModel, criolipólise 360°", "curto": "CrioModel", "categoria": "corporal", "profissional": "amanda", "icone": "floco", "descricao": "Não é só fazer uma crio. É saber onde, como e por que tratar.", "destaque": true },
+    { "id": "estrias", "nome": "Estrias, Método Amanda Simiqueli", "curto": "Estrias", "categoria": "corporal", "profissional": "amanda", "icone": "linhas", "descricao": "Tratamento de estrias pelo método da própria Amanda.", "revisar": true },
+    { "id": "drenagem", "nome": "Drenagem linfática", "categoria": "corporal", "profissional": "amanda", "icone": "gota", "descricao": "Vai além do relaxamento: ajuda a reduzir o inchaço.", "revisar": true },
+    { "id": "gordura", "nome": "Gordura localizada e flacidez", "categoria": "corporal", "profissional": "amanda", "icone": "silhueta", "descricao": "Um plano para a região que incomoda, definido na avaliação corporal." },
+    { "id": "online", "nome": "Consulta online", "categoria": "online", "profissional": "ambas", "icone": "video", "descricao": "Para quem mora em outra cidade e quer se organizar antes do procedimento." }
+  ]
+}
