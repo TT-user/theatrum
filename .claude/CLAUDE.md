@@ -282,6 +282,13 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   WhatsApp citando plano e preço e dispara `plano_click`.
   Mudou valor de plano (não só as vagas)? Mude também o `PADRAO` e o HTML
   estático do `[09]`, que é o que aparece sem JS ou se o fetch falhar.
+  Desde 18/10/2026 a moeda segue o idioma: real em português, dólar em
+  inglês, euro em espanhol. Não há tabela por moeda: o `fmt()` do núcleo
+  converte os valores em reais pelo `cambio` do JSON (reais por 1 dólar e
+  1 euro, cotação de 16 e 17/10/2026: 5,08 e 5,69) e arredonda para a dezena.
+  Os R$ 697 da gestão de tráfego também convertem (`data-pr-px="trafego"`), e a
+  calculadora mostra a moeda do idioma sem converter o que a pessoa digita.
+  A mensagem de WhatsApp dos planos continua em português e em reais.
 - **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
   `[08]`). Desde 13/10/2026, os vinte e seis sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:

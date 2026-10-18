@@ -1610,7 +1610,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3},
       sobMedida:{precoCheio:4900,precoLancamento:2500,precoIntermediario:2500,aPartirDe:true},
       manutencao:{precoCheio:197,precoLancamento:97,precoIntermediario:97,mensal:true}
-    }
+    },
+    cambio:{USD:5.08, EUR:5.69}
   };
   let dados = PADRAO, pedido = false;
   const ouvintes = [];
@@ -1631,11 +1632,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return { lanc, chave, faixa:fx, faixas:dados.faixas, total, feitas, restantes:total - feitas, planos, dados };
   }
 
-  /* "R$ 1.500" / "R$ 1,500"; centavos só quando há (3x de R$ 833,33) */
-  function fmt(n, L){
-    const cent = Math.round(n * 100) % 100 !== 0;
-    return 'R$ ' + n.toLocaleString(L === 'en' ? 'en-US' : 'pt-BR',
+  /* A moeda segue o idioma: real em português, dólar em inglês, euro em
+     espanhol. Os valores são sempre os do JSON, em reais, convertidos pelo
+     cambio de lá (reais por 1 dólar / 1 euro) e arredondados: dezena a
+     partir de 100, unidade abaixo. Nada de tabela própria por moeda. */
+  function conv(n, L){
+    const c = (dados.cambio || PADRAO.cambio)[L === 'en' ? 'USD' : L === 'es' ? 'EUR' : ''];
+    if (!c) return n;
+    const v = n / c;
+    return v >= 100 ? Math.round(v / 10) * 10 : Math.round(v);
+  }
+  /* "R$ 1.500" / "US$ 300" / "260 €"; partes divide depois de converter
+     (parcela), e centavos só aparecem quando há (3x de R$ 833,33) */
+  function fmt(n, L, partes){
+    let v = conv(n, L);
+    if (partes) v = Math.round(v / partes * 100) / 100;
+    const cent = Math.round(v * 100) % 100 !== 0;
+    const num = v.toLocaleString(L === 'en' ? 'en-US' : 'pt-BR',
       { minimumFractionDigits:cent ? 2 : 0, maximumFractionDigits:cent ? 2 : 0 });
+    return L === 'en' ? 'US$ ' + num : L === 'es' ? num + ' €' : 'R$ ' + num;
   }
 
   function avisa(){ const e = estado(); ouvintes.forEach(fn => { try { fn(e); } catch(err){} }); }
@@ -1939,7 +1954,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="px-linhas rv" style="--d:.24s">
       <div class="px-linha"><span class="r" data-en="build once" data-es="construir una vez">constrói uma vez</span><b data-en="Website or landing page" data-es="Sitio o landing page">Site ou landing page</b><p data-pr-px="site">R$ 1.500 no plano Completo, ou 3x de R$ 500 (condição de lançamento)</p></div>
       <div class="px-linha"><span class="r" data-en="keep it running" data-es="mantenerlo funcionando">mantém no ar</span><b data-en="Maintenance and hosting" data-es="Mantenimiento y hosting">Manutenção e hospedagem</b><p data-pr-px="manutencao">R$ 97/mês para os 10 primeiros clientes</p></div>
-      <div class="px-linha"><span class="r" data-en="bring people in" data-es="traer gente">traz gente</span><b data-en="Traffic management" data-es="Gestión de tráfico">Gestão de tráfego</b><p data-en="R$ 697 a month + the ad budget in your own account" data-es="R$ 697 al mes + el presupuesto de anuncios en tu propia cuenta">R$ 697/mês + verba na sua conta</p></div>
+      <div class="px-linha"><span class="r" data-en="bring people in" data-es="traer gente">traz gente</span><b data-en="Traffic management" data-es="Gestión de tráfico">Gestão de tráfego</b><p data-en="<span data-pr-px='trafego'>R$ 697</span> a month + the ad budget in your own account" data-es="<span data-pr-px='trafego'>R$ 697</span> al mes + el presupuesto de anuncios en tu propia cuenta"><span data-pr-px="trafego">R$ 697</span>/mês + verba na sua conta</p></div>
     </div>
 
     <div class="px-cta rv" style="--d:.28s">
@@ -2096,8 +2111,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function precosPX(L){
     const P = window.TheatrumPrecos, e = P.estado(), c = e.planos.completo, m = e.planos.manutencao;
     const n = c.parcelas || 3;
-    return { lanc:e.lanc, total:e.total, completo:P.fmt(c.atual, L), manutencao:P.fmt(m.atual, L),
-             parcelas:(L === 'en' ? n + 'x ' : L === 'es' ? n + ' pagos de ' : n + 'x de ') + P.fmt(Math.round(c.atual / n * 100) / 100, L) };
+    return { lanc:e.lanc, total:e.total, trafego:P.fmt(697, L), completo:P.fmt(c.atual, L), manutencao:P.fmt(m.atual, L),
+             parcelas:(L === 'en' ? n + 'x ' : L === 'es' ? n + ' pagos de ' : n + 'x de ') + P.fmt(c.atual, L, n) };
   }
 
   const PX_T = {
@@ -2110,7 +2125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ['botão com a mensagem já escrita','aviso de cada contato, com a origem','IA que responde e qualifica fora do horário'],
         ['retomada de orçamento parado','reativação de quem já foi cliente','mensagens no seu tom, aprovadas por você'],
         ['de onde veio cada contato','domínio, site e contas no seu nome','manutenção e hospedagem do site']],
-      precos:p => [['Google Meu Negócio: no plano Completo','gestão de tráfego: R$ 697/mês + verba na sua conta'],['Completo: ' + p.completo, 'ou ' + p.parcelas + (p.lanc ? ', condição de lançamento' : '')],['botão com mensagem pronta: em todos os planos','IA no WhatsApp: valor no diagnóstico'],['reativação: valor no diagnóstico','roda na sua própria base de contatos'],['manutenção: ' + p.manutencao + '/mês', p.lanc ? 'para os ' + p.total + ' primeiros clientes' : 'depois da entrega']],
+      precos:p => [['Google Meu Negócio: no plano Completo','gestão de tráfego: ' + p.trafego + '/mês + verba na sua conta'],['Completo: ' + p.completo, 'ou ' + p.parcelas + (p.lanc ? ', condição de lançamento' : '')],['botão com mensagem pronta: em todos os planos','IA no WhatsApp: valor no diagnóstico'],['reativação: valor no diagnóstico','roda na sua própria base de contatos'],['manutenção: ' + p.manutencao + '/mês', p.lanc ? 'para os ' + p.total + ' primeiros clientes' : 'depois da entrega']],
       aqui:'você aparece aqui', ia:'IA', url:'seunegocio.com.br', patro:'Patrocinado', aberto:'Aberto agora', acoes:['Rota','Ligar','Site','WhatsApp'],
       falar:'Falar no WhatsApp', selos:['abre rápido no celular','GA4 e Pixel medindo','WhatsApp em cada parte','pronto para anúncio'],
       hoje:'hoje', novo:'Novo contato no seu celular', origem:'veio do anúncio do Google',
@@ -2126,7 +2141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ['button with the message already written','an alert for every contact, with its source','AI that answers and qualifies after hours'],
         ['follow-up on stalled quotes','reactivation of past clients','messages in your voice, approved by you'],
         ['where every contact came from','domain, site and accounts in your name','website maintenance and hosting']],
-      precos:p => [['Business Profile: in the Complete plan','traffic management: R$ 697/month + budget in your account'],['Complete: ' + p.completo, 'or ' + p.parcelas + (p.lanc ? ', launch offer' : '')],['button with a ready message: in every plan','AI on WhatsApp: priced in the diagnosis'],['reactivation: priced in the diagnosis','runs on your own contact list'],['maintenance: ' + p.manutencao + '/month', p.lanc ? 'for the first ' + p.total + ' clients' : 'after delivery']],
+      precos:p => [['Business Profile: in the Complete plan','traffic management: ' + p.trafego + '/month + budget in your account'],['Complete: ' + p.completo, 'or ' + p.parcelas + (p.lanc ? ', launch offer' : '')],['button with a ready message: in every plan','AI on WhatsApp: priced in the diagnosis'],['reactivation: priced in the diagnosis','runs on your own contact list'],['maintenance: ' + p.manutencao + '/month', p.lanc ? 'for the first ' + p.total + ' clients' : 'after delivery']],
       aqui:'you show up here', ia:'AI', url:'yourbusiness.com', patro:'Sponsored', aberto:'Open now', acoes:['Directions','Call','Website','WhatsApp'],
       falar:'Message on WhatsApp', selos:['loads fast on mobile','GA4 and Pixel tracking','WhatsApp in every part','ready for ads'],
       hoje:'today', novo:'New contact on your phone', origem:'came from the Google ad',
@@ -2142,7 +2157,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ['botón con el mensaje ya escrito','aviso de cada contacto, con su origen','IA que responde y califica fuera de horario'],
         ['seguimiento de presupuestos parados','reactivación de quien ya fue cliente','mensajes en tu tono, aprobados por ti'],
         ['de dónde vino cada contacto','dominio, sitio y cuentas a tu nombre','mantenimiento y hosting del sitio']],
-      precos:p => [['Perfil de Empresa en Google: en el plan Completo','gestión de tráfico: R$ 697/mes + presupuesto en tu cuenta'],['Completo: ' + p.completo, 'o ' + p.parcelas + (p.lanc ? ', condición de lanzamiento' : '')],['botón con mensaje listo: en todos los planes','IA en WhatsApp: precio en el diagnóstico'],['reactivación: precio en el diagnóstico','funciona sobre tu propia base de contactos'],['mantenimiento: ' + p.manutencao + '/mes', p.lanc ? 'para los primeros ' + p.total + ' clientes' : 'después de la entrega']],
+      precos:p => [['Perfil de Empresa en Google: en el plan Completo','gestión de tráfico: ' + p.trafego + '/mes + presupuesto en tu cuenta'],['Completo: ' + p.completo, 'o ' + p.parcelas + (p.lanc ? ', condición de lanzamiento' : '')],['botón con mensaje listo: en todos los planes','IA en WhatsApp: precio en el diagnóstico'],['reactivación: precio en el diagnóstico','funciona sobre tu propia base de contactos'],['mantenimiento: ' + p.manutencao + '/mes', p.lanc ? 'para los primeros ' + p.total + ' clientes' : 'después de la entrega']],
       aqui:'apareces aquí', ia:'IA', url:'tunegocio.com', patro:'Patrocinado', aberto:'Abierto ahora', acoes:['Cómo llegar','Llamar','Sitio','WhatsApp'],
       falar:'Hablar por WhatsApp', selos:['abre rápido en el celular','GA4 y Pixel midiendo','WhatsApp en cada parte','listo para anunciar'],
       hoje:'hoy', novo:'Nuevo contacto en tu celular', origem:'vino del anuncio de Google',
@@ -2290,6 +2305,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function linhas(){
     const L = idioma(), p = precosPX(L);
     const site = document.querySelector('[data-pr-px="site"]'), man = document.querySelector('[data-pr-px="manutencao"]');
+    const traf = document.querySelector('[data-pr-px="trafego"]');
+    if (traf) traf.textContent = p.trafego;
     if (site) site.textContent = L === 'en'
       ? p.completo + ' on the Complete plan, or ' + p.parcelas + (p.lanc ? ' (launch offer)' : '')
       : L === 'es'
@@ -2482,11 +2499,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nota: 'Estimated from what you answered. Not a promise of results: it is the order of magnitude of the hole.',
       cta: 'I want the plan to close that ',
       wa: (n) => 'I came from the site. The calculator showed ' + n + ' per month. I want the plan.',
-      /* Moeda continua em real mesmo em inglês. A home vende no Brasil e
-         o inglês aqui é tradução, não outro mercado: trocar para dólar
-         redenominaria, sem avisar, o número que a pessoa digitou em
-         reais. Quem vende em dólar tem a landing /us/, que é separada. */
-      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'en-US',
+      /* a moeda segue o idioma, como nos preços. Nada é convertido aqui:
+         o valor por cliente é o que a pessoa digita, na moeda dela */
+      simbolo: 'US' + CIFRAO_EN, moeda: 'USD', locale: 'en-US',
     },
     es: {
       q1: '¿Cuántas personas escriben a tu negocio por semana?',
@@ -2502,8 +2517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nota: 'Estimación a partir de lo que respondiste. No es promesa de resultado: es el orden de magnitud del hueco.',
       cta: 'Quiero el plan para cerrar esos ',
       wa: (n) => 'Vengo del sitio. La calculadora dio ' + n + ' por mes. Quiero el plan.',
-      /* mesma regra do inglês: o número segue em real, com o formato brasileiro */
-      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'pt-BR',
+      simbolo: '€', moeda: 'EUR', locale: 'es-ES',
     }
   };
 
@@ -2520,7 +2534,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const dinheiro = (v) => {
     const t = T[idioma()];
-    return Number(v).toLocaleString(t.locale, { style:'currency', currency:t.moeda, maximumFractionDigits:0 });
+    return Number(v).toLocaleString(t.locale, { style:'currency', currency:t.moeda, maximumFractionDigits:0, useGrouping:'always' });
   };
 
   function conta(){
@@ -2788,7 +2802,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       + P.fmt(p.cheio, L) + suf + '</del></span>';
     if (p.aPartirDe) h += '<small>' + t.aPartir + '</small>';
     h += '<strong>' + (p.riscado ? '<span class="sr">' + t.lanc + '</span>' : '') + P.fmt(p.atual, L) + suf + '</strong>';
-    if (p.parcelas) h += '<span>' + t.parc(p.parcelas, P.fmt(Math.round(p.atual / p.parcelas * 100) / 100, L)) + '</span>';
+    if (p.parcelas) h += '<span>' + t.parc(p.parcelas, P.fmt(p.atual, L, p.parcelas)) + '</span>';
     return h;
   }
 
@@ -3013,7 +3027,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="faq rv" style="--d:.15s">
       <details>
-        <summary data-en='Why not use a R$ 300 ready-made site? <span class="pl">+</span>' data-es='¿Por qué no usar un sitio listo de R$ 300? <span class="pl">+</span>'>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
+        <summary data-en='Why not use a US$ 60 ready-made site? <span class="pl">+</span>' data-es='¿Por qué no usar un sitio listo de 60 €? <span class="pl">+</span>'>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
         <div class="ans" data-en='Because what turns a visit into a client does not come with the template: <b>speed on mobile, copy that sells, ad tracking and an alert for every contact</b>. Without that, you pay for ads and do not know what came back.' data-es='Porque lo que convierte una visita en cliente no viene con la plantilla: <b>velocidad en el celular, textos que venden, medición de anuncios y aviso de cada contacto</b>. Sin eso, pagas anuncios y no sabes qué volvió.'>Porque o que transforma visita em cliente não vem no modelo pronto: <b>velocidade no celular, texto que vende, rastreamento do anúncio e aviso de cada contato</b>. Sem isso, você paga o anúncio e não sabe o que voltou.</div>
       </details>
       <details>
