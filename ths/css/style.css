@@ -246,3 +246,13 @@ h1 { font-size: clamp(46px, 6vw, 78px); }
 @media (max-width: 600px) { .lb { padding: 60px 12px; } .lb__seta--ant, .lb__seta--prox { top: auto; bottom: 10px; transform: none; } }
 
 :focus-visible { outline: 2px solid var(--laranja); outline-offset: 3px; }
+
+/* Avaliar no Google */
+.avaliar { background: var(--branco); padding: clamp(56px, 7vw, 88px) 0; border-top: 1px solid var(--linha); }
+.avaliar__in { display: grid; grid-template-columns: 1fr auto; gap: clamp(32px, 6vw, 96px); align-items: center; }
+.avaliar__txt > p:not(.rotulo) { color: var(--tinta-2); max-width: 52ch; margin: 18px 0 28px; }
+.avaliar__cartao { margin: 0; padding: 20px 20px 16px; background: var(--fundo); border: 1px solid var(--linha); border-top: 4px solid var(--laranja); text-align: center; }
+.avaliar__qr { display: block; width: 188px; height: 188px; }
+.avaliar__cartao figcaption { font-size: 14px; color: var(--tinta-2); margin-top: 12px; }
+/* No celular a pessoa já está no aparelho que leria o QR: fica só o botão */
+@media (max-width: 760px) { .avaliar__in { grid-template-columns: 1fr; } .avaliar__cartao { display: none; } }
