@@ -18,9 +18,9 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/fotos/altura.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/video/casa-poster.webp" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 
   <script type="application/ld+json">
   {
@@ -88,12 +88,11 @@
             <li>Sistema em <b>EPS</b></li>
           </ul>
         </div>
-        <div class="hero__fotos" aria-hidden="true">
-          <img class="hf hf--1" src="assets/fotos/altura.webp" width="562" height="546" alt="">
-          <img class="hf hf--2" src="assets/fotos/galpao-silos.webp" width="562" height="556" alt="">
-          <img class="hf hf--3" src="assets/fotos/laje.webp" width="562" height="480" alt="">
-          <span class="hf__tag">Obra em andamento · <span class="ph">[nome da obra]</span></span>
-          <svg class="selo" viewBox="0 0 120 120">
+        <div class="hero__fotos">
+          <!-- Três renders da casa em loop (zoom lento e fusão); script em interno/clientes/ths/casa-102/ -->
+          <video class="hero__video" muted loop playsinline preload="none" poster="assets/video/casa-poster.webp" data-src="assets/video/casa.mp4?v=1" aria-label="Projeto em 3D de uma casa de três pavimentos, com garagem, varanda e cascata"></video>
+          <span class="hf__tag">Projeto em 3D · <span class="ph">[nome da obra]</span></span>
+          <svg class="selo" viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="selo-arco" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>
             <circle cx="60" cy="60" r="59" fill="#fff"/>
             <text><textPath href="#selo-arco" textLength="282">PROJETO · ADMINISTRAÇÃO · EXECUÇÃO ·</textPath></text>
@@ -308,6 +307,6 @@
     <button class="lb__seta lb__seta--prox" id="lb-prox" aria-label="Próxima foto">›</button>
   </div>
 
-  <script src="js/main.js?v=2" defer></script>
+  <script src="js/main.js?v=3" defer></script>
 </body>
 </html>

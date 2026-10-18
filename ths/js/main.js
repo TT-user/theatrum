@@ -163,6 +163,27 @@
   }
   render(0);
 
+  // Vídeo do hero: só carrega depois que a página está de pé, nunca para quem pediu
+  // menos movimento ou economiza dados, e pausa fora da tela ou com a aba escondida.
+  // Começa na fachada, que é o pôster, então a troca não aparece.
+  var video = document.querySelector('.hero__video');
+  var poupa = (navigator.connection && navigator.connection.saveData) ||
+    (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) || /[?&]still=1/.test(location.search);
+  if (video && !poupa) {
+    var visivel = true;
+    var toca = function () { if (visivel && !document.hidden) { var q = video.play(); if (q && q.catch) q.catch(function () {}); } else video.pause(); };
+    var carrega = function () {
+      video.src = video.getAttribute('data-src');
+      toca();
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; toca(); }).observe(video);
+      }
+      document.addEventListener('visibilitychange', toca);
+    };
+    if (document.readyState === 'complete') setTimeout(carrega, 300);
+    else window.addEventListener('load', function () { setTimeout(carrega, 300); });
+  }
+
   // Mapa só carrega no clique. Coordenadas do perfil "THS Engenharia" no Google Maps:
   // pelo endereço, o pino caía fora do escritório.
   document.getElementById('mapa-btn').addEventListener('click', function () {
