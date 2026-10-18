@@ -165,7 +165,8 @@
 
   // Vídeo do hero: só carrega depois que a página está de pé, nunca para quem pediu
   // menos movimento ou economiza dados, e pausa fora da tela ou com a aba escondida.
-  // Começa na fachada, que é o pôster, então a troca não aparece.
+  // Começa na fachada, que é o pôster, então a troca não aparece. Deitado no computador,
+  // em pé no celular.
   var video = document.querySelector('.hero__video');
   var poupa = (navigator.connection && navigator.connection.saveData) ||
     (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) || /[?&]still=1/.test(location.search);
@@ -173,7 +174,9 @@
     var visivel = true;
     var toca = function () { if (visivel && !document.hidden) { var q = video.play(); if (q && q.catch) q.catch(function () {}); } else video.pause(); };
     var carrega = function () {
-      video.src = video.getAttribute('data-src');
+      video.src = video.getAttribute(matchMedia('(max-width: 700px)').matches ? 'data-src-m' : 'data-src');
+      // O pôster é o fundo do contêiner; o vídeo só aparece quando já está tocando
+      video.addEventListener('playing', function () { video.classList.add('pronto'); }, { once: true });
       toca();
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; toca(); }).observe(video);

@@ -65,12 +65,15 @@ h2 em, h1 em { font-style: normal; color: var(--laranja-txt); }
 }
 @media (max-width: 420px) { .logo__txt small { display: none; } .topo .btn--peq { padding: 0 12px; font-size: 14px; } }
 
-/* Hero */
-.hero { position: relative; overflow: hidden; padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 8vw, 104px); background:
-  linear-gradient(rgba(26,27,29,.05) 1px, transparent 1px) 0 0 / 48px 48px,
-  linear-gradient(90deg, rgba(26,27,29,.05) 1px, transparent 1px) 0 0 / 48px 48px,
-  var(--fundo); }
-.hero__in { display: grid; grid-template-columns: 1.15fr .9fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+/* Hero: o vídeo da casa cobre o fundo. No computador ele é deitado, com a casa à direita, e um
+   véu claro na esquerda segura o texto; no celular ele é em pé e fica embaixo do texto. */
+.hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(780px, calc(100svh - 108px)); padding: clamp(48px, 7vw, 88px) 0; background: var(--fundo); }
+.hero__fundo { position: absolute; inset: 0; background: url(../assets/video/casa-largo-poster.webp) right center / cover no-repeat; }
+.hero__fundo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--fundo) 0%, rgba(245,243,239,.96) 30%, rgba(245,243,239,.7) 46%, rgba(245,243,239,0) 62%); }
+.hero__video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: right center; opacity: 0; transition: opacity .8s; }
+.hero__video.pronto { opacity: 1; }
+.hero__in { width: 100%; }
+.hero__txt { position: relative; z-index: 1; max-width: 620px; }
 .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-2); margin: 0 0 22px; }
 .barras { display: inline-flex; flex-direction: column; gap: 3px; }
 .barras::before, .barras::after { content: ""; display: block; width: 22px; height: 4px; background: var(--laranja); }
@@ -81,17 +84,17 @@ h1 { font-size: clamp(46px, 6vw, 78px); }
 .selos { list-style: none; padding: 0; margin: 34px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .selos li { font-size: 14px; font-weight: 500; padding: 6px 12px; border: 1px solid var(--linha); background: var(--branco); color: var(--tinta-2); }
 .selos b { color: var(--laranja-esc); }
-.hero__fotos { position: relative; width: min(100%, 460px); margin-left: auto; }
-.hero__video { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--papel); border-top: 5px solid var(--laranja); box-shadow: 0 30px 60px -28px rgba(26,27,29,.5); }
-/* Selo redondo no encontro das fotos (ideia tirada do "padrão Loba", concorrente em Manhuaçu) */
-.selo { position: absolute; left: 0; top: 62%; width: 112px; height: 112px; transform: translate(-50%, -50%); color: var(--grafite); filter: drop-shadow(0 10px 22px rgba(26,27,29,.3)); z-index: 2; }
+/* Selo redondo (ideia tirada do "padrão Loba", concorrente em Manhuaçu) e rótulo do render */
+.selo { position: absolute; z-index: 1; right: calc(var(--gutter) + 70px); bottom: 24px; width: 104px; height: 104px; color: var(--grafite); filter: drop-shadow(0 10px 22px rgba(26,27,29,.3)); }
 .selo text { font: 600 10.5px var(--corpo); letter-spacing: .08em; fill: var(--tinta-2); }
-.hf__tag { position: absolute; right: -14px; bottom: 6%; font-size: 13px; color: var(--tinta-2); background: var(--branco); box-shadow: 0 8px 20px -10px rgba(26,27,29,.35); padding: 8px 12px; border-left: 3px solid var(--laranja); }
-@media (max-width: 900px) {
-  .hero__in { grid-template-columns: 1fr; }
-  .hero__fotos { margin: 0 auto; width: min(100%, 420px); }
-  .hf__tag { right: 8px; }
-  .selo { width: 86px; height: 86px; left: 12px; top: auto; bottom: -30px; transform: none; }
+.hf__tag { position: absolute; z-index: 1; right: calc(var(--gutter) + 186px); bottom: 52px; font-size: 13px; color: var(--tinta-2); background: var(--branco); box-shadow: 0 8px 20px -10px rgba(26,27,29,.35); padding: 8px 12px; border-left: 3px solid var(--laranja); }
+@media (max-width: 700px) {
+  .hero { display: block; min-height: 0; padding-bottom: calc(118vw + 24px); }
+  .hero__fundo { top: auto; height: 125vw; background-image: url(../assets/video/casa-poster.webp); background-position: center bottom; }
+  .hero__fundo::after { background: linear-gradient(180deg, var(--fundo) 0%, rgba(245,243,239,0) 22%); }
+  .hero__video { object-position: center bottom; }
+  .hf__tag { right: 12px; bottom: 20px; }
+  .selo { width: 80px; height: 80px; right: auto; left: 12px; bottom: 16px; }
 }
 
 /* Números */

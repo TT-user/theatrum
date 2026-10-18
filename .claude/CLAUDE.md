@@ -669,15 +669,18 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   "Já fez obra com a THS?" saiu), que também é link e leva ao formulário de avaliação do Google
   (`writereview?placeid=ChIJK2zChQwDuwARd71cV-XKYgs`, Place ID montado do `ftid` do perfil e
   conferido no Maps). Cartão de balcão A6 com o mesmo QR em
-  `interno/clientes/ths/qr-avaliacao/`. No hero, desde 18/10/2026, um vídeo em 4:5 no lugar da
-  colagem de três fotos: três renders de uma casa (prints do Instagram deles, sem as setas do
-  carrossel) com zoom lento e fusão, 10,8 s em loop (`assets/video/casa.mp4`, 720 KB, pôster
-  `casa-poster.webp`). Quadros no Pillow pelo `interno/clientes/ths/casa-102/build.py`;
-  mudou o vídeo, sobe o `?v=` do `data-src`. Carrega depois do `load`, nunca com movimento
-  reduzido, economia de dados ou `?still=1`, e pausa fora da tela. É render, então o selo diz
-  "Projeto em 3D". Um selo redondo parado ("projeto · administração ·
-  execução" em volta da marca) no encontro das fotos, ideia tirada do selo "padrão Loba" da
-  loba.com.br, concorrente deles em Manhuaçu, fica na borda esquerda do vídeo. Logo redesenhado
+  `interno/clientes/ths/qr-avaliacao/`. No hero, desde 18/10/2026, um vídeo cobre o fundo da seção: três renders de
+  uma casa (prints do Instagram deles, sem as setas do carrossel) com zoom lento e fusão, 10,8 s
+  em loop. No computador, `assets/video/casa-largo.mp4` (1280x720): o render em pé, nítido,
+  encostado à direita e o resto do quadro com a mesma imagem desfocada, sob um véu claro
+  (`.hero__fundo::after`) que segura o texto à esquerda. Até 700 px, `casa.mp4` (640x800) em pé,
+  embaixo do texto. Cada um tem o seu pôster como fundo do contêiner, e o vídeo só aparece
+  (`.pronto`) quando já está tocando. Quadros no Pillow pelo
+  `interno/clientes/ths/casa-102/build.py`; mudou o vídeo, sobe o `?v=` do `data-src`.
+  Carrega depois do `load`, nunca com movimento reduzido, economia de dados ou `?still=1`, e
+  pausa fora da tela. É render, então o rótulo diz "Projeto em 3D". No canto do hero, um selo
+  redondo parado ("projeto · administração · execução" em volta da marca), ideia tirada do selo
+  "padrão Loba" da loba.com.br, concorrente deles em Manhuaçu. Logo redesenhado
   em SVG (`#ths-marca` no próprio HTML e `favicon.svg`). Barlow e Barlow Condensed em caixa-alta,
   como nos posts deles, e os títulos são frases dos próprios posts. Seções: hero, números
   (placeholder), três serviços, sistema em EPS, "por onde começar" (três perguntas que montam a

@@ -18,9 +18,10 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/video/casa-poster.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/video/casa-largo-poster.webp" media="(min-width: 701px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/video/casa-poster.webp" media="(max-width: 700px)" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=8">
 
   <script type="application/ld+json">
   {
@@ -69,6 +70,11 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="inicio">
+      <!-- Fundo: três renders da casa em loop (zoom lento e fusão); deitado no computador, em pé
+           no celular. Script em interno/clientes/ths/casa-102/ -->
+      <div class="hero__fundo">
+        <video class="hero__video" muted loop playsinline preload="none" data-src="assets/video/casa-largo.mp4?v=3" data-src-m="assets/video/casa.mp4?v=2" aria-label="Projeto em 3D de uma casa de três pavimentos, com garagem, varanda e cascata"></video>
+      </div>
       <div class="wrap hero__in">
         <div class="hero__txt">
           <p class="eyebrow"><span class="barras" aria-hidden="true"></span>Engenharia e construtora · Manhuaçu, MG</p>
@@ -88,17 +94,13 @@
             <li>Sistema em <b>EPS</b></li>
           </ul>
         </div>
-        <div class="hero__fotos">
-          <!-- Três renders da casa em loop (zoom lento e fusão); script em interno/clientes/ths/casa-102/ -->
-          <video class="hero__video" muted loop playsinline preload="none" poster="assets/video/casa-poster.webp" data-src="assets/video/casa.mp4?v=1" aria-label="Projeto em 3D de uma casa de três pavimentos, com garagem, varanda e cascata"></video>
-          <span class="hf__tag">Projeto em 3D · <span class="ph">[nome da obra]</span></span>
-          <svg class="selo" viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="selo-arco" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>
-            <circle cx="60" cy="60" r="59" fill="#fff"/>
-            <text><textPath href="#selo-arco" textLength="282">PROJETO · ADMINISTRAÇÃO · EXECUÇÃO ·</textPath></text>
-            <use href="#ths-marca" x="43" y="44" width="34" height="31"/>
-          </svg>
-        </div>
+        <span class="hf__tag">Projeto em 3D · <span class="ph">[nome da obra]</span></span>
+        <svg class="selo" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="selo-arco" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>
+          <circle cx="60" cy="60" r="59" fill="#fff"/>
+          <text><textPath href="#selo-arco" textLength="282">PROJETO · ADMINISTRAÇÃO · EXECUÇÃO ·</textPath></text>
+          <use href="#ths-marca" x="43" y="44" width="34" height="31"/>
+        </svg>
       </div>
     </section>
 
@@ -307,6 +309,6 @@
     <button class="lb__seta lb__seta--prox" id="lb-prox" aria-label="Próxima foto">›</button>
   </div>
 
-  <script src="js/main.js?v=3" defer></script>
+  <script src="js/main.js?v=4" defer></script>
 </body>
 </html>
