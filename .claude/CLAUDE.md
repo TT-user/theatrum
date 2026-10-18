@@ -295,10 +295,12 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
 - **`[10]` quem faz (`#quem-faz`):** foto e texto do Matheus e, desde
   18/10/2026, o bloco "Um time de agentes de IA. Uma pessoa orquestrando."
   (`#qfTime`): o Matheus no topo ("orquestra e aprova") ligado por um trilho
-  aos seis agentes, que são os de `.claude/agents/` com nome de cliente
-  (sites e sistemas = `previa-de-cliente`, demonstrações, análise e proposta,
-  Google e tráfego, criativos, revisão = `revisor`). Agente novo ou removido
-  lá, mude aqui. Um ponto dourado corre no trilho só com o bloco à vista,
+  a cinco agentes de `.claude/agents/` com nome de cliente (sites e
+  sistemas = `previa-de-cliente`, demonstrações, Google e tráfego, marketing
+  e criativos = `criativos`, revisão = `revisor`). O de proposta comercial
+  saiu em 18/10/2026, a pedido: não mostrar. Não há agente de marketing
+  próprio; não invente card de agente que não existe. Agente novo ou
+  removido lá, mude aqui. Um ponto dourado corre no trilho só com o bloco à vista,
   nunca com menos movimento ou `?still=1`.
 - **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
   `[08]`). Desde 13/10/2026, os vinte e seis sites em quatro

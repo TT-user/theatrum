@@ -2874,7 +2874,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .qf-texto b{color:#191510;font-weight:700}
   .qf-cnpj{margin-top:22px;font:400 12px/1.6 var(--font-mono);color:rgba(163,155,141,.75)}
 
-  /* o time de agentes: o Matheus no topo, os seis agentes de .claude/agents
+  /* o time de agentes: o Matheus no topo, cinco agentes de .claude/agents
      embaixo, ligados por um trilho. O ponto dourado só corre no trilho com a
      seção à vista (.is-on), e nunca com menos movimento ou ?still=1. */
   .qt{margin-top:64px;padding-top:44px;border-top:1px solid rgba(20,18,16,.1)}
@@ -2890,7 +2890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .qt-maestro small{display:block;font:400 12px/1.3 var(--font-mono);color:var(--accent)}
   .qt-grade{position:relative;width:100%;margin-top:46px}
   .qt-ag{list-style:none;margin:0;padding:0;
-    display:grid;gap:14px;grid-template-columns:repeat(6,minmax(0,1fr))}
+    display:grid;gap:14px;grid-template-columns:repeat(5,minmax(0,1fr))}
   .qt-ag li{position:relative;background:#141210;border-radius:16px;padding:18px 16px 20px;
     box-shadow:0 12px 30px -18px rgba(20,18,16,.55)}
   .qt-ag svg{width:26px;height:26px;color:var(--accent);display:block;margin-bottom:12px}
@@ -2900,7 +2900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .qt-ag span{display:block;font:400 13.5px/1.5 var(--font-body);color:#C9C1B2}
   /* trilho: do Matheus desce uma linha, corre na horizontal e desce em cada agente */
   .qt-maestro::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:24px;background:rgba(138,100,18,.5)}
-  .qt-trilho{position:absolute;top:-22px;left:8.33%;right:8.33%;height:1px;background:rgba(138,100,18,.5);container-type:inline-size}
+  .qt-trilho{position:absolute;top:-22px;left:10%;right:10%;height:1px;background:rgba(138,100,18,.5);container-type:inline-size}
   .qt-trilho i{position:absolute;left:-4px;top:-3.5px;width:8px;height:8px;border-radius:50%;background:var(--accent);
     box-shadow:0 0 10px 2px rgba(227,179,65,.7);opacity:0}
   .qt.is-on .qt-trilho i{opacity:1;animation:qt-corre 6s ease-in-out infinite alternate}
@@ -2912,7 +2912,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .qt-trilho,.qt-ag li::before{display:none}
     .qt-maestro::after{height:22px}
   }
-  @media(max-width:620px){ .qt-ag{grid-template-columns:1fr 1fr;gap:10px} .qt-ag li{padding:16px 14px} }
+  @media(max-width:620px){ .qt-ag{grid-template-columns:1fr 1fr;gap:10px} .qt-ag li{padding:16px 14px} .qt-ag li:last-child{grid-column:1/-1} }
   @media(max-width:380px){ .qt-ag{grid-template-columns:1fr} }
   @media(prefers-reduced-motion:reduce){ .qt.is-on .qt-trilho i{animation:none;opacity:0} }
 </style>
@@ -3016,8 +3016,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- o time de agentes de IA: são os seis de .claude/agents, nada inventado.
-         Agente novo ou removido lá, mude aqui também. -->
+    <!-- o time de agentes de IA: cinco dos agentes de .claude/agents, nada inventado
+         (previa-de-cliente, demo-de-segmento, google-e-trafego, criativos, revisor;
+         o de proposta comercial fica de fora, a pedido). Agente novo ou removido
+         lá, mude aqui também. -->
     <div class="qt rv" id="qfTime">
       <p class="qt-rot" data-en="behind every project" data-es="detrás de cada proyecto">por trás de cada projeto</p>
       <h3 class="qt-tit" data-en='A team of AI agents. <span class="lm">One person orchestrating.</span>' data-es='Un equipo de agentes de IA. <span class="lm">Una persona orquestando.</span>'>Um time de agentes de IA. <span class="lm">Uma pessoa orquestrando.</span></h3>
@@ -3044,26 +3046,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span data-en="creates examples by business type, like the ones in the showcase above" data-es="crea ejemplos por tipo de negocio, como los de la vitrina de arriba">cria exemplos por tipo de negócio, como os da vitrine lá em cima</span>
           </li>
           <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6.5A2.5 2.5 0 004 5.5v13A2.5 2.5 0 006.5 21h11a2.5 2.5 0 002.5-2.5V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
-            <p class="n" data-en="agent 03" data-es="agente 03">agente 03</p>
-            <b data-en="Analysis and proposal" data-es="Análisis y propuesta">Análise e proposta</b>
-            <span data-en="studies your business and writes the proposal with scope and price" data-es="estudia tu negocio y escribe la propuesta con alcance y precio">estuda o seu negócio e escreve a proposta com escopo e preço</span>
-          </li>
-          <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
-            <p class="n" data-en="agent 04" data-es="agente 04">agente 04</p>
+            <p class="n" data-en="agent 03" data-es="agente 03">agente 03</p>
             <b data-en="Google and paid traffic" data-es="Google y tráfico pagado">Google e tráfego</b>
             <span data-en="prepares the Business Profile, the ad campaigns and the reports" data-es="prepara el Perfil de Empresa, las campañas de anuncios y los informes">prepara o Google Meu Negócio, as campanhas de anúncio e os relatórios</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
-            <p class="n" data-en="agent 05" data-es="agente 05">agente 05</p>
-            <b data-en="Creatives" data-es="Creativos">Criativos</b>
-            <span data-en="produces the ad and promotion pieces in the exact size of each network" data-es="produce las piezas de anuncio y difusión en el tamaño exacto de cada red">produz as peças de anúncio e divulgação no tamanho certo de cada rede</span>
+            <p class="n" data-en="agent 04" data-es="agente 04">agente 04</p>
+            <b data-en="Marketing and creatives" data-es="Marketing y creativos">Marketing e criativos</b>
+            <span data-en="produces the ad, flyer and social media pieces in the exact size of each network" data-es="produce las piezas de anuncio, folletos y redes sociales en el tamaño exacto de cada red">produz as peças de anúncio, panfleto e redes sociais no tamanho certo de cada rede</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-            <p class="n" data-en="agent 06" data-es="agente 06">agente 06</p>
+            <p class="n" data-en="agent 05" data-es="agente 05">agente 05</p>
             <b data-en="Review" data-es="Revisión">Revisão</b>
             <span data-en="checks everything before it goes live: copy, links and speed" data-es="revisa todo antes de salir en línea: textos, enlaces y velocidad">confere tudo antes de ir ao ar: texto, links e velocidade</span>
           </li>
