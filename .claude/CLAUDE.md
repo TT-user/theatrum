@@ -101,15 +101,23 @@ justamente para congelar o que não está à vista; por causa disso o navegador
 rola por altura estimada, e há uma correção de âncora no fim do `index.html`
 que não pode ser removida.
 
-### A página é bilíngue — leia antes de escrever qualquer copy
+### A página é trilíngue — leia antes de escrever qualquer copy
 
-Há ~330 elementos com atributo `data-en`, e o botão de idioma troca o idioma
-**reescrevendo o `innerHTML`** de cada um deles.
+Português, inglês e, desde 18/10/2026, espanhol (para México e Espanha:
+"tú", espanhol neutro, preço continua em real). Há ~310 elementos com
+`data-en` e `data-es` lado a lado, e o seletor de idioma (três bandeiras:
+Brasil, EUA e Espanha, SVG em `<symbol>` no topo do `<body>`, no topo e no
+menu do celular) troca o idioma **reescrevendo o `innerHTML`** de cada um.
+Sem `data-es`, o elemento fica em português. O `<html lang>` vira `pt-BR`,
+`en` ou `es`, e é isso que os componentes leem (`idioma()`), inclusive o
+`js/leads.js` e o `js/consentimento.js`. As demos e o `/portfolio/` não têm
+espanhol: com `theatrum-lang` = `es` eles abrem em português.
 
 Duas consequências obrigatórias:
 
-1. **Toda copy nova nasce nos dois idiomas.** Texto sem `data-en` fica em
-   português quando o visitante escolhe inglês.
+1. **Toda copy nova nasce nos três idiomas.** Texto sem `data-en`/`data-es`
+   fica em português quando o visitante escolhe outro idioma. Componente com
+   objeto de textos ganha a chave `es` junto da `en`.
 2. **Componente interativo não pode viver dentro de um elemento com `data-en`.**
    A troca de idioma apaga o `innerHTML` e leva junto o estado e os listeners.
    Componente com estado guarda os próprios textos num objeto JS e se

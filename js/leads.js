@@ -34,7 +34,7 @@
   var LEAD = 'theatrum-lead';           /* localStorage: 'enviado' depois de qualquer formulário */
   var STILL = new URLSearchParams(location.search).get('still');
 
-  var idioma = function () { return /^en/i.test(document.documentElement.lang) ? 'en' : 'pt'; };
+  var idioma = function () { var l = document.documentElement.lang; return /^en/i.test(l) ? 'en' : /^es/i.test(l) ? 'es' : 'pt'; };
 
   function computador() {
     var ua = navigator.userAgent || '';
@@ -105,6 +105,31 @@
           (d.nome ? '\nName: ' + d.nome : '') + (d.empresa ? '\nCompany: ' + d.empresa : '') +
           (d.whatsapp ? '\nWhatsApp: ' + d.whatsapp : '') + (d.email ? '\nEmail: ' + d.email : '') +
           (d.site ? '\nWebsite: ' + d.site : '');
+      }
+    },
+    es: {
+      sobre: 'estás en la computadora', t: '¿Cómo prefieres seguir?',
+      p: 'Sin tener que tomar el celular para escanear un código.',
+      aT: '¿Prefieres que te escriba por WhatsApp?', aS: 'Dejas tu número y te escribo.',
+      bT: 'Recibir el diagnóstico por correo', bS: 'Por escrito, para leerlo con calma.',
+      cT: 'Abrir WhatsApp de todos modos', cS: 'Con el código QR o por WhatsApp Web.',
+      nome: 'Nombre', emp: 'Empresa', zap: 'WhatsApp', mail: 'Correo', site: 'Sitio actual', opc: '(opcional)',
+      phNome: 'Tu nombre', phEmp: 'Nombre de la empresa', phZap: '+52 55 1234 5678',
+      phMail: 'tu@tuempresa.com', phSite: 'www.tuempresa.com',
+      aB: 'Quiero que me escriban', aOk: '¡Listo! Te escribo por WhatsApp en pocos minutos (horario de oficina, hora de Brasil).',
+      bB: 'Quiero el diagnóstico por correo', bOk: '¡Listo! El diagnóstico va a tu correo.',
+      cQ: 'Apunta la cámara del celular al código.', cWeb: 'Abrir WhatsApp Web', cApp: 'Abrir la aplicación de WhatsApp',
+      enviando: 'Enviando…', erro: 'No pude enviarlo ahora.', erroZap: 'Enviar los mismos datos por WhatsApp Web →',
+      falta: 'Revisa los campos marcados.', fechar: 'Cerrar',
+      sT: 'Antes de irte: ¿quieres recibir 3 mejoras para el sitio de tu empresa?',
+      sP: 'Es gratuito. Las tres llegan a tu correo.', sB: 'Quiero las 3 mejoras',
+      sOk: '¡Listo! Las 3 mejoras llegan a tu correo.', sNao: 'Ahora no',
+      tipoA: 'Escríbanme por WhatsApp', tipoB: 'Diagnóstico por correo', tipoS: '3 mejoras (pop-up de salida)',
+      msgZap: function (d) {
+        return 'Vengo del sitio de Theatrum. ' + d.tipo + '.' +
+          (d.nome ? '\nNombre: ' + d.nome : '') + (d.empresa ? '\nEmpresa: ' + d.empresa : '') +
+          (d.whatsapp ? '\nWhatsApp: ' + d.whatsapp : '') + (d.email ? '\nCorreo: ' + d.email : '') +
+          (d.site ? '\nSitio: ' + d.site : '');
       }
     }
   };
@@ -226,7 +251,7 @@
   function mascara(input) {
     input.addEventListener('input', function () {
       var v = input.value;
-      if (/^\s*\+/.test(v) || idioma() === 'en') { input.value = v.replace(/[^\d+\s()-]/g, ''); return; }
+      if (/^\s*\+/.test(v) || idioma() !== 'pt') { input.value = v.replace(/[^\d+\s()-]/g, ''); return; }
       var d = v.replace(/\D/g, '').slice(0, 11);
       var r = d;
       if (d.length > 2) r = '(' + d.slice(0, 2) + ') ' + d.slice(2);

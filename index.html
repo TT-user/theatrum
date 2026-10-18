@@ -198,14 +198,16 @@
   .nav-links a.is-active{color:var(--accent)}
   .nav-links a.is-active::after{width:100%}
   .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
-  .lang-toggle{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12px;font-weight:700;
-    letter-spacing:.08em;background:transparent;border:1px solid var(--line);border-radius:40px;padding:8px 14px;
-    cursor:pointer;color:var(--muted);flex-shrink:0;transition:border-color .3s}
-  .lang-toggle:hover{border-color:rgba(227,179,65,.5)}
-  .lt-opt{transition:color .3s}
-  .lt-opt.is-active{color:var(--accent)}
-  .lt-sep{color:var(--line);opacity:.6}
-  .mobile-menu .lang-toggle{margin-bottom:8px}
+  /* idioma: uma bandeira por idioma; a apagada é a que não está em uso */
+  .lang-toggle{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .lt-opt{padding:0;border:0;background:none;cursor:pointer;line-height:0;border-radius:6px;
+    opacity:.42;transition:opacity .25s,transform .25s}
+  .lt-opt svg{display:block;width:28px;height:20px;border-radius:5px;box-shadow:0 0 0 1.5px rgba(246,241,231,.9)}
+  .lt-opt:hover{opacity:.8;transform:translateY(-1px)}
+  .lt-opt.is-active{opacity:1}
+  .lt-opt:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .mobile-menu .lang-toggle{margin-bottom:8px;gap:12px}
+  .mobile-menu .lt-opt svg{width:36px;height:25px}
   .nav-burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;
     cursor:pointer;position:relative;flex-shrink:0;padding:0}
   .nav-burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--white);border-radius:1px;
@@ -558,6 +560,13 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<!-- bandeiras do seletor de idioma, desenhadas uma vez e usadas no topo e no menu do celular -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="fl-br" viewBox="0 0 28 20"><rect width="28" height="20" fill="#009C3B"/><path d="M14 2.6 25.4 10 14 17.4 2.6 10z" fill="#FFDF00"/><circle cx="14" cy="10" r="4.6" fill="#002776"/><path d="M9.5 9.2c3-.6 6.3 0 8.9 1.8" stroke="#fff" stroke-width=".9" fill="none"/></symbol>
+  <symbol id="fl-us" viewBox="0 0 28 20"><rect width="28" height="20" fill="#fff"/><path d="M0 0h28v1.54H0zM0 3.08h28v1.54H0zM0 6.15h28v1.54H0zM0 9.23h28v1.54H0zM0 12.31h28v1.54H0zM0 15.38h28v1.54H0zM0 18.46h28V20H0z" fill="#B22234"/><rect width="12" height="10.77" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.8" cy="1.8" r=".55"/><circle cx="4.6" cy="1.8" r=".55"/><circle cx="7.4" cy="1.8" r=".55"/><circle cx="10.2" cy="1.8" r=".55"/><circle cx="3.2" cy="3.6" r=".55"/><circle cx="6" cy="3.6" r=".55"/><circle cx="8.8" cy="3.6" r=".55"/><circle cx="1.8" cy="5.4" r=".55"/><circle cx="4.6" cy="5.4" r=".55"/><circle cx="7.4" cy="5.4" r=".55"/><circle cx="10.2" cy="5.4" r=".55"/><circle cx="3.2" cy="7.2" r=".55"/><circle cx="6" cy="7.2" r=".55"/><circle cx="8.8" cy="7.2" r=".55"/><circle cx="1.8" cy="9" r=".55"/><circle cx="4.6" cy="9" r=".55"/><circle cx="7.4" cy="9" r=".55"/><circle cx="10.2" cy="9" r=".55"/></g></symbol>
+  <symbol id="fl-es" viewBox="0 0 28 20"><rect width="28" height="20" fill="#AA151B"/><rect y="5" width="28" height="10" fill="#F1BF00"/></symbol>
+</svg>
+
 <!-- ============ NAV FIXA ============ -->
 <nav class="site-nav" id="siteNav">
   <a class="brand" href="#top">
@@ -565,20 +574,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <b>Theatrum</b>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#trabalhos" data-en="Work">Trabalhos</a></li>
-    <li><a href="#servicos" data-en="Services">Serviços</a></li>
-    <li><a href="#problema" data-en="Solutions">Soluções</a></li>
-    <li><a href="#sistema" data-en="Demo">Demonstração</a></li>
-    <li><a href="#calculadora" data-en="Calculator">Calculadora</a></li>
-    <li><a href="#investimento" data-en="Pricing">Investimento</a></li>
-    <li><a href="#faq" data-en="FAQ">FAQ</a></li>
-    <li><a href="blog/" data-en="Blog">Blog</a></li>
+    <li><a href="#trabalhos" data-en="Work" data-es="Trabajos">Trabalhos</a></li>
+    <li><a href="#servicos" data-en="Services" data-es="Servicios">Serviços</a></li>
+    <li><a href="#problema" data-en="Solutions" data-es="Soluciones">Soluções</a></li>
+    <li><a href="#sistema" data-en="Demo" data-es="Demostración">Demonstração</a></li>
+    <li><a href="#calculadora" data-en="Calculator" data-es="Calculadora">Calculadora</a></li>
+    <li><a href="#investimento" data-en="Pricing" data-es="Inversión">Investimento</a></li>
+    <li><a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a></li>
+    <li><a href="blog/" data-en="Blog" data-es="Blog">Blog</a></li>
   </ul>
   <div class="nav-right">
-    <button class="lang-toggle" id="langToggle" aria-label="Switch language / Trocar idioma">
-      <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
-    </button>
-    <a class="nav-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
+    <div class="lang-toggle" id="langToggle" role="group" aria-label="Idioma · Language · Idioma">
+      <button type="button" class="lt-opt is-active" data-lang="pt" aria-pressed="true" aria-label="Português" title="Português"><svg aria-hidden="true"><use href="#fl-br"/></svg></button>
+      <button type="button" class="lt-opt" data-lang="en" aria-pressed="false" aria-label="English" title="English"><svg aria-hidden="true"><use href="#fl-us"/></svg></button>
+      <button type="button" class="lt-opt" data-lang="es" aria-pressed="false" aria-label="Español" title="Español"><svg aria-hidden="true"><use href="#fl-es"/></svg></button>
+    </div>
+    <a class="nav-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis" data-es="Diagnóstico gratuito">Diagnóstico gratuito</a>
     <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -586,19 +597,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Switch language / Trocar idioma">
-    <span class="lt-opt is-active" data-lang="pt">PT</span><span class="lt-sep">/</span><span class="lt-opt" data-lang="en">EN</span>
-  </button>
-  <a href="#trabalhos" data-en="Work">Trabalhos</a>
-  <a href="#servicos" data-en="Services">Serviços</a>
-  <a href="#problema" data-en="Solutions">Soluções</a>
-  <a href="#sistema" data-en="Demo">Demonstração</a>
-  <a href="#calculadora" data-en="Calculator">Calculadora</a>
-  <a href="#investimento" data-en="Pricing">Investimento</a>
-  <a href="#como-funciona" data-en="How it works">Como funciona</a>
-  <a href="#faq" data-en="FAQ">FAQ</a>
-  <a href="blog/" data-en="Blog">Blog</a>
-  <a class="mm-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis">Diagnóstico gratuito</a>
+  <div class="lang-toggle lang-toggle-mobile" id="langToggleMobile" role="group" aria-label="Idioma · Language · Idioma">
+      <button type="button" class="lt-opt is-active" data-lang="pt" aria-pressed="true" aria-label="Português" title="Português"><svg aria-hidden="true"><use href="#fl-br"/></svg></button>
+      <button type="button" class="lt-opt" data-lang="en" aria-pressed="false" aria-label="English" title="English"><svg aria-hidden="true"><use href="#fl-us"/></svg></button>
+      <button type="button" class="lt-opt" data-lang="es" aria-pressed="false" aria-label="Español" title="Español"><svg aria-hidden="true"><use href="#fl-es"/></svg></button>
+    </div>
+  <a href="#trabalhos" data-en="Work" data-es="Trabajos">Trabalhos</a>
+  <a href="#servicos" data-en="Services" data-es="Servicios">Serviços</a>
+  <a href="#problema" data-en="Solutions" data-es="Soluciones">Soluções</a>
+  <a href="#sistema" data-en="Demo" data-es="Demostración">Demonstração</a>
+  <a href="#calculadora" data-en="Calculator" data-es="Calculadora">Calculadora</a>
+  <a href="#investimento" data-en="Pricing" data-es="Inversión">Investimento</a>
+  <a href="#como-funciona" data-en="How it works" data-es="Cómo funciona">Como funciona</a>
+  <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+  <a href="blog/" data-en="Blog" data-es="Blog">Blog</a>
+  <a class="mm-cta" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="Free diagnosis" data-es="Diagnóstico gratuito">Diagnóstico gratuito</a>
 </div>
 
 <!-- ============ 1 · HERO ============
@@ -623,17 +636,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="hero-inner">
     <div class="hx-texto">
-      <p class="hx-eyebrow" data-en="<b>[01]</b> websites · landing pages · ads · whatsapp"><b>[01]</b> sites · landing pages · anúncios · whatsapp</p>
-      <h1 class="hx-title" data-en='Websites and landing pages that turn a visitor into a <em class="hx-em">client</em> on your WhatsApp.'>Sites e landing pages que transformam visitante em <em class="hx-em">cliente</em> no seu WhatsApp.</h1>
-      <p class="hx-sub" data-en="We build it, launch it and leave it <b>ready for ads</b>, with tracking, copy that sells and an alert for every new contact. <span class='hx-fecho'>You take care of the business.</span>">Criamos, colocamos no ar e deixamos <b>pronto para anúncio</b>, com rastreamento, texto que vende e aviso de cada novo contato. <span class="hx-fecho">Você cuida do negócio.</span></p>
+      <p class="hx-eyebrow" data-en="<b>[01]</b> websites · landing pages · ads · whatsapp" data-es="<b>[01]</b> sitios · landing pages · anuncios · whatsapp"><b>[01]</b> sites · landing pages · anúncios · whatsapp</p>
+      <h1 class="hx-title" data-en='Websites and landing pages that turn a visitor into a <em class="hx-em">client</em> on your WhatsApp.' data-es='Sitios y landing pages que convierten al visitante en <em class="hx-em">cliente</em> en tu WhatsApp.'>Sites e landing pages que transformam visitante em <em class="hx-em">cliente</em> no seu WhatsApp.</h1>
+      <p class="hx-sub" data-en="We build it, launch it and leave it <b>ready for ads</b>, with tracking, copy that sells and an alert for every new contact. <span class='hx-fecho'>You take care of the business.</span>" data-es="Lo construimos, lo publicamos y lo dejamos <b>listo para anunciar</b>, con medición, textos que venden y aviso de cada nuevo contacto. <span class='hx-fecho'>Tú te ocupas del negocio.</span>">Criamos, colocamos no ar e deixamos <b>pronto para anúncio</b>, com rastreamento, texto que vende e aviso de cada novo contato. <span class="hx-fecho">Você cuida do negócio.</span></p>
       <div class="hero-ctas hx-ctas">
-        <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='Get a free diagnosis <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Fazer diagnóstico gratuito <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
-        <a class="btn btn-secondary" href="#trabalhos" data-en="See projects">Ver projetos</a>
+        <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='Get a free diagnosis <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>' data-es='Hacer diagnóstico gratuito <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Fazer diagnóstico gratuito <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+        <a class="btn btn-secondary" href="#trabalhos" data-en="See projects" data-es="Ver proyectos">Ver projetos</a>
       </div>
       <ul class="hx-chips">
-        <li data-en="Preview before you pay">Prévia antes de pagar</li>
-        <li data-en="Live in 7 to 10 business days">No ar em 7 a 10 dias úteis</li>
-        <li data-en="Everything in your name">Tudo no seu nome</li>
+        <li data-en="Preview before you pay" data-es="Vista previa antes de pagar">Prévia antes de pagar</li>
+        <li data-en="Live in 7 to 10 business days" data-es="En línea en 7 a 10 días hábiles">No ar em 7 a 10 dias úteis</li>
+        <li data-en="Everything in your name" data-es="Todo a tu nombre">Tudo no seu nome</li>
       </ul>
     </div>
 
@@ -641,20 +654,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hx-top">
         <div class="hx-code" aria-hidden="true">
           <span class="hx-dots"><i></i><i></i><i></i></span>
-          <code data-en="<b>$</b> deploy your-business"><b>$</b> deploy seu-negocio</code>
-          <code class="ok" data-en="✓ site live">✓ site no ar</code>
-          <code class="ok" data-en="✓ ready for ads">✓ pronto para anúncio</code>
+          <code data-en="<b>$</b> deploy your-business" data-es="<b>$</b> deploy tu-negocio"><b>$</b> deploy seu-negocio</code>
+          <code class="ok" data-en="✓ site live" data-es="✓ sitio en línea">✓ site no ar</code>
+          <code class="ok" data-en="✓ ready for ads" data-es="✓ listo para anunciar">✓ pronto para anúncio</code>
         </div>
-        <span class="hx-pill" data-en="<i></i>free diagnosis"><i></i>diagnóstico gratuito</span>
-        <p class="hx-card-t" data-en="Start wherever you like.">Comece por onde quiser.</p>
-        <p class="hx-card-p" data-en="Three ways in, none of them commits you to anything.">Três jeitos de começar, nenhum compromete você.</p>
+        <span class="hx-pill" data-en="<i></i>free diagnosis" data-es="<i></i>diagnóstico gratuito"><i></i>diagnóstico gratuito</span>
+        <p class="hx-card-t" data-en="Start wherever you like." data-es="Empieza por donde prefieras.">Comece por onde quiser.</p>
+        <p class="hx-card-p" data-en="Three ways in, none of them commits you to anything." data-es="Tres caminos, ninguno te compromete a nada.">Três jeitos de começar, nenhum compromete você.</p>
       </div>
       <div class="hx-bot">
-        <a class="hx-b1" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
-        <a class="hx-b2" href="#investimento" data-en="See plans and prices">Ver planos e preços</a>
+        <a class="hx-b1" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>' data-es='Ver cuánto pierdo por mes <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+        <a class="hx-b2" href="#investimento" data-en="See plans and prices" data-es="Ver planes y precios">Ver planos e preços</a>
         <a class="hx-wa" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
           <span class="hx-wa-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.43-9.9 9.88 0 1.74.45 3.44 1.32 4.95L2 22l5.32-1.4a9.87 9.87 0 0 0 4.72 1.2h.01c5.45 0 9.89-4.43 9.89-9.88 0-2.64-1.03-5.12-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg></span>
-          <span class="hx-wa-t" data-en="Talk on WhatsApp<small>the person replying is the one who builds it</small>">Falar no WhatsApp<small>quem responde é quem desenvolve</small></span>
+          <span class="hx-wa-t" data-en="Talk on WhatsApp<small>the person replying is the one who builds it</small>" data-es="Hablar por WhatsApp<small>quien responde es quien lo construye</small>">Falar no WhatsApp<small>quem responde é quem desenvolve</small></span>
           <span class="seta" aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -727,23 +740,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="strip" aria-label="O que a Theatrum entrega">
   <div class="mq">
     <div class="mq-track">
-      <span class="mq-item" data-en='Custom websites <span class="star">✦</span>'>Sites sob medida <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Landing pages <span class="star">✦</span>'>Landing pages <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Online stores <span class="star">✦</span>'>Lojas virtuais <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Web apps <span class="star">✦</span>'>Aplicativos web <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Systems <span class="star">✦</span>'>Sistemas <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
-      <span class="mq-item" data-en='Paid ads <span class="star">✦</span>'>Tráfego pago <span class="star">✦</span></span>
-      <span class="mq-item" data-en='AI on WhatsApp <span class="star">✦</span>'>IA no WhatsApp <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Custom websites <span class="star">✦</span>' data-es='Sitios a medida <span class="star">✦</span>'>Sites sob medida <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Landing pages <span class="star">✦</span>' data-es='Landing pages <span class="star">✦</span>'>Landing pages <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Online stores <span class="star">✦</span>' data-es='Tiendas en línea <span class="star">✦</span>'>Lojas virtuais <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Web apps <span class="star">✦</span>' data-es='Aplicaciones web <span class="star">✦</span>'>Aplicativos web <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Systems <span class="star">✦</span>' data-es='Sistemas <span class="star">✦</span>'>Sistemas <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>' data-es='Perfil de Empresa en Google <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
+      <span class="mq-item" data-en='Paid ads <span class="star">✦</span>' data-es='Tráfico pagado <span class="star">✦</span>'>Tráfego pago <span class="star">✦</span></span>
+      <span class="mq-item" data-en='AI on WhatsApp <span class="star">✦</span>' data-es='IA en WhatsApp <span class="star">✦</span>'>IA no WhatsApp <span class="star">✦</span></span>
       <span aria-hidden="true" style="display:contents">
-        <span class="mq-item" data-en='Custom websites <span class="star">✦</span>'>Sites sob medida <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Landing pages <span class="star">✦</span>'>Landing pages <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Online stores <span class="star">✦</span>'>Lojas virtuais <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Web apps <span class="star">✦</span>'>Aplicativos web <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Systems <span class="star">✦</span>'>Sistemas <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
-        <span class="mq-item" data-en='Paid ads <span class="star">✦</span>'>Tráfego pago <span class="star">✦</span></span>
-        <span class="mq-item" data-en='AI on WhatsApp <span class="star">✦</span>'>IA no WhatsApp <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Custom websites <span class="star">✦</span>' data-es='Sitios a medida <span class="star">✦</span>'>Sites sob medida <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Landing pages <span class="star">✦</span>' data-es='Landing pages <span class="star">✦</span>'>Landing pages <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Online stores <span class="star">✦</span>' data-es='Tiendas en línea <span class="star">✦</span>'>Lojas virtuais <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Web apps <span class="star">✦</span>' data-es='Aplicaciones web <span class="star">✦</span>'>Aplicativos web <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Systems <span class="star">✦</span>' data-es='Sistemas <span class="star">✦</span>'>Sistemas <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Google Business Profile <span class="star">✦</span>' data-es='Perfil de Empresa en Google <span class="star">✦</span>'>Google Meu Negócio <span class="star">✦</span></span>
+        <span class="mq-item" data-en='Paid ads <span class="star">✦</span>' data-es='Tráfico pagado <span class="star">✦</span>'>Tráfego pago <span class="star">✦</span></span>
+        <span class="mq-item" data-en='AI on WhatsApp <span class="star">✦</span>' data-es='IA en WhatsApp <span class="star">✦</span>'>IA no WhatsApp <span class="star">✦</span></span>
       </span>
     </div>
   </div>
@@ -849,22 +862,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec" id="trabalhos">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>work'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>trabalhos</p>
-    <h2 class="rv" style="--d:.08s" data-en='Twenty-four sites live. <span class="lm">All of them, right here.</span>'>Vinte e quatro sites no ar. <span class="lm">Todos passando aqui.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>work' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>trabajos'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>trabalhos</p>
+    <h2 class="rv" style="--d:.08s" data-en='Twenty-four sites live. <span class="lm">All of them, right here.</span>' data-es='Veinticuatro sitios en línea. <span class="lm">Todos, aquí mismo.</span>'>Vinte e quatro sites no ar. <span class="lm">Todos passando aqui.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Demonstrations with invented brands, plus a real client store. They all work: <b>click the screen to open the site</b> and use it from top to bottom.' data-es='Demostraciones con marcas inventadas, más la tienda de un cliente real. Todas funcionan: <b>haz clic en la pantalla para abrir el sitio</b> y úsalo de arriba abajo.'>Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b> e usar de cima a baixo.</p>
 
     <div class="vs-tipos rv" style="--d:.18s">
-      <p data-en="in these twenty-six sites you will find">nestes vinte e seis sites você encontra</p>
+      <p data-en="in these twenty-six sites you will find" data-es="en estos veintiséis sitios encontrarás">nestes vinte e seis sites você encontra</p>
       <div class="vs-tipos-faixa"><ul>
-        <li data-en="Online stores">Lojas online</li>
-        <li data-en="Dietitians">Nutricionistas</li>
-        <li data-en="Real estate">Imobiliárias</li>
-        <li data-en="Fitted furniture">Móveis planejados</li>
-        <li data-en="Clinics and consultancies">Clínicas e consultorias</li>
-        <li data-en="Dentists">Dentistas</li>
-        <li data-en="Cabins and inns">Chalés e pousadas</li>
-        <li data-en="Farm and vet stores">Agropecuárias</li>
-        <li data-en="Personal trainers">Personal trainers</li>
+        <li data-en="Online stores" data-es="Tiendas en línea">Lojas online</li>
+        <li data-en="Dietitians" data-es="Nutricionistas">Nutricionistas</li>
+        <li data-en="Real estate" data-es="Inmobiliarias">Imobiliárias</li>
+        <li data-en="Fitted furniture" data-es="Muebles a medida">Móveis planejados</li>
+        <li data-en="Clinics and consultancies" data-es="Clínicas y consultorías">Clínicas e consultorias</li>
+        <li data-en="Dentists" data-es="Dentistas">Dentistas</li>
+        <li data-en="Cabins and inns" data-es="Cabañas y posadas">Chalés e pousadas</li>
+        <li data-en="Farm and vet stores" data-es="Agroveterinarias">Agropecuárias</li>
+        <li data-en="Personal trainers" data-es="Entrenadores personales">Personal trainers</li>
       </ul></div>
     </div>
 
@@ -876,7 +889,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="mc rv" style="--d:.22s" id="marcas">
-      <p class="mc-tit" data-en="the brands behind these sites">as marcas desses sites</p>
+      <p class="mc-tit" data-en="the brands behind these sites" data-es="las marcas de estos sitios">as marcas desses sites</p>
       <div class="mc-faixa">
         <div class="mc-trilho">
           <a href="imoveis/demos/vista-imoveis/?de=home" target="_blank" rel="noopener"><img src="assets/img/marcas/vista-imoveis.webp" width="200" height="23" alt="Vista Imóveis" loading="lazy" decoding="async"></a>
@@ -941,42 +954,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   'use strict';
   /* tipo: o que aparece embaixo da tela. real: cliente de verdade, link para o site dele no ar */
   const VS = [
-    [ {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store'},
-      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker'},
-      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian'},
-      {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens'},
-      {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency'},
-      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy'},
-      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery'} ],
-    [ {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory'},
-      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn'},
-      {img:'reserva-aurora', dom:'reservaaurora.com.br', nome:'Reserva Aurora', href:'imoveis/demos/reserva-aurora/', pt:'Site para lançamento imobiliário', en:'Website for a property launch'},
-      {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store'},
-      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US'},
-      {img:'beatriz-lemos', dom:'beatrizlemos.com.br', nome:'Beatriz Lemos', href:'nutricao/demos/beatriz-lemos/', pt:'Site para nutricionista de reeducação alimentar', en:'Website for a dietitian'},
-      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store'} ],
-    [ {img:'arco', dom:'arcoodontologia.com.br', nome:'Arco Odontologia', href:'negocios/demos/arco/', pt:'Site para clínica odontológica', en:'Website for a dental clinic'},
-      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture'},
-      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer'},
-      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic'},
-      {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency'},
-      {img:'lara-mendonca', dom:'laramendonca.com.br', nome:'Lara Mendonça', href:'nutricao/demos/lara-mendonca/', pt:'Site para nutricionista bariátrica', en:'Website for a bariatric dietitian'} ],
-    [ {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian'},
-      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery'},
-      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian'},
-      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices'},
-      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist'},
-      {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate'} ]
+    [ {img:'seis-panos', dom:'seispanos.com.br', nome:'Seis Panos', href:'lojas/demos/seis-panos/', pt:'Site para loja online', en:'Website for an online store', es:'Sitio para tienda en línea'},
+      {img:'bruno-tavares', dom:'brunotavares.com.br', nome:'Bruno Tavares', href:'imoveis/demos/bruno-tavares/', pt:'Site para corretor de imóveis', en:'Website for a real estate broker', es:'Sitio para agente inmobiliario'},
+      {img:'nutri-clinica', dom:'camilaprado.com', nome:'Camila Prado', href:'nutricao/demos/nutri-clinica/', pt:'Site bilíngue para nutricionista', en:'Bilingual website for a dietitian', es:'Sitio bilingüe para nutricionista'},
+      {img:'cozinha-viva', dom:'cozinhaviva.com.br', nome:'Cozinha Viva', href:'moveis-planejados/demos/cozinha-viva/', pt:'Site para cozinhas planejadas', en:'Website for custom kitchens', es:'Sitio para cocinas a medida'},
+      {img:'vista-imoveis', dom:'vistaimoveis.com.br', nome:'Vista Imóveis', href:'imoveis/demos/vista-imoveis/', pt:'Site para imobiliária', en:'Website for a real estate agency', es:'Sitio para inmobiliaria'},
+      {img:'vereda', dom:'veredaambiental.com.br', nome:'Vereda', href:'negocios/demos/vereda/', pt:'Site para consultoria ambiental', en:'Website for an environmental consultancy', es:'Sitio para consultoría ambiental'},
+      {img:'atelie-verga', dom:'atelieverga.com.br', nome:'Ateliê Verga', href:'moveis-planejados/demos/atelie-verga/', pt:'Site para marcenaria', en:'Website for a joinery', es:'Sitio para carpintería'} ],
+    [ {img:'moratta', dom:'morattaplanejados.com.br', nome:'Morattá', href:'moveis-planejados/demos/moratta/', pt:'Site para indústria de móveis', en:'Website for a furniture factory', es:'Sitio para fábrica de muebles'},
+      {img:'pedra-alta', dom:'chalespedraalta.com.br', nome:'Pedra Alta', href:'negocios/demos/pedra-alta/', pt:'Site para chalés e pousada', en:'Website for cabins and an inn', es:'Sitio para cabañas y posada'},
+      {img:'reserva-aurora', dom:'reservaaurora.com.br', nome:'Reserva Aurora', href:'imoveis/demos/reserva-aurora/', pt:'Site para lançamento imobiliário', en:'Website for a property launch', es:'Sitio para lanzamiento inmobiliario'},
+      {img:'little-trees', dom:'littletrees-indol.vercel.app', nome:'Little Trees', href:'https://littletrees-indol.vercel.app/', real:true, pt:'Site para loja online', en:'Website for an online store', es:'Sitio para tienda en línea'},
+      {img:'nutri-usa', dom:'ethanreyesrd.com', nome:'Ethan Reyes', href:'nutricao/demos/nutri-usa/', pt:'Site para nutricionista nos EUA', en:'Website for a dietitian in the US', es:'Sitio para nutricionista en EE. UU.'},
+      {img:'beatriz-lemos', dom:'beatrizlemos.com.br', nome:'Beatriz Lemos', href:'nutricao/demos/beatriz-lemos/', pt:'Site para nutricionista de reeducação alimentar', en:'Website for a dietitian', es:'Sitio para nutricionista'},
+      {img:'campo-vivo', dom:'campovivoagro.com.br', nome:'Campo Vivo', href:'negocios/demos/campo-vivo/', pt:'Site para agroveterinária', en:'Website for a farm and vet store', es:'Sitio para agroveterinaria'} ],
+    [ {img:'arco', dom:'arcoodontologia.com.br', nome:'Arco Odontologia', href:'negocios/demos/arco/', pt:'Site para clínica odontológica', en:'Website for a dental clinic', es:'Sitio para clínica dental'},
+      {img:'casa-nobre', dom:'casanobreplanejados.com.br', nome:'Casa Nobre', href:'moveis-planejados/demos/casa-nobre/', pt:'Site para móveis planejados', en:'Website for fitted furniture', es:'Sitio para muebles a medida'},
+      {img:'cla-valente', dom:'clavalente.com.br', nome:'Clã Valente', href:'negocios/demos/cla-valente/', pt:'Site para personal trainer', en:'Website for a personal trainer', es:'Sitio para entrenador personal'},
+      {img:'prumo', dom:'prumosaude.com.br', nome:'Prumo', href:'negocios/demos/prumo/', pt:'Site para clínica de saúde ocupacional', en:'Website for an occupational health clinic', es:'Sitio para clínica de salud ocupacional'},
+      {img:'mare-mansa', dom:'maremansaimoveis.com.br', nome:'Maré Mansa', href:'imoveis/demos/mare-mansa/', pt:'Site para imobiliária de praia', en:'Website for a beach real estate agency', es:'Sitio para inmobiliaria de playa'},
+      {img:'lara-mendonca', dom:'laramendonca.com.br', nome:'Lara Mendonça', href:'nutricao/demos/lara-mendonca/', pt:'Site para nutricionista bariátrica', en:'Website for a bariatric dietitian', es:'Sitio para nutricionista bariátrica'} ],
+    [ {img:'nutri-infantil', dom:'marinabastos.com.br', nome:'Marina Bastos', href:'nutricao/demos/nutri-infantil/', pt:'Site para nutricionista infantil', en:'Website for a children\'s dietitian', es:'Sitio para nutricionista infantil'},
+      {img:'cerne', dom:'cernemarcenaria.com.br', nome:'CERNE', href:'moveis-planejados/demos/cerne/', pt:'Site para marcenaria de alto padrão', en:'Website for high-end joinery', es:'Sitio para carpintería de alto nivel'},
+      {img:'nutri-emagrecimento', dom:'renatasalles.com.br', nome:'Renata Salles', href:'nutricao/demos/nutri-emagrecimento/', pt:'Site para nutricionista', en:'Website for a dietitian', es:'Sitio para nutricionista'},
+      {img:'medida-certa', dom:'medidacerta.com.br', nome:'Medida Certa', href:'moveis-planejados/demos/medida-certa/', pt:'Site para planejados com preço publicado', en:'Website for fitted furniture with published prices', es:'Sitio para muebles a medida con precios publicados'},
+      {img:'livia-amaral', dom:'liviaamaral.com.br', nome:'Lívia Amaral', href:'negocios/demos/livia-amaral/', pt:'Site para terapeuta', en:'Website for a therapist', es:'Sitio para terapeuta'},
+      {img:'vertice', dom:'verticeimoveis.com.br', nome:'Vértice', href:'imoveis/demos/vertice/', pt:'Site para imobiliária de alto padrão', en:'Website for high-end real estate', es:'Sitio para inmobiliaria de alto nivel'} ]
   ];
   const TX = { pt:{demo:'demonstração', real:'cliente real', abrir:'Abrir o site ↗', ir:'Ver site', ant:'Site anterior', prox:'Próximo site'},
-               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'} };
+               en:{demo:'demo', real:'real client', abrir:'Open the site ↗', ir:'Show site', ant:'Previous site', prox:'Next site'},
+               es:{demo:'demostración', real:'cliente real', abrir:'Abrir el sitio ↗', ir:'Ver sitio', ant:'Sitio anterior', prox:'Siguiente sitio'} };
   const TEMPO = 5200;                       /* quanto cada site fica na tela no bloco mais longo */
   /* todo bloco dá a volta no mesmo tempo (o de seis segura cada site um pouco mais):
      com tamanhos diferentes eles se desencontrariam e, cedo ou tarde, dois blocos
      mostrariam o mesmo tipo de site ao mesmo tempo */
   const CICLO = TEMPO * Math.max(...VS.map((l) => l.length));
   const PARADO = new URLSearchParams(location.search).get('still') || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const src = (it, w) => 'assets/img/vitrine/home/' + it.img + '-' + w + '.webp';
   const link = (it) => it.real ? it.href : it.href + '?de=home';
   const raiz = document.getElementById('vsBlocos');
@@ -1132,29 +1146,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec light" id="nao-e-so-um-site">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>not just a website'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>não é só um site</p>
-    <h2 class="rv" style="--d:.08s" data-en='Your website working <span class="lm">as a salesperson.</span>'>Seu site trabalhando <span class="lm">como vendedor.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='The website is the only channel that is entirely yours. Social media changes the rules, ads stop when the budget ends; the website keeps working. What a ready-made template <b>does not do</b>:'>O site é o único canal inteiramente seu. Rede social muda a regra, anúncio para quando a verba acaba; o site continua trabalhando. O que um modelo pronto <b>não faz</b>:</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>not just a website' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>no es solo un sitio'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>não é só um site</p>
+    <h2 class="rv" style="--d:.08s" data-en='Your website working <span class="lm">as a salesperson.</span>' data-es='Tu sitio trabajando <span class="lm">como vendedor.</span>'>Seu site trabalhando <span class="lm">como vendedor.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='The website is the only channel that is entirely yours. Social media changes the rules, ads stop when the budget ends; the website keeps working. What a ready-made template <b>does not do</b>:' data-es='El sitio es el único canal enteramente tuyo. Las redes cambian las reglas, los anuncios se detienen cuando se acaba el presupuesto; el sitio sigue trabajando. Lo que una plantilla lista <b>no hace</b>:'>O site é o único canal inteiramente seu. Rede social muda a regra, anúncio para quando a verba acaba; o site continua trabalhando. O que um modelo pronto <b>não faz</b>:</p>
     <div class="ns-grid">
       <article class="ns-card rv" style="--d:0.05s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
-        <h3 data-en="Fast on mobile">Rápido no celular</h3>
-        <p data-en="Opens fast even on weak 4G. Whoever clicks the ad does not give up waiting for it to load.">Abre rápido até em 4G fraco. Quem clica no anúncio não desiste esperando carregar.</p>
+        <h3 data-en="Fast on mobile" data-es="Rápido en el celular">Rápido no celular</h3>
+        <p data-en="Opens fast even on weak 4G. Whoever clicks the ad does not give up waiting for it to load." data-es="Abre rápido incluso con 4G débil. Quien hace clic en el anuncio no se rinde esperando que cargue.">Abre rápido até em 4G fraco. Quem clica no anúncio não desiste esperando carregar.</p>
       </article>
       <article class="ns-card rv" style="--d:0.09s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17l5.5-5.5 3.5 3.5L21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <h3 data-en="Ready for ads">Pronto para anúncio</h3>
-        <p data-en="You know which ad, search or post brought each contact. Your ads are measured from day one.">Você sabe qual anúncio, busca ou post trouxe cada contato. O anúncio fica medido desde o primeiro dia.</p>
+        <h3 data-en="Ready for ads" data-es="Listo para anunciar">Pronto para anúncio</h3>
+        <p data-en="You know which ad, search or post brought each contact. Your ads are measured from day one." data-es="Sabes qué anuncio, búsqueda o publicación trajo cada contacto. Tus anuncios se miden desde el primer día.">Você sabe qual anúncio, busca ou post trouxe cada contato. O anúncio fica medido desde o primeiro dia.</p>
       </article>
       <article class="ns-card rv" style="--d:0.13s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16v4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="1.7"/></svg></span>
-        <h3 data-en="Copy that sells">Texto que vende</h3>
-        <p data-en="We write all of it, focused on turning a visit into a contact. You do not need to write a thing.">A gente escreve tudo, com foco em transformar visita em contato. Você não precisa escrever nada.</p>
+        <h3 data-en="Copy that sells" data-es="Textos que venden">Texto que vende</h3>
+        <p data-en="We write all of it, focused on turning a visit into a contact. You do not need to write a thing." data-es="Escribimos todo, con foco en convertir la visita en contacto. No necesitas escribir nada.">A gente escreve tudo, com foco em transformar visita em contato. Você não precisa escrever nada.</p>
       </article>
       <article class="ns-card rv" style="--d:0.17s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8a6 6 0 1112 0c0 7 3 8 3 8H3s3-1 3-8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 20a2 2 0 004 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-        <h3 data-en="Every contact flagged">Cada contato avisado</h3>
-        <p data-en="Whoever fills in the form reaches your WhatsApp or your email, with the details organized.">Quem preenche o formulário chega no seu WhatsApp ou no seu e-mail, com os dados organizados.</p>
+        <h3 data-en="Every contact flagged" data-es="Cada contacto avisado">Cada contato avisado</h3>
+        <p data-en="Whoever fills in the form reaches your WhatsApp or your email, with the details organized." data-es="Quien llena el formulario llega a tu WhatsApp o a tu correo, con los datos organizados.">Quem preenche o formulário chega no seu WhatsApp ou no seu e-mail, com os dados organizados.</p>
       </article>
     </div>
   </div>
@@ -1166,53 +1180,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      existirem, o card passa a levar para elas. -->
 <section class="sec" id="para-quem">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>who we build for'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>para quem fazemos</p>
-    <h2 class="rv" style="--d:.08s" data-en='For whoever needs to <span class="lm">earn trust first.</span>'>Para quem precisa <span class="lm">passar confiança primeiro.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en="The client researches before calling. The right website shows authority in your field before the first conversation.">O cliente pesquisa antes de ligar. O site certo mostra autoridade no seu segmento antes da primeira conversa.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>who we build for' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>para quién lo hacemos'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>para quem fazemos</p>
+    <h2 class="rv" style="--d:.08s" data-en='For whoever needs to <span class="lm">earn trust first.</span>' data-es='Para quien necesita <span class="lm">generar confianza primero.</span>'>Para quem precisa <span class="lm">passar confiança primeiro.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="The client researches before calling. The right website shows authority in your field before the first conversation." data-es="El cliente investiga antes de llamar. El sitio correcto muestra autoridad en tu área antes de la primera conversación.">O cliente pesquisa antes de ligar. O site certo mostra autoridade no seu segmento antes da primeira conversa.</p>
     <div class="pq-grid">
       <article class="pq-card rv" style="--d:0.05s">
-        <h3 data-en="Lawyers">Advogados</h3>
-        <p data-en="A sober, informative site, within the Brazilian bar association advertising rules.">Site sóbrio e informativo, dentro das normas de publicidade da OAB.</p>
+        <h3 data-en="Lawyers" data-es="Abogados">Advogados</h3>
+        <p data-en="A sober, informative site, within the Brazilian bar association advertising rules." data-es="Un sitio sobrio e informativo, dentro de las reglas de publicidad del colegio de abogados.">Site sóbrio e informativo, dentro das normas de publicidade da OAB.</p>
         <div class="pq-links">
-          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;">Falar sobre o meu &rarr;</a>
+          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;" data-es="Hablar del mío &rarr;">Falar sobre o meu &rarr;</a>
         </div>
       </article>
       <article class="pq-card rv" style="--d:0.09s">
-        <h3 data-en="Clinics and practices">Clínicas e consultórios</h3>
-        <p data-en="Medical, dental, nutrition, physiotherapy. Booking is easy, and the copy respects the professional council rules.">Médica, odontológica, nutrição, fisioterapia. Agendar fica fácil, e o texto respeita as normas do conselho.</p>
+        <h3 data-en="Clinics and practices" data-es="Clínicas y consultorios">Clínicas e consultórios</h3>
+        <p data-en="Medical, dental, nutrition, physiotherapy. Booking is easy, and the copy respects the professional council rules." data-es="Medicina, odontología, nutrición, fisioterapia. Agendar es fácil, y los textos respetan las reglas del colegio profesional.">Médica, odontológica, nutrição, fisioterapia. Agendar fica fácil, e o texto respeita as normas do conselho.</p>
         <div class="pq-links">
-          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20uma%20cl%C3%ADnica%20ou%20consult%C3%B3rio%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;">Falar sobre o meu &rarr;</a>
-          <a href="nutricao/demos/nutri-clinica/?de=home" data-en="See an example">Ver exemplo</a>
+          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20uma%20cl%C3%ADnica%20ou%20consult%C3%B3rio%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;" data-es="Hablar del mío &rarr;">Falar sobre o meu &rarr;</a>
+          <a href="nutricao/demos/nutri-clinica/?de=home" data-en="See an example" data-es="Ver un ejemplo">Ver exemplo</a>
         </div>
       </article>
       <article class="pq-card rv" style="--d:0.13s">
-        <h3 data-en="Engineering and architecture">Engenharia e arquitetura</h3>
-        <p data-en="Project portfolio, professional registration and your process explained.">Portfólio de obras, registro no CREA ou no CAU e o seu processo explicado.</p>
+        <h3 data-en="Engineering and architecture" data-es="Ingeniería y arquitectura">Engenharia e arquitetura</h3>
+        <p data-en="Project portfolio, professional registration and your process explained." data-es="Portafolio de proyectos, registro profesional y tu proceso explicado.">Portfólio de obras, registro no CREA ou no CAU e o seu processo explicado.</p>
         <div class="pq-links">
-          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20um%20escrit%C3%B3rio%20de%20engenharia%20ou%20arquitetura%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;">Falar sobre o meu &rarr;</a>
-          <a href="negocios/demos/vereda/?de=home" data-en="See an example">Ver exemplo</a>
+          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20um%20escrit%C3%B3rio%20de%20engenharia%20ou%20arquitetura%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;" data-es="Hablar del mío &rarr;">Falar sobre o meu &rarr;</a>
+          <a href="negocios/demos/vereda/?de=home" data-en="See an example" data-es="Ver un ejemplo">Ver exemplo</a>
         </div>
       </article>
       <article class="pq-card rv" style="--d:0.17s">
-        <h3 data-en="Consultancies">Consultorias</h3>
-        <p data-en="Who you serve, how you work and what the next step is, no beating around the bush.">Quem você atende, como trabalha e qual é o próximo passo, sem rodeio.</p>
+        <h3 data-en="Consultancies" data-es="Consultorías">Consultorias</h3>
+        <p data-en="Who you serve, how you work and what the next step is, no beating around the bush." data-es="A quién atiendes, cómo trabajas y cuál es el siguiente paso, sin rodeos.">Quem você atende, como trabalha e qual é o próximo passo, sem rodeio.</p>
         <div class="pq-links">
-          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20uma%20consultoria%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;">Falar sobre o meu &rarr;</a>
+          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20uma%20consultoria%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;" data-es="Hablar del mío &rarr;">Falar sobre o meu &rarr;</a>
         </div>
       </article>
       <article class="pq-card rv" style="--d:0.21s">
-        <h3 data-en="Real estate agencies and brokers">Imobiliárias e corretores</h3>
-        <p data-en="Property showcase with filters and owner lead capture.">Vitrine de imóveis com filtro e captação de proprietário.</p>
+        <h3 data-en="Real estate agencies and brokers" data-es="Inmobiliarias y agentes">Imobiliárias e corretores</h3>
+        <p data-en="Property showcase with filters and owner lead capture." data-es="Vitrina de inmuebles con filtros y captación de propietarios.">Vitrine de imóveis com filtro e captação de proprietário.</p>
         <div class="pq-links">
-          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20uma%20imobili%C3%A1ria%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;">Falar sobre o meu &rarr;</a>
-          <a href="imoveis/demos/vista-imoveis/?de=home" data-en="See an example">Ver exemplo</a>
+          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Tenho%20uma%20imobili%C3%A1ria%20e%20quero%20um%20site%20que%20traga%20cliente." target="_blank" rel="noopener" data-en="Talk about mine &rarr;" data-es="Hablar del mío &rarr;">Falar sobre o meu &rarr;</a>
+          <a href="imoveis/demos/vista-imoveis/?de=home" data-en="See an example" data-es="Ver un ejemplo">Ver exemplo</a>
         </div>
       </article>
       <article class="pq-card pq-destaque rv" style="--d:.25s">
-        <h3 data-en="Your site already exists but brings no clients?">Seu site já existe, mas não traz cliente?</h3>
-        <p data-en="<b>Website redesign.</b> We keep what works, rebuild what loses clients and leave it ready for ads."><b>Reformulação de site.</b> A gente aproveita o que funciona, refaz o que perde cliente e deixa pronto para anúncio.</p>
+        <h3 data-en="Your site already exists but brings no clients?" data-es="¿Tu sitio ya existe pero no trae clientes?">Seu site já existe, mas não traz cliente?</h3>
+        <p data-en="<b>Website redesign.</b> We keep what works, rebuild what loses clients and leave it ready for ads." data-es="<b>Rediseño de sitio.</b> Mantenemos lo que funciona, rehacemos lo que pierde clientes y lo dejamos listo para anunciar."><b>Reformulação de site.</b> A gente aproveita o que funciona, refaz o que perde cliente e deixa pronto para anúncio.</p>
         <div class="pq-links">
-          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20J%C3%A1%20tenho%20site%2C%20mas%20ele%20n%C3%A3o%20traz%20cliente.%20Quero%20uma%20reformula%C3%A7%C3%A3o." target="_blank" rel="noopener" data-en="I want to redesign mine &rarr;">Quero reformular o meu &rarr;</a>
+          <a href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20J%C3%A1%20tenho%20site%2C%20mas%20ele%20n%C3%A3o%20traz%20cliente.%20Quero%20uma%20reformula%C3%A7%C3%A3o." target="_blank" rel="noopener" data-en="I want to redesign mine &rarr;" data-es="Quiero rediseñar el mío &rarr;">Quero reformular o meu &rarr;</a>
         </div>
       </article>
     </div>
@@ -1271,87 +1285,87 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec light" id="servicos">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>what we do'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>o que fazemos</p>
-    <h2 class="rv" style="--d:.08s" data-en='What we build, <span class="lm">and what brings clients to it.</span>'>O que a gente constrói, <span class="lm">e o que leva cliente até lá.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='The website comes first, because that is where the client decides. Google, ads and WhatsApp <b>come along</b> to bring people to it.'>Primeiro o site, porque é nele que o cliente decide. Google, anúncio e WhatsApp <b>vêm junto</b> para levar gente até ele.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>what we do' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>qué hacemos'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>o que fazemos</p>
+    <h2 class="rv" style="--d:.08s" data-en='What we build, <span class="lm">and what brings clients to it.</span>' data-es='Lo que construimos, <span class="lm">y lo que trae clientes hasta ahí.</span>'>O que a gente constrói, <span class="lm">e o que leva cliente até lá.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='The website comes first, because that is where the client decides. Google, ads and WhatsApp <b>come along</b> to bring people to it.' data-es='El sitio va primero, porque es ahí donde el cliente decide. Google, anuncios y WhatsApp <b>vienen detrás</b> para traer gente hasta él.'>Primeiro o site, porque é nele que o cliente decide. Google, anúncio e WhatsApp <b>vêm junto</b> para levar gente até ele.</p>
 
-    <p class="sv-grupo rv" data-en="<b>To build</b><span>where the client decides to hire you</span>"><b>Para construir</b><span>onde o cliente decide contratar você</span></p>
+    <p class="sv-grupo rv" data-en="<b>To build</b><span>where the client decides to hire you</span>" data-es="<b>Para construir</b><span>donde el cliente decide contratarte</span>"><b>Para construir</b><span>onde o cliente decide contratar você</span></p>
     <div class="sv-top">
       <article class="sv-main rv" style="--d:.05s">
         <div class="sv-cab"><span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M7 6.5h.01M9.5 6.5h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="sv-n">01</span></div>
-        <h3 data-en='Websites and <em>landing pages</em>'>Sites e <em>landing pages</em></h3>
-        <p data-en="A website to earn trust, a landing page to turn an ad into a contact. Fast on mobile and ready for Google. Not a ready-made theme with your logo on top.">Site para passar confiança, landing page para transformar anúncio em contato. Rápidos no celular e prontos para o Google. Não é tema pronto com o seu logo em cima.</p>
+        <h3 data-en='Websites and <em>landing pages</em>' data-es='Sitios y <em>landing pages</em>'>Sites e <em>landing pages</em></h3>
+        <p data-en="A website to earn trust, a landing page to turn an ad into a contact. Fast on mobile and ready for Google. Not a ready-made theme with your logo on top." data-es="Un sitio para generar confianza, una landing page para convertir el anuncio en contacto. Rápidos en el celular y listos para Google. No es una plantilla con tu logo encima.">Site para passar confiança, landing page para transformar anúncio em contato. Rápidos no celular e prontos para o Google. Não é tema pronto com o seu logo em cima.</p>
         <div class="sv-inc"><ul>
-          <li data-en="business website">site institucional</li>
-          <li data-en="campaign landing page">landing page de campanha</li>
-          <li data-en="portuguese and english">português e inglês</li>
-          <li data-en="domain in your name">domínio no seu nome</li>
+          <li data-en="business website" data-es="sitio institucional">site institucional</li>
+          <li data-en="campaign landing page" data-es="landing page de campaña">landing page de campanha</li>
+          <li data-en="portuguese and english" data-es="portugués, inglés y español">português e inglês</li>
+          <li data-en="domain in your name" data-es="dominio a tu nombre">domínio no seu nome</li>
         </ul></div>
       </article>
 
       <article class="sv-main rv" style="--d:.12s">
         <div class="sv-cab"><span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5a1.5 1.5 0 001.5 1.2h8.6a1.5 1.5 0 001.5-1.1L21 8H6.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg></span><span class="sv-n">02</span></div>
-        <h3 data-en='Online <em>stores</em>'>Lojas <em>virtuais</em></h3>
-        <p data-en="Catalogue, cart, shipping and payment. Your store on your own domain, without depending on a marketplace to sell.">Catálogo, carrinho, frete e pagamento. A sua loja no seu domínio, sem depender de marketplace para vender.</p>
+        <h3 data-en='Online <em>stores</em>' data-es='Tiendas <em>en línea</em>'>Lojas <em>virtuais</em></h3>
+        <p data-en="Catalogue, cart, shipping and payment. Your store on your own domain, without depending on a marketplace to sell." data-es="Catálogo, carrito, envío y pago. Tu tienda en tu propio dominio, sin depender de un marketplace para vender.">Catálogo, carrinho, frete e pagamento. A sua loja no seu domínio, sem depender de marketplace para vender.</p>
         <div class="sv-inc"><ul>
-          <li data-en="catalogue with filters">catálogo com filtro</li>
-          <li data-en="cart and checkout">carrinho e checkout</li>
-          <li data-en="payment and shipping">pagamento e frete</li>
-          <li data-en="order sent to WhatsApp">pedido no WhatsApp</li>
+          <li data-en="catalogue with filters" data-es="catálogo con filtros">catálogo com filtro</li>
+          <li data-en="cart and checkout" data-es="carrito y checkout">carrinho e checkout</li>
+          <li data-en="payment and shipping" data-es="pago y envío">pagamento e frete</li>
+          <li data-en="order sent to WhatsApp" data-es="pedido enviado al WhatsApp">pedido no WhatsApp</li>
         </ul></div>
       </article>
 
       <article class="sv-main rv" style="--d:.19s">
         <div class="sv-cab"><span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="sv-n">03</span></div>
-        <h3 data-en='Apps and <em>web systems</em>'>Aplicativos e <em>sistemas web</em></h3>
-        <p data-en="The part of your process that today lives in spreadsheets and loose messages becomes a system. It opens in the browser and can be installed on the phone's home screen.">A parte do processo que hoje é planilha e mensagem solta vira sistema. Abre no navegador e pode ser instalado na tela do celular.</p>
+        <h3 data-en='Apps and <em>web systems</em>' data-es='Aplicaciones y <em>sistemas web</em>'>Aplicativos e <em>sistemas web</em></h3>
+        <p data-en="The part of your process that today lives in spreadsheets and loose messages becomes a system. It opens in the browser and can be installed on the phone's home screen." data-es="La parte de tu proceso que hoy vive en hojas de cálculo y mensajes sueltos se vuelve un sistema. Abre en el navegador y se puede instalar en la pantalla del celular.">A parte do processo que hoje é planilha e mensagem solta vira sistema. Abre no navegador e pode ser instalado na tela do celular.</p>
         <div class="sv-inc"><ul>
-          <li data-en="quote calculator">calculadora de orçamento</li>
-          <li data-en="booking and scheduling">agenda e reservas</li>
-          <li data-en="client area by login or code">área do cliente por login ou código</li>
-          <li data-en="lead and goals dashboard">painel de leads e metas</li>
+          <li data-en="quote calculator" data-es="calculadora de presupuesto">calculadora de orçamento</li>
+          <li data-en="booking and scheduling" data-es="reservas y agenda">agenda e reservas</li>
+          <li data-en="client area by login or code" data-es="área del cliente con acceso o código">área do cliente por login ou código</li>
+          <li data-en="lead and goals dashboard" data-es="panel de contactos y metas">painel de leads e metas</li>
         </ul></div>
       </article>
     </div>
 
-    <p class="sv-grupo rv" data-en="<b>To bring clients</b><span>so whoever searches finds you and gets an answer</span>"><b>Para trazer cliente</b><span>para quem procura achar você e ser atendido</span></p>
+    <p class="sv-grupo rv" data-en="<b>To bring clients</b><span>so whoever searches finds you and gets an answer</span>" data-es="<b>Para traer clientes</b><span>para que quien busca te encuentre y reciba respuesta</span>"><b>Para trazer cliente</b><span>para quem procura achar você e ser atendido</span></p>
     <div class="sv-grid">
       <article class="sv-card rv" style="--d:.05s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.7"/></svg></span>
-        <h3 data-en="Google Business Profile">Google Meu Negócio</h3>
-        <p data-en="Set up properly, it puts you on the map for whoever searches nearby. Set up badly, it sends them to the competitor.">Bem configurado, põe você no mapa de quem procura perto. Mal configurado, manda o cliente para o concorrente.</p>
-        <a class="sv-mais" href="#problema" data-aba="google" data-en="See why &darr;">Ver por quê &darr;</a>
+        <h3 data-en="Google Business Profile" data-es="Perfil de Empresa en Google">Google Meu Negócio</h3>
+        <p data-en="Set up properly, it puts you on the map for whoever searches nearby. Set up badly, it sends them to the competitor." data-es="Bien configurado, te pone en el mapa de quien busca cerca. Mal configurado, manda a la gente a la competencia.">Bem configurado, põe você no mapa de quem procura perto. Mal configurado, manda o cliente para o concorrente.</p>
+        <a class="sv-mais" href="#problema" data-aba="google" data-en="See why &darr;" data-es="Ver por qué &darr;">Ver por quê &darr;</a>
       </article>
       <article class="sv-card rv" style="--d:.1s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17l5.5-5.5 3.5 3.5L21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <h3 data-en="Paid traffic">Tráfego pago</h3>
-        <p data-en="Google and Meta campaigns managed every week, measured in contacts and sales, not likes.">Campanha no Google e no Meta acompanhada toda semana, medida em contato e venda, não em curtida.</p>
-        <a class="sv-mais" href="#problema" data-aba="trafego" data-en="See why &darr;">Ver por quê &darr;</a>
+        <h3 data-en="Paid traffic" data-es="Tráfico pagado">Tráfego pago</h3>
+        <p data-en="Google and Meta campaigns managed every week, measured in contacts and sales, not likes." data-es="Campañas en Google y Meta gestionadas cada semana, medidas en contactos y ventas, no en likes.">Campanha no Google e no Meta acompanhada toda semana, medida em contato e venda, não em curtida.</p>
+        <a class="sv-mais" href="#problema" data-aba="trafego" data-en="See why &darr;" data-es="Ver por qué &darr;">Ver por quê &darr;</a>
       </article>
       <article class="sv-card rv" style="--d:.15s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12a8.5 8.5 0 01-12.4 7.5L4 21l1.6-4.4A8.5 8.5 0 1121 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
-        <h3 data-en="AI on WhatsApp">IA no WhatsApp</h3>
-        <p data-en="Replies in seconds, answers questions and books, even after hours.">Responde em segundos, tira dúvida e agenda, até fora do horário.</p>
+        <h3 data-en="AI on WhatsApp" data-es="IA en WhatsApp">IA no WhatsApp</h3>
+        <p data-en="Replies in seconds, answers questions and books, even after hours." data-es="Responde en segundos, aclara dudas y agenda, incluso fuera de horario.">Responde em segundos, tira dúvida e agenda, até fora do horário.</p>
       </article>
       <article class="sv-card rv" style="--d:.2s">
         <span class="sv-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10a8 8 0 0114-4.5M20 14a8 8 0 01-14 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18 2v4h-4M6 22v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <h3 data-en="Reactivation">Reativação</h3>
-        <p data-en="Whoever already bought from you gets called back and returns.">Quem já comprou de você é chamado de volta e volta.</p>
+        <h3 data-en="Reactivation" data-es="Reactivación">Reativação</h3>
+        <p data-en="Whoever already bought from you gets called back and returns." data-es="Quien ya te compró recibe un nuevo contacto y vuelve.">Quem já comprou de você é chamado de volta e volta.</p>
       </article>
     </div>
 
     <div class="sv-extra rv">
       <span class="sv-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.8" stroke="currentColor" stroke-width="1.7"/><path d="M17 7h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
       <div>
-        <b data-en="Social media for Instagram">Social media para Instagram</b>
-        <p data-en="Planning and posts to keep the profile alive. It comes as a complement to the rest: our strength is what brings clients, not likes.">Planejamento e posts para manter o perfil vivo. Entra como complemento do resto: o nosso forte é o que traz cliente, não curtida.</p>
+        <b data-en="Social media for Instagram" data-es="Redes sociales para Instagram">Social media para Instagram</b>
+        <p data-en="Planning and posts to keep the profile alive. It comes as a complement to the rest: our strength is what brings clients, not likes." data-es="Planificación y publicaciones para mantener vivo el perfil. Viene como complemento del resto: nuestro fuerte es lo que trae clientes, no likes.">Planejamento e posts para manter o perfil vivo. Entra como complemento do resto: o nosso forte é o que traz cliente, não curtida.</p>
       </div>
-      <small data-en="complement">complemento</small>
+      <small data-en="complement" data-es="complemento">complemento</small>
     </div>
 
     <div class="sv-ctas rv" style="--d:.1s">
-      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20um%20site%20ou%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='I want to build mine <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Quero criar o meu <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
-      <a class="btn btn-line" href="#calculadora" data-en="First, see how much I lose">Antes, ver quanto eu perco</a>
+      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20um%20site%20ou%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='I want to build mine <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>' data-es='Quiero construir el mío <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Quero criar o meu <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+      <a class="btn btn-line" href="#calculadora" data-en="First, see how much I lose" data-es="Antes, ver cuánto pierdo">Antes, ver quanto eu perco</a>
     </div>
   </div>
 </section>
@@ -1447,96 +1461,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec" id="problema">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>pains and solutions'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>dores e soluções</p>
-    <h2 class="rv" style="--d:.08s" data-en='Where clients get lost. <span class="lm">And how each gap closes.</span>'>Onde o cliente se perde. <span class="lm">E como cada buraco fecha.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en='Pick a channel and see the difference between done badly and done well. In each one, Theatrum <b>sets it up, runs it and follows it</b>.'>Escolha o canal e veja a diferença entre o mal feito e o bem feito. Em cada um, a Theatrum <b>configura, opera e acompanha</b>.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>pains and solutions' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>problemas y soluciones'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>dores e soluções</p>
+    <h2 class="rv" style="--d:.08s" data-en='Where clients get lost. <span class="lm">And how each gap closes.</span>' data-es='Dónde se pierde el cliente. <span class="lm">Y cómo se cierra cada hueco.</span>'>Onde o cliente se perde. <span class="lm">E como cada buraco fecha.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en='Pick a channel and see the difference between done badly and done well. In each one, Theatrum <b>sets it up, runs it and follows it</b>.' data-es='Elige un canal y mira la diferencia entre mal hecho y bien hecho. En cada uno, Theatrum <b>configura, opera y da seguimiento</b>.'>Escolha o canal e veja a diferença entre o mal feito e o bem feito. Em cada um, a Theatrum <b>configura, opera e acompanha</b>.</p>
 
     <div class="ds rv" style="--d:.2s" id="solucao">
       <div class="ds-janela" hidden>
       <span class="ds-luzes" aria-hidden="true"><i></i><i></i><i></i></span>
       <div class="ds-tabs" role="tablist" aria-label="Canais">
-        <button class="ds-tab" type="button" role="tab" id="ds-t-google" aria-controls="ds-google" aria-selected="true" data-en="Google Business Profile">Google Meu Negócio</button>
-        <button class="ds-tab" type="button" role="tab" id="ds-t-trafego" aria-controls="ds-trafego" aria-selected="false" tabindex="-1" data-en="Paid traffic">Tráfego pago</button>
-        <button class="ds-tab" type="button" role="tab" id="ds-t-atend" aria-controls="ds-atend" aria-selected="false" tabindex="-1" data-en="WhatsApp service">Atendimento</button>
+        <button class="ds-tab" type="button" role="tab" id="ds-t-google" aria-controls="ds-google" aria-selected="true" data-en="Google Business Profile" data-es="Perfil de Empresa en Google">Google Meu Negócio</button>
+        <button class="ds-tab" type="button" role="tab" id="ds-t-trafego" aria-controls="ds-trafego" aria-selected="false" tabindex="-1" data-en="Paid traffic" data-es="Tráfico pagado">Tráfego pago</button>
+        <button class="ds-tab" type="button" role="tab" id="ds-t-atend" aria-controls="ds-atend" aria-selected="false" tabindex="-1" data-en="WhatsApp service" data-es="Atención por WhatsApp">Atendimento</button>
       </div>
       </div>
 
       <div class="ds-painel" id="ds-google" role="tabpanel" aria-labelledby="ds-t-google">
-        <h3 data-en="Google Business Profile">Google Meu Negócio</h3>
-        <p class="ds-intro" data-en="It is the first thing that shows up when someone searches for your service in your city. Either it is you, or it is the competitor.">É a primeira coisa que aparece quando alguém procura o seu serviço na sua cidade. Ou é você, ou é o concorrente.</p>
+        <h3 data-en="Google Business Profile" data-es="Perfil de Empresa en Google">Google Meu Negócio</h3>
+        <p class="ds-intro" data-en="It is the first thing that shows up when someone searches for your service in your city. Either it is you, or it is the competitor." data-es="Es lo primero que aparece cuando alguien busca tu servicio en tu ciudad. O eres tú, o es la competencia.">É a primeira coisa que aparece quando alguém procura o seu serviço na sua cidade. Ou é você, ou é o concorrente.</p>
         <div class="ds-cols">
           <div class="ds-col ds-mal">
-            <h4 data-en="<i>✕</i>set up badly: the cost"><i>✕</i>mal configurado: o prejuízo</h4>
+            <h4 data-en="<i>✕</i>set up badly: the cost" data-es="<i>✕</i>mal configurado: el costo"><i>✕</i>mal configurado: o prejuízo</h4>
             <ul>
-              <li data-en="<b>Wrong category.</b>You vanish from the search that matters and show up in one that brings no clients."><b>Categoria errada.</b>Você some da busca que importa e aparece na que não traz cliente.</li>
-              <li data-en="<b>Outdated hours and phone.</b>The client calls, nobody answers, and they do not try again."><b>Horário e telefone desatualizados.</b>O cliente liga, ninguém atende, e ele não tenta de novo.</li>
-              <li data-en="<b>No photos, unanswered reviews.</b>The profile looks abandoned and the choice goes to the place next door."><b>Sem fotos e avaliação sem resposta.</b>O perfil parece abandonado, e a escolha vai para o vizinho.</li>
-              <li data-en="<b>An idle profile.</b>Without updates it loses ground to whoever looks after theirs."><b>Perfil parado.</b>Sem atualização, ele perde espaço para quem cuida do próprio perfil.</li>
+              <li data-en="<b>Wrong category.</b>You vanish from the search that matters and show up in one that brings no clients." data-es="<b>Categoría equivocada.</b>Desapareces de la búsqueda que importa y apareces en una que no trae clientes."><b>Categoria errada.</b>Você some da busca que importa e aparece na que não traz cliente.</li>
+              <li data-en="<b>Outdated hours and phone.</b>The client calls, nobody answers, and they do not try again." data-es="<b>Horario y teléfono desactualizados.</b>El cliente llama, nadie contesta, y no lo vuelve a intentar."><b>Horário e telefone desatualizados.</b>O cliente liga, ninguém atende, e ele não tenta de novo.</li>
+              <li data-en="<b>No photos, unanswered reviews.</b>The profile looks abandoned and the choice goes to the place next door." data-es="<b>Sin fotos, reseñas sin respuesta.</b>El perfil parece abandonado y la elección va para el de al lado."><b>Sem fotos e avaliação sem resposta.</b>O perfil parece abandonado, e a escolha vai para o vizinho.</li>
+              <li data-en="<b>An idle profile.</b>Without updates it loses ground to whoever looks after theirs." data-es="<b>Perfil parado.</b>Sin novedades, pierde espacio frente a quien cuida el suyo."><b>Perfil parado.</b>Sem atualização, ele perde espaço para quem cuida do próprio perfil.</li>
             </ul>
           </div>
           <div class="ds-col ds-bem">
-            <h4 data-en="<i>✓</i>set up well: the benefit"><i>✓</i>bem configurado: o benefício</h4>
+            <h4 data-en="<i>✓</i>set up well: the benefit" data-es="<i>✓</i>bien configurado: el beneficio"><i>✓</i>bem configurado: o benefício</h4>
             <ul>
-              <li data-en="<b>The right category and services.</b>You show up for whoever searches for exactly what you do, near you."><b>Categoria e serviços certos.</b>Você aparece para quem procura exatamente o que você faz, perto de você.</li>
-              <li data-en="<b>Contact details always right.</b>Whoever finds you calls, messages on WhatsApp and arrives through the map."><b>Contato sempre certo.</b>Quem acha, liga, chama no WhatsApp e chega pelo mapa.</li>
-              <li data-en="<b>Reviews asked for and answered.</b>Social proof grows month after month, from real clients."><b>Avaliações pedidas e respondidas.</b>A prova social cresce mês a mês, de cliente real.</li>
-              <li data-en="<b>A living profile.</b>Photos, services and posts kept up to date. Google's own guidance says complete, accurate information helps a profile show up in more searches."><b>Perfil vivo.</b>Fotos, serviços e postagens em dia. A própria orientação do Google diz que informação completa e certa ajuda o perfil a aparecer em mais buscas.</li>
+              <li data-en="<b>The right category and services.</b>You show up for whoever searches for exactly what you do, near you." data-es="<b>Categoría y servicios correctos.</b>Apareces para quien busca exactamente lo que haces, cerca de ti."><b>Categoria e serviços certos.</b>Você aparece para quem procura exatamente o que você faz, perto de você.</li>
+              <li data-en="<b>Contact details always right.</b>Whoever finds you calls, messages on WhatsApp and arrives through the map." data-es="<b>Datos de contacto siempre correctos.</b>Quien te encuentra llama, escribe por WhatsApp y llega por el mapa."><b>Contato sempre certo.</b>Quem acha, liga, chama no WhatsApp e chega pelo mapa.</li>
+              <li data-en="<b>Reviews asked for and answered.</b>Social proof grows month after month, from real clients." data-es="<b>Reseñas pedidas y respondidas.</b>La prueba social crece mes a mes, con clientes reales."><b>Avaliações pedidas e respondidas.</b>A prova social cresce mês a mês, de cliente real.</li>
+              <li data-en="<b>A living profile.</b>Photos, services and posts kept up to date. Google's own guidance says complete, accurate information helps a profile show up in more searches." data-es="<b>Perfil vivo.</b>Fotos, servicios y publicaciones al día. La propia guía de Google dice que la información completa y correcta ayuda a que el perfil aparezca en más búsquedas."><b>Perfil vivo.</b>Fotos, serviços e postagens em dia. A própria orientação do Google diz que informação completa e certa ajuda o perfil a aparecer em mais buscas.</li>
             </ul>
           </div>
         </div>
-        <p class="ds-longo" data-en="<span>in the long run</span>The cost does not show up in a day, it shows up over the year. Every month with a wrong profile is a month of clients going to whoever is on the map. And a well-built profile is the channel with the lowest cost per client: the client is already searching, and you do not pay per click."><span>no longo prazo</span>O prejuízo não aparece num dia, aparece no ano. Cada mês com o perfil errado é um mês de cliente indo para quem está no mapa. E o perfil bem feito é o canal que menos custa por cliente: o cliente já está procurando, e você não paga por clique.</p>
+        <p class="ds-longo" data-en="<span>in the long run</span>The cost does not show up in a day, it shows up over the year. Every month with a wrong profile is a month of clients going to whoever is on the map. And a well-built profile is the channel with the lowest cost per client: the client is already searching, and you do not pay per click." data-es="<span>a largo plazo</span>El costo no aparece en un día, aparece en el año. Cada mes con el perfil equivocado es un mes de clientes yendo a quien está en el mapa. Y un perfil bien hecho es el canal con el menor costo por cliente: el cliente ya está buscando, y no pagas por clic."><span>no longo prazo</span>O prejuízo não aparece num dia, aparece no ano. Cada mês com o perfil errado é um mês de cliente indo para quem está no mapa. E o perfil bem feito é o canal que menos custa por cliente: o cliente já está procurando, e você não paga por clique.</p>
       </div>
 
       <div class="ds-painel" id="ds-trafego" role="tabpanel" aria-labelledby="ds-t-trafego">
-        <h3 data-en="Paid traffic">Tráfego pago</h3>
-        <p class="ds-intro" data-en="The same budget can bring clients or simply vanish. What changes is who looks after the campaign.">A mesma verba pode trazer cliente ou simplesmente sumir. O que muda é quem cuida da campanha.</p>
+        <h3 data-en="Paid traffic" data-es="Tráfico pagado">Tráfego pago</h3>
+        <p class="ds-intro" data-en="The same budget can bring clients or simply vanish. What changes is who looks after the campaign." data-es="El mismo presupuesto puede traer clientes o simplemente desaparecer. Lo que cambia es quién cuida la campaña.">A mesma verba pode trazer cliente ou simplesmente sumir. O que muda é quem cuida da campanha.</p>
         <div class="ds-cols">
           <div class="ds-col ds-mal">
-            <h4 data-en="<i>✕</i>neglected campaign: the cost"><i>✕</i>campanha largada: o prejuízo</h4>
+            <h4 data-en="<i>✕</i>neglected campaign: the cost" data-es="<i>✕</i>campaña descuidada: el costo"><i>✕</i>campanha largada: o prejuízo</h4>
             <ul>
-              <li data-en="<b>The &quot;boost&quot; button.</b>It measures likes and reach. Likes do not pay the bills."><b>O botão &quot;impulsionar&quot;.</b>Mede curtida e alcance. Curtida não paga conta.</li>
-              <li data-en="<b>An audience that is too broad.</b>The ad shows up to people who will never buy, and every click is paid for."><b>Público largo demais.</b>O anúncio aparece para quem nunca vai comprar, e cada clique é pago.</li>
-              <li data-en="<b>An ad that leads nowhere.</b>A slow site or the wrong page: people click, wait and give up. You already paid for the click."><b>Anúncio que leva a lugar nenhum.</b>Site lento ou página errada: a pessoa clica, espera e desiste. O clique você já pagou.</li>
-              <li data-en="<b>Nobody measures.</b>Without knowing which ad brought a client, the budget disappears and the conclusion becomes &quot;ads do not work&quot;."><b>Ninguém mede.</b>Sem saber qual anúncio trouxe cliente, a verba some e a conclusão vira &quot;anúncio não funciona&quot;.</li>
+              <li data-en="<b>The &quot;boost&quot; button.</b>It measures likes and reach. Likes do not pay the bills." data-es="<b>El botón de &quot;promocionar publicación&quot;.</b>Mide likes y alcance. Los likes no pagan las cuentas."><b>O botão &quot;impulsionar&quot;.</b>Mede curtida e alcance. Curtida não paga conta.</li>
+              <li data-en="<b>An audience that is too broad.</b>The ad shows up to people who will never buy, and every click is paid for." data-es="<b>Público demasiado amplio.</b>El anuncio aparece para quien nunca va a comprar, y cada clic se paga."><b>Público largo demais.</b>O anúncio aparece para quem nunca vai comprar, e cada clique é pago.</li>
+              <li data-en="<b>An ad that leads nowhere.</b>A slow site or the wrong page: people click, wait and give up. You already paid for the click." data-es="<b>Anuncio que no lleva a ningún lado.</b>Sitio lento o página equivocada: la gente hace clic, espera y se rinde. El clic ya lo pagaste."><b>Anúncio que leva a lugar nenhum.</b>Site lento ou página errada: a pessoa clica, espera e desiste. O clique você já pagou.</li>
+              <li data-en="<b>Nobody measures.</b>Without knowing which ad brought a client, the budget disappears and the conclusion becomes &quot;ads do not work&quot;." data-es="<b>Nadie mide.</b>Sin saber qué anuncio trajo al cliente, el presupuesto desaparece y la conclusión es &quot;los anuncios no funcionan&quot;."><b>Ninguém mede.</b>Sem saber qual anúncio trouxe cliente, a verba some e a conclusão vira &quot;anúncio não funciona&quot;.</li>
             </ul>
           </div>
           <div class="ds-col ds-bem">
-            <h4 data-en="<i>✓</i>managed campaign: the benefit"><i>✓</i>campanha gerenciada: o benefício</h4>
+            <h4 data-en="<i>✓</i>managed campaign: the benefit" data-es="<i>✓</i>campaña gestionada: el beneficio"><i>✓</i>campanha gerenciada: o benefício</h4>
             <ul>
-              <li data-en="<b>People who search, in your area.</b>Targeting by location, search intent and time of day."><b>Quem procura, na sua região.</b>Segmentação por local, intenção de busca e horário.</li>
-              <li data-en="<b>A page ready to receive them.</b>The ad leads to a fast landing page, with WhatsApp one tap away."><b>Página pronta para receber.</b>O anúncio leva a uma landing page rápida, com WhatsApp a um toque.</li>
-              <li data-en="<b>Results measured in contacts.</b>Messages, calls and orders counted. The budget goes to the ad that brings clients and leaves the one that does not."><b>Resultado medido em contato.</b>Mensagem, ligação e pedido contados. A verba vai para o anúncio que traz cliente e sai do que não traz.</li>
-              <li data-en="<b>Adjusted every week.</b>Bids, copy and audience reviewed, with a report in contacts and sales, not likes."><b>Ajuste toda semana.</b>Lance, texto e público revisados, com relatório em contato e venda, não em curtida.</li>
+              <li data-en="<b>People who search, in your area.</b>Targeting by location, search intent and time of day." data-es="<b>Quien busca, en tu zona.</b>Segmentación por ubicación, intención de búsqueda y horario."><b>Quem procura, na sua região.</b>Segmentação por local, intenção de busca e horário.</li>
+              <li data-en="<b>A page ready to receive them.</b>The ad leads to a fast landing page, with WhatsApp one tap away." data-es="<b>Una página lista para recibir.</b>El anuncio lleva a una landing page rápida, con WhatsApp a un toque."><b>Página pronta para receber.</b>O anúncio leva a uma landing page rápida, com WhatsApp a um toque.</li>
+              <li data-en="<b>Results measured in contacts.</b>Messages, calls and orders counted. The budget goes to the ad that brings clients and leaves the one that does not." data-es="<b>Resultado medido en contactos.</b>Mensajes, llamadas y pedidos contados. El presupuesto va al anuncio que trae clientes y sale del que no trae."><b>Resultado medido em contato.</b>Mensagem, ligação e pedido contados. A verba vai para o anúncio que traz cliente e sai do que não traz.</li>
+              <li data-en="<b>Adjusted every week.</b>Bids, copy and audience reviewed, with a report in contacts and sales, not likes." data-es="<b>Ajustada cada semana.</b>Pujas, textos y público revisados, con informe en contactos y ventas, no en likes."><b>Ajuste toda semana.</b>Lance, texto e público revisados, com relatório em contato e venda, não em curtida.</li>
             </ul>
           </div>
         </div>
-        <p class="ds-longo" data-en="<span>in the long run</span>A well-managed campaign learns: every month it knows more about who buys from you, and the budget gets more accurate. A neglected campaign just repeats the mistake, with your money."><span>no longo prazo</span>Campanha bem gerenciada aprende: cada mês sabe mais sobre quem compra de você, e a verba vai ficando mais certeira. Campanha largada só repete o erro, com o seu dinheiro.</p>
+        <p class="ds-longo" data-en="<span>in the long run</span>A well-managed campaign learns: every month it knows more about who buys from you, and the budget gets more accurate. A neglected campaign just repeats the mistake, with your money." data-es="<span>a largo plazo</span>Una campaña bien gestionada aprende: cada mes sabe más sobre quién te compra, y el presupuesto se vuelve más preciso. La campaña descuidada solo repite el error, con tu dinero."><span>no longo prazo</span>Campanha bem gerenciada aprende: cada mês sabe mais sobre quem compra de você, e a verba vai ficando mais certeira. Campanha largada só repete o erro, com o seu dinheiro.</p>
       </div>
 
       <!-- A aba "Site" saiu em 13/10/2026: repetia o [03] "não é só um site"
            ponto por ponto. O "no longo prazo" dela virou o lead do [03]. -->
       <div class="ds-painel" id="ds-atend" role="tabpanel" aria-labelledby="ds-t-atend">
-        <h3 data-en="WhatsApp service">Atendimento no WhatsApp</h3>
-        <p class="ds-intro" data-en="The client who messaged you is ready to close. If nobody answers, they message the next one on the list.">O cliente que chamou está pronto para fechar. Se ninguém responde, ele chama o próximo da lista.</p>
+        <h3 data-en="WhatsApp service" data-es="Atención por WhatsApp">Atendimento no WhatsApp</h3>
+        <p class="ds-intro" data-en="The client who messaged you is ready to close. If nobody answers, they message the next one on the list." data-es="El cliente que te escribió está listo para cerrar. Si nadie contesta, le escribe al siguiente de la lista.">O cliente que chamou está pronto para fechar. Se ninguém responde, ele chama o próximo da lista.</p>
         <div class="ds-cols">
           <div class="ds-col ds-mal">
-            <h4 data-en="<i>✕</i>slow service: the cost"><i>✕</i>atendimento lento: o prejuízo</h4>
+            <h4 data-en="<i>✕</i>slow service: the cost" data-es="<i>✕</i>atención lenta: el costo"><i>✕</i>atendimento lento: o prejuízo</h4>
             <ul>
-              <li data-en="<b>A reply at night.</b>Messaged in the morning, got an answer at night. Closed with someone else."><b>Resposta à noite.</b>Chamou de manhã, teve resposta à noite. Fechou com outro.</li>
-              <li data-en="<b>The same question, a hundred times.</b>Price, hours, address: your day disappears answering the basics."><b>A mesma pergunta, cem vezes.</b>Preço, horário, endereço: o seu dia some respondendo o básico.</li>
-              <li data-en="<b>Forgotten clients.</b>Job done, client gone. Every month starts from zero."><b>Cliente esquecido.</b>Serviço entregue, cliente sumido. Todo mês começa do zero.</li>
+              <li data-en="<b>A reply at night.</b>Messaged in the morning, got an answer at night. Closed with someone else." data-es="<b>Respuesta en la noche.</b>Escribió en la mañana, le contestaron en la noche. Ya cerró con otro."><b>Resposta à noite.</b>Chamou de manhã, teve resposta à noite. Fechou com outro.</li>
+              <li data-en="<b>The same question, a hundred times.</b>Price, hours, address: your day disappears answering the basics." data-es="<b>La misma pregunta, cien veces.</b>Precio, horario, dirección: tu día se va respondiendo lo básico."><b>A mesma pergunta, cem vezes.</b>Preço, horário, endereço: o seu dia some respondendo o básico.</li>
+              <li data-en="<b>Forgotten clients.</b>Job done, client gone. Every month starts from zero." data-es="<b>Cliente olvidado.</b>Trabajo hecho, cliente perdido. Cada mes empieza de cero."><b>Cliente esquecido.</b>Serviço entregue, cliente sumido. Todo mês começa do zero.</li>
             </ul>
           </div>
           <div class="ds-col ds-bem">
-            <h4 data-en="<i>✓</i>automated service: the benefit"><i>✓</i>atendimento automático: o benefício</h4>
+            <h4 data-en="<i>✓</i>automated service: the benefit" data-es="<i>✓</i>atención automatizada: el beneficio"><i>✓</i>atendimento automático: o benefício</h4>
             <ul>
-              <li data-en="<b>A reply in seconds.</b>The AI answers, clears up doubts and books, at any time."><b>Resposta em segundos.</b>A IA responde, tira dúvida e agenda, a qualquer hora.</li>
-              <li data-en="<b>You only step in to close.</b>You approve the script, and the conversation goes to a human whenever needed."><b>Você só entra para fechar.</b>O roteiro é aprovado por você, e a conversa passa para humano quando precisa.</li>
-              <li data-en="<b>Whoever bought comes back.</b>Automatic reactivation calls back the people who already trust you."><b>Quem comprou, volta.</b>A reativação automática chama de volta quem já confia em você.</li>
+              <li data-en="<b>A reply in seconds.</b>The AI answers, clears up doubts and books, at any time." data-es="<b>Respuesta en segundos.</b>La IA contesta, aclara dudas y agenda, a cualquier hora."><b>Resposta em segundos.</b>A IA responde, tira dúvida e agenda, a qualquer hora.</li>
+              <li data-en="<b>You only step in to close.</b>You approve the script, and the conversation goes to a human whenever needed." data-es="<b>Tú solo entras para cerrar.</b>Tú apruebas el guion, y la conversación pasa a una persona cuando hace falta."><b>Você só entra para fechar.</b>O roteiro é aprovado por você, e a conversa passa para humano quando precisa.</li>
+              <li data-en="<b>Whoever bought comes back.</b>Automatic reactivation calls back the people who already trust you." data-es="<b>Quien compró, vuelve.</b>La reactivación automática vuelve a contactar a quien ya confía en ti."><b>Quem comprou, volta.</b>A reativação automática chama de volta quem já confia em você.</li>
             </ul>
           </div>
         </div>
-        <p class="ds-longo" data-en="<span>in the long run</span>Every unanswered message is a client who had already decided to buy. Answering fast costs no ad budget at all."><span>no longo prazo</span>Cada mensagem sem resposta é um cliente que já tinha decidido comprar. Atender rápido não custa verba de anúncio nenhuma.</p>
+        <p class="ds-longo" data-en="<span>in the long run</span>Every unanswered message is a client who had already decided to buy. Answering fast costs no ad budget at all." data-es="<span>a largo plazo</span>Cada mensaje sin respuesta es un cliente que ya había decidido comprar. Responder rápido no cuesta nada de presupuesto en anuncios."><span>no longo prazo</span>Cada mensagem sem resposta é um cliente que já tinha decidido comprar. Atender rápido não custa verba de anúncio nenhuma.</p>
       </div>
     </div>
 
@@ -1908,29 +1922,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec light" id="sistema">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demo'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demonstração</p>
-    <h2 class="rv" style="--d:.08s" data-en='The whole offer, <span class="lm">running in front of you.</span>'>A proposta inteira, <span class="lm">rodando na sua frente.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en="Pick your type of business and follow one client from Google to your WhatsApp. Each step shows what Theatrum delivers there and what it costs.">Escolha o seu tipo de negócio e acompanhe um cliente do Google até o seu WhatsApp. Cada etapa mostra o que a Theatrum entrega ali e quanto custa.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demo' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demostración'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>demonstração</p>
+    <h2 class="rv" style="--d:.08s" data-en='The whole offer, <span class="lm">running in front of you.</span>' data-es='La propuesta completa, <span class="lm">funcionando frente a ti.</span>'>A proposta inteira, <span class="lm">rodando na sua frente.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="Pick your type of business and follow one client from Google to your WhatsApp. Each step shows what Theatrum delivers there and what it costs." data-es="Elige tu tipo de negocio y acompaña a un cliente de Google hasta tu WhatsApp. Cada etapa muestra lo que Theatrum entrega ahí y cuánto cuesta.">Escolha o seu tipo de negócio e acompanhe um cliente do Google até o seu WhatsApp. Cada etapa mostra o que a Theatrum entrega ali e quanto custa.</p>
 
     <div class="px rv pausado" id="px" style="--d:.2s">
       <ol class="px-sem">
-        <li data-en="1. They find you on Google">1. Te encontram no Google</li>
-        <li data-en="2. They land on the site">2. Chegam no site</li>
-        <li data-en="3. They message you on WhatsApp">3. Chamam no WhatsApp</li>
-        <li data-en="4. They don't go cold">4. Não esfriam</li>
-        <li data-en="5. You keep track">5. Você acompanha</li>
+        <li data-en="1. They find you on Google" data-es="1. Te encuentran en Google">1. Te encontram no Google</li>
+        <li data-en="2. They land on the site" data-es="2. Llegan al sitio">2. Chegam no site</li>
+        <li data-en="3. They message you on WhatsApp" data-es="3. Te escriben por WhatsApp">3. Chamam no WhatsApp</li>
+        <li data-en="4. They don't go cold" data-es="4. No se enfrían">4. Não esfriam</li>
+        <li data-en="5. You keep track" data-es="5. Tú das seguimiento">5. Você acompanha</li>
       </ol>
     </div>
 
     <div class="px-linhas rv" style="--d:.24s">
-      <div class="px-linha"><span class="r" data-en="build once">constrói uma vez</span><b data-en="Website or landing page">Site ou landing page</b><p data-pr-px="site">R$ 1.500 no plano Completo, ou 3x de R$ 500 (condição de lançamento)</p></div>
-      <div class="px-linha"><span class="r" data-en="keep it running">mantém no ar</span><b data-en="Maintenance and hosting">Manutenção e hospedagem</b><p data-pr-px="manutencao">R$ 97/mês para os 10 primeiros clientes</p></div>
-      <div class="px-linha"><span class="r" data-en="bring people in">traz gente</span><b data-en="Traffic management">Gestão de tráfego</b><p data-en="R$ 697 a month + the ad budget in your own account">R$ 697/mês + verba na sua conta</p></div>
+      <div class="px-linha"><span class="r" data-en="build once" data-es="construir una vez">constrói uma vez</span><b data-en="Website or landing page" data-es="Sitio o landing page">Site ou landing page</b><p data-pr-px="site">R$ 1.500 no plano Completo, ou 3x de R$ 500 (condição de lançamento)</p></div>
+      <div class="px-linha"><span class="r" data-en="keep it running" data-es="mantenerlo funcionando">mantém no ar</span><b data-en="Maintenance and hosting" data-es="Mantenimiento y hosting">Manutenção e hospedagem</b><p data-pr-px="manutencao">R$ 97/mês para os 10 primeiros clientes</p></div>
+      <div class="px-linha"><span class="r" data-en="bring people in" data-es="traer gente">traz gente</span><b data-en="Traffic management" data-es="Gestión de tráfico">Gestão de tráfego</b><p data-en="R$ 697 a month + the ad budget in your own account" data-es="R$ 697 al mes + el presupuesto de anuncios en tu propia cuenta">R$ 697/mês + verba na sua conta</p></div>
     </div>
 
     <div class="px-cta rv" style="--d:.28s">
-      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vi%20as%20demonstra%C3%A7%C3%B5es%20no%20site%20e%20quero%20isso%20rodando%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="I want this running in my business">Quero isso rodando no meu negócio</a>
-      <a class="px-link" href="#calculadora" data-en="First, see my number on the calculator">Antes, ver o meu número na calculadora</a>
+      <a class="btn btn-primary" href="https://wa.me/5532984762445?text=Vi%20as%20demonstra%C3%A7%C3%B5es%20no%20site%20e%20quero%20isso%20rodando%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en="I want this running in my business" data-es="Quiero esto funcionando en mi negocio">Quero isso rodando no meu negócio</a>
+      <a class="px-link" href="#calculadora" data-en="First, see my number on the calculator" data-es="Antes, ver mi número en la calculadora">Antes, ver o meu número na calculadora</a>
     </div>
   </div>
 </section>
@@ -1941,7 +1955,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(!raiz) return;
   const parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches
               || new URLSearchParams(location.search).has('still');
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
 
   /* um cliente fictício por nicho; a mesma pessoa atravessa as cinco etapas */
   const PX_N = {
@@ -1961,7 +1975,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ia:'Hi, Carlos! To get ahead: when were you dismissed, and have you signed anything yet?', ia2:'Thanks. I passed your case to the lawyer, who will call you first thing tomorrow.',
         fu:'Hi, Carlos! Did you get a chance to look at the fee proposal? Let me know if anything is unclear.',
         re:'Hi, Carlos! It has been a while since we closed your case. If you need advice again, we are here.',
-        resp:'I do, actually. Could we do Thursday?', needs:['dismissal','overtime','settlement','contract review']}
+        resp:'I do, actually. Could we do Thursday?', needs:['dismissal','overtime','settlement','contract review']},
+      es:{rot:'Despacho de abogados', busca:'abogado laboral cerca de mí', marca:'Tu Despacho', cat:'Despacho de abogados',
+        adT:'Abogado laboral | Atención con cita', adD:'Orientación clara sobre despido, horas extra y acuerdos. Escríbenos por WhatsApp.',
+        h:'Orientación laboral clara, del primer contacto al final del proceso.', sub:'Atención con cita, presencial o en línea.',
+        pessoa:'Carlos', msg:'Vengo del sitio. Me despidieron y quiero entender mis derechos.',
+        ia:'¡Hola, Carlos! Para adelantar: ¿cuándo fue el despido y ya firmaste el finiquito?', ia2:'Gracias. Pasé tu caso al abogado, que te llama mañana temprano.',
+        fu:'¡Hola, Carlos! ¿Pudiste ver la propuesta de honorarios? Si te quedó alguna duda, dime.',
+        re:'¡Hola, Carlos! Hace tiempo que cerramos tu caso. Si necesitas orientación otra vez, aquí estamos.',
+        resp:'Sí, la necesito. ¿Puede ser el jueves?', needs:['finiquito','horas extra','acuerdo laboral','revisión de contrato']}
     },
     clin:{
       pt:{rot:'Clínica', busca:'clínica de fisioterapia perto de mim', marca:'Sua Clínica', cat:'Clínica de fisioterapia',
@@ -1979,7 +2001,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ia:'Hi, Juliana! We have Wednesday at 9am or Thursday at 5pm. Which works better?', ia2:'Wednesday at 9am is booked. I will send a reminder the day before.',
         fu:'Hi, Juliana! Any questions about the session package? I can hold your slot.',
         re:'Hi, Juliana! It has been six months since your last session. How about a follow-up assessment?',
-        resp:'Yes, please. Anything next week?', needs:['assessment','session package','pilates','follow-up']}
+        resp:'Yes, please. Anything next week?', needs:['assessment','session package','pilates','follow-up']},
+      es:{rot:'Clínica', busca:'clínica de fisioterapia cerca de mí', marca:'Tu Clínica', cat:'Clínica de fisioterapia',
+        adT:'Fisioterapia | Evaluación con cita', adD:'Atención para columna, rodilla y posoperatorio. Agenda por WhatsApp.',
+        h:'Fisioterapia con cita y sin esperas al teléfono.', sub:'Evaluación, tratamiento y seguimiento por WhatsApp.',
+        pessoa:'Juliana', msg:'Vengo del sitio. Quería agendar una evaluación por dolor de espalda.',
+        ia:'¡Hola, Juliana! Tenemos el miércoles a las 9 h o el jueves a las 17 h. ¿Cuál te queda mejor?', ia2:'Miércoles a las 9 h reservado. Te mando un recordatorio el día anterior.',
+        fu:'¡Hola, Juliana! ¿Te quedó alguna duda sobre el paquete de sesiones? Puedo apartar tu horario.',
+        re:'¡Hola, Juliana! Ya pasaron seis meses de tu última sesión. ¿Qué tal una reevaluación?',
+        resp:'Sí, quiero. ¿Hay horario la próxima semana?', needs:['evaluación','paquete de sesiones','pilates','seguimiento']}
     },
     eng:{
       pt:{rot:'Engenharia e arquitetura', busca:'arquiteto para reforma de apartamento', marca:'Seu Estúdio', cat:'Arquitetura e engenharia',
@@ -1997,7 +2027,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ia:'Great, Renata! To book the visit: is it a full renovation or just some rooms? Which area?', ia2:'Perfect. I sent it to the architect, who will call you to book the visit.',
         fu:'Hi, Renata! Did you get a chance to review the quote? I can adjust the scope if needed.',
         re:'Hi, Renata! The build turned one year old. Want to revisit a room or start a new project?',
-        resp:'I want to do the kitchen now.', needs:['apartment renovation','house design','permits','technical report']}
+        resp:'I want to do the kitchen now.', needs:['apartment renovation','house design','permits','technical report']},
+      es:{rot:'Ingeniería y arquitectura', busca:'arquitecto para remodelar departamento', marca:'Tu Estudio', cat:'Arquitectura e ingeniería',
+        adT:'Remodelación y proyecto | Presupuesto con visita técnica', adD:'Proyecto, permisos y obra con un solo responsable. Escríbenos por WhatsApp.',
+        h:'Proyecto y obra con plazo, presupuesto y un solo responsable.', sub:'Del levantamiento a la entrega de llaves.',
+        pessoa:'Renata', msg:'Vengo del sitio. Quiero remodelar un departamento de 80 m².',
+        ia:'¡Qué bien, Renata! Para agendar la visita: ¿es remodelación completa o solo algunos espacios? ¿En qué zona?', ia2:'Perfecto. Ya se lo mandé al arquitecto, que te llama para agendar la visita.',
+        fu:'¡Hola, Renata! ¿Pudiste ver el presupuesto del proyecto? Puedo ajustar el alcance si hace falta.',
+        re:'¡Hola, Renata! La obra cumplió un año. ¿Quieres revisar algún espacio o empezar un proyecto nuevo?',
+        resp:'Quiero hacer la cocina ahora.', needs:['remodelación de departamento','proyecto de casa','permisos','dictamen técnico']}
     },
     cons:{
       pt:{rot:'Consultoria', busca:'consultoria financeira para empresas', marca:'Sua Consultoria', cat:'Consultoria empresarial',
@@ -2015,7 +2053,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ia:'Got it, Marcos. To prepare the call: how many people work there and who handles finance today?', ia2:'Thanks. The consultant has it and will call you to book the diagnosis.',
         fu:'Hi, Marcos! Did you get a chance to see the proposal? I can walk you through it in a short call.',
         re:'Hi, Marcos! The year has closed. Want to review the plan for the coming months?',
-        resp:'Yes. Monday morning?', needs:['cash flow','pricing','annual plan','diagnosis']}
+        resp:'Yes. Monday morning?', needs:['cash flow','pricing','annual plan','diagnosis']},
+      es:{rot:'Consultoría', busca:'consultoría financiera para empresas', marca:'Tu Consultoría', cat:'Consultoría empresarial',
+        adT:'Consultoría financiera | Diagnóstico de tu empresa', adD:'Flujo de caja, precios y planificación para pequeñas y medianas empresas.',
+        h:'Las finanzas de la empresa en orden, con un plan que entiendes.', sub:'Diagnóstico, plan y seguimiento mensual.',
+        pessoa:'Marcos', msg:'Vengo del sitio. La empresa vende bien, pero la caja nunca cuadra.',
+        ia:'Entiendo, Marcos. Para preparar la conversación: ¿cuántas personas trabajan ahí y quién lleva las finanzas hoy?', ia2:'Gracias. El consultor ya lo recibió y te llama para agendar el diagnóstico.',
+        fu:'¡Hola, Marcos! ¿Pudiste ver la propuesta? Puedo explicarte las etapas en una llamada corta.',
+        re:'¡Hola, Marcos! Cerró el año. ¿Quieres revisar la planificación para los próximos meses?',
+        resp:'Sí. ¿Puede ser el lunes en la mañana?', needs:['flujo de caja','precios','plan anual','diagnóstico']}
     },
     imob:{
       pt:{rot:'Imobiliária', busca:'apartamento 2 quartos para alugar', marca:'Sua Imobiliária', cat:'Imobiliária',
@@ -2033,7 +2079,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ia:'Hi, Paulo! It is available. I have Saturday at 10am or 3pm. Which do you prefer?', ia2:'Saturday at 10am is booked. The agent will meet you at the lobby.',
         fu:'Hi, Paulo! What did you think of the apartment? I picked two more options in the same area.',
         re:'Hi, Paulo! Your lease turned one year old. Thinking of buying? I can send options.',
-        resp:'I am, actually. Send them over.', needs:['viewing','property valuation','rental','mortgage']}
+        resp:'I am, actually. Send them over.', needs:['viewing','property valuation','rental','mortgage']},
+      es:{rot:'Inmobiliaria', busca:'departamento de 2 recámaras en renta', marca:'Tu Inmobiliaria', cat:'Inmobiliaria',
+        adT:'Departamentos en renta | Visita por WhatsApp', adD:'Opciones de 1 a 3 recámaras con fotos, precios y visita agendada al momento.',
+        h:'El inmueble correcto, con la visita agendada por WhatsApp.', sub:'Venta, renta y avalúo de tu inmueble.',
+        pessoa:'Paulo', msg:'Vengo del sitio. Vi el departamento de 2 recámaras y quería visitarlo.',
+        ia:'¡Hola, Paulo! Está disponible. Tengo visita el sábado a las 10 h o a las 15 h. ¿Cuál prefieres?', ia2:'Sábado a las 10 h agendado. El agente te espera en la recepción.',
+        fu:'¡Hola, Paulo! ¿Qué te pareció el departamento? Te aparté dos opciones más en la misma zona.',
+        re:'¡Hola, Paulo! Tu contrato cumplió un año. ¿Pensando en comprar? Te puedo mandar opciones.',
+        resp:'Sí, lo estoy pensando. Mándame las opciones.', needs:['visita','avalúo de inmueble','renta','crédito hipotecario']}
     }
   };
   const ORDEM = ['adv','clin','eng','cons','imob'];
@@ -2043,7 +2097,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const P = window.TheatrumPrecos, e = P.estado(), c = e.planos.completo, m = e.planos.manutencao;
     const n = c.parcelas || 3;
     return { lanc:e.lanc, total:e.total, completo:P.fmt(c.atual, L), manutencao:P.fmt(m.atual, L),
-             parcelas:(L === 'en' ? n + 'x ' : n + 'x de ') + P.fmt(Math.round(c.atual / n * 100) / 100, L) };
+             parcelas:(L === 'en' ? n + 'x ' : L === 'es' ? n + ' pagos de ' : n + 'x de ') + P.fmt(Math.round(c.atual / n * 100) / 100, L) };
   }
 
   const PX_T = {
@@ -2078,7 +2132,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       hoje:'today', novo:'New contact on your phone', origem:'came from the Google ad',
       fu:['Tuesday, 2:02pm','Friday, 10:00am','6 months later'], enviado:n => 'Quote sent to ' + n + '.', retoma:'No reply. The system follows up:', reat:'Reactivation:', respondeu:n => n + ' replied',
       contatos:'this month\'s contacts', outros:['Ana','Pedro','Beatriz'], origens:['Google','ad','maps','Instagram'], status:['new','talking','closed','new'],
-      nome:'in your name, not the agency\'s', nomeItens:['domain','website','Business Profile','ad account']}
+      nome:'in your name, not the agency\'s', nomeItens:['domain','website','Business Profile','ad account']},
+    es:{nichos:'Tu negocio:', topo:'theatrum · el camino de un cliente', ex:'ejemplo', entrega:'lo que Theatrum entrega aquí',
+      prox:'siguiente etapa →', denovo:'ver de nuevo ↺',
+      etapas:[['Te encuentran','Google, mapa y anuncio'],['Llegan al sitio','rápido, claro, listo para anunciar'],['Te escriben por WhatsApp','mensaje listo y aviso al instante'],['No se enfrían','seguimiento y reactivación'],['Tú das seguimiento','todo medido, todo a tu nombre']],
+      itens:[
+        ['Perfil de Empresa en Google configurado','campaña en Google y Meta (Instagram y Facebook)','palabras de quien quiere contratar, no de curiosos'],
+        ['landing page de hasta 6 secciones','textos con foco en conversión','medición lista: sabes de dónde vino cada contacto'],
+        ['botón con el mensaje ya escrito','aviso de cada contacto, con su origen','IA que responde y califica fuera de horario'],
+        ['seguimiento de presupuestos parados','reactivación de quien ya fue cliente','mensajes en tu tono, aprobados por ti'],
+        ['de dónde vino cada contacto','dominio, sitio y cuentas a tu nombre','mantenimiento y hosting del sitio']],
+      precos:p => [['Perfil de Empresa en Google: en el plan Completo','gestión de tráfico: R$ 697/mes + presupuesto en tu cuenta'],['Completo: ' + p.completo, 'o ' + p.parcelas + (p.lanc ? ', condición de lanzamiento' : '')],['botón con mensaje listo: en todos los planes','IA en WhatsApp: precio en el diagnóstico'],['reactivación: precio en el diagnóstico','funciona sobre tu propia base de contactos'],['mantenimiento: ' + p.manutencao + '/mes', p.lanc ? 'para los primeros ' + p.total + ' clientes' : 'después de la entrega']],
+      aqui:'apareces aquí', ia:'IA', url:'tunegocio.com', patro:'Patrocinado', aberto:'Abierto ahora', acoes:['Cómo llegar','Llamar','Sitio','WhatsApp'],
+      falar:'Hablar por WhatsApp', selos:['abre rápido en el celular','GA4 y Pixel midiendo','WhatsApp en cada parte','listo para anunciar'],
+      hoje:'hoy', novo:'Nuevo contacto en tu celular', origem:'vino del anuncio de Google',
+      fu:['martes, 14:02','viernes, 10:00','6 meses después'], enviado:n => 'Presupuesto enviado a ' + n + '.', retoma:'Sin respuesta. El sistema retoma:', reat:'Reactivación:', respondeu:n => n + ' respondió',
+      contatos:'contactos del mes', outros:['Ana','Pedro','Beatriz'], origens:['Google','anuncio','mapa','Instagram'], status:['nuevo','en conversación','cerrado','nuevo'],
+      nome:'a tu nombre, no al de la agencia', nomeItens:['dominio','sitio','Perfil de Google','cuenta de anuncios']}
   };
   const DUR = [8500, 7500, 8500, 9000, 7500];
 
@@ -2222,9 +2292,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const site = document.querySelector('[data-pr-px="site"]'), man = document.querySelector('[data-pr-px="manutencao"]');
     if (site) site.textContent = L === 'en'
       ? p.completo + ' on the Complete plan, or ' + p.parcelas + (p.lanc ? ' (launch offer)' : '')
+      : L === 'es'
+      ? p.completo + ' en el plan Completo, o ' + p.parcelas + (p.lanc ? ' (condición de lanzamiento)' : '')
       : p.completo + ' no plano Completo, ou ' + p.parcelas + (p.lanc ? ' (condição de lançamento)' : '');
     if (man) man.textContent = L === 'en'
       ? p.manutencao + ' a month' + (p.lanc ? ' for the first ' + p.total + ' clients' : '')
+      : L === 'es'
+      ? p.manutencao + '/mes' + (p.lanc ? ' para los primeros ' + p.total + ' clientes' : '')
       : p.manutencao + '/mês' + (p.lanc ? ' para os ' + p.total + ' primeiros clientes' : '');
   }
   window.TheatrumPrecos.aoMudar(() => { linhas(); if(iniciado || parado) desenha(); });
@@ -2341,9 +2415,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec" id="calculadora">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>the maths'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o cálculo</p>
-    <h2 class="rv" style="--d:.08s" data-en='How much is your business leaving <span class="lm">on the table</span> every month?'>Quanto o seu negócio deixa <span class="lm">na mesa</span> todo mês?</h2>
-    <p class="lead rv" style="--d:.16s" data-en='Four questions. No sign-up. The number shows up on the spot.'>Quatro perguntas. Nenhum cadastro. O número aparece na hora.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>the maths' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>la cuenta'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>o cálculo</p>
+    <h2 class="rv" style="--d:.08s" data-en='How much is your business leaving <span class="lm">on the table</span> every month?' data-es='¿Cuánto está dejando tu negocio <span class="lm">sobre la mesa</span> cada mes?'>Quanto o seu negócio deixa <span class="lm">na mesa</span> todo mês?</h2>
+    <p class="lead rv" style="--d:.16s" data-en='Four questions. No sign-up. The number shows up on the spot.' data-es='Cuatro preguntas. Sin registro. El número aparece al instante.'>Quatro perguntas. Nenhum cadastro. O número aparece na hora.</p>
 
     <div class="calc calc-esqueleto" id="calc" role="group" aria-label="Calculadora de vazamento"></div>
   </div>
@@ -2413,6 +2487,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          redenominaria, sem avisar, o número que a pessoa digitou em
          reais. Quem vende em dólar tem a landing /us/, que é separada. */
       simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'en-US',
+    },
+    es: {
+      q1: '¿Cuántas personas escriben a tu negocio por semana?',
+      q2: 'De cada 10 que escriben, ¿cuántas cierran?',
+      q3: '¿Cuánto vale, en promedio, un cliente para ti?',
+      q4: '¿En cuánto tiempo sueles responder?',
+      opcoes: { minutos:'en minutos', horas:'en algunas horas', dia:'al final del día', depois:'al día siguiente o más' },
+      esfria: 'el cliente se enfría',
+      acha: 'nadie te encuentra',
+      volta: 'nadie vuelve',
+      totalRotulo: 'tu negocio deja de facturar cerca de',
+      porMes: '/mes',
+      nota: 'Estimación a partir de lo que respondiste. No es promesa de resultado: es el orden de magnitud del hueco.',
+      cta: 'Quiero el plan para cerrar esos ',
+      wa: (n) => 'Vengo del sitio. La calculadora dio ' + n + ' por mes. Quiero el plan.',
+      /* mesma regra do inglês: o número segue em real, com o formato brasileiro */
+      simbolo: 'R' + CIFRAO_EN, moeda: 'BRL', locale: 'pt-BR',
     }
   };
 
@@ -2426,7 +2517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let estado = { contatos: 20, fecha: 3, ticket: 800, resposta: 'horas' };
   try { const s = sessionStorage.getItem(CHAVE); if (s) estado = Object.assign(estado, JSON.parse(s)); } catch(e){}
 
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const dinheiro = (v) => {
     const t = T[idioma()];
     return Number(v).toLocaleString(t.locale, { style:'currency', currency:t.moeda, maximumFractionDigits:0 });
@@ -2576,9 +2667,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="sec" id="investimento">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>pricing'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>investimento</p>
-    <h2 class="rv" style="--d:.08s" data-en='What it costs, <span class="lm">with the price on the table.</span>'>Quanto custa, <span class="lm">com o preço na mesa.</span></h2>
-    <p class="lead rv" style="--d:.16s" data-en="Three plans, depending on the size of the project. In the free diagnosis we tell you which one fits your case.">Três planos, conforme o tamanho do projeto. No diagnóstico gratuito a gente diz qual deles serve para o seu caso.</p>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>pricing' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>inversión'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>investimento</p>
+    <h2 class="rv" style="--d:.08s" data-en='What it costs, <span class="lm">with the price on the table.</span>' data-es='Lo que cuesta, <span class="lm">con el precio sobre la mesa.</span>'>Quanto custa, <span class="lm">com o preço na mesa.</span></h2>
+    <p class="lead rv" style="--d:.16s" data-en="Three plans, depending on the size of the project. In the free diagnosis we tell you which one fits your case." data-es="Tres planes, según el tamaño del proyecto. En el diagnóstico gratuito te decimos cuál encaja en tu caso.">Três planos, conforme o tamanho do projeto. No diagnóstico gratuito a gente diz qual deles serve para o seu caso.</p>
     <div class="inv rv" style="--d:.2s">
       <!-- Condição de lançamento desde 16/10/2026: os 10 primeiros clientes
            pagam menos em troca de depoimento, portfólio e fidelidade de 12
@@ -2590,45 +2681,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="pl-grid">
         <article class="pl-card">
-          <h4 data-en="Essential">Essencial</h4>
-          <p class="pl-para" data-en="To start advertising with one page that leads to your WhatsApp.">Para começar a anunciar com uma página que leva ao seu WhatsApp.</p>
+          <h4 data-en="Essential" data-es="Esencial">Essencial</h4>
+          <p class="pl-para" data-en="To start advertising with one page that leads to your WhatsApp." data-es="Para empezar a anunciar con una página que lleva a tu WhatsApp.">Para começar a anunciar com uma página que leva ao seu WhatsApp.</p>
           <p class="pl-valor" data-pr="essencial"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 1.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 990</strong></p>
           <ul>
-            <li data-en="one-page landing page, up to 6 sections">landing page de 1 página, até 6 seções</li>
-            <li data-en="copy written by us">texto escrito por nós</li>
-            <li data-en="WhatsApp button with a ready-made message">botão de WhatsApp com mensagem pronta</li>
-            <li data-en="fast on mobile">rápida no celular</li>
+            <li data-en="one-page landing page, up to 6 sections" data-es="landing page de una página, hasta 6 secciones">landing page de 1 página, até 6 seções</li>
+            <li data-en="copy written by us" data-es="textos escritos por nosotros">texto escrito por nós</li>
+            <li data-en="WhatsApp button with a ready-made message" data-es="botón de WhatsApp con mensaje listo">botão de WhatsApp com mensagem pronta</li>
+            <li data-en="fast on mobile" data-es="rápida en el celular">rápida no celular</li>
           </ul>
-          <div class="pl-acao"><a class="btn btn-secondary" data-plano="essencial" data-origem="investimento-essencial" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Essencial%20(R%24%20990)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Essential'><span class="btn-dot"></span>Quero o Essencial</a></div>
+          <div class="pl-acao"><a class="btn btn-secondary" data-plano="essencial" data-origem="investimento-essencial" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Essencial%20(R%24%20990)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Essential' data-es='<span class="btn-dot"></span>Quiero el Esencial'><span class="btn-dot"></span>Quero o Essencial</a></div>
         </article>
         <article class="pl-card pl-dest">
-          <span class="pl-selo" data-en="recommended">recomendado</span>
-          <h4 data-en="Complete">Completo</h4>
-          <p class="pl-para" data-en="To be found on Google and get the contact already halfway there.">Para ser encontrado no Google e receber o contato já meio caminho andado.</p>
+          <span class="pl-selo" data-en="recommended" data-es="recomendado">recomendado</span>
+          <h4 data-en="Complete" data-es="Completo">Completo</h4>
+          <p class="pl-para" data-en="To be found on Google and get the contact already halfway there." data-es="Para aparecer en Google y recibir el contacto ya a medio camino.">Para ser encontrado no Google e receber o contato já meio caminho andado.</p>
           <p class="pl-valor" data-pr="completo"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 2.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 1.500</strong><span>ou 3x de R$ 500</span></p>
           <ul>
-            <li data-en="everything in Essential">tudo do Essencial</li>
-            <li data-en="Google Business Profile set up">Google Meu Negócio configurado</li>
-            <li data-en="1 feature: assessment quiz, quick application or order list sent via WhatsApp">1 funcionalidade: quiz de diagnóstico, aplicação rápida ou lista de pedido pelo WhatsApp</li>
+            <li data-en="everything in Essential" data-es="todo lo del Esencial">tudo do Essencial</li>
+            <li data-en="Google Business Profile set up" data-es="Perfil de Empresa en Google configurado">Google Meu Negócio configurado</li>
+            <li data-en="1 feature: assessment quiz, quick application or order list sent via WhatsApp" data-es="1 función: cuestionario de evaluación, solicitud rápida o lista de pedido enviada por WhatsApp">1 funcionalidade: quiz de diagnóstico, aplicação rápida ou lista de pedido pelo WhatsApp</li>
           </ul>
-          <div class="pl-acao"><a class="btn btn-primary" data-plano="completo" data-origem="investimento-completo" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Completo%20(R%24%201.500)." target="_blank" rel="noopener" data-en="I want Complete">Quero o Completo</a></div>
+          <div class="pl-acao"><a class="btn btn-primary" data-plano="completo" data-origem="investimento-completo" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Completo%20(R%24%201.500)." target="_blank" rel="noopener" data-en="I want Complete" data-es="Quiero el Completo">Quero o Completo</a></div>
         </article>
         <article class="pl-card">
-          <h4 data-en="Custom">Sob medida</h4>
-          <p class="pl-para" data-en="For whoever needs a system along with the website.">Para quem precisa de sistema junto com o site.</p>
+          <h4 data-en="Custom" data-es="A medida">Sob medida</h4>
+          <p class="pl-para" data-en="For whoever needs a system along with the website." data-es="Para quien necesita un sistema junto con el sitio.">Para quem precisa de sistema junto com o site.</p>
           <p class="pl-valor" data-pr="sobMedida"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 4.900</del></span><small>a partir de</small><strong><span class="sr">preço de lançamento: </span>R$ 2.500</strong></p>
           <ul>
-            <li data-en="systems such as a booking simulator, catalogue with ordering or scheduling">sistemas como simulador de reserva, catálogo com pedido ou agendamento</li>
-            <li data-en="or a website with several pages">ou site com várias páginas</li>
-            <li data-en="exact price after the diagnosis">valor exato depois do diagnóstico</li>
+            <li data-en="systems such as a booking simulator, catalogue with ordering or scheduling" data-es="sistemas como simulador de reservas, catálogo con pedido o agenda">sistemas como simulador de reserva, catálogo com pedido ou agendamento</li>
+            <li data-en="or a website with several pages" data-es="o un sitio con varias páginas">ou site com várias páginas</li>
+            <li data-en="exact price after the diagnosis" data-es="precio exacto después del diagnóstico">valor exato depois do diagnóstico</li>
           </ul>
-          <div class="pl-acao"><a class="btn btn-secondary" data-plano="sobMedida" data-origem="investimento-sob-medida" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Sob%20medida%20(a%20partir%20de%20R%24%202.500)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Custom'><span class="btn-dot"></span>Quero o Sob medida</a></div>
+          <div class="pl-acao"><a class="btn btn-secondary" data-plano="sobMedida" data-origem="investimento-sob-medida" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Sob%20medida%20(a%20partir%20de%20R%24%202.500)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Custom' data-es='<span class="btn-dot"></span>Quiero el A medida'><span class="btn-dot"></span>Quero o Sob medida</a></div>
         </article>
       </div>
 
       <div class="pl-man">
         <div>
-          <h4 data-en="Maintenance">Manutenção</h4>
+          <h4 data-en="Maintenance" data-es="Mantenimiento">Manutenção</h4>
           <p class="pl-valor" data-pr="manutencao"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 197/mês</del></span><strong><span class="sr">preço de lançamento: </span>R$ 97/mês</strong></p>
         </div>
         <p class="pl-man-t" data-pr="manutencao-t">Para os 10 primeiros clientes, mantido enquanto o contrato estiver ativo. Inclui hospedagem, segurança, backup e até 2 ajustes por mês. Fidelidade de 12 meses.</p>
@@ -2637,26 +2728,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="inv-cols">
         <div class="inv-col inv-sim">
-          <h4 data-en="it is for you if">é para você se</h4>
+          <h4 data-en="it is for you if" data-es="es para ti si">é para você se</h4>
           <ul>
-            <li data-en="you sell a service or a product and want clients">você vende serviço ou produto e quer cliente</li>
-            <li data-en="you have someone to serve whoever gets in touch">tem quem atenda quem chega</li>
-            <li data-en="you want to advertise with predictability">quer anunciar com previsibilidade</li>
+            <li data-en="you sell a service or a product and want clients" data-es="vendes un servicio o producto y quieres clientes">você vende serviço ou produto e quer cliente</li>
+            <li data-en="you have someone to serve whoever gets in touch" data-es="tienes a alguien para atender a quien te contacta">tem quem atenda quem chega</li>
+            <li data-en="you want to advertise with predictability" data-es="quieres anunciar con previsibilidad">quer anunciar com previsibilidade</li>
           </ul>
         </div>
         <div class="inv-col inv-nao">
-          <h4 data-en="it is not for you if">não é para você se</h4>
+          <h4 data-en="it is not for you if" data-es="no es para ti si">não é para você se</h4>
           <ul>
-            <li data-en="you are looking for the cheapest website possible">procura o site mais em conta possível</li>
-            <li data-en="you expect results in seven days">espera resultado em sete dias</li>
-            <li data-en="you do not plan to invest in promotion">não pretende investir em divulgação</li>
+            <li data-en="you are looking for the cheapest website possible" data-es="buscas el sitio de menor precio posible">procura o site mais em conta possível</li>
+            <li data-en="you expect results in seven days" data-es="esperas resultados en siete días">espera resultado em sete dias</li>
+            <li data-en="you do not plan to invest in promotion" data-es="no piensas invertir en publicidad">não pretende investir em divulgação</li>
           </ul>
         </div>
       </div>
 
       <div class="inv-ctas">
-        <a class="btn btn-primary" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
-        <a class="btn btn-secondary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>Talk on WhatsApp'><span class="btn-dot"></span>Falar no WhatsApp</a>
+        <a class="btn btn-primary" href="#calculadora" data-uet-diagnostico data-en='See how much I lose per month <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>' data-es='Ver cuánto pierdo por mes <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Ver quanto eu perco por mês <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+        <a class="btn btn-secondary" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>Talk on WhatsApp' data-es='<span class="btn-dot"></span>Hablar por WhatsApp'><span class="btn-dot"></span>Falar no WhatsApp</a>
       </div>
     </div>
   </div>
@@ -2669,7 +2760,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if (!sec || !window.TheatrumPrecos) return;
   const P = window.TheatrumPrecos;
   const WA = '5532984762445';
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const TX = {
     pt:{ de:'de ', cheio:'preço cheio: ', lanc:'preço de lançamento: ', aPartir:'a partir de',
          parc:(n, v) => 'ou ' + n + 'x de ' + v, mes:'/mês',
@@ -2678,7 +2769,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     en:{ de:'was ', cheio:'full price: ', lanc:'launch price: ', aPartir:'from',
          parc:(n, v) => 'or ' + n + 'x ' + v, mes:'/month',
          manut:(lanc, t) => (lanc ? 'For the first ' + t + ' clients, kept for as long as the contract is active. ' : '')
-           + 'Includes hosting, security, backup and up to 2 changes a month.' + (lanc ? ' 12-month commitment.' : '') }
+           + 'Includes hosting, security, backup and up to 2 changes a month.' + (lanc ? ' 12-month commitment.' : '') },
+    es:{ de:'antes ', cheio:'precio completo: ', lanc:'precio de lanzamiento: ', aPartir:'desde',
+         parc:(n, v) => 'o ' + n + ' pagos de ' + v, mes:'/mes',
+         manut:(lanc, t) => (lanc ? 'Para los primeros ' + t + ' clientes, se mantiene mientras el contrato esté activo. ' : '')
+           + 'Incluye hosting, seguridad, respaldo y hasta 2 ajustes por mes.' + (lanc ? ' Permanencia de 12 meses.' : '') }
   };
   /* a mensagem do WhatsApp fica em português, como em todo o site */
   const NOME = { essencial:'Essencial', completo:'Completo', sobMedida:'Sob medida' };
@@ -2779,12 +2874,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec" id="entregas" style="display:none">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>delivered'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>entregas</p>
-    <h2 class="rv" style="--d:.08s" data-en='Proof is <span class="lm">what is already live.</span>'>Prova é o que <span class="lm">já está no ar.</span></h2>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>delivered' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>entregas'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>entregas</p>
+    <h2 class="rv" style="--d:.08s" data-en='Proof is <span class="lm">what is already live.</span>' data-es='La prueba es <span class="lm">lo que ya está en línea.</span>'>Prova é o que <span class="lm">já está no ar.</span></h2>
 
     <div class="ent-grid rv" style="--d:.15s" id="entGrid"></div>
 
-    <p class="ent-rodape" data-en="I don't have public Google reviews yet, and I won't manufacture a star. When the first clients review, they show up here, with real name, business and rating.">Avaliação pública no Google ainda não tenho, e não vou fabricar estrela. Quando os primeiros clientes avaliarem, elas entram aqui, com nome, negócio e nota reais.</p>
+    <p class="ent-rodape" data-en="I don't have public Google reviews yet, and I won't manufacture a star. When the first clients review, they show up here, with real name, business and rating." data-es="Todavía no tengo reseñas públicas en Google, y no voy a fabricar una estrella. Cuando los primeros clientes opinen, aparecen aquí, con nombre real, negocio y calificación.">Avaliação pública no Google ainda não tenho, e não vou fabricar estrela. Quando os primeiros clientes avaliarem, elas entram aqui, com nome, negócio e nota reais.</p>
   </div>
 </section>
 
@@ -2810,7 +2905,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   const WA = '5532984762445';
   const MSG = { pt:'Vi os sites que vocês entregaram. Quero um diagnóstico.',
-                en:'I saw the sites you delivered. I want a diagnosis.' };
+                en:'I saw the sites you delivered. I want a diagnosis.',
+                es:'Vi los sitios que entregaron. Quiero un diagnóstico.' };
 
   const grid = document.getElementById('entGrid');
   const secao = document.getElementById('entregas');
@@ -2843,10 +2939,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const cta = document.createElement('a');
   cta.className = 'calc-cta';
   cta.target = '_blank'; cta.rel = 'noopener';
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const pinta = () => {
     cta.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(MSG[idioma()]);
-    cta.textContent = idioma() === 'en' ? 'I want a diagnosis' : 'Quero um diagnóstico';
+    cta.textContent = { pt:'Quero um diagnóstico', en:'I want a diagnosis', es:'Quiero un diagnóstico' }[idioma()];
   };
   pinta();
   new MutationObserver(pinta).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
@@ -2857,8 +2953,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 8 · QUEM FAZ ============ -->
 <section class="sec light" id="quem-faz">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>who does it'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>quem faz</p>
-    <h2 class="rv" style="--d:.08s" data-en='Who is going to touch <span class="lm">your business.</span>'>Quem vai mexer <span class="lm">no seu negócio.</span></h2>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>who does it' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>quién lo hace'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>quem faz</p>
+    <h2 class="rv" style="--d:.08s" data-en='Who is going to touch <span class="lm">your business.</span>' data-es='Quién va a tocar <span class="lm">tu negocio.</span>'>Quem vai mexer <span class="lm">no seu negócio.</span></h2>
 
     <div class="qf rv" style="--d:.15s">
       <!-- PREENCHER: foto do Matheus em 4:5. As dimensoes ja estao
@@ -2868,9 +2964,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            onerror="this.removeAttribute('src')">
 
       <div class="qf-texto">
-        <p data-en="I'm Matheus. Before I wrote code I laid floors, raised walls and worked on building sites. I know what it is to depend on referrals, and I know what it is to watch a slow month arrive with the same bills as a good one.">Sou o Matheus. Antes de escrever código eu assentei piso, levantei parede e trabalhei em obra. Sei o que é depender de indicação e sei o que é um mês fraco chegando com as contas iguais às do mês bom.</p>
-        <p data-en="I have a degree in Information Systems and today I build websites, traffic and automation for small businesses in Brazil and in the United States.">Sou formado em Sistemas de Informação e hoje construo site, tráfego e automação para pequenos negócios no Brasil e nos Estados Unidos.</p>
-        <p data-en="There is no support team between the two of us. <b>The person replying on WhatsApp is me.</b>">Não tem equipe de atendimento entre nós dois. <b>Quem responde no WhatsApp sou eu.</b></p>
+        <p data-en="I'm Matheus. Before I wrote code I laid floors, raised walls and worked on building sites. I know what it is to depend on referrals, and I know what it is to watch a slow month arrive with the same bills as a good one." data-es="Soy Matheus. Antes de escribir código coloqué pisos, levanté paredes y trabajé en obra. Sé lo que es depender de recomendaciones, y sé lo que es ver llegar un mes flojo con las mismas cuentas de un mes bueno.">Sou o Matheus. Antes de escrever código eu assentei piso, levantei parede e trabalhei em obra. Sei o que é depender de indicação e sei o que é um mês fraco chegando com as contas iguais às do mês bom.</p>
+        <p data-en="I have a degree in Information Systems and today I build websites, traffic and automation for small businesses in Brazil and in the United States." data-es="Soy egresado de Sistemas de Información y hoy hago sitios, tráfico y automatización para pequeños negocios en Brasil y en Estados Unidos.">Sou formado em Sistemas de Informação e hoje construo site, tráfego e automação para pequenos negócios no Brasil e nos Estados Unidos.</p>
+        <p data-en="There is no support team between the two of us. <b>The person replying on WhatsApp is me.</b>" data-es="No hay equipo de soporte entre nosotros dos. <b>Quien responde en el WhatsApp soy yo.</b>">Não tem equipe de atendimento entre nós dois. <b>Quem responde no WhatsApp sou eu.</b></p>
         <p class="qf-cnpj">Theatrum · CNPJ 61.978.753/0001-60</p>
       </div>
     </div>
@@ -2881,29 +2977,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 6 · COMO FUNCIONA ============ -->
 <section class="sec" id="como-funciona">
   <div class="sec-inner">
-    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>how it works'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>como funciona</p>
-    <h2 class="rv" style="--d:.08s" data-en='From diagnosis to your<br>website <span class="lm">live.</span>'>Do diagnóstico ao seu<br>site <span class="lm">no ar.</span></h2>
+    <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>how it works' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>cómo funciona'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>como funciona</p>
+    <h2 class="rv" style="--d:.08s" data-en='From diagnosis to your<br>website <span class="lm">live.</span>' data-es='Del diagnóstico a tu<br>sitio <span class="lm">en línea.</span>'>Do diagnóstico ao seu<br>site <span class="lm">no ar.</span></h2>
 
     <div class="steps">
       <div class="step rv" style="--d:0.05s">
         <div class="dot">01</div>
-        <h3 data-en='Diagnosis <small>free · no strings attached</small>'>Diagnóstico <small>gratuito · sem compromisso</small></h3>
-        <p data-en='We look at your current website (or the lack of one), Google and your competitors, and show where you lose clients.'>A gente olha o seu site atual (ou a falta dele), o Google e os concorrentes, e mostra onde você perde cliente.</p>
+        <h3 data-en='Diagnosis <small>free · no strings attached</small>' data-es='Diagnóstico <small>gratuito · sin compromiso</small>'>Diagnóstico <small>gratuito · sem compromisso</small></h3>
+        <p data-en='We look at your current website (or the lack of one), Google and your competitors, and show where you lose clients.' data-es='Miramos tu sitio actual (o la falta de uno), Google y a tus competidores, y te mostramos dónde pierdes clientes.'>A gente olha o seu site atual (ou a falta dele), o Google e os concorrentes, e mostra onde você perde cliente.</p>
       </div>
       <div class="step rv" style="--d:0.15s">
         <div class="dot">02</div>
-        <h3 data-en='Preview of your website <small>before you sign</small>'>Prévia do seu site <small>antes de fechar</small></h3>
-        <p data-en='You see your website with your company&apos;s look before paying. If you like it, we close.'>Você vê o seu site com a cara da sua empresa antes de pagar. Se gostar, a gente fecha.</p>
+        <h3 data-en='Preview of your website <small>before you sign</small>' data-es='Vista previa de tu sitio <small>antes de firmar</small>'>Prévia do seu site <small>antes de fechar</small></h3>
+        <p data-en='You see your website with your company&apos;s look before paying. If you like it, we close.' data-es='Ves tu sitio con la cara de tu empresa antes de pagar. Si te gusta, cerramos.'>Você vê o seu site com a cara da sua empresa antes de pagar. Se gostar, a gente fecha.</p>
       </div>
       <div class="step rv" style="--d:0.25s">
         <div class="dot">03</div>
-        <h3 data-en='Adjustments and launch <small>7 to 10 business days</small>'>Ajustes e publicação <small>7 a 10 dias úteis</small></h3>
-        <p data-en='We adjust whatever you ask and go live within 7 to 10 business days after receiving your content, with tracking and contact alerts working.'>Ajustamos o que você pedir e colocamos no ar em 7 a 10 dias úteis depois de receber o conteúdo, com rastreamento e aviso de contato funcionando.</p>
+        <h3 data-en='Adjustments and launch <small>7 to 10 business days</small>' data-es='Ajustes y publicación <small>7 a 10 días hábiles</small>'>Ajustes e publicação <small>7 a 10 dias úteis</small></h3>
+        <p data-en='We adjust whatever you ask and go live within 7 to 10 business days after receiving your content, with tracking and contact alerts working.' data-es='Ajustamos lo que pidas y publicamos en 7 a 10 días hábiles después de recibir tu contenido, con medición y aviso de contactos funcionando.'>Ajustamos o que você pedir e colocamos no ar em 7 a 10 dias úteis depois de receber o conteúdo, com rastreamento e aviso de contato funcionando.</p>
       </div>
       <div class="step rv" style="--d:0.35s">
         <div class="dot">04</div>
-        <h3 data-en='Ads running <small>contacts arriving</small>'>Anúncio rodando <small>contatos chegando</small></h3>
-        <p data-en='The first campaign goes live with the first month of management at half price, and every contact reaches your WhatsApp.'>A primeira campanha sobe com o primeiro mês de gestão pela metade do preço, e cada contato chega avisado no seu WhatsApp.</p>
+        <h3 data-en='Ads running <small>contacts arriving</small>' data-es='Anuncios en marcha <small>contactos llegando</small>'>Anúncio rodando <small>contatos chegando</small></h3>
+        <p data-en='The first campaign goes live with the first month of management at half price, and every contact reaches your WhatsApp.' data-es='La primera campaña sale al aire con el primer mes de gestión a mitad de precio, y cada contacto llega a tu WhatsApp.'>A primeira campanha sobe com o primeiro mês de gestão pela metade do preço, e cada contato chega avisado no seu WhatsApp.</p>
       </div>
     </div>
   </div>
@@ -2912,71 +3008,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ 8 · FAQ ============ -->
 <section class="sec" id="faq">
   <div class="sec-inner">
-    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[12]</span>straight answers'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[12]</span>perguntas diretas</p>
-    <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto" data-en='What every business owner<br>asks <span class="lm">before closing.</span>'>O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
+    <p class="eyebrow rv" style="justify-content:center" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[12]</span>straight answers' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[12]</span>respuestas directas'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[12]</span>perguntas diretas</p>
+    <h2 class="rv" style="--d:.08s;text-align:center;margin-left:auto;margin-right:auto" data-en='What every business owner<br>asks <span class="lm">before closing.</span>' data-es='Lo que todo dueño de negocio<br>pregunta <span class="lm">antes de cerrar.</span>'>O que todo dono de negócio<br>pergunta <span class="lm">antes de fechar.</span></h2>
 
     <div class="faq rv" style="--d:.15s">
       <details>
-        <summary data-en='Why not use a R$ 300 ready-made site? <span class="pl">+</span>'>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
-        <div class="ans" data-en='Because what turns a visit into a client does not come with the template: <b>speed on mobile, copy that sells, ad tracking and an alert for every contact</b>. Without that, you pay for ads and do not know what came back.'>Porque o que transforma visita em cliente não vem no modelo pronto: <b>velocidade no celular, texto que vende, rastreamento do anúncio e aviso de cada contato</b>. Sem isso, você paga o anúncio e não sabe o que voltou.</div>
+        <summary data-en='Why not use a R$ 300 ready-made site? <span class="pl">+</span>' data-es='¿Por qué no usar un sitio listo de R$ 300? <span class="pl">+</span>'>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Because what turns a visit into a client does not come with the template: <b>speed on mobile, copy that sells, ad tracking and an alert for every contact</b>. Without that, you pay for ads and do not know what came back.' data-es='Porque lo que convierte una visita en cliente no viene con la plantilla: <b>velocidad en el celular, textos que venden, medición de anuncios y aviso de cada contacto</b>. Sin eso, pagas anuncios y no sabes qué volvió.'>Porque o que transforma visita em cliente não vem no modelo pronto: <b>velocidade no celular, texto que vende, rastreamento do anúncio e aviso de cada contato</b>. Sem isso, você paga o anúncio e não sabe o que voltou.</div>
       </details>
       <details>
-        <summary data-en='Do I need to write the copy? <span class="pl">+</span>'>Preciso escrever os textos? <span class="pl">+</span></summary>
-        <div class="ans" data-en='<b>No.</b> We write everything from a conversation with you, focused on conversion. You just review and approve.'><b>Não.</b> A gente escreve tudo a partir de uma conversa com você, com foco em conversão. Você só revisa e aprova.</div>
+        <summary data-en='Do I need to write the copy? <span class="pl">+</span>' data-es='¿Tengo que escribir los textos? <span class="pl">+</span>'>Preciso escrever os textos? <span class="pl">+</span></summary>
+        <div class="ans" data-en='<b>No.</b> We write everything from a conversation with you, focused on conversion. You just review and approve.' data-es='<b>No.</b> Escribimos todo a partir de una conversación contigo, con foco en conversión. Tú solo revisas y apruebas.'><b>Não.</b> A gente escreve tudo a partir de uma conversa com você, com foco em conversão. Você só revisa e aprova.</div>
       </details>
       <details>
-        <summary data-en='How long until it is ready? <span class="pl">+</span>'>Em quanto tempo fica pronto? <span class="pl">+</span></summary>
-        <div class="ans" data-en='Within <b>7 to 10 business days</b> after we receive the content (logo, photos and business information). The preview comes before that, so you see it before signing.'>Em <b>7 a 10 dias úteis</b> depois de recebermos o conteúdo (logo, fotos e informações do negócio). A prévia vem antes disso, para você ver antes de fechar.</div>
+        <summary data-en='How long until it is ready? <span class="pl">+</span>' data-es='¿Cuánto tarda en estar listo? <span class="pl">+</span>'>Em quanto tempo fica pronto? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Within <b>7 to 10 business days</b> after we receive the content (logo, photos and business information). The preview comes before that, so you see it before signing.' data-es='En <b>7 a 10 días hábiles</b> después de recibir el contenido (logo, fotos e información del negocio). La vista previa llega antes, para que lo veas antes de firmar.'>Em <b>7 a 10 dias úteis</b> depois de recebermos o conteúdo (logo, fotos e informações do negócio). A prévia vem antes disso, para você ver antes de fechar.</div>
       </details>
       <details>
-        <summary data-en='How soon will I see results? <span class="pl">+</span>'>Em quanto tempo vejo resultado? <span class="pl">+</span></summary>
-        <div class="ans" data-en="The website goes live within <b>7 to 10 business days</b>, and the first contacts start arriving as soon as the ads run. Traction grows month by month as the campaign learns what works for your business. Anyone promising a miracle in the first week of ads is selling likes, not results.">O site fica no ar em <b>7 a 10 dias úteis</b>, e os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês conforme a campanha aprende o que funciona pro seu negócio. Quem promete milagre na primeira semana de anúncio está vendendo curtida, não resultado.</div>
+        <summary data-en='How soon will I see results? <span class="pl">+</span>' data-es='¿En cuánto tiempo veo resultado? <span class="pl">+</span>'>Em quanto tempo vejo resultado? <span class="pl">+</span></summary>
+        <div class="ans" data-en="The website goes live within <b>7 to 10 business days</b>, and the first contacts start arriving as soon as the ads run. Traction grows month by month as the campaign learns what works for your business. Anyone promising a miracle in the first week of ads is selling likes, not results." data-es="El sitio queda en línea en <b>7 a 10 días hábiles</b>, y los primeros contactos empiezan a llegar en cuanto los anuncios se activan. La tracción crece mes a mes, a medida que la campaña aprende qué funciona para tu negocio. Quien promete milagro en la primera semana de anuncios está vendiendo likes, no resultados.">O site fica no ar em <b>7 a 10 dias úteis</b>, e os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês conforme a campanha aprende o que funciona pro seu negócio. Quem promete milagre na primeira semana de anúncio está vendendo curtida, não resultado.</div>
       </details>
       <details>
-        <summary data-en='I&apos;ve already hired an agency or freelancer and got burned. Why would this be different? <span class="pl">+</span>'>Já contratei agência ou freelancer e me decepcionei. Por que seria diferente? <span class="pl">+</span></summary>
-        <div class="ans" data-en="Because they probably delivered pretty posts and a likes report. Theatrum looks at your <b>business's growth as a whole</b>: website, Google, traffic and client reactivation. Every deliverable exists to move one of those needles. If it doesn't drive real results, we don't even propose it.">Porque provavelmente entregaram post bonito e relatório de curtida. A Theatrum olha para o <b>crescimento do seu negócio como um todo</b>: site, Google, tráfego e reativação de cliente. Cada entrega existe para mover um desses ponteiros. Se não gera resultado real, a gente nem propõe.</div>
+        <summary data-en='I&apos;ve already hired an agency or freelancer and got burned. Why would this be different? <span class="pl">+</span>' data-es='Ya contraté una agencia o un freelancer y me fue mal. ¿Por qué esta vez sería diferente? <span class="pl">+</span>'>Já contratei agência ou freelancer e me decepcionei. Por que seria diferente? <span class="pl">+</span></summary>
+        <div class="ans" data-en="Because they probably delivered pretty posts and a likes report. Theatrum looks at your <b>business's growth as a whole</b>: website, Google, traffic and client reactivation. Every deliverable exists to move one of those needles. If it doesn't drive real results, we don't even propose it." data-es="Porque probablemente te entregaron publicaciones bonitas y un informe de likes. Theatrum mira el <b>crecimiento de tu negocio como un todo</b>: sitio, Google, tráfico y reactivación de clientes. Cada entrega existe para mover uno de esos indicadores. Si no genera resultado real, ni siquiera lo proponemos.">Porque provavelmente entregaram post bonito e relatório de curtida. A Theatrum olha para o <b>crescimento do seu negócio como um todo</b>: site, Google, tráfego e reativação de cliente. Cada entrega existe para mover um desses ponteiros. Se não gera resultado real, a gente nem propõe.</div>
       </details>
       <details>
-        <summary data-en='Do you serve my city? <span class="pl">+</span>'>Vocês atendem a minha cidade? <span class="pl">+</span></summary>
-        <div class="ans" data-en='<b>Yes, all of Brazil, online.</b> And the United States too, in English and Portuguese. Clinic, office, consultancy, real estate, store: if your client searches for you online and closes on WhatsApp, on the phone or in person, <b>it applies, wherever you are.</b>'><b>Sim, todo o Brasil, online.</b> E também os Estados Unidos, em inglês e em português. Clínica, escritório, consultoria, imobiliária, loja: se o seu cliente procura você na internet e fecha pelo WhatsApp, pelo telefone ou pessoalmente, <b>se aplica, esteja você onde estiver.</b></div>
+        <summary data-en='Do you serve my city? <span class="pl">+</span>' data-es='¿Atienden en mi ciudad? <span class="pl">+</span>'>Vocês atendem a minha cidade? <span class="pl">+</span></summary>
+        <div class="ans" data-en='<b>Yes, all of Brazil, online.</b> And the United States too, in English and Portuguese. Clinic, office, consultancy, real estate, store: if your client searches for you online and closes on WhatsApp, on the phone or in person, <b>it applies, wherever you are.</b>' data-es='<b>Sí, en todo Brasil, en línea.</b> Y también en Estados Unidos, en inglés y portugués, y en español para México y España. Clínica, despacho, consultoría, inmobiliaria, tienda: si tu cliente te busca en internet y cierra por WhatsApp, por teléfono o en persona, <b>aplica, estés donde estés.</b>'><b>Sim, todo o Brasil, online.</b> E também os Estados Unidos, em inglês e em português. Clínica, escritório, consultoria, imobiliária, loja: se o seu cliente procura você na internet e fecha pelo WhatsApp, pelo telefone ou pessoalmente, <b>se aplica, esteja você onde estiver.</b></div>
       </details>
       <details>
-        <summary data-en='I work alone and don&apos;t have a team. Can I keep up with this? <span class="pl">+</span>'>Trabalho sozinho e não tenho equipe. Consigo tocar isso? <span class="pl">+</span></summary>
-        <div class="ans" data-en="<b>Yes.</b> That's exactly what it is built for. The AI answers WhatsApp, Google Business Profile and ads bring in new clients, and reactivation runs on its own. You get the client ready to close, without having to become a marketing team."><b>Sim.</b> É justamente para isso que tudo é montado. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
+        <summary data-en='I work alone and don&apos;t have a team. Can I keep up with this? <span class="pl">+</span>' data-es='Trabajo solo y no tengo equipo. ¿Puedo con esto? <span class="pl">+</span>'>Trabalho sozinho e não tenho equipe. Consigo tocar isso? <span class="pl">+</span></summary>
+        <div class="ans" data-en="<b>Yes.</b> That's exactly what it is built for. The AI answers WhatsApp, Google Business Profile and ads bring in new clients, and reactivation runs on its own. You get the client ready to close, without having to become a marketing team." data-es="<b>Sí.</b> Está hecho justamente para eso. La IA responde el WhatsApp, el Perfil de Empresa en Google y los anuncios traen clientes nuevos, y la reactivación funciona sola. Tú recibes al cliente listo para cerrar, sin tener que volverte un equipo de marketing."><b>Sim.</b> É justamente para isso que tudo é montado. A IA responde o WhatsApp, o Google Meu Negócio e os anúncios trazem cliente novo, e a reativação roda sozinha. Você recebe o cliente pronto pra fechar, sem precisar virar time de marketing.</div>
       </details>
       <details>
-        <summary data-en='Will the AI say something stupid to my client? <span class="pl">+</span>'>A IA vai falar besteira com o meu cliente? <span class="pl">+</span></summary>
-        <div class="ans" data-en='The script is <b>approved by you before it goes live</b>, the conversation transfers to a human at any moment, and you read every conversation. The AI answers what was agreed and hands over what was not.'>O roteiro é <b>aprovado por você antes de subir</b>, a conversa passa para humano a qualquer momento, e você lê todas as conversas. A IA responde o que foi combinado e passa adiante o que não foi.</div>
+        <summary data-en='Will the AI say something stupid to my client? <span class="pl">+</span>' data-es='¿La IA le va a decir una tontería a mi cliente? <span class="pl">+</span>'>A IA vai falar besteira com o meu cliente? <span class="pl">+</span></summary>
+        <div class="ans" data-en='The script is <b>approved by you before it goes live</b>, the conversation transfers to a human at any moment, and you read every conversation. The AI answers what was agreed and hands over what was not.' data-es='El guion lo <b>apruebas tú antes de salir al aire</b>, la conversación pasa a una persona en cualquier momento, y tú lees cada conversación. La IA responde lo que se acordó y deriva lo que no.'>O roteiro é <b>aprovado por você antes de subir</b>, a conversa passa para humano a qualquer momento, e você lê todas as conversas. A IA responde o que foi combinado e passa adiante o que não foi.</div>
       </details>
       <!-- "Fico preso em contrato?" saiu em 13/10/2026: a resposta era um lembrete interno.
            Volta quando a política de contrato existir (pendência 4 do CLAUDE.md). -->
       <details>
-        <summary data-en='Whose name are the domain and accounts in? <span class="pl">+</span>'>O domínio e as contas ficam em nome de quem? <span class="pl">+</span></summary>
-        <div class="ans" data-en='Yours. <b>Domain, hosting, Google, Meta and ad accounts are in your name, always.</b> Including the Google Business Profile.'>No seu. <b>Domínio, hospedagem, Google, Meta e contas de anúncio ficam no seu nome, sempre.</b> Inclusive o Google Meu Negócio.</div>
+        <summary data-en='Whose name are the domain and accounts in? <span class="pl">+</span>' data-es='¿A nombre de quién quedan el dominio y las cuentas? <span class="pl">+</span>'>O domínio e as contas ficam em nome de quem? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Yours. <b>Domain, hosting, Google, Meta and ad accounts are in your name, always.</b> Including the Google Business Profile.' data-es='A tu nombre. <b>Dominio, hosting, Google, Meta y cuentas de anuncios a tu nombre, siempre.</b> Incluido el Perfil de Empresa en Google.'>No seu. <b>Domínio, hospedagem, Google, Meta e contas de anúncio ficam no seu nome, sempre.</b> Inclusive o Google Meu Negócio.</div>
       </details>
       <details>
-        <summary data-en='And if I want to leave? <span class="pl">+</span>'>E se eu quiser sair? <span class="pl">+</span></summary>
-        <div class="ans" data-en='You take everything. Site, domain, accounts and history. Nothing here is built to hold you hostage.'>Você leva tudo. Site, domínio, contas e histórico. Nada aqui é montado para te prender.</div>
+        <summary data-en='And if I want to leave? <span class="pl">+</span>' data-es='¿Y si quiero irme? <span class="pl">+</span>'>E se eu quiser sair? <span class="pl">+</span></summary>
+        <div class="ans" data-en='You take everything. Site, domain, accounts and history. Nothing here is built to hold you hostage.' data-es='Te llevas todo. Sitio, dominio, cuentas e historial. Nada aquí está hecho para retenerte.'>Você leva tudo. Site, domínio, contas e histórico. Nada aqui é montado para te prender.</div>
       </details>
       <details>
-        <summary data-en='What if I already have a site? <span class="pl">+</span>'>E se eu já tiver site? <span class="pl">+</span></summary>
-        <div class="ans" data-en='Then it is a <b>website redesign</b>. We audit what exists, keep what works and rebuild what loses clients, leaving it ready for ads. The diagnosis says what stays and what goes, with the reason.'>Aí é <b>reformulação de site</b>. A gente audita o que existe, aproveita o que funciona e refaz o que perde cliente, deixando pronto para anúncio. O diagnóstico diz o que fica e o que sai, com o motivo.</div>
+        <summary data-en='What if I already have a site? <span class="pl">+</span>' data-es='¿Y si ya tengo sitio? <span class="pl">+</span>'>E se eu já tiver site? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Then it is a <b>website redesign</b>. We audit what exists, keep what works and rebuild what loses clients, leaving it ready for ads. The diagnosis says what stays and what goes, with the reason.' data-es='Entonces es un <b>rediseño de sitio</b>. Auditamos lo que existe, mantenemos lo que funciona y rehacemos lo que pierde clientes, dejándolo listo para anunciar. El diagnóstico dice qué se queda y qué sale, con el motivo.'>Aí é <b>reformulação de site</b>. A gente audita o que existe, aproveita o que funciona e refaz o que perde cliente, deixando pronto para anúncio. O diagnóstico diz o que fica e o que sai, com o motivo.</div>
       </details>
       <details>
-        <summary data-en='Do I need to show up, record video, produce content? <span class="pl">+</span>'>Preciso aparecer, gravar vídeo, produzir conteúdo? <span class="pl">+</span></summary>
-        <div class="ans" data-en='No. It all works without you being on camera. If you want to appear, it helps. If you do not, it still works.'>Não. Tudo funciona sem você na frente da câmera. Se quiser aparecer, ajuda. Se não quiser, funciona do mesmo jeito.</div>
+        <summary data-en='Do I need to show up, record video, produce content? <span class="pl">+</span>' data-es='¿Tengo que aparecer, grabar video, producir contenido? <span class="pl">+</span>'>Preciso aparecer, gravar vídeo, produzir conteúdo? <span class="pl">+</span></summary>
+        <div class="ans" data-en='No. It all works without you being on camera. If you want to appear, it helps. If you do not, it still works.' data-es='No. Todo funciona sin que tengas que salir en cámara. Si quieres aparecer, ayuda. Si no quieres, funciona igual.'>Não. Tudo funciona sem você na frente da câmera. Se quiser aparecer, ajuda. Se não quiser, funciona do mesmo jeito.</div>
       </details>
       <details>
-        <summary data-en='Do you only build websites, or stores, apps and systems too? <span class="pl">+</span>'>Vocês fazem só site ou fazem loja, aplicativo e sistema também? <span class="pl">+</span></summary>
-        <div class="ans" data-en='All of it. Business website, campaign landing page, online store with cart and checkout, and web apps and systems: a quote calculator, booking, a lead board, a client area. <b>All on your own domain, built for your case.</b> The work further up is live for you to open and use.'>Tudo isso. Site institucional, landing page de campanha, loja virtual com carrinho e checkout, e aplicativos e sistemas web: calculadora de orçamento, agenda, painel de leads, área do cliente. <b>Tudo no seu domínio, feito para o seu caso.</b> Os trabalhos lá em cima estão no ar para você abrir e usar.</div>
+        <summary data-en='Do you only build websites, or stores, apps and systems too? <span class="pl">+</span>' data-es='¿Solo hacen sitios, o también tiendas, aplicaciones y sistemas? <span class="pl">+</span>'>Vocês fazem só site ou fazem loja, aplicativo e sistema também? <span class="pl">+</span></summary>
+        <div class="ans" data-en='All of it. Business website, campaign landing page, online store with cart and checkout, and web apps and systems: a quote calculator, booking, a lead board, a client area. <b>All on your own domain, built for your case.</b> The work further up is live for you to open and use.' data-es='Todo eso. Sitio institucional, landing page de campaña, tienda en línea con carrito y checkout, y aplicaciones y sistemas web: calculadora de presupuesto, agenda, panel de contactos, área del cliente. <b>Todo en tu propio dominio, hecho para tu caso.</b> Los trabajos de más arriba están en línea para que los abras y los uses.'>Tudo isso. Site institucional, landing page de campanha, loja virtual com carrinho e checkout, e aplicativos e sistemas web: calculadora de orçamento, agenda, painel de leads, área do cliente. <b>Tudo no seu domínio, feito para o seu caso.</b> Os trabalhos lá em cima estão no ar para você abrir e usar.</div>
       </details>
       <details>
-        <summary data-en='Do you set up my Google Business Profile? <span class="pl">+</span>'>Vocês configuram o meu Google Meu Negócio? <span class="pl">+</span></summary>
-        <div class="ans" data-en='Yes, from scratch or fixing the one you already have: category, services, hours, photos, reviews and updates. <b>The profile stays in your name.</b> If it already exists and has history, it is kept, never replaced.'>Sim, do zero ou corrigindo o que você já tem: categoria, serviços, horário, fotos, avaliações e atualizações. <b>O perfil fica no seu nome.</b> Se ele já existe e tem histórico, é aproveitado, nunca trocado.</div>
+        <summary data-en='Do you set up my Google Business Profile? <span class="pl">+</span>' data-es='¿Configuran mi Perfil de Empresa en Google? <span class="pl">+</span>'>Vocês configuram o meu Google Meu Negócio? <span class="pl">+</span></summary>
+        <div class="ans" data-en='Yes, from scratch or fixing the one you already have: category, services, hours, photos, reviews and updates. <b>The profile stays in your name.</b> If it already exists and has history, it is kept, never replaced.' data-es='Sí, desde cero o corrigiendo el que ya tienes: categoría, servicios, horario, fotos, reseñas y novedades. <b>El perfil queda a tu nombre.</b> Si ya existe y tiene historial, se conserva, nunca se reemplaza.'>Sim, do zero ou corrigindo o que você já tem: categoria, serviços, horário, fotos, avaliações e atualizações. <b>O perfil fica no seu nome.</b> Se ele já existe e tem histórico, é aproveitado, nunca trocado.</div>
       </details>
       <details>
-        <summary data-en='Do you do social media for Instagram? <span class="pl">+</span>'>Vocês fazem social media para Instagram? <span class="pl">+</span></summary>
-        <div class="ans" data-en='We do, as a complement: planning and posts to keep the profile alive. But we say it upfront, <b>it is not our strength</b>. Our strength is what brings clients: website, Google, ads and service. If all you want is Instagram posts, there are better options than us.'>Fazemos, como complemento: planejamento e posts para manter o perfil vivo. Mas falamos antes, <b>não é o nosso forte</b>. O nosso forte é o que traz cliente: site, Google, anúncio e atendimento. Se o que você quer é só post no Instagram, tem opção melhor do que a gente.</div>
+        <summary data-en='Do you do social media for Instagram? <span class="pl">+</span>' data-es='¿Hacen redes sociales para Instagram? <span class="pl">+</span>'>Vocês fazem social media para Instagram? <span class="pl">+</span></summary>
+        <div class="ans" data-en='We do, as a complement: planning and posts to keep the profile alive. But we say it upfront, <b>it is not our strength</b>. Our strength is what brings clients: website, Google, ads and service. If all you want is Instagram posts, there are better options than us.' data-es='Sí, como complemento: planificación y publicaciones para mantener vivo el perfil. Pero lo decimos de entrada, <b>no es nuestro fuerte</b>. Nuestro fuerte es lo que trae clientes: sitio, Google, anuncios y atención. Si lo que quieres son solo publicaciones de Instagram, hay mejores opciones que nosotros.'>Fazemos, como complemento: planejamento e posts para manter o perfil vivo. Mas falamos antes, <b>não é o nosso forte</b>. O nosso forte é o que traz cliente: site, Google, anúncio e atendimento. Se o que você quer é só post no Instagram, tem opção melhor do que a gente.</div>
       </details>
     </div>
   </div>
@@ -2984,17 +3080,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ 9 · CTA FINAL ============ -->
 <section class="final" id="diagnostico">
-  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>let&apos;s talk'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>vamos conversar</p>
-  <h2 class="rv" style="--d:.08s" data-en="Shall we make your website bring in clients?">Vamos fazer o seu site trazer cliente?</h2>
-  <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows where your business loses clients today and what the website, Google and ads would do about each point. No obligation, no runaround.">O diagnóstico gratuito mostra onde o seu negócio perde cliente hoje e o que o site, o Google e o anúncio fariam com cada ponto. Sem compromisso, sem enrolação.</p>
+  <p class="eyebrow rv" data-en='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>let&apos;s talk' data-es='<span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>hablemos'><span class="eyebrow-bar"></span><span class="eyebrow-tag">[13]</span>vamos conversar</p>
+  <h2 class="rv" style="--d:.08s" data-en="Shall we make your website bring in clients?" data-es="¿Hacemos que tu sitio traiga clientes?">Vamos fazer o seu site trazer cliente?</h2>
+  <p class="lead rv" style="--d:.16s" data-en="The free diagnosis shows where your business loses clients today and what the website, Google and ads would do about each point. No obligation, no runaround." data-es="El diagnóstico gratuito muestra dónde tu negocio pierde clientes hoy y qué harían el sitio, Google y los anuncios en cada punto. Sin compromiso, sin rodeos.">O diagnóstico gratuito mostra onde o seu negócio perde cliente hoje e o que o site, o Google e o anúncio fariam com cada ponto. Sem compromisso, sem enrolação.</p>
   <div class="final-ctas rv" style="--d:.24s">
-    <a class="btn-dark" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+    <a class="btn-dark" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='I want my free diagnosis<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' data-es='Quiero mi diagnóstico gratuito<svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
       Quero meu diagnóstico gratuito
       <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true" style="width:22px;height:14px"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5" stroke="#E3B341" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <a class="btn-ghost-ink" href="#calculadora" data-uet-diagnostico data-en="Or see how much I lose per month">Ou ver quanto eu perco por mês</a>
+    <a class="btn-ghost-ink" href="#calculadora" data-uet-diagnostico data-en="Or see how much I lose per month" data-es="O ver cuánto pierdo por mes">Ou ver quanto eu perco por mês</a>
   </div>
-  <div class="mini rv" style="--d:.3s" data-en="replies in minutes · straight on whatsapp">responde em minutos · direto no whatsapp</div>
+  <div class="mini rv" style="--d:.3s" data-en="replies in minutes · straight on whatsapp" data-es="respondo en minutos · directo en whatsapp">responde em minutos · direto no whatsapp</div>
 </section>
 
 <a class="wa-float" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp: diagnóstico gratuito" id="waFloatBtn">
@@ -3059,15 +3155,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 
 <div class="barra-mob" id="barraMob" aria-hidden="true">
-  <a class="bm-calc" href="#calculadora" data-en="Calculate">Calcular</a>
-  <a class="bm-wa" id="bmWa" target="_blank" rel="noopener" data-en="WhatsApp">WhatsApp</a>
+  <a class="bm-calc" href="#calculadora" data-en="Calculate" data-es="Calcular">Calcular</a>
+  <a class="bm-wa" id="bmWa" target="_blank" rel="noopener" data-en="WhatsApp" data-es="WhatsApp">WhatsApp</a>
 </div>
 
 <script>
 (function(){
   'use strict';
   const WA = '5532984762445';
-  const idioma = () => document.documentElement.lang === 'en' ? 'en' : 'pt';
+  const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const STILL = new URLSearchParams(location.search).get('still');
   let enviou = false;
   try { enviou = sessionStorage.getItem('theatrum-raiox') === 'enviado'; } catch(e){}
@@ -3077,7 +3173,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const bmWa = document.getElementById('bmWa');
   if (barra && bmWa) {
     const msg = { pt:'Vim do site da Theatrum. Quero o raio-x do meu negócio.',
-                  en:'I came from the Theatrum site. I want the x-ray of my business.' };
+                  en:'I came from the Theatrum site. I want the x-ray of my business.',
+                  es:'Vengo del sitio de Theatrum. Quiero la radiografía de mi negocio.' };
     const pinta = () => { bmWa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg[idioma()]); };
     pinta();
     new MutationObserver(pinta).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
@@ -3101,7 +3198,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   try { if (sessionStorage.getItem('theatrum-raiox')) mostrado = true; } catch(e){}
 
   function montar(){
-    const T = idioma() === 'en'
+    const T = idioma() === 'es'
+      ? { t:'¿No quieres hablar ahora?', p:'Te mando la radiografía de tu negocio por escrito.',
+          n:'Nombre de tu negocio', w:'Tu WhatsApp', b:'Quiero la radiografía por escrito',
+          ok:'Anotado. Voy a enviar la radiografía a este número.', semCanal:'Toca aquí para enviarlo por WhatsApp →', f:'Cerrar' }
+      : idioma() === 'en'
       ? { t:'Not ready to talk yet?', p:'I can send you the x-ray of your business in writing.',
           n:'Name of your business', w:'Your WhatsApp', b:'Send me the x-ray',
           ok:'Got it. I will send the x-ray to this number.', semCanal:'Tap here to send it on WhatsApp →', f:'Close' }
@@ -3165,7 +3266,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         card.querySelector('form').outerHTML = '<p class="rc-ok">' + T.ok + '</p>';
         setTimeout(fecha, 3200);
       } else {
-        const texto = idioma() === 'en'
+        const texto = idioma() === 'es'
+          ? 'Vengo del sitio. Mi negocio es ' + dados.negocio + '. Quiero la radiografía por escrito.'
+          : idioma() === 'en'
           ? 'I came from the site. My business is ' + dados.negocio + '. I want the x-ray in writing.'
           : 'Vim do site. Meu negócio é ' + dados.negocio + '. Quero o raio-x por escrito.';
         card.querySelector('form').outerHTML =
@@ -3181,7 +3284,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   async function enviarLead(dados){
     if (!window.TheatrumLeads) return false;
     const foi = await window.TheatrumLeads.enviar({
-      tipo: idioma() === 'en' ? 'Written x-ray (home card)' : 'Raio-x por escrito (card da home)',
+      tipo: { pt:'Raio-x por escrito (card da home)', en:'Written x-ray (home card)', es:'Radiografía por escrito (card de la home)' }[idioma()],
       empresa: dados.negocio, whatsapp: dados.whatsapp, origem: dados.origem
     });
     if (foi) window.TheatrumLeads.evento('lead_callback', { origem: dados.origem });
@@ -3210,39 +3313,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="brand-chip"><img src="assets/img/logo.webp" width="192" height="192" decoding="async" loading="lazy" alt="Theatrum"/><i></i></span>
         <b>Theatrum</b>
       </a>
-      <p data-en="Websites, stores, apps and systems built to measure, with Google and paid ads to bring clients. For businesses in Brazil and abroad.">Sites, lojas, aplicativos e sistemas sob medida, com Google e tráfego pago para trazer cliente. Para negócios no Brasil e no exterior.</p>
+      <p data-en="Websites, stores, apps and systems built to measure, with Google and paid ads to bring clients. For businesses in Brazil and abroad." data-es="Sitios, tiendas, aplicaciones y sistemas a medida, con Google y tráfico pagado para traer clientes. Para negocios en Brasil y en el exterior.">Sites, lojas, aplicativos e sistemas sob medida, com Google e tráfego pago para trazer cliente. Para negócios no Brasil e no exterior.</p>
     </div>
     <div>
-      <h4 data-en="Services">Serviços</h4>
+      <h4 data-en="Services" data-es="Servicios">Serviços</h4>
       <ul>
-        <li><a href="#servicos" data-en="Websites and landing pages">Sites e landing pages</a></li>
-        <li><a href="#servicos" data-en="Online stores">Lojas virtuais</a></li>
-        <li><a href="#servicos" data-en="Apps and systems">Aplicativos e sistemas</a></li>
-        <li><a href="#problema" data-en="Google Business Profile">Google Meu Negócio</a></li>
-        <li><a href="#problema" data-en="Paid traffic">Tráfego pago</a></li>
-        <li><a href="#sistema" data-en="AI on WhatsApp">IA no WhatsApp</a></li>
+        <li><a href="#servicos" data-en="Websites and landing pages" data-es="Sitios y landing pages">Sites e landing pages</a></li>
+        <li><a href="#servicos" data-en="Online stores" data-es="Tiendas en línea">Lojas virtuais</a></li>
+        <li><a href="#servicos" data-en="Apps and systems" data-es="Aplicaciones y sistemas">Aplicativos e sistemas</a></li>
+        <li><a href="#problema" data-en="Google Business Profile" data-es="Perfil de Empresa en Google">Google Meu Negócio</a></li>
+        <li><a href="#problema" data-en="Paid traffic" data-es="Tráfico pagado">Tráfego pago</a></li>
+        <li><a href="#sistema" data-en="AI on WhatsApp" data-es="IA en WhatsApp">IA no WhatsApp</a></li>
       </ul>
     </div>
     <div>
-      <h4 data-en="Work">Trabalhos</h4>
+      <h4 data-en="Work" data-es="Trabajos">Trabalhos</h4>
       <ul>
-        <li><a href="#trabalhos" data-en="Portfolio">Portfólio</a></li>
+        <li><a href="#trabalhos" data-en="Portfolio" data-es="Portafolio">Portfólio</a></li>
         <li><a href="us/">Theatrum US</a></li>
         <li><a href="blog/">Blog</a></li>
       </ul>
     </div>
     <div>
-      <h4 data-en="Contact">Contato</h4>
+      <h4 data-en="Contact" data-es="Contacto">Contato</h4>
       <ul>
         <li><a href="https://wa.me/5532984762445" target="_blank" rel="noopener">WhatsApp</a></li>
         <li><a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="#faq" data-en="Questions">Perguntas</a></li>
-        <li><a href="privacidade/" data-en="Privacy">Privacidade</a></li>
-        <li><a href="#top" data-en="Back to top">Voltar ao topo</a></li>
+        <li><a href="#faq" data-en="Questions" data-es="Preguntas">Perguntas</a></li>
+        <li><a href="privacidade/" data-en="Privacy" data-es="Privacidad">Privacidade</a></li>
+        <li><a href="#top" data-en="Back to top" data-es="Volver arriba">Voltar ao topo</a></li>
       </ul>
     </div>
   </div>
-  <div class="ft-base" data-en="<span>Theatrum · websites, stores, apps, Google and paid ads. © 2026.</span><span>Matheus Ananias de Souza · Brazilian company ID (CNPJ) 61.978.753/0001-60</span>"><span>Theatrum · sites, lojas, aplicativos, Google e tráfego pago. © 2026.</span><span>Responsável: Matheus Ananias de Souza · CNPJ 61.978.753/0001-60</span></div>
+  <div class="ft-base" data-en="<span>Theatrum · websites, stores, apps, Google and paid ads. © 2026.</span><span>Matheus Ananias de Souza · Brazilian company ID (CNPJ) 61.978.753/0001-60</span>" data-es="<span>Theatrum · sitios, tiendas, aplicaciones, Google y tráfico pagado. © 2026.</span><span>Responsable: Matheus Ananias de Souza · CNPJ (registro de empresa en Brasil) 61.978.753/0001-60</span>"><span>Theatrum · sites, lojas, aplicativos, Google e tráfego pago. © 2026.</span><span>Responsável: Matheus Ananias de Souza · CNPJ 61.978.753/0001-60</span></div>
 </footer>
 
 <script>
@@ -3253,23 +3356,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     es.forEach(e => siteNav.classList.toggle('is-scrolled', !e.isIntersecting));
   }, { threshold: 0 }).observe(document.querySelector('.hero'));
 
-  // idioma: PT (padrão) <-> EN, troca innerHTML de tudo que tem data-en
+  // idioma: PT (padrão), EN e ES; troca o innerHTML de tudo que tem data-en / data-es
   (function(){
-    const I18N_TITLE = { pt: document.title, en: 'Theatrum | Websites and landing pages that bring clients to your WhatsApp' };
+    const I18N_TITLE = { pt: document.title, en: 'Theatrum | Websites and landing pages that bring clients to your WhatsApp',
+      es: 'Theatrum | Sitios y landing pages que traen clientes a tu WhatsApp' };
     const I18N_DESC = {
       pt: document.querySelector('meta[name="description"]').content,
-      en: 'Websites and landing pages ready for ads: fast on mobile, with copy that sells, GTM, GA4 and the Meta Pixel set up and an alert for every new contact on your WhatsApp. Free diagnosis.'
+      en: 'Websites and landing pages ready for ads: fast on mobile, with copy that sells, GTM, GA4 and the Meta Pixel set up and an alert for every new contact on your WhatsApp. Free diagnosis.',
+      es: 'Sitios y landing pages listos para anunciar: rápidos en el celular, con textos que venden, GTM, GA4 y el Pixel de Meta configurados y aviso de cada nuevo contacto en tu WhatsApp. Diagnóstico gratuito.'
     };
+    const LANGS = ['pt', 'en', 'es'];
+    const HTML_LANG = { pt: 'pt-BR', en: 'en', es: 'es' };
     const nodes = [...document.querySelectorAll('[data-en]')];
     nodes.forEach(el => { el.dataset.pt = el.innerHTML; });
 
     function applyLang(lang){
-      nodes.forEach(el => { el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.pt; });
-      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
-      document.title = lang === 'en' ? I18N_TITLE.en : I18N_TITLE.pt;
-      document.querySelector('meta[name="description"]').content = lang === 'en' ? I18N_DESC.en : I18N_DESC.pt;
-      document.querySelectorAll('.lang-toggle').forEach(btn => {
-        btn.querySelectorAll('.lt-opt').forEach(o => o.classList.toggle('is-active', o.dataset.lang === lang));
+      if (!LANGS.includes(lang)) lang = 'pt';
+      /* sem tradução em espanhol, o elemento fica em português */
+      nodes.forEach(el => { el.innerHTML = lang === 'pt' ? el.dataset.pt : (el.dataset[lang] ?? el.dataset.pt); });
+      document.documentElement.lang = HTML_LANG[lang];
+      document.title = I18N_TITLE[lang];
+      document.querySelector('meta[name="description"]').content = I18N_DESC[lang];
+      document.querySelectorAll('.lt-opt').forEach(o => {
+        const ativo = o.dataset.lang === lang;
+        o.classList.toggle('is-active', ativo);
+        o.setAttribute('aria-pressed', String(ativo));
       });
       // reajusta e reinicia a animação de "digitando..." do eyebrow pro novo tamanho de texto
       const typeEl = document.getElementById('typeText');
@@ -3292,27 +3403,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (eChartSvg) {
         eChartSvg.setAttribute('aria-label', lang === 'en'
           ? 'Revenue over the last 12 months: flat and low before Theatrum, steady growth after'
+          : lang === 'es'
+          ? 'Facturación de los últimos 12 meses: estable y baja antes de Theatrum, crecimiento continuo después'
           : 'Faturamento dos últimos 12 meses: estável e baixo antes da Theatrum, crescimento contínuo depois');
       }
       const waFloatBtn = document.getElementById('waFloatBtn');
       if (waFloatBtn) {
         waFloatBtn.setAttribute('aria-label', lang === 'en'
           ? 'Message on WhatsApp: free diagnosis'
+          : lang === 'es'
+          ? 'Escribir por WhatsApp: diagnóstico gratuito'
           : 'Chamar no WhatsApp: diagnóstico gratuito');
       }
       try { localStorage.setItem('theatrum-lang', lang); } catch(e){}
     }
 
-    document.querySelectorAll('.lang-toggle').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const current = document.documentElement.lang === 'en' ? 'en' : 'pt';
-        applyLang(current === 'en' ? 'pt' : 'en');
-      });
+    document.querySelectorAll('.lt-opt').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
 
     let saved = null;
     try { saved = localStorage.getItem('theatrum-lang'); } catch(e){}
-    if (saved === 'en') applyLang('en');
+    if (saved === 'en' || saved === 'es') applyLang(saved);
   })();
 
   // menu mobile: abrir/fechar

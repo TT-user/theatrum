@@ -24,9 +24,11 @@
     pt: { t: 'Usamos cookies para medir visitas e o resultado dos anúncios. Os de anúncio da Microsoft só entram se você aceitar.',
           mais: 'Saiba mais', sim: 'Aceitar', nao: 'Recusar', rot: 'Aviso de cookies', link: '/privacidade/' },
     en: { t: 'We use cookies to measure visits and how our ads perform. Microsoft ad cookies only run if you accept.',
-          mais: 'Learn more', sim: 'Accept', nao: 'Decline', rot: 'Cookie notice', link: '/privacidade/#en' }
+          mais: 'Learn more', sim: 'Accept', nao: 'Decline', rot: 'Cookie notice', link: '/privacidade/#en' },
+    es: { t: 'Usamos cookies para medir visitas y el resultado de los anuncios. Las de anuncios de Microsoft solo se activan si aceptas.',
+          mais: 'Saber más', sim: 'Aceptar', nao: 'Rechazar', rot: 'Aviso de cookies', link: '/privacidade/' }
   };
-  var idioma = function () { return /^en/i.test(document.documentElement.lang) ? 'en' : 'pt'; };
+  var idioma = function () { var l = document.documentElement.lang; return /^en/i.test(l) ? 'en' : /^es/i.test(l) ? 'es' : 'pt'; };
 
   var css =
     '.ck{position:fixed;left:16px;bottom:16px;z-index:1050;width:min(440px,calc(100vw - 32px));' +
