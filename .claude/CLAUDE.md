@@ -659,8 +659,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - `/ths/` — prévia do site da THS Engenharia e Construtora (projeto, administração e execução
   de obras, Manhuaçu, MG), feita para prospecção em 14/10/2026 a partir do Instagram
   (@engenhariaths: serviços e endereço na bio), do letreiro e do Linktree (WhatsApp, e-mail,
-  Facebook). `og:image` em JPG (`assets/og.jpg`) por causa do WhatsApp. Cores do letreiro:
-  preto, branco e o laranja da marca (`#EE7A2A`; `#B9541A` sobre fundo claro); logo redesenhado
+  Facebook). `og:image` em JPG (`assets/og.jpg`) por causa do WhatsApp. Base clara desde
+  18/10/2026 (o preto do letreiro deixava o site escuro, a pedido): fundo `#F5F3EF` alternando com
+  branco e areia, grafite `#26282C` só em "como trabalhamos", na faixa de prévia e no rodapé, e o
+  laranja da marca (`#EE7A2A` em botão e faixa; `#C9601D` em título e `#B9541A` em texto
+  pequeno sobre o claro). Mapa e "Abrir no Google Maps" pelas coordenadas do perfil THS
+  Engenharia no Google (-20.2558808, -42.0346828), não pelo endereço, que punha o pino fora do
+  lugar; as mesmas estão no `geo` do schema. Logo redesenhado
   em SVG (`#ths-marca` no próprio HTML e `favicon.svg`). Barlow e Barlow Condensed em caixa-alta,
   como nos posts deles, e os títulos são frases dos próprios posts. Seções: hero, números
   (placeholder), três serviços, sistema em EPS, "por onde começar" (três perguntas que montam a

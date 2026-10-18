@@ -163,11 +163,11 @@
   }
   render(0);
 
-  // Mapa só carrega no clique
+  // Mapa só carrega no clique. Coordenadas do perfil "THS Engenharia" no Google Maps:
+  // pelo endereço, o pino caía fora do escritório.
   document.getElementById('mapa-btn').addEventListener('click', function () {
     var m = document.getElementById('mapa');
-    m.innerHTML = '<iframe title="Escritório da THS no mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=' +
-      encodeURIComponent('Rua Desembargador Alonso Starling, 220, Centro, Manhuaçu, MG') + '&output=embed"></iframe>';
+    m.innerHTML = '<iframe title="Escritório da THS no mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=-20.2558808,-42.0346828&z=18&output=embed"></iframe>';
   });
 
   // Menu destaca a seção à vista
