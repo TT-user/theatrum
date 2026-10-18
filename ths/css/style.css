@@ -225,6 +225,9 @@ h1 { font-size: clamp(46px, 6vw, 78px); }
 .rodape__logo { display: flex; align-items: center; gap: 10px; color: #fff; }
 .rodape__logo .logo__marca { width: 28px; height: 25px; color: #fff; }
 .rodape__mini { font-size: 13.5px; }
+.rodape__avalie { display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #fff; font-size: 14px; font-weight: 600; }
+.rodape__qr { width: 92px; height: 92px; display: block; }
+.rodape__avalie:hover span { color: var(--laranja); }
 
 /* Flutuantes */
 .zap-flutua { position: fixed; right: 18px; bottom: 18px; z-index: 40; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: #fff; display: grid; place-items: center; box-shadow: 0 10px 26px -8px rgba(0,0,0,.6); transition: transform .2s; }
@@ -251,12 +254,3 @@ h1 { font-size: clamp(46px, 6vw, 78px); }
 
 :focus-visible { outline: 2px solid var(--laranja); outline-offset: 3px; }
 
-/* Avaliar no Google */
-.avaliar { background: var(--branco); padding: clamp(56px, 7vw, 88px) 0; border-top: 1px solid var(--linha); }
-.avaliar__in { display: grid; grid-template-columns: 1fr auto; gap: clamp(32px, 6vw, 96px); align-items: center; }
-.avaliar__txt > p:not(.rotulo) { color: var(--tinta-2); max-width: 52ch; margin: 18px 0 28px; }
-.avaliar__cartao { margin: 0; padding: 20px 20px 16px; background: var(--fundo); border: 1px solid var(--linha); border-top: 4px solid var(--laranja); text-align: center; }
-.avaliar__qr { display: block; width: 188px; height: 188px; }
-.avaliar__cartao figcaption { font-size: 14px; color: var(--tinta-2); margin-top: 12px; }
-/* No celular a pessoa já está no aparelho que leria o QR: fica só o botão */
-@media (max-width: 760px) { .avaliar__in { grid-template-columns: 1fr; } .avaliar__cartao { display: none; } }

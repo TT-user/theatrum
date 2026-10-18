@@ -665,11 +665,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   laranja da marca (`#EE7A2A` em botão e faixa; `#C9601D` em título e `#B9541A` em texto
   pequeno sobre o claro). Mapa e "Abrir no Google Maps" pelas coordenadas do perfil THS
   Engenharia no Google (-20.2558808, -42.0346828), não pelo endereço, que punha o pino fora do
-  lugar; as mesmas estão no `geo` do schema. Antes do rodapé, desde 18/10/2026, "Já fez obra com a
-  THS? Conte como foi.": botão e QR (SVG no HTML, só no computador) para o formulário de
-  avaliação do Google (`writereview?placeid=ChIJK2zChQwDuwARd71cV-XKYgs`, Place ID montado do
-  `ftid` do perfil e conferido no Maps). Pede a quem fez obra, não a quem só visitou o site: o
-  Google não aceita avaliação de quem não foi cliente. Cartão de balcão A6 com o mesmo QR em
+  lugar; as mesmas estão no `geo` do schema. No rodapé, desde 18/10/2026, um QR pequeno com "Avalie-nos" (a pedido: a seção
+  "Já fez obra com a THS?" saiu), que também é link e leva ao formulário de avaliação do Google
+  (`writereview?placeid=ChIJK2zChQwDuwARd71cV-XKYgs`, Place ID montado do `ftid` do perfil e
+  conferido no Maps). Cartão de balcão A6 com o mesmo QR em
   `interno/clientes/ths/qr-avaliacao/`. No hero, um selo redondo parado ("projeto · administração ·
   execução" em volta da marca) no encontro das fotos, ideia tirada do selo "padrão Loba" da
   loba.com.br, concorrente deles em Manhuaçu. Logo redesenhado
