@@ -1610,8 +1610,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3},
       sobMedida:{precoCheio:4900,precoLancamento:2500,precoIntermediario:2500,aPartirDe:true},
       manutencao:{precoCheio:197,precoLancamento:97,precoIntermediario:97,mensal:true}
-    },
-    cambio:{USD:5.08, EUR:5.69}
+    }
   };
   let dados = PADRAO, pedido = false;
   const ouvintes = [];
@@ -1632,20 +1631,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return { lanc, chave, faixa:fx, faixas:dados.faixas, total, feitas, restantes:total - feitas, planos, dados };
   }
 
-  /* A moeda segue o idioma: real em português, dólar em inglês, euro em
-     espanhol. Os valores são sempre os do JSON, em reais, convertidos pelo
-     cambio de lá (reais por 1 dólar / 1 euro) e arredondados: dezena a
-     partir de 100, unidade abaixo. Nada de tabela própria por moeda. */
-  function conv(n, L){
-    const c = (dados.cambio || PADRAO.cambio)[L === 'en' ? 'USD' : L === 'es' ? 'EUR' : ''];
-    if (!c) return n;
-    const v = n / c;
-    return v >= 100 ? Math.round(v / 10) * 10 : Math.round(v);
-  }
-  /* "R$ 1.500" / "US$ 300" / "260 €"; partes divide depois de converter
-     (parcela), e centavos só aparecem quando há (3x de R$ 833,33) */
+  /* A moeda segue o idioma, com os mesmos números (sem câmbio, a pedido):
+     "R$ 1.500" / "US$ 1,500" / "1.500 €". partes = parcelas (3x de R$ 500),
+     e centavos só aparecem quando há (3x de R$ 833,33) */
   function fmt(n, L, partes){
-    let v = conv(n, L);
+    let v = n;
     if (partes) v = Math.round(v / partes * 100) / 100;
     const cent = Math.round(v * 100) % 100 !== 0;
     const num = v.toLocaleString(L === 'en' ? 'en-US' : 'pt-BR',
@@ -2499,8 +2489,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nota: 'Estimated from what you answered. Not a promise of results: it is the order of magnitude of the hole.',
       cta: 'I want the plan to close that ',
       wa: (n) => 'I came from the site. The calculator showed ' + n + ' per month. I want the plan.',
-      /* a moeda segue o idioma, como nos preços. Nada é convertido aqui:
-         o valor por cliente é o que a pessoa digita, na moeda dela */
+      /* a moeda segue o idioma, como nos preços, sem conversão */
       simbolo: 'US' + CIFRAO_EN, moeda: 'USD', locale: 'en-US',
     },
     es: {
@@ -3027,7 +3016,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="faq rv" style="--d:.15s">
       <details>
-        <summary data-en='Why not use a US$ 60 ready-made site? <span class="pl">+</span>' data-es='¿Por qué no usar un sitio listo de 60 €? <span class="pl">+</span>'>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
+        <summary data-en='Why not use a US$ 300 ready-made site? <span class="pl">+</span>' data-es='¿Por qué no usar un sitio listo de 300 €? <span class="pl">+</span>'>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
         <div class="ans" data-en='Because what turns a visit into a client does not come with the template: <b>speed on mobile, copy that sells, ad tracking and an alert for every contact</b>. Without that, you pay for ads and do not know what came back.' data-es='Porque lo que convierte una visita en cliente no viene con la plantilla: <b>velocidad en el celular, textos que venden, medición de anuncios y aviso de cada contacto</b>. Sin eso, pagas anuncios y no sabes qué volvió.'>Porque o que transforma visita em cliente não vem no modelo pronto: <b>velocidade no celular, texto que vende, rastreamento do anúncio e aviso de cada contato</b>. Sem isso, você paga o anúncio e não sabe o que voltou.</div>
       </details>
       <details>

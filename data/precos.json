@@ -1,5 +1,5 @@
 {
-  "_leia": "Condição de lançamento para os 10 primeiros clientes. Com vagasPreenchidas de 0 a 2 vale precoLancamento, de 3 a 9 vale precoIntermediario, e em 10 a faixa de lançamento some e volta o precoCheio, sem risco. Valores em reais, sem ponto nem vírgula. A moeda segue o idioma da página: em inglês os valores aparecem em dólar e em espanhol em euro, convertidos pelo cambio abaixo (quantos reais vale 1 dólar e 1 euro; cotação de 16 e 17/10/2026) e arredondados para a dezena. Mudou o câmbio, mude aqui e no PADRAO do index.html.",
+  "_leia": "Condição de lançamento para os 10 primeiros clientes. Com vagasPreenchidas de 0 a 2 vale precoLancamento, de 3 a 9 vale precoIntermediario, e em 10 a faixa de lançamento some e volta o precoCheio, sem risco. Valores em reais, sem ponto nem vírgula. A moeda segue o idioma da página (R$, US$ ou €), sempre com estes mesmos números.",
   "vagasTotal": 10,
   "vagasPreenchidas": 0,
   "faixas": [
@@ -12,9 +12,5 @@
     "completo": { "precoCheio": 2500, "precoLancamento": 1500, "precoIntermediario": 1800, "parcelas": 3 },
     "sobMedida": { "precoCheio": 4900, "precoLancamento": 2500, "precoIntermediario": 2500, "aPartirDe": true },
     "manutencao": { "precoCheio": 197, "precoLancamento": 97, "precoIntermediario": 97, "mensal": true }
-  },
-  "cambio": {
-    "USD": 5.08,
-    "EUR": 5.69
   }
 }
