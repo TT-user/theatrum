@@ -429,6 +429,12 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   próprio (`Desktop/littletrees`), fora deste site.
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
+  **Desativada desde 18/10/2026:** o `.htaccess` da pasta manda para a home
+  (que tem inglês e espanhol), e o link "Theatrum US" saiu do rodapé da home
+  e do blog e do sitemap. As demos abertas com `?de=us` ainda apontam para
+  `/us/` e caem na home. Para reativar, apague o bloco "DESATIVADA", volte o
+  link do rodapé (home e `scripts/blog/modelos.mjs`) e a linha em
+  `PAGINAS_SITE` do `scripts/blog/build.mjs`.
 - `/moveis-planejados/` — landing do segmento de planejados. **Desativada desde
   13/10/2026:** o `.htaccess` da pasta manda só a landing para a home; as seis
   demos em `demos/` seguem no ar (vitrine da home). O `_demo.js` de lá, sem
@@ -916,7 +922,7 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 
 ## Pendências de conteúdo
 
-1. Preços de `/us/` (e de `/moveis-planejados/`, desativada) ainda são os da oferta anterior.
+1. Preços de `/us/` e de `/moveis-planejados/` (as duas desativadas) ainda são os da oferta anterior.
 2. Autorização por escrito dos clientes antes de pôr nome, print e link na
    seção `[09] entregas`.
 3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)
