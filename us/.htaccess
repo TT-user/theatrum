@@ -1,0 +1,11 @@
+# Regras válidas SOMENTE para /us/.
+
+# DESATIVADA em 18/10/2026: a landing em inglês para EUA e Reino Unido sai do
+# ar e quem abre o link vai para a home (que agora tem inglês e espanhol, com
+# a moeda do idioma). Os arquivos continuam aqui. Para reativar, apague este
+# bloco e volte o link "Theatrum US" no rodapé da home e do blog
+# (scripts/blog/modelos.mjs) e a linha em PAGINAS_SITE do scripts/blog/build.mjs.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(index\.html)?$ https://usetheatrum.com.br/ [R=302,L]
+</IfModule>

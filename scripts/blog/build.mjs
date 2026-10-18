@@ -35,7 +35,6 @@ const PRESERVAR_IMG = new Set(['posts']);   /* slides do Instagram (MazyOS) */
    Prévia de cliente, demo e página desativada ficam de fora (noindex). */
 const PAGINAS_SITE = [
   ['/', 'index.html', '1.0'],
-  ['/us/', 'us/index.html', '0.7'],
   ['/privacidade/', 'privacidade/index.html', '0.2'],
 ];
 
