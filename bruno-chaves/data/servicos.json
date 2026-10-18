@@ -1,0 +1,13 @@
+{
+  "_leia": "Serviços, escritos do jeito de quem está com o problema. Tirados da placa da loja. 'icone' é o nome de um símbolo do index.html (i-casa, i-carro, i-chave, i-cadeado, i-fechadura, i-cofre, i-tesoura). 'pedido' é o que vai na mensagem do WhatsApp. Texto entre colchetes vira placeholder amarelo.",
+  "servicos": [
+    { "titulo": "Me tranquei pra fora", "texto": "Abertura de porta de casa, apartamento e comércio.", "icone": "i-casa", "pedido": "abertura de porta (me tranquei pra fora)", "urgente": true },
+    { "titulo": "Tranquei a chave dentro do carro", "texto": "Abertura de carro.", "icone": "i-carro", "pedido": "abertura de carro", "urgente": true },
+    { "titulo": "Perdi a chave do carro", "texto": "Chave canivete, chave com chip e controle.", "icone": "i-chave", "pedido": "chave de carro", "link": "#carro" },
+    { "titulo": "Quero trocar o segredo da fechadura", "texto": "Mudou de casa, perdeu a chave ou alguém ficou com uma cópia.", "icone": "i-cadeado", "pedido": "troca de segredo de fechadura" },
+    { "titulo": "A fechadura quebrou ou emperrou", "texto": "Conserto de fechaduras.", "icone": "i-fechadura", "pedido": "conserto de fechadura" },
+    { "titulo": "Preciso de cópia de chave", "texto": "Cópia de chaves em geral.", "icone": "i-chave", "pedido": "cópia de chave" },
+    { "titulo": "O cofre não abre", "texto": "Abertura de cofres.", "icone": "i-cofre", "pedido": "abertura de cofre", "urgente": true },
+    { "titulo": "Faca, alicate ou tesoura cega", "texto": "Afiação de facas, alicates e tesouras.", "icone": "i-tesoura", "pedido": "afiação" }
+  ]
+}

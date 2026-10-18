@@ -775,6 +775,23 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `utm_campaign=esteticaef`. Fotos originais e pendências em `interno/clientes/esteticaef/`,
   fora do git.
 
+- `/bruno-chaves/` — prévia do site do Bruno Chaves (chaveiro, DDD 32, primo do Matheus),
+  desde 18/10/2026, a partir do cartão, da fachada e de fotos de chave de carro entregue
+  (Toro, Ram, Civic, Ford), que são as únicas imagens: ~300 px, pedir as originais. Página
+  única pensada para a emergência no celular: barra fixa embaixo com "Ligar agora" (amarelo,
+  maior) e WhatsApp; no computador ela flutua no canto. Título do hero é o slogan da vitrine
+  dele ("Perdeu, quebrou ou esqueceu?"). Serviços em linguagem de quem tem o problema
+  (`data/servicos.json`, tirados da placa; os urgentes têm "Ligar" ao lado), seção amarela de
+  chave de carro com as fotos e um pedido de 4 perguntas que monta a mensagem mastigada,
+  "por que chamar o Bruno", a loja e dúvidas (`data/faq.json`). Cores do cartão (amarelo
+  `#FFD21F`, vermelho `#E23B1E` só em fundo e ícone, preto), Bebas Neue e Inter servidas
+  daqui. Cidade, endereço, horário, plantão, tempo de chegada, CNPJ, pagamento, mapa e áreas
+  ficam em `js/config.js` (null vira placeholder). A barra fixa fica à vista desde o topo, não só depois da primeira tela como pede o padrão: na emergência a pessoa liga na hora. Logo provisório em SVG (o mascote do
+  cartão não foi redesenhado). Sem `js/leads.js`, mesmo motivo da `/esteticaef/`. Mesmo
+  padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
+  `utm_campaign=bruno-chaves`, OG em `og-image-v1.jpg`. Pendências em
+  `interno/clientes/bruno-chaves/README.md`, fora do git.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
@@ -911,7 +928,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

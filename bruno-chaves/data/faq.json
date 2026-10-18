@@ -1,0 +1,12 @@
+{
+  "_leia": "Dúvidas. Texto entre colchetes vira placeholder amarelo: troque pela resposta do Bruno. Nada aqui pode prometer o que ele não faz.",
+  "faq": [
+    { "p": "Vocês atendem de noite e no fim de semana?", "r": "[Confirmar: tem plantão? Até que horas e em quais dias?]" },
+    { "p": "Quanto tempo demora para chegar?", "r": "[Confirmar o tempo médio de chegada no Centro e nos bairros mais longe.]" },
+    { "p": "Abre o carro sem estragar a porta ou o vidro?", "r": "[REVISAR COM O CLIENTE: como é feita a abertura e se há algum risco para a porta.]" },
+    { "p": "Faz chave de carro sem a original?", "r": "[REVISAR COM O CLIENTE: faz a partir do zero? Para quais marcas e anos?]" },
+    { "p": "Quanto custa?", "r": "Depende do serviço e de onde você está. Mande pelo WhatsApp uma foto da chave, da fechadura ou do carro e o Bruno passa o valor. [REVISAR COM O CLIENTE: ele passa o valor antes de sair? Cobra a visita?]" },
+    { "p": "Quais formas de pagamento?", "r": "[Pix, dinheiro, cartão? Parcela a chave de carro?]" },
+    { "p": "Afia faca de cozinha?", "r": "Sim. A loja afia facas, alicates e tesouras. [Confirmar se precisa deixar na loja e em quanto tempo fica pronto.]" }
+  ]
+}

@@ -1,0 +1,5 @@
+Fontes servidas daqui, todas sob a SIL Open Font License 1.1
+(https://openfontlicense.org). Pode usar, embutir e redistribuir; não pode vender a fonte sozinha.
+
+- Bebas Neue, de Ryoichi Tsunekawa (Dharma Type). https://fonts.google.com/specimen/Bebas+Neue
+- Inter, de Rasmus Andersson. https://rsms.me/inter/
