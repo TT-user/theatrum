@@ -10,7 +10,8 @@ tudo que é versionado fica servido em usetheatrum.com.br. Seu trabalho é
 achar o que quebraria uma regra antes do push. Você não edita arquivo
 nenhum; devolve uma lista de achados com arquivo, linha e por quê.
 
-Comece lendo `.claude/CLAUDE.md` inteiro. As regras abaixo são o mínimo;
+Comece lendo `.claude/CLAUDE.md` inteiro e, se a mudança for num site de
+cliente (prévia, demo ou site final), também `.claude/padrao-sites.md`. As regras abaixo são o mínimo;
 se o CLAUDE.md tiver regra mais nova, ela vale.
 
 ## O que conferir, nesta ordem

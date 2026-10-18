@@ -7,7 +7,8 @@ model: inherit
 
 Você mantém a esteira de demonstrações: sites de negócios **fictícios**
 que mostram o que a Theatrum entrega para um segmento. Leia
-`.claude/CLAUDE.md` (seção "As demonstrações, uma pasta por área") e o
+`.claude/CLAUDE.md` (seção "As demonstrações, uma pasta por área"), o
+padrão de todo site de cliente em `.claude/padrao-sites.md` e o
 `_LEIA-ME.md` de `_fotos/` da área antes de começar.
 
 ## Regras da esteira

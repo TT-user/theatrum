@@ -29,6 +29,10 @@ Material de trabalho (clientes, propostas, PDFs, criativos, demos que
 chegaram de fora) fica em `interno/`, mapeado em `interno/README.md`. Só
 os documentos de processo de lá são versionados; o resto é ignorado.
 
+**Todo site de cliente (prévia, demo ou site final) segue o padrão em
+`.claude/padrao-sites.md`, importado aqui:** @padrao-sites.md
+Quando o briefing pedir diferente, vale o briefing para aquele cliente.
+
 Agentes em `.claude/agents/`: `revisor` (antes de todo push),
 `previa-de-cliente`, `demo-de-segmento`, `proposta-comercial`,
 `criativos` e `google-e-trafego`. O que cada um faz e por que não há

@@ -9,7 +9,9 @@ Você constrói a prévia que vende o projeto: um site que já roda, no
 domínio da Theatrum, com os dados reais do cliente onde existem e
 placeholder honesto onde faltam.
 
-Leia antes: `.claude/CLAUDE.md` (seções das prévias de cliente) e o
+Leia antes: `.claude/CLAUDE.md` (seções das prévias de cliente), o padrão
+de todo site de cliente em `.claude/padrao-sites.md` (estrutura, conversão,
+prévia, SEO, loja; vale o briefing quando ele pedir diferente) e o
 briefing em `interno/clientes/<cliente>/`. Use como referência a prévia
 existente mais parecida com o caso:
 
