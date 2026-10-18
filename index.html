@@ -2873,6 +2873,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .qf-texto p:last-of-type{margin-bottom:0}
   .qf-texto b{color:#191510;font-weight:700}
   .qf-cnpj{margin-top:22px;font:400 12px/1.6 var(--font-mono);color:rgba(163,155,141,.75)}
+
+  /* o time de agentes: o Matheus no topo, os seis agentes de .claude/agents
+     embaixo, ligados por um trilho. O ponto dourado só corre no trilho com a
+     seção à vista (.is-on), e nunca com menos movimento ou ?still=1. */
+  .qt{margin-top:64px;padding-top:44px;border-top:1px solid rgba(20,18,16,.1)}
+  .qt-rot{font:400 13px/1.4 var(--font-mono);color:#6f6a5c;margin:0 0 10px}
+  .qt-tit{font:800 clamp(24px,3.2vw,34px)/1.15 var(--font-display);letter-spacing:-.01em;color:#191510;margin:0 0 14px}
+  .qt-lead{font:400 clamp(15px,2vw,17px)/1.75 var(--font-body);color:#4A4439;margin:0;max-width:68ch}
+  .qt-lead b{color:#191510}
+  .qt-mapa{margin-top:36px;display:flex;flex-direction:column;align-items:center}
+  .qt-maestro{position:relative;display:inline-flex;align-items:center;gap:12px;padding:8px 20px 8px 8px;
+    border-radius:99px;background:#141210;box-shadow:0 0 0 1px rgba(227,179,65,.55),0 10px 30px -12px rgba(20,18,16,.45)}
+  .qt-maestro img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--accent)}
+  .qt-maestro b{display:block;font:700 15px/1.2 var(--font-body);color:var(--cream)}
+  .qt-maestro small{display:block;font:400 12px/1.3 var(--font-mono);color:var(--accent)}
+  .qt-grade{position:relative;width:100%;margin-top:46px}
+  .qt-ag{list-style:none;margin:0;padding:0;
+    display:grid;gap:14px;grid-template-columns:repeat(6,minmax(0,1fr))}
+  .qt-ag li{position:relative;background:#141210;border-radius:16px;padding:18px 16px 20px;
+    box-shadow:0 12px 30px -18px rgba(20,18,16,.55)}
+  .qt-ag svg{width:26px;height:26px;color:var(--accent);display:block;margin-bottom:12px}
+  .qt-ag .n{display:flex;align-items:center;gap:6px;font:400 11px/1 var(--font-mono);color:var(--muted);margin-bottom:8px}
+  .qt-ag .n::before{content:"";width:6px;height:6px;border-radius:50%;background:#3DDC84;box-shadow:0 0 6px #3DDC84}
+  .qt-ag b{display:block;font:700 15px/1.25 var(--font-body);color:var(--cream);margin-bottom:6px}
+  .qt-ag span{display:block;font:400 13.5px/1.5 var(--font-body);color:#C9C1B2}
+  /* trilho: do Matheus desce uma linha, corre na horizontal e desce em cada agente */
+  .qt-maestro::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:24px;background:rgba(138,100,18,.5)}
+  .qt-trilho{position:absolute;top:-22px;left:8.33%;right:8.33%;height:1px;background:rgba(138,100,18,.5);container-type:inline-size}
+  .qt-trilho i{position:absolute;left:-4px;top:-3.5px;width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 10px 2px rgba(227,179,65,.7);opacity:0}
+  .qt.is-on .qt-trilho i{opacity:1;animation:qt-corre 6s ease-in-out infinite alternate}
+  @keyframes qt-corre{to{transform:translateX(100cqw)}}
+  .qt-ag li::before{content:"";position:absolute;left:50%;top:-22px;width:1px;height:22px;background:rgba(138,100,18,.5)}
+  @media(max-width:1100px){
+    .qt-grade{margin-top:22px}
+    .qt-ag{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .qt-trilho,.qt-ag li::before{display:none}
+    .qt-maestro::after{height:22px}
+  }
+  @media(max-width:620px){ .qt-ag{grid-template-columns:1fr 1fr;gap:10px} .qt-ag li{padding:16px 14px} }
+  @media(max-width:380px){ .qt-ag{grid-template-columns:1fr} }
+  @media(prefers-reduced-motion:reduce){ .qt.is-on .qt-trilho i{animation:none;opacity:0} }
 </style>
 
 <section class="sec" id="entregas" style="display:none">
@@ -2973,8 +3015,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="qf-cnpj">Theatrum · CNPJ 61.978.753/0001-60</p>
       </div>
     </div>
+
+    <!-- o time de agentes de IA: são os seis de .claude/agents, nada inventado.
+         Agente novo ou removido lá, mude aqui também. -->
+    <div class="qt rv" id="qfTime">
+      <p class="qt-rot" data-en="behind every project" data-es="detrás de cada proyecto">por trás de cada projeto</p>
+      <h3 class="qt-tit" data-en='A team of AI agents. <span class="lm">One person orchestrating.</span>' data-es='Un equipo de agentes de IA. <span class="lm">Una persona orquestando.</span>'>Um time de agentes de IA. <span class="lm">Uma pessoa orquestrando.</span></h3>
+      <p class="qt-lead" data-en="Each agent takes care of one part of the work, from the first draft of the website to the ad report. I hand out the tasks, check them and <b>approve everything before it reaches you</b>. That is how an idea gets off paper fast, without losing the care of someone who answers for the result." data-es="Cada agente se ocupa de una parte del trabajo, del primer borrador del sitio al informe del anuncio. Yo reparto las tareas, las reviso y <b>apruebo todo antes de que llegue a ti</b>. Así una idea sale del papel rápido, sin perder el cuidado de quien responde por el resultado.">Cada agente cuida de uma parte do trabalho, do primeiro rascunho do site ao relatório do anúncio. Eu distribuo, confiro e <b>aprovo tudo antes de chegar em você</b>. É assim que uma ideia sai do papel rápido, sem perder o cuidado de quem responde pelo resultado.</p>
+
+      <div class="qt-mapa">
+        <div class="qt-maestro">
+          <img src="assets/img/matheus.webp" width="44" height="44" alt="" loading="lazy" decoding="async">
+          <span><b>Matheus</b><small data-en="orchestrates and approves" data-es="orquesta y aprueba">orquestra e aprova</small></span>
+        </div>
+        <div class="qt-grade">
+        <div class="qt-trilho" aria-hidden="true"><i></i></div>
+        <ol class="qt-ag">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>
+            <p class="n" data-en="agent 01" data-es="agente 01">agente 01</p>
+            <b data-en="Websites and systems" data-es="Sitios y sistemas">Sites e sistemas</b>
+            <span data-en="builds the preview of your website or system from our conversation" data-es="arma la vista previa de tu sitio o sistema a partir de nuestra conversación">monta a prévia do seu site ou sistema a partir da nossa conversa</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>
+            <p class="n" data-en="agent 02" data-es="agente 02">agente 02</p>
+            <b data-en="Demos" data-es="Demostraciones">Demonstrações</b>
+            <span data-en="creates examples by business type, like the ones in the showcase above" data-es="crea ejemplos por tipo de negocio, como los de la vitrina de arriba">cria exemplos por tipo de negócio, como os da vitrine lá em cima</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6.5A2.5 2.5 0 004 5.5v13A2.5 2.5 0 006.5 21h11a2.5 2.5 0 002.5-2.5V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+            <p class="n" data-en="agent 03" data-es="agente 03">agente 03</p>
+            <b data-en="Analysis and proposal" data-es="Análisis y propuesta">Análise e proposta</b>
+            <span data-en="studies your business and writes the proposal with scope and price" data-es="estudia tu negocio y escribe la propuesta con alcance y precio">estuda o seu negócio e escreve a proposta com escopo e preço</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+            <p class="n" data-en="agent 04" data-es="agente 04">agente 04</p>
+            <b data-en="Google and paid traffic" data-es="Google y tráfico pagado">Google e tráfego</b>
+            <span data-en="prepares the Business Profile, the ad campaigns and the reports" data-es="prepara el Perfil de Empresa, las campañas de anuncios y los informes">prepara o Google Meu Negócio, as campanhas de anúncio e os relatórios</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+            <p class="n" data-en="agent 05" data-es="agente 05">agente 05</p>
+            <b data-en="Creatives" data-es="Creativos">Criativos</b>
+            <span data-en="produces the ad and promotion pieces in the exact size of each network" data-es="produce las piezas de anuncio y difusión en el tamaño exacto de cada red">produz as peças de anúncio e divulgação no tamanho certo de cada rede</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+            <p class="n" data-en="agent 06" data-es="agente 06">agente 06</p>
+            <b data-en="Review" data-es="Revisión">Revisão</b>
+            <span data-en="checks everything before it goes live: copy, links and speed" data-es="revisa todo antes de salir en línea: textos, enlaces y velocidad">confere tudo antes de ir ao ar: texto, links e velocidade</span>
+          </li>
+        </ol>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+<script>
+/* o ponto dourado do trilho do time só corre com o bloco à vista */
+(function(){
+  const qt = document.getElementById('qfTime');
+  if (!qt || !('IntersectionObserver' in window) || new URLSearchParams(location.search).has('still')
+      || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  new IntersectionObserver(es => es.forEach(e => qt.classList.toggle('is-on', e.isIntersecting)), { threshold:.2 })
+    .observe(qt);
+})();
+</script>
 
 
 <!-- ============ 6 · COMO FUNCIONA ============ -->
