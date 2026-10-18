@@ -86,6 +86,9 @@ h1 { font-size: clamp(46px, 6vw, 78px); }
 .hf--1 { left: 0; top: 0; width: 58%; height: 70%; }
 .hf--2 { right: 0; top: 14%; width: 46%; height: 48%; border-top: 5px solid var(--laranja); }
 .hf--3 { left: 18%; bottom: 0; width: 56%; height: 36%; }
+/* Selo redondo no encontro das fotos (ideia tirada do "padrão Loba", concorrente em Manhuaçu) */
+.selo { position: absolute; left: 50%; top: 58%; width: 112px; height: 112px; transform: translate(-50%, -50%); color: var(--grafite); filter: drop-shadow(0 10px 22px rgba(26,27,29,.3)); z-index: 2; }
+.selo text { font: 600 10.5px var(--corpo); letter-spacing: .08em; fill: var(--tinta-2); }
 .hf__tag { position: absolute; right: 0; bottom: 8%; font-size: 13px; color: var(--tinta-2); background: var(--branco); box-shadow: 0 8px 20px -10px rgba(26,27,29,.35); padding: 8px 12px; border-left: 3px solid var(--laranja); }
 @media (max-width: 900px) {
   .hero__in { grid-template-columns: 1fr; }
@@ -94,6 +97,7 @@ h1 { font-size: clamp(46px, 6vw, 78px); }
   .hf--2 { width: 46%; height: 52%; top: 6%; }
   .hf--3 { left: 30%; width: 66%; height: 34%; }
   .hf__tag { display: none; }
+  .selo { width: 86px; height: 86px; left: 26%; top: 74%; }
 }
 
 /* Números */

@@ -670,7 +670,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   avaliação do Google (`writereview?placeid=ChIJK2zChQwDuwARd71cV-XKYgs`, Place ID montado do
   `ftid` do perfil e conferido no Maps). Pede a quem fez obra, não a quem só visitou o site: o
   Google não aceita avaliação de quem não foi cliente. Cartão de balcão A6 com o mesmo QR em
-  `interno/clientes/ths/qr-avaliacao/`. Logo redesenhado
+  `interno/clientes/ths/qr-avaliacao/`. No hero, um selo redondo parado ("projeto · administração ·
+  execução" em volta da marca) no encontro das fotos, ideia tirada do selo "padrão Loba" da
+  loba.com.br, concorrente deles em Manhuaçu. Logo redesenhado
   em SVG (`#ths-marca` no próprio HTML e `favicon.svg`). Barlow e Barlow Condensed em caixa-alta,
   como nos posts deles, e os títulos são frases dos próprios posts. Seções: hero, números
   (placeholder), três serviços, sistema em EPS, "por onde começar" (três perguntas que montam a
