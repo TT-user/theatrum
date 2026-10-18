@@ -1,0 +1,44 @@
+{
+  "_leia": "Triagem 'Por onde começar'. Pergunta 1: cada opção leva a uma área de data/areas.json (a advogada vem de lá); 'area': null manda para o WhatsApp geral do escritório. Pergunta 2: 'urgente' true troca o botão e mostra o aviso de urgência. Pergunta 3: 'online' true só aparece como opção confirmada quando atendimentoOnline for true no js/config.js. Nada de texto que diga 'você tem direito' ou 'você vai ganhar'.",
+  "perguntas": [
+    {
+      "id": "situacao",
+      "rotulo": "Situação",
+      "titulo": "Sobre o que é a sua situação?",
+      "explica": "Isso define a área e qual das advogadas cuida do assunto.",
+      "opcoes": [
+        { "texto": "Alguém da família faleceu e deixou bens", "area": "inventario", "icone": "casa" },
+        { "texto": "Separação, pensão ou guarda dos filhos", "area": "familia", "icone": "familia" },
+        { "texto": "Cobrança, compra ou serviço com problema", "area": "consumidor", "icone": "recibo" },
+        { "texto": "Recebi uma intimação ou alguém foi preso", "area": "criminal", "icone": "escudo" },
+        { "texto": "Contrato, dívida, imóvel ou vizinho", "area": "civil", "icone": "contrato" },
+        { "texto": "Minha empresa (abertura, sócios, contratos)", "area": "empresarial", "icone": "maleta" },
+        { "texto": "Prefeitura, Estado, concurso ou serviço público", "area": "publico", "icone": "colunas" },
+        { "texto": "Não sei dizer", "area": null, "icone": "duvida" }
+      ]
+    },
+    {
+      "id": "quando",
+      "rotulo": "Quando",
+      "titulo": "Quando isso aconteceu?",
+      "explica": "Ajuda a advogada a saber se há prazo correndo.",
+      "opcoes": [
+        { "texto": "Agora / é urgente", "urgente": true },
+        { "texto": "Nos últimos meses" },
+        { "texto": "Há mais de um ano" },
+        { "texto": "Ainda vai acontecer (quero me orientar antes)" }
+      ]
+    },
+    {
+      "id": "conversa",
+      "rotulo": "Prefiro conversar",
+      "titulo": "Como prefere conversar?",
+      "explica": "A primeira conversa pode ser do jeito que for mais fácil para você.",
+      "opcoes": [
+        { "texto": "No escritório, em Espera Feliz" },
+        { "texto": "On-line (moro em outra cidade ou tenho pouco tempo)", "online": true },
+        { "texto": "Primeiro pelo WhatsApp" }
+      ]
+    }
+  ]
+}

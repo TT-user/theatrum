@@ -792,6 +792,27 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `utm_campaign=bruno-chaves`, OG em `og-image-v1.jpg`. Pendências em
   `interno/clientes/bruno-chaves/README.md`, fora do git.
 
+- `/cabralmiranda/` — prévia do site do Cabral & Miranda (escritório de advocacia de duas sócias,
+  Lorraine Cabral da Cunha e Alda Miranda, Rua Ernesto Grillo, 54, Centro de Espera Feliz, MG),
+  desde 18/10/2026, a partir de um briefing em quatro prompts e do print do Instagram. **É
+  publicidade de advocacia (Provimento 205/2021):** sem preço, "consulta gratuita", promessa de
+  resultado, superlativo ou depoimento; frase que explica direito leva [REVISAR]. Verde-escuro
+  `#12291F` e floresta `#1C3B2C` do logo, dourado `#C2A15F` do monograma (texto dourado pequeno
+  sobre claro usa `#6E5426`, porque o `#8C6F35` do briefing dá 4,1:1), oliva só nos losangos do
+  post do Dia do Advogado, pedra `#D9D6CF` da parede. Cinzel (títulos curtos; parágrafo longo vai em
+  Lato, Cinzel só tem caixa-alta) e Lato servidas daqui. Monograma CM redesenhado em SVG
+  (`#cm-marca`). Papel rasgado uma vez só, na entrada do "Quem somos". Áreas, triagem de três
+  perguntas (área → advogada, "Não sei dizer" vai para o geral, "urgente" troca o botão),
+  checklist de documentos por área (manda a lista para o próprio WhatsApp com `wa.me/?text=`) e
+  dúvidas vêm de `data/*.json`; contato em `js/config.js`. **Qual número é de cada advogada não
+  está confirmado** (provisório na ordem da bio) e nem quem está de vermelho ou de preto: por isso
+  não há foto individual, e cards e triagem mostram as iniciais num losango. As três fotos são
+  recortes do print, ampliados 2x. No computador, modal próprio de três opções (me chamem, e-mail,
+  QR), com Web3Forms do escritório em `CM.web3formsKey`; sem chave, mostra o aviso de prévia. Sem
+  `js/leads.js` da Theatrum, mesmo motivo da `/esteticaef/`. Mesmo padrão: `.htaccess` e meta com
+  noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=cabralmiranda`, OG em
+  `og-image-v1.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
@@ -928,7 +949,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

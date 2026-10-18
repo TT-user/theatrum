@@ -1,0 +1,29 @@
+{
+  "_leia": "As duas advogadas. null vira placeholder amarelo. 'oab' é só o número (ex.: '123.456'). 'whatsappConfirmado' false mostra o aviso de confirmar o número. 'foto' é o caminho de uma foto individual (ex.: 'assets/img/lorraine-480.webp'); enquanto for null, aparece o monograma com as iniciais.",
+  "pessoas": [
+    {
+      "id": "lorraine",
+      "nome": "Dra. Lorraine Cabral da Cunha",
+      "curto": "Dra. Lorraine",
+      "iniciais": "LC",
+      "oab": null,
+      "whatsapp": "5532991671553",
+      "whatsappConfirmado": false,
+      "areas": ["inventario", "criminal", "publico"],
+      "formacao": null,
+      "foto": null
+    },
+    {
+      "id": "alda",
+      "nome": "Dra. Alda Adriana Henriques Moreira Miranda",
+      "curto": "Dra. Alda",
+      "iniciais": "AM",
+      "oab": null,
+      "whatsapp": "5532984006251",
+      "whatsappConfirmado": false,
+      "areas": ["familia", "consumidor", "civil", "empresarial"],
+      "formacao": null,
+      "foto": null
+    }
+  ]
+}

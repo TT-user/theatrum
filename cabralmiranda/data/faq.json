@@ -1,0 +1,35 @@
+{
+  "_leia": "Dúvidas (acordeão). 'resposta' aceita links internos em <a href=\"#ancora\">. Colchete vira placeholder amarelo. Nada sobre valores, formas de pagamento ou 'consulta gratuita' (regra da OAB).",
+  "itens": [
+    {
+      "id": "comecar-pelo-whatsapp",
+      "pergunta": "Preciso ir ao escritório ou dá para começar pelo WhatsApp?",
+      "resposta": "Pode começar pelo WhatsApp. Conte em poucas linhas o que aconteceu e a advogada responde para combinar a primeira conversa, no escritório ou on-line [CONFIRMAR ATENDIMENTO ON-LINE]. A orientação jurídica acontece nessa conversa."
+    },
+    {
+      "id": "fora-de-espera-feliz",
+      "pergunta": "Atendem quem mora fora de Espera Feliz?",
+      "resposta": "O escritório fica no Centro de Espera Feliz. [CONFIRMAR: atendimento on-line e cidades da região, como Caiana, Divino, Carangola e Alto Jequitibá]"
+    },
+    {
+      "id": "inventario-em-cartorio",
+      "pergunta": "Inventário pode ser feito em cartório?",
+      "resposta": "Em muitos casos, sim. Quando os herdeiros estão de acordo sobre a divisão dos bens, o inventário pode ser feito por escritura pública em cartório, sempre com a assistência de um advogado. Há regras próprias quando existe testamento ou herdeiro menor de idade, e quando não há acordo o caminho é a Justiça. A Dra. Lorraine avalia qual caminho cabe no seu caso. [REVISAR COM AS ADVOGADAS]"
+    },
+    {
+      "id": "o-que-levar",
+      "pergunta": "O que levar na primeira conversa?",
+      "resposta": "Depende do assunto. Na seção <a href=\"#documentos\">O que levar na primeira conversa</a> você escolhe a área e vê a lista de documentos, que pode mandar para o seu próprio WhatsApp. Se faltar algum, traga o que tiver."
+    },
+    {
+      "id": "qual-advogada",
+      "pergunta": "Como sei qual advogada procurar?",
+      "resposta": "A Dra. Lorraine cuida de inventário, criminal e direito público; a Dra. Alda, de família, consumidor, civil e empresarial. Se não souber em qual área o seu caso se encaixa, faça a <a href=\"#comecar\">triagem de três perguntas</a>: ela indica com quem falar."
+    },
+    {
+      "id": "sigilo",
+      "pergunta": "O que eu contar fica em sigilo?",
+      "resposta": "Sim. O que você conta à advogada é protegido pelo sigilo profissional, desde a primeira mensagem. [REVISAR COM AS ADVOGADAS]"
+    }
+  ]
+}

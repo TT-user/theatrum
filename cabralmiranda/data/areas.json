@@ -1,0 +1,55 @@
+{
+  "_leia": "Áreas de atuação, na ordem dos cards e dos atalhos. 'advogada' é o id de data/equipe.json. 'situacoes' são três frases na língua de quem tem o problema. 'orientacao' é a frase do resultado da triagem: informativa, sem prometer resultado (regra da OAB). 'revisar' true mostra a marca [REVISAR COM AS ADVOGADAS].",
+  "itens": [
+    {
+      "id": "inventario", "nome": "Inventário", "advogada": "lorraine", "icone": "casa",
+      "resumo": "Para organizar a partilha dos bens de quem faleceu, em cartório ou na Justiça.",
+      "situacoes": ["Meu pai faleceu e deixou bens", "Quero fazer o inventário em cartório", "Herdeiros que não se entendem"],
+      "orientacao": "A Dra. Lorraine vai entender quem são os herdeiros e quais bens existem para indicar o caminho, em cartório ou na Justiça.",
+      "revisar": true
+    },
+    {
+      "id": "familia", "nome": "Família", "advogada": "alda", "icone": "familia",
+      "resumo": "Separação, pensão e guarda, conduzidas com cuidado com todos os envolvidos.",
+      "situacoes": ["Divórcio", "Pensão alimentícia", "Guarda e convivência dos filhos"],
+      "orientacao": "A Dra. Alda vai ouvir a sua situação com cuidado e explicar as possibilidades para você e para os seus filhos.",
+      "revisar": true
+    },
+    {
+      "id": "consumidor", "nome": "Consumidor", "advogada": "alda", "icone": "recibo",
+      "resumo": "Quando uma cobrança, uma compra ou um serviço não sai como foi combinado.",
+      "situacoes": ["Cobrança que não reconheço", "Nome negativado indevidamente", "Produto ou serviço com defeito"],
+      "orientacao": "A Dra. Alda vai olhar a cobrança, a compra ou o serviço e explicar o que pode ser feito.",
+      "revisar": true
+    },
+    {
+      "id": "criminal", "nome": "Criminal", "advogada": "lorraine", "icone": "escudo",
+      "resumo": "Orientação desde a primeira intimação, para quem é investigado, acusado ou vítima.",
+      "situacoes": ["Recebi uma intimação", "Um familiar foi preso", "Fui vítima e quero registrar"],
+      "orientacao": "A Dra. Lorraine vai ler o documento que você recebeu, ou entender o que aconteceu, e explicar os próximos passos, com sigilo.",
+      "revisar": true
+    },
+    {
+      "id": "civil", "nome": "Civil", "advogada": "alda", "icone": "contrato",
+      "resumo": "Contratos, dívidas, imóveis e vizinhança: as questões do dia a dia.",
+      "situacoes": ["Contratos", "Cobranças e dívidas", "Imóveis e vizinhança"],
+      "orientacao": "A Dra. Alda vai entender o contrato, a dívida ou a questão do imóvel e indicar o caminho possível.",
+      "revisar": true
+    },
+    {
+      "id": "empresarial", "nome": "Empresarial", "advogada": "alda", "icone": "maleta",
+      "resumo": "Para o empresário da região formalizar, contratar e se organizar com os sócios.",
+      "situacoes": ["Abrir ou formalizar a empresa", "Contratos com fornecedores e clientes", "Sócios e acordos"],
+      "orientacao": "A Dra. Alda vai conhecer a sua empresa e o que precisa ser organizado, para indicar o caminho adequado.",
+      "revisar": true
+    },
+    {
+      "id": "publico", "nome": "Direito Público", "advogada": "lorraine", "icone": "colunas",
+      "resumo": "Questões com a prefeitura, o Estado e outros órgãos, concursos e servidores.",
+      "situacoes": ["Problema com a prefeitura ou o Estado", "Concurso público", "Servidor público"],
+      "orientacao": "A Dra. Lorraine vai entender a sua situação com o órgão público e explicar quais caminhos existem.",
+      "revisarSituacoes": true,
+      "revisar": true
+    }
+  ]
+}

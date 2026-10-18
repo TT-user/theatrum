@@ -1,0 +1,52 @@
+{
+  "_leia": "Checklist 'O que levar na primeira conversa', uma lista por área (o id é o de data/areas.json). Todas as listas precisam ser revisadas pelas advogadas antes do site oficial.",
+  "revisado": false,
+  "listas": {
+    "inventario": [
+      "Certidão de óbito",
+      "RG e CPF do falecido e dos herdeiros",
+      "Certidão de casamento ou de nascimento dos herdeiros",
+      "Documentos dos imóveis (matrícula, IPTU ou ITR)",
+      "Documentos de veículos",
+      "Extratos ou informação de contas e investimentos",
+      "Testamento, se houver"
+    ],
+    "familia": [
+      "Certidão de casamento ou de nascimento dos filhos",
+      "RG e CPF",
+      "Comprovante de renda",
+      "Lista dos bens do casal"
+    ],
+    "consumidor": [
+      "Nota fiscal ou contrato",
+      "Prints de conversas e e-mails",
+      "Protocolos de atendimento",
+      "Faturas ou comprovantes da cobrança",
+      "Prova da negativação, se houver"
+    ],
+    "criminal": [
+      "A intimação ou o documento recebido",
+      "Boletim de ocorrência, se houver",
+      "RG e CPF"
+    ],
+    "civil": [
+      "Contratos relacionados ao caso",
+      "Comprovantes de pagamento ou de cobrança",
+      "Documentos do imóvel, se for o caso",
+      "Conversas relacionadas (prints ou e-mails)",
+      "RG e CPF"
+    ],
+    "empresarial": [
+      "Contrato social e alterações",
+      "Cartão do CNPJ",
+      "Contratos com fornecedores ou clientes",
+      "Comprovantes de pagamento ou de cobrança",
+      "Conversas relacionadas (prints ou e-mails)"
+    ],
+    "publico": [
+      "Edital, notificação ou documento do órgão",
+      "Comprovantes e protocolos",
+      "RG e CPF"
+    ]
+  }
+}
