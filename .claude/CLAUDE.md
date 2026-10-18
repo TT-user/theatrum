@@ -288,6 +288,14 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   formato. Os R$ 697 da gestão de tráfego seguem a mesma regra
   (`data-pr-px="trafego"`), e a calculadora mostra a moeda do idioma.
   A mensagem de WhatsApp dos planos continua em português e em reais.
+- **`[10]` quem faz (`#quem-faz`):** foto e texto do Matheus e, desde
+  18/10/2026, o bloco "Um time de agentes de IA. Uma pessoa orquestrando."
+  (`#qfTime`): o Matheus no topo ("orquestra e aprova") ligado por um trilho
+  aos seis agentes, que são os de `.claude/agents/` com nome de cliente
+  (sites e sistemas = `previa-de-cliente`, demonstrações, análise e proposta,
+  Google e tráfego, criativos, revisão = `revisor`). Agente novo ou removido
+  lá, mude aqui. Um ponto dourado corre no trilho só com o bloco à vista,
+  nunca com menos movimento ou `?still=1`.
 - **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
   `[08]`). Desde 13/10/2026, os vinte e seis sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
