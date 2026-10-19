@@ -396,16 +396,18 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - **Celular** (user agent móvel, iPad incluído, ou tela abaixo de 1024 px):
   todo link de WhatsApp abre o `wa.me` direto.
 - **Computador:** clique simples em link `wa.me`/`api.whatsapp.com` abre um
-  modal com três opções, nesta ordem: (1) "me chame no WhatsApp" (nome,
-  empresa, WhatsApp com máscara), (2) diagnóstico por e-mail (nome, empresa,
-  e-mail, site opcional), (3) abrir mesmo assim (QR code do link clicado,
-  WhatsApp Web e o app). Ctrl/Cmd+clique passa direto.
+  modal em duas colunas, tudo à vista numa tela (desde 19/10/2026): à
+  esquerda o formulário, com duas abas, diagnóstico por e-mail (nome,
+  empresa, e-mail, site opcional; a aba aberta) e "me chamem no WhatsApp"
+  (nome, empresa, WhatsApp com máscara); à direita o QR code do link
+  clicado, o WhatsApp Web e o app. Abaixo de 760 px as colunas empilham.
+  Ctrl/Cmd+clique passa direto.
 - **Envio:** Web3Forms, chave em `ACCESS_KEY` no topo do `js/leads.js`
   (pública por desenho; o destino é o e-mail dono da chave, que não aparece
   no código). Assunto "🔥 Novo lead Theatrum – {nome} – {empresa}", com
   página e botão de origem, idioma, aparelho e gclid/utm. Honeypot
   `botcheck`. **Sem chave, não aparece formulário nenhum:** o modal mostra só
-  a opção 3 e o pop-up de saída não arma. Falha com chave mostra "não
+  a coluna do WhatsApp e o pop-up de saída não arma. Falha com chave mostra "não
   consegui enviar" e oferece o WhatsApp Web com os dados escritos.
 - **Pop-up de saída:** só no computador, mouse saindo pelo topo, armado
   depois de 8 s, uma vez por visita (`sessionStorage` `theatrum-saida`) e

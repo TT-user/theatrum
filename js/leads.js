@@ -2,17 +2,18 @@
  *
  * Quem está no computador e clica em WhatsApp não quer pegar o celular
  * para escanear QR code. Em vez de abrir o wa.me direto, o clique abre
- * um modal com três saídas, nesta ordem:
- *   a) "me chame no WhatsApp"  nome, empresa e WhatsApp
- *   b) diagnóstico por e-mail  nome, empresa, e-mail e site (opcional)
- *   c) abrir mesmo assim       QR code do wa.me + link do WhatsApp Web
+ * um modal em duas colunas, tudo à vista:
+ *   esquerda  formulário com duas abas: diagnóstico por e-mail (nome,
+ *             empresa, e-mail e site opcional; a aba aberta) e "me
+ *             chamem no WhatsApp" (nome, empresa e WhatsApp)
+ *   direita   QR code do wa.me + WhatsApp Web + aplicativo
  * No celular nada muda: o wa.me abre direto.
  *
  * Os dois formulários (e o pop-up de saída) mandam o lead por e-mail via
  * Web3Forms. A chave fica em ACCESS_KEY: ela é pública por desenho (vive
  * no navegador) e só serve para mandar e-mail para o dono dela.
- * Sem chave, formulário nenhum aparece: o modal mostra só o QR code e o
- * WhatsApp Web, e o pop-up de saída não arma. Se o envio falhar com
+ * Sem chave, formulário nenhum aparece: o modal mostra só a coluna do
+ * WhatsApp, e o pop-up de saída não arma. Se o envio falhar com
  * chave, a tela diz que não enviou e oferece o WhatsApp com os dados já
  * escritos. Nunca "recebido" que não aconteceu.
  *
@@ -59,10 +60,11 @@
   var T = {
     pt: {
       sobre: 'você está no computador', t: 'Como prefere seguir?',
-      p: 'Sem precisar pegar o celular para escanear código.',
+      p: 'Deixe o seu contato ou fale agora pelo WhatsApp.',
+      fT: 'Deixe seu contato', tabB: 'Por e-mail', tabA: 'Me chamem no WhatsApp',
       aT: 'Prefere que eu te chame no WhatsApp?', aS: 'Você deixa o número e eu te chamo.',
       bT: 'Receber o diagnóstico por e-mail', bS: 'Por escrito, para ler com calma.',
-      cT: 'Abrir no WhatsApp mesmo assim', cS: 'Pelo QR code ou pelo WhatsApp Web.',
+      cT: 'Ou fale agora no WhatsApp', cS: 'Pelo QR code ou pelo WhatsApp Web.',
       nome: 'Nome', emp: 'Empresa', zap: 'WhatsApp', mail: 'E-mail', site: 'Site atual', opc: '(opcional)',
       phNome: 'Seu nome', phEmp: 'Nome da empresa', phZap: '(32) 99999-9999',
       phMail: 'voce@suaempresa.com.br', phSite: 'www.suaempresa.com.br',
@@ -84,10 +86,11 @@
     },
     en: {
       sobre: 'you are on a computer', t: 'How would you like to continue?',
-      p: 'No need to grab your phone to scan a code.',
+      p: 'Leave your details or talk now on WhatsApp.',
+      fT: 'Leave your details', tabB: 'By email', tabA: 'Message me on WhatsApp',
       aT: 'Would you rather I message you on WhatsApp?', aS: 'Leave your number and I will reach out.',
       bT: 'Get the diagnosis by email', bS: 'In writing, to read at your own pace.',
-      cT: 'Open WhatsApp anyway', cS: 'With the QR code or WhatsApp Web.',
+      cT: 'Or talk now on WhatsApp', cS: 'With the QR code or WhatsApp Web.',
       nome: 'Name', emp: 'Company', zap: 'WhatsApp', mail: 'Email', site: 'Current website', opc: '(optional)',
       phNome: 'Your name', phEmp: 'Company name', phZap: '+1 512 555 0123',
       phMail: 'you@yourcompany.com', phSite: 'www.yourcompany.com',
@@ -109,10 +112,11 @@
     },
     es: {
       sobre: 'estás en la computadora', t: '¿Cómo prefieres seguir?',
-      p: 'Sin tener que tomar el celular para escanear un código.',
+      p: 'Deja tus datos o habla ahora por WhatsApp.',
+      fT: 'Deja tus datos', tabB: 'Por correo', tabA: 'Escríbanme por WhatsApp',
       aT: '¿Prefieres que te escriba por WhatsApp?', aS: 'Dejas tu número y te escribo.',
       bT: 'Recibir el diagnóstico por correo', bS: 'Por escrito, para leerlo con calma.',
-      cT: 'Abrir WhatsApp de todos modos', cS: 'Con el código QR o por WhatsApp Web.',
+      cT: 'O habla ahora por WhatsApp', cS: 'Con el código QR o por WhatsApp Web.',
       nome: 'Nombre', emp: 'Empresa', zap: 'WhatsApp', mail: 'Correo', site: 'Sitio actual', opc: '(opcional)',
       phNome: 'Tu nombre', phEmp: 'Nombre de la empresa', phZap: '+52 55 1234 5678',
       phMail: 'tu@tuempresa.com', phSite: 'www.tuempresa.com',
@@ -185,7 +189,7 @@
   var CSS =
     '.tl-veu{position:fixed;inset:0;z-index:1100;display:grid;place-items:center;padding:16px;background:rgba(7,6,5,.78);opacity:0;transition:opacity .25s ease}' +
     '.tl-veu.is-on{opacity:1}' +
-    '.tl-caixa{position:relative;width:min(660px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#141210;color:#F6F1E7;' +
+    '.tl-caixa{position:relative;width:min(820px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#141210;color:#F6F1E7;' +
       'border:1px solid rgba(227,179,65,.35);border-radius:20px;padding:22px 24px 18px;box-shadow:0 30px 90px rgba(0,0,0,.6);' +
       'font:400 15px/1.55 Inter,system-ui,sans-serif;transform:translateY(10px);transition:transform .25s ease}' +
     '.tl-veu.is-on .tl-caixa{transform:none}' +
@@ -194,35 +198,35 @@
     '.tl-sobre{font:600 12.5px/1 "JetBrains Mono",ui-monospace,monospace;color:#E3B341;margin:0}' +
     '.tl-caixa h2{margin:6px 34px 0 0;font:800 23px/1.15 "Plus Jakarta Sans",Inter,system-ui,sans-serif;letter-spacing:-.008em;color:#fff}' +
     '.tl-caixa > p{margin:4px 0 0;color:#A39B8D;font-size:14.5px}' +
-    '.tl-ops{display:grid;gap:8px;margin-top:14px}' +
-    '.tl-op{border:1px solid rgba(255,255,255,.1);border-radius:16px;background:#1A1815}' +
-    '.tl-op.is-on{border-color:rgba(227,179,65,.55)}' +
-    '.tl-cab{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;background:transparent;border:0;color:inherit;text-align:left;cursor:pointer;font:inherit}' +
-    '.tl-cab i{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 13px/1 "JetBrains Mono",monospace;font-style:normal;background:rgba(227,179,65,.14);color:#E3B341}' +
-    '.tl-op.is-on .tl-cab i{background:#E3B341;color:#141210}' +
-    '.tl-cab b{display:block;font:700 16px/1.3 Inter,system-ui,sans-serif;color:#fff}' +
-    '.tl-cab small{display:block;margin-top:1px;font-size:13px;color:#A39B8D}' +
-    '.tl-corpo{padding:0 14px 14px}' +
-    '.tl-corpo[hidden]{display:none}' +
-    '.tl-campo{display:block;margin-top:6px}' +
+    '.tl-ops{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin-top:16px}' +
+    '.tl-ops.so-zap{grid-template-columns:1fr}' +
+    '@media(max-width:760px){.tl-ops{grid-template-columns:1fr}}' +
+    '.tl-op{border:1px solid rgba(255,255,255,.1);border-radius:16px;background:#1A1815;padding:16px}' +
+    '.tl-op h3{margin:0;font:700 16px/1.3 Inter,system-ui,sans-serif;color:#fff}' +
+    '.tl-op h3 + small{display:block;margin-top:2px;font-size:13px;color:#A39B8D}' +
+    '.tl-abas{display:flex;gap:4px;margin-top:10px;padding:3px;border-radius:99px;background:rgba(255,255,255,.05)}' +
+    '.tl-abas button{flex:1;min-height:34px;padding:0 10px;border:0;border-radius:99px;background:transparent;color:#A39B8D;font:600 13px/1.2 Inter,system-ui,sans-serif;cursor:pointer}' +
+    '.tl-abas button[aria-pressed=true]{background:#E3B341;color:#141210}' +
+    '.tl-abas button:not([aria-pressed=true]):hover{color:#F6F1E7}' +
+    '.tl-dica{margin:8px 0 0;font-size:13px;color:#A39B8D}' +
+    '.tl-op form[hidden]{display:none}' +
+    '.tl-campo{display:block;margin-top:8px}' +
     '.tl-campo span{display:block;margin-bottom:4px;font:600 13px/1.3 Inter,system-ui,sans-serif;color:#D8CFC0}' +
     '.tl-campo em{font-style:normal;font-weight:400;color:#A39B8D}' +
     '.tl-campo input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:#F6F1E7;font:400 15px/1.2 Inter,system-ui,sans-serif;outline:none}' +
     '.tl-campo input:focus-visible{border-color:#E3B341;box-shadow:0 0 0 3px rgba(227,179,65,.2)}' +
     '.tl-campo input[aria-invalid=true]{border-color:#D64545}' +
     '.tl-dupla{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}' +
-    '.tl-tripla{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:0 10px}' +
-    '@media(max-width:600px){.tl-tripla{grid-template-columns:1fr 1fr}.tl-tripla .tl-campo:last-child{grid-column:1/-1}}' +
     '.tl-enviar{width:100%;min-height:46px;margin-top:12px;border:0;border-radius:99px;background:#E3B341;color:#141210;font:700 15px/1 Inter,system-ui,sans-serif;cursor:pointer}' +
     '.tl-enviar:hover{background:#F0D488}.tl-enviar[disabled]{opacity:.6;cursor:wait}' +
     '.tl-aviso{margin:10px 0 0;font-size:14px;color:#F08A8A}' +
     '.tl-aviso a{color:#E3B341;font-weight:600}' +
     '.tl-ok{margin:6px 0 2px;padding:14px 16px;border-radius:12px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);color:#B9F3D6;font-weight:600}' +
-    '.tl-qr{display:flex;gap:18px;align-items:center;flex-wrap:wrap}' +
-    '.tl-qr-img{width:156px;height:156px;flex-shrink:0;border-radius:12px;background:#fff;padding:10px;box-sizing:border-box;display:grid;place-items:center;color:#141210;font-size:12px}' +
+    '.tl-qr{display:grid;justify-items:center;gap:10px;margin-top:12px;text-align:center}' +
+    '.tl-qr-img{width:164px;height:164px;border-radius:12px;background:#fff;padding:10px;box-sizing:border-box;display:grid;place-items:center;color:#141210;font-size:12px}' +
     '.tl-qr-img img{width:100%;height:100%;image-rendering:pixelated}' +
-    '.tl-qr-txt{flex:1;min-width:180px;display:grid;gap:8px}' +
-    '.tl-qr p{margin:0;color:#D8CFC0}' +
+    '.tl-qr-txt{width:100%;display:grid;gap:8px}' +
+    '.tl-qr p{margin:0;font-size:14px;color:#D8CFC0}' +
     '.tl-qr a{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 16px;border-radius:99px;text-decoration:none;font:700 14px/1 Inter,system-ui,sans-serif}' +
     '.tl-qr .tl-web{background:#25D366;color:#0B0A08}.tl-qr .tl-web:hover{background:#4BE083}' +
     '.tl-qr .tl-app{border:1px solid rgba(255,255,255,.2);color:#F6F1E7}.tl-qr .tl-app:hover{border-color:rgba(255,255,255,.45)}' +
@@ -369,77 +373,64 @@
     var w = partes(href);
     var app = 'https://wa.me/' + w.fone + (w.texto ? '?text=' + encodeURIComponent(w.texto) : '');
     var web = 'https://web.whatsapp.com/send?phone=' + w.fone + (w.texto ? '&text=' + encodeURIComponent(w.texto) : '');
-    var cab = function (n, t, s, on) {
-      return '<button class="tl-cab" type="button" aria-expanded="' + on + '"><i>' + n + '</i><span><b>' + t + '</b><small>' + s + '</small></span></button>';
-    };
     var html =
       '<button class="tl-x" type="button" aria-label="' + L.fechar + '">&times;</button>' +
       '<p class="tl-sobre">' + L.sobre + '</p>' +
       '<h2 id="tlTitulo">' + L.t + '</h2><p>' + L.p + '</p>' +
       '<div class="tl-ops">' +
-        '<div class="tl-op is-on" data-op="a">' + cab(1, L.aT, L.aS, true) +
-          '<div class="tl-corpo"><form novalidate>' + HONEYPOT +
-            '<div class="tl-tripla">' + campo('nome', L.nome, L.phNome, 'text', 'name', true) + campo('empresa', L.emp, L.phEmp, 'text', 'organization', true) +
-            campo('zap', L.zap, L.phZap, 'tel', 'tel', true) + '</div>' +
-            '<button class="tl-enviar" type="submit">' + L.aB + '</button></form></div></div>' +
-        '<div class="tl-op" data-op="b">' + cab(2, L.bT, L.bS, false) +
-          '<div class="tl-corpo" hidden><form novalidate>' + HONEYPOT +
+        '<div class="tl-op" data-op="form"><h3>' + L.fT + '</h3>' +
+          '<div class="tl-abas"><button type="button" data-aba="b" aria-pressed="true">' + L.tabB + '</button>' +
+          '<button type="button" data-aba="a" aria-pressed="false">' + L.tabA + '</button></div>' +
+          '<form novalidate data-form="b"><p class="tl-dica">' + L.bS + '</p>' + HONEYPOT +
             '<div class="tl-dupla">' + campo('nome', L.nome, L.phNome, 'text', 'name', true) + campo('empresa', L.emp, L.phEmp, 'text', 'organization', true) + '</div>' +
-            '<div class="tl-dupla">' + campo('email', L.mail, L.phMail, 'email', 'email', true) +
-            campo('site', L.site, L.phSite, 'text', 'url', false, L.opc) + '</div>' +
-            '<button class="tl-enviar" type="submit">' + L.bB + '</button></form></div></div>' +
-        '<div class="tl-op" data-op="c">' + cab(3, L.cT, L.cS, false) +
-          '<div class="tl-corpo" hidden><div class="tl-qr"><div class="tl-qr-img" aria-hidden="true"></div><div class="tl-qr-txt">' +
+            campo('email', L.mail, L.phMail, 'email', 'email', true) +
+            campo('site', L.site, L.phSite, 'text', 'url', false, L.opc) +
+            '<button class="tl-enviar" type="submit">' + L.bB + '</button></form>' +
+          '<form novalidate data-form="a" hidden><p class="tl-dica">' + L.aS + '</p>' + HONEYPOT +
+            '<div class="tl-dupla">' + campo('nome', L.nome, L.phNome, 'text', 'name', true) + campo('empresa', L.emp, L.phEmp, 'text', 'organization', true) + '</div>' +
+            campo('zap', L.zap, L.phZap, 'tel', 'tel', true) +
+            '<button class="tl-enviar" type="submit">' + L.aB + '</button></form></div>' +
+        '<div class="tl-op" data-op="c"><h3>' + L.cT + '</h3><small>' + L.cS + '</small>' +
+          '<div class="tl-qr"><div class="tl-qr-img" aria-hidden="true"></div><div class="tl-qr-txt">' +
             '<p>' + L.cQ + '</p>' +
             '<a class="tl-web" href="' + esc(web) + '" target="_blank" rel="noopener" data-wa-direto>' + L.cWeb + '</a>' +
             '<a class="tl-app" href="' + esc(app) + '" target="_blank" rel="noopener" data-wa-direto>' + L.cApp + '</a>' +
-          '</div></div></div></div>' +
+          '</div></div></div>' +
       '</div>';
     var m = abreCaixa(html, 'tlTitulo');
     var caixa = m.caixa;
+    var alvo = caixa.querySelector('.tl-qr-img');
+    carregaQR().then(function (qrcode) {
+      var q = qrcode(0, 'M');
+      q.addData(app);
+      q.make();
+      alvo.innerHTML = '<img alt="" src="' + q.createDataURL(6, 0) + '">';
+    }).catch(function () { alvo.textContent = 'QR'; });
+
     if (!ACCESS_KEY) {
-      caixa.querySelectorAll('[data-op=a],[data-op=b]').forEach(function (o) { o.remove(); });
-      var c = caixa.querySelector('[data-op=c]');
-      c.classList.add('is-on'); c.querySelector('.tl-cab').setAttribute('aria-expanded', 'true');
-      c.querySelector('.tl-cab i').textContent = '✓';
-      c.querySelector('.tl-corpo').hidden = false;
+      caixa.querySelector('[data-op=form]').remove();
+      caixa.querySelector('.tl-ops').classList.add('so-zap');
+      setTimeout(function () { caixa.querySelector('.tl-web').focus(); }, 60);
+      return;
     }
 
-    var ops = caixa.querySelectorAll('.tl-op');
-    ops.forEach(function (op) {
-      op.querySelector('.tl-cab').addEventListener('click', function () {
-        ops.forEach(function (o) {
-          var on = o === op;
-          o.classList.toggle('is-on', on);
-          o.querySelector('.tl-cab').setAttribute('aria-expanded', String(on));
-          o.querySelector('.tl-corpo').hidden = !on;
-        });
-        if (op.getAttribute('data-op') === 'c') desenhaQR();
-        else { var i = op.querySelector('input:not([tabindex="-1"])'); if (i) i.focus(); }
+    var fA = caixa.querySelector('[data-form=a]'), fB = caixa.querySelector('[data-form=b]');
+    var abas = caixa.querySelectorAll('[data-aba]');
+    abas.forEach(function (bt) {
+      bt.addEventListener('click', function () {
+        var qual = bt.getAttribute('data-aba');
+        abas.forEach(function (o) { o.setAttribute('aria-pressed', String(o === bt)); });
+        fA.hidden = qual !== 'a'; fB.hidden = qual !== 'b';
+        var i = (qual === 'a' ? fA : fB).querySelector('input:not([tabindex="-1"])'); if (i) i.focus();
       });
     });
-
-    var qrFeito = false;
-    function desenhaQR() {
-      if (qrFeito) return; qrFeito = true;
-      var alvo = caixa.querySelector('.tl-qr-img');
-      carregaQR().then(function (qrcode) {
-        var q = qrcode(0, 'M');
-        q.addData(app);
-        q.make();
-        alvo.innerHTML = '<img alt="" src="' + q.createDataURL(6, 0) + '">';
-      }).catch(function () { alvo.textContent = 'QR'; });
-    }
-
-    if (!ACCESS_KEY) { desenhaQR(); setTimeout(function () { caixa.querySelector('.tl-web').focus(); }, 60); return; }
-    var fA = caixa.querySelector('[data-op=a] form'), fB = caixa.querySelector('[data-op=b] form');
     mascara(fA.querySelector('[name=zap]'));
     ligaForm(fA, L, function (v) { return { tipo: L.tipoA, nome: v('nome'), empresa: v('empresa'), whatsapp: v('zap') }; },
       L.aOk, 'lead_callback', origem);
     ligaForm(fB, L, function (v) { return { tipo: L.tipoB, nome: v('nome'), empresa: v('empresa'), email: v('email'), site: v('site') }; },
       L.bOk, 'lead_email', origem);
 
-    setTimeout(function () { var i = fA.querySelector('input:not([tabindex="-1"])'); if (i) i.focus(); }, 60);
+    setTimeout(function () { var i = fB.querySelector('input:not([tabindex="-1"])'); if (i) i.focus(); }, 60);
   }
 
   /* de onde veio o clique: data-origem, senão o id da seção, senão a classe */
