@@ -183,7 +183,7 @@ const JS_COMUM = `<script>
 
 const SCRIPTS_SITE = `<script src="/js/consentimento.js" defer></script>
 <script src="/js/uet-eventos.js" defer></script>
-<script src="/js/leads.js" defer></script>
+<script src="/js/leads.js?v=2" defer></script>
 </body>
 </html>
 `;
