@@ -750,6 +750,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   pulsando, a pedido. O WhatsApp mora no `ZAP` do `main.js` e nos links do HTML, não no `info.json`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders
   originais e pendências em `interno/clientes/vila-serena/`, fora do git.
+  **Fora do ar desde 19/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/esteticaef/` — prévia do site da Clínica Estética Facial e Corporal (Centro de Espera Feliz,
   MG; Grazi Santana no facial, Amanda Simiqueli no corporal; eleita a melhor clínica de estética
