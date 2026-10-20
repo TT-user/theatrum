@@ -3,6 +3,7 @@
 > Vale para todo site de cliente deste repositório (as pastas `aml/`, `inovar/`, `recanto/`, `fornari/`... na raiz). Mora em `.claude/padrao-sites.md`, e não na raiz, porque a raiz é servida no domínio; o `.claude/CLAUDE.md` importa este arquivo, então o Claude Code lê as regras em toda conversa sem precisar repetir nos prompts.
 > Quando um briefing pedir algo diferente destas regras, vale o briefing para aquele cliente.
 > **v3 (18/10/2026):** acrescenta os padrões de conversão da página (seção 4A), os sites com várias páginas (1A) e a loja com sacola (seção 9).
+> **v4 (20/10/2026), depois da prévia da Canto dos Pássaros:** WhatsApp direto, sem modal (seção 4); QR de avaliação no rodapé (4A); fonte para cada fato (5); imagens e fontes já no limite (2); testes de fechamento (8); armadilhas conhecidas (10).
 
 ## 1. Estrutura e stack
 - HTML + CSS + JS puro, sem framework. Cada cliente fica numa pasta própria:
@@ -37,8 +38,11 @@
   - Em WebP, com `<picture>` e `srcset` em 2 ou 3 larguras (ex.: 320w, 640w, 960w).
   - Com `width` e `height` declarados, para a página não pular enquanto carrega.
   - Com lazy loading abaixo da primeira dobra.
-  - No máximo ~150 KB por imagem de conteúdo.
+  - No máximo ~150 KB por imagem de conteúdo. Já gere dentro do limite: comprima **a partir do original** e vá baixando a qualidade (76, 70, 64...) até caber. Nunca recomprima um WebP já gerado, porque cada passada piora a imagem.
+  - Recorte na geração o que não é foto: texto gravado de story ("CHALÉ CANÁRIO"), selos e bordas de interface de print. Confira os recortes numa folha de contato antes de seguir.
 - No máximo 2 famílias de fonte. **Fontes auto-hospedadas** em `<slug>/fonts/`, com `@font-face` e `font-display: swap`. Uma família condensada para títulos pode ter um peso display à parte.
+  - Fonte variável baixada do Google: fixe os eixos que não usa (`opsz`, por exemplo) e faça o subset para latim com o fontTools (`instancer` + `subset`). O Fraunces caiu de 67 para 28 KB.
+  - **Renderize o itálico com "manhã", "toalha" e "kiwi" antes de usar.** Algumas fontes trazem letras "esquisitas" por padrão. O Fraunces itálico desenha o h com um gancho, que se lê "manĥã". O conserto foi apontar no `cmap` o h, o b e o k para as versões `.alt`.
 - Animações curtas com IntersectionObserver, sempre respeitando `prefers-reduced-motion`.
 - Vídeo na hero:
   - `autoplay muted playsinline` e `poster` com a imagem final.
@@ -95,11 +99,23 @@
   - WhatsApp visível como texto.
   - CNPJ.
   - Políticas.
+  - **QR de avaliação no Google** (sempre que o negócio tiver perfil no Maps): um cartão "Já [comprou/se hospedou/foi atendido] aqui?" com o QR, que também é link (no celular a pessoa toca em vez de escanear). Como fazer:
+    - O link é `https://search.google.com/local/writereview?placeid=<Place ID>`.
+    - O Place ID sai do `ftid` do link do Maps (`!1s0xAAAA:0xBBBB`): são os bytes `0a 12 09` + AAAA em 8 bytes little-endian + `11` + BBBB em 8 bytes little-endian, em base64 url-safe sem `=`. Começa com `ChIJ`.
+    - Confira abrindo `https://www.google.com/maps/place/?q=place_id:<ID>` no Chrome (Playwright): o título precisa ser o nome do negócio. `curl` não serve, porque o Google só responde a navegador.
+    - O QR é SVG embutido no HTML (sem biblioteca no site), com módulos escuros sobre fundo claro e margem de 2 módulos, mesmo em rodapé escuro. Gere com o `js/vendor/qrcode.min.js` da raiz, rodando em Node.
+    - Depois do print, leia o QR com `cv2.QRCodeDetector` e confirme que dá o endereço certo.
+    - Deixe um comentário no HTML com o `ftid` de origem e a data da conferência.
 
 ## 5. Prévias de prospecção (`usetheatrum.com.br/<slug>/`)
 - Uma faixa fina no topo, fácil de remover: "Demonstração criada por Theatrum para <cliente>".
 - **Nenhuma tag de rastreamento nas prévias** (UET, GA4, GTM, Pixel, Clarity). Rastreamento só no site final, com o consentimento do cliente.
 - Os dados que faltam viram placeholders entre colchetes, destacados em amarelo na tela. Nunca invente endereços, telefones, preços, avaliações, números de clientes, registros profissionais nem prazos.
+- **Cada fato publicado tem fonte anotada** no `interno/clientes/<slug>/README.md` (bio, story, post, cartão, perfil do Google). Foto não é fonte de regra:
+  - Uma foto mostra o que aconteceu uma vez, não o que vale sempre. "Toalha em cisne na chegada" e "café servido no salão" saíram de foto e tiveram de ser retirados.
+  - Não generalize uma comodidade para todos os quartos, chalés ou unidades porque ela aparece numa foto. O que não tem fonte vira placeholder.
+  - Não escreva nada sobre os seguidores ou clientes do cliente ("é o assunto preferido de quem segue...").
+- **Condição comercial com as palavras da fonte.** Pagamento, sinal, prazo e garantia vão como o cliente escreveu. "50% do valor" não é "50% da diária".
 - Afirmações legais, técnicas ou de saúde levam a marca `[REVISAR COM O CLIENTE]`.
 - Antes e depois, depoimentos e fotos dos clientes do cliente só com autorização. Enquanto não houver autorização, use placeholder.
 - Demos de portfólio com marca fictícia levam a faixa "Projeto conceito. Marca, números e dados são fictícios."
@@ -134,7 +150,22 @@
 ## 8. Fechamento de cada tarefa
 Ao terminar qualquer etapa:
 - Rode localmente e passe o endereço.
-- Teste todos os caminhos de WhatsApp, os formulários e, em loja, a sacola do início ao fim.
+- Teste todos os caminhos de WhatsApp, os formulários e, em loja, a sacola do início ao fim. Confira o texto da mensagem que sai, decodificado, e não só se o link abre.
+- **Teste automático com Playwright** antes de mostrar:
+  - Print da página inteira em 1440 e em 375, com `?still=1`.
+  - `document.documentElement.scrollWidth` igual à largura da tela.
+  - Nenhum `pageerror`.
+  - Olhe os prints em pedaços, seção por seção.
+- Depois do push, confira o endereço no ar (`curl -w '%{http_code}'` na página, no CSS, no JS, nos JSON e na `og-image`) antes de dizer que o link está pronto para enviar.
+
+## 10. Armadilhas que já custaram retrabalho (já comece evitando)
+- **`[hidden]` perde para `display`.** Um `label { display: grid }` faz o campo escondido aparecer. Ponha `[hidden] { display: none !important; }` no reset de todo site.
+- **Campo de data estoura no celular.** `input[type=date]` tem largura mínima própria. Use `min-width: 0` nele e `minmax(0, 1fr)` nas colunas da grade, senão a página rola para o lado em 375 px.
+- **Placeholder dentro de rótulo herda o estilo.** O `.ph` precisa zerar `text-transform`, `letter-spacing`, `font-style` e a cor. Escreva os seletores de rótulo como filho direto (`li > span`), para não pegar o `.ph` que está dentro.
+- **`?still=1` precisa carregar as imagens.** Com `loading="lazy"` o print da página inteira sai com buraco. No modo QA, troque todas para `eager`, inclusive as que o JS desenha depois dos JSON.
+- **Galeria em grade não pode ter buraco.** Numa grade de 4 colunas com itens largos (2×1) e altos (1×2), os altos têm de vir aos pares. Escreva no `_leia` do JSON qual ordem fecha a grade.
+- **Título claro sobre foto clara no celular.** O corte do `object-fit` muda no celular. Ajuste o `object-position` e use um degradê mais forte abaixo de 640 px. Confira no print de 375.
+- **Botão com ícone dentro de foto ou mapa:** use `white-space: nowrap`, senão o texto quebra em duas linhas.
 - Liste os placeholders, os itens `[REVISAR COM O CLIENTE]` e as sugestões para a versão final.
 
 ## 9. Loja com sacola (quando o briefing pedir venda de produto)

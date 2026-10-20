@@ -299,6 +299,10 @@ p { margin: 0 0 1em; }
 .rodape__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 40px; }
 .logo--claro { color: var(--creme-txt); }
 .rodape__frase { margin-top: 16px; font: italic 400 17px/1.4 var(--serif); }
+.rodape__avalie { display: flex; align-items: center; gap: 16px; margin-top: 26px; max-width: 330px; padding: 12px; border-radius: 14px; border: 1px solid rgba(239, 230, 214, .16); text-decoration: none; color: var(--creme-txt-2); font-size: 14.5px; line-height: 1.4; transition: border-color .2s; }
+.rodape__avalie:hover { border-color: var(--ouro); }
+.rodape__avalie b { display: block; color: var(--ouro); font-weight: 500; font-size: 15.5px; margin-bottom: 2px; }
+.rodape__qr { width: 96px; height: 96px; flex: none; border-radius: 6px; }
 .rodape h3 { font: 500 13px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--ouro); margin-bottom: 16px; }
 .rodape ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .rodape a { color: var(--creme-txt); text-decoration-color: rgba(239, 230, 214, .3); text-underline-offset: 3px; }

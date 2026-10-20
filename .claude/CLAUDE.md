@@ -833,7 +833,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Diária, capacidade, camas, horários, pet, cancelamento e CNPJ são placeholder (`js/config.js` e
   `data/*.json`); depoimentos são slot vazio, com o número de seguidores do Instagram ao lado. Sem
   `js/leads.js` e sem modal: todo WhatsApp, inclusive o do simulador, abre o `wa.me` direto também
-  no computador (pedido de 20/10/2026, vale para site de cliente; ver `padrao-sites.md`). Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca
+  no computador (pedido de 20/10/2026, vale para site de cliente; ver `padrao-sites.md`). No rodapé, QR
+  de avaliação no Google (SVG embutido, também é link), Place ID `ChIJhW4orcCRuQARbPE3hl_OfDE` montado
+  do `ftid` do Maps e conferido no Chrome em 20/10/2026. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca
   d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v1.jpg` (HTML de origem em
   `interno/clientes/cantodospassaros/og/`). Prints e pendências em `interno/clientes/cantodospassaros/`,
   fora do git.
