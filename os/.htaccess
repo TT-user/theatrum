@@ -1,0 +1,5 @@
+# Landing do TheatrumOS em prévia: não indexar até o lançamento.
+# No lançamento, apague este bloco e tire o meta robots do index.html.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

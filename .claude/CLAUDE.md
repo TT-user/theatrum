@@ -817,6 +817,20 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=cabralmiranda`, OG em
   `og-image-v1.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
 
+- `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
+  (sistema de trabalho no Claude Code, com memória do operador e 12 comandos: `/instalar`,
+  `/previa`, `/proposta`...) para quem quer vender site e marketing a pequenos negócios. O
+  sistema em si é outro repositório, em `Desktop/theatrum-os/` (ainda sem remoto). **Em prévia:**
+  `.htaccess` e meta com noindex, faixa carmim de prévia, sem UET, fora do sitemap e do menu.
+  Identidade da home (tokens, Plus Jakarta, Inter, JetBrains Mono, Instrument Serif via Google
+  Fonts), logo e foto do fundador reaproveitados de `../assets/img/`. Checkout e WhatsApp em
+  `js/config.js`: `checkoutUrl` vazio faz o botão avisar que falta. Placeholders amarelos: condição
+  de lançamento, preço, formas de pagamento, garantia, atualizações, suporte/comunidade, bio do
+  fundador, depoimentos (sem depoimento real, a seção `#resultados` sai), CNPJ, termos de uso. A
+  referência de preço cita a tabela cheia da Theatrum (R$ 1.500 e R$ 2.500); se `data/precos.json`
+  mudar, atualize. Sem promessa de faturamento, de propósito (FAQ "Quanto eu vou faturar?"). No
+  lançamento: tirar faixa e noindex, entrar no sitemap.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
