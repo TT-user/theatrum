@@ -587,6 +587,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `index.html`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
   UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
   A versão de portfólio, com marca fictícia, é a Arco, em `/negocios/demos/arco/`.
+  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 - `/fornari/` — prévia da landing do Felipe Fornari (Team Fornari: treinador com consultoria
   online e presencial, sócio da Espaço Saúde em Caparaó, MG; presencial em Caparaó e Alto Caparaó), feita para prospecção em
   12/10/2026. Substitui o caminho bio → Linktree → Google Forms de 50 perguntas: o seguidor vê os
@@ -630,8 +632,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   CSS, JS e os `fetch` dos JSON com `?v=`: mudou um deles, sobe o número (o navegador
   segurava o `resultados.json` antigo e o carrossel aparecia com as cartas de exemplo). Pendências
   em `interno/clientes/fornari/README.md`, fora do git.
-  Saiu do ar em 13/10/2026 e voltou no mesmo dia, a pedido (bloco "DESATIVADA"
-  apagado do `.htaccess`; o noindex continua).
+  Saiu do ar em 13/10/2026 e voltou no mesmo dia, a pedido.
+  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
   A versão de portfólio, com marca fictícia, é o Clã Valente, em `/negocios/demos/cla-valente/`.
 - `/nerd-club/` — prévia do site da Nerd Club (loja de games, oficina de videogame e
   colecionáveis na Várzea, Teresópolis, RJ) com a InCubo (impressão 3D, marca parceira),
@@ -725,6 +728,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   logo, ampliados 2x: baixa resolução, pedir os originais para o site oficial. Mesmo padrão:
   `.htaccess` e meta com noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água
   com `utm_campaign=ths`. Prints e pendências em `interno/clientes/ths/`, fora do git.
+  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/vilaserena/` — prévia do site das Cabanas Vila Serena (cabanas A-frame em construção em
   Alto Caparaó, MG, na mesma cidade do Recanto), desde 16/10/2026, a partir de um briefing em
@@ -785,6 +790,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água com
   `utm_campaign=esteticaef`. Fotos originais e pendências em `interno/clientes/esteticaef/`,
   fora do git.
+  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/bruno-chaves/` — prévia do site do Bruno Chaves (chaveiro, DDD 32, primo do Matheus),
   desde 18/10/2026, a partir do cartão, da fachada e de fotos de chave de carro entregue
@@ -802,6 +809,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=bruno-chaves`, OG em `og-image-v1.jpg`. Pendências em
   `interno/clientes/bruno-chaves/README.md`, fora do git.
+  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/cabralmiranda/` — prévia do site do Cabral & Miranda (escritório de advocacia de duas sócias,
   Lorraine Cabral da Cunha e Alda Miranda, Rua Ernesto Grillo, 54, Centro de Espera Feliz, MG),
@@ -823,6 +832,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `js/leads.js` da Theatrum, mesmo motivo da `/esteticaef/`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=cabralmiranda`, OG em
   `og-image-v1.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
+  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/cantodospassaros/` — prévia do site da Pousada Canto dos Pássaros (chalés de madeira e tijolinho,
   café da manhã incluso, Rodovia Afonso Cláudio km 4, Aracê, Domingos Martins, ES, região de Pedra Azul),

@@ -3,6 +3,16 @@
   Header set X-Robots-Tag "noindex, nofollow"
 </IfModule>
 
+# DESATIVADA em 20/10/2026: os arquivos ficam aqui, mas quem abre o link vai
+# para a home. Para reativar, apague este bloco.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^ https://usetheatrum.com.br/ [R=302,L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+  Require all denied
+</IfModule>
+
 # Cache: CSS, JS e JSON levam ?v= no endereço (mudou, sobe o número). Imagens não:
 # trocou uma foto, troque também o nome do arquivo, senão quem já visitou vê a antiga.
 <IfModule mod_expires.c>
