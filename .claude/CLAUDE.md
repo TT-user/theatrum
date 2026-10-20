@@ -268,7 +268,8 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   para o primeiro desenho e para falha no fetch; o JSON só baixa quando o
   `[07]` ou o `[09]` chegam perto). O Matheus só mexe em `vagasPreenchidas`
   (passo a passo em `docs/como-atualizar-vagas.md`): de 0 a 2 vale o preço de
-  lançamento (Essencial R$ 990, Completo R$ 1.500 ou 3x R$ 500, Sob medida a
+  lançamento (Essencial R$ 990, Completo R$ 1.500 no Pix, 50% no início e 50% na
+  entrega, ou R$ 1.800 em 3x de R$ 600 no cartão, desde 20/10/2026; Sob medida a
   partir de R$ 2.500, manutenção R$ 97/mês), de 3 a 9 o intermediário
   (R$ 1.200, R$ 1.800, R$ 2.500, R$ 97), e em 10 voltam os cheios sem risco (R$ 1.500, R$ 2.500, a partir de
   R$ 4.900, R$ 197). O intermediário do Sob medida (R$ 2.500) não foi
@@ -284,6 +285,9 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   escolhido": com zero cliente seria prova social inventada (o pedido de
   16/10/2026 dizia "Mais escolhido"; ficou "recomendado"). Cada card abre o
   WhatsApp citando plano e preço e dispara `plano_click`.
+  O preço no cartão mora em `precoCartaoLancamento` (só o Completo, só na
+  faixa de lançamento): nas outras faixas o Matheus ainda não definiu, e
+  as parcelas voltam a sair do preço da faixa.
   Mudou valor de plano (não só as vagas)? Mude também o `PADRAO` e o HTML
   estático do `[09]`, que é o que aparece sem JS ou se o fetch falhar.
   Desde 18/10/2026 a moeda segue o idioma: real em português, dólar em
@@ -384,7 +388,7 @@ diferente conforme de onde a pessoa clicou:
 | entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
-| investimento (cards) | "Olá! Vi a condição de lançamento e quero o plano {plano} ({preço})." (depois das 10 vagas: "Olá! Vim do site da Theatrum e quero o plano...") |
+| investimento (cards) | "Olá! Vi a condição de lançamento e quero o plano {plano} ({preço}) (no Completo: "R$ 1.500 no Pix ou 3x de R$ 600 no cartão")" (depois das 10 vagas: "Olá! Vim do site da Theatrum e quero o plano...") |
 | blog (topo, menu e rodapé) | "Vim do blog da Theatrum. Quero o diagnóstico gratuito." |
 | blog (CTA do artigo) | "Vim do blog da Theatrum, do artigo "{título}". Quero o diagnóstico gratuito." |
 

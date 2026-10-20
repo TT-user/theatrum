@@ -1,5 +1,5 @@
 {
-  "_leia": "Condição de lançamento para os 10 primeiros clientes. Com vagasPreenchidas de 0 a 2 vale precoLancamento, de 3 a 9 vale precoIntermediario, e em 10 a faixa de lançamento some e volta o precoCheio, sem risco. Valores em reais, sem ponto nem vírgula. A moeda segue o idioma da página (R$, US$ ou €), sempre com estes mesmos números.",
+  "_leia": "Condição de lançamento para os 10 primeiros clientes. Com vagasPreenchidas de 0 a 2 vale precoLancamento, de 3 a 9 vale precoIntermediario, e em 10 a faixa de lançamento some e volta o precoCheio, sem risco. Valores em reais, sem ponto nem vírgula. precoCartaoLancamento (ou precoCartaoIntermediario, precoCartaoCheio) é o total no cartão naquela faixa, dividido em parcelas: com ele, o preço da faixa vale no Pix (50% no início, 50% na entrega); sem ele, as parcelas saem do preço da faixa. A moeda segue o idioma da página (R$, US$ ou €), sempre com estes mesmos números.",
   "vagasTotal": 10,
   "vagasPreenchidas": 0,
   "faixas": [
@@ -9,7 +9,7 @@
   ],
   "planos": {
     "essencial": { "precoCheio": 1500, "precoLancamento": 990, "precoIntermediario": 1200 },
-    "completo": { "precoCheio": 2500, "precoLancamento": 1500, "precoIntermediario": 1800, "parcelas": 3 },
+    "completo": { "precoCheio": 2500, "precoLancamento": 1500, "precoIntermediario": 1800, "parcelas": 3, "precoCartaoLancamento": 1800 },
     "sobMedida": { "precoCheio": 4900, "precoLancamento": 2500, "precoIntermediario": 2500, "aPartirDe": true },
     "manutencao": { "precoCheio": 197, "precoLancamento": 97, "precoIntermediario": 97, "mensal": true }
   }

@@ -1607,7 +1607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     faixas:[{de:1,ate:3,preco:'precoLancamento'},{de:4,ate:10,preco:'precoIntermediario'},{de:11,ate:null,preco:'precoCheio'}],
     planos:{
       essencial:{precoCheio:1500,precoLancamento:990,precoIntermediario:1200},
-      completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3},
+      completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3,precoCartaoLancamento:1800},
       sobMedida:{precoCheio:4900,precoLancamento:2500,precoIntermediario:2500,aPartirDe:true},
       manutencao:{precoCheio:197,precoLancamento:97,precoIntermediario:97,mensal:true}
     }
@@ -1625,7 +1625,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const planos = {};
     Object.keys(dados.planos).forEach(id => {
       const p = dados.planos[id];
+      /* cartao: preço no cartão da faixa (precoCartaoLancamento...). Com ele,
+         o preço atual é o do Pix (50% no início, 50% na entrega) e as
+         parcelas saem do cartão; sem ele, as parcelas saem do preço atual */
       planos[id] = { atual:p[chave], cheio:p.precoCheio, riscado: lanc && p[chave] < p.precoCheio,
+                     cartao:p[chave.replace('preco', 'precoCartao')] || 0,
                      parcelas:p.parcelas || 0, aPartirDe:!!p.aPartirDe, mensal:!!p.mensal };
     });
     return { lanc, chave, faixa:fx, faixas:dados.faixas, total, feitas, restantes:total - feitas, planos, dados };
@@ -1942,7 +1946,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="px-linhas rv" style="--d:.24s">
-      <div class="px-linha"><span class="r" data-en="build once" data-es="construir una vez">constrói uma vez</span><b data-en="Website or landing page" data-es="Sitio o landing page">Site ou landing page</b><p data-pr-px="site">R$ 1.500 no plano Completo, ou 3x de R$ 500 (condição de lançamento)</p></div>
+      <div class="px-linha"><span class="r" data-en="build once" data-es="construir una vez">constrói uma vez</span><b data-en="Website or landing page" data-es="Sitio o landing page">Site ou landing page</b><p data-pr-px="site">R$ 1.500 no Pix no plano Completo, ou 3x de R$ 600 no cartão (condição de lançamento)</p></div>
       <div class="px-linha"><span class="r" data-en="keep it running" data-es="mantenerlo funcionando">mantém no ar</span><b data-en="Maintenance and hosting" data-es="Mantenimiento y hosting">Manutenção e hospedagem</b><p data-pr-px="manutencao">R$ 97/mês para os 10 primeiros clientes</p></div>
       <div class="px-linha"><span class="r" data-en="bring people in" data-es="traer gente">traz gente</span><b data-en="Traffic management" data-es="Gestión de tráfico">Gestão de tráfego</b><p data-en="<span data-pr-px='trafego'>R$ 697</span> a month + the ad budget in your own account" data-es="<span data-pr-px='trafego'>R$ 697</span> al mes + el presupuesto de anuncios en tu propia cuenta"><span data-pr-px="trafego">R$ 697</span>/mês + verba na sua conta</p></div>
     </div>
@@ -2101,8 +2105,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function precosPX(L){
     const P = window.TheatrumPrecos, e = P.estado(), c = e.planos.completo, m = e.planos.manutencao;
     const n = c.parcelas || 3;
-    return { lanc:e.lanc, total:e.total, trafego:P.fmt(697, L), completo:P.fmt(c.atual, L), manutencao:P.fmt(m.atual, L),
-             parcelas:(L === 'en' ? n + 'x ' : L === 'es' ? n + ' pagos de ' : n + 'x de ') + P.fmt(c.atual, L, n) };
+    const pix = c.cartao ? (L === 'en' ? ' by Pix' : L === 'es' ? ' por Pix' : ' no Pix') : '';
+    const cartao = c.cartao ? (L === 'en' ? ' by card' : L === 'es' ? ' con tarjeta' : ' no cartão') : '';
+    return { lanc:e.lanc, total:e.total, trafego:P.fmt(697, L), completo:P.fmt(c.atual, L) + pix, manutencao:P.fmt(m.atual, L),
+             parcelas:(L === 'en' ? n + 'x ' : L === 'es' ? n + ' pagos de ' : n + 'x de ') + P.fmt(c.cartao || c.atual, L, n) + cartao };
   }
 
   const PX_T = {
@@ -2652,6 +2658,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   #investimento .pl-card{display:flex;flex-direction:column}
   #investimento .pl-valor strong{font:800 clamp(1.9rem,3vw,2.3rem)/1 var(--font-display);color:var(--accent);font-variant-numeric:tabular-nums}
   #investimento .pl-valor .pl-de{flex-basis:100%;font:500 15px/1.2 var(--font-body);color:var(--muted)}
+  #investimento .pl-valor .pl-pg{flex-basis:100%}
   #investimento .pl-valor del{color:inherit;text-decoration:line-through;text-decoration-thickness:1.5px}
   .pl-acao{margin-top:auto;padding-top:24px}
   .pl-acao .btn{width:100%;justify-content:center}
@@ -2699,13 +2706,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="pl-selo" data-en="recommended" data-es="recomendado">recomendado</span>
           <h4 data-en="Complete" data-es="Completo">Completo</h4>
           <p class="pl-para" data-en="To be found on Google and get the contact already halfway there." data-es="Para aparecer en Google y recibir el contacto ya a medio camino.">Para ser encontrado no Google e receber o contato já meio caminho andado.</p>
-          <p class="pl-valor" data-pr="completo"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 2.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 1.500</strong><span>ou 3x de R$ 500</span></p>
+          <p class="pl-valor" data-pr="completo"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 2.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 1.500</strong><span>no Pix</span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 600 no cartão</span></p>
           <ul>
             <li data-en="everything in Essential" data-es="todo lo del Esencial">tudo do Essencial</li>
             <li data-en="Google Business Profile set up" data-es="Perfil de Empresa en Google configurado">Google Meu Negócio configurado</li>
             <li data-en="1 feature: assessment quiz, quick application or order list sent via WhatsApp" data-es="1 función: cuestionario de evaluación, solicitud rápida o lista de pedido enviada por WhatsApp">1 funcionalidade: quiz de diagnóstico, aplicação rápida ou lista de pedido pelo WhatsApp</li>
           </ul>
-          <div class="pl-acao"><a class="btn btn-primary" data-plano="completo" data-origem="investimento-completo" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Completo%20(R%24%201.500)." target="_blank" rel="noopener" data-en="I want Complete" data-es="Quiero el Completo">Quero o Completo</a></div>
+          <div class="pl-acao"><a class="btn btn-primary" data-plano="completo" data-origem="investimento-completo" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Completo%20(R%24%201.500%20no%20Pix%20ou%203x%20de%20R%24%20600%20no%20cart%C3%A3o)." target="_blank" rel="noopener" data-en="I want Complete" data-es="Quiero el Completo">Quero o Completo</a></div>
         </article>
         <article class="pl-card">
           <h4 data-en="Custom" data-es="A medida">Sob medida</h4>
@@ -2766,15 +2773,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const TX = {
     pt:{ de:'de ', cheio:'preço cheio: ', lanc:'preço de lançamento: ', aPartir:'a partir de',
-         parc:(n, v) => 'ou ' + n + 'x de ' + v, mes:'/mês',
+         parc:(n, v) => 'ou ' + n + 'x de ' + v, cartao:' no cartão', pix:'no Pix', pixPg:'50% no início, 50% na entrega', mes:'/mês',
          manut:(lanc, t) => (lanc ? 'Para os ' + t + ' primeiros clientes, mantido enquanto o contrato estiver ativo. ' : '')
            + 'Inclui hospedagem, segurança, backup e até 2 ajustes por mês.' + (lanc ? ' Fidelidade de 12 meses.' : '') },
     en:{ de:'was ', cheio:'full price: ', lanc:'launch price: ', aPartir:'from',
-         parc:(n, v) => 'or ' + n + 'x ' + v, mes:'/month',
+         parc:(n, v) => 'or ' + n + 'x ' + v, cartao:' by card', pix:'by Pix', pixPg:'50% upfront, 50% on delivery', mes:'/month',
          manut:(lanc, t) => (lanc ? 'For the first ' + t + ' clients, kept for as long as the contract is active. ' : '')
            + 'Includes hosting, security, backup and up to 2 changes a month.' + (lanc ? ' 12-month commitment.' : '') },
     es:{ de:'antes ', cheio:'precio completo: ', lanc:'precio de lanzamiento: ', aPartir:'desde',
-         parc:(n, v) => 'o ' + n + ' pagos de ' + v, mes:'/mes',
+         parc:(n, v) => 'o ' + n + ' pagos de ' + v, cartao:' con tarjeta', pix:'por Pix', pixPg:'50% al inicio, 50% en la entrega', mes:'/mes',
          manut:(lanc, t) => (lanc ? 'Para los primeros ' + t + ' clientes, se mantiene mientras el contrato esté activo. ' : '')
            + 'Incluye hosting, seguridad, respaldo y hasta 2 ajustes por mes.' + (lanc ? ' Permanencia de 12 meses.' : '') }
   };
@@ -2791,7 +2798,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       + P.fmt(p.cheio, L) + suf + '</del></span>';
     if (p.aPartirDe) h += '<small>' + t.aPartir + '</small>';
     h += '<strong>' + (p.riscado ? '<span class="sr">' + t.lanc + '</span>' : '') + P.fmt(p.atual, L) + suf + '</strong>';
-    if (p.parcelas) h += '<span>' + t.parc(p.parcelas, P.fmt(p.atual, L, p.parcelas)) + '</span>';
+    if (p.cartao) h += '<span>' + t.pix + '</span><span class="pl-pg">' + t.pixPg + '</span>';
+    if (p.parcelas) h += '<span' + (p.cartao ? ' class="pl-pg"' : '') + '>'
+      + t.parc(p.parcelas, P.fmt(p.cartao || p.atual, L, p.parcelas)) + (p.cartao ? t.cartao : '') + '</span>';
     return h;
   }
 
@@ -2803,7 +2812,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     sec.querySelectorAll('[data-plano]').forEach(a => {
       const id = a.dataset.plano, p = e.planos[id];
       if (!p) return;
-      const preco = (p.aPartirDe ? 'a partir de ' : '') + P.fmt(p.atual, 'pt');
+      const preco = (p.aPartirDe ? 'a partir de ' : '') + P.fmt(p.atual, 'pt')
+        + (p.cartao ? ' no Pix ou ' + p.parcelas + 'x de ' + P.fmt(p.cartao, 'pt', p.parcelas) + ' no cartão' : '');
       const msg = (e.lanc ? 'Olá! Vi a condição de lançamento e quero o plano ' : 'Olá! Vim do site da Theatrum e quero o plano ')
         + NOME[id] + ' (' + preco + ').';
       a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
