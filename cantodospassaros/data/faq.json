@@ -1,0 +1,14 @@
+{
+  "_leia": "Dúvidas do fim da página. Texto com [colchete] vira placeholder amarelo. {checkin}, {checkout} e {cafe} vêm do js/config.js.",
+  "perguntas": [
+    { "id": "como-reservar", "p": "Como faço a reserva?", "r": "Pelo WhatsApp. Você manda as datas e quantas pessoas vêm, a pousada confirma se tem chalé livre e o valor. Para garantir a reserva, você paga 50% do valor." },
+    { "id": "pagamento", "p": "Quais as formas de pagamento?", "r": "50% do valor para reservar a diária. O restante pode ser pago em dinheiro, Pix ou PicPay." },
+    { "id": "cafe", "p": "O café da manhã está incluso?", "r": "Está incluso na diária. Horário: {cafe}." },
+    { "id": "horarios", "p": "Qual o horário de entrada e de saída?", "r": "Entrada a partir de {checkin} e saída até {checkout}." },
+    { "id": "criancas", "p": "Posso levar criança?", "r": "Tem parquinho no gramado, com escorregador e balanço. [confirmar a regra para crianças e até que idade não paga]" },
+    { "id": "pet", "p": "Aceitam animal de estimação?", "r": "[confirmar se aceitam pet e em quais chalés]" },
+    { "id": "estrutura", "p": "Tem Wi-Fi e estacionamento?", "r": "[confirmar Wi-Fi nos chalés] [confirmar estacionamento]" },
+    { "id": "cancelamento", "p": "E se eu precisar cancelar?", "r": "[política de cancelamento e devolução do sinal]" },
+    { "id": "onde-fica", "p": "Onde fica a pousada?", "r": "Na Rodovia Afonso Cláudio, km 4, em Peçanha, Alto Jucu, Aracê, Domingos Martins (ES), na região de Pedra Azul. [distância até o Parque Estadual da Pedra Azul]" }
+  ]
+}

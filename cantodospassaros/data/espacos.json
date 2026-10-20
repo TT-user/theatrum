@@ -1,0 +1,13 @@
+{
+  "_leia": "Galeria 'A pousada'. 'foto' sem a largura; 'larguras' são as versões que existem em assets/fotos/. 'forma': largo (ocupa duas colunas) ou alto. Texto com [colchete] vira placeholder amarelo. A grade fecha quando há altos aos pares (4 colunas): a ordem largo, alto, alto, largo, alto, alto, largo, largo enche 4x4 sem buraco.",
+  "itens": [
+    { "foto": "lago", "larguras": [720, 1130], "w": 1130, "h": 678, "forma": "largo", "titulo": "O lago", "texto": "Cercado de madeira, com a casinha dos passarinhos na beira.", "alt": "Lago comprido com cerca de madeira, palmeiras e uma casinha de pássaros no gramado" },
+    { "foto": "casinha-passaros", "larguras": [400, 672], "w": 672, "h": 814, "forma": "alto", "titulo": "A casinha dos pássaros", "texto": "O comedouro do jardim, visitado pelos canários.", "alt": "Casinha de madeira para pássaros sobre um tronco, com dois passarinhos amarelos comendo" },
+    { "foto": "deck", "larguras": [400, 672], "w": 672, "h": 806, "forma": "alto", "titulo": "O deck", "texto": "Varanda coberta de madeira, cheia de plantas.", "alt": "Varanda coberta de madeira com vasos de plantas, banquinhos e mesas ao fundo" },
+    { "foto": "varanda-redes", "larguras": [720, 1100], "w": 1100, "h": 676, "forma": "largo", "titulo": "Varanda das redes", "texto": "Redes armadas entre as palmeiras, para a tarde passar devagar.", "alt": "Varanda de casa branca com duas redes, mesa posta e palmeiras no gramado" },
+    { "foto": "parquinho", "larguras": [400, 673], "w": 673, "h": 816, "forma": "alto", "titulo": "Parquinho", "texto": "Escorregador, balanço e gira-gira no gramado.", "alt": "Parquinho no gramado com escorregador, balanço e brinquedos coloridos ao sol da manhã" },
+    { "foto": "chale-entardecer", "larguras": [496], "w": 496, "h": 755, "forma": "alto", "titulo": "Fim de tarde", "texto": "As luzes da varanda acendem com o céu ainda claro.", "alt": "Chalé de madeira e tijolinho ao entardecer, com as luzes das varandas acesas" },
+    { "foto": "area-gourmet", "larguras": [720, 1140], "w": 1140, "h": 657, "forma": "largo", "titulo": "Área de lazer", "texto": "Churrasqueira, mesa comprida e piso de pedra. [confirmar regras de uso pelos hóspedes]", "alt": "Área coberta com churrasqueira, mesa de madeira e piso de pedras coloridas" },
+    { "foto": "jardim-noite", "larguras": [720, 1240], "w": 1240, "h": 632, "forma": "largo", "titulo": "O jardim à noite", "texto": "Varal de luzes entre as palmeiras.", "alt": "Jardim da pousada à noite, com varal de luzes acesas entre palmeiras e pinheirinhos" }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "_leia": "Um bloco por chalé. 'foto' é o nome do arquivo em assets/fotos/ sem a largura (o site usa -<largura>.webp). 'capacidade' e 'camas' em null viram placeholder. 'cor' pinta o passarinho do card. Chalé novo: bloco aqui + foto na pasta.",
+  "comum": [
+    "Café da manhã incluso",
+    "Varanda de madeira",
+    "Jardim na porta"
+  ],
+  "itens": [
+    {
+      "id": "sabia",
+      "nome": "Sabiá",
+      "passaro": "O sabiá-laranjeira é o primeiro a cantar de manhã.",
+      "cor": "#C8642B",
+      "foto": "chale-sabia",
+      "largura": 475,
+      "altura": 703,
+      "alt": "Varanda de madeira do Chalé Sabiá, com mesinha redonda e dois banquinhos",
+      "capacidade": null,
+      "camas": null
+    },
+    {
+      "id": "joao-de-barro",
+      "nome": "João de Barro",
+      "passaro": "O pássaro que constrói a própria casinha, com porta e tudo.",
+      "cor": "#9A6236",
+      "foto": "chale-joao-de-barro",
+      "largura": 476,
+      "altura": 478,
+      "alt": "Fachada do Chalé João de Barro, com varanda de madeira, mesinha e escada",
+      "capacidade": null,
+      "camas": null
+    },
+    {
+      "id": "canario",
+      "nome": "Canário",
+      "passaro": "Amarelinho, igual aos que visitam a casinha do jardim.",
+      "cor": "#D9A21B",
+      "foto": "chale-canario",
+      "largura": 486,
+      "altura": 500,
+      "alt": "Entrada do Chalé Canário, com porta de madeira, plaquinha com o nome e varanda",
+      "capacidade": null,
+      "camas": null
+    },
+    {
+      "id": "colibri",
+      "nome": "Colibri",
+      "passaro": "O beija-flor que passa o dia entre as flores do jardim.",
+      "cor": "#2E8A7A",
+      "foto": "chale-colibri",
+      "largura": 496,
+      "altura": 468,
+      "alt": "Porta do Chalé Colibri, de madeira e tijolinho, com a plaquinha oval do nome",
+      "capacidade": null,
+      "camas": null
+    }
+  ]
+}

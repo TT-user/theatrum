@@ -817,6 +817,27 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=cabralmiranda`, OG em
   `og-image-v1.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
 
+- `/cantodospassaros/` — prévia do site da Pousada Canto dos Pássaros (chalés de madeira e tijolinho,
+  café da manhã incluso, Rodovia Afonso Cláudio km 4, Aracê, Domingos Martins, ES, região de Pedra Azul),
+  desde 20/10/2026, a partir do Instagram (@pousadacantodospassaros.es) e de prints dos stories. Cada
+  chalé tem nome de pássaro (Sabiá, João de Barro, Canário, Colibri, pelas plaquinhas); o card leva um
+  passarinho em SVG na cor da ave e "Quero o {chalé}" desce para o simulador com ele marcado. Cores das
+  fotos: madeira escura `#2B1D15` (café e rodapé), verde musgo `#24361F` (reserva), cedro `#A9542A` nos
+  botões, amarelo canário `#E8B84A` sobre escuro; Fraunces e Jost servidas daqui. O itálico do Fraunces
+  tem o h, o b e o k apontados para as versões `.alt` (o desenho padrão tem um gancho que se lê "ĥ"):
+  refez a fonte, refaça isso. Hero com quatro fotos em fusão (só opacidade e transform, para fora da tela
+  e com a aba escondida) e três passarinhos em voo em CSS; cortes de serra entre as seções. "Monte sua
+  estadia" (datas, adultos, crianças, chalé, ocasião) monta a mensagem mastigada; o pagamento publicado
+  (50% para reservar, restante em dinheiro, Pix ou PicPay) é o do story deles. Galeria de 8 fotos em
+  grade 4x4 sem buraco (a ordem do `data/espacos.json` importa, está no `_leia`) com foto ampliada.
+  Diária, capacidade, camas, horários, pet, cancelamento e CNPJ são placeholder (`js/config.js` e
+  `data/*.json`); depoimentos são slot vazio, com o número de seguidores do Instagram ao lado. Sem
+  `js/leads.js`, mesmo motivo da `/esteticaef/`: modal próprio de três opções no computador, com
+  `CP.web3formsKey`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca
+  d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v1.jpg` (HTML de origem em
+  `interno/clientes/cantodospassaros/og/`). Prints e pendências em `interno/clientes/cantodospassaros/`,
+  fora do git.
+
 - `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
   (sistema de trabalho no Claude Code, com memória do operador e 12 comandos: `/instalar`,
   `/previa`, `/proposta`...) para quem quer vender site e marketing a pequenos negócios. O
@@ -968,7 +989,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
