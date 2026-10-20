@@ -285,9 +285,12 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   escolhido": com zero cliente seria prova social inventada (o pedido de
   16/10/2026 dizia "Mais escolhido"; ficou "recomendado"). Cada card abre o
   WhatsApp citando plano e preço e dispara `plano_click`.
-  O preço no cartão mora em `precoCartaoLancamento` (só o Completo, só na
-  faixa de lançamento): nas outras faixas o Matheus ainda não definiu, e
-  as parcelas voltam a sair do preço da faixa.
+  Desde 20/10/2026 o preço da faixa é o do Pix (50% no início, 50% na
+  entrega) e cada plano tem também o total no cartão em 3x, Pix + 20%
+  arredondado (`precoCartaoLancamento`, `...Intermediario`, `...Cheio`):
+  Essencial 1.200 / 1.440 / 1.800, Completo 1.800 / 2.160 / 3.000, Sob
+  medida 3.000 / 3.000 / 5.880. O card mostra o selo "economize R$ X no
+  Pix" (diferença entre os dois). A manutenção mensal fica fora disso.
   Mudou valor de plano (não só as vagas)? Mude também o `PADRAO` e o HTML
   estático do `[09]`, que é o que aparece sem JS ou se o fetch falhar.
   Desde 18/10/2026 a moeda segue o idioma: real em português, dólar em

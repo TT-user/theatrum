@@ -1606,9 +1606,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     vagasTotal:10, vagasPreenchidas:0,
     faixas:[{de:1,ate:3,preco:'precoLancamento'},{de:4,ate:10,preco:'precoIntermediario'},{de:11,ate:null,preco:'precoCheio'}],
     planos:{
-      essencial:{precoCheio:1500,precoLancamento:990,precoIntermediario:1200},
-      completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3,precoCartaoLancamento:1800},
-      sobMedida:{precoCheio:4900,precoLancamento:2500,precoIntermediario:2500,aPartirDe:true},
+      essencial:{precoCheio:1500,precoLancamento:990,precoIntermediario:1200,parcelas:3,
+                 precoCartaoCheio:1800,precoCartaoLancamento:1200,precoCartaoIntermediario:1440},
+      completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3,
+                precoCartaoCheio:3000,precoCartaoLancamento:1800,precoCartaoIntermediario:2160},
+      sobMedida:{precoCheio:4900,precoLancamento:2500,precoIntermediario:2500,aPartirDe:true,parcelas:3,
+                 precoCartaoCheio:5880,precoCartaoLancamento:3000,precoCartaoIntermediario:3000},
       manutencao:{precoCheio:197,precoLancamento:97,precoIntermediario:97,mensal:true}
     }
   };
@@ -2659,6 +2662,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   #investimento .pl-valor strong{font:800 clamp(1.9rem,3vw,2.3rem)/1 var(--font-display);color:var(--accent);font-variant-numeric:tabular-nums}
   #investimento .pl-valor .pl-de{flex-basis:100%;font:500 15px/1.2 var(--font-body);color:var(--muted)}
   #investimento .pl-valor .pl-pg{flex-basis:100%}
+  #investimento .pl-valor .pl-eco{display:inline-block;margin:2px 0 4px;padding:4px 10px;border-radius:99px;
+    background:rgba(227,179,65,.14);border:1px solid rgba(227,179,65,.35);color:var(--accent);font:600 13px/1.2 var(--font-body);font-style:normal}
   #investimento .pl-valor del{color:inherit;text-decoration:line-through;text-decoration-thickness:1.5px}
   .pl-acao{margin-top:auto;padding-top:24px}
   .pl-acao .btn{width:100%;justify-content:center}
@@ -2693,20 +2698,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="pl-card">
           <h4 data-en="Essential" data-es="Esencial">Essencial</h4>
           <p class="pl-para" data-en="To start advertising with one page that leads to your WhatsApp." data-es="Para empezar a anunciar con una página que lleva a tu WhatsApp.">Para começar a anunciar com uma página que leva ao seu WhatsApp.</p>
-          <p class="pl-valor" data-pr="essencial"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 1.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 990</strong></p>
+          <p class="pl-valor" data-pr="essencial"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 1.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 990</strong><span>no Pix</span><span class="pl-pg"><i class="pl-eco">economize R$ 210 no Pix</i></span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 400 no cartão</span></p>
           <ul>
             <li data-en="one-page landing page, up to 6 sections" data-es="landing page de una página, hasta 6 secciones">landing page de 1 página, até 6 seções</li>
             <li data-en="copy written by us" data-es="textos escritos por nosotros">texto escrito por nós</li>
             <li data-en="WhatsApp button with a ready-made message" data-es="botón de WhatsApp con mensaje listo">botão de WhatsApp com mensagem pronta</li>
             <li data-en="fast on mobile" data-es="rápida en el celular">rápida no celular</li>
           </ul>
-          <div class="pl-acao"><a class="btn btn-secondary" data-plano="essencial" data-origem="investimento-essencial" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Essencial%20(R%24%20990)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Essential' data-es='<span class="btn-dot"></span>Quiero el Esencial'><span class="btn-dot"></span>Quero o Essencial</a></div>
+          <div class="pl-acao"><a class="btn btn-secondary" data-plano="essencial" data-origem="investimento-essencial" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Essencial%20(R%24%20990%20no%20Pix%20ou%203x%20de%20R%24%20400%20no%20cart%C3%A3o)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Essential' data-es='<span class="btn-dot"></span>Quiero el Esencial'><span class="btn-dot"></span>Quero o Essencial</a></div>
         </article>
         <article class="pl-card pl-dest">
           <span class="pl-selo" data-en="recommended" data-es="recomendado">recomendado</span>
           <h4 data-en="Complete" data-es="Completo">Completo</h4>
           <p class="pl-para" data-en="To be found on Google and get the contact already halfway there." data-es="Para aparecer en Google y recibir el contacto ya a medio camino.">Para ser encontrado no Google e receber o contato já meio caminho andado.</p>
-          <p class="pl-valor" data-pr="completo"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 2.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 1.500</strong><span>no Pix</span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 600 no cartão</span></p>
+          <p class="pl-valor" data-pr="completo"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 2.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 1.500</strong><span>no Pix</span><span class="pl-pg"><i class="pl-eco">economize R$ 300 no Pix</i></span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 600 no cartão</span></p>
           <ul>
             <li data-en="everything in Essential" data-es="todo lo del Esencial">tudo do Essencial</li>
             <li data-en="Google Business Profile set up" data-es="Perfil de Empresa en Google configurado">Google Meu Negócio configurado</li>
@@ -2717,13 +2722,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="pl-card">
           <h4 data-en="Custom" data-es="A medida">Sob medida</h4>
           <p class="pl-para" data-en="For whoever needs a system along with the website." data-es="Para quien necesita un sistema junto con el sitio.">Para quem precisa de sistema junto com o site.</p>
-          <p class="pl-valor" data-pr="sobMedida"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 4.900</del></span><small>a partir de</small><strong><span class="sr">preço de lançamento: </span>R$ 2.500</strong></p>
+          <p class="pl-valor" data-pr="sobMedida"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 4.900</del></span><small>a partir de</small><strong><span class="sr">preço de lançamento: </span>R$ 2.500</strong><span>no Pix</span><span class="pl-pg"><i class="pl-eco">economize R$ 500 no Pix</i></span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 1.000 no cartão</span></p>
           <ul>
             <li data-en="systems such as a booking simulator, catalogue with ordering or scheduling" data-es="sistemas como simulador de reservas, catálogo con pedido o agenda">sistemas como simulador de reserva, catálogo com pedido ou agendamento</li>
             <li data-en="or a website with several pages" data-es="o un sitio con varias páginas">ou site com várias páginas</li>
             <li data-en="exact price after the diagnosis" data-es="precio exacto después del diagnóstico">valor exato depois do diagnóstico</li>
           </ul>
-          <div class="pl-acao"><a class="btn btn-secondary" data-plano="sobMedida" data-origem="investimento-sob-medida" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Sob%20medida%20(a%20partir%20de%20R%24%202.500)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Custom' data-es='<span class="btn-dot"></span>Quiero el A medida'><span class="btn-dot"></span>Quero o Sob medida</a></div>
+          <div class="pl-acao"><a class="btn btn-secondary" data-plano="sobMedida" data-origem="investimento-sob-medida" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Sob%20medida%20(a%20partir%20de%20R%24%202.500%20no%20Pix%20ou%203x%20de%20R%24%201.000%20no%20cart%C3%A3o)." target="_blank" rel="noopener" data-en='<span class="btn-dot"></span>I want Custom' data-es='<span class="btn-dot"></span>Quiero el A medida'><span class="btn-dot"></span>Quero o Sob medida</a></div>
         </article>
       </div>
 
@@ -2773,15 +2778,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const idioma = () => { const l = document.documentElement.lang; return l === 'en' || l === 'es' ? l : 'pt'; };
   const TX = {
     pt:{ de:'de ', cheio:'preço cheio: ', lanc:'preço de lançamento: ', aPartir:'a partir de',
-         parc:(n, v) => 'ou ' + n + 'x de ' + v, cartao:' no cartão', pix:'no Pix', pixPg:'50% no início, 50% na entrega', mes:'/mês',
+         parc:(n, v) => 'ou ' + n + 'x de ' + v, cartao:' no cartão', pix:'no Pix', eco:v => 'economize ' + v + ' no Pix', pixPg:'50% no início, 50% na entrega', mes:'/mês',
          manut:(lanc, t) => (lanc ? 'Para os ' + t + ' primeiros clientes, mantido enquanto o contrato estiver ativo. ' : '')
            + 'Inclui hospedagem, segurança, backup e até 2 ajustes por mês.' + (lanc ? ' Fidelidade de 12 meses.' : '') },
     en:{ de:'was ', cheio:'full price: ', lanc:'launch price: ', aPartir:'from',
-         parc:(n, v) => 'or ' + n + 'x ' + v, cartao:' by card', pix:'by Pix', pixPg:'50% upfront, 50% on delivery', mes:'/month',
+         parc:(n, v) => 'or ' + n + 'x ' + v, cartao:' by card', pix:'by Pix', eco:v => 'save ' + v + ' with Pix', pixPg:'50% upfront, 50% on delivery', mes:'/month',
          manut:(lanc, t) => (lanc ? 'For the first ' + t + ' clients, kept for as long as the contract is active. ' : '')
            + 'Includes hosting, security, backup and up to 2 changes a month.' + (lanc ? ' 12-month commitment.' : '') },
     es:{ de:'antes ', cheio:'precio completo: ', lanc:'precio de lanzamiento: ', aPartir:'desde',
-         parc:(n, v) => 'o ' + n + ' pagos de ' + v, cartao:' con tarjeta', pix:'por Pix', pixPg:'50% al inicio, 50% en la entrega', mes:'/mes',
+         parc:(n, v) => 'o ' + n + ' pagos de ' + v, cartao:' con tarjeta', pix:'por Pix', eco:v => 'ahorra ' + v + ' con Pix', pixPg:'50% al inicio, 50% en la entrega', mes:'/mes',
          manut:(lanc, t) => (lanc ? 'Para los primeros ' + t + ' clientes, se mantiene mientras el contrato esté activo. ' : '')
            + 'Incluye hosting, seguridad, respaldo y hasta 2 ajustes por mes.' + (lanc ? ' Permanencia de 12 meses.' : '') }
   };
@@ -2798,7 +2803,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       + P.fmt(p.cheio, L) + suf + '</del></span>';
     if (p.aPartirDe) h += '<small>' + t.aPartir + '</small>';
     h += '<strong>' + (p.riscado ? '<span class="sr">' + t.lanc + '</span>' : '') + P.fmt(p.atual, L) + suf + '</strong>';
-    if (p.cartao) h += '<span>' + t.pix + '</span><span class="pl-pg">' + t.pixPg + '</span>';
+    if (p.cartao) h += '<span>' + t.pix + '</span>'
+      + (p.cartao > p.atual ? '<span class="pl-pg"><i class="pl-eco">' + t.eco(P.fmt(p.cartao - p.atual, L)) + '</i></span>' : '')
+      + '<span class="pl-pg">' + t.pixPg + '</span>';
     if (p.parcelas) h += '<span' + (p.cartao ? ' class="pl-pg"' : '') + '>'
       + t.parc(p.parcelas, P.fmt(p.cartao || p.atual, L, p.parcelas)) + (p.cartao ? t.cartao : '') + '</span>';
     return h;
