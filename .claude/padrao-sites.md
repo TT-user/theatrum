@@ -58,12 +58,7 @@
 ## 4. Contato e conversão
 - Todo link de WhatsApp usa `wa.me/<número>?text=<mensagem>` com uma mensagem pronta e contextual, que cita a página, o serviço, o produto ou o plano de onde a pessoa veio.
 - **Mensagem "mastigada":** quando houver formulário, quiz, simulador ou sacola, a mensagem final chega no WhatsApp com os campos em negrito (`*Nome:*`, `*Objetivo:*`...).
-- **Celular × computador:**
-  - No celular, os botões de WhatsApp abrem o `wa.me` direto.
-  - No computador, o clique abre um modal com três opções:
-    - (a) "Prefere que te chamem no WhatsApp?", com nome e WhatsApp.
-    - (b) "Receber por e-mail", com nome e e-mail.
-    - (c) "Abrir no WhatsApp mesmo assim", com QR code e o link do WhatsApp Web.
+- **WhatsApp direto, sem janela no meio (desde 20/10/2026, a pedido do Matheus):** todo botão de WhatsApp, inclusive o envio de simulador, quiz ou sacola, abre o `wa.me` direto, no celular e no computador. Nada de modal com QR code, "me chamem" ou e-mail entre o clique e a conversa. O modal de duas colunas fica só no site da própria Theatrum (`js/leads.js`).
 - Os formulários enviam pelo **Web3Forms** (access key em `js/config.js`), com o assunto "🔥 Novo lead – <cliente> – <nome>" e a página de origem. No máximo 4 campos antes do contato; perguntas longas só depois da venda.
 - O botão flutuante de WhatsApp aparece depois que a pessoa rola a primeira tela.
 

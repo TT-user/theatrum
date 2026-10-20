@@ -832,8 +832,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   grade 4x4 sem buraco (a ordem do `data/espacos.json` importa, está no `_leia`) com foto ampliada.
   Diária, capacidade, camas, horários, pet, cancelamento e CNPJ são placeholder (`js/config.js` e
   `data/*.json`); depoimentos são slot vazio, com o número de seguidores do Instagram ao lado. Sem
-  `js/leads.js`, mesmo motivo da `/esteticaef/`: modal próprio de três opções no computador, com
-  `CP.web3formsKey`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca
+  `js/leads.js` e sem modal: todo WhatsApp, inclusive o do simulador, abre o `wa.me` direto também
+  no computador (pedido de 20/10/2026, vale para site de cliente; ver `padrao-sites.md`). Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca
   d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v1.jpg` (HTML de origem em
   `interno/clientes/cantodospassaros/og/`). Prints e pendências em `interno/clientes/cantodospassaros/`,
   fora do git.

@@ -26,9 +26,5 @@ window.CP = {
   lat: -20.3340375,
   lng: -41.0545156,
   mapsUrl: 'https://www.google.com/maps/place/Pousada+Canto+dos+P%C3%A1ssaros/@-20.3340375,-41.0545156,15z',
-  mapaEmbed: 'https://maps.google.com/maps?q=-20.3340375,-41.0545156&z=14&output=embed',
-
-  // Web3Forms da pousada (o e-mail de destino é o dono da chave). Sem chave, os formulários do
-  // modal do computador mostram o aviso de prévia e oferecem o WhatsApp.
-  web3formsKey: null
+  mapaEmbed: 'https://maps.google.com/maps?q=-20.3340375,-41.0545156&z=14&output=embed'
 };

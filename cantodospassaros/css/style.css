@@ -329,32 +329,6 @@ p { margin: 0 0 1em; }
 .luz__n--a svg { transform: rotate(180deg); }
 .luz__x { position: absolute; top: 18px; right: 18px; font-size: 30px; line-height: 1; }
 
-/* Modal de WhatsApp no computador */
-.mz { position: fixed; inset: 0; z-index: 95; background: rgba(15, 10, 7, .7); display: grid; place-items: center; padding: 20px; }
-.mz__caixa { position: relative; width: min(520px, 100%); max-height: calc(100vh - 40px); overflow: auto; background: var(--papel); border-radius: 22px; padding: 32px; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6); }
-.mz__caixa h2 { font-size: 30px; margin-bottom: 6px; padding-right: 30px; }
-.mz__sub { color: var(--tinta-2); margin-bottom: 20px; }
-.mz__x { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--creme); font-size: 26px; cursor: pointer; }
-.mz__op { border: 1.5px solid #E2D6C2; border-radius: 16px; margin-bottom: 10px; background: #fff; }
-.mz__op > button { width: 100%; display: flex; gap: 14px; align-items: center; text-align: left; padding: 14px 16px; border: 0; background: none; cursor: pointer; font-weight: 500; }
-.mz__op > button small { display: block; font-weight: 400; color: var(--tinta-2); font-size: 14px; }
-.mz__op .letra { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--creme); font: 500 15px/1 var(--serif); }
-.mz__op.aberta { border-color: var(--cedro); }
-.mz__op.aberta .letra { background: var(--cedro); color: #fff; }
-.mz__corpo { display: none; padding: 0 16px 18px; }
-.mz__op.aberta .mz__corpo { display: block; }
-.mz__corpo form { display: grid; gap: 8px; }
-.mz__corpo label { font-size: 14px; color: var(--tinta-2); }
-.mz__corpo input, .mz__corpo textarea { width: 100%; min-height: 48px; padding: 10px 12px; border: 1.5px solid #D9CCB6; border-radius: 10px; font-size: 16px; }
-.mz__corpo .btn { margin-top: 8px; }
-.mz__oculto { position: absolute; left: -9999px; }
-.mz__msg { margin: 8px 0 0; font-size: 15px; }
-.mz__qr { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: center; }
-.mz__qr-img { width: 150px; height: 150px; display: grid; place-items: center; background: var(--creme); border-radius: 10px; }
-.mz__qr-img img { width: 150px; height: 150px; image-rendering: pixelated; }
-.mz__qr p { font-size: 14.5px; color: var(--tinta-2); margin-bottom: 10px; }
-.mz__qr .btn { width: 100%; margin-bottom: 8px; }
-
 /* Entrada suave */
 .rev { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .rev.ok { opacity: 1; transform: none; }
