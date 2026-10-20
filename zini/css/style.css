@@ -241,27 +241,49 @@ p { margin: 0 0 1em; }
 
 /* ---------- planos ---------- */
 .planos__fonte { margin: 14px 0 0; font-size: 14px; }
-.planos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
-.plano { position: relative; background: var(--grafite-2); border: 1px solid var(--concreto); border-radius: var(--raio); padding: 24px 22px 22px; display: flex; flex-direction: column; }
-.plano--destaque { border-color: var(--amarelo); box-shadow: 0 0 0 1px var(--amarelo); }
-.plano__selo { position: absolute; top: -12px; left: 22px; background: var(--amarelo); color: var(--preto); font: 700 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .08em; padding: 6px 10px; border-radius: 5px; }
+/* Os cards dividem as linhas da grade (subgrid): título, texto, tabela, observação (ou horários) e
+   botão ficam na mesma altura nos quatro, e os cards têm a mesma altura. */
+.planos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; row-gap: 0; align-items: stretch; padding-top: 14px; }
+.plano { position: relative; display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start; margin-bottom: 16px; background: var(--grafite-2); border: 1px solid var(--concreto); border-radius: var(--raio); padding: 26px 20px 20px; transition: transform .25s ease, border-color .25s, box-shadow .25s, background-color .25s; }
+.plano:hover { transform: translateY(-6px); border-color: var(--amarelo); box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .9), 0 0 0 1px var(--amarelo), 0 0 34px -6px rgba(245, 196, 0, .35); }
+.plano__selo { position: absolute; top: -13px; left: 22px; display: flex; align-items: center; gap: 6px; background: var(--preto); color: var(--amarelo); border: 1px solid var(--amarelo); font: 700 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .08em; padding: 6px 10px; border-radius: 5px; }
+.plano__selo .ph { font-size: 11px; }
+.plano__cab { margin-bottom: 12px; }
 .plano h3 { font-size: 21px; margin-bottom: 4px; }
-.plano__sub { font: 600 13px/1.3 var(--sans); text-transform: uppercase; letter-spacing: .08em; color: var(--amarelo); margin-bottom: 12px; }
+.plano__sub { font: 600 13px/1.3 var(--sans); text-transform: uppercase; letter-spacing: .08em; color: var(--amarelo); margin: 0; }
 .plano__linha { font-size: 15px; color: var(--txt-2); margin-bottom: 16px; }
 .plano__horas { list-style: none; margin: 0 0 16px; padding: 12px 14px; background: rgba(255, 255, 255, .04); border-radius: 8px; font-size: 14px; color: var(--txt); }
 .plano__horas li + li { margin-top: 4px; }
-.tabela { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 16px; }
-.tabela th { font: 600 11.5px/1.2 var(--sans); text-transform: uppercase; letter-spacing: .08em; color: var(--txt-2); text-align: right; padding: 0 0 8px; }
+.plano__horas { font-size: 13.5px; padding: 10px 12px; align-self: start; }
+.tabela { width: 100%; border-collapse: collapse; font-size: 14.5px; margin-bottom: 16px; align-self: start; }
+.tabela th { font: 600 11px/1.2 var(--sans); text-transform: uppercase; letter-spacing: .05em; color: var(--txt-2); text-align: right; padding: 0 0 8px; }
 .tabela th:first-child { text-align: left; }
-.tabela th + th { padding-left: 12px; }
-.tabela td { padding: 10px 0; border-top: 1px solid var(--concreto); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tabela th + th { padding-left: 8px; }
+.tabela td { padding: 10px 0; border-top: 1px solid var(--concreto); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; transition: color .2s; }
 .tabela td:first-child { text-align: left; color: var(--txt); }
-.tabela td + td { padding-left: 12px; }
+.tabela td + td { padding-left: 8px; }
+.tabela tbody tr:hover td { color: var(--amarelo); }
 .tabela .rec { color: var(--amarelo); font-weight: 700; }
-.plano__extra { font-size: 13.5px; color: var(--txt-2); border-left: 3px solid var(--amarelo); padding-left: 10px; margin-bottom: 18px; }
-.plano .btn { margin-top: auto; }
-@media (max-width: 1100px) { .planos { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .planos { grid-template-columns: 1fr; } }
+.plano__extra { font-size: 13.5px; color: var(--txt-2); border-left: 3px solid var(--amarelo); padding-left: 10px; margin-bottom: 18px; align-self: start; }
+.plano .btn { align-self: end; }
+.plano:hover .btn--linha-claro { background: var(--amarelo); border-color: var(--amarelo); color: var(--preto); }
+
+/* Plano em destaque ("destaque": true no JSON): card amarelo, texto preto */
+.plano--destaque { background: linear-gradient(160deg, #FFD43B 0%, var(--amarelo) 45%, #E2AC00 100%); border-color: var(--amarelo); color: var(--preto); box-shadow: 0 26px 60px -28px rgba(245, 196, 0, .6); }
+.plano--destaque:hover { border-color: #fff; box-shadow: 0 30px 60px -24px rgba(245, 196, 0, .75), 0 0 0 2px #fff; }
+.plano--destaque .plano__sub { color: var(--preto); }
+.plano--destaque .plano__linha, .plano--destaque .plano__extra, .plano--destaque .tabela th { color: #3A3000; }
+.plano--destaque .plano__extra { border-color: var(--preto); }
+.plano--destaque .tabela td { border-color: rgba(0, 0, 0, .16); }
+.plano--destaque .tabela td:first-child { color: var(--preto); }
+.plano--destaque .tabela td + td { font-weight: 700; }
+.plano--destaque .tabela tbody tr:hover td { color: #fff; }
+.plano--destaque .btn--preto:hover { background: #2A2B2E; }
+@media (min-width: 1101px) { .plano--destaque { transform: translateY(-8px); } .plano--destaque:hover { transform: translateY(-14px); } }
+
+@media (max-width: 1100px) { .planos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .planos { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .plano, .plano:hover, .plano--destaque, .plano--destaque:hover { transition: none; transform: none; } }
 
 .recorrente { margin-top: 28px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px 48px; align-items: center; padding: 30px; border-radius: var(--raio); background: linear-gradient(120deg, #1D2030, var(--grafite-2) 60%); border: 1px solid #2D3350; }
 .recorrente h3 { font-size: 22px; margin-bottom: 8px; }

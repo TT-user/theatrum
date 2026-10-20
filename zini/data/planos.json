@@ -1,5 +1,5 @@
 {
-  "_leia": "Planos da Zini. Valores copiados do destaque 'Planos' do Instagram (stories de 58 semanas antes de 20/10/2026) e o recorrente de um story de 226 semanas: CONFIRMAR antes do site oficial. 'precos' segue a ordem de 'colunas'. 'vezes' é quantos treinos por semana (null = ilimitado ou sem conta por treino). Mudou valor aqui, mude também a mensagem do 'Monte seu plano' se tiver citado. Mudou este arquivo, suba o V no topo do js/main.js. Para tirar o aviso amarelo de confirmação, ponha \"confirmar\": false.",
+  "_leia": "Planos da Zini. Valores copiados do destaque 'Planos' do Instagram (stories de 58 semanas antes de 20/10/2026) e o recorrente de um story de 226 semanas: CONFIRMAR antes do site oficial. 'precos' segue a ordem de 'colunas'. 'vezes' é quantos treinos por semana (null = ilimitado ou sem conta por treino). Mudou valor aqui, mude também a mensagem do 'Monte seu plano' se tiver citado. Mudou este arquivo, suba o V no topo do js/main.js. Para tirar o aviso amarelo de confirmação, ponha \"confirmar\": false. O card com \"destaque\": true fica amarelo e leva o 'selo'; enquanto 'confirmar' for true, o selo ganha [confirmar] ao lado (a Zini ainda não disse qual plano mais vende).",
   "confirmar": true,
   "grupos": [
     {
@@ -19,9 +19,10 @@
     {
       "id": "vip",
       "nome": "VIP",
-      "sub": "Musculação ilimitada + CrossZini",
-      "selo": "Os dois juntos",
-      "linha": "Musculação liberada todos os dias, em todo o horário de funcionamento, e aulas de CrossZini no número de agendamentos do seu contrato.",
+      "sub": "Musculação ilimitada + CrossFit",
+      "destaque": true,
+      "selo": "Mais vendido",
+      "linha": "Musculação todos os dias, em todo o horário de funcionamento, e aulas de CrossZini no número de agendamentos do contrato.",
       "colunas": ["Valor"],
       "linhas": [
         { "freq": "2x na semana", "vezes": 2, "precos": [170] },
@@ -34,7 +35,7 @@
     {
       "id": "crosszini",
       "nome": "CrossZini",
-      "sub": "Só as aulas",
+      "sub": "Só as aulas de CrossFit",
       "linha": "Acesso às aulas de CrossZini no número de agendamentos do contrato. A entrada é no horário agendado.",
       "colunas": ["Valor"],
       "linhas": [

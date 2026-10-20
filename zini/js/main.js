@@ -1,7 +1,7 @@
 // Zini Body Center: prévia. Contato em js/config.js; planos, modalidades, espaço e dúvidas em
 // data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 1;
+  var V = 4;
   var OLA = 'Olá! Vim pelo site da Zini.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -125,14 +125,15 @@
           return '<td' + (g.colunas[i] === 'Recorrente' ? ' class="rec"' : '') + '>' + reais(p) + '</td>';
         }).join('') + '</tr>';
       }).join('');
+      // Cada card tem as mesmas cinco partes (mesmo vazias; os horários do Econômico ficam no lugar da observação): o CSS alinha uma com a outra entre os cards
       var horas = g.horarios ? '<ul class="plano__horas">' + g.horarios.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul>' : '';
-      return '<article class="plano rev' + (g.selo ? ' plano--destaque' : '') + '" id="plano-' + esc(g.id) + '">' +
-        (g.selo ? '<span class="plano__selo">' + esc(g.selo) + '</span>' : '') +
-        '<h3>' + esc(g.nome) + '</h3><p class="plano__sub">' + esc(g.sub) + '</p>' +
-        '<p class="plano__linha">' + esc(g.linha) + '</p>' + horas +
+      var selo = g.selo ? '<span class="plano__selo">' + esc(g.selo) + (d.confirmar ? ' ' + ph('[confirmar]') : '') + '</span>' : '';
+      return '<article class="plano' + (g.destaque ? ' plano--destaque' : '') + '" id="plano-' + esc(g.id) + '">' + selo +
+        '<div class="plano__cab"><h3>' + esc(g.nome) + '</h3><p class="plano__sub">' + esc(g.sub) + '</p></div>' +
+        '<p class="plano__linha">' + esc(g.linha) + '</p>' +
         '<table class="tabela"><thead>' + cab + '</thead><tbody>' + linhas + '</tbody></table>' +
-        (g.extra ? '<p class="plano__extra">' + esc(g.extra) + '</p>' : '') +
-        '<a class="btn ' + (g.selo ? 'btn--amarelo' : 'btn--linha-claro') + ' btn--cheio" href="' + zap(OLA + ' Quero o plano ' + g.nome + ' (' + g.sub + ').') + '" target="_blank" rel="noopener">Quero esse plano</a></article>';
+        (g.extra ? '<p class="plano__extra">' + esc(g.extra) + '</p>' : horas || '<span></span>') +
+        '<a class="btn ' + (g.destaque ? 'btn--preto' : 'btn--linha-claro') + ' btn--cheio" href="' + zap(OLA + ' Quero o plano ' + g.nome + ' (' + g.sub + ').') + '" target="_blank" rel="noopener">Quero esse plano</a></article>';
     }).join('');
 
     var r = d.recorrente;

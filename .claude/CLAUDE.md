@@ -873,7 +873,11 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   faixa parada. **As fotos do espaço são renders do projeto** (prints do Instagram) e levam o selo
   "Imagem do projeto"; só a sala com alunos é foto. Os preços são da tabela dos stories (58 semanas
   antes de 20/10/2026; o recorrente, de 226) e têm aviso de confirmar (`confirmar` no
-  `data/planos.json`). "Monte seu plano" (o quê, horário, frequência, pagamento) sai do mesmo JSON e
+  `data/planos.json`). Os cards de plano dividem as linhas da grade (`subgrid`): título, texto,
+  tabela, observação e botão alinhados nos quatro. O de `"destaque": true` fica amarelo com o selo
+  "Mais vendido", pedido do Matheus sem dado de venda: leva `[confirmar]` enquanto `confirmar` for
+  true. CrossZini é o nome do CrossFit deles (o post diz "CrossFit"): o site chama a aula de
+  CrossFit, a pedido. "Monte seu plano" (o quê, horário, frequência, pagamento) sai do mesmo JSON e
   manda a mensagem mastigada com o valor da tabela e o custo por treino. "Como chegar" com bolinha
   vermelha pulsando, a pedido (menu, hero, rótulo e botão de rota). Canal do Aluno e Espaço Kids
   são os Google Forms do Linktree. QR de avaliação no rodapé, Place ID
