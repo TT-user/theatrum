@@ -1,0 +1,50 @@
+{
+  "_leia": "Dúvidas da Zini. 'id' vira âncora (#faq-<id>), usada nos atalhos do rodapé. Texto entre [colchetes] vira placeholder amarelo. {horario} e {pagamento} vêm do js/config.js. Respostas com fonte: tabela de planos e story do recorrente (destaque 'Planos'). Mudou este arquivo, suba o V no topo do js/main.js.",
+  "perguntas": [
+    {
+      "id": "horario",
+      "p": "Qual o horário da academia?",
+      "r": "{horario}"
+    },
+    {
+      "id": "musculacao-horario",
+      "p": "Na musculação eu tenho hora marcada?",
+      "r": "Não. Nos planos de musculação você entra na frequência semanal contratada, sem restrição de horário. A exceção é o plano de horário econômico, que vale de segunda a quinta das 9h às 16h30 ou depois das 20h30, na sexta das 9h às 16h30 ou depois das 20h, e no sábado livre das 6h às 13h."
+    },
+    {
+      "id": "crosszini",
+      "p": "Como funcionam as aulas de CrossZini?",
+      "r": "Por agendamento: o número de aulas na semana segue o seu contrato, e a entrada é no horário agendado. Para os contratos a partir de 2x na semana, o aulão de sábado é cortesia. [como agendar a aula: app, WhatsApp ou recepção]"
+    },
+    {
+      "id": "sabado",
+      "p": "O que é o sábado cortesia?",
+      "r": "Aos sábados, das 6h às 13h, a musculação é cortesia para todo aluno com matrícula ativa. [confirmar: conta ou não na frequência do plano?]"
+    },
+    {
+      "id": "recorrente",
+      "p": "O que é o plano recorrente?",
+      "r": "É a mensalidade cobrada direto no cartão de crédito, todo mês, com renovação automática e desconto em relação ao mensal. Ela não prejudica o limite do seu cartão, e quem está no recorrente faz avaliação antropométrica bimestral gratuita. [confirmar: a regra é de um story antigo]"
+    },
+    {
+      "id": "experimental",
+      "p": "Posso fazer uma aula experimental?",
+      "r": "[confirmar: tem aula ou dia experimental? É gratuito?]"
+    },
+    {
+      "id": "matricula",
+      "p": "Tem taxa de matrícula ou fidelidade?",
+      "r": "[confirmar: taxa de matrícula, tempo mínimo de contrato e como cancelar]"
+    },
+    {
+      "id": "pagamento",
+      "p": "Quais as formas de pagamento?",
+      "r": "{pagamento}"
+    },
+    {
+      "id": "sugestao",
+      "p": "Sou aluno. Onde deixo uma crítica, sugestão ou elogio?",
+      "r": "No Canal do Aluno, um formulário de menos de 2 minutos. Você pode se identificar, para a Zini te dar retorno, ou responder sem se identificar."
+    }
+  ]
+}

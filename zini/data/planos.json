@@ -1,0 +1,74 @@
+{
+  "_leia": "Planos da Zini. Valores copiados do destaque 'Planos' do Instagram (stories de 58 semanas antes de 20/10/2026) e o recorrente de um story de 226 semanas: CONFIRMAR antes do site oficial. 'precos' segue a ordem de 'colunas'. 'vezes' é quantos treinos por semana (null = ilimitado ou sem conta por treino). Mudou valor aqui, mude também a mensagem do 'Monte seu plano' se tiver citado. Mudou este arquivo, suba o V no topo do js/main.js. Para tirar o aviso amarelo de confirmação, ponha \"confirmar\": false.",
+  "confirmar": true,
+  "grupos": [
+    {
+      "id": "musculacao",
+      "nome": "Musculação",
+      "sub": "Sala de musculação",
+      "linha": "Acesso à sala de musculação na frequência semanal que você contratar. Sem restrição de horário.",
+      "colunas": ["Mensal", "Recorrente"],
+      "linhas": [
+        { "freq": "2x na semana", "vezes": 2, "precos": [100, 90] },
+        { "freq": "3x na semana", "vezes": 3, "precos": [110, 100] },
+        { "freq": "4x na semana", "vezes": 4, "precos": [120, 110] },
+        { "freq": "Ilimitado", "vezes": null, "precos": [130, 120] }
+      ],
+      "extra": "Sábado cortesia, das 6h às 13h, para alunos com matrícula ativa."
+    },
+    {
+      "id": "vip",
+      "nome": "VIP",
+      "sub": "Musculação ilimitada + CrossZini",
+      "selo": "Os dois juntos",
+      "linha": "Musculação liberada todos os dias, em todo o horário de funcionamento, e aulas de CrossZini no número de agendamentos do seu contrato.",
+      "colunas": ["Valor"],
+      "linhas": [
+        { "freq": "2x na semana", "vezes": 2, "precos": [170] },
+        { "freq": "3x na semana", "vezes": 3, "precos": [190] },
+        { "freq": "4x na semana", "vezes": 4, "precos": [210] },
+        { "freq": "5x na semana", "vezes": 5, "precos": [230] }
+      ],
+      "extra": "Aulão de sábado cortesia para os contratos a partir de 2x na semana."
+    },
+    {
+      "id": "crosszini",
+      "nome": "CrossZini",
+      "sub": "Só as aulas",
+      "linha": "Acesso às aulas de CrossZini no número de agendamentos do contrato. A entrada é no horário agendado.",
+      "colunas": ["Valor"],
+      "linhas": [
+        { "freq": "2x na semana", "vezes": 2, "precos": [145] },
+        { "freq": "3x na semana", "vezes": 3, "precos": [165] },
+        { "freq": "4x na semana", "vezes": 4, "precos": [185] },
+        { "freq": "5x na semana", "vezes": 5, "precos": [205] }
+      ],
+      "extra": "Aulão de sábado cortesia para os contratos a partir de 2x na semana."
+    },
+    {
+      "id": "economico",
+      "nome": "Horário econômico",
+      "sub": "Musculação fora do pico",
+      "linha": "Sala de musculação de segunda a sexta, nos horários abaixo, e sábado livre.",
+      "horarios": [
+        "Segunda a quinta: 9h às 16h30 ou depois das 20h30",
+        "Sexta: 9h às 16h30 ou depois das 20h",
+        "Sábado: livre, das 6h às 13h"
+      ],
+      "colunas": ["Mensal", "Recorrente"],
+      "linhas": [
+        { "freq": "6x na semana", "vezes": null, "precos": [105, 95] }
+      ]
+    }
+  ],
+  "recorrente": {
+    "titulo": "Recorrente: direto no cartão, todo mês",
+    "itens": [
+      "Desconto exclusivo",
+      "Renovação mensal automática",
+      "Cobrança no cartão de crédito, recorrente",
+      "Não prejudica o limite do seu cartão",
+      "Avaliação antropométrica bimestral gratuita"
+    ]
+  }
+}

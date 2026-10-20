@@ -1,0 +1,59 @@
+{
+  "_leia": "Cards de 'O que tem na Zini'. Texto entre [colchetes] vira placeholder amarelo. 'icone' é o id de um <symbol> do index.html (i-halter, i-elmo, i-kids, i-personal, i-nutri, i-cabide). 'zap' é a mensagem do WhatsApp do botão; 'link' troca o WhatsApp por outro endereço ('formKids' usa o do js/config.js). Fontes: Linktree (Musculação, CrossZini, Personal, Nutrição, Moda fitness, Espaço Kids) e destaques do @crosszini (CrossKids). Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    {
+      "id": "musculacao",
+      "icone": "i-halter",
+      "nome": "Musculação",
+      "linha": "do 2x por semana ao ilimitado",
+      "texto": "Você paga pela frequência que vai usar, sem restrição de horário. Quer economizar? Tem o plano de horário econômico.",
+      "botao": "Ver os planos",
+      "ancora": "#planos"
+    },
+    {
+      "id": "crosszini",
+      "icone": "i-elmo",
+      "nome": "CrossZini",
+      "linha": "aulas em grupo, com hora marcada",
+      "texto": "O cross da Zini, pioneiro em Espera Feliz. Você agenda a aula e treina com a turma. [quais horários de aula]",
+      "botao": "Conhecer o CrossZini",
+      "ancora": "#crosszini"
+    },
+    {
+      "id": "kids",
+      "icone": "i-kids",
+      "nome": "Espaço Kids e CrossKids",
+      "linha": "para as crianças",
+      "texto": "[o que é o Espaço Kids e o CrossKids: idade, dias, horário e valor]",
+      "botao": "Abrir o formulário do Espaço Kids",
+      "link": "formKids"
+    },
+    {
+      "id": "personal",
+      "icone": "i-personal",
+      "nome": "Personal",
+      "linha": "treino acompanhado de perto",
+      "texto": "[como funciona o personal: quem atende, horários e valores]",
+      "botao": "Perguntar sobre o personal",
+      "zap": "Olá! Vim pelo site da Zini e quero saber do personal."
+    },
+    {
+      "id": "nutricao",
+      "icone": "i-nutri",
+      "nome": "Nutrição",
+      "linha": "o treino e o prato juntos",
+      "texto": "[quem atende a nutrição, como agendar e se tem condição para aluno]",
+      "botao": "Perguntar sobre nutrição",
+      "zap": "Olá! Vim pelo site da Zini e quero saber do atendimento de nutrição."
+    },
+    {
+      "id": "moda",
+      "icone": "i-cabide",
+      "nome": "Moda fitness",
+      "linha": "roupa de treino na própria Zini",
+      "texto": "[o que tem na loja: marcas, tamanhos, se vende para quem não é aluno]",
+      "botao": "Ver o que tem na loja",
+      "zap": "Olá! Vim pelo site da Zini e quero ver as roupas da moda fitness."
+    }
+  ]
+}

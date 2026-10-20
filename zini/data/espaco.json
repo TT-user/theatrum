@@ -1,0 +1,10 @@
+{
+  "_leia": "Galeria 'O espaço'. 'tipo' é 'projeto' (render do projeto, leva selo de imagem ilustrativa) ou 'foto' (foto real). Fotos em assets/fotos/<foto>-<largura>.webp. O primeiro item ocupa duas linhas no computador: deixe nele uma foto em pé. Renders e foto tirados do Instagram da Zini (prints, baixa resolução: pedir os originais). Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    { "foto": "salao-real", "larguras": [480, 635], "w": 635, "h": 835, "tipo": "foto", "titulo": "A sala de musculação", "alt": "Sala de musculação da Zini com alunos treinando entre aparelhos e estações de cabo" },
+    { "foto": "recepcao", "larguras": [480, 765], "w": 765, "h": 790, "tipo": "projeto", "titulo": "Recepção e moda fitness", "alt": "Recepção com parede preta perfurada e os letreiros CrossZini e Zini Body Center, catraca e araras de roupa de treino" },
+    { "foto": "esteiras", "larguras": [480, 774], "w": 774, "h": 795, "tipo": "projeto", "titulo": "Esteiras de frente para a janela", "alt": "Fileira de esteiras diante de janelões, com luz azul no teto e bicicletas ao fundo" },
+    { "foto": "maquinas", "larguras": [480, 767], "w": 767, "h": 824, "tipo": "projeto", "titulo": "Máquinas de musculação", "alt": "Corredor de máquinas pretas com detalhes laranja sobre piso emborrachado e luz azul no teto" },
+    { "foto": "mezanino", "larguras": [480, 762], "w": 762, "h": 817, "tipo": "projeto", "titulo": "O andar de cima", "alt": "Andar com pilares de concreto, piso emborrachado e o letreiro Zini Body Center iluminado" }
+  ]
+}

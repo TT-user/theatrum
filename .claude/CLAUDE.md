@@ -786,7 +786,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   da clínica para o e-mail da Theatrum; o `aggregateRating` também não (nota da própria
   empresa no schema, mesmo caso da Nerd Club); o evento `triagem_concluida` só sai com
   `EF.rastrear = true`, no site oficial. Os rostos do chip foram recortados do post
-  "Atendimento online". OG em `assets/og-image-v1.jpg`. Mesmo padrão: `.htaccess` e meta com
+  "Atendimento online". OG em `assets/og-image-v2.jpg`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água com
   `utm_campaign=esteticaef`. Fotos originais e pendências em `interno/clientes/esteticaef/`,
   fora do git.
@@ -807,7 +807,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   ficam em `js/config.js` (null vira placeholder). A barra fixa fica à vista desde o topo, não só depois da primeira tela como pede o padrão: na emergência a pessoa liga na hora. Logo provisório em SVG (o mascote do
   cartão não foi redesenhado). Sem `js/leads.js`, mesmo motivo da `/esteticaef/`. Mesmo
   padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
-  `utm_campaign=bruno-chaves`, OG em `og-image-v1.jpg`. Pendências em
+  `utm_campaign=bruno-chaves`, OG em `og-image-v2.jpg`. Pendências em
   `interno/clientes/bruno-chaves/README.md`, fora do git.
   **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
   os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
@@ -831,7 +831,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   QR), com Web3Forms do escritório em `CM.web3formsKey`; sem chave, mostra o aviso de prévia. Sem
   `js/leads.js` da Theatrum, mesmo motivo da `/esteticaef/`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=cabralmiranda`, OG em
-  `og-image-v1.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
+  `og-image-v2.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
   **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
   os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
@@ -854,9 +854,33 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   no computador (pedido de 20/10/2026, vale para site de cliente; ver `padrao-sites.md`). No rodapé, QR
   de avaliação no Google (SVG embutido, também é link), Place ID `ChIJhW4orcCRuQARbPE3hl_OfDE` montado
   do `ftid` do Maps e conferido no Chrome em 20/10/2026. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca
-  d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v1.jpg` (HTML de origem em
+  d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v2.jpg` (HTML de origem em
   `interno/clientes/cantodospassaros/og/`). Prints e pendências em `interno/clientes/cantodospassaros/`,
   fora do git.
+
+- `/zini/` — prévia do site da Zini Body Center (academia: musculação, CrossZini, personal, nutrição,
+  moda fitness e Espaço Kids, R. Dom Carloto, 36, Centro de Espera Feliz, MG), desde 20/10/2026, a
+  partir do perfil do Google, do Linktree, do Instagram do @crosszini e de prints dos stories. WhatsApp
+  (32) 9849-7151 é o destino do `wa.me/message` do "Fale com a Zini" (conta comercial
+  `academiazini@gmail.com`). Cores do letreiro: preto, amarelo do logo `#F5C400` e a luz azul do teto
+  `#3D6DFF`, só em linha de luz, nunca em texto. Archivo servida daqui em dois arquivos: corpo
+  variável (25 KB) e o título largo estático (wdth 125, 800, 11 KB), a letra do "ZINI BODY". Logo
+  redesenhado em SVG (`#zini-marca`); o elmo do CrossZini é recorte do avatar do Instagram. Hero a
+  pedido inspirado num modelo de academia: foto sangrando à direita, nota do Google embaixo dos
+  botões, selo redondo girando, três programas numerados, card de números e o sábado cortesia no
+  lugar de "teste grátis"; embaixo, letreiro amarelo com as palavras deles. Selo e letreiro só se
+  mexem com o hero à vista e a aba aberta; com movimento reduzido ou `?still=1` o letreiro vira
+  faixa parada. **As fotos do espaço são renders do projeto** (prints do Instagram) e levam o selo
+  "Imagem do projeto"; só a sala com alunos é foto. Os preços são da tabela dos stories (58 semanas
+  antes de 20/10/2026; o recorrente, de 226) e têm aviso de confirmar (`confirmar` no
+  `data/planos.json`). "Monte seu plano" (o quê, horário, frequência, pagamento) sai do mesmo JSON e
+  manda a mensagem mastigada com o valor da tabela e o custo por treino. "Como chegar" com bolinha
+  vermelha pulsando, a pedido (menu, hero, rótulo e botão de rota). Canal do Aluno e Espaço Kids
+  são os Google Forms do Linktree. QR de avaliação no rodapé, Place ID
+  `ChIJ3UsLz4afuwARsNOHrnFj_mI`, conferido no Chrome em 20/10/2026. Sem `js/leads.js`, WhatsApp
+  direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
+  `utm_campaign=zini`, OG em `og-image-v2.jpg` (HTML em `interno/clientes/zini/og/`). Prints e
+  pendências em `interno/clientes/zini/`, fora do git.
 
 - `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
   (sistema de trabalho no Claude Code, com memória do operador e 12 comandos: `/instalar`,
@@ -1009,7 +1033,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
