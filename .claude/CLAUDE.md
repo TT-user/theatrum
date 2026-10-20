@@ -820,7 +820,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
   (sistema de trabalho no Claude Code, com memória do operador e 12 comandos: `/instalar`,
   `/previa`, `/proposta`...) para quem quer vender site e marketing a pequenos negócios. O
-  sistema em si é outro repositório, em `Desktop/theatrum-os/` (ainda sem remoto). **Em prévia:**
+  sistema em si é outro repositório: `Desktop/theatrum-os/`, privado em
+  github.com/TT-user/theatrum-os desde 19/10/2026. **Em prévia:**
   `.htaccess` e meta com noindex, faixa carmim de prévia, sem UET, fora do sitemap e do menu.
   Identidade da home (tokens, Plus Jakarta, Inter, JetBrains Mono, Instrument Serif via Google
   Fonts), logo e foto do fundador reaproveitados de `../assets/img/`. Checkout e WhatsApp em
