@@ -942,8 +942,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Endereço do Google é 1206 e o dos flyers é 1212: placeholder até confirmar. Avaliações: o Maps só
   abre completo com o Chrome em janela (headless dá a visão limitada sem avaliação nenhuma) e, sem
   login, mostra 5 de 275; quatro entraram, a que fala de remédio de diabetes suspenso ficou de fora
-  (promessa de saúde). A foto 12 (fachada ampliada por IA) tem o letreiro com letras trocadas: não
-  usar. QR de avaliação no rodapé, Place ID `ChIJARTiTL7M2JQRztCm-evaBnA`, conferido no Chrome em
+  (promessa de saúde). A fachada do "Como chegar" (`fachada2-*`) é uma ampliação por IA, a pedido:
+  tem letras miúdas do letreiro trocadas; trocar por foto original no site oficial. QR de avaliação no rodapé, Place ID `ChIJARTiTL7M2JQRztCm-evaBnA`, conferido no Chrome em
   22/10/2026. Página "Fale conosco" em `contato/`. Sem `js/leads.js`, WhatsApp direto. Mesmo
   padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=megaacademia`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/megaacademia/og/`).
