@@ -1,7 +1,7 @@
 // RAR Academia: prévia. Contato em js/config.js; planos, modalidades, espaço, dúvidas e a loja de
 // suplementos em data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 1;
+  var V = 2;
   var OLA = 'Olá! Vim pelo site da RAR.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;

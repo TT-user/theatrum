@@ -553,8 +553,8 @@ p { margin: 0 0 1em; }
 .qtd button { height: 100%; border: 0; background: var(--preto); color: var(--amarelo); font: 800 22px/1 var(--sans); cursor: pointer; }
 .qtd span { text-align: center; font: 800 17px/1 var(--largo); }
 .sacola { position: sticky; top: calc(var(--topo) + 16px); display: grid; gap: 14px; }
-.sacola__foto { position: relative; border-radius: var(--raio); overflow: hidden; aspect-ratio: 16 / 10; }
-.sacola__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.sacola__foto { position: relative; border-radius: var(--raio); overflow: hidden; aspect-ratio: 1 / 1; }
+.sacola__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 .sacola__foto figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 10px; background: linear-gradient(transparent, rgba(0, 0, 0, .8)); color: #fff; font: 700 14px/1.2 var(--sans); }
 .sacola__caixa { background: var(--preto); color: var(--txt); border-radius: var(--raio); padding: 22px 20px; }
 .sacola h3 { display: flex; align-items: center; gap: 10px; font-size: 18px; margin-bottom: 14px; }

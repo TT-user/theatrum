@@ -919,7 +919,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Tour Virtual) num iframe `maps/embed?pb=...!1s<ik>` sem chave de API, só no clique (`tour360` no
   `config.js`). **Loja de suplementos** (`#suplementos`, `data/suplementos.json`): sacola no
   `localStorage` `rar-sacola`, produtos desenhados em SVG pelo `main.js`, pedido mastigado no WhatsApp
-  para retirar na recepção; **todos os produtos são exemplo** até a RAR mandar a lista. Na proposta,
+  para retirar na recepção; **todos os produtos são exemplo** até a RAR mandar a lista. Espaço kids (cercado, com grama, puff, mesinha, brinquedos e TV) no card de família, no
+  hero, nos fatos, na galeria e numa dúvida; a foto dele e a do expositor de suplementos são prints
+  do tour 360° com as setas de navegação apagadas ou recortadas. Na proposta,
   a loja é bônus para quem fechar os 12 meses de acompanhamento (vai no PDF, não no site). Logo é
   recorte do avatar do Instagram. QR de avaliação no rodapé, Place ID `ChIJbWaaTIXTJpURlFr3g9EC2rg`,
   conferido no Chrome em 22/10/2026. Página "Fale conosco" em `contato/`. Sem `js/leads.js`, WhatsApp
