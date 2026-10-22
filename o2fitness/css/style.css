@@ -384,7 +384,15 @@ p { margin: 0 0 1em; }
 .deps::-webkit-scrollbar { display: none; }
 .deps:focus-visible { outline: 3px solid var(--verde-tinta); outline-offset: 4px; border-radius: 12px; }
 .dep { flex: 0 0 calc(50% - 7px); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--branco); border-radius: 12px; padding: 20px 22px; border: 1px solid #DEDCD5; }
-.dep__nota { color: var(--verde-tinta); letter-spacing: .12em; font-size: 14px; }
+/* Selo do Google: G colorido, nota e estrelas no amarelo do Google */
+.gresumo { display: flex; align-items: center; gap: 14px; }
+.gresumo__g { width: 40px; height: 40px; flex: none; padding: 7px; background: var(--branco); border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
+.gresumo .vozes__t { margin: 0 0 4px; }
+.gresumo__nota { margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 15px; color: var(--tinta-2); }
+.gresumo__nota b { font: 800 22px/1 var(--largo); color: var(--tinta); }
+.gestrelas { color: #FBBC04; letter-spacing: .1em; font-size: 16px; }
+.dep__topo { display: flex; align-items: center; justify-content: space-between; }
+.dep__g { width: 22px; height: 22px; flex: none; }
 .dep blockquote { margin: 8px 0 12px; font-size: 16px; line-height: 1.55; color: var(--tinta); flex: 1; }
 .dep figcaption { font-size: 13.5px; color: var(--tinta-2); }
 .dep figcaption b { color: var(--tinta); }

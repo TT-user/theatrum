@@ -25,7 +25,7 @@
   <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/archivo-largo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/fotos/treino-480.webp" imagesrcset="assets/fotos/treino-480.webp 480w, assets/fotos/treino-826.webp 826w" imagesizes="(min-width: 900px) 62vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 
   <script type="application/ld+json">
   {
@@ -66,6 +66,7 @@
     <symbol id="i-personal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7.5" r="3.2"/><path d="M3.5 20c.4-3.6 2.6-6 5.5-6s5.1 2.4 5.5 6"/><path d="M15.5 9.5h5M18 7v5"/></g></symbol>
     <symbol id="i-ficha" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 13.5h7M8.5 17h4"/></g></symbol>
     <symbol id="i-grupo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.6"/><circle cx="5.5" cy="9.5" r="2"/><circle cx="18.5" cy="9.5" r="2"/><path d="M7.5 19.5c.3-3.3 2-5.3 4.5-5.3s4.2 2 4.5 5.3M2.5 18.5c.2-2.4 1.3-3.8 3-3.8M21.5 18.5c-.2-2.4-1.3-3.8-3-3.8"/></g></symbol>
+    <symbol id="i-google" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2A11.9 11.9 0 0 1 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3a12 12 0 0 1-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></symbol>
     <symbol id="corte" viewBox="0 0 1440 56" preserveAspectRatio="none"><path fill="currentColor" d="M0 0h1440L0 56Z"/></symbol>
   </svg>
 
@@ -307,7 +308,13 @@
         <div class="vozes">
           <div class="vozes__dep" id="carrossel" aria-roledescription="carrossel" aria-label="Avaliações do Google">
             <div class="vozes__cab">
-              <p class="vozes__t">O que dizem no Google</p>
+              <div class="gresumo">
+                <svg class="gresumo__g" aria-hidden="true"><use href="#i-google"/></svg>
+                <div>
+                  <p class="vozes__t">Avaliações do Google</p>
+                  <p class="gresumo__nota"><b>5,0</b> <span class="gestrelas" aria-label="5 de 5 estrelas">★★★★★</span> <span class="gresumo__n">13 avaliações</span></p>
+                </div>
+              </div>
               <div class="car__setas">
                 <button type="button" class="car__seta car__seta--a" data-car="-1" aria-label="Avaliação anterior"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
                 <button type="button" class="car__seta" data-car="1" aria-label="Próxima avaliação"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
@@ -433,6 +440,6 @@
   </a>
 
   <script src="js/config.js?v=2"></script>
-  <script src="js/main.js?v=6" defer></script>
+  <script src="js/main.js?v=7" defer></script>
 </body>
 </html>

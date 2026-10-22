@@ -1,5 +1,5 @@
 {
-  "_leia": "Avaliações do Google da O2 (13 no total, nota 5,0, conferido em 21/10/2026). Só 5 aparecem sem login; estas 3 são as mais relevantes. Texto igual ao original (trecho cortado marcado com (…)), sobrenome abreviado. Antes do site oficial: pedir autorização de cada pessoa. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "_leia": "Avaliações do Google da O2 (13 no total, nota 5,0, conferido em 21/10/2026). Só 5 aparecem sem login; estas 4 são todas as que têm texto (a 5ª é só nota). Texto igual ao original (trecho cortado marcado com (…)), sobrenome abreviado. Antes do site oficial: pedir autorização de cada pessoa. Mudou este arquivo, suba o V no topo do js/main.js.",
   "itens": [
     {
       "nome": "Leonardo T.",
@@ -12,6 +12,12 @@
       "selo": "Local Guide",
       "quando": "há 1 ano",
       "texto": "Academia top\nPrimeiro mundo em matéria de equipamento"
+    },
+    {
+      "nome": "Brainer M.",
+      "selo": "Local Guide",
+      "quando": "há 2 anos",
+      "texto": "Academia muito boa."
     },
     {
       "nome": "Martta B.",

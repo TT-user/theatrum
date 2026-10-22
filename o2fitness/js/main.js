@@ -1,7 +1,7 @@
 // O2 Fitness Academia: prévia. Contato em js/config.js; modalidades, planos, espaço e dúvidas em
 // data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 6;
+  var V = 7;
   var OLA = 'Olá! Vim pelo site da O2.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -233,7 +233,7 @@
   // ---------- avaliações do Google ----------
   function montaDeps(itens) {
     document.getElementById('deps').innerHTML = itens.map(function (a) {
-      return '<figure class="dep"><span class="dep__nota" aria-label="5 estrelas">★★★★★</span>' +
+      return '<figure class="dep"><div class="dep__topo"><span class="gestrelas" aria-label="5 estrelas">★★★★★</span><svg class="dep__g" aria-label="Avaliação do Google" role="img"><use href="#i-google"/></svg></div>' +
         '<blockquote>' + esc(a.texto).replace(/\n/g, '<br>') + '</blockquote>' +
         '<figcaption><b>' + esc(a.nome) + '</b>' + (a.selo ? ' · ' + esc(a.selo) : '') + ' · ' + esc(a.quando) + '</figcaption></figure>';
     }).join('');
