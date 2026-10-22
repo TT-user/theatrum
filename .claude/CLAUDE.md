@@ -892,9 +892,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   estrutura e motor da Zini, com o amarelo trocado pelo verde-limão do logo (`#8FCF56`) e a luz azul
   pela luz verde dos pilares do salão. Todas as imagens são fotos reais (sem selo de projeto). O
   título do hero é a primeira frase da parede deles ("Seja forte quando estiver fraco") e o CTA final
-  fecha as outras duas. A O2 não publica preço: `data/planos.json` está com `grupos` vazio, e a seção
-  mostra o convite para pedir a tabela no WhatsApp (o mesmo renderizador da Zini volta quando houver
-  valores). No lugar do "Monte seu plano", "Por onde começar": objetivo, nível, horário e frequência,
+  fecha as outras duas. A O2 não publica preço: `data/planos.json` tem três planos **de exemplo**, a pedido (Mensal
+  R$ 150, Trimestral R$ 140/mês, Anual R$ 125/mês, de segunda a sexta e sábado até as 16h), com o
+  aviso amarelo "valores de exemplo"; troque pela tabela real. Com `grupos` vazio, a seção vira o
+  convite para pedir a tabela no WhatsApp. No lugar do "Monte seu plano", "Por onde começar": objetivo, nível, horário e frequência,
   sem preço, mandando a mensagem mastigada. A seção do CrossZini virou "A equipe" (foto do time,
   responsável técnico e CREF em placeholder). O perfil do Google não foi reivindicado (argumento de
   venda). QR de avaliação no rodapé, Place ID `ChIJvSfPO0yfuwAReEiejl2uP5k`, conferido no Chrome em
@@ -902,6 +903,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v1.jpg` (HTML em
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
+
+- **Proteção do conteúdo nos sites de cliente (desde 21/10/2026):** todas as prévias acima, menos
+  o `/armazem/` (sistema), carregam `js/protecao.js` no `<head>`, cópia do `antonios/js/protecao.js`.
+  Regra e limites em `.claude/padrao-sites.md` (seção 1B).
 
 - `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
   (sistema de trabalho no Claude Code, com memória do operador e 12 comandos: `/instalar`,

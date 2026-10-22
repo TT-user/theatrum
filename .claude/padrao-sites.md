@@ -4,6 +4,7 @@
 > Quando um briefing pedir algo diferente destas regras, vale o briefing para aquele cliente.
 > **v3 (18/10/2026):** acrescenta os padrões de conversão da página (seção 4A), os sites com várias páginas (1A) e a loja com sacola (seção 9).
 > **v4 (20/10/2026), depois da prévia da Canto dos Pássaros:** WhatsApp direto, sem modal (seção 4); QR de avaliação no rodapé (4A); fonte para cada fato (5); imagens e fontes já no limite (2); testes de fechamento (8); armadilhas conhecidas (10).
+> **v5 (21/10/2026):** proteção do conteúdo em todo site de cliente (seção 1B).
 
 ## 1. Estrutura e stack
 - HTML + CSS + JS puro, sem framework. Cada cliente fica numa pasta própria:
@@ -30,6 +31,15 @@
   - `/contato`.
   - `/politica-de-privacidade`.
   - `/sobre`.
+
+### 1B. Proteção do conteúdo (desde 21/10/2026, a pedido do Matheus)
+- **Todo site de cliente, prévia ou final, carrega `<slug>/js/protecao.js`**, no `<head>`: `<script src="js/protecao.js?v=1" defer></script>` (em subpágina, com `../`). Uma cópia por site, porque o site precisa funcionar sozinho no domínio do cliente.
+- O arquivo é sempre a cópia do `antonios/js/protecao.js` (o mesmo motor dos `_protecao.js` das demos). Mudou o motor, copie de novo para todos os sites.
+- O que faz: texto sem seleção nem cópia, sem menu do botão direito, sem arrastar imagem, e bloqueia F12, Ctrl+Shift+I/J/C, Cmd+Option+I/J/C, Ctrl+U e Ctrl+S. Campos de formulário continuam selecionáveis e editáveis.
+- O que não faz: impedir a inspeção de verdade. Pelo menu do navegador, com o JavaScript desligado ou por `curl`, o código continua visível. É atrito para o curioso, não barreira; não prometa ao cliente que o site "não pode ser copiado".
+- `data-selecao="livre"` na tag libera seleção e cópia (mantém o resto). Use se o cliente pedir que o visitante copie telefone, endereço ou e-mail.
+- Fica de fora: sistema de gestão (`/armazem/`), onde quem usa precisa copiar dado.
+- Teste de fechamento: `getComputedStyle(h1).userSelect` igual a `none` e o campo de formulário igual a `text`.
 
 ## 2. Mobile e performance
 - Mobile-first. Testar em 375px, 768px e 1440px, sem rolagem horizontal.

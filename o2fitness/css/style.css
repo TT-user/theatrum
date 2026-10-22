@@ -246,7 +246,7 @@ p { margin: 0 0 1em; }
 .planos__fonte { margin: 14px 0 0; font-size: 14px; }
 /* Os cards dividem as linhas da grade (subgrid): título, texto, tabela, observação (ou horários) e
    botão ficam na mesma altura nos quatro, e os cards têm a mesma altura. */
-.planos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; row-gap: 0; align-items: stretch; padding-top: 14px; }
+.planos { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); column-gap: 16px; row-gap: 0; align-items: stretch; padding-top: 14px; }
 .plano { position: relative; display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start; margin-bottom: 16px; background: var(--grafite-2); border: 1px solid var(--concreto); border-radius: var(--raio); padding: 26px 20px 20px; transition: transform .25s ease, border-color .25s, box-shadow .25s, background-color .25s; }
 .plano:hover { transform: translateY(-6px); border-color: var(--verde); box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .9), 0 0 0 1px var(--verde), 0 0 34px -6px rgba(143, 207, 86, .35); }
 .plano__selo { position: absolute; top: -13px; left: 22px; display: flex; align-items: center; gap: 6px; background: var(--preto); color: var(--verde); border: 1px solid var(--verde); font: 700 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .08em; padding: 6px 10px; border-radius: 5px; }
@@ -285,6 +285,9 @@ p { margin: 0 0 1em; }
 @media (min-width: 1101px) { .plano--destaque { transform: translateY(-8px); } .plano--destaque:hover { transform: translateY(-14px); } }
 
 @media (max-width: 1100px) { .planos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Três planos cabem lado a lado até o celular; com quatro, a grade passa a 2 colunas antes */
+@media (max-width: 1100px) and (min-width: 861px) { .planos--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 860px) { .planos--3 { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) { .planos { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .plano, .plano:hover, .plano--destaque, .plano--destaque:hover { transition: none; transform: none; } }
 

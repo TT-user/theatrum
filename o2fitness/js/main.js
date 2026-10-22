@@ -1,7 +1,7 @@
 // O2 Fitness Academia: prévia. Contato em js/config.js; modalidades, planos, espaço e dúvidas em
 // data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 1;
+  var V = 2;
   var OLA = 'Olá! Vim pelo site da O2.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,7 +16,7 @@
   // Texto com [colchete] vira placeholder amarelo
   function txt(s) { return esc(s).replace(/\[([^\]]+)\]/g, function (m) { return '<span class="ph">' + m + '</span>'; }); }
   function zap(msg) { return 'https://wa.me/' + O2.whatsapp + '?text=' + encodeURIComponent(msg); }
-  function reais(n) { return n == null ? '[R$]' : 'R$ ' + n.toFixed(2).replace('.', ','); }
+  function reais(n) { return n == null ? '[R$]' : 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
   // ---------- links fixos de WhatsApp ----------
   function ligaZap(raiz) {
@@ -129,8 +129,10 @@
       return;
     }
     if (d.confirmar) document.getElementById('planos-fonte').hidden = false;
+    grid.style.setProperty('--n', Math.min(d.grupos.length, 4));
+    grid.classList.toggle('planos--3', d.grupos.length === 3);
     grid.innerHTML = d.grupos.map(function (g) {
-      var cab = '<tr><th>Frequência</th>' + g.colunas.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr>';
+      var cab = '<tr><th>' + esc(g.cabecalho || 'Frequência') + '</th>' + g.colunas.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr>';
       var linhas = g.linhas.map(function (l) {
         return '<tr><td>' + esc(l.freq) + '</td>' + l.precos.map(function (p) { return '<td>' + txt(reais(p)) + '</td>'; }).join('') + '</tr>';
       }).join('');
