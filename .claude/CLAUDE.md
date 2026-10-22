@@ -891,8 +891,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   do Google, a bio do Instagram (@o2_fitness_academia) e 11 fotos que o Matheus mandou. Mesma
   estrutura e motor da Zini, com o amarelo trocado pelo verde-limão do logo (`#8FCF56`) e a luz azul
   pela luz verde dos pilares do salão. Todas as imagens são fotos reais (sem selo de projeto). O
-  título do hero é a primeira frase da parede deles ("Seja forte quando estiver fraco") e o CTA final
-  fecha as outras duas. A O2 não publica preço: `data/planos.json` tem três planos **de exemplo**, a pedido (Mensal
+  título do hero é "A sua academia no Centro de Espera Feliz" (a frase da parede, "Seja forte quando
+  estiver fraco", saiu do site em 21/10/2026, a pedido; ficou só a foto dela na galeria). A O2 não publica preço: `data/planos.json` tem três planos **de exemplo**, a pedido (Mensal
   R$ 150, Trimestral R$ 140/mês, Anual R$ 125/mês, de segunda a sexta e sábado até as 16h), com o
   aviso amarelo "valores de exemplo"; troque pela tabela real. Com `grupos` vazio, a seção vira o
   convite para pedir a tabela no WhatsApp. No lugar do "Monte seu plano", "Por onde começar": objetivo, nível, horário e frequência,
@@ -900,7 +900,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   responsável técnico e CREF em placeholder). O perfil do Google não foi reivindicado (argumento de
   venda). QR de avaliação no rodapé, Place ID `ChIJvSfPO0yfuwAReEiejl2uP5k`, conferido no Chrome em
   21/10/2026. Sem `js/leads.js`, WhatsApp direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa
-  de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v1.jpg` (HTML em
+  de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v2.jpg` (HTML em
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
 
