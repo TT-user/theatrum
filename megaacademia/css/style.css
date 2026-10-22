@@ -508,3 +508,11 @@ p { margin: 0 0 1em; }
 .letreiro.parado .letreiro__trilho { width: auto; justify-content: center; }
 .letreiro.parado ul + ul { display: none; }
 .letreiro.parado ul { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+
+/* ---------- planos: preço no lugar da tabela, como nos planos da RAR ---------- */
+.plano__preco { margin: 0 0 14px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; align-self: start; }
+.plano__preco b { font: 800 30px/1 var(--largo); white-space: nowrap; }
+.plano__preco small { font-size: 14px; color: var(--txt-2); }
+.plano--destaque .plano__preco small { color: #4A2400; }
+.plano__extra b { color: var(--laranja); }
+.plano--destaque .plano__extra b { color: var(--preto); }

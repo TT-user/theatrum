@@ -1,7 +1,7 @@
 // Mega Academia (Itajaí): prévia. Contato em js/config.js; modalidades, planos, espaço, dúvidas e
 // avaliações em data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 2;
+  var V = 3;
   var OLA = 'Olá! Vim pelo site da Mega.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,8 +16,7 @@
   // Texto com [colchete] vira placeholder amarelo
   function txt(s) { return esc(s).replace(/\[([^\]]+)\]/g, function (m) { return '<span class="ph">' + m + '</span>'; }); }
   function zap(msg) { return 'https://wa.me/' + MEGA.whatsapp + '?text=' + encodeURIComponent(msg); }
-  // Número vira R$; texto ("Grátis") passa como está
-  function reais(n) { return n == null ? '[R$]' : typeof n === 'string' ? n : 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function reais(n) { return n == null ? '[R$]' : 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
   // ---------- links fixos de WhatsApp ----------
   function ligaZap(raiz) {
@@ -134,18 +133,16 @@
     grid.style.setProperty('--n', Math.min(d.grupos.length, 4));
     grid.classList.toggle('planos--3', d.grupos.length === 3);
     grid.innerHTML = d.grupos.map(function (g) {
-      var cab = '<tr><th>' + esc(g.cabecalho || 'Frequência') + '</th>' + g.colunas.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr>';
-      var linhas = g.linhas.map(function (l) {
-        return '<tr><td>' + esc(l.freq) + '</td>' + l.precos.map(function (p) { return '<td>' + txt(reais(p)) + '</td>'; }).join('') + '</tr>';
-      }).join('');
+      // Preço grande no lugar da tabela, como nos planos da RAR ("12x R$ 89,99", "pelos 2 meses")
+      var preco = (g.antes ? g.antes + ' ' : '') + reais(g.preco);
       // Cada card tem as mesmas cinco partes (mesmo vazias): o CSS alinha uma com a outra entre os cards
       var selo = g.selo ? '<span class="plano__selo">' + esc(g.selo) + (d.confirmar ? ' ' + ph('[confirmar]') : '') + '</span>' : '';
       return '<article class="plano' + (g.destaque ? ' plano--destaque' : '') + '" id="plano-' + esc(g.id) + '">' + selo +
         '<div class="plano__cab"><h3>' + esc(g.nome) + '</h3><p class="plano__sub">' + esc(g.sub) + '</p></div>' +
-        '<p class="plano__linha">' + esc(g.linha) + '</p>' +
-        '<table class="tabela"><thead>' + cab + '</thead><tbody>' + linhas + '</tbody></table>' +
-        (g.extra ? '<p class="plano__extra">' + esc(g.extra) + '</p>' : '<span></span>') +
-        '<a class="btn ' + (g.destaque ? 'btn--preto' : 'btn--linha-claro') + ' btn--cheio" href="' + zap(OLA + ' Quero o plano ' + g.nome + ' (' + g.sub + ').') + '" target="_blank" rel="noopener">Quero esse plano</a></article>';
+        '<p class="plano__linha">' + txt(g.linha) + '</p>' +
+        '<p class="plano__preco"><b>' + txt(preco) + '</b><small>' + esc(g.sobre || '') + '</small></p>' +
+        (g.extra ? '<p class="plano__extra">' + txt(g.extra) + '</p>' : '<span></span>') +
+        '<a class="btn ' + (g.destaque ? 'btn--preto' : 'btn--linha-claro') + ' btn--cheio" href="' + zap(OLA + ' Quero o plano ' + g.nome + ' (' + preco + ' ' + (g.sobre || '') + ').') + '" target="_blank" rel="noopener">Quero esse plano</a></article>';
     }).join('');
   }
 

@@ -937,8 +937,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   (`#aulas`), com os nomes escritos na fachada (jump, step, bike, ritmos, local, abdominal,
   alongamento) e a grade em placeholder. Os três planos são as promoções dos posts fixados de
   outubro (2 meses R$ 259,99 no Pix; seis meses pagando cinco; a partir de R$ 89,99 em 12x), com a
-  linha `fonte` do `planos.json` pedindo para confirmar; o `main.js` aceita texto no preço
-  ("Grátis"). "Por onde começar" tem cinco perguntas (a 2ª: musculação, aulas ou os dois).
+  linha `fonte` do `planos.json` pedindo para confirmar. Cards no desenho dos da RAR, a pedido:
+  preço grande (`preco`, `antes`, `sobre`) no lugar da tabela. "Por onde começar" tem cinco perguntas (a 2ª: musculação, aulas ou os dois).
   Endereço do Google é 1206 e o dos flyers é 1212: placeholder até confirmar. Avaliações: o Maps só
   abre completo com o Chrome em janela (headless dá a visão limitada sem avaliação nenhuma) e, sem
   login, mostra 5 de 275; quatro entraram, a que fala de remédio de diabetes suspenso ficou de fora
