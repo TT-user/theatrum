@@ -376,6 +376,12 @@ p { margin: 0 0 1em; }
 .vozes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .vozes > div { border-radius: var(--raio); padding: 28px; }
 .vozes__dep { background: var(--claro); }
+.deps { display: grid; gap: 14px; margin-bottom: 18px; }
+.dep { background: var(--branco); border-radius: 12px; padding: 16px 18px; border: 1px solid #DEDCD5; }
+.dep__nota { color: var(--verde-tinta); letter-spacing: .12em; font-size: 14px; }
+.dep blockquote { margin: 6px 0 8px; font-size: 15.5px; line-height: 1.5; color: var(--tinta); }
+.dep figcaption { font-size: 13.5px; color: var(--tinta-2); }
+.dep figcaption b { color: var(--tinta); }
 .vozes__canal { background: var(--preto); color: var(--txt); position: relative; overflow: hidden; }
 .vozes__canal::after { content: ""; position: absolute; right: -40px; bottom: 34px; width: 260px; height: 2px; background: #C9F5A8; box-shadow: 0 0 6px 1px var(--luz), 0 0 22px 3px rgba(123, 224, 74, .45); transform: rotate(-12deg); }
 .vozes__canal h3 { font-size: 22px; }

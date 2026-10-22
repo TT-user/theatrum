@@ -1,6 +1,9 @@
 // O2 Fitness Academia: contato e chaves num lugar só.
 // null vira placeholder amarelo na prévia. Mudou este arquivo, suba o ?v= dele no index.html.
 window.O2 = {
+  nome: 'O2',
+  marca: 'O2 Fitness Academia',
+  siglaProtocolo: 'O2',
   // wa.me da bio do Instagram (@o2_fitness_academia); é o mesmo telefone do perfil do Google
   whatsapp: '5532984469695',
   whatsappTexto: '(32) 98446-9695',
@@ -20,6 +23,13 @@ window.O2 = {
   // Formas de pagamento aceitas (texto livre). null vira placeholder.
   pagamento: null,
 
+  // Página "Fale conosco" (contato/): canal oficial de sugestões, elogios e reclamações.
+  // web3formsKey: chave do Web3Forms no e-mail da academia. null = a prévia envia pelo WhatsApp.
+  web3formsKey: null,
+  // Prazo de resposta e horário de atendimento (texto livre). null vira placeholder.
+  prazoResposta: null,      // ex.: 'até 2 dias úteis'
+  horarioAtendimento: null, // ex.: 'segunda a sexta, das 8h às 18h'
+
   // Linha fina acima do topo. null esconde.
   aviso: null,
 
@@ -30,3 +40,4 @@ window.O2 = {
   rotaUrl: 'https://www.google.com/maps/dir/?api=1&destination=-20.6532771,-41.908124&destination_place_id=ChIJvSfPO0yfuwAReEiejl2uP5k',
   mapaEmbed: 'https://maps.google.com/maps?q=-20.6532771,-41.908124&z=17&output=embed'
 };
+window.SITE = window.O2;

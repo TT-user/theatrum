@@ -97,6 +97,7 @@
   - Termina num produto, num plano ou num profissional, com o botão de ação.
   - Na home ele é um link discreto ("Não sei qual escolher"), e o quiz tem página própria.
 - **Captura em troca de benefício:** um cupom, um checklist ou uma lista de espera que "chega pelo WhatsApp". A pessoa deixa o nome e o WhatsApp; o site manda pelo Web3Forms e abre o WhatsApp com o pedido do cupom. Não use pop-up que abre sozinho na entrada: mostre o convite depois de 40% de rolagem ou na saída (no computador), no máximo uma vez a cada 7 dias.
+- **Página "Fale conosco" (`contato/`)** quando o cliente atende público e quer receber elogio, sugestão e reclamação (academia, clínica, loja): canais oficiais, formulário com tipo da mensagem, envio anônimo opcional, aceite de LGPD e protocolo gerado na hora. Modelo pronto em `o2fitness/contato/` (`js/contato.js` e `css/contato.css` servem para qualquer site, lendo o `window.SITE` do `config.js`).
 - **Dúvida no lugar da dúvida:**
   - Cada página de produto ou serviço tem um botão "Tenho dúvida sobre esse <item>", que abre o WhatsApp citando o item.
   - O carrinho e a página do produto repetem as 4 ou 5 dúvidas mais comuns, com link para a resposta completa no FAQ (âncora).

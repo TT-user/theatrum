@@ -1,6 +1,9 @@
 // Zini Body Center: contato e chaves num lugar só.
 // null vira placeholder amarelo na prévia. Mudou este arquivo, suba o ?v= dele no index.html.
 window.ZINI = {
+  nome: 'Zini',
+  marca: 'Zini Body Center',
+  siglaProtocolo: 'ZN',
   // "Fale com a Zini" do Linktree (wa.me/message/Q3QSYFEAQGTDN1) leva a este número, conta comercial
   whatsapp: '553298497151',
   whatsappTexto: '(32) 9849-7151',
@@ -21,6 +24,13 @@ window.ZINI = {
   // Formas de pagamento aceitas (texto livre). null vira placeholder.
   pagamento: null,
 
+  // Página "Fale conosco" (contato/): canal oficial de sugestões, elogios e reclamações.
+  // web3formsKey: chave do Web3Forms no e-mail da academia. null = a prévia envia pelo WhatsApp.
+  web3formsKey: null,
+  // Prazo de resposta e horário de atendimento (texto livre). null vira placeholder.
+  prazoResposta: null,      // ex.: 'até 2 dias úteis'
+  horarioAtendimento: null, // ex.: 'segunda a sexta, das 8h às 18h'
+
   // Linha fina acima do topo. null esconde.
   aviso: 'Sábado cortesia, das 6h às 13h, para todo aluno com matrícula ativa.',
 
@@ -35,3 +45,4 @@ window.ZINI = {
   rotaUrl: 'https://www.google.com/maps/dir/?api=1&destination=-20.6511585,-41.9081062&destination_place_id=ChIJ3UsLz4afuwARsNOHrnFj_mI',
   mapaEmbed: 'https://maps.google.com/maps?q=-20.6511585,-41.9081062&z=17&output=embed'
 };
+window.SITE = window.ZINI;

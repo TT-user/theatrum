@@ -1,7 +1,7 @@
 // O2 Fitness Academia: prévia. Contato em js/config.js; modalidades, planos, espaço e dúvidas em
 // data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 3;
+  var V = 4;
   var OLA = 'Olá! Vim pelo site da O2.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -94,8 +94,8 @@
 
   // ---------- dados ----------
   function pega(nome) { return fetch('data/' + nome + '.json?v=' + V).then(function (r) { if (!r.ok) throw new Error(nome); return r.json(); }); }
-  Promise.all([pega('modalidades'), pega('planos'), pega('espaco'), pega('faq')])
-    .then(function (d) { montaMods(d[0].itens); montaPlanos(d[1]); montaGaleria(d[2].itens); montaFaq(d[3].perguntas); revela(); semLazy(); })
+  Promise.all([pega('modalidades'), pega('planos'), pega('espaco'), pega('faq'), pega('avaliacoes')])
+    .then(function (d) { montaMods(d[0].itens); montaPlanos(d[1]); montaGaleria(d[2].itens); montaFaq(d[3].perguntas); montaDeps(d[4].itens); revela(); semLazy(); })
     .catch(function () {
       document.getElementById('planos-grid').innerHTML = '<p class="carregando">Não consegui carregar os planos. <a href="' + zap(OLA + ' Quero saber dos planos.') + '">Pergunte no WhatsApp</a>.</p>';
       revela();
@@ -229,6 +229,15 @@
     if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
     if (Math.abs(dx) > 50) passa(dx < 0 ? 1 : -1);
   });
+
+  // ---------- avaliações do Google ----------
+  function montaDeps(itens) {
+    document.getElementById('deps').innerHTML = itens.map(function (a) {
+      return '<figure class="dep"><span class="dep__nota" aria-label="5 estrelas">★★★★★</span>' +
+        '<blockquote>' + esc(a.texto).replace(/\n/g, '<br>') + '</blockquote>' +
+        '<figcaption><b>' + esc(a.nome) + '</b>' + (a.selo ? ' · ' + esc(a.selo) : '') + ' · ' + esc(a.quando) + '</figcaption></figure>';
+    }).join('');
+  }
 
   // ---------- dúvidas ----------
   function montaFaq(PERGUNTAS) {

@@ -899,10 +899,23 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   sem preço, mandando a mensagem mastigada. A seção do CrossZini virou "A equipe" (foto do time,
   responsável técnico e CREF em placeholder). O perfil do Google não foi reivindicado (argumento de
   venda). QR de avaliação no rodapé, Place ID `ChIJvSfPO0yfuwAReEiejl2uP5k`, conferido no Chrome em
-  21/10/2026. Sem `js/leads.js`, WhatsApp direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa
+  21/10/2026. Nota 5,0 em 13 avaliações; sem login o Google só mostra 5, e 3 delas estão no
+  "Por que a O2" (`data/avaliacoes.json`, texto igual ao original, sobrenome abreviado, autorização
+  pendente). Página "Fale conosco" em `contato/` (ver a seção sobre ela, abaixo). Sem `js/leads.js`, WhatsApp direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa
   de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v2.jpg` (HTML em
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
+
+- **Página "Fale conosco" (`contato/`), na O2 e na Zini, desde 21/10/2026:** canal oficial de
+  elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé das duas. Canais
+  (WhatsApp, telefone, e-mail, recepção) e horário de atendimento; formulário com tipo, quem fala,
+  data do ocorrido (só reclamação), mensagem, envio sem identificação (reclamação e sugestão),
+  retorno por WhatsApp ou e-mail e aceite de LGPD; protocolo `SIGLA-AAAAMMDD-XXXX` gerado na hora.
+  Com `web3formsKey` no `config.js` vai por e-mail (Web3Forms, assunto com o tipo e o protocolo);
+  sem chave, a prévia manda mastigado no WhatsApp. `js/contato.js` e `css/contato.css` são iguais
+  nos dois sites: tudo o que muda vem do `window.SITE` (nome, marca, sigla, prazo, horário). Prazo
+  de resposta, horário e quem lê ficam em placeholder até a academia definir. Na Zini, as dúvidas
+  apontam também para o Canal do Aluno (Google Form) que ela já usa.
 
 - **Proteção do conteúdo nos sites de cliente (desde 21/10/2026):** todas as prévias acima, menos
   o `/armazem/` (sistema), carregam `js/protecao.js` no `<head>`, cópia do `antonios/js/protecao.js`.
