@@ -897,8 +897,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   aviso amarelo "valores de exemplo"; troque pela tabela real. Com `grupos` vazio, a seção vira o
   convite para pedir a tabela no WhatsApp. No lugar do "Monte seu plano", "Por onde começar": objetivo, nível, horário e frequência,
   sem preço, mandando a mensagem mastigada. A seção do CrossZini virou "A equipe" (foto do time,
-  responsável técnico e CREF em placeholder). O perfil do Google não foi reivindicado (argumento de
-  venda). QR de avaliação no rodapé, Place ID `ChIJvSfPO0yfuwAReEiejl2uP5k`, conferido no Chrome em
+  responsável técnico e CREF em placeholder). QR de avaliação no rodapé, Place ID `ChIJvSfPO0yfuwAReEiejl2uP5k`, conferido no Chrome em
   21/10/2026. Nota 5,0 em 13 avaliações; sem login o Google só mostra 5, e 3 delas estão no
   "Por que a O2" (`data/avaliacoes.json`, texto igual ao original, sobrenome abreviado, autorização
   pendente). Página "Fale conosco" em `contato/` (ver a seção sobre ela, abaixo). Sem `js/leads.js`, WhatsApp direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa
