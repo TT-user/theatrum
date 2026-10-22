@@ -1,7 +1,7 @@
 // O2 Fitness Academia: prévia. Contato em js/config.js; modalidades, planos, espaço e dúvidas em
 // data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 4;
+  var V = 5;
   var OLA = 'Olá! Vim pelo site da O2.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;

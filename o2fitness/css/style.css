@@ -372,7 +372,9 @@ p { margin: 0 0 1em; }
 .fatos b { display: block; font: 800 clamp(26px, 3vw, 36px)/1.05 var(--largo); text-transform: uppercase; margin-bottom: 8px; }
 .fatos li { min-width: 0; }
 .fatos span { color: var(--tinta-2); overflow-wrap: break-word; }
+.fatos--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .fatos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; } }
+@media (max-width: 900px) { .fatos--3 li:last-child { grid-column: span 2; } }
 .vozes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .vozes > div { border-radius: var(--raio); padding: 28px; }
 .vozes__dep { background: var(--claro); }
