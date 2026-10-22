@@ -1,0 +1,13 @@
+{
+  "_leia": "Galeria 'O espaço'. 'tipo' é 'foto' (foto real) ou 'projeto' (render, leva selo de imagem ilustrativa). Fotos em assets/fotos/<foto>-<largura>.webp. No computador o primeiro item ocupa duas linhas e a grade tem 3 colunas: com 8 itens ela fecha sem buraco (1 grande + 7). No celular, o oitavo ocupa a linha inteira. Prints enviados pelo Matheus (baixa resolução, ampliados 2x): pedir os originais. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    { "foto": "salao-planta", "larguras": [480, 742], "w": 742, "h": 914, "tipo": "foto", "titulo": "A sala de musculação", "alt": "Sala de musculação com máquinas pretas, luz de LED amarela em zigue-zague no teto e uma costela-de-adão em primeiro plano" },
+    { "foto": "anilhas-bikes", "larguras": [480, 664], "w": 664, "h": 914, "tipo": "foto", "titulo": "Peso livre e bikes", "alt": "Suporte de anilhas pretas com detalhes amarelos entre bikes e máquinas de musculação" },
+    { "foto": "terapia", "larguras": [480, 756], "w": 756, "h": 930, "tipo": "foto", "titulo": "Terapia para a mente", "alt": "Máquinas amarelo-limão diante da parede preta com a frase 'Nem sempre é treino para os músculos, às vezes é só terapia para a mente'" },
+    { "foto": "kikos", "larguras": [480, 664], "w": 664, "h": 886, "tipo": "foto", "titulo": "Aparelhos Kikos", "alt": "Cadeira extensora preta e dourada da Kikos sobre piso emborrachado" },
+    { "foto": "metas", "larguras": [480, 736], "w": 736, "h": 896, "tipo": "foto", "titulo": "Não diminua suas metas", "alt": "Parede de cimento queimado com a frase 'Não diminua suas metas, aumente seus esforços!' e vasos de espada-de-são-jorge" },
+    { "foto": "bikes-crianca", "larguras": [480, 652], "w": 652, "h": 884, "tipo": "foto", "titulo": "Fileira de bikes", "alt": "Bikes pretas e amarelas sobre piso de madeira, com uma criança ao fundo" },
+    { "foto": "recepcao", "larguras": [480, 624], "w": 624, "h": 898, "tipo": "foto", "titulo": "A recepção", "alt": "Balcão da recepção com o logo da RAR Academia, prateleira de suplementos e a frase 'Se for para sofrer que seja na RAR, aqui a dor traz resultados!'" },
+    { "foto": "anilhas", "larguras": [480, 662], "w": 662, "h": 914, "tipo": "foto", "titulo": "Anilhas", "alt": "Suporte com anilhas pretas de 5 a 20 kg com etiquetas amarelas" }
+  ]
+}

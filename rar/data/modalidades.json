@@ -1,0 +1,59 @@
+{
+  "_leia": "Cards de 'O que tem na RAR'. Texto entre [colchetes] vira placeholder amarelo. 'icone' é o id de um <symbol> do index.html (i-halter, i-cardio, i-familia, i-mala, i-pote, i-agenda). 'ancora' leva a uma parte da página; sem ela, 'zap' é a mensagem do WhatsApp do botão. Fontes: fotos e tour 360° (aparelhos), story dos planos (diária, semanal, família), post 'RAR, a academia para a sua família' (texto do card família, igual ao original), bio do Instagram ('Agende seu treino no link'). Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    {
+      "id": "musculacao",
+      "icone": "i-halter",
+      "nome": "Musculação",
+      "linha": "máquinas, anilhas e halteres",
+      "texto": "Sala de musculação com aparelhos Kikos, máquinas articuladas, cabos e peso livre. [tem professor na sala? em quais horários?]",
+      "botao": "Ver os planos",
+      "ancora": "#planos"
+    },
+    {
+      "id": "cardio",
+      "icone": "i-cardio",
+      "nome": "Cardio",
+      "linha": "esteiras, elípticos e bikes",
+      "texto": "Esteiras de frente para a rua, elípticos e uma fileira de bikes. Dá para ver tudo no tour 360°.",
+      "botao": "Entrar no tour 360°",
+      "ancora": "#tour"
+    },
+    {
+      "id": "familia",
+      "icone": "i-familia",
+      "nome": "Plano família",
+      "linha": "a academia para a sua família",
+      "texto": "Um ambiente para todos, respeitando o seu jeito, o seu ritmo e os seus objetivos.",
+      "botao": "Ver o plano família",
+      "ancora": "#plano-familia"
+    },
+    {
+      "id": "passagem",
+      "icone": "i-mala",
+      "nome": "De passagem por Garopaba",
+      "linha": "diária e semanal",
+      "texto": "Veio de férias ou a trabalho? Treine por um dia ou pela semana inteira, sem plano longo.",
+      "botao": "Ver diária e semanal",
+      "ancora": "#passagem"
+    },
+    {
+      "id": "suplementos",
+      "icone": "i-pote",
+      "nome": "Loja de suplementos",
+      "linha": "na recepção",
+      "texto": "Suplemento, snack e bebida gelada na recepção. Separe pelo site e pegue quando chegar para treinar.",
+      "botao": "Ver a loja",
+      "ancora": "#suplementos"
+    },
+    {
+      "id": "agendar",
+      "icone": "i-agenda",
+      "nome": "Agende seu treino",
+      "linha": "pelo WhatsApp",
+      "texto": "A RAR agenda o seu treino pelo WhatsApp. [o que se agenda: primeiro treino, avaliação ou horário com professor?]",
+      "botao": "Agendar meu treino",
+      "zap": "Olá! Vim pelo site da RAR e quero agendar um treino."
+    }
+  ]
+}

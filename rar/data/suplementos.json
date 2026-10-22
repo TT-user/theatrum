@@ -1,0 +1,21 @@
+{
+  "_leia": "Loja de suplementos da recepção. TODOS OS ITENS SÃO EXEMPLO até a RAR mandar a lista: com \"exemplo\": true, a seção mostra o aviso amarelo. 'preco' null vira placeholder; com número, o site soma a sacola. O preço sai sempre daqui, nunca do que ficou salvo no navegador. 'tipo' escolhe o desenho (pote, pote-p, barra, garrafa, lata, sache), 'cor' é a cor do rótulo e 'rotulo' é a palavra curta desenhada nele. 'cat' é o id de uma categoria. Sem promessa de saúde ou resultado na 'linha' (regra da Anvisa para suplemento): só o que é e como se usa. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "exemplo": true,
+  "categorias": [
+    { "id": "proteina", "nome": "Proteína" },
+    { "id": "creatina", "nome": "Creatina" },
+    { "id": "pre", "nome": "Pré-treino" },
+    { "id": "bebidas", "nome": "Bebidas" },
+    { "id": "snacks", "nome": "Snacks" }
+  ],
+  "itens": [
+    { "id": "whey-900", "cat": "proteina", "nome": "Whey protein", "marca": null, "tamanho": "pote de 900 g", "linha": "para bater com água ou leite", "preco": null, "tipo": "pote", "cor": "#FCD345", "rotulo": "WHEY" },
+    { "id": "whey-dose", "cat": "proteina", "nome": "Whey em dose", "marca": null, "tamanho": "sachê de 30 g", "linha": "uma dose para levar na mochila", "preco": null, "tipo": "sache", "cor": "#FCD345", "rotulo": "WHEY" },
+    { "id": "creatina-300", "cat": "creatina", "nome": "Creatina", "marca": null, "tamanho": "pote de 300 g", "linha": "sem sabor, para misturar na bebida", "preco": null, "tipo": "pote-p", "cor": "#FFFFFF", "rotulo": "CREA" },
+    { "id": "pre-300", "cat": "pre", "nome": "Pré-treino", "marca": null, "tamanho": "pote de 300 g", "linha": "em pó, para tomar antes do treino", "preco": null, "tipo": "pote-p", "cor": "#E5322D", "rotulo": "PRÉ" },
+    { "id": "proteica", "cat": "bebidas", "nome": "Bebida proteica", "marca": null, "tamanho": "garrafa de 250 ml", "linha": "pronta, gelada na geladeira da recepção", "preco": null, "tipo": "garrafa", "cor": "#8A6CFF", "rotulo": "PROT" },
+    { "id": "energetico", "cat": "bebidas", "nome": "Energético", "marca": null, "tamanho": "lata de 473 ml", "linha": "gelado, na geladeira da recepção", "preco": null, "tipo": "lata", "cor": "#DEE221", "rotulo": "ENERGY" },
+    { "id": "isotonico", "cat": "bebidas", "nome": "Isotônico", "marca": null, "tamanho": "garrafa de 500 ml", "linha": "gelado, para depois do cardio", "preco": null, "tipo": "garrafa", "cor": "#2FA4FF", "rotulo": "ISO" },
+    { "id": "barra", "cat": "snacks", "nome": "Barra de proteína", "marca": null, "tamanho": "unidade", "linha": "lanche rápido antes ou depois do treino", "preco": null, "tipo": "barra", "cor": "#C8642B", "rotulo": "PROTEIN" }
+  ]
+}

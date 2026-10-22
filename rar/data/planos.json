@@ -1,0 +1,13 @@
+{
+  "_leia": "Planos da RAR. Valores do story 'Conheça os nossos planos' (print 17, enviado pelo Matheus em 22/10/2026): CONFIRMAR antes do site oficial. 'parcelas' é em quantas vezes o valor sai (Trimestral 3x R$ 180, Semestral 6x R$ 170) e 'valor' é o de cada parcela; 'dias' é para os planos curtos (diária e semanal). A economia em relação ao mensal é calculada pelo js/main.js a partir do plano com id igual a 'mensal'. 'grupo' é 'fixo' (quem mora ou fica mais de um mês) ou 'passagem'. O card com \"destaque\": true fica amarelo e leva o 'selo'. Para tirar o aviso amarelo de confirmação, ponha \"confirmar\": false. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "confirmar": true,
+  "mensal": "mensal",
+  "planos": [
+    { "id": "mensal", "grupo": "fixo", "nome": "Mensal", "sub": "mês a mês", "valor": 200, "parcelas": 1, "linha": "Para começar sem compromisso longo." },
+    { "id": "trimestral", "grupo": "fixo", "nome": "Trimestral", "sub": "3 meses", "valor": 180, "parcelas": 3, "linha": "Três meses de treino com a mensalidade menor." },
+    { "id": "semestral", "grupo": "fixo", "nome": "Semestral", "sub": "6 meses", "valor": 170, "parcelas": 6, "destaque": true, "selo": "Menor mensalidade", "linha": "O menor valor por mês da tabela, para quem já decidiu." },
+    { "id": "familia", "grupo": "fixo", "nome": "Plano família", "sub": "para treinar junto", "valor": 180, "parcelas": 1, "linha": "A academia para a sua família. [confirmar: valor por pessoa? quantas pessoas entram no plano?]" },
+    { "id": "semanal", "grupo": "passagem", "nome": "Semanal", "sub": "7 dias", "valor": 150, "dias": 7, "linha": "De férias em Garopaba ou a trabalho: a semana inteira de treino." },
+    { "id": "diaria", "grupo": "passagem", "nome": "Diária", "sub": "1 dia", "valor": 50, "dias": 1, "linha": "Um treino no dia em que você precisar." }
+  ]
+}

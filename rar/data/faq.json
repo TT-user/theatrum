@@ -1,0 +1,14 @@
+{
+  "_leia": "Dúvidas da RAR. 'id' vira âncora (#faq-<id>), usada nos atalhos do rodapé. Texto entre [colchetes] vira placeholder amarelo. {horario} e {pagamento} vêm do js/config.js. Fontes: story do horário, story dos planos e bio do Instagram. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "perguntas": [
+    { "id": "horario", "p": "Qual o horário da academia?", "r": "{horario}. Aberta todos os dias da semana." },
+    { "id": "passagem", "p": "Estou de férias em Garopaba. Posso treinar só alguns dias?", "r": "Pode. A diária sai R$ 50 e a semana inteira, R$ 150. Com três dias na mesma semana, o semanal já empata com as diárias e ainda cobre os outros quatro. [confirmar: precisa de cadastro ou documento na recepção?]" },
+    { "id": "familia", "p": "Como funciona o plano família?", "r": "[confirmar: o valor de R$ 180 é por pessoa? Quantas pessoas entram e quem conta como família?]" },
+    { "id": "parcelas", "p": "O trimestral e o semestral são parcelados?", "r": "Na tabela, o trimestral sai em 3x de R$ 180 e o semestral em 6x de R$ 170. [confirmar: é no cartão de crédito ou pago mês a mês?]" },
+    { "id": "agendar", "p": "Posso agendar um treino para conhecer?", "r": "A RAR agenda o seu treino pelo WhatsApp. [confirmar: o primeiro treino é cortesia?]" },
+    { "id": "suplementos", "p": "Quem não é aluno pode comprar na loja de suplementos?", "r": "[confirmar: a loja da recepção vende para quem não é aluno?] Pelo site, você separa o pedido no WhatsApp e retira na recepção." },
+    { "id": "matricula", "p": "Tem taxa de matrícula ou fidelidade?", "r": "[confirmar: taxa de matrícula, tempo mínimo de contrato e como cancelar]" },
+    { "id": "estacionamento", "p": "Tem onde estacionar?", "r": "[confirmar: estacionamento na frente da academia?]" },
+    { "id": "pagamento", "p": "Quais as formas de pagamento?", "r": "{pagamento}" }
+  ]
+}

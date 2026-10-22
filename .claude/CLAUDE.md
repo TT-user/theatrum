@@ -905,14 +905,36 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
 
-- **Página "Fale conosco" (`contato/`), na O2 e na Zini, desde 21/10/2026:** canal oficial de
-  elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé das duas. Canais
+- `/rar/` — prévia do site da RAR Academia (musculação, cardio, plano família e loja de suplementos
+  na recepção, Rod. Abílio Manoel de Lima, km 7, Encantada, Garopaba, SC), desde 22/10/2026, feita
+  a partir do `/zini/` com o perfil do Google, a bio e o Linktree do @rar.academia e 18 prints que o
+  Matheus mandou. Amarelo dos stories (`#FCD345`) e, no lugar da luz azul da Zini, o LED amarelo em
+  zigue-zague do teto deles (`#zigue`, SVG parado). Título do hero é a frase da parede da recepção
+  ("Se for para sofrer, que seja na RAR"); o superlativo da bio ("a melhor academia de Garopaba")
+  não entra. Planos do story (`data/planos.json`, com aviso de confirmar): Mensal, Trimestral 3x,
+  Semestral 6x, Família, e "de passagem" (Semanal e Diária) em faixa própria, porque Garopaba é
+  turística; a economia sobre o mensal é calculada pelo `main.js`. "Monte seu plano" pergunta se mora
+  ou está de passagem e indica o plano mais barato da tabela (2 diárias, semanal a partir de 3 dias,
+  mensal para mais de uma semana). **Tour 360°** (`#tour`): o photosphere do perfil do Google (RD 360
+  Tour Virtual) num iframe `maps/embed?pb=...!1s<ik>` sem chave de API, só no clique (`tour360` no
+  `config.js`). **Loja de suplementos** (`#suplementos`, `data/suplementos.json`): sacola no
+  `localStorage` `rar-sacola`, produtos desenhados em SVG pelo `main.js`, pedido mastigado no WhatsApp
+  para retirar na recepção; **todos os produtos são exemplo** até a RAR mandar a lista. Na proposta,
+  a loja é bônus para quem fechar os 12 meses de acompanhamento (vai no PDF, não no site). Logo é
+  recorte do avatar do Instagram. QR de avaliação no rodapé, Place ID `ChIJbWaaTIXTJpURlFr3g9EC2rg`,
+  conferido no Chrome em 22/10/2026. Página "Fale conosco" em `contato/`. Sem `js/leads.js`, WhatsApp
+  direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
+  `utm_campaign=rar`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/rar/og/`). Prints e
+  pendências em `interno/clientes/rar/`, fora do git.
+
+- **Página "Fale conosco" (`contato/`), na O2, na Zini e na RAR, desde 21/10/2026:** canal oficial de
+  elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
   (WhatsApp, telefone, e-mail, recepção) e horário de atendimento; formulário com tipo, quem fala,
   data do ocorrido (só reclamação), mensagem, envio sem identificação (reclamação e sugestão),
   retorno por WhatsApp ou e-mail e aceite de LGPD; protocolo `SIGLA-AAAAMMDD-XXXX` gerado na hora.
   Com `web3formsKey` no `config.js` vai por e-mail (Web3Forms, assunto com o tipo e o protocolo);
   sem chave, a prévia manda mastigado no WhatsApp. `js/contato.js` e `css/contato.css` são iguais
-  nos dois sites: tudo o que muda vem do `window.SITE` (nome, marca, sigla, prazo, horário). Prazo
+  nos três sites: tudo o que muda vem do `window.SITE` (nome, marca, sigla, prazo, horário). Prazo
   de resposta, horário e quem lê ficam em placeholder até a academia definir. Na Zini, as dúvidas
   apontam também para o Canal do Aluno (Google Form) que ela já usa.
 
@@ -1071,7 +1093,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
