@@ -1,0 +1,45 @@
+{
+  "_leia": "Dúvidas da O2. 'id' vira âncora (#faq-<id>), usada nos atalhos do rodapé. Texto entre [colchetes] vira placeholder amarelo. {horario} e {pagamento} vêm do js/config.js. Endereço: bio do Instagram e perfil do Google. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "perguntas": [
+    {
+      "id": "horario",
+      "p": "Qual o horário da academia?",
+      "r": "{horario}"
+    },
+    {
+      "id": "onde",
+      "p": "Onde fica a O2?",
+      "r": "Na Rua José Grillo, 140, no Centro de Espera Feliz (MG). O botão \"Traçar rota\", em Como chegar, abre o caminho no Google Maps. [ponto de referência]"
+    },
+    {
+      "id": "planos",
+      "p": "Quanto custa?",
+      "r": "[valores dos planos e o que cada um inclui] Enquanto a tabela não está aqui, a O2 manda pelo WhatsApp."
+    },
+    {
+      "id": "experimental",
+      "p": "Posso fazer uma aula experimental?",
+      "r": "[confirmar: tem aula ou dia experimental? É gratuito?] Se quiser só conhecer o salão antes, mande uma mensagem e marque um horário."
+    },
+    {
+      "id": "iniciante",
+      "p": "Nunca treinei. Vou saber o que fazer?",
+      "r": "[como a O2 recebe quem está começando: avaliação, treino montado, professor no salão]"
+    },
+    {
+      "id": "matricula",
+      "p": "Tem taxa de matrícula ou fidelidade?",
+      "r": "[confirmar: taxa de matrícula, tempo mínimo de contrato e como cancelar]"
+    },
+    {
+      "id": "pagamento",
+      "p": "Quais as formas de pagamento?",
+      "r": "{pagamento}"
+    },
+    {
+      "id": "estacionamento",
+      "p": "Tem onde estacionar?",
+      "r": "[estacionamento próprio ou na rua? tem bicicletário?]"
+    }
+  ]
+}

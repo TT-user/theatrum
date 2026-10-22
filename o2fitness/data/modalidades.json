@@ -1,0 +1,41 @@
+{
+  "_leia": "Cards de 'O que tem na O2'. Texto entre [colchetes] vira placeholder amarelo. 'icone' é o id de um <symbol> do index.html (i-halter, i-ficha, i-personal, i-grupo). 'zap' é a mensagem do WhatsApp do botão; 'ancora' leva a uma seção da página. Fontes: fotos do salão (máquinas de carga articulada, leg press Cimerian, rack e anilhas). O resto espera a O2 confirmar. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    {
+      "id": "musculacao",
+      "icone": "i-halter",
+      "nome": "Musculação",
+      "linha": "máquinas de carga articulada e peso livre",
+      "texto": "Leg press e outras máquinas com anilha, mais a área do rack. Num salão de piso de madeira, com janelões.",
+      "botao": "Ver o espaço",
+      "ancora": "#espaco"
+    },
+    {
+      "id": "treino",
+      "icone": "i-ficha",
+      "nome": "Treino montado",
+      "linha": "o seu primeiro treino",
+      "texto": "[como a O2 monta o primeiro treino: avaliação, ficha, de quanto em quanto tempo troca]",
+      "botao": "Perguntar sobre o treino",
+      "zap": "Olá! Vim pelo site da O2 e quero saber como funciona a montagem do treino."
+    },
+    {
+      "id": "personal",
+      "icone": "i-personal",
+      "nome": "Personal",
+      "linha": "treino acompanhado de perto",
+      "texto": "[a O2 tem personal? quem atende, horários e valores]",
+      "botao": "Perguntar sobre o personal",
+      "zap": "Olá! Vim pelo site da O2 e quero saber do personal."
+    },
+    {
+      "id": "aulas",
+      "icone": "i-grupo",
+      "nome": "Outras modalidades",
+      "linha": "além da musculação",
+      "texto": "[a O2 tem aulas em turma ou outras modalidades? quais, dias e horários]",
+      "botao": "Perguntar o que mais tem",
+      "zap": "Olá! Vim pelo site da O2 e quero saber se tem outras modalidades além da musculação."
+    }
+  ]
+}

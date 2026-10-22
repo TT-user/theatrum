@@ -886,6 +886,23 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `utm_campaign=zini`, OG em `og-image-v2.jpg` (HTML em `interno/clientes/zini/og/`). Prints e
   pendências em `interno/clientes/zini/`, fora do git.
 
+- `/o2fitness/` — prévia do site da O2 Fitness Academia (musculação, R. José Grillo, 140, Centro de
+  Espera Feliz, MG, a mesma cidade da Zini), desde 21/10/2026, feita a partir do `/zini/` com o perfil
+  do Google, a bio do Instagram (@o2_fitness_academia) e 11 fotos que o Matheus mandou. Mesma
+  estrutura e motor da Zini, com o amarelo trocado pelo verde-limão do logo (`#8FCF56`) e a luz azul
+  pela luz verde dos pilares do salão. Todas as imagens são fotos reais (sem selo de projeto). O
+  título do hero é a primeira frase da parede deles ("Seja forte quando estiver fraco") e o CTA final
+  fecha as outras duas. A O2 não publica preço: `data/planos.json` está com `grupos` vazio, e a seção
+  mostra o convite para pedir a tabela no WhatsApp (o mesmo renderizador da Zini volta quando houver
+  valores). No lugar do "Monte seu plano", "Por onde começar": objetivo, nível, horário e frequência,
+  sem preço, mandando a mensagem mastigada. A seção do CrossZini virou "A equipe" (foto do time,
+  responsável técnico e CREF em placeholder). O perfil do Google não foi reivindicado (argumento de
+  venda). QR de avaliação no rodapé, Place ID `ChIJvSfPO0yfuwAReEiejl2uP5k`, conferido no Chrome em
+  21/10/2026. Sem `js/leads.js`, WhatsApp direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa
+  de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v1.jpg` (HTML em
+  `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
+  fora do git.
+
 - `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
   (sistema de trabalho no Claude Code, com memória do operador e 12 comandos: `/instalar`,
   `/previa`, `/proposta`...) para quem quer vender site e marketing a pequenos negócios. O
@@ -1037,7 +1054,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

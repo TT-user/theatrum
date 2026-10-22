@@ -1,0 +1,5 @@
+{
+  "_leia": "Planos da O2. Ainda vazio: a O2 não publica valores no Instagram nem no Google. Enquanto 'grupos' estiver vazio, a seção mostra o convite para pedir a tabela no WhatsApp. Para preencher, um bloco por grupo, assim: { \"id\": \"musculacao\", \"nome\": \"Musculação\", \"sub\": \"Sala de musculação\", \"linha\": \"texto curto\", \"colunas\": [\"Mensal\"], \"linhas\": [ { \"freq\": \"3x na semana\", \"vezes\": 3, \"precos\": [120] } ], \"extra\": \"observação opcional\" }. 'precos' segue a ordem de 'colunas'; 'vezes' é quantos treinos por semana (null = livre). O card com \"destaque\": true fica verde e leva o 'selo'. Com \"confirmar\": true aparece o aviso amarelo de conferir os valores. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "confirmar": true,
+  "grupos": []
+}
