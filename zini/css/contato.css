@@ -1,6 +1,6 @@
 /* Página "Fale conosco". Usa os tokens do css/style.css; a cor de destaque é a da marca
-   (verde na O2, amarelo na Zini), então este arquivo é o mesmo nos dois sites. */
-:root { --destaque: var(--verde, var(--amarelo)); }
+   (verde na O2, amarelo na Zini e na RAR, laranja na Mega), então este arquivo é o mesmo nos quatro sites. */
+:root { --destaque: var(--laranja, var(--verde, var(--amarelo))); }
 
 .menu a[aria-current="page"] { border-color: var(--destaque); }
 .trilha { font-size: 14px; color: var(--txt-2); margin-bottom: 26px; }

@@ -927,14 +927,37 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `utm_campaign=rar`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/rar/og/`). Prints e
   pendências em `interno/clientes/rar/`, fora do git.
 
-- **Página "Fale conosco" (`contato/`), na O2, na Zini e na RAR, desde 21/10/2026:** canal oficial de
+- `/megaacademia/` — prévia do site da Mega Academia (musculação e ginástica desde 2011, Av. Campos
+  Novos, São Vicente, Itajaí, SC), desde 22/10/2026, feita a partir do `/o2fitness/` com o perfil do
+  Google, a bio do @megaacademiaitajai, três flyers de preço e fotos que o Matheus mandou. Preto com
+  o laranja e o ouro do anel do logo (`#F59A23`, `#FFC94A`; texto pequeno sobre claro em
+  `#8F4500`); títulos sobre escuro com o degradê ouro e laranja dos flyers. Logo redesenhado em SVG
+  (`#mg-marca`: anel em meia-lua e o atleta com a barra). Título do hero é o slogan do letreiro
+  ("Sua saúde é nosso compromisso"). No lugar da "Equipe" da O2, a seção "Aulas coletivas"
+  (`#aulas`), com os nomes escritos na fachada (jump, step, bike, ritmos, local, abdominal,
+  alongamento) e a grade em placeholder. Os três planos são as promoções dos posts fixados de
+  outubro (2 meses R$ 259,99 no Pix; seis meses pagando cinco; a partir de R$ 89,99 em 12x), com a
+  linha `fonte` do `planos.json` pedindo para confirmar; o `main.js` aceita texto no preço
+  ("Grátis"). "Por onde começar" tem cinco perguntas (a 2ª: musculação, aulas ou os dois).
+  Endereço do Google é 1206 e o dos flyers é 1212: placeholder até confirmar. Avaliações: o Maps só
+  abre completo com o Chrome em janela (headless dá a visão limitada sem avaliação nenhuma) e, sem
+  login, mostra 5 de 275; quatro entraram, a que fala de remédio de diabetes suspenso ficou de fora
+  (promessa de saúde). A foto 12 (fachada ampliada por IA) tem o letreiro com letras trocadas: não
+  usar. QR de avaliação no rodapé, Place ID `ChIJARTiTL7M2JQRztCm-evaBnA`, conferido no Chrome em
+  22/10/2026. Página "Fale conosco" em `contato/`. Sem `js/leads.js`, WhatsApp direto. Mesmo
+  padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
+  `utm_campaign=megaacademia`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/megaacademia/og/`).
+  Fotos, avaliações extraídas, preços da proposta e pendências em `interno/clientes/megaacademia/`,
+  fora do git.
+
+- **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
   (WhatsApp, telefone, e-mail, recepção) e horário de atendimento; formulário com tipo, quem fala,
   data do ocorrido (só reclamação), mensagem, envio sem identificação (reclamação e sugestão),
   retorno por WhatsApp ou e-mail e aceite de LGPD; protocolo `SIGLA-AAAAMMDD-XXXX` gerado na hora.
   Com `web3formsKey` no `config.js` vai por e-mail (Web3Forms, assunto com o tipo e o protocolo);
   sem chave, a prévia manda mastigado no WhatsApp. `js/contato.js` e `css/contato.css` são iguais
-  nos três sites: tudo o que muda vem do `window.SITE` (nome, marca, sigla, prazo, horário). Prazo
+  nos quatro sites: tudo o que muda vem do `window.SITE` (nome, marca, sigla, prazo, horário). Prazo
   de resposta, horário e quem lê ficam em placeholder até a academia definir. Na Zini, as dúvidas
   apontam também para o Canal do Aluno (Google Form) que ela já usa.
 
@@ -1093,7 +1116,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

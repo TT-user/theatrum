@@ -1,0 +1,14 @@
+{
+  "_leia": "Dúvidas da Mega. 'id' vira âncora (#faq-<id>), usada nos atalhos do rodapé. Texto entre [colchetes] vira placeholder amarelo. {horario} e {pagamento} vêm do js/config.js. Fontes: perfil do Google (endereço, horário), flyers do Instagram (planos, pagamento, aulas inclusas) e avaliações do Google (instrutores). Mudou este arquivo, suba o V no topo do js/main.js.",
+  "perguntas": [
+    { "id": "horario", "p": "Qual o horário da academia?", "r": "{horario}" },
+    { "id": "onde", "p": "Onde fica a Mega?", "r": "Na Av. Campos Novos, 1206, em São Vicente, Itajaí (SC). O botão \"Traçar rota\", em Como chegar, abre o caminho no Google Maps. [ponto de referência]" },
+    { "id": "planos", "p": "Quanto custa?", "r": "Em outubro, a Mega publicou três condições: o plano de 2 meses por R$ 259,99 no Pix ou dinheiro, o de seis meses pagando cinco (de R$ 159,99 no 1º mês a R$ 99,99 no 5º, e o 6º grátis) e planos a partir de R$ 89,99 por mês no cartão em 12x. Os detalhes estão em Planos. [confirmar a tabela fora da promoção]" },
+    { "id": "aulas", "p": "As aulas coletivas estão no plano?", "r": "Os flyers da Mega dizem que as aulas coletivas estão inclusas. [confirmar se vale para todos os planos e a grade de horários]" },
+    { "id": "diaria", "p": "Dá para treinar só um dia?", "r": "[confirmar: a Mega tem diária? Valor e se vale para as aulas]" },
+    { "id": "iniciante", "p": "Nunca treinei. Vou saber o que fazer?", "r": "[como a Mega recebe quem está começando: avaliação, treino montado, instrutor no salão]" },
+    { "id": "matricula", "p": "Tem taxa de matrícula ou fidelidade?", "r": "[confirmar: taxa de matrícula, tempo mínimo de contrato e como cancelar]" },
+    { "id": "pagamento", "p": "Quais as formas de pagamento?", "r": "{pagamento}" },
+    { "id": "estacionamento", "p": "Tem onde estacionar?", "r": "[as vagas em frente à fachada são da academia? tem bicicletário?]" }
+  ]
+}

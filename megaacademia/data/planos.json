@@ -1,0 +1,49 @@
+{
+  "_leia": "Planos da Mega. Os três cards são as condições dos posts fixados no Instagram em outubro de 2026 (a 'fonte' aparece acima dos cards). Valor em número (159.99) vira R$; valor em texto ('Grátis') aparece como está. 'colunas' são os títulos das colunas de valor; 'cabecalho' é o título da primeira coluna; 'precos' segue a ordem de 'colunas'. O card com \"destaque\": true fica laranja e leva o 'selo'. Com 'grupos' vazio, a seção mostra o convite para pedir a tabela no WhatsApp. Acabou a promoção? Troque pela tabela fixa e suba o V no topo do js/main.js.",
+  "fonte": "Condições publicadas no Instagram da Mega em outubro de 2026. [confirmar se seguem valendo e qual é a tabela fora da promoção]",
+  "grupos": [
+    {
+      "id": "dois-meses",
+      "nome": "2 meses",
+      "sub": "Promoção de outubro",
+      "linha": "Apenas no Pix ou dinheiro. Limitada a 50 matrículas.",
+      "cabecalho": "Pagamento",
+      "colunas": ["Valor"],
+      "linhas": [
+        { "freq": "Os 2 meses", "precos": [259.99] }
+      ],
+      "extra": "Promoção especial de outubro."
+    },
+    {
+      "id": "seis-por-cinco",
+      "nome": "Seis meses, paga cinco",
+      "sub": "Sem cartão, sem boleto",
+      "destaque": true,
+      "selo": "6º mês grátis",
+      "linha": "Você treina mais e paga menos: o valor cai a cada mês.",
+      "cabecalho": "Mês",
+      "colunas": ["Valor"],
+      "linhas": [
+        { "freq": "1º mês", "precos": [159.99] },
+        { "freq": "2º mês", "precos": [139.99] },
+        { "freq": "3º mês", "precos": [119.99] },
+        { "freq": "4º mês", "precos": [109.99] },
+        { "freq": "5º mês", "precos": [99.99] },
+        { "freq": "6º mês", "precos": ["Grátis"] }
+      ],
+      "extra": "R$ 629,95 pelos seis meses (soma dos cinco valores)."
+    },
+    {
+      "id": "cartao-12x",
+      "nome": "No cartão em 12x",
+      "sub": "A partir de R$ 89,99/mês",
+      "linha": "Musculação moderna e aulas coletivas inclusas. Apenas 30 vagas nesta condição.",
+      "cabecalho": "Pagamento",
+      "colunas": ["Valor"],
+      "linhas": [
+        { "freq": "Por mês, a partir de", "precos": [89.99] }
+      ],
+      "extra": "[qual plano é: anual? e o valor total]"
+    }
+  ]
+}

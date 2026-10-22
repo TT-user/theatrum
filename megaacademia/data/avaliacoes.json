@@ -1,0 +1,29 @@
+{
+  "_leia": "Avaliações do Google da Mega (275 no total, nota 4,7, conferido em 22/10/2026). Sem login só aparecem 5, todas com 5 estrelas; estas 4 são delas. Texto igual ao original (trecho cortado marcado com (…)), sobrenome abreviado. Fora de propósito: a de Rafael M., que conta que o médico suspendeu o remédio de diabetes (no site da academia vira promessa de saúde), e, na de Adriel C., o trecho do peso perdido. Antes do site oficial: pedir autorização de cada pessoa. Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    {
+      "nome": "Luana B.",
+      "selo": "",
+      "quando": "há 2 meses",
+      "texto": "Atendimento excelente! Obrigada Jéssica, Fernando e Simone pelo atendimento. Academia organizada, limpa e com variedade de equipamentos."
+    },
+    {
+      "nome": "Ksenia V.",
+      "selo": "Local Guide",
+      "quando": "há 1 ano",
+      "texto": "O espaço é sempre muito limpo e bem organizado, o que faz toda a diferença. Os equipamentos são modernos e em excelente estado, além de haver ar-condicionado, garantindo conforto durante os treinos. Os treinadores são ótimos – sempre prontos para ajudar, motivar e corrigir, com muita atenção e profissionalismo. Recomendo para quem busca um ambiente acolhedor e bem estruturado para alcançar seus objetivos!"
+    },
+    {
+      "nome": "Adriel C.",
+      "selo": "",
+      "quando": "há 1 ano",
+      "texto": "Agradeço até hoje por nunca ter desistido de treinar, e tudo isso graças a Mega academia. (…) obrigado aos instrutores que me acolheram e me ajudaram tanto nas dúvidas dos exercícios quanto nos conselhos de vida. É como um dos instrutores disse uma vez para mim \"Aqui dentro nós somos uma família\" 10 de 10 para os aparelhos,instrutores, atendimento e ambiente.\n\nRecomendo muito"
+    },
+    {
+      "nome": "João T.",
+      "selo": "Local Guide",
+      "quando": "há 2 anos",
+      "texto": "TOP demais, fui muito bem atendido, não sou aluno frequente, fiz um treino na diária, achei incrível alguns aparelhos que eu nunca havia usado antes, certamente treinarei mais vezes. Estão todos de parabéns."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 // Página "Fale conosco": canal oficial de elogios, sugestões, reclamações, dúvidas e contato comercial.
-// Igual nos sites que usam (O2, Zini, RAR): tudo o que muda vem do window.SITE, no js/config.js.
+// Igual nos sites que usam (O2, Zini, RAR, Mega): tudo o que muda vem do window.SITE, no js/config.js.
 // Com SITE.web3formsKey, a mensagem vai por e-mail (Web3Forms); sem chave, sai mastigada no WhatsApp.
 (function () {
   var S = window.SITE;

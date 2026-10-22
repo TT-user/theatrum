@@ -1,0 +1,41 @@
+{
+  "_leia": "Cards de 'O que tem na Mega'. Texto entre [colchetes] vira placeholder amarelo. 'icone' é o id de um <symbol> do index.html (i-halter, i-grupo, i-ficha, i-floco). 'zap' é a mensagem do WhatsApp do botão; 'ancora' leva a uma seção da página. Fontes: flyers do Instagram ('100+ máquinas', '+120 máquinas', 'aulas coletivas inclusas', 'ambiente climatizado'), letreiro da fachada (nomes das aulas) e avaliações do Google (instrutores, ar-condicionado). Mudou este arquivo, suba o V no topo do js/main.js.",
+  "itens": [
+    {
+      "id": "musculacao",
+      "icone": "i-halter",
+      "nome": "Musculação",
+      "linha": "mais de 100 máquinas",
+      "texto": "Máquinas pretas e amarelas, leg press e fileiras de esteiras no mezanino, num salão de dois andares.",
+      "botao": "Ver o espaço",
+      "ancora": "#espaco"
+    },
+    {
+      "id": "aulas",
+      "icone": "i-grupo",
+      "nome": "Aulas coletivas",
+      "linha": "jump, step, bike e mais",
+      "texto": "Jump, step, bike, ritmos, local, abdominal e alongamento, numa sala própria. [grade de horários]",
+      "botao": "Ver as aulas",
+      "ancora": "#aulas"
+    },
+    {
+      "id": "treino",
+      "icone": "i-ficha",
+      "nome": "Treino orientado",
+      "linha": "o seu primeiro treino",
+      "texto": "[como a Mega monta o primeiro treino: avaliação, ficha, de quanto em quanto tempo troca]",
+      "botao": "Perguntar sobre o treino",
+      "zap": "Olá! Vim pelo site da Mega e quero saber como funciona a montagem do treino."
+    },
+    {
+      "id": "clima",
+      "icone": "i-floco",
+      "nome": "Climatizado",
+      "linha": "ar-condicionado no salão",
+      "texto": "Ambiente climatizado, para treinar no verão de Itajaí com conforto.",
+      "botao": "Marcar uma visita",
+      "zap": "Olá! Vim pelo site da Mega e quero marcar um horário para conhecer a academia."
+    }
+  ]
+}
