@@ -1,7 +1,7 @@
 // O2 Fitness Academia: prévia. Contato em js/config.js; modalidades, planos, espaço e dúvidas em
 // data/*.json (mudou um JSON, suba o V abaixo).
 (function () {
-  var V = 5;
+  var V = 6;
   var OLA = 'Olá! Vim pelo site da O2.';
   var still = /[?&]still=1/.test(location.search);
   var calmo = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -237,6 +237,47 @@
         '<blockquote>' + esc(a.texto).replace(/\n/g, '<br>') + '</blockquote>' +
         '<figcaption><b>' + esc(a.nome) + '</b>' + (a.selo ? ' · ' + esc(a.selo) : '') + ' · ' + esc(a.quando) + '</figcaption></figure>';
     }).join('');
+    carrossel();
+  }
+
+  // Carrossel das avaliações: a faixa rola de lado (scroll-snap, arrasta no dedo); troca sozinho a cada
+  // 6 s só à vista e com a aba aberta, para no mouse e no foco, e nunca com movimento reduzido
+  function carrossel() {
+    var box = document.getElementById('carrossel'), trilho = document.getElementById('deps');
+    var cards = [].slice.call(trilho.children), pontos = document.getElementById('car-pontos');
+    if (!cards.length) return;
+    function passo() { return cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : 1; }
+    function porTela() { return Math.max(1, Math.round((trilho.clientWidth + 14) / passo())); }
+    function paginas() { return Math.max(1, cards.length - porTela() + 1); }
+    function atual() { return Math.round(trilho.scrollLeft / passo()); }
+    function vai(i) {
+      var n = paginas(); i = (i + n) % n;
+      trilho.scrollTo({ left: i * passo(), behavior: calmo ? 'auto' : 'smooth' });
+    }
+    function marca() { var i = atual(); [].forEach.call(pontos.children, function (b, k) { b.toggleAttribute('aria-current', k === i); }); }
+    function desenhaPontos() {
+      var n = paginas(), h = '';
+      for (var i = 0; i < n && n > 1; i++) h += '<button type="button" data-i="' + i + '" aria-label="Ir para a avaliação ' + (i + 1) + '"></button>';
+      pontos.innerHTML = h; marca();
+    }
+    box.querySelectorAll('[data-car]').forEach(function (b) { b.addEventListener('click', function () { vai(atual() + +b.dataset.car); }); });
+    pontos.addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) vai(+b.dataset.i); });
+    var tm; trilho.addEventListener('scroll', function () { clearTimeout(tm); tm = setTimeout(marca, 80); }, { passive: true });
+    addEventListener('resize', desenhaPontos); desenhaPontos();
+
+    if (calmo || !('IntersectionObserver' in window)) return;
+    var visivel = false, parado = false, relogio = null;
+    function liga() {
+      clearInterval(relogio); relogio = null;
+      if (visivel && !parado && !document.hidden && paginas() > 1) relogio = setInterval(function () { vai(atual() + 1); }, 6000);
+    }
+    new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; liga(); }).observe(box);
+    box.addEventListener('mouseenter', function () { parado = true; liga(); });
+    box.addEventListener('mouseleave', function () { parado = false; liga(); });
+    box.addEventListener('focusin', function () { parado = true; liga(); });
+    box.addEventListener('focusout', function () { parado = false; liga(); });
+    trilho.addEventListener('touchstart', function () { parado = true; liga(); }, { passive: true });
+    document.addEventListener('visibilitychange', liga);
   }
 
   // ---------- dúvidas ----------

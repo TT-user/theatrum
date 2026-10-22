@@ -375,24 +375,33 @@ p { margin: 0 0 1em; }
 .fatos--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .fatos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; } }
 @media (max-width: 900px) { .fatos--3 li:last-child { grid-column: span 2; } }
-.vozes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.vozes > div { border-radius: var(--raio); padding: 28px; }
-.vozes__dep { background: var(--claro); }
-.deps { display: grid; gap: 14px; margin-bottom: 18px; }
-.dep { background: var(--branco); border-radius: 12px; padding: 16px 18px; border: 1px solid #DEDCD5; }
+.vozes__dep { background: var(--claro); border-radius: var(--raio); padding: 28px; }
+.vozes__cab { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.vozes__cab .vozes__t { margin: 0; }
+.vozes__t { font: 600 12.5px/1 var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--tinta-2); margin-bottom: 14px; }
+/* Carrossel: faixa com rolagem lateral e encaixe; duas avaliações por vez no computador, uma no celular */
+.deps { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 2px; margin: -2px; }
+.deps::-webkit-scrollbar { display: none; }
+.deps:focus-visible { outline: 3px solid var(--verde-tinta); outline-offset: 4px; border-radius: 12px; }
+.dep { flex: 0 0 calc(50% - 7px); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--branco); border-radius: 12px; padding: 20px 22px; border: 1px solid #DEDCD5; }
 .dep__nota { color: var(--verde-tinta); letter-spacing: .12em; font-size: 14px; }
-.dep blockquote { margin: 6px 0 8px; font-size: 15.5px; line-height: 1.5; color: var(--tinta); }
+.dep blockquote { margin: 8px 0 12px; font-size: 16px; line-height: 1.55; color: var(--tinta); flex: 1; }
 .dep figcaption { font-size: 13.5px; color: var(--tinta-2); }
 .dep figcaption b { color: var(--tinta); }
-.vozes__canal { background: var(--preto); color: var(--txt); position: relative; overflow: hidden; }
-.vozes__canal::after { content: ""; position: absolute; right: -40px; bottom: 34px; width: 260px; height: 2px; background: #C9F5A8; box-shadow: 0 0 6px 1px var(--luz), 0 0 22px 3px rgba(123, 224, 74, .45); transform: rotate(-12deg); }
-.vozes__canal h3 { font-size: 22px; }
-.vozes__canal p:not(.vozes__t) { color: var(--txt-2); }
-.vozes__canal .btn { background: var(--verde); color: var(--preto); }
-.vozes__canal .btn:hover { background: var(--verde-claro); }
-.vozes__t { font: 600 12.5px/1 var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--tinta-2); margin-bottom: 14px; }
-.vozes__canal .vozes__t { color: var(--verde); }
-@media (max-width: 760px) { .vozes { grid-template-columns: 1fr; } .vozes > div { padding: 24px 20px; } }
+.car__setas { display: flex; gap: 8px; }
+.car__seta { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--tinta); background: transparent; color: var(--tinta); cursor: pointer; display: grid; place-items: center; transition: background-color .2s, color .2s; }
+.car__seta:hover { background: var(--tinta); color: var(--branco); }
+.car__seta svg { width: 20px; height: 20px; }
+.car__seta--a svg { transform: scaleX(-1); }
+.car__pontos { display: flex; justify-content: center; gap: 4px; margin: 16px 0 6px; }
+.car__pontos button { width: 24px; height: 24px; border: 0; background: none; padding: 0; cursor: pointer; display: grid; place-items: center; }
+.car__pontos button::before { content: ""; width: 9px; height: 9px; border-radius: 99px; background: #BDB9AE; transition: width .25s, background-color .25s; }
+.car__pontos button[aria-current]::before { width: 26px; background: var(--verde-tinta); }
+.vozes__links { display: flex; flex-wrap: wrap; gap: 14px 30px; margin-top: 8px; }
+@media (max-width: 760px) {
+  .vozes__dep { padding: 22px 16px; }
+  .dep { flex-basis: 100%; }
+}
 
 /* ---------- dúvidas ---------- */
 .duvidas { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }

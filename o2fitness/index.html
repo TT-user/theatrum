@@ -25,7 +25,7 @@
   <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/archivo-largo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/fotos/treino-480.webp" imagesrcset="assets/fotos/treino-480.webp 480w, assets/fotos/treino-826.webp 826w" imagesizes="(min-width: 900px) 62vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 
   <script type="application/ld+json">
   {
@@ -305,16 +305,20 @@
         </ul>
 
         <div class="vozes">
-          <div class="vozes__dep">
-            <p class="vozes__t">O que dizem no Google</p>
-            <div class="deps" id="deps"></div>
-            <a class="link-seta" href="https://www.google.com/maps/place/?q=place_id:ChIJvSfPO0yfuwAReEiejl2uP5k" target="_blank" rel="noopener">Ler as avaliações no Google <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
-          </div>
-          <div class="vozes__canal">
-            <p class="vozes__t">Já treina na O2?</p>
-            <h3>Sua nota ajuda quem procura academia.</h3>
-            <p>Conte como é treinar na O2. A sua avaliação aparece para quem procura academia em Espera Feliz no Google.</p>
-            <a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJvSfPO0yfuwAReEiejl2uP5k" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-estrela"/></svg>Avaliar no Google</a>
+          <div class="vozes__dep" id="carrossel" aria-roledescription="carrossel" aria-label="Avaliações do Google">
+            <div class="vozes__cab">
+              <p class="vozes__t">O que dizem no Google</p>
+              <div class="car__setas">
+                <button type="button" class="car__seta car__seta--a" data-car="-1" aria-label="Avaliação anterior"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
+                <button type="button" class="car__seta" data-car="1" aria-label="Próxima avaliação"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
+              </div>
+            </div>
+            <div class="deps" id="deps" tabindex="0"></div>
+            <div class="car__pontos" id="car-pontos"></div>
+            <div class="vozes__links">
+              <a class="link-seta" href="https://www.google.com/maps/place/?q=place_id:ChIJvSfPO0yfuwAReEiejl2uP5k" target="_blank" rel="noopener">Ler as avaliações no Google <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+              <a class="link-seta" href="https://search.google.com/local/writereview?placeid=ChIJvSfPO0yfuwAReEiejl2uP5k" target="_blank" rel="noopener">Já treina na O2? Deixe a sua avaliação <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+            </div>
           </div>
         </div>
       </div>
@@ -429,6 +433,6 @@
   </a>
 
   <script src="js/config.js?v=2"></script>
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
 </body>
 </html>
