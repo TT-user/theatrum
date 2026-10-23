@@ -5,6 +5,7 @@
 > **v3 (18/10/2026):** acrescenta os padrões de conversão da página (seção 4A), os sites com várias páginas (1A) e a loja com sacola (seção 9).
 > **v4 (20/10/2026), depois da prévia da Canto dos Pássaros:** WhatsApp direto, sem modal (seção 4); QR de avaliação no rodapé (4A); fonte para cada fato (5); imagens e fontes já no limite (2); testes de fechamento (8); armadilhas conhecidas (10).
 > **v5 (21/10/2026):** proteção do conteúdo em todo site de cliente (seção 1B).
+> **v6 (23/10/2026), depois das prévias da RAR e da Mega:** primeira tela do computador e celular enxuto (seção 2A); tour 360° do Google, foto da fachada no mapa e loja de exemplo (4A); avaliações do Google e prints do tour (5); medição da primeira tela no fechamento (8); novas armadilhas (10).
 
 ## 1. Estrutura e stack
 - HTML + CSS + JS puro, sem framework. Cada cliente fica numa pasta própria:
@@ -60,6 +61,49 @@
   - Versão vertical para o celular, quando o enquadramento pedir.
 - Metas do Lighthouse no celular: Performance 90+ (85+ em sites com muitas fotos), Acessibilidade 95+ e SEO 95+.
 
+## 2A. Primeira tela e celular enxuto (desde 23/10/2026, pedido do Matheus na RAR e na Mega)
+
+**Hero no computador (a partir de 1001 px de largura): tudo na primeira tela, sem faixa da seção seguinte aparecendo.**
+- Título, texto, botões, a fileira de cards de baixo (programas, números, oferta) e o letreiro: tudo visível sem rolar, de 1280×720 a 1920×1080.
+- O hero estica até o fim da tela e o letreiro fica colado na borda de baixo. Os cards descem para o pé do hero, com `align-content: space-between`. A altura vem do JS, que mede o que fica em cima do hero (faixas e topo) mais o letreiro:
+  ```js
+  function medeAcima() {
+    var h = document.getElementById('hero');
+    document.documentElement.style.setProperty('--acima', Math.round(h.getBoundingClientRect().top + scrollY + letreiro.offsetHeight) + 'px');
+  }
+  medeAcima(); addEventListener('resize', medeAcima); addEventListener('load', medeAcima);
+  ```
+  ```css
+  @media (min-width: 1001px) {
+    .hero { min-height: calc(100svh - var(--acima, 0px)); display: flex; flex-direction: column; }
+    .hero__in { flex: 1; align-content: space-between; }
+  }
+  ```
+- Os tamanhos acompanham a altura da janela, com `clamp()` em vh: padding do hero, título (`clamp(36px, min(5.4vw, 7.2vh), 70px)`), margens, altura dos botões e das fotos dos cards (`clamp(80px, 15vh, 165px)`).
+- Em tela baixa (`max-height: 820px`), saem a frase que repete o card de oferta e as linhas de apoio dos cards, e as faixas do topo afinam.
+- Limite conhecido: em monitor muito alto (2560×1440) abre um vão entre os botões e os cards. Ainda não foi tratado.
+
+**No hero, cada informação aparece uma vez só.**
+- Nada de nota do Google, selos ou endereço embaixo dos botões. A nota vai no card de números, e o endereço fica em "Como chegar".
+- A frase do texto não repete o que um card do lado já diz.
+
+**Celular (até 640 px): enxuto e profissional.** No celular sai tudo o que é detalhe ou repete o que vem logo abaixo. No computador continua tudo.
+- Hero: só rótulo, título, uma frase, os dois botões e o card de oferta. Saem:
+  - a faixa de aviso do topo;
+  - a fileira de programas (repete "O que tem");
+  - o card de números;
+  - a segunda frase do texto.
+- Rótulo do hero numa linha só: 11,5 px, com `letter-spacing: .14em`.
+- Cards de serviço com o ícone ao lado do título e sem a linha de apoio.
+- Card de plano com nome, preço, economia e botão, sem a descrição.
+- Quiz sem a lista de passos ao lado, porque as perguntas já estão no quiz.
+- Tour e mapa só com a imagem e o botão, sem checklist.
+- Loja: sem a linha de uso no card e sem foto ao lado da sacola.
+- Galeria com linhas de 150 px.
+- Rodapé sem as listas de links que repetem o menu e as dúvidas. Ficam logo, QR de avaliação e contato.
+- Seções com 56 px de respiro vertical.
+- Marca d'água da Theatrum só com o logo redondo (`.theatrum span { display: none }`), para não cobrir card nem botão.
+
 ## 3. Direção de arte
 - A identidade vem do próprio cliente (logo, fachada, feed). As cores ficam em variáveis CSS no `:root`, com os hexadecimais nomeados.
 - **Ritmo de fundos:** nunca use o mesmo fundo em todas as seções. Alterne entre o tom escuro da marca, uma seção clara (o off-white da paleta) e no máximo uma seção na cor principal sólida. Texturas (grão, pedra, papel) só leves, e nunca na página inteira. Organize em classes de tema (`.theme-dark`, `.theme-light`) aplicadas por seção, em vez de cores soltas em cada bloco.
@@ -98,6 +142,18 @@
   - Na home ele é um link discreto ("Não sei qual escolher"), e o quiz tem página própria.
 - **Captura em troca de benefício:** um cupom, um checklist ou uma lista de espera que "chega pelo WhatsApp". A pessoa deixa o nome e o WhatsApp; o site manda pelo Web3Forms e abre o WhatsApp com o pedido do cupom. Não use pop-up que abre sozinho na entrada: mostre o convite depois de 40% de rolagem ou na saída (no computador), no máximo uma vez a cada 7 dias.
 - **Página "Fale conosco" (`contato/`)** quando o cliente atende público e quer receber elogio, sugestão e reclamação (academia, clínica, loja): canais oficiais, formulário com tipo da mensagem, envio anônimo opcional, aceite de LGPD e protocolo gerado na hora. Modelo pronto em `o2fitness/contato/` (`js/contato.js` e `css/contato.css` servem para qualquer site, lendo o `window.SITE` do `config.js`).
+- **Tour 360° do Google** (quando o perfil do Maps tiver photosphere ou tour virtual): o tour entra na página sem chave de API.
+  - O iframe é `https://www.google.com/maps/embed?pb=!4v<timestamp>!6m8!1m7!1s<ik>!2m2!1d<lat>!2d<lng>!3f<direção>!4f0!5f0.78`.
+  - O `<ik>` é o parâmetro `ik=` do link do photosphere (base64 que começa com `CAoS`), sem decodificar.
+  - Carrega só no clique, sobre uma foto com o botão "Abrir o tour 360°", como o mapa.
+  - O endereço fica no `config.js` (`tour360`). Modelo em `rar/`.
+- **Card do mapa com a foto da fachada:** a imagem que fica no lugar do mapa até o clique é a fachada do cliente, com o pino vermelho na porta e o botão "Ver no mapa". Sem fachada, use a recepção.
+- **Loja de produtos da recepção** (suplemento, roupa, bebida), quando o negócio vende no balcão:
+  - Os cards ficam com o selo "exemplo" e marca e preço em placeholder até chegar a lista real.
+  - A sacola guarda os itens no `localStorage`.
+  - O pedido sai mastigado no WhatsApp, com "quando passa na recepção" para a retirada.
+  - Os produtos são desenhados em SVG pelo próprio JS: nada de foto de banco nem marca de terceiro.
+  - Modelo em `rar/` (`data/suplementos.json`). Suplemento não leva promessa de saúde ou resultado na descrição (Anvisa).
 - **Dúvida no lugar da dúvida:**
   - Cada página de produto ou serviço tem um botão "Tenho dúvida sobre esse <item>", que abre o WhatsApp citando o item.
   - O carrinho e a página do produto repetem as 4 ou 5 dúvidas mais comuns, com link para a resposta completa no FAQ (âncora).
@@ -126,6 +182,15 @@
   - Uma foto mostra o que aconteceu uma vez, não o que vale sempre. "Toalha em cisne na chegada" e "café servido no salão" saíram de foto e tiveram de ser retirados.
   - Não generalize uma comodidade para todos os quartos, chalés ou unidades porque ela aparece numa foto. O que não tem fonte vira placeholder.
   - Não escreva nada sobre os seguidores ou clientes do cliente ("é o assunto preferido de quem segue...").
+- **Avaliações do Google: peça prints ao Matheus, logado.**
+  - Sem login, o Maps abre uma visão limitada, que às vezes não mostra nenhuma avaliação nem o total.
+  - A busca do Google pede captcha, e o endpoint de avaliações dá 403. Insistir bloqueia o IP, e aí nem o Maps abre.
+  - Não tente contornar.
+  - Até chegarem os prints, o total de avaliações fica em placeholder e a seção mostra o slot vazio.
+- **Prints do tour 360° servem de foto** (espaço kids, expositor, fachada). Antes de usar, tire as setas de navegação do tour:
+  - recorte as setas do chão e as pessoas da borda;
+  - apague as que ficam no meio da imagem com `cv2.inpaint`, usando uma máscara dos pixels claros na região da seta;
+  - confira o resultado num zoom.
 - **Condição comercial com as palavras da fonte.** Pagamento, sinal, prazo e garantia vão como o cliente escreveu. "50% do valor" não é "50% da diária".
 - Afirmações legais, técnicas ou de saúde levam a marca `[REVISAR COM O CLIENTE]`.
 - Antes e depois, depoimentos e fotos dos clientes do cliente só com autorização. Enquanto não houver autorização, use placeholder.
@@ -165,6 +230,8 @@ Ao terminar qualquer etapa:
 - **Teste automático com Playwright** antes de mostrar:
   - Print da página inteira em 1440 e em 375, com `?still=1`.
   - `document.documentElement.scrollWidth` igual à largura da tela.
+  - **Primeira tela do computador:** em 1920×1080, 1440×900, 1366×768 e 1280×720 (sem `?still=1`), o pé dos cards do hero (`.progs`, `.hero__lado`) fica dentro de `innerHeight`. Em tela alta, o pé do letreiro coincide com o fim da tela.
+  - **Primeira tela do celular** (412×900): print sem rolar. Confira que nenhuma informação aparece duas vezes e que a marca d'água não cobre nada.
   - Nenhum `pageerror`.
   - Olhe os prints em pedaços, seção por seção.
 - Depois do push, confira o endereço no ar (`curl -w '%{http_code}'` na página, no CSS, no JS, nos JSON e na `og-image`) antes de dizer que o link está pronto para enviar.
@@ -177,6 +244,10 @@ Ao terminar qualquer etapa:
 - **Galeria em grade não pode ter buraco.** Numa grade de 4 colunas com itens largos (2×1) e altos (1×2), os altos têm de vir aos pares. Escreva no `_leia` do JSON qual ordem fecha a grade.
 - **Título claro sobre foto clara no celular.** O corte do `object-fit` muda no celular. Ajuste o `object-position` e use um degradê mais forte abaixo de 640 px. Confira no print de 375.
 - **Botão com ícone dentro de foto ou mapa:** use `white-space: nowrap`, senão o texto quebra em duas linhas.
+- **Grade com `1fr` estoura a tela no celular.** Uma coluna `1fr` cresce até a largura mínima do filho (cards de produto, sacola) e a página rola para o lado. Use sempre `minmax(0, 1fr)` e `repeat(2, minmax(0, 1fr))`.
+- **Cards lado a lado desalinham quando um nome quebra em duas linhas.** Faça o card dividir as linhas da grade (`grid-row: span N; grid-template-rows: subgrid`) para que nome, marca, texto, preço e botão fiquem na mesma altura na fileira toda. Vale para card de plano, de produto e de serviço.
+- **Coluna lateral começa na altura dos cards, não dos filtros.** Filtros e chips ficam fora da grade de duas colunas (cards e sacola), em cima dela.
+- **Mensagem montada com o nome do item:** "Quero o plano Plano família" acontece quando o nome já começa com a palavra. Teste a mensagem de cada card, decodificada.
 - Liste os placeholders, os itens `[REVISAR COM O CLIENTE]` e as sugestões para a versão final.
 
 ## 9. Loja com sacola (quando o briefing pedir venda de produto)
