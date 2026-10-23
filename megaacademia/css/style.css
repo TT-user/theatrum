@@ -535,3 +535,10 @@ p { margin: 0 0 1em; }
   .prog b { grid-column: 3; align-self: end; }
   .prog small { grid-column: 3; align-self: start; }
 }
+
+/* Computador: o hero estica até o fim da primeira tela (o letreiro fica colado embaixo, sem faixa
+   da seção seguinte aparecendo). --acima vem do main.js. A segunda fileira desce para o pé do hero. */
+@media (min-width: 1001px) {
+  .hero { min-height: calc(100svh - var(--acima, 0px)); display: flex; flex-direction: column; }
+  .hero__in { flex: 1; align-content: space-between; }
+}

@@ -65,6 +65,13 @@
 
   // ---------- selo girando e letreiro: só à vista e com a aba aberta ----------
   var giro = document.getElementById('giro'), letreiro = document.getElementById('letreiro');
+  // Hero do computador ocupa a primeira tela inteira, com o letreiro colado embaixo: --acima é o que
+  // fica em cima do hero (faixas e topo) mais o letreiro (o CSS usa só a partir de 1001 px)
+  function medeAcima() {
+    var h = document.getElementById('hero');
+    document.documentElement.style.setProperty('--acima', Math.round(h.getBoundingClientRect().top + scrollY + letreiro.offsetHeight) + 'px');
+  }
+  medeAcima(); addEventListener('resize', medeAcima); addEventListener('load', medeAcima);
   if (calmo) letreiro.classList.add('parado');
   else if ('IntersectionObserver' in window) {
     var vis = { giro: false, letreiro: false };
