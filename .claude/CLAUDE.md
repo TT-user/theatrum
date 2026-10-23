@@ -974,6 +974,11 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, proteção, marca d'água com
   `utm_campaign=cxf`, OG em `og-image-v1.jpg` (gerador em `interno/clientes/cxf/og/`). Fontes e
   pendências em `interno/clientes/cxf/README.md`, fora do git.
+  **A loja de verdade é outro repositório:** em 23/10/2026 a CXF fechou o Caminho B (loja sob
+  medida Tipo E: Firebase, Mercado Pago, Brevo), em `Desktop/cxf-loja`, privado, com os documentos
+  `CXF-ATUALIZACAO.md` e `THEATRUM-ECOMMERCE.md` na raiz e o andamento em `docs/progresso.md`. Esta
+  prévia fica como link de venda até a loja subir; não evolua a loja aqui. Auditoria em
+  `interno/clientes/cxf/auditoria-caminho-b.md`.
 
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
