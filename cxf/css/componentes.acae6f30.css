@@ -196,7 +196,7 @@
 @media (max-width: 640px) {
   .so-celular { display: inline; }
   .so-computador { display: none; }
-  .aviso { font-size: 11px; letter-spacing: .06em; }
+  .aviso { display: none; } /* 2A: no celular a barra de aviso sai; frete e cupom aparecem na sacola e na newsletter */
   .marca__cidade, .topo__so-computador { display: none; }
   .topo__icone { width: 44px; height: 44px; }
   .grade-cards { column-gap: 12px; }

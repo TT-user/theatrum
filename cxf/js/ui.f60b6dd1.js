@@ -182,3 +182,41 @@ if (revelar.length) {
     revelar.forEach((el) => io.observe(el));
   }
 }
+
+/* ---------- Menu: marca a página atual (funciona também dentro da prévia em /cxf/) ---------- */
+const aqui = location.pathname.replace(/\/$/, '');
+for (const a of $$('.nav a, .menu-celular a')) {
+  const alvo = new URL(a.href, location.href).pathname.replace(/\/$/, '');
+  if (alvo && alvo === aqui) a.setAttribute('aria-current', 'page');
+}
+
+/* ---------- Dúvida aberta pelo endereço (#frete-quanto-custa) ---------- */
+function abreDuvida() {
+  const d = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (d && d.tagName === 'DETAILS') { d.open = true; d.scrollIntoView({ block: 'center' }); }
+}
+addEventListener('hashchange', abreDuvida);
+abreDuvida();
+
+/* ---------- Formulários que dependem de Function ainda não ligada (ex.: reenviar pedido, etapa 10) ---------- */
+for (const f of $$('[data-form-etapa]')) {
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = $('[data-form-msg]', f);
+    const email = f.email;
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+    email.setAttribute('aria-invalid', String(!ok));
+    if (!ok) { msg.textContent = 'Confira o e-mail.'; email.focus(); return; }
+    if (f.site?.value) return; // honeypot
+    msg.innerHTML = `<span class="ph">[envio: etapa ${f.dataset.formEtapa}]</span>`;
+  });
+}
+
+/* ---------- Primeira tela do celular: o topo ocupa o que sobra entre o cabeçalho e os selos ---------- */
+const heroEl = $('.hero');
+if (heroEl) {
+  const mede = () => document.documentElement.style.setProperty('--acima', `${Math.round(heroEl.getBoundingClientRect().top + scrollY + ($('.selos')?.offsetHeight || 0))}px`);
+  mede();
+  addEventListener('resize', mede);
+  addEventListener('load', mede);
+}

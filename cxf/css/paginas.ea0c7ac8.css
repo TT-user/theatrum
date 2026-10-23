@@ -1,0 +1,175 @@
+/* Páginas internas: produto e kit, listas, quiz, sobre, dúvidas e acompanhar pedido. */
+
+/* Caminho de navegação */
+.migalhas { padding-top: 22px; }
+.migalhas ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; font-size: 14px; color: var(--texto-suave); }
+.migalhas li + li::before { content: "›"; margin-right: 6px; }
+.migalhas a { text-decoration: none; }
+.migalhas a:hover { text-decoration: underline; }
+.migalhas--clara ol { color: var(--creme-suave); }
+.migalhas--clara a { color: var(--creme-texto); }
+
+/* Produto e kit */
+.produto { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 72px); padding: 26px 0 clamp(56px, 7vw, 90px); align-items: start; }
+.produto__galeria { position: sticky; top: calc(var(--topo-h) + 20px); display: grid; gap: 12px; }
+.produto__principal { position: relative; aspect-ratio: 1 / 1; background: var(--creme); border-radius: var(--raio-g); overflow: hidden; display: grid; place-items: center; }
+.produto__principal::before { content: ""; position: absolute; inset: auto 0 0; height: 42%; background: var(--preto); opacity: .12; -webkit-mask: url("/cxf/assets/img/gravura-701.webp") center bottom / cover no-repeat; mask: url("/cxf/assets/img/gravura-701.webp") center bottom / cover no-repeat; }
+.produto__principal > img, .produto__principal > svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 6% 8% 3%; }
+.produto__principal > img[src*="/fotos/"] { object-fit: cover; padding: 0; }
+.produto__minis { display: flex; gap: 10px; }
+.produto__mini { width: 84px; height: 84px; padding: 0; border: 1.5px solid transparent; border-radius: var(--raio); background: var(--creme); overflow: hidden; }
+.produto__mini.ativo { border-color: var(--preto); }
+.produto__mini img, .produto__mini svg { width: 100%; height: 100%; object-fit: cover; }
+.produto__mini img.foto { object-fit: contain; padding: 4px; }
+.produto__info { display: grid; gap: 14px; }
+.produto__info .card__etiquetas { position: static; padding: 0 !important; }
+.produto__info .card__linha { padding: 0; }
+.produto__info .card__linha i { background: var(--torra-media); }
+.produto__info h1 { font-size: clamp(30px, 3.4vw, 46px); }
+.produto__notas { color: var(--texto-suave); font-size: 17px; }
+.produto__preco { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 14px 0; border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha); }
+.produto__preco b { font: 800 32px/1 var(--titulo); }
+.produto__preco del { color: var(--texto-suave); }
+.produto__preco small { color: var(--texto-suave); font-size: 14px; }
+.produto__unidade { width: 100%; }
+.produto__tamanho { font-size: 16px; }
+.produto__compra { display: grid; gap: 18px; }
+.produto__botoes { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: center; }
+.produto__botoes .btn { padding: 0 12px; font-size: 12.5px; }
+.produto__aviso { font-size: 14px; color: var(--texto-suave); margin-top: -8px; }
+.produto__garantias { list-style: none; margin: 6px 0 0; padding: 18px; display: grid; gap: 12px; background: var(--creme); border-radius: var(--raio-g); font-size: 15px; }
+.produto__garantias li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; }
+.produto__garantias svg { width: 22px; height: 22px; }
+.produto__garantias span { color: var(--texto-suave); }
+.produto__garantias b { color: var(--texto); }
+.produto__duvida { justify-self: start; display: inline-flex; gap: 8px; align-items: center; }
+.produto__duvida svg { width: 18px; height: 18px; }
+
+.produto-detalhes__grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 90px); align-items: start; }
+.produto-detalhes__texto { display: grid; gap: 14px; margin-top: 16px; color: var(--texto-suave); font-size: 17px; }
+.ficha { margin: 0; display: grid; background: #fff; border: 1px solid var(--linha); border-radius: var(--raio-g); }
+.ficha div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--linha); }
+.ficha div:last-child { border-bottom: 0; }
+.ficha dt { font: 700 12px/1.6 var(--titulo); letter-spacing: .12em; text-transform: uppercase; color: var(--texto-suave); }
+.ficha dd { margin: 0; }
+.preparos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
+.preparo { padding: 24px 22px; background: #fff; border: 1px solid var(--linha); border-radius: var(--raio-g); display: grid; gap: 10px; align-content: start; }
+.preparo h3 { font-size: 18px; }
+.preparo p { color: var(--texto-suave); font-size: 15.5px; }
+.duvidas-curtas { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 90px); align-items: start; }
+
+/* Sanfona de dúvidas */
+.sanfona details { border-bottom: 1px solid var(--linha); }
+.sanfona details:first-child { border-top: 1px solid var(--linha); }
+.sanfona summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 20px 0; font: 700 17px/1.35 var(--titulo); }
+.sanfona summary::-webkit-details-marker { display: none; }
+.sanfona summary::after { content: "+"; font: 500 26px/1 var(--titulo); transition: transform .2s; }
+.sanfona details[open] summary::after { transform: rotate(45deg); }
+.sanfona details p { padding: 0 0 22px; color: var(--texto-suave); max-width: 680px; }
+.sanfona details { scroll-margin-top: calc(var(--topo-h) + 30px); }
+.sanfona--grande summary { font-size: 18.5px; padding: 24px 0; }
+
+/* Grades de kits com 3 itens */
+.grade-cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pagina-lista h1 { font-size: clamp(32px, 4vw, 52px); }
+
+/* Tabela de comparação dos kits */
+.tabela--kits th[scope="row"] { font: 700 15px/1.3 var(--titulo); text-transform: none; letter-spacing: 0; color: var(--texto); background: none; }
+.tabela--kits td small { display: block; color: var(--texto-suave); font-size: 13px; }
+.tabela--kits td, .tabela--kits th { vertical-align: middle; }
+
+/* Quiz */
+.quiz-pag { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 90px); align-items: start; }
+.quiz-pag__lado { display: grid; gap: 16px; position: sticky; top: calc(var(--topo-h) + 20px); }
+.quiz-pag__lado h1 { font-size: clamp(34px, 4vw, 54px); }
+.quiz-pag__selos { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; color: var(--texto-suave); }
+.quiz-pag__selos li::before { content: "✓"; color: var(--torra-media); font-weight: 700; margin-right: 8px; }
+.quiz-pag__foto { width: 100%; height: auto; max-width: 360px; aspect-ratio: 4 / 4.4; object-fit: cover; border-radius: var(--raio-g); margin-top: 10px; }
+.quiz-pag__caixa { background: var(--creme); border-radius: var(--raio-g); padding: clamp(22px, 3.4vw, 40px); min-height: 460px; }
+.quiz__passo { font: 600 12px/1 var(--titulo); letter-spacing: .2em; text-transform: uppercase; color: var(--texto-suave); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.quiz__passo .link { padding: 6px 0; font-size: 11.5px; }
+.quiz__barra { height: 3px; background: rgba(20, 18, 16, .12); margin: 14px 0 26px; }
+.quiz__barra i { display: block; height: 100%; background: var(--preto); transition: width .3s; }
+.quiz-pag__caixa h2 { font-size: clamp(22px, 2.4vw, 30px); }
+.quiz-pag__caixa h2:focus { outline: none; }
+.quiz__dica { color: var(--texto-suave); font-size: 15px; margin-top: 8px; }
+.quiz__opcoes { display: grid; gap: 10px; margin-top: 22px; }
+.quiz__op { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 14px; align-items: center; text-align: left; min-height: 60px; padding: 10px 16px; background: #fff; border: 1px solid var(--linha); border-radius: var(--raio); font-size: 16px; transition: border-color .2s, transform .2s; }
+.quiz__op:hover { border-color: var(--preto); transform: translateX(3px); }
+.quiz__op b { width: 38px; height: 38px; display: grid; place-items: center; border: 1.5px solid var(--preto); border-radius: 50%; font: 700 14px/1 var(--titulo); }
+.quiz-res { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 26px; align-items: center; }
+.quiz-res__foto img, .quiz-res__foto svg { width: 100%; height: auto; max-height: 260px; object-fit: contain; }
+.quiz-res__conta { margin-top: 10px; color: var(--texto-suave); }
+.quiz-res__conta b { color: var(--texto); }
+.quiz-res__lista { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--linha); }
+.quiz-res__lista li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 15.5px; }
+.quiz-res__lista span { color: var(--texto-suave); }
+.quiz-res__alt { margin-top: 14px; font-size: 15px; color: var(--texto-suave); }
+.quiz-res__botoes { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 26px; }
+
+/* Sobre */
+.sobre-topo { position: relative; overflow: hidden; background: var(--preto); color: var(--creme-texto); }
+.sobre-topo__fundo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sobre-topo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 18, 16, .9), rgba(20, 18, 16, .45)); }
+.sobre-topo__in { position: relative; z-index: 1; padding: 20px 0 clamp(70px, 10vw, 130px); display: grid; gap: 16px; }
+.sobre-topo__in .migalhas { padding: 0 0 clamp(40px, 7vw, 90px); }
+.sobre-topo .rotulo, .sobre-topo .lead { color: var(--creme-suave); }
+.sobre-topo h1 { color: var(--creme); max-width: 14ch; font-size: clamp(36px, 5vw, 64px); }
+.sobre-historia { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 90px); }
+.sobre-historia__txt { display: grid; gap: 16px; font-size: 18px; color: var(--texto-suave); }
+.sobre-fazer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sobre-fazer article { padding: 26px 22px; background: var(--creme-claro); border-radius: var(--raio-g); display: grid; gap: 10px; align-content: start; }
+.sobre-fazer svg { width: 32px; height: 32px; }
+.sobre-fazer h3 { font-size: 19px; }
+.sobre-fazer p { color: var(--texto-suave); }
+.sobre-faixa { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.sobre-faixa img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio-g); }
+.sobre-origem { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.sobre-origem img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raio-g); }
+
+/* Dúvidas */
+.faq-pag { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 90px); align-items: start; }
+.faq-pag__lado { display: grid; gap: 16px; position: sticky; top: calc(var(--topo-h) + 20px); justify-items: start; }
+.faq-pag__lado h1 { font-size: clamp(34px, 4vw, 52px); }
+.faq-pag__indice { display: grid; gap: 4px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--linha); font-size: 14.5px; }
+.faq-pag__indice a { color: var(--texto-suave); text-decoration: none; padding: 3px 0; }
+.faq-pag__indice a:hover { color: var(--texto); text-decoration: underline; }
+
+/* Acompanhar pedido */
+.pedido-pag { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(32px, 6vw, 90px); align-items: start; }
+.pedido-pag h1 { font-size: clamp(34px, 4vw, 52px); }
+.pedido-pag .lead { margin-top: 14px; }
+.pedido-form { display: grid; gap: 14px; margin-top: 28px; padding: clamp(20px, 3vw, 30px); background: #fff; border: 1px solid var(--linha); border-radius: var(--raio-g); position: relative; max-width: 520px; }
+.form-msg:empty { display: none; }
+.etapas-pedido { list-style: none; counter-reset: etapa; margin: 0; padding: 26px; background: var(--creme); border-radius: var(--raio-g); display: grid; gap: 0; }
+.etapas-pedido li { counter-increment: etapa; position: relative; display: grid; gap: 4px; padding: 0 0 22px 52px; }
+.etapas-pedido li:last-child { padding-bottom: 0; }
+.etapas-pedido li::before { content: counter(etapa); position: absolute; left: 0; top: -2px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--preto); color: var(--creme); font: 700 14px/1 var(--titulo); }
+.etapas-pedido li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 36px; bottom: 2px; width: 2px; background: rgba(20, 18, 16, .15); }
+.etapas-pedido b { font: 700 17px/1.3 var(--titulo); }
+.etapas-pedido span { color: var(--texto-suave); font-size: 15px; }
+
+@media (max-width: 1100px) {
+  .preparos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .produto, .produto-detalhes__grade, .duvidas-curtas, .quiz-pag, .sobre-historia, .sobre-origem, .faq-pag, .pedido-pag { grid-template-columns: minmax(0, 1fr); }
+  .produto__galeria, .quiz-pag__lado, .faq-pag__lado { position: static; }
+  .quiz-pag__foto, .faq-pag__indice { display: none; }
+  .grade-cards--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sobre-fazer { grid-template-columns: minmax(0, 1fr); }
+  .sobre-faixa { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .produto { padding-top: 16px; gap: 24px; }
+  .produto__principal { aspect-ratio: 4 / 3.6; }
+  .produto__mini { width: 64px; height: 64px; }
+  .produto__botoes { grid-template-columns: auto minmax(0, 1fr); }
+  .produto__agora { grid-column: 1 / -1; }
+  .preparos { grid-template-columns: minmax(0, 1fr); }
+  .ficha div { grid-template-columns: 110px minmax(0, 1fr); padding: 12px 16px; }
+  .quiz-pag__caixa { min-height: 0; padding: 20px 16px; }
+  .quiz-res { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; }
+  .quiz-res__botoes .btn { flex: 1 1 100%; }
+  .sanfona--grande summary { font-size: 16.5px; }
+}

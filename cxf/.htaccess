@@ -3,7 +3,10 @@
   Header set X-Robots-Tag "noindex, nofollow"
 </IfModule>
 
-# URLs sem .html, como no Firebase Hosting (cleanUrls)
+# URLs sem .html, como no Firebase Hosting (cleanUrls). /kits e a pasta kits/ convivem: sem o
+# DirectorySlash Off, o Apache mandaria /cxf/kits para /cxf/kits/ (pasta sem índice).
+DirectorySlash Off
+Options -Indexes
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{REQUEST_FILENAME} !-f

@@ -35,8 +35,7 @@ export async function montar(alvo, slug) {
         <fieldset class="grupo-opcoes" data-sel-moagem>
           <legend>Moagem${ehKit ? ' (uma para o kit todo)' : ''}</legend>
           <div class="radios">${(config.moagens || []).filter((m) => opcoesDe(it, v).includes(m.id)).map((m) =>
-            `<label class="radio"><input type="radio" name="moagem" value="${m.id}"><span><b>${esc(m.nome)}</b><small>${esc(m.dica)}</small></span></label>`).join('')}</div>
-          <p class="dica">Em dúvida, vá de grão: ele guarda o aroma por mais tempo.</p>
+            `<label class="radio"><input type="radio" name="moagem" value="${m.id}"><span><b>${esc(m.nome)}</b></span></label>`).join('')}</div>
         </fieldset>
         <div class="seletor__compra">
           <p class="seletor__preco" data-sel-preco aria-live="polite"></p>
