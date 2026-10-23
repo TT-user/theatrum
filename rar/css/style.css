@@ -194,6 +194,20 @@ p { margin: 0 0 1em; }
   .oferta { padding: 20px 76px 20px 20px; }
 }
 
+/* Celular: hero enxuto. O que se repete logo abaixo sai daqui: a frase da diária (está no card
+   amarelo), o endereço (está em "Como chegar"), os números (a nota já está no selo do Google e o
+   horário na faixa do topo) e a linha de detalhe da nota. */
+@media (max-width: 640px) {
+  /* a faixa de horário do topo e os três programas (repetem "O que tem", logo abaixo) também saem */
+  .aviso, .progs { display: none; }
+  .hero__lead .so-pc, .hero__prova-sub, .hero__selos, .hero__onde, .numeros { display: none; }
+  .hero__btns { margin: 24px 0 18px; }
+  .hero__prova { min-height: 32px; }
+  .hero__prova b { font-size: 16px; }
+  .hero__in { gap: 22px; }
+  .oferta b { font-size: 24px; }
+}
+
 /* ---------- letreiro (marquee) ---------- */
 .letreiro { background: var(--amarelo); color: var(--preto); overflow: hidden; padding: 15px 0; border-block: 1px solid #000; }
 .letreiro__trilho { display: flex; width: max-content; }
@@ -444,7 +458,7 @@ p { margin: 0 0 1em; }
 .theatrum img { width: 34px; height: 34px; border-radius: 50%; }
 .theatrum span { display: flex; flex-direction: column; font-size: 14px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; line-height: 1.15; }
 .theatrum small { font-size: 11px; font-weight: 400; letter-spacing: .04em; text-transform: none; color: #A39B8D; }
-@media (max-width: 600px) { .theatrum { padding: 5px 13px 5px 5px; bottom: 16px; } .theatrum img { width: 30px; height: 30px; } .zap-flutua { bottom: 16px; } }
+@media (max-width: 600px) { .theatrum { padding: 4px; bottom: 16px; } .theatrum span { display: none; } .theatrum img { width: 34px; height: 34px; } .zap-flutua { bottom: 16px; } }
 
 .luz { position: fixed; inset: 0; z-index: 90; background: rgba(0, 0, 0, .92); display: flex; align-items: center; justify-content: center; gap: 12px; padding: 20px; }
 .luz figure { max-width: min(900px, 100%); }
@@ -585,3 +599,43 @@ p { margin: 0 0 1em; }
 @media (max-width: 1000px) { .loja { grid-template-columns: minmax(0, 1fr); } .sacola { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
 @media (max-width: 640px) { .sacola { grid-template-columns: minmax(0, 1fr); } .prods { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 10px; } .prod { margin-bottom: 10px; } .prod { padding: 10px 10px 12px; } .prod h3 { font-size: 14.5px; } }
 @media (prefers-reduced-motion: reduce) { .tour__play { transition: none; } }
+
+/* ---------- celular mais leve: menos texto de apoio, cards mais baixos ---------- */
+@media (max-width: 640px) {
+  .secao { padding: 56px 0; }
+  .secao--grafite { padding-top: 76px; }
+  .cab { margin-bottom: 28px; }
+  .cab__lead { font-size: 16.5px; }
+  /* "O que tem": ícone ao lado do título, sem a linha de apoio */
+  .mods { gap: 12px; }
+  .mod { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; padding: 18px; }
+  .mod__ico { width: 44px; height: 44px; margin: 0; grid-row: span 1; }
+  .mod__ico svg { width: 24px; height: 24px; }
+  .mod h3 { align-self: center; margin: 0; font-size: 17px; }
+  .mod__linha { display: none; }
+  .mod p, .mod .link-seta { grid-column: 1 / -1; }
+  .mod p { margin: 12px 0 10px; font-size: 15.5px; }
+  /* planos: nome, preço e botão */
+  .plano__linha { display: none; }
+  .plano { padding: 22px 18px 18px; }
+  .passagem__lista li span { display: none; }
+  /* monte seu plano: o próprio quiz já mostra as perguntas */
+  .monte__passos { display: none; }
+  .monte__txt p { font-size: 16.5px; }
+  /* tour: a foto e o botão bastam */
+  .tour__lista { display: none; }
+  .tour__tela { aspect-ratio: 4 / 3; }
+  /* loja: sem a foto ao lado da sacola e sem a linha de uso */
+  .sacola__foto, .prod__linha { display: none; }
+  .prod__img { aspect-ratio: 4 / 3; }
+  .prod__preco { margin-top: 6px; }
+  /* galeria mais baixa */
+  .galeria { grid-auto-rows: 150px; }
+  .hero .rotulo { font-size: 11.5px; letter-spacing: .14em; gap: 10px; }
+  .hero .rotulo::before { width: 18px; }
+  /* rodapé: as duas listas de links repetem o menu e as dúvidas */
+  .rodape__grid > div:nth-child(2), .rodape__grid > div:nth-child(3) { display: none; }
+  .rodape { padding: 48px 0 90px; }
+  .fatos { gap: 22px 16px; margin-bottom: 28px; }
+  .fatos span { font-size: 15px; }
+}
