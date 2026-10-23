@@ -1,0 +1,50 @@
+{
+ "lavoura-curvas": [
+  1600,
+  900
+ ],
+ "lavoura-curvas-retrato": [
+  900,
+  1125
+ ],
+ "lavoura-fileiras": [
+  1000,
+  1000
+ ],
+ "lavoura-montanha": [
+  2000,
+  762
+ ],
+ "lavoura-montanha-retrato": [
+  572,
+  762
+ ],
+ "flor": [
+  800,
+  1000
+ ],
+ "cerejas": [
+  800,
+  1000
+ ],
+ "colheita": [
+  800,
+  1000
+ ],
+ "terreiro": [
+  800,
+  1000
+ ],
+ "torra": [
+  800,
+  1000
+ ],
+ "xicara": [
+  800,
+  1000
+ ],
+ "graos": [
+  1600,
+  900
+ ]
+}

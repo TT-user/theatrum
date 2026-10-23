@@ -1,0 +1,101 @@
+/* Base da loja CXF: tokens da ficha (CXF-ATUALIZACAO.md, seção 3), tipografia, botões, formulários.
+   As fontes e o topo estão no critico.css (inline). Folha por página: home.css, produto.css... */
+:root {
+  /* paleta do logo */
+  --preto: #141210;
+  --preto-2: #211E1A;          /* cards e painéis sobre o preto */
+  --creme: #F2EBDD;
+  --creme-claro: #FAF6EE;
+  --texto: #141210;
+  --texto-suave: #5B5148;      /* 6,5:1 sobre o creme */
+  --creme-texto: #EDE5D4;      /* texto sobre o preto */
+  --creme-suave: #B9AE9C;      /* 7,6:1 sobre o preto */
+  --linha: rgba(20, 18, 16, .14);
+  --linha-escura: rgba(242, 235, 221, .16);
+  /* destaque: a ficha deixou para definir com a CXF; #9A5524 é a sugestão dela (4,9:1 sobre o creme) */
+  --destaque: #9A5524;
+  --erro: #A3271B;
+  --ok: #2F6B3A;
+  /* torras, no desenho dos pacotes */
+  --torra-clara: #B98A55;
+  --torra-media: #7A4A26;
+  --torra-intensa: #3B2417;
+
+  --titulo: 'Montserrat', system-ui, sans-serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --raio: 4px;
+  --raio-g: 10px;
+  --sombra: 0 18px 40px -18px rgba(20, 18, 16, .35);
+  --secao: clamp(64px, 9vw, 112px);
+}
+
+img, svg, picture { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+main:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--destaque); outline-offset: 3px; }
+
+/* Títulos: Montserrat pesada, letter-spacing curto para as letras não encostarem */
+h1, h2, h3, h4 { font-family: var(--titulo); font-weight: 800; line-height: 1.1; letter-spacing: -.01em; margin: 0; }
+h1 { font-size: clamp(36px, 5vw, 64px); }
+h2 { font-size: clamp(28px, 3.4vw, 44px); }
+h3 { font-size: clamp(19px, 1.6vw, 22px); }
+p { margin: 0; }
+.rotulo { display: flex; align-items: center; gap: 12px; font: 600 12.5px/1.3 var(--titulo); letter-spacing: .24em; text-transform: uppercase; color: var(--texto-suave); margin: 0 0 14px; }
+.rotulo::after { content: ""; width: 32px; height: 1px; background: currentColor; }
+.lead { font-size: 18px; color: var(--texto-suave); max-width: 600px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Placeholder de dado que a CXF ainda não mandou */
+.ph { background: #FFE45C; color: #3A2F00; padding: 0 .35em; border-radius: 4px; font: 500 .88em/1.5 var(--sans); letter-spacing: 0; text-transform: none; font-style: normal; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.selo-exemplo { display: inline-block; background: #FFE45C; color: #3A2F00; font: 700 10.5px/1 var(--titulo); letter-spacing: .12em; text-transform: uppercase; padding: 6px 8px; border-radius: 2px; }
+
+/* Botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: var(--raio); border: 1.5px solid var(--preto); background: transparent; color: var(--preto); font: 700 13.5px/1 var(--titulo); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background .2s, color .2s, transform .2s, opacity .2s; }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--preto { background: var(--preto); color: var(--creme); }
+.btn--preto:hover { background: #000; transform: translateY(-1px); }
+.btn--linha:hover { background: var(--preto); color: var(--creme); }
+.btn--creme { background: var(--creme); color: var(--preto); border-color: var(--creme); }
+.btn--creme:hover { background: #fff; }
+.btn--cheio { width: 100%; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; }
+.link { font: 700 13px/1 var(--titulo); letter-spacing: .12em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; background: none; border: 0; padding: 12px 0; color: inherit; }
+
+/* Formulários */
+.campo { display: grid; gap: 7px; }
+.campo > span { font: 600 13.5px/1.2 var(--sans); }
+.campo input, .campo select, .campo textarea { width: 100%; min-width: 0; min-height: 48px; padding: 0 14px; border: 1px solid var(--linha); border-radius: var(--raio); background: #fff; font-size: 16px; }
+.campo textarea { padding: 12px 14px; min-height: 110px; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--preto); outline: none; box-shadow: 0 0 0 3px rgba(154, 85, 36, .25); }
+.campo .erro { color: var(--erro); font-size: 14px; }
+.campo [aria-invalid="true"] { border-color: var(--erro); }
+.mel { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; } /* honeypot */
+
+/* Seções */
+.secao { padding: var(--secao) 0; }
+.secao--creme { background: var(--creme); }
+.secao--clara { background: var(--creme-claro); }
+.secao--preta { background: var(--preto); color: var(--creme-texto); }
+.secao--preta .rotulo, .secao--preta .lead { color: var(--creme-suave); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Páginas de texto (créditos, políticas) */
+.pagina-texto .in { max-width: 920px; }
+.pagina-texto h1 { font-size: clamp(32px, 4vw, 48px); }
+.pagina-texto .lead { margin-top: 18px; }
+.pagina-texto h2 { font-size: clamp(22px, 2.2vw, 28px); margin: 48px 0 14px; }
+.pagina-texto p { color: var(--texto-suave); max-width: 720px; }
+.pagina-texto p + p { margin-top: 12px; }
+.tabela-rola { overflow-x: auto; border: 1px solid var(--linha); border-radius: var(--raio-g); background: #fff; }
+.tabela { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tabela th, .tabela td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--linha); vertical-align: top; }
+.tabela th { font: 700 12px/1.2 var(--titulo); letter-spacing: .12em; text-transform: uppercase; color: var(--texto-suave); background: var(--creme); }
+.tabela tr:last-child td { border-bottom: 0; }
+.tabela td a { word-break: break-word; }
+.nota { font-size: 14px; margin-top: 12px; }
+@media (max-width: 640px) { .tabela { font-size: 14px; min-width: 620px; } }
