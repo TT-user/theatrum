@@ -70,7 +70,7 @@ sacola.aoMudar(() => {
   for (const b of $$('.topo__sacola')) b.setAttribute('aria-label', `Abrir a sacola, ${n} ${n === 1 ? 'item' : 'itens'}`);
 });
 
-/* ---------- Seletor rápido e "adicionar" direto (itens sem moagem) ---------- */
+/* ---------- Seletor rápido (itens com mais de uma opção) e "adicionar" direto ---------- */
 const alvoSeletor = $('[data-seletor]');
 document.addEventListener('click', async (e) => {
   const escolher = e.target.closest('[data-escolher]');

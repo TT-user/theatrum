@@ -1,6 +1,6 @@
 // Sacola (padrão, seção 6): estado no localStorage, gaveta lateral, frete por CEP e barra de frete grátis.
-// Guarda só SKU, moagem e quantidade. Nome e preço vêm do catálogo; o checkout manda só SKU e quantidade.
-import { config, reais, moagem } from '/cxf/js/config.js';
+// Guarda só SKU e quantidade. Nome e preço vêm do catálogo; o checkout manda só SKU e quantidade.
+import { config, reais } from '/cxf/js/config.js';
 import { catalogo, sku as acharSku } from '/cxf/js/catalogo.js';
 import { pacote } from '/cxf/js/pacote.js';
 import { foto } from '/cxf/js/foto.js';
@@ -13,7 +13,11 @@ let itens = ler();
 function ler() {
   try {
     const s = JSON.parse(localStorage.getItem(CHAVE));
-    return Array.isArray(s) ? s.filter((i) => i && i.sku && i.quantidade > 0) : [];
+    if (!Array.isArray(s)) return [];
+    // sacolas salvas antes de a moagem sair: junta os itens do mesmo SKU
+    const por = new Map();
+    for (const i of s) if (i && i.sku && i.quantidade > 0) por.set(i.sku, Math.min(MAX, (por.get(i.sku) || 0) + i.quantidade));
+    return [...por].map(([sku, quantidade]) => ({ sku, quantidade }));
   } catch { return []; }
 }
 function gravar() {
@@ -24,10 +28,11 @@ function gravar() {
 export const quantidadeTotal = () => itens.reduce((s, i) => s + i.quantidade, 0);
 export function aoMudar(f) { ouvintes.add(f); f(itens); }
 
-export function adicionar(skuId, moagemId = null, quantidade = 1) {
-  const i = itens.find((x) => x.sku === skuId && x.moagem === moagemId);
+// O 2º parâmetro (moagem) ficou de quando havia escolha de moagem; é ignorado.
+export function adicionar(skuId, _moagem = null, quantidade = 1) {
+  const i = itens.find((x) => x.sku === skuId);
   if (i) i.quantidade = Math.min(MAX, i.quantidade + quantidade);
-  else itens.push({ sku: skuId, moagem: moagemId, quantidade: Math.min(MAX, quantidade) });
+  else itens.push({ sku: skuId, quantidade: Math.min(MAX, quantidade) });
   gravar();
 }
 function mudar(idx, delta) {
@@ -72,9 +77,8 @@ export async function desenhar(alvo) {
     const { item, variante } = acharSku(i.sku);
     const preco = variante.precoCentavos;
     if (preco == null) conhecido = false; else subtotal += preco * i.quantidade;
-    const m = i.moagem ? moagem(i.moagem) : null;
     return `<li>${foto(item, { sizes: '58px', alt: '' }) || pacote(item, variante)}
-      <span><b>${esc(item.nome)}</b><small>${esc(variante.tamanho)}${m ? ' · ' + esc(m.nome.toLowerCase()) : ''}</small><small>${preco == null ? ph('[preço]') : reais(preco * i.quantidade)}</small></span>
+      <span><b>${esc(item.nome)}</b><small>${esc(variante.tamanho)}</small><small>${preco == null ? ph('[preço]') : reais(preco * i.quantidade)}</small></span>
       <span class="sacola__item-lado">
         <span class="qtd"><button type="button" data-q="-1" data-k="${k}" aria-label="Menos um ${esc(item.nome)}"><svg aria-hidden="true"><use href="#i-menos"/></svg></button><output aria-live="polite">${i.quantidade}</output><button type="button" data-q="1" data-k="${k}" aria-label="Mais um ${esc(item.nome)}"><svg aria-hidden="true"><use href="#i-mais"/></svg></button></span>
         <button type="button" class="sacola__remover" data-remover="${k}"><svg aria-hidden="true"><use href="#i-lixo"/></svg>Remover<span class="sr-only"> ${esc(item.nome)}</span></button>

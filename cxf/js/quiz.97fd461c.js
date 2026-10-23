@@ -1,6 +1,6 @@
-// Quiz "Qual é o meu café?": moagem pelo método e quantidade pelo consumo da casa.
+// Quiz "Qual é o meu café?": quantidade pelo consumo da casa.
 // Conta: pessoas x xícaras por dia x gramas por xícara x 30 dias = gramas por mês (src/data/quiz.json).
-import { reais, moagem as acharMoagem, linkWhatsApp } from '/cxf/js/config.js';
+import { reais, linkWhatsApp } from '/cxf/js/config.js';
 import { catalogo, sku as acharSku } from '/cxf/js/catalogo.js';
 import { foto } from '/cxf/js/foto.js';
 import { pacote } from '/cxf/js/pacote.js';
@@ -25,14 +25,13 @@ function pergunta() {
 
 async function resultado() {
   await catalogo();
-  const [metodo, pessoas, xic] = resp.map((k, i) => dados.perguntas[i].opcoes[k].valor);
+  const [pessoas, xic] = resp.map((k, i) => dados.perguntas[i].opcoes[k].valor);
   const xicMes = Math.round(pessoas * xic * 30);
   const gramas = xicMes * dados.gramasPorXicara;
   const faixa = dados.porGramasMes.find((f) => f.ate == null || gramas <= f.ate);
   const achado = acharSku(faixa.sku);
   if (!achado) { caixa.innerHTML = '<p>Não consegui montar a indicação agora.</p>'; return; }
   const { item, variante } = achado;
-  const m = acharMoagem(metodo);
   const idx = dados.porGramasMes.indexOf(faixa);
   const menor = idx > 0 ? acharSku(dados.porGramasMes[idx - 1].sku) : null;
   const kg = gramas >= 1000 ? `${(gramas / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} kg` : `${gramas} g`;
@@ -45,7 +44,6 @@ async function resultado() {
         <h2>${esc(item.nome)}</h2>
         <p class="quiz-res__conta">A sua casa toma cerca de <b>${xicMes} xícaras por mês</b>, uns <b>${kg}</b> de café.</p>
         <ul class="quiz-res__lista">
-          <li><span>Moagem</span><b>${esc(m?.nome || '')}</b></li>
           <li><span>Quantidade</span><b>${esc(variante.tamanho)}</b></li>
           <li><span>Preço</span><b>${variante.precoCentavos == null ? '<span class="ph">[preço]</span>' : reais(variante.precoCentavos)}</b></li>
         </ul>
@@ -58,7 +56,7 @@ async function resultado() {
       <a class="link" href="${linkWhatsApp('Olá! Fiz o quiz no site da CXF e quero uma dica.')}" target="_blank" rel="noopener">Pedir uma dica no WhatsApp</a>
     </div>`;
   caixa.querySelector('[data-colocar]').addEventListener('click', () => {
-    adicionar(variante.sku, metodo, 1);
+    adicionar(variante.sku, null, 1);
     document.querySelector('[data-abre="painel-sacola"]')?.click();
   });
   caixa.querySelector('h2')?.setAttribute('tabindex', '-1');

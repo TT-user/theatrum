@@ -24,10 +24,10 @@
   <link rel="stylesheet" href="/cxf/css/base.0922b1ae.css">
   <link rel="stylesheet" href="/cxf/css/componentes.acae6f30.css">
   <link rel="stylesheet" href="/cxf/css/paginas.ea0c7ac8.css">
-  <script type="application/json" id="loja-config">{"whatsapp":null,"waText":"Olá! Vim pelo site da CXF e quero ajuda pra escolher meu café.","frete":{"gratisPorUF":{"MG":null,"DEMAIS":null},"prefixosRetirada":[],"expressoSempreCobrado":true},"descontos":{"pix":0,"parcelas":{"max":1,"parcelaMinCentavos":3000}},"primeiraCompra":{"percentual":10},"clube":{"nome":"","desconto":0.1,"ativo":false},"analytics":{"ga4":"","metaPixel":""},"appCheckKey":"","mpPublicKey":"","host":null,"redirecionarHosts":[],"popupExcluir":["/carrinho","/obrigado","/quiz"],"formasPagamento":["pix","cartao","boleto"],"moagens":[{"id":"graos","nome":"Em grãos","dica":"para moer na hora, em casa"},{"id":"coador","nome":"Moído para coador","dica":"textura de areia fina: coador de pano ou papel"},{"id":"espresso","nome":"Moído para espresso","dica":"textura de talco: máquina de espresso"},{"id":"prensa","nome":"Moído para prensa francesa","dica":"textura de sal grosso: prensa e cold brew"},{"id":"moka","nome":"Moído para moka","dica":"textura de sal fino: cafeteira italiana"}]}</script>
-  <script type="importmap">{"imports":{"/cxf/js/catalogo.js":"/cxf/js/catalogo.793429fc.js","/cxf/js/config.js":"/cxf/js/config.003a04b7.js","/cxf/js/foto.js":"/cxf/js/foto.a05b1412.js","/cxf/js/pacote.js":"/cxf/js/pacote.4cd3ff80.js","/cxf/js/produto.js":"/cxf/js/produto.6a9300ce.js","/cxf/js/quiz.js":"/cxf/js/quiz.ce51ee1b.js","/cxf/js/sacola.js":"/cxf/js/sacola.2075cf4b.js","/cxf/js/seletor.js":"/cxf/js/seletor.26bf1559.js","/cxf/js/ui.js":"/cxf/js/ui.f60b6dd1.js"}}</script>
-  <link rel="modulepreload" href="/cxf/js/ui.f60b6dd1.js">
-  <link rel="modulepreload" href="/cxf/js/produto.6a9300ce.js">
+  <script type="application/json" id="loja-config">{"whatsapp":null,"waText":"Olá! Vim pelo site da CXF e quero ajuda pra escolher meu café.","frete":{"gratisPorUF":{"MG":null,"DEMAIS":null},"prefixosRetirada":[],"expressoSempreCobrado":true},"descontos":{"pix":0,"parcelas":{"max":1,"parcelaMinCentavos":3000}},"primeiraCompra":{"percentual":10},"clube":{"nome":"","desconto":0.1,"ativo":false},"analytics":{"ga4":"","metaPixel":""},"appCheckKey":"","mpPublicKey":"","host":null,"redirecionarHosts":[],"popupExcluir":["/carrinho","/obrigado","/quiz"],"formasPagamento":["pix","cartao","boleto"]}</script>
+  <script type="importmap">{"imports":{"/cxf/js/catalogo.js":"/cxf/js/catalogo.793429fc.js","/cxf/js/config.js":"/cxf/js/config.ddc0a903.js","/cxf/js/foto.js":"/cxf/js/foto.a05b1412.js","/cxf/js/pacote.js":"/cxf/js/pacote.4cd3ff80.js","/cxf/js/produto.js":"/cxf/js/produto.a47c9e83.js","/cxf/js/quiz.js":"/cxf/js/quiz.97fd461c.js","/cxf/js/sacola.js":"/cxf/js/sacola.716c64ef.js","/cxf/js/seletor.js":"/cxf/js/seletor.1fc8ced7.js","/cxf/js/ui.js":"/cxf/js/ui.bf3af498.js"}}</script>
+  <link rel="modulepreload" href="/cxf/js/ui.bf3af498.js">
+  <link rel="modulepreload" href="/cxf/js/produto.a47c9e83.js">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Kit Dupla","description":"Dois pacotes de 250 g, para abrir um de cada vez e o café durar fresco.","sku":"KIT-DUPLA","brand":{"@type":"Brand","name":"CXF Café Especial"},"image":"https://usetheatrum.com.br/cxf/assets/img/produtos/kit-dupla-800.webp"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://usetheatrum.com.br/cxf/"},{"@type":"ListItem","position":2,"name":"Kits","item":"https://usetheatrum.com.br/cxf/kits"},{"@type":"ListItem","position":3,"name":"Kit Dupla","item":"https://usetheatrum.com.br/cxf/kits/dupla"}]}</script>
   <script src="/cxf/js/protecao.js" defer></script>
@@ -116,22 +116,11 @@
 
         <form class="produto__compra" data-compra novalidate>
           <p class="produto__tamanho"><b>2 x 250 g</b> · 500 g no total</p><input type="hidden" name="variante" value="KIT-DUPLA">
-          <fieldset class="grupo-opcoes">
-            <legend>Moagem (uma para o kit todo)</legend>
-            <div class="radios">
-              <label class="radio"><input type="radio" name="moagem" value="graos"><span><b>Em grãos</b></span></label>
-              <label class="radio"><input type="radio" name="moagem" value="coador"><span><b>Moído para coador</b></span></label>
-              <label class="radio"><input type="radio" name="moagem" value="espresso"><span><b>Moído para espresso</b></span></label>
-              <label class="radio"><input type="radio" name="moagem" value="prensa"><span><b>Moído para prensa francesa</b></span></label>
-              <label class="radio"><input type="radio" name="moagem" value="moka"><span><b>Moído para moka</b></span></label>
-            </div>
-          </fieldset>
           <div class="produto__botoes">
             <span class="qtd"><button type="button" data-q="-1" aria-label="Menos um"><svg aria-hidden="true"><use href="#i-menos"/></svg></button><output data-qtd aria-live="polite">1</output><button type="button" data-q="1" aria-label="Mais um"><svg aria-hidden="true"><use href="#i-mais"/></svg></button></span>
-            <button class="btn btn--linha" type="submit" value="sacola" data-precisa-moagem disabled><svg aria-hidden="true"><use href="#i-sacola"/></svg>Adicionar à sacola</button>
-            <button class="btn btn--preto produto__agora" type="submit" value="agora" data-precisa-moagem disabled>Comprar agora</button>
+            <button class="btn btn--linha" type="submit" value="sacola"><svg aria-hidden="true"><use href="#i-sacola"/></svg>Adicionar à sacola</button>
+            <button class="btn btn--preto produto__agora" type="submit" value="agora">Comprar agora</button>
           </div>
-          <p class="produto__aviso" data-aviso-moagem>Escolha a moagem para continuar.</p>
         </form>
 
         <ul class="produto__garantias">
@@ -148,9 +137,9 @@
         <div>
           <p class="rotulo">Por dentro</p>
           <h2>O que vem no kit</h2>
-          <div class="produto-detalhes__texto"><p>Dois pacotes de 250 g, para abrir um de cada vez e o café durar fresco.</p><p>São 2 pacotes de 250 g do <a href="/cxf/cafes/torra-tradicional">Café Especial Torra Tradicional</a>, todos na moagem que você escolher. Abra um de cada vez: o café fechado guarda o aroma por mais tempo.</p></div>
+          <div class="produto-detalhes__texto"><p>Dois pacotes de 250 g, para abrir um de cada vez e o café durar fresco.</p><p>São 2 pacotes de 250 g do <a href="/cxf/cafes/torra-tradicional">Café Especial Torra Tradicional</a>. Abra um de cada vez: o café fechado guarda o aroma por mais tempo.</p></div>
         </div>
-        <dl class="ficha"><div><dt>Café</dt><dd><a href="/cxf/cafes/torra-tradicional">Café Especial Torra Tradicional</a></dd></div><div><dt>Pacotes</dt><dd>2 de 250 g</dd></div><div><dt>Peso total</dt><dd>500 g</dd></div><div><dt>Rende</dt><dd>cerca de 50 xícaras de 100 ml</dd></div><div><dt>Moagem</dt><dd>uma para o kit inteiro, à sua escolha</dd></div></dl>
+        <dl class="ficha"><div><dt>Café</dt><dd><a href="/cxf/cafes/torra-tradicional">Café Especial Torra Tradicional</a></dd></div><div><dt>Pacotes</dt><dd>2 de 250 g</dd></div><div><dt>Peso total</dt><dd>500 g</dd></div><div><dt>Rende</dt><dd>cerca de 50 xícaras de 100 ml</dd></div></dl>
       </div>
     </section>
 
@@ -176,7 +165,7 @@
           <p class="lead" style="margin-top:12px">As respostas completas estão em <a href="/cxf/perguntas-frequentes">Dúvidas</a>.</p>
         </div>
         <div class="sanfona">
-          <details><summary>Como eu compro?</summary><p>Escolha o café, o tamanho e a moagem e coloque na sacola. No carrinho, informe quem recebe, o CEP e pague com Pix, cartão ou boleto. Você recebe a confirmação por e-mail.</p></details>
+          <details><summary>Como eu compro?</summary><p>Escolha o café ou o kit e coloque na sacola. No carrinho, informe quem recebe, o CEP e pague com Pix, cartão ou boleto. Você recebe a confirmação por e-mail.</p></details>
           <details><summary>Quanto custa o frete e quanto tempo demora?</summary><p>O frete é calculado pelo CEP na sacola, com o prazo de cada opção. <span class="ph">[regra de frete grátis por estado]</span> O mínimo do grátis conta depois do cupom, e o envio expresso é sempre cobrado.</p></details>
           <details><summary>Quais as formas de pagamento?</summary><p>Pix, cartão de crédito e boleto, pelo Mercado Pago. <span class="ph">[parcelamento e desconto no Pix, se houver]</span></p></details>
         </div>
@@ -196,7 +185,7 @@
           <p class="card__notas">4 pacotes de 250 g · 1 kg</p>
           <p class="card__tamanhos"></p>
           <p class="card__preco"><span class="ph">[preço]</span><small>preço fechado</small></p>
-          <div class="card__botoes"><button type="button" class="btn btn--preto" data-escolher="kit-mes">Escolher kit<span class="sr-only">, Kit Mês</span></button><a class="link" href="/cxf/kits/kit-mes">Ver detalhes<span class="sr-only">, Kit Mês</span></a></div>
+          <div class="card__botoes"><button type="button" class="btn btn--preto" data-adicionar="KIT-MES"><svg aria-hidden="true"><use href="#i-sacola"/></svg>Adicionar à sacola<span class="sr-only">, Kit Mês</span></button><a class="link" href="/cxf/kits/kit-mes">Ver detalhes<span class="sr-only">, Kit Mês</span></a></div>
         </article>
 <article class="card card--kit" data-slug="kit-familia" data-categoria="kits">
           <a class="card__foto" href="/cxf/kits/kit-familia" tabindex="-1" aria-hidden="true"><img class="foto" src="/cxf/assets/img/produtos/kit-familia-800.webp" srcset="/cxf/assets/img/produtos/kit-familia-400.webp 400w, /cxf/assets/img/produtos/kit-familia-800.webp 800w" sizes="(min-width: 1000px) 22vw, 46vw" width="800" height="657" alt="" loading="lazy" decoding="async"></a>
@@ -206,7 +195,7 @@
           <p class="card__notas">8 pacotes de 250 g · 2 kg</p>
           <p class="card__tamanhos"></p>
           <p class="card__preco"><span class="ph">[preço]</span><small>preço fechado</small></p>
-          <div class="card__botoes"><button type="button" class="btn btn--preto" data-escolher="kit-familia">Escolher kit<span class="sr-only">, Kit Família</span></button><a class="link" href="/cxf/kits/kit-familia">Ver detalhes<span class="sr-only">, Kit Família</span></a></div>
+          <div class="card__botoes"><button type="button" class="btn btn--preto" data-adicionar="KIT-FAMILIA"><svg aria-hidden="true"><use href="#i-sacola"/></svg>Adicionar à sacola<span class="sr-only">, Kit Família</span></button><a class="link" href="/cxf/kits/kit-familia">Ver detalhes<span class="sr-only">, Kit Família</span></a></div>
         </article>
 <article class="card card--kit" data-slug="caixa-5kg" data-categoria="kits">
           <a class="card__foto" href="/cxf/kits/caixa-5kg" tabindex="-1" aria-hidden="true"><img class="foto" src="/cxf/assets/img/produtos/kit-caixa-800.webp" srcset="/cxf/assets/img/produtos/kit-caixa-400.webp 400w, /cxf/assets/img/produtos/kit-caixa-800.webp 800w" sizes="(min-width: 1000px) 22vw, 46vw" width="800" height="610" alt="" loading="lazy" decoding="async"></a>
@@ -216,7 +205,7 @@
           <p class="card__notas">20 pacotes de 250 g · 5 kg</p>
           <p class="card__tamanhos"></p>
           <p class="card__preco"><span class="ph">[preço]</span><small>preço fechado</small></p>
-          <div class="card__botoes"><button type="button" class="btn btn--preto" data-escolher="caixa-5kg">Escolher kit<span class="sr-only">, Caixa 5 kg</span></button><a class="link" href="/cxf/kits/caixa-5kg">Ver detalhes<span class="sr-only">, Caixa 5 kg</span></a></div>
+          <div class="card__botoes"><button type="button" class="btn btn--preto" data-adicionar="KIT-CAIXA-5KG"><svg aria-hidden="true"><use href="#i-sacola"/></svg>Adicionar à sacola<span class="sr-only">, Caixa 5 kg</span></button><a class="link" href="/cxf/kits/caixa-5kg">Ver detalhes<span class="sr-only">, Caixa 5 kg</span></a></div>
         </article>
         </div>
       </div>
@@ -333,8 +322,8 @@
     <div data-seletor></div>
   </div>
 
-  <script type="module">import '/cxf/js/ui.f60b6dd1.js';</script>
-  <script type="module">import '/cxf/js/produto.6a9300ce.js';</script>
+  <script type="module">import '/cxf/js/ui.bf3af498.js';</script>
+  <script type="module">import '/cxf/js/produto.a47c9e83.js';</script>
   <a href="https://usetheatrum.com.br/?utm_source=previa&amp;utm_medium=marca-dagua&amp;utm_campaign=cxf" target="_blank" rel="noopener" aria-label="Site feito pela Theatrum. Conheça" style="position:fixed;left:16px;bottom:22px;z-index:40;display:flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border-radius:999px;background:rgba(11,10,8,.9);border:1px solid rgba(227,179,65,.35);color:#E3B341;text-decoration:none;font:500 14px/1.15 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase" class="theatrum-marca"><img src="/cxf/theatrum-64.webp" width="34" height="34" alt="" style="border-radius:50%"><span style="display:flex;flex-direction:column"><small style="font-size:11px;letter-spacing:.04em;text-transform:none;color:#A39B8D">Site feito pela</small>Theatrum</span></a><style>@media (max-width:640px){.theatrum-marca{padding:5px!important}.theatrum-marca>span{display:none!important}.theatrum-marca{opacity:0;pointer-events:none;transition:opacity .3s}.theatrum-marca.ve{opacity:1;pointer-events:auto}}.hero__in{min-height:min(calc(100svh - 205px),760px)}@media (max-width:640px){.hero__in{min-height:0}}</style>
   <script>/* no celular a marca d'água só aparece depois da primeira tela, para não cobrir o topo */(function(){var m=document.querySelector('.theatrum-marca');function v(){m&&m.classList.toggle('ve',scrollY>innerHeight*.6)}addEventListener('scroll',v,{passive:true});v()})();</script>
 </body>

@@ -7,7 +7,6 @@ const BRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' 
 // Todo valor da loja anda em centavos (inteiro); só vira reais na hora de mostrar
 export function reais(centavos) { return BRL.format(centavos / 100); }
 
-export function moagem(id) { return (config.moagens || []).find((m) => m.id === id) || null; }
 
 export function linkWhatsApp(texto = config.waText) {
   return 'https://wa.me/' + (config.whatsapp || '') + '?text=' + encodeURIComponent(texto || '');

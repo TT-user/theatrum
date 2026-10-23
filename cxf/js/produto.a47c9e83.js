@@ -1,4 +1,4 @@
-// Página de café ou kit: galeria, tamanho, moagem, quantidade e "Adicionar à sacola" / "Comprar agora".
+// Página de café ou kit: galeria, tamanho, quantidade e "Adicionar à sacola" / "Comprar agora".
 // O preço exibido vem do catálogo público; o servidor recalcula tudo no checkout (padrão, seção 8).
 import { reais } from '/cxf/js/config.js';
 import { catalogo, item as acharItem } from '/cxf/js/catalogo.js';
@@ -30,13 +30,7 @@ if (raiz) {
       `${v.precoDeCentavos ? `<del><span class="sr-only">de </span>${reais(v.precoDeCentavos * qtd)}</del>` : ''}<b>${reais(v.precoCentavos * qtd)}</b><small>${ehKit ? 'preço fechado' : 'no Pix ou no cartão'}${qtd > 1 ? ` · ${qtd} unidades` : ''}</small>`;
   }
 
-  function atualizaBotoes() {
-    const escolheu = !!form.moagem?.value;
-    form.querySelectorAll('[data-precisa-moagem]').forEach((b) => { b.disabled = !escolheu; });
-    form.querySelector('[data-aviso-moagem]').hidden = escolheu;
-  }
-
-  form.addEventListener('change', () => { atualizaBotoes(); atualizaPreco(); });
+  form.addEventListener('change', atualizaPreco);
   form.addEventListener('click', (e) => {
     const b = e.target.closest('[data-q]');
     if (!b) return;
@@ -46,12 +40,9 @@ if (raiz) {
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const moagem = form.moagem?.value;
-    if (!moagem) return;
     const sku = form.querySelector('[name=variante]:checked, input[type=hidden][name=variante]').value;
-    adicionar(sku, moagem, qtd);
+    adicionar(sku, null, qtd);
     // "Comprar agora" e "Adicionar" abrem a sacola; o checkout (/carrinho) é a etapa 9
     document.querySelector('[data-abre="painel-sacola"]')?.click();
   });
-  atualizaBotoes();
 }
