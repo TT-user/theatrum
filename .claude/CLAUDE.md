@@ -954,6 +954,27 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Fotos, avaliações extraídas, preços da proposta e pendências em `interno/clientes/megaacademia/`,
   fora do git.
 
+- `/cxf/` — prévia da loja da CXF Café Especial (café especial 100% arábica; **não é corretora**:
+  a primeira arte dizia "corretora de café" e o Matheus corrigiu), desde 23/10/2026, no estilo de
+  cafetavares.com.br, Café Iracema e Fruto Grão. Loja nível 1 do `padrao-sites.md` (seção 9): sacola
+  em gaveta com `localStorage` `cxf-sacola`, pedido mastigado no WhatsApp, cópia por Web3Forms se
+  `web3formsKey` tiver chave. Identidade da embalagem que o Matheus mandou: preto do pacote, papel da
+  etiqueta, Montserrat (a letra do logo) e Inter, servidas daqui. Logo traçado da arte em SVG
+  (`#cxf-simbolo` e `#cxf-letras`, script em `interno/clientes/cxf/scripts/logo.py`). A gravura da
+  lavoura é recorte da embalagem salvo só como alfa da tinta (`assets/img/gravura-*.webp`) e entra
+  como `mask` no CSS, na cor que a seção pedir; as bordas dela têm degradê de máscara, senão aparece
+  o retângulo. Os pacotes são SVG desenhados pelo `main.js` (sem foto), com a mesma etiqueta; sombra
+  em degradê dentro do SVG, porque `drop-shadow` no CSS deixava um retângulo claro sobre a gravura.
+  Catálogo em `data/produtos.json` (três torras, drip e dois kits), **todos de exemplo** e com preço
+  `null` (placeholder) até chegar a linha real; com número, o site calcula o preço a cada 100 g e o
+  subtotal. Detalhe do café em gaveta com endereço `#cafe/<id>` (as páginas `/cafes/<item>/` do
+  padrão 1A ficam para quando a linha real chegar). Guia de moagem, "não sei qual escolher" (três
+  perguntas que põem o café na sacola com tamanho e moagem) e "Para empresas e presentes", tudo
+  marcado `[confirmar]`. Contato em `js/config.js`, `whatsapp: null` abre o WhatsApp sem número.
+  Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, proteção, marca d'água com
+  `utm_campaign=cxf`, OG em `og-image-v1.jpg` (gerador em `interno/clientes/cxf/og/`). Fontes e
+  pendências em `interno/clientes/cxf/README.md`, fora do git.
+
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
   (WhatsApp, telefone, e-mail, recepção) e horário de atendimento; formulário com tipo, quem fala,
@@ -1120,7 +1141,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia`, `/cxf` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
