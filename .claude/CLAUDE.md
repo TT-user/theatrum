@@ -935,7 +935,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   o laranja e o ouro do anel do logo (`#F59A23`, `#FFC94A`; texto pequeno sobre claro em
   `#8F4500`); títulos sobre escuro com o degradê ouro e laranja dos flyers. Logo redesenhado em SVG
   (`#mg-marca`: anel em meia-lua e o atleta com a barra). Título do hero é o slogan do letreiro
-  ("Sua saúde é nosso compromisso"). No lugar da "Equipe" da O2, a seção "Aulas coletivas"
+  ("Sua saúde é nosso compromisso"). No computador o hero cabe inteiro na primeira tela (a pedido,
+  23/10/2026): números e "Venha conhecer" ao lado do título, atalhos numa faixa baixa e sem o selo
+  girando; sem nota do Google nem endereço embaixo dos botões. No lugar da "Equipe" da O2, a seção "Aulas coletivas"
   (`#aulas`), com os nomes escritos na fachada (jump, step, bike, ritmos, local, abdominal,
   alongamento) e a grade em placeholder. Os três planos são as promoções dos posts fixados de
   outubro (2 meses R$ 259,99 no Pix; seis meses pagando cinco; a partir de R$ 89,99 em 12x), com a
