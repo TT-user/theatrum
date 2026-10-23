@@ -123,7 +123,7 @@ p { margin: 0 0 1em; }
 .hero__txt { grid-area: txt; max-width: 680px; }
 .hero h1 { font-size: clamp(32px, 5.4vw, 70px); line-height: .98; }
 .hero__lead { font-size: 19px; color: var(--txt-2); max-width: 520px; }
-.hero__btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 26px; }
+.hero__btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 0; }
 .hero__prova { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: var(--txt-2); font-size: 14px; line-height: 1.35; }
 .hero__prova b { display: flex; align-items: center; gap: 6px; color: var(--branco); font-size: 17px; }
 .hero__prova .estrela { width: 17px; height: 17px; color: var(--amarelo); }
@@ -200,10 +200,8 @@ p { margin: 0 0 1em; }
 @media (max-width: 640px) {
   /* a faixa de horário do topo e os três programas (repetem "O que tem", logo abaixo) também saem */
   .aviso, .progs { display: none; }
-  .hero__lead .so-pc, .hero__prova-sub, .hero__selos, .hero__onde, .numeros { display: none; }
-  .hero__btns { margin: 24px 0 18px; }
-  .hero__prova { min-height: 32px; }
-  .hero__prova b { font-size: 16px; }
+  .hero__lead .so-pc, .numeros { display: none; }
+  .hero__btns { margin: 24px 0 0; }
   .hero__in { gap: 22px; }
   .oferta b { font-size: 24px; }
 }
