@@ -194,6 +194,33 @@ p { margin: 0 0 1em; }
   .oferta { padding: 20px 76px 20px 20px; }
 }
 
+/* Computador: o hero inteiro (título, botões, programas, números e diária) cabe na primeira tela.
+   Os tamanhos acompanham a altura da janela (vh), de 720 a 1080 px de altura. */
+@media (min-width: 1001px) {
+  .hero { padding: clamp(14px, 3.2vh, 56px) 0 clamp(14px, 2.6vh, 36px); }
+  .hero .rotulo { margin-bottom: clamp(8px, 1.6vh, 16px); }
+  .hero h1 { font-size: clamp(36px, min(5.4vw, 7.2vh), 70px); margin-bottom: clamp(8px, 1.6vh, 16px); }
+  .hero__lead { font-size: clamp(16px, 2vh, 19px); margin-bottom: 0; }
+  .hero__btns { margin-top: clamp(14px, 2.8vh, 28px); }
+  .hero__btns .btn--g { min-height: clamp(48px, 6vh, 56px); padding-block: 10px; }
+  .hero__in { row-gap: clamp(14px, 3.4vh, 40px); }
+  .giro { margin-top: clamp(40px, 12vh, 140px); }
+  .progs { padding: 10px; }
+  .prog img { aspect-ratio: auto; height: clamp(80px, 15vh, 165px); margin-bottom: 8px; }
+  .hero__lado { gap: 10px; }
+  .numeros { padding: clamp(10px, 1.8vh, 20px) 10px; }
+  .numeros svg { width: 22px; height: 22px; margin-bottom: 4px; }
+  .oferta { padding-block: clamp(12px, 2vh, 22px); }
+  .oferta b { margin: 6px 0 4px; }
+}
+
+/* Notebook de tela baixa: a frase da diária sai do texto (está no card amarelo) e as faixas do topo afinam */
+@media (min-width: 1001px) and (max-height: 820px) {
+  .hero__lead .so-pc { display: none; }
+  .aviso, .previa { padding-block: 5px; }
+  .prog small { display: none; }
+}
+
 /* Celular: hero enxuto. O que se repete logo abaixo sai daqui: a frase da diária (está no card
    amarelo), o endereço (está em "Como chegar"), os números (a nota já está no selo do Google e o
    horário na faixa do topo) e a linha de detalhe da nota. */
