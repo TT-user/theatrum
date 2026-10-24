@@ -1,0 +1,53 @@
+{
+  "_leia": "Textos do site da Agrega Print. null vira placeholder amarelo. Produtos e 'porque': tirados da bio e dos posts do @agrega.print (frases dos próprios posts). 'arte' é a ilustração provisória em assets/ilustra/; quando chegar foto real do trabalho, troque por 'foto' (caminho da imagem). Trabalhos: só foto real de trabalho entregue, sem mockup de IA nem marca inventada; enquanto 'src' for null, a galeria mostra o espaço reservado. 'categoria' tem de ser uma das 'categorias'.",
+
+  "produtos": [
+    { "id": "cartoes", "nome": "Cartões de visita", "icone": "contact", "arte": "cartoes", "texto": "Modelos prontos ou layout exclusivo, com diversos papéis, gramaturas e acabamentos." },
+    { "id": "panfletos", "nome": "Panfletos e flyers", "icone": "file-text", "arte": "panfletos", "texto": "Divulgação impressa com cor fiel e entrega rápida." },
+    { "id": "banners", "nome": "Banners em lona", "icone": "flag", "arte": "banner", "texto": "Para empresas, eventos e divulgação, com acabamento durável." },
+    { "id": "adesivos", "nome": "Adesivos personalizados", "icone": "sticker", "arte": "adesivos", "texto": "Para lojas, veículos, embalagens e o que mais sua marca precisar." },
+    { "id": "grande-formato", "nome": "Grande formato", "icone": "store", "arte": "grande-formato", "texto": "Fachadas, placas e vitrines em alta resolução." },
+    { "id": "rotulos", "nome": "Rótulos e etiquetas", "icone": "tag", "arte": "rotulos", "texto": "Rótulos para café, alimentos e produtos artesanais." },
+    { "id": "laser", "nome": "Corte a laser CO₂", "icone": "zap", "arte": "laser", "texto": "Corte e gravação em MDF e acrílico: placas, letreiros, brindes e peças personalizadas." },
+    { "id": "corte-eletronico", "nome": "Corte eletrônico", "icone": "scissors", "arte": "corte", "texto": "Recorte de vinil para letras, logos e adesivos com contorno.", "pendente": "[confirmar o serviço]" }
+  ],
+
+  "passos": [
+    { "titulo": "Orçamento", "texto": "Você conta o que precisa pelo WhatsApp." },
+    { "titulo": "Arte", "texto": "Envia a sua ou a gente cria; você aprova antes de imprimir." },
+    { "titulo": "Produção", "texto": "Imprimimos, cortamos e damos acabamento." },
+    { "titulo": "Retirada ou entrega", "texto": null, "pendente": "[confirmar se fazem entrega e onde]" }
+  ],
+
+  "porque": [
+    { "titulo": "Qualidade", "texto": "Impressão de alta qualidade, cores vivas e excelente definição.", "icone": "gem" },
+    { "titulo": "Rapidez", "texto": "Produção rápida: seu projeto no prazo, sem complicação.", "icone": "zap" },
+    { "titulo": "Atendimento ágil", "texto": "Orçamento e atendimento pelo WhatsApp.", "icone": "handshake" },
+    { "titulo": "Criação inclusa ou sob medida", "texto": "Não tem arte? A gente cria.", "pendente": "[confirmar se a criação é cobrada à parte]", "icone": "palette" }
+  ],
+
+  "categorias": ["Cartões", "Banners", "Adesivos", "Fachadas", "Laser", "Rótulos"],
+
+  "trabalhos": [
+    { "src": null, "alt": "Cartões de visita entregues", "categoria": "Cartões" },
+    { "src": null, "alt": "Banner em lona de evento", "categoria": "Banners" },
+    { "src": null, "alt": "Adesivo aplicado em vitrine", "categoria": "Adesivos" },
+    { "src": null, "alt": "Fachada com adesivo em grande formato", "categoria": "Fachadas" },
+    { "src": null, "alt": "Placa em MDF cortada a laser", "categoria": "Laser" },
+    { "src": null, "alt": "Rótulos de café entregues", "categoria": "Rótulos" },
+    { "src": null, "alt": "Cartões com acabamento especial", "categoria": "Cartões" },
+    { "src": null, "alt": "Banner de fachada comercial", "categoria": "Banners" },
+    { "src": null, "alt": "Adesivo em veículo", "categoria": "Adesivos" },
+    { "src": null, "alt": "Placa de loja", "categoria": "Fachadas" },
+    { "src": null, "alt": "Peça em acrílico gravada a laser", "categoria": "Laser" },
+    { "src": null, "alt": "Etiquetas de produto artesanal", "categoria": "Rótulos" }
+  ],
+
+  "faq": [
+    { "p": "Qual o prazo de produção?", "r": "[prazo por produto]" },
+    { "p": "Vocês criam a arte?", "r": "Sim. Temos modelos prontos ou criamos um layout exclusivo para você. [confirmar valores]" },
+    { "p": "Em que formato envio minha arte?", "r": "[ex.: PDF em alta, CMYK, sangria de 3 mm: confirmar]" },
+    { "p": "Fazem entrega?", "r": null },
+    { "p": "Quais as formas de pagamento?", "r": null }
+  ]
+}

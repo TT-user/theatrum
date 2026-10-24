@@ -1,0 +1,50 @@
+{
+  "_leia": "Textos do site da Agrega Marketing. null vira placeholder amarelo. Time: texto dos cards do Instagram (@somosagrega), com 'expanção' corrigido; foto = recorte do card, pedir os originais sem fundo. Depoimentos: avaliações públicas do Google (24/10/2026), texto igual ao original, sobrenome abreviado; falta autorização de cada autor. A de Isaque Martins ficou de fora: parece ser o editor do time. Clientes e cases: só com autorização por escrito.",
+
+  "servicos": [
+    { "titulo": "Estratégia e posicionamento", "texto": "Diagnóstico do seu negócio e um plano claro do que comunicar, para quem e onde.", "quem": "Direção" },
+    { "titulo": "Social media e conteúdo", "texto": "Calendário, roteiros, criativos e gestão das redes com a cara da sua marca.", "quem": "Comunicação e social media" },
+    { "titulo": "Tráfego pago", "texto": "Campanhas que levam as pessoas certas até o seu WhatsApp, site ou loja.", "pendente": "[confirmar: Meta Ads, Google Ads]", "quem": "Tráfego" },
+    { "titulo": "Performance e métricas", "texto": "Leitura dos números, relatórios e ajustes contínuos para cada real investido render mais.", "quem": "Performance" },
+    { "titulo": "Produção de vídeo", "texto": "Captação e edição com time próprio de videomakers: reels, institucionais e anúncios.", "quem": "Editores e videomakers" },
+    { "titulo": "Podcast e eventos", "texto": "Produção de podcast e cobertura de eventos para gerar autoridade.", "pendente": "[confirmar escopo]", "quem": "Comunicação e vídeo" }
+  ],
+
+  "metodo": [
+    { "titulo": "Diagnóstico", "texto": "Entendemos o negócio, o público e o que já foi feito." },
+    { "titulo": "Estratégia", "texto": "Plano de conteúdo, canais e metas." },
+    { "titulo": "Produção", "texto": "Roteiros, captação, edição e criativos." },
+    { "titulo": "Performance", "texto": "Anúncios no ar, leitura de métricas e ajustes contínuos." }
+  ],
+
+  "clientes": [null, null, null, null, null, null],
+
+  "cases": [
+    { "marca": null, "desafio": null, "feito": null, "resultado": null },
+    { "marca": null, "desafio": null, "feito": null, "resultado": null }
+  ],
+
+  "depoimentos": [
+    { "texto": "Um atendimento exclusivo e diferenciado, profissionais qualificados de altíssimo níveis e de disponibilidade. Foi muito bom!!", "nome": "Ramon B.", "fonte": "Avaliação no Google" },
+    { "texto": "Uma empresa que super me atendeu e superou todas as minhas expectativas, super indico", "nome": "Vinicios H.", "fonte": "Avaliação no Google" },
+    { "texto": "Marketing moderno, criativo e inovador. Equipe nota 10! Parabéns", "nome": "Pedro Henrique M.", "fonte": "Avaliação no Google" }
+  ],
+
+  "time": [
+    { "nome": "Carlos", "cargo": "CEO", "texto": "Direção geral, marketing, visão estratégica de expansão e comercial.", "foto": "carlos" },
+    { "nome": "Asafe", "cargo": "Head de Comunicação", "texto": "Supervisão de conteúdos, criativos, vídeos, atendimentos e comercial.", "foto": "asafe" },
+    { "nome": "Wendel", "cargo": "Head de Performance", "texto": "Estrategista de performance, análise de métricas, suporte e comercial.", "foto": "wendel" },
+    { "nome": "Gabriel", "sobrenome": null, "cargo": "Head Comercial", "texto": "Diretor comercial, prospecção, responsável por supervisionar e fechar contratos.", "foto": "gabriel-comercial" },
+    { "nome": "Júnior", "cargo": "Head de Tráfego", "texto": "Criação, otimização e supervisão de campanhas.", "foto": "junior" },
+    { "nome": "Gabriel", "sobrenome": null, "cargo": "Editor / Videomaker", "texto": "Edição de vídeos, captação e suporte criativo.", "foto": "gabriel-editor" },
+    { "nome": "Lucas", "cargo": "Editor / Videomaker", "texto": "Edição de vídeos, captação e suporte criativo.", "foto": "lucas" },
+    { "nome": "Isaque", "cargo": "Editor / Videomaker", "texto": "Edição de vídeos, captação e suporte criativo.", "foto": "isaque" },
+    { "nome": "David", "cargo": "Social media / Tráfego", "texto": "Tráfego, suporte comercial e social media.", "foto": "david" }
+  ],
+
+  "faq": [
+    { "p": "Vocês atendem fora de Espera Feliz?", "r": null },
+    { "p": "Existe contrato mínimo?", "r": null },
+    { "p": "Preciso investir em anúncios para começar?", "r": null }
+  ]
+}

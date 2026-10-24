@@ -1,0 +1,26 @@
+{
+  "_leia": "Combos do Projeto Completo (Marketing + Print). Sugestão da especificação, ainda não validada pela Agrega: confirmar os combos e se haverá preço de pacote. 'preco' null não aparece.",
+  "combos": [
+    {
+      "id": "abrindo",
+      "titulo": "Abrindo ou renovando um negócio",
+      "marketing": "Instagram, conteúdo e tráfego pago para a inauguração",
+      "print": "Fachada, adesivos de vitrine, cartões e panfletos",
+      "preco": null
+    },
+    {
+      "id": "cafe",
+      "titulo": "Marca de café",
+      "marketing": "Conteúdo e anúncios para vender o café",
+      "print": "Rótulos e embalagens",
+      "preco": null
+    },
+    {
+      "id": "evento",
+      "titulo": "Evento ou inauguração",
+      "marketing": "Cobertura em vídeo e divulgação",
+      "print": "Banners, adesivos e brindes em MDF ou acrílico",
+      "preco": null
+    }
+  ]
+}

@@ -969,6 +969,44 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
     ainda não existe; o andamento está em `cxf-loja/docs/progresso.md`.
   - **Auditoria:** `interno/clientes/cxf/auditoria-caminho-b.md`.
 
+- `/agrega/` — prévia de duas empresas irmãs de Espera Feliz, MG, num domínio só, desde 24/10/2026,
+  a partir de uma especificação em 13 seções (`interno/clientes/agrega/agrega-site.md`) e de prints do
+  Instagram: a **Agrega Marketing** (@somosagrega, agência, objetivo agendar reunião) e a **Agrega
+  Print** (@agrega.print, gráfica express, objetivo orçamento). Estático no molde da casa (a
+  especificação pedia Astro, como a Nerd Club). Cinco páginas: portal dividido em `/agrega/`
+  (Marketing à esquerda em roxo, Print à direita em azul; no hover o lado cresce a 62% e mostra a
+  lista e a mídia, no clique toma a tela e navega em ~450 ms; uma variável `--split` com `@property`
+  move metades, divisória, selo e pílula juntos; o rabinho do balão do selo amarelo aponta para o
+  lado em foco), `marketing/`, `print/`, `projeto-completo/` (combos das duas) e `privacidade/`.
+  View Transitions entre documentos: do portal, fundo e logo continuam no hero (`vt-portal`, posto
+  no `pagereveal` de um script no `<head>`; o conteúdo do hero e o topo têm nome próprio para entrar
+  por cima do fundo); a chave do topo entre as marcas desliza de lado (`to-print`/`to-marketing`).
+  Poppins e Inter servidas daqui. Logos redesenhados em SVG sobre a Poppins, ícones Lucide e os QR de
+  avaliação num sprite por página, gerado por `interno/clientes/agrega/sprite.py`, que também copia o
+  rodapé do `marketing/index.html` (fonte única, entre `<!--rodape-->`) para as outras páginas:
+  mudou ícone, logo ou rodapé, rode o script. Textos em `data/*.json`, contatos em `js/config.js`.
+  WhatsApp da Marketing (32) 99913-6731 é o destino do "Agende uma reunião" da bio; a ficha do Google
+  tem outro, (32) 98413-7601, a confirmar. Time de 9 com retratos recortados dos cards do Instagram
+  (texto em HTML). Feedback: 3 avaliações do Google (texto igual, sobrenome abreviado, autorização
+  pendente; a de um "Isaque Martins" ficou de fora, parece ser do time). **Na Print não há foto
+  real:** as artes deles são mockup de IA com marca inventada, que a especificação proíbe; produtos
+  e hero usam ilustrações provisórias em SVG (`assets/ilustra/`, geradas por
+  `interno/clientes/agrega/ilustra.py`) só com a marca da
+  própria Agrega, marcadas com placeholder, e a galeria "Feito aqui" mostra 12 espaços reservados.
+  Gaveta de orçamento de 3 passos (painel lateral, folha de baixo no celular, foco preso, Esc); sem
+  JavaScript os botões vão direto ao WhatsApp. Projeto Completo vai para a Marketing até definirem
+  (`whatsappProjetoCompleto`). Eventos da seção 10 no código (`AG.track`), desligados
+  (`rastrear: false`). No computador, a última linha do hero começa depois da marca d'água
+  (`body:has(.theatrum)`, some sozinho no site final). Lighthouse mobile local: Performance 97-98,
+  Acessibilidade 100 (SEO baixo é o noindex). Cache no `.htaccess` da pasta: CSS e JS por 30 dias com
+  `?v=` (mudou, sobe o número), JSON por 1 hora, imagem por 30 dias sem versão (trocou, muda o nome).
+  Mensagens de WhatsApp por origem (reunião, endereço, flutuante, rodapé), também no `href` estático
+  para funcionar sem JavaScript. Mesmo padrão: `.htaccess` e meta com noindex, faixa de
+  prévia, sem UET, `js/protecao.js`, marca d'água com `utm_campaign=agrega`, OG por página
+  (`og-portal-v1.jpg`, `og-marketing-v1.jpg`, `og-print-v1.jpg`, HTML em
+  `interno/clientes/agrega/og/`). Fontes de cada dado e pendências em
+  `interno/clientes/agrega/README.md`, fora do git.
+
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
   (WhatsApp, telefone, e-mail, recepção) e horário de atendimento; formulário com tipo, quem fala,
@@ -1135,7 +1173,7 @@ quando não houver mais nada apontando para lá.
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 `/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia`, `/cxf` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia`, `/cxf`, `/agrega` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet
