@@ -104,7 +104,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- botões ---------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: var(--r-pill); border: 1.5px solid transparent; font: 600 1rem/1.2 var(--titulo); text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast); }
-.btn svg { width: 20px; height: 20px; flex: none; }
+.btn svg { width: 20px; height: 20px; flex: none; display: block; }
 .btn--lg { min-height: 52px; padding: 0 28px; }
 .btn--cheio { width: 100%; }
 .btn--pri { background: var(--agrega-yellow); color: var(--ink); }

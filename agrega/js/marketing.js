@@ -52,6 +52,7 @@
       '<div class="pessoa__convite"><p class="pessoa__chamada">Quer esse time cuidando da sua marca?</p><a class="btn btn--tinta" href="#contato">Agendar reunião</a></div></li>';
 
     AG.faq($('[data-render="faq"]'), d.faq);
+    if (AG.tunel) AG.tunel(d.time);
     AG.revelar();
   }).catch(function () {
     document.querySelectorAll('[data-render]').forEach(function (el) {
