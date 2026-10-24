@@ -154,17 +154,6 @@
     });
   });
 
-  /* ---------- trilhos com setas (time) ---------- */
-  document.querySelectorAll('[data-trilho]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var t = document.getElementById('trilho-' + b.dataset.trilho);
-      var item = t && t.firstElementChild;
-      if (!item) return;
-      var passo = item.getBoundingClientRect().width + parseFloat(getComputedStyle(t).columnGap || 0);
-      t.scrollBy({ left: passo * Number(b.dataset.dir), behavior: AG.calmo() ? 'auto' : 'smooth' });
-    });
-  });
-
   /* ---------- dúvidas a partir dos dados ---------- */
   AG.faq = function (el, itens) {
     if (!el || !itens) return;

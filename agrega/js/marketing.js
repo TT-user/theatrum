@@ -40,13 +40,16 @@
 
     if ((el = $('[data-render="time"]'))) el.innerHTML = d.time.map(function (p, i) {
       var nome = esc(p.nome) + ('sobrenome' in p ? ' <span class="ph">' + esc(p.sobrenome || '[sobrenome]') + '</span>' : '');
-      return '<li class="pessoa">' +
+      return '<li class="pessoa rev" style="--i:' + (i % 5) + '">' +
         '<svg class="pessoa__letras" viewBox="0 -60 380 90" aria-hidden="true"><use href="#ag-palavra"/></svg>' +
         '<img class="pessoa__foto" src="../assets/img/time/' + esc(p.foto) + '.webp" alt="' + esc(p.nome) + ', ' + esc(p.cargo) + ' da Agrega" width="400" height="440" loading="lazy">' +
         '<p class="pessoa__cargo">' + esc(p.cargo).replace(' / ', '/<br>') + '</p>' +
         '<p class="pessoa__texto">' + esc(p.texto) + '</p>' +
         '<h3 class="pessoa__nome">' + nome + '</h3></li>';
-    }).join('');
+    }).join('') +
+      // o décimo lugar da grade fecha a conta: convite para a reunião
+      '<li class="pessoa pessoa--convite rev" style="--i:4"><svg class="pessoa__selo" viewBox="0 0 200 200" aria-hidden="true"><use href="#ag-mkt"/></svg>' +
+      '<div class="pessoa__convite"><p class="pessoa__chamada">Quer esse time cuidando da sua marca?</p><a class="btn btn--tinta" href="#contato">Agendar reunião</a></div></li>';
 
     AG.faq($('[data-render="faq"]'), d.faq);
     AG.revelar();
