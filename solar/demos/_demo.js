@@ -34,6 +34,8 @@
   var EN = origem === 'us';
   var VOLTA = EN
     ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
+    : origem === 'acervo'
+    ? { raiz: '../../../acervo/', cta: '../../../#diagnostico' }
     : origem === 'portfolio'
     ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
     : { raiz: '../../../', cta: '../../../#diagnostico' };

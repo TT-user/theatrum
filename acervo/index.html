@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0A08">
+<title>Acervo · Theatrum</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/logo-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<!--
+  Acervo privado (só abre com a senha: ver .htaccess desta pasta).
+  Todos os sites numa página, por segmento, para mostrar pessoalmente.
+  Site novo: uma linha em SITES, lá embaixo. Capa de prévia de cliente em img/<pasta>-{480,800}.webp
+  (primeira tela em 1280x800, WebP q72); as demonstrações usam as capas da vitrine da home.
+-->
+<style>
+  :root{
+    --bg:#0B0A08; --bg-2:#100E0B; --card:#1A1815; --line:#2A2620;
+    --accent:#E3B341; --accent-soft:#F0D488; --accent2:#8E1F2F;
+    --cream:#F6F1E7; --muted:#A39B8D;
+    --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+    --titulo:"Plus Jakarta Sans",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
+  html{scroll-padding-top:120px}
+  body{background:var(--bg);color:var(--cream);font:400 16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 32px}
+
+  /* topo */
+  .topo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0}
+  .marca{display:flex;align-items:center;gap:10px;font:800 18px var(--titulo);letter-spacing:-.005em}
+  .marca img{width:36px;height:36px;border-radius:50%}
+  .sair{font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:8px 16px;min-height:40px}
+  .sair:hover{color:var(--cream);border-color:var(--muted)}
+
+  /* abertura */
+  .abre{padding:40px 0 28px}
+  .rot{font:500 13px/1.4 var(--mono);color:var(--accent);letter-spacing:.02em}
+  h1{font:800 clamp(34px,5.2vw,60px)/1.05 var(--titulo);letter-spacing:-.012em;margin:14px 0 16px;max-width:16ch}
+  .lm{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;color:var(--accent);letter-spacing:0}
+  .lead{font-size:18px;color:var(--muted);max-width:56ch}
+  .numeros{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:24px;font-size:15px;color:var(--muted)}
+  .numeros b{color:var(--cream);font:800 22px var(--titulo);margin-right:6px}
+
+  /* filtros */
+  .filtros{position:sticky;top:0;z-index:5;background:rgba(11,10,8,.94);border-bottom:1px solid var(--line);
+    padding:12px 0}
+  .filtros .wrap{display:flex;align-items:flex-start;gap:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0;padding:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{white-space:nowrap;font-size:14.5px;font-weight:500;border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;min-height:40px;color:var(--muted);transition:border-color .15s,color .15s,background .15s}
+  .chip:hover{color:var(--cream);border-color:#4A443A}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#150F03;font-weight:700}
+  .chip span{opacity:.65;margin-left:4px;font-variant-numeric:tabular-nums}
+  .tipos{display:flex;flex-shrink:0;border:1px solid var(--line);border-radius:999px;padding:3px}
+  .tipos button{font-size:13.5px;font-weight:600;color:var(--muted);border-radius:999px;padding:7px 12px;min-height:34px;white-space:nowrap}
+  .tipos button[aria-pressed="true"]{background:var(--card);color:var(--cream)}
+
+  /* segmentos */
+  .seg{padding:48px 0 8px}
+  .seg-cab{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  h2{font:800 clamp(24px,3vw,32px)/1.15 var(--titulo);letter-spacing:-.008em;margin-top:6px}
+  .seg-n{font-size:15px;color:var(--muted)}
+  .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:22px}
+
+  /* card */
+  .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    transition:transform .2s ease,border-color .2s ease}
+  .card:hover,.card:focus-visible{transform:translateY(-3px);border-color:rgba(227,179,65,.55)}
+  .card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .barra{display:flex;align-items:center;gap:5px;padding:8px 12px;background:#141210;border-bottom:1px solid var(--line)}
+  .barra i{width:8px;height:8px;border-radius:50%;background:#3A352D;flex-shrink:0}
+  .barra b{font:500 11.5px var(--mono);color:#7F786C;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;background:#141210}
+  .info{display:flex;flex-direction:column;gap:4px;padding:16px 18px 18px;flex:1}
+  .nome{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .nome b{font:700 17px/1.3 var(--titulo);letter-spacing:-.005em}
+  .tipo{font-size:14.5px;color:var(--cream);opacity:.85}
+  .faz{font-size:14.5px;color:var(--muted);margin-top:4px}
+  .selos{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
+  .selo{font:500 11.5px/1 var(--mono);border-radius:999px;padding:6px 9px;white-space:nowrap}
+  .selo.real{background:rgba(227,179,65,.14);color:var(--accent-soft);border:1px solid rgba(227,179,65,.35)}
+  .selo.conceito{color:var(--muted);border:1px solid var(--line)}
+  .selo.extra{color:var(--cream);border:1px solid #3A352D}
+
+  .vazio{color:var(--muted);padding:40px 0}
+  .pe{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 40px;display:flex;justify-content:space-between;gap:16px;
+    flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .pe a:hover{color:var(--cream)}
+
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .abre{padding:20px 0 20px}
+    .lead{font-size:16.5px}
+    .filtros .wrap{flex-direction:column;align-items:stretch;gap:10px}
+    .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+    .tipos{align-self:flex-start}
+    .seg{padding-top:36px}
+    .grade{gap:16px}
+  }
+  @media (prefers-reduced-motion:reduce){ .card{transition:none} .card:hover{transform:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topo">
+    <a class="marca" href="../"><img src="../assets/img/logo.webp" width="192" height="192" alt="">Theatrum</a>
+    <button class="sair" id="sair" type="button">Sair</button>
+  </header>
+
+  <section class="abre">
+    <p class="rot">[acervo] trabalhos da theatrum</p>
+    <h1>Sites que a gente já <span class="lm">construiu</span></h1>
+    <p class="lead">Prévias feitas para negócios de verdade e projetos conceito, separados por segmento. Toque em qualquer um para abrir o site inteiro, do topo ao rodapé.</p>
+    <p class="numeros" id="numeros"></p>
+  </section>
+</div>
+
+<nav class="filtros" aria-label="Filtrar sites">
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <div class="tipos" id="tipos" role="group" aria-label="Tipo de projeto">
+      <button type="button" data-tipo="todos" aria-pressed="true">Tudo</button>
+      <button type="button" data-tipo="real" aria-pressed="false">Negócios reais</button>
+      <button type="button" data-tipo="conceito" aria-pressed="false">Conceitos</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="lista"></main>
+
+<div class="wrap">
+  <footer class="pe">
+    <span>Theatrum · criação digital sob medida</span>
+    <a href="../">usetheatrum.com.br</a>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Segmentos, na ordem em que aparecem */
+  const SEGMENTOS = [
+    { id: 'academias',  nome: 'Academias e personal' },
+    { id: 'saude',      nome: 'Saúde, estética e terapia' },
+    { id: 'nutricao',   nome: 'Nutricionistas' },
+    { id: 'hospedagem', nome: 'Pousadas e chalés' },
+    { id: 'imoveis',    nome: 'Imóveis' },
+    { id: 'planejados', nome: 'Móveis planejados' },
+    { id: 'lojas',      nome: 'Lojas e varejo' },
+    { id: 'agro',       nome: 'Agro e café' },
+    { id: 'servicos',   nome: 'Advocacia, engenharia e serviços' },
+  ];
+
+  /* Prévia de negócio real: pasta na raiz do site (ou link externo), capa em img/.
+     Os desativados para o público abrem daqui porque o cookie do acervo passa
+     pelo .htaccess deles. */
+  const real = (seg, pasta, nome, tipo, lugar, faz, extra) => {
+    const fora = pasta.indexOf('http') === 0;   /* site do cliente em outro endereço */
+    return {
+      seg, nome, tipo, lugar, faz, extra, real: true,
+      href: fora ? pasta : '../' + pasta + '/',
+      img: extra && extra.capa ? extra.capa : 'img/' + pasta,
+      dom: fora ? pasta.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'usetheatrum.com.br/' + pasta,
+    };
+  };
+  /* Projeto conceito (marca fictícia): capa da vitrine da home, ?de=acervo faz a barra da demo voltar para cá */
+  const demo = (seg, caminho, nome, tipo, faz, dom, extra) => ({
+    seg, nome, tipo, faz, dom, extra, real: false,
+    href: '../' + caminho + '/?de=acervo',
+    img: '../assets/img/vitrine/home/' + caminho.split('/').pop(),
+  });
+
+  const SITES = [
+    real('academias', 'zini', 'Zini Body Center', 'Academia', 'Espera Feliz, MG', 'Monte seu plano com o valor e o custo por treino'),
+    real('academias', 'o2fitness', 'O2 Fitness', 'Academia', 'Espera Feliz, MG', 'Por onde começar em quatro perguntas e página Fale conosco'),
+    real('academias', 'rar', 'RAR Academia', 'Academia', 'Garopaba, SC', 'Tour 360° e loja de suplementos com sacola'),
+    real('academias', 'megaacademia', 'Mega Academia', 'Academia', 'Itajaí, SC', 'Aulas coletivas e por onde começar em cinco perguntas'),
+    real('academias', 'fornari', 'Team Fornari', 'Treinador online e presencial', 'Alto Caparaó, MG', 'Antes e depois em carrossel e aplicação em sete perguntas'),
+    demo('academias', 'negocios/demos/cla-valente', 'Clã Valente', 'Personal trainer', 'Antes e depois em carrossel e aplicação de 60 segundos', 'clavalente.com.br'),
+
+    real('saude', 'doctors', 'Doctors Odontologia', 'Clínica odontológica', 'Arapiraca, AL', 'Equipe com CRO e por onde começar em três perguntas'),
+    real('saude', 'esteticaef', 'Clínica Estética Facial e Corporal', 'Estética', 'Espera Feliz, MG', 'Triagem que indica a profissional certa e antes e depois'),
+    real('saude', 'aml', 'AML', 'Medicina e segurança do trabalho', 'Cataguases, Leopoldina e Muriaé, MG', 'Diagnóstico da empresa, NR-1 e três unidades'),
+    real('saude', 'gabriela-carolina', 'Gabriela Carolina', 'Psicanálise e Reiki', 'Atendimento online', 'Por onde começar em cinco perguntas e depoimentos'),
+    real('saude', 'bia-de-luca', 'Bia De Luca', 'Terapeuta e palestrante', 'São Paulo, SP', 'Por onde começar e florais que montam a mensagem'),
+    demo('saude', 'negocios/demos/arco', 'Arco Odontologia', 'Clínica odontológica', 'Sete especialistas e por onde começar', 'arcoodontologia.com.br'),
+    demo('saude', 'negocios/demos/prumo', 'Prumo', 'Saúde ocupacional', 'Diagnóstico da empresa em oito perguntas', 'prumosaude.com.br'),
+    demo('saude', 'negocios/demos/livia-amaral', 'Lívia Amaral', 'Terapia online', 'Quiz de por onde começar e vitrine de essências', 'liviaamaral.com.br', { selo: 'PT/EN' }),
+
+    demo('nutricao', 'nutricao/demos/beatriz-lemos', 'Beatriz Lemos', 'Reeducação alimentar', 'Avaliação corporal e acompanhamento, sem dieta restritiva', 'beatrizlemos.com.br'),
+    demo('nutricao', 'nutricao/demos/lara-mendonca', 'Lara Mendonça', 'Nutricionista bariátrica', 'Pré e pós-bariátrico, presencial e online', 'laramendonca.com.br'),
+    demo('nutricao', 'nutricao/demos/nutri-emagrecimento', 'Renata Salles', 'Emagrecimento', 'Presencial, online e domiciliar', 'renatasalles.com.br'),
+    demo('nutricao', 'nutricao/demos/nutri-infantil', 'Marina Bastos', 'Nutrição infantil', 'Seletividade e introdução alimentar', 'marinabastos.com.br'),
+    demo('nutricao', 'nutricao/demos/nutri-clinica', 'Camila Prado', 'Nutricionista nos EUA', 'Atendimento bilíngue em New Jersey', 'camilaprado.com', { selo: 'EN/PT' }),
+    demo('nutricao', 'nutricao/demos/nutri-usa', 'Ethan Reyes', 'Nutricionista em Los Angeles', 'Site para o mercado americano', 'ethanreyesrd.com', { selo: 'inglês' }),
+
+    real('hospedagem', 'cantodospassaros', 'Pousada Canto dos Pássaros', 'Pousada', 'Aracê, Domingos Martins, ES', 'Monte sua estadia e chalés com nome de pássaro'),
+    real('hospedagem', 'vilaserena', 'Cabanas Vila Serena', 'Cabanas A-frame', 'Alto Caparaó, MG', 'Vídeo do projeto e lista de espera em quatro passos'),
+    real('hospedagem', 'recanto', 'Chalés Recanto Alto Caparaó', 'Chalés', 'Alto Caparaó, MG', 'Chalés, extras e informações montados a partir de dados'),
+    demo('hospedagem', 'negocios/demos/pedra-alta', 'Pedra Alta', 'Chalés na serra', 'Monte sua estadia com chalé e extras', 'chalespedraalta.com.br', { selo: 'PT/EN' }),
+
+    real('imoveis', 'antonios', "Antonio's Corretagem", 'Imobiliária', 'Recreio dos Bandeirantes, RJ', 'Vídeo, catálogo com filtros, comparador e simulador'),
+    demo('imoveis', 'imoveis/demos/mare-mansa', 'Maré Mansa', 'Imobiliária de praia', 'Vídeo, catálogo, comparador e pedido de avaliação', 'maremansaimoveis.com.br', { selo: 'PT/EN' }),
+    demo('imoveis', 'imoveis/demos/vista-imoveis', 'Vista Imóveis', 'Imobiliária', 'Catálogo com filtros e comparador de até três', 'vistaimoveis.com.br'),
+    demo('imoveis', 'imoveis/demos/bruno-tavares', 'Bruno Tavares', 'Corretor autônomo', 'Busca por perfil e favoritos que montam a mensagem', 'brunotavares.com.br'),
+    demo('imoveis', 'imoveis/demos/reserva-aurora', 'Reserva Aurora', 'Lançamento imobiliário', 'Espelho de unidades e simulador de financiamento', 'reservaaurora.com.br'),
+    demo('imoveis', 'imoveis/demos/vertice', 'Vértice', 'Imóveis de alto padrão', 'Carteira reservada por código e agenda de visita', 'verticeimoveis.com.br'),
+
+    demo('planejados', 'moveis-planejados/demos/moratta', 'Morattá', 'Indústria de planejados', 'Fábrica com rede de lojistas pelo país', 'morattaplanejados.com.br'),
+    demo('planejados', 'moveis-planejados/demos/cerne', 'CERNE', 'Marcenaria arquitetônica', 'Alto padrão em São Paulo', 'cernemarcenaria.com.br'),
+    demo('planejados', 'moveis-planejados/demos/casa-nobre', 'Casa Nobre', 'Planejados de alto padrão', 'Showroom e projeto assinado por arquiteta', 'casanobreplanejados.com.br'),
+    demo('planejados', 'moveis-planejados/demos/cozinha-viva', 'Cozinha Viva', 'Cozinhas planejadas', 'Atelier só de cozinha', 'cozinhaviva.com.br'),
+    demo('planejados', 'moveis-planejados/demos/medida-certa', 'Medida Certa', 'Planejados para apartamento compacto', 'Preço e prazo publicados', 'medidacerta.com.br'),
+    demo('planejados', 'moveis-planejados/demos/atelie-verga', 'Ateliê Verga', 'Marcenaria autoral', 'Móveis sob medida em madeira maciça', 'atelieverga.com.br'),
+
+    real('lojas', 'cxf', 'CXF Café Especial', 'Loja de café especial', '', 'Loja com kits por quantidade e sacola'),
+    real('lojas', 'nerd-club', 'Nerd Club', 'Games, oficina e impressão 3D', 'Teresópolis, RJ', 'Tema fliperama, moedas secretas e diagnóstico da oficina'),
+    real('lojas', 'https://littletrees-indol.vercel.app/', 'Little Trees', 'Aromatizantes', '', 'Montador de kit e pedido no WhatsApp', { capa: '../assets/img/vitrine/home/little-trees' }),
+    real('lojas', 'https://tt-user.github.io/tmcatalogo/', 'TM Sports', 'Camisas de times', 'Caparaó, MG', 'Catálogo de camisas com personalização e carrinho', { capa: 'img/tm-sports' }),
+    demo('lojas', 'lojas/demos/seis-panos', 'Seis Panos', 'Loja de bonés', 'Catálogo com filtros, carrinho e checkout', 'seispanos.com.br'),
+
+    real('agro', 'inovar', 'Inovar Agroveterinária', 'Agropecuária e clínica veterinária', 'Dores do Rio Preto e Guaçuí, ES', 'Agenda do veterinário em cinco passos e calendário do rebanho'),
+    real('agro', 'armazem-caparao', 'Armazém Gerais Caparaó', 'Armazém de café', 'Região do Caparaó', 'Três caminhos: vender, guardar e comprar café'),
+    real('agro', 'armazem', 'Armazém Gerais Caparaó', 'Sistema de gestão', 'Região do Caparaó', 'Romaneio, estoque, caderno de RV e pagamentos', { selo: 'sistema' }),
+    demo('agro', 'negocios/demos/campo-vivo', 'Campo Vivo', 'Agroveterinária', 'Agenda do veterinário e calendário do rebanho', 'campovivoagro.com.br'),
+
+    real('servicos', 'cabralmiranda', 'Cabral & Miranda', 'Advocacia', 'Espera Feliz, MG', 'Triagem por área e checklist de documentos'),
+    real('servicos', 'ths', 'THS Engenharia', 'Engenharia e construtora', 'Manhuaçu, MG', 'Vídeo do projeto em 3D e galeria de obras'),
+    real('servicos', 'engmais', 'Eng+', 'Consultoria ambiental e segurança do trabalho', 'Dores do Rio Preto, ES', 'Um caminho para o produtor e outro para a empresa'),
+    real('servicos', 'agrega', 'Agrega', 'Agência de marketing e gráfica', 'Espera Feliz, MG', 'Portal dividido entre as duas marcas e orçamento em três passos'),
+    real('servicos', 'bruno-chaves', 'Bruno Chaves', 'Chaveiro', '', 'Ligar agora sempre à vista e pedido de chave de carro'),
+    demo('servicos', 'negocios/demos/vereda', 'Vereda', 'Consultoria ambiental', 'Dois caminhos e diagnóstico de regularização', 'veredaambiental.com.br'),
+    demo('servicos', 'solar/demos/caparao-solar', 'Caparaó Solar', 'Energia solar', 'Calculadora que dimensiona a usina e o retorno', 'caparaosolar.com.br'),
+  ];
+
+  const $ = (s) => document.querySelector(s);
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const lista = $('#lista');
+  const chips = $('#chips');
+
+  /* entrou: o aviso de senha errada do entrar.html não vale mais */
+  try { sessionStorage.removeItem('acervo-tentou'); } catch (e) {}
+
+  /* números do topo */
+  const nReal = SITES.filter((s) => s.real).length;
+  $('#numeros').innerHTML =
+    '<span><b>' + SITES.length + '</b>sites</span>' +
+    '<span><b>' + nReal + '</b>negócios reais</span>' +
+    '<span><b>' + (SITES.length - nReal) + '</b>projetos conceito</span>' +
+    '<span><b>' + SEGMENTOS.length + '</b>segmentos</span>';
+
+  /* cards por segmento */
+  let primeiras = 0;
+  lista.innerHTML = SEGMENTOS.map((g, i) => {
+    const itens = SITES.filter((s) => s.seg === g.id);
+    return '<section class="seg" id="' + g.id + '" data-seg="' + g.id + '">' +
+      '<div class="seg-cab"><div><p class="rot">[' + String(i + 1).padStart(2, '0') + '] ' + esc(g.nome.toLowerCase()) + '</p>' +
+      '<h2>' + esc(g.nome) + '</h2></div><span class="seg-n" data-n></span></div>' +
+      '<div class="grade">' + itens.map((s) => {
+        const preguica = primeiras++ < 4 ? 'eager' : 'lazy';
+        const selos = [s.real ? '<em class="selo real">negócio real</em>' : '<em class="selo conceito">projeto conceito</em>'];
+        if (s.extra && s.extra.selo) selos.push('<em class="selo extra">' + esc(s.extra.selo) + '</em>');
+        return '<a class="card" href="' + esc(s.href) + '" data-tipo="' + (s.real ? 'real' : 'conceito') + '">' +
+          '<span class="barra"><i></i><i></i><i></i><b>' + esc(s.dom) + '</b></span>' +
+          '<img src="' + s.img + '-480.webp" srcset="' + s.img + '-480.webp 480w, ' + s.img + '-800.webp 800w" ' +
+            'sizes="(max-width: 700px) 100vw, 400px" width="800" height="500" loading="' + preguica + '" decoding="async" ' +
+            'alt="Primeira tela do site ' + esc(s.nome) + '">' +
+          '<span class="info">' +
+            '<span class="nome"><b>' + esc(s.nome) + '</b></span>' +
+            '<span class="tipo">' + esc(s.tipo) + (s.lugar ? ' · ' + esc(s.lugar) : '') + '</span>' +
+            '<span class="faz">' + esc(s.faz) + '</span>' +
+            '<span class="selos">' + selos.join('') + '</span>' +
+          '</span></a>';
+      }).join('') + '</div></section>';
+  }).join('') + '<p class="vazio" id="vazio" hidden>Nenhum site com esse filtro.</p>';
+
+  chips.innerHTML = '<button class="chip" type="button" data-seg="todos" aria-pressed="true">Todos<span>' + SITES.length + '</span></button>' +
+    SEGMENTOS.map((g) => '<button class="chip" type="button" data-seg="' + g.id + '" aria-pressed="false">' +
+      esc(g.nome) + '<span>' + SITES.filter((s) => s.seg === g.id).length + '</span></button>').join('');
+
+  /* filtro: segmento e tipo (lembrados na visita, para a volta do site cair no mesmo lugar) */
+  let estado = { seg: 'todos', tipo: 'todos' };
+  try { estado = Object.assign(estado, JSON.parse(sessionStorage.getItem('acervo-filtro') || '{}')); } catch (e) {}
+
+  function aplicar(rolar) {
+    let total = 0;
+    lista.querySelectorAll('.seg').forEach((sec) => {
+      let n = 0;
+      sec.querySelectorAll('.card').forEach((c) => {
+        const ok = estado.tipo === 'todos' || c.dataset.tipo === estado.tipo;
+        c.hidden = !ok;
+        if (ok) n++;
+      });
+      sec.querySelector('[data-n]').textContent = n + (n === 1 ? ' site' : ' sites');
+      sec.hidden = !n || (estado.seg !== 'todos' && sec.dataset.seg !== estado.seg);
+      if (!sec.hidden) total += n;
+    });
+    $('#vazio').hidden = total > 0;
+    chips.querySelectorAll('.chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.seg === estado.seg)));
+    $('#tipos').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tipo === estado.tipo)));
+    try { sessionStorage.setItem('acervo-filtro', JSON.stringify(estado)); } catch (e) {}
+    if (rolar) {
+      const topo = $('.filtros').getBoundingClientRect().top + scrollY;
+      if (scrollY > topo) scrollTo({ top: topo, behavior: 'smooth' });
+    }
+  }
+
+  chips.addEventListener('click', (ev) => {
+    const b = ev.target.closest('.chip');
+    if (!b) return;
+    estado.seg = b.dataset.seg;
+    aplicar(true);
+    b.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  });
+  $('#tipos').addEventListener('click', (ev) => {
+    const b = ev.target.closest('button');
+    if (!b) return;
+    estado.tipo = b.dataset.tipo;
+    aplicar(true);
+  });
+  aplicar(false);
+
+  /* sair: apaga a chave deste aparelho e volta para a senha */
+  $('#sair').addEventListener('click', () => {
+    document.cookie = 'theatrum_acervo=; path=/; max-age=0';
+    location.replace('./');
+  });
+})();
+</script>
+</body>
+</html>

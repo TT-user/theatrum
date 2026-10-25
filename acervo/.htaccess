@@ -1,0 +1,22 @@
+# Acervo privado: todos os sites (prévias de cliente, no ar e desativadas, e as
+# demonstrações) numa página só, para o Matheus mostrar pessoalmente.
+#
+# Só abre com o cookie theatrum_acervo, que o entrar.html grava depois da senha.
+# Sem ele, qualquer endereço desta pasta (página, imagens) devolve o entrar.html.
+# O valor é o SHA-256 de "theatrum-acervo:" + senha. Trocou a senha, troque o
+# valor aqui e nas pastas desativadas (procure por theatrum_acervo).
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow"
+  # nada daqui fica no CDN da Hostinger: senão a página aberta por quem tem a
+  # chave poderia ser servida a quem não tem
+  Header always set Cache-Control "private, no-store"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)theatrum_acervo=9a41d2e1276d2343473ecd807d9db0b8dbb222f4ec7353f470c4beafd1a6d703(;|$)
+  RewriteRule !^entrar\.html$ /acervo/entrar.html [L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+  Require all denied
+</IfModule>

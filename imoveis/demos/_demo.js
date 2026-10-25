@@ -41,6 +41,8 @@
     ? { raiz: '../../../moveis-planejados/', cta: '../../../moveis-planejados/#planos' }
     : origem === 'us'
     ? { raiz: '../../../us/',                cta: '../../../us/#pricing' }
+    : origem === 'acervo'
+    ? { raiz: '../../../acervo/', cta: '../../../#diagnostico' }
     : origem === 'portfolio'
     ? { raiz: '../../../portfolio/',         cta: '../../../#diagnostico' }
     : { raiz: '../../../',                   cta: '../../../#diagnostico' };

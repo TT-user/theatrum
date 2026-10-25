@@ -7,6 +7,8 @@
 # para a home. Para reativar, apague este bloco.
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # quem entrou no /acervo/ (cookie com a chave da senha) continua vendo
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)theatrum_acervo=9a41d2e1276d2343473ecd807d9db0b8dbb222f4ec7353f470c4beafd1a6d703(;|$)
   RewriteRule ^ https://usetheatrum.com.br/ [R=302,L]
 </IfModule>
 <IfModule !mod_rewrite.c>

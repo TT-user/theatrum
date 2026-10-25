@@ -450,6 +450,24 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   Exceção: o card do Little Trees (cliente real, faixa de lojas) aponta para o
   site dele no ar, `littletrees-indol.vercel.app`, cujo código mora em repositório
   próprio (`Desktop/littletrees`), fora deste site.
+- `/acervo/` — **acervo privado, com senha, desde 24/10/2026:** todos os sites numa página
+  só, para o Matheus mostrar pessoalmente: as prévias de cliente (no ar e desativadas), a
+  Little Trees e a TM Sports (sites no ar fora daqui) e as 26 demonstrações, em nove segmentos
+  (academias, saúde, nutrição, pousadas, imóveis, planejados, lojas, agro, serviços), com
+  filtro por segmento e por "negócio real" ou "projeto conceito". Lista no `SITES` do
+  `acervo/index.html`; capa das prévias em `acervo/img/<pasta>-{480,800}.webp` (primeira tela
+  em 1280x800 com `?still=1`, sem a marca d'água, WebP q72), e as demos usam as capas da
+  vitrine da home. O `.htaccess` da pasta devolve o `entrar.html` para qualquer endereço dela
+  sem o cookie `theatrum_acervo`, que o `entrar.html` grava (um ano, domínio inteiro) com o
+  SHA-256 de `theatrum-acervo:` + senha. A senha não está no repositório; o Matheus tem.
+  **As pastas desativadas deixam passar o mesmo cookie** (uma `RewriteCond` no bloco
+  DESATIVADA): o público continua indo para a home e quem entrou no acervo vê a prévia. Trocou
+  a senha, troque o valor em todos os `.htaccess` (procure por `theatrum_acervo`).
+  Prévia nova: card no `SITES` e capa em `acervo/img/`; desativou uma, ponha a `RewriteCond`
+  no bloco dela. As demos abertas com `?de=acervo` voltam para cá pela barra. Sem UET, noindex,
+  fora do sitemap e de qualquer menu. **O repositório no GitHub é público:** quem lê o
+  repositório vê o código de todos os sites e o valor do cookie; a senha só fecha a porta para
+  quem chega pelo link.
 - `/us/` — landing separada, só em inglês, para anúncios nos EUA e Reino Unido.
   Oferta reduzida: site US$ 500, site + Google Business Profile US$ 700.
   **Desativada desde 18/10/2026:** o `.htaccess` da pasta manda para a home
