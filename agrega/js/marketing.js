@@ -52,13 +52,30 @@
       '<div class="pessoa__convite"><p class="pessoa__chamada">Quer esse time cuidando da sua marca?</p><a class="btn btn--tinta" href="#contato">Agendar reunião</a></div></li>';
 
     AG.faq($('[data-render="faq"]'), d.faq);
-    if (AG.tunel) AG.tunel(d.time);
     AG.revelar();
   }).catch(function () {
     document.querySelectorAll('[data-render]').forEach(function (el) {
       el.innerHTML = '<p class="falha">Não consegui carregar esta parte. Recarregue a página.</p>';
     });
   });
+
+  /* ---------- selo do hero: o mouse inclina as camadas (só com mouse e com movimento) ---------- */
+  var hero = document.getElementById('hero');
+  var giro = hero && hero.querySelector('.simbolo__giro');
+  if (giro && matchMedia('(hover: hover) and (pointer: fine)').matches && !AG.calmo()) {
+    var quadro = 0, gx = 0, gy = 0;
+    hero.addEventListener('pointermove', function (e) {
+      var r = giro.getBoundingClientRect();
+      gx = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / r.width));
+      gy = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / r.height));
+      if (!quadro) quadro = requestAnimationFrame(function () {
+        quadro = 0;
+        giro.style.setProperty('--ry', (gx * 14).toFixed(2) + 'deg');
+        giro.style.setProperty('--rx', (-gy * 14).toFixed(2) + 'deg');
+      });
+    });
+    hero.addEventListener('pointerleave', function () { giro.style.setProperty('--ry', '0deg'); giro.style.setProperty('--rx', '0deg'); });
+  }
 
   /* ---------- CTA final: a mensagem sai pronta para o WhatsApp da Marketing ---------- */
   var form = document.getElementById('form-reuniao');

@@ -981,13 +981,17 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   View Transitions entre documentos: do portal, fundo e logo continuam no hero (`vt-portal`, posto
   no `pagereveal` de um script no `<head>`; o conteúdo do hero e o topo têm nome próprio para entrar
   por cima do fundo); a chave do topo entre as marcas desliza de lado (`to-print`/`to-marketing`).
-  Hero da Marketing desde 24/10/2026, a pedido ("muito crua"): o "perspective tunnel hero" de um
-  componente React do 21st.dev refeito em JS puro (`js/tunel.js`, sem framer-motion): os nove do time
-  e o escritório vêm do fundo até a câmera em loop pelas laterais, o mouse move a câmera e rolar a
-  página acelera a viagem (o original prendia a rodinha no hero; aqui não). Título centralizado; uma
-  máscara deixa a coluna do texto, a faixa do menu e a linha dos números quase sem foto. Embaixo, um
-  letreiro amarelo com os serviços e o selo roxo. Os dois só andam com o hero à vista e a aba aberta;
-  com movimento reduzido ou `?still=1` ficam parados. No celular, sem a linha de números.
+  Hero da Marketing desde 24/10/2026 (a pedido; antes foi um túnel com as fotos do time, que saiu):
+  texto à esquerda e, à direita, o símbolo da Agrega em movimento, em camadas de SVG empilhadas em 3D
+  (`.simbolo`, cada camada com o seu `--z`): brilho, órbita com o ponto amarelo, disco, anel de letras
+  (`#ag-anel` do sprite, entra varrendo por máscara e gira), o "a" e um balão "digitando". A cada 6 s o
+  balão aparece, some e o "a" responde (salta e o rabinho balança). O mouse inclina o conjunto (até 14°,
+  no `marketing.js`). Só CSS em transform e opacidade, pausado fora da tela; parado com movimento
+  reduzido e `?still=1`. Embaixo, um letreiro amarelo com os serviços e o selo roxo. No celular o
+  símbolo vai para cima do texto, menor, e a linha de números sai. Armadilhas: o `<use>` de um
+  `<symbol>` precisa de `width`/`height` (sem eles ocupa a caixa toda e sai maior e descentrado), e
+  `transform-origin` em elemento com `transform` escrito no SVG tira ele do lugar (por isso a regra
+  vale só para as peças que animam); `.selo` já era classe do Projeto Completo.
   O ícone do WhatsApp nos botões é o do Simple Icons (CC0), no `sprite.py`.
   Poppins e Inter servidas daqui. Logos redesenhados em SVG sobre a Poppins, ícones Lucide e os QR de
   avaliação num sprite por página, gerado por `interno/clientes/agrega/sprite.py`, que também copia o
