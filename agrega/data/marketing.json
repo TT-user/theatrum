@@ -1,5 +1,5 @@
 {
-  "_leia": "Textos do site da Agrega Marketing. null vira placeholder amarelo. Time: texto dos cards do Instagram (@somosagrega), com 'expanção' corrigido; foto = recorte do card, pedir os originais sem fundo. Depoimentos: avaliações públicas do Google (24/10/2026), texto igual ao original, sobrenome abreviado; falta autorização de cada autor. A de Isaque Martins ficou de fora: parece ser o editor do time. Clientes e cases: só com autorização por escrito.",
+  "_leia": "Textos do site da Agrega Marketing. null vira placeholder amarelo. Time: texto dos cards do Instagram (@somosagrega), com 'expanção' corrigido; o 'texto' de cada um não aparece no card (só para leitor de tela). Foto = <foto>-redondo.webp, recorte quadrado no rosto (interno/clientes/agrega/retratos.py); pedir os originais. Depoimentos: avaliações públicas do Google (24/10/2026), texto igual ao original, sobrenome abreviado; falta autorização de cada autor. A de Isaque Martins ficou de fora: parece ser o editor do time. Clientes e cases: só com autorização por escrito.",
 
   "servicos": [
     { "titulo": "Estratégia e posicionamento", "texto": "Diagnóstico do seu negócio e um plano claro do que comunicar, para quem e onde.", "quem": "Direção" },

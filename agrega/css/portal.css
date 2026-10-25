@@ -47,7 +47,7 @@ html, body { height: 100%; }
 .side--prt .side__logo { align-self: flex-end; text-align: right; }
 .side--prt .side__logo .marca__nome { align-items: flex-end; }
 /* largura fixa (em vw): o texto não refaz as linhas enquanto a metade cresce */
-.side__txt { display: flex; flex-direction: column; align-items: flex-start; width: min(520px, 31vw); margin-block: auto; padding-top: 8vh; }
+.side__txt { display: flex; flex-direction: column; align-items: flex-start; width: min(46rem, 31vw); margin-block: auto; padding-top: 8vh; }
 .side__eyebrow { color: rgba(255, 255, 255, .72); display: block; margin-bottom: 18px; transition: opacity var(--dur-base); }
 .side__titulo { font: 800 clamp(2rem, 1.2rem + 3vw, 4.5rem)/.98 var(--titulo); letter-spacing: -.03em; transition: opacity var(--dur-base); text-wrap: balance; }
 .side--prt .side__titulo { color: var(--agrega-yellow); }

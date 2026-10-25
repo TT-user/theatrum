@@ -5,7 +5,7 @@
   function $(s) { return document.querySelector(s); }
   function n2(i) { return (i + 1 < 10 ? '0' : '') + (i + 1); }
 
-  AG.dados('../data/marketing.json?v=1').then(function (d) {
+  AG.dados('../data/marketing.json?v=2').then(function (d) {
     var el;
 
     if ((el = $('[data-render="servicos"]'))) el.innerHTML = d.servicos.map(function (s, i) {
@@ -40,12 +40,13 @@
 
     if ((el = $('[data-render="time"]'))) el.innerHTML = d.time.map(function (p, i) {
       var nome = esc(p.nome) + ('sobrenome' in p ? ' <span class="ph">' + esc(p.sobrenome || '[sobrenome]') + '</span>' : '');
+      // card limpo: foto, nome e cargo; o que a pessoa faz fica só para leitor de tela
       return '<li class="pessoa rev" style="--i:' + (i % 5) + '">' +
-        '<svg class="pessoa__letras" viewBox="0 -60 380 90" aria-hidden="true"><use href="#ag-palavra"/></svg>' +
-        '<img class="pessoa__foto" src="../assets/img/time/' + esc(p.foto) + '.webp" alt="' + esc(p.nome) + ', ' + esc(p.cargo) + ' da Agrega" width="400" height="440" loading="lazy">' +
-        '<p class="pessoa__cargo">' + esc(p.cargo).replace(' / ', '/<br>') + '</p>' +
-        '<p class="pessoa__texto">' + esc(p.texto) + '</p>' +
-        '<h3 class="pessoa__nome">' + nome + '</h3></li>';
+        '<div class="pessoa__moldura"><span class="pessoa__aro" aria-hidden="true"></span>' +
+        '<div class="pessoa__recorte"><img src="../assets/img/time/' + esc(p.foto) + '-redondo.webp" alt="' + esc(p.nome) + ', ' + esc(p.cargo) + ' da Agrega" width="480" height="480" loading="lazy"></div></div>' +
+        '<h3 class="pessoa__nome">' + nome + '</h3>' +
+        '<p class="pessoa__cargo">' + esc(p.cargo) + '</p>' +
+        '<p class="sr-only">' + esc(p.texto) + '</p></li>';
     }).join('') +
       // o décimo lugar da grade fecha a conta: convite para a reunião
       '<li class="pessoa pessoa--convite rev" style="--i:4"><svg class="pessoa__selo" viewBox="0 0 200 200" aria-hidden="true"><use href="#ag-mkt"/></svg>' +

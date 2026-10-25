@@ -998,11 +998,19 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   rodapé do `marketing/index.html` (fonte única, entre `<!--rodape-->`) para as outras páginas:
   mudou ícone, logo ou rodapé, rode o script. Textos em `data/*.json`, contatos em `js/config.js`.
   WhatsApp da Marketing (32) 99913-6731 é o destino do "Agende uma reunião" da bio; a ficha do Google
-  tem outro, (32) 98413-7601, a confirmar. Time de 9 com retratos recortados dos cards do Instagram
-  (texto em HTML), numa grade de uma tela só desde 24/10/2026, a pedido (era carrossel): 5 por
-  linha no computador, com o décimo lugar como convite para a reunião, e a largura da grade tirada
-  da altura da janela para as duas linhas caberem abaixo do topo (de 1280x720 a 1920x1080); dentro
-  do card tudo é medido em `cqi`, e nada no próprio `.pessoa` pode usar essa unidade. Feedback: 3 avaliações do Google (texto igual, sobrenome abreviado, autorização
+  tem outro, (32) 98413-7601, a confirmar. Time de 9 numa grade de uma tela só (a pedido, era
+  carrossel): 5 por linha no computador, com o décimo lugar como convite para a reunião, e a largura
+  da grade tirada da altura da janela para as duas linhas caberem abaixo do topo (de 1280x720 a
+  2560x1440). Card limpo desde 24/10/2026, a pedido ("muito texto e risco"): só a foto num recorte
+  redondo, nome e cargo; a descrição de cada um fica só para leitor de tela. No mouse o recorte se
+  abre (`clip-path` de 42% a 50%), a foto ganha cor e zoom e o fundo do card fica amarelo. Retratos
+  `assets/img/time/*-redondo.webp` (480x480), centrados no rosto a partir dos prints por
+  `interno/clientes/agrega/retratos.py` (rostos marcados à mão; o texto do cargo que sobrava sai por
+  inpaint). Dentro do card tudo é medido em `cqi`, e nada no próprio `.pessoa` pode usar essa unidade.
+  **Tela inteira (24/10/2026, a pedido):** sem largura máxima de 1240 px; `--container` acompanha a
+  tela (margem `clamp(24px, 3.4vw, 96px)`, teto só em 2600 px) e a fonte base cresce a partir de
+  ~1430 px (`html { font-size: clamp(100%, .42vw + 10px, 137.5%) }`: 16 px em 1440, 18 em 1920,
+  21 em 2560), então tudo em `rem` acompanha; o que era teto fixo em px virou `rem` ou `vh`. Feedback: 3 avaliações do Google (texto igual, sobrenome abreviado, autorização
   pendente; a de um "Isaque Martins" ficou de fora, parece ser do time). **Na Print não há foto
   real:** as artes deles são mockup de IA com marca inventada, que a especificação proíbe; produtos
   e hero usam ilustrações provisórias em SVG (`assets/ilustra/`, geradas por

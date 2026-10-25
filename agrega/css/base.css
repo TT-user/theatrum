@@ -42,11 +42,12 @@
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
   --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
   --secao: clamp(4rem, 2rem + 6vw, 8rem);
-  --gutter: 24px;
-  --container: 1240px;
+  /* tela inteira: margem proporcional à largura e conteúdo de borda a borda (só monitor ultralargo ganha teto) */
+  --gutter: clamp(24px, 3.4vw, 96px);
+  --container: min(100vw - 2 * var(--gutter), 2600px);
   --r-sm: 8px; --r-card: 14px; --r-lg: 24px; --r-pill: 999px;
   --sombra: 0 1px 2px rgba(11, 18, 56, .06), 0 8px 24px rgba(11, 18, 56, .08);
-  --topo: 72px;
+  --topo: max(72px, 4.5rem);
 
   /* movimento */
   --ease-brand: cubic-bezier(.77, 0, .18, 1);
@@ -73,7 +74,8 @@
 
 /* ---------- reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--topo) + 16px); }
+/* a base cresce com a tela a partir de ~1430 px (16 px em 1440, 18 em 1920, 21 em 2560): tudo em rem acompanha */
+html { font-size: clamp(100%, .42vw + 10px, 137.5%); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--topo) + 16px); }
 body { margin: 0; background: var(--bg); color: var(--text); font: 400 1rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
 img, svg, video, iframe { display: block; max-width: 100%; }
 img { height: auto; }
@@ -103,9 +105,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .ph { background: #FFE45C; color: #3A2F00; padding: 0 .35em; border-radius: 4px; font: 500 .88em/1.5 var(--sans); letter-spacing: 0; text-transform: none; font-style: normal; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
 /* ---------- botões ---------- */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: var(--r-pill); border: 1.5px solid transparent; font: 600 1rem/1.2 var(--titulo); text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: max(48px, 3rem); padding: 0 1.4rem; border-radius: var(--r-pill); border: 1.5px solid transparent; font: 600 1rem/1.2 var(--titulo); text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast); }
 .btn svg { width: 20px; height: 20px; flex: none; display: block; }
-.btn--lg { min-height: 52px; padding: 0 28px; }
+.btn--lg { min-height: max(52px, 3.3rem); padding: 0 1.75rem; }
 .btn--cheio { width: 100%; }
 .btn--pri { background: var(--agrega-yellow); color: var(--ink); }
 .btn--pri:hover { background: var(--agrega-yellow-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255, 194, 32, .35); }
@@ -135,7 +137,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- marca: selo + nome ---------- */
 .marca { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-.marca__selo { width: 44px; height: 44px; border-radius: 50%; flex: none; }
+.marca__selo { width: max(44px, 2.75rem); height: max(44px, 2.75rem); border-radius: 50%; flex: none; }
 .marca__nome { font: 700 1.05rem/1 var(--titulo); letter-spacing: -.01em; display: flex; flex-direction: column; gap: 3px; }
 .marca__nome small { font: 300 .78rem/1 var(--titulo); letter-spacing: .02em; opacity: .8; }
 
