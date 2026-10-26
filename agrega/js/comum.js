@@ -390,8 +390,10 @@
     e.preventDefault();
     var teclado = e.detail === 0;
     // destino em número: com o elemento, o Lenis já desconta o scroll-padding-top do CSS (topo + 16 px).
-    // Seção presa (trilha dos passos): mira o começo do pin, para a linha começar do 01
-    var y = caixa(alvo).getBoundingClientRect().top + AG.lenis.animatedScroll - (topo ? topo.offsetHeight : 0);
+    // Seção presa (trilha dos passos, vitrine de vídeos): mira o começo exato do pin, sem descontar o topo;
+    // ela ocupa a tela e já deixa o espaço dele, e a linha começa do 01
+    var caixaAlvo = caixa(alvo);
+    var y = caixaAlvo.getBoundingClientRect().top + AG.lenis.animatedScroll - (topo && caixaAlvo === alvo ? topo.offsetHeight : 0);
     AG.lenis.scrollTo(y, {
       force: true,
       onComplete: function () {

@@ -331,23 +331,61 @@
   .pessoa__convite .btn { white-space: normal; text-align: center; line-height: 1.15; }
 }
 
-/* conteúdo: podcast e eventos */
-.conteudo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
-.podcast__tela { position: relative; height: 100%; min-height: 320px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 12px; padding: 32px; border-radius: var(--r-lg); overflow: hidden; background: radial-gradient(90% 90% at 100% 0%, rgba(255, 194, 32, .16), transparent 60%), var(--mkt-gradient); border: 1px solid rgba(255, 255, 255, .08); }
-.podcast__mic { position: absolute; right: 28px; top: 28px; width: 96px; height: 96px; stroke-width: 1.2; color: rgba(255, 255, 255, .18); }
-.podcast__rotulo { font: 600 .75rem/1.4 var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--agrega-yellow); }
-.podcast__titulo { font: 700 1.6rem/1.2 var(--titulo); }
-.podcast__titulo .ph { font-size: .55em; vertical-align: middle; }
-.podcast__nota { font-size: .8rem; color: var(--mkt-muted); }
-.podcast__tela--aberta { padding: 0; }
-.podcast__tela iframe { width: 100%; height: 100%; min-height: 320px; border: 0; }
-.eventos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.eventos__item { position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-card); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 12px; border: 1px dashed rgba(255, 255, 255, .18); color: rgba(255, 255, 255, .4); text-align: center; overflow: hidden; }
-.eventos__item .ph { font-size: .75rem; }
-.eventos__item--foto { border: 0; padding: 0; }
-.eventos__item--foto img { width: 100%; height: 100%; object-fit: cover; }
-.eventos__item--foto span { position: absolute; left: 10px; bottom: 10px; padding: 4px 10px; border-radius: var(--r-pill); background: rgba(14, 10, 20, .75); font: 600 .75rem/1.3 var(--sans); color: var(--white); }
-@media (max-width: 900px) { .conteudo { grid-template-columns: minmax(0, 1fr); } }
+/* conteúdo: vitrine de vídeos (js/vitrine.js). --h é a altura da imagem; a largura sai do formato */
+.vv-secao { --h: min(62svh, 560px); overflow-x: clip; }
+.vv__cab { margin-bottom: clamp(24px, 3.5vw, 44px); }
+.vv__nav { display: flex; align-items: center; gap: 10px; }
+.vv__seta { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255, 255, 255, .24); background: none; color: var(--white); cursor: pointer; transition: background-color var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast); }
+.vv__seta:hover { background: var(--agrega-yellow); border-color: var(--agrega-yellow); color: var(--ink); }
+.vv__seta:focus-visible { outline: 2px solid var(--agrega-yellow); outline-offset: 3px; }
+.vv__seta .ico { width: 20px; height: 20px; }
+.vv__seta--ant .ico { rotate: 180deg; }
+.vv__conta { min-width: 4.6em; text-align: center; font: 600 .875rem/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: .08em; color: var(--text-muted); }
+/* sem pin, a fileira rola de lado no dedo, parando com um vídeo no meio */
+.vv__janela { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; padding-block: 4px 8px; }
+.vv__janela::-webkit-scrollbar { display: none; }
+.vv__trilho { position: relative; display: flex; align-items: center; gap: clamp(16px, 2vw, 40px); width: max-content; margin: 0; padding: 0; list-style: none; }
+.vv__item { flex: none; scroll-snap-align: center; cursor: pointer; }
+.vv__item--v { width: calc(var(--h) * 9 / 16); }
+.vv__item--h { width: min(var(--h) * 16 / 9, 88vw); }
+.vv__item.ativo:not(:has(video)) { cursor: default; }
+.vv__fig { margin: 0; }
+.vv__quadro { border-radius: var(--r-card); overflow: hidden; background: #08040C; border: 1px solid rgba(255, 255, 255, .1); box-shadow: 0 18px 50px rgba(0, 0, 0, .35); transition: border-color var(--dur-slow) var(--ease-out); }
+.vv__item.ativo .vv__quadro { border-color: rgba(255, 194, 32, .5); }
+.vv__barra { display: flex; align-items: center; gap: 12px; height: 34px; padding: 0 14px; background: rgba(255, 255, 255, .05); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.vv__pontos { display: flex; gap: 6px; flex: none; }
+.vv__pontos i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .24); transition: background-color var(--dur-slow) var(--ease-out); }
+.vv__item.ativo .vv__pontos i { background: var(--agrega-yellow); }
+.vv__rotulo { font: 600 .6875rem/1 var(--sans); text-transform: uppercase; letter-spacing: .14em; color: rgba(255, 255, 255, .5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color var(--dur-slow) var(--ease-out); }
+.vv__item.ativo .vv__rotulo { color: var(--white); }
+.vv__dur { font-variant-numeric: tabular-nums; }
+/* só o do centro fica colorido; os outros param em cinza */
+.vv__midia { position: relative; aspect-ratio: 9 / 16; filter: grayscale(1) brightness(.8); transition: filter var(--dur-slow) var(--ease-out); }
+.vv__item--h .vv__midia { aspect-ratio: 16 / 9; }
+.vv__item.ativo .vv__midia { filter: none; }
+@media (hover: hover) { .vv__item:not(.ativo):hover .vv__midia { filter: grayscale(.5) brightness(.9); } }
+.vv__midia video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #08040C; }
+.vv__play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 68px; height: 68px; border-radius: 50%; border: 0; padding: 0; display: grid; place-items: center; background: var(--agrega-yellow); color: var(--ink); cursor: pointer; box-shadow: 0 10px 30px rgba(0, 0, 0, .4); opacity: 0; visibility: hidden; scale: .9; transition: opacity var(--dur-base) var(--ease-out), scale var(--dur-base) var(--ease-out), visibility 0s linear var(--dur-base); }
+.vv__play .ico { width: 28px; height: 28px; fill: currentColor; margin-left: 3px; }
+/* o play aparece no do centro quando ele está parado (movimento reduzido, economia de dados, pausa) */
+.vv__item.ativo:not(.tocando):not(.erro) .vv__play { opacity: 1; visibility: visible; scale: 1; transition-delay: .35s, .35s, 0s; }
+.vv__play:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+.vv__vazio { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 16px; text-align: center; background: radial-gradient(80% 60% at 70% 15%, rgba(255, 194, 32, .22), transparent 60%), var(--mkt-gradient); }
+.vv__vazio-ico { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .25); }
+.vv__vazio-ico .ico { width: 26px; height: 26px; fill: currentColor; margin-left: 3px; }
+.vv__vazio .ph, .vv__aviso { font-size: .75rem; }
+.vv__aviso { position: absolute; left: 12px; right: 12px; bottom: 12px; text-align: center; }
+.vv__legenda { margin-top: 12px; font: 600 .95rem/1.4 var(--titulo); color: var(--text-muted); transition: color var(--dur-slow) var(--ease-out); }
+.vv__item.ativo .vv__legenda { color: var(--white); }
+.vv__legenda .ph { font-size: .75rem; }
+.vv__link { display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; font: 600 .85rem/1 var(--sans); color: var(--agrega-yellow); text-decoration: none; white-space: nowrap; }
+.vv__link .ico { width: 16px; height: 16px; }
+.vv__link:hover { text-decoration: underline; }
+/* presa no computador: a seção ocupa a tela e a fileira anda pelo transform do GSAP */
+.vv-preso { --h: clamp(240px, calc(100svh - var(--topo) - 22rem), 680px); min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: calc(var(--topo) + 2vh) 3vh; }
+.vv-preso .vv__janela { overflow: visible; scroll-snap-type: none; }
+@media (min-width: 901px) and (max-height: 820px) { .vv-preso { --h: clamp(240px, calc(100svh - var(--topo) - 17rem), 680px); } .vv-preso .vv__cab .lead { display: none; } }
+@media (max-width: 640px) { .vv-secao { --h: min(52svh, 460px); } .vv__nav { gap: 6px; } }
 
 /* dúvidas */
 .faq { display: grid; gap: 12px; }

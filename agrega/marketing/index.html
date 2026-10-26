@@ -26,7 +26,7 @@
   <link rel="preload" href="../fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../css/base.css?v=5">
-  <link rel="stylesheet" href="../css/site.css?v=16">
+  <link rel="stylesheet" href="../css/site.css?v=17">
   <!-- CSS do Lenis: só vale depois que o script dele liga, então não trava a primeira pintura -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous" media="print" onload="this.media='all'">
   <script>
@@ -235,34 +235,23 @@
       </div>
     </section>
 
-    <!-- 7. conteúdo: podcast e eventos -->
-    <section class="secao secao--alt" id="conteudo-agrega" aria-labelledby="t-conteudo">
+    <!-- 7. conteúdo: vitrine de vídeos (reels, podcast, eventos), desenhada pelo js/vitrine.js -->
+    <section class="secao secao--alt vv-secao" id="conteudo-agrega" aria-labelledby="t-conteudo">
       <div class="wrap">
-        <header class="secao__cab rev">
-          <p class="eyebrow">Conteúdo</p>
-          <h2 class="h2" id="t-conteudo">Podcast, eventos e bastidores</h2>
+        <header class="secao__cab secao__cab--lado vv__cab rev">
+          <div>
+            <p class="eyebrow">Conteúdo</p>
+            <h2 class="h2" id="t-conteudo">Reels, podcast e eventos</h2>
+            <p class="lead secao__lead">Vídeos que o time grava e edita: conteúdo de clientes, cortes do podcast e cobertura de eventos.</p>
+          </div>
+          <div class="vv__nav" data-vv-nav>
+            <button class="vv__seta vv__seta--ant" type="button" data-vv="ant" aria-label="Vídeo anterior"><svg class="ico"><use href="#i-arrow-right"/></svg></button>
+            <span class="vv__conta" data-vv-conta>01 / 07</span>
+            <button class="vv__seta" type="button" data-vv="prox" aria-label="Próximo vídeo"><svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          </div>
         </header>
-        <div class="conteudo">
-          <article class="podcast rev">
-            <div class="podcast__tela" id="podcast-tela">
-              <svg class="podcast__mic ico"><use href="#i-mic"/></svg>
-              <p class="podcast__rotulo">Podcast da Agrega</p>
-              <p class="podcast__titulo">Último episódio <span class="ph">[link do YouTube ou Spotify]</span></p>
-              <button class="btn btn--pri" type="button" data-podcast><svg class="ico"><use href="#i-play"/></svg>Ouvir o episódio</button>
-              <p class="podcast__nota">O player só carrega quando você clica.</p>
-            </div>
-          </article>
-          <ul class="eventos" role="list">
-            <li class="eventos__item eventos__item--foto rev">
-              <img src="../assets/img/escritorio-420.webp" width="420" height="528" alt="Bastidores: o time da Agrega no escritório" loading="lazy">
-              <span>Bastidores</span>
-            </li>
-            <li class="eventos__item rev"><svg class="ico"><use href="#i-image"/></svg><span class="ph">[foto de evento]</span></li>
-            <li class="eventos__item rev"><svg class="ico"><use href="#i-image"/></svg><span class="ph">[foto de evento]</span></li>
-            <li class="eventos__item rev"><svg class="ico"><use href="#i-image"/></svg><span class="ph">[foto de gravação]</span></li>
-          </ul>
-        </div>
       </div>
+      <div class="vv" data-render="videos" role="region" aria-label="Vídeos da Agrega"></div>
     </section>
 
     <!-- 8. dúvidas -->
@@ -398,13 +387,14 @@
     <span><small>Site feito pela</small>Theatrum</span>
   </a>
 
-  <script src="../js/config.js?v=1"></script>
+  <script src="../js/config.js?v=2"></script>
   <!-- animação (só Marketing e Print): versões fixas, com integridade conferida -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous" defer></script>
-  <script src="../js/comum.js?v=4" defer></script>
-  <script src="../js/marketing.js?v=8" defer></script>
+  <script src="../js/comum.js?v=5" defer></script>
+  <script src="../js/vitrine.js?v=1" defer></script>
+  <script src="../js/marketing.js?v=9" defer></script>
 </body>
 </html>

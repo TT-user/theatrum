@@ -14,7 +14,6 @@ window.AG = {
     horario: 'Segunda a sexta, das 8h30 às 18h',
     instagram: 'somosagrega',
     mapa: 'https://maps.google.com/?cid=15306134654430651699',
-    podcast: null, // endereço de incorporação do episódio (YouTube /embed/... ou Spotify /embed/...)
     coordenadas: [-20.650607, -41.9089815]
   },
 

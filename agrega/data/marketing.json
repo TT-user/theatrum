@@ -42,6 +42,17 @@
     { "nome": "David", "cargo": "Social media / Tráfego", "texto": "Tráfego, suporte comercial e social media.", "foto": "david" }
   ],
 
+  "_videos": "Vitrine de vídeos (#conteudo-agrega, js/vitrine.js), na ordem da fileira. tipo: Reel, Podcast ou Evento (vai na barra do quadro). formato: vertical (9:16) ou horizontal (16:9). titulo: legenda embaixo (colchete vira placeholder). arquivo: nome sem extensão, em agrega/assets/video/; com ele o site procura <arquivo>.mp4 (computador), <arquivo>-m.mp4 (celular; sem ele usa o do computador) e <arquivo>.webp (pôster, o primeiro quadro do vídeo). Sem arquivo, o quadro mostra o placeholder. A duração da barra sai do próprio vídeo; 'duracao' (\"0:32\") só para escrever outra. link: só no podcast, o episódio inteiro (YouTube ou Spotify); null vira placeholder. Medidas: vertical 720x1280 (celular 540x960), horizontal 1280x720 (celular 640x360), H.264 sem áudio. Reel 15 a 30 s, até 2,5 MB (celular 1,2 MB); corte do podcast 30 a 45 s, até 3 MB (1,5 MB); evento 15 a 30 s, até 3,5 MB (1,8 MB); pôster WebP até 80 KB. Os três arquivos saem prontos de interno/clientes/agrega/videos.sh.",
+  "videos": [
+    { "tipo": "Reel", "formato": "vertical", "titulo": "[cliente ou tema do reel]", "arquivo": null },
+    { "tipo": "Podcast", "formato": "horizontal", "titulo": "[tema do episódio]", "arquivo": null, "link": null },
+    { "tipo": "Evento", "formato": "vertical", "titulo": "[nome do evento]", "arquivo": null },
+    { "tipo": "Reel", "formato": "vertical", "titulo": "[cliente ou tema do reel]", "arquivo": null },
+    { "tipo": "Evento", "formato": "horizontal", "titulo": "[nome do evento]", "arquivo": null },
+    { "tipo": "Podcast", "formato": "vertical", "titulo": "[tema do episódio]", "arquivo": null, "link": null },
+    { "tipo": "Reel", "formato": "vertical", "titulo": "[cliente ou tema do reel]", "arquivo": null }
+  ],
+
   "faq": [
     { "p": "Vocês atendem fora de Espera Feliz?", "r": null },
     { "p": "Existe contrato mínimo?", "r": null },

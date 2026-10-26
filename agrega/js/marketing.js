@@ -5,7 +5,7 @@
   function $(s) { return document.querySelector(s); }
   function n2(i) { return (i + 1 < 10 ? '0' : '') + (i + 1); }
 
-  AG.dados('../data/marketing.json?v=2').then(function (d) {
+  AG.dados('../data/marketing.json?v=3').then(function (d) {
     var el;
 
     if ((el = $('[data-render="servicos"]'))) el.innerHTML = d.servicos.map(function (s, i) {
@@ -52,6 +52,7 @@
       '<li class="pessoa pessoa--convite rev"><svg class="pessoa__selo" viewBox="0 0 200 200" aria-hidden="true"><use href="#ag-mkt"/></svg>' +
       '<div class="pessoa__convite"><p class="pessoa__chamada">Quer esse time cuidando da sua marca?</p><a class="btn btn--tinta" href="#contato">Agendar reunião</a></div></li>';
 
+    AG.vitrine($('[data-render="videos"]'), d.videos, $('[data-vv-nav]'));
     AG.faq($('[data-render="faq"]'), d.faq);
     AG.revelar();
   }).catch(function () {
@@ -95,16 +96,5 @@
     if (objetivo) linhas.push('• *Objetivo:* ' + objetivo);
     if (verba) linhas.push('• *Já investe em anúncios?* ' + verba);
     AG.abrirWa('marketing', linhas.join('\n'), 'meeting_request', { goal: objetivo || '', ad_budget: verba || '' });
-  });
-
-  /* ---------- podcast: sem link ainda, o botão avisa em vez de abrir um player vazio ---------- */
-  var play = document.querySelector('[data-podcast]');
-  if (play) play.addEventListener('click', function () {
-    var url = AG.marketing.podcast;
-    var tela = document.getElementById('podcast-tela');
-    if (!url) { play.outerHTML = '<p class="podcast__aviso"><span class="ph">[falta o link do episódio: config.js → marketing.podcast]</span></p>'; return; }
-    var f = document.createElement('iframe');
-    f.src = url; f.title = 'Podcast da Agrega'; f.allow = 'autoplay; encrypted-media'; f.loading = 'lazy';
-    tela.innerHTML = ''; tela.appendChild(f); tela.classList.add('podcast__tela--aberta');
   });
 })();

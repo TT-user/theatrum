@@ -1058,8 +1058,24 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   número amarelos, escala 1,1) quando ela chega nele, com título e texto subindo. Acima de 900 px a
   seção fica presa por uma tela e, enquanto presa, ocupa a tela com o conteúdo no meio
   (`.trilha-pin`; menor que a tela, sobraria faixa vazia). Abaixo, sem pin, a linha desce na
-  vertical. Sem movimento, tudo aceso. Os links do menu para essa seção miram o começo do pin, e o
-  scrollspy soma o tempo do pin ao fim dela. Menu do celular e gaveta travam a rolagem por
+  vertical. Sem movimento, tudo aceso. Os links do menu para seção presa miram o começo exato do pin
+  (sem descontar o topo, desde 26/10/2026: antes paravam 72 px antes e a fileira da vitrine
+  aparecia cortada), e o scrollspy soma o tempo do pin ao fim dela. **Vitrine de vídeos**
+  (`#conteudo-agrega` da Marketing, desde 26/10/2026, no lugar do player do podcast e da grade de
+  fotos de evento): reels, cortes do podcast e eventos numa fileira de lado, desenhada pelo
+  `js/vitrine.js` a partir do `videos` do `marketing.json` (o `_videos` de lá tem as medidas).
+  Acima de 900 px, com movimento, a seção fica presa e a rolagem passa a fileira (`.vv-preso`,
+  `mm.add` próprio); senão, a fileira rola de lado no dedo, com snap no centro. O primeiro e o
+  último chegam ao centro por margens medidas no JS. Cada vídeo numa moldura com barra (três
+  pontos e "REEL · 0:32", duração lida do próprio arquivo). `<video muted loop playsinline
+  preload="none">` sem `src`: o pôster (`<arquivo>.webp`) entra a duas telas de distância e o vídeo
+  a uma, `<arquivo>.mp4` no computador e `<arquivo>-m.mp4` abaixo de 641 px ou com economia de
+  dados (sem o `-m`, usa o outro; sem nenhum, aviso amarelo no quadro). Só o mais perto do centro
+  da tela toca e fica colorido; os outros param com `grayscale(1) brightness(.8)`. Nada toca
+  fora da seção nem com a aba escondida; com movimento reduzido, economia de dados ou `?still=1`,
+  nenhum toca sozinho e o do centro ganha o botão de play. Setas e contador no cabeçalho; clique
+  num vídeo do lado leva ele ao centro. Por enquanto são sete placeholders. Vídeo novo sai pronto
+  (as duas versões e o pôster) do `interno/clientes/agrega/videos.sh`. Menu do celular e gaveta travam a rolagem por
   `AG.travar()`, que para o Lenis junto. Lighthouse mobile local: Performance 94-95 (era 97-98 antes
   da animação; LCP simulado de 2,4 para 2,9 s), Acessibilidade 100 (SEO baixo é o noindex). No
   celular o texto do hero sobe ~25 px quando a Poppins chega (já era assim antes). Cache no `.htaccess` da pasta: CSS e JS por 30 dias com
