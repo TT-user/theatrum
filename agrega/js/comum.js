@@ -30,6 +30,12 @@
   AG.wa = function (marca, msg) {
     return 'https://wa.me/' + (AG.numero(marca) || '') + (msg ? '?text=' + encodeURIComponent(msg) : '');
   };
+  // menu do celular e gaveta de orçamento: a página para embaixo (com o Lenis ligado, ele para junto)
+  AG.lenis = null;
+  AG.travar = function (sim) {
+    document.body.style.overflow = sim ? 'hidden' : '';
+    if (AG.lenis) { if (sim) AG.lenis.stop(); else AG.lenis.start(); }
+  };
   AG.abrirWa = function (marca, msg, evento, dados) {
     track(evento || 'whatsapp_click', Object.assign({ brand: marca }, dados || {}));
     // com 'noopener' o window.open devolve null mesmo quando abre; por isso o opener é cortado à mão
@@ -83,7 +89,7 @@
     botao.setAttribute('aria-expanded', 'false');
     botao.setAttribute('aria-label', 'Abrir menu');
     topo.classList.remove('topo--aberto');
-    document.body.style.overflow = '';
+    AG.travar(false);
   }
   if (botao && menu) {
     botao.addEventListener('click', function () {
@@ -91,7 +97,7 @@
       botao.setAttribute('aria-expanded', String(abrir));
       botao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
       topo.classList.toggle('topo--aberto', abrir);
-      document.body.style.overflow = abrir ? 'hidden' : '';
+      AG.travar(abrir);
     });
     menu.addEventListener('click', function (e) { if (e.target.closest('a')) fechaMenu(); });
     addEventListener('keydown', function (e) { if (e.key === 'Escape' && topo.classList.contains('topo--aberto')) { fechaMenu(); botao.focus(); } });
@@ -104,17 +110,224 @@
     });
   });
 
-  /* ---------- entrada das seções: uma vez só ---------- */
-  var io = 'IntersectionObserver' in window && !still ? new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('ok'); io.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -8% 0px' }) : null;
-  AG.revelar = function (raizEl) {
-    (raizEl || document).querySelectorAll('.rev:not(.ok)').forEach(function (el) {
-      if (io) io.observe(el); else el.classList.add('ok');
+  /* ---------- movimento: GSAP, ScrollTrigger, SplitText e Lenis (só Marketing e Print carregam) ----------
+     O <head> dessas páginas põe .anima, que esconde as entradas antes do primeiro quadro; quando o GSAP
+     assume, quem esconde é ele e a classe sai. Sem as bibliotecas (Projeto Completo, privacidade, CDN
+     fora do ar), com movimento reduzido ou em ?still=1, tudo aparece parado e a rolagem é a do navegador. */
+  var G = window.gsap, ST = window.ScrollTrigger, SPLIT = window.SplitText;
+  var mov = null; // a rodada com movimento: o gsap.matchMedia desfaz e refaz se a preferência mudar
+  var largos = [], ctxLargo = null;
+  var LIMPA = 'transform,opacity,visibility,transition';
+  function semAnima() { raiz.classList.remove('anima'); }
+  // o título só é quebrado em linhas com a fonte certa (com teto, para não segurar a página)
+  var fontes = new Promise(function (ok) {
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ok);
+    setTimeout(ok, 1500);
+  });
+  var ligado = false, refrescando = 0;
+  function refresca() { if (ligado) { clearTimeout(refrescando); refrescando = setTimeout(function () { ST.refresh(); }, 120); } }
+
+  // peças de um bloco com título, na ordem do documento (o que só embrulha o h2 é aberto)
+  function partes(el) {
+    var out = [];
+    Array.prototype.forEach.call(el.children, function (c) {
+      if (c.tagName !== 'H2' && c.querySelector('h2')) out = out.concat(partes(c));
+      else out.push(c);
     });
+    return out;
+  }
+  // bloco com h2: o título sobe linha a linha por trás de uma máscara; o resto entra com fade e 24 px
+  function cabeca(el) {
+    var pecas = partes(el), quebras = [];
+    var tl = G.timeline({
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      onComplete: function () { quebras.forEach(function (s) { s.revert(); }); G.set(pecas, { clearProps: LIMPA }); G.set(el, { clearProps: 'opacity,visibility' }); }
+    });
+    pecas.forEach(function (p, i) {
+      var quando = i ? '<0.14' : 0;
+      if (p.tagName === 'H2' && SPLIT) {
+        var s = SPLIT.create(p, { type: 'lines', mask: 'lines', linesClass: 'linha' });
+        quebras.push(s);
+        tl.from(s.lines, { yPercent: 125, duration: 1, ease: 'expo.out', stagger: .1 }, quando);
+      } else {
+        G.set(p, { transition: 'none' });
+        tl.from(p, { opacity: 0, y: 24, duration: .7, ease: 'power3.out' }, quando);
+      }
+    });
+    G.set(el, { opacity: 1 });
+  }
+  // cards e blocos sem título: fade e 24 px, em lote, um depois do outro. Só opacidade, nunca visibility:
+  // o que ainda não entrou continua no Tab do teclado e no leitor de tela (o foco rola até ele e ele entra)
+  function blocos(lista) {
+    G.set(lista, { opacity: 0, y: 24, transition: 'none' });
+    ST.batch(lista, {
+      start: 'top 90%', once: true,
+      onEnter: function (lote) {
+        // num salto (link, Tab, Home/End), o que já ficou para trás aparece na hora e não segura a fila
+        var vistos = lote.filter(function (e) { return e.getBoundingClientRect().bottom > 0; });
+        var passados = lote.filter(function (e) { return vistos.indexOf(e) < 0; });
+        if (passados.length) G.set(passados, { clearProps: LIMPA });
+        if (vistos.length) G.to(vistos, { opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: Math.min(.08, .6 / vistos.length), overwrite: true, clearProps: LIMPA });
+      }
+    });
+  }
+  function prepara(raizEl) {
+    var cabs = [], soltos = [], esta = mov;
+    (raizEl || document).querySelectorAll('.rev, .faixa-cta__txt').forEach(function (el) {
+      if (esta.feitos.has(el)) return;
+      esta.feitos.add(el);
+      (el.querySelector('h2') ? cabs : soltos).push(el);
+    });
+    if (soltos.length) blocos(soltos);
+    if (cabs.length) {
+      G.set(cabs, { opacity: 0 });
+      fontes.then(function () {
+        if (mov === esta) esta.ctx.add(function () { cabs.forEach(cabeca); });
+        refresca();
+      });
+    }
+  }
+  // o que o JS desenha depois (serviços, time, produtos...) entra do mesmo jeito
+  AG.revelar = function (raizEl) {
     if (still) (raizEl || document).querySelectorAll('img[loading=lazy]').forEach(function (i) { i.loading = 'eager'; });
+    if (mov) mov.ctx.add(function () { prepara(raizEl); });
+    refresca(); // a página cresceu: os gatilhos de baixo mudam de lugar
   };
-  AG.revelar();
+
+  // contadores do hero: de 0 até o valor do data-count, com vírgula decimal ("5,0")
+  function conta(el) {
+    var final = el.textContent, alvo = el.dataset.count;
+    var casas = (alvo.split(',')[1] || '').length;
+    var fim = parseFloat(alvo.replace(/\./g, '').replace(',', '.'));
+    if (isNaN(fim)) return;
+    var fmt = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+    var o = { v: 0 }, w = el.getBoundingClientRect().width;
+    function volta() { el.textContent = final; el.style.width = ''; }
+    if (w) el.style.width = w + 'px'; // o texto ao lado não anda enquanto o número cresce
+    el.textContent = fmt.format(0);
+    G.to(o, {
+      v: fim, duration: 1.6, delay: .2, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+      onUpdate: function () { el.textContent = fmt.format(o.v); },
+      onComplete: volta
+    });
+    mov.limpa.push(volta);
+  }
+
+  // botão magnético: segue o mouse até 8 px e volta com mola; translate soma com o transform do hover
+  function magnetico(b) {
+    G.set(b, { '--mx': '0px', '--my': '0px' });
+    b.classList.add('magnetico');
+    function segue(e) {
+      if (e.pointerType === 'touch') return;
+      var r = b.getBoundingClientRect();
+      var ax = parseFloat(G.getProperty(b, '--mx')) || 0, ay = parseFloat(G.getProperty(b, '--my')) || 0;
+      var x = (e.clientX - (r.left - ax + r.width / 2)) / (r.width / 2) * 8;
+      var y = (e.clientY - (r.top - ay + r.height / 2)) / (r.height / 2) * 8;
+      var d = Math.hypot(x, y);
+      if (d > 8) { x = x / d * 8; y = y / d * 8; }
+      G.to(b, { '--mx': x + 'px', '--my': y + 'px', duration: .35, ease: 'power3.out', overwrite: 'auto' });
+    }
+    function solta() { G.to(b, { '--mx': '0px', '--my': '0px', duration: 1, ease: 'elastic.out(1, 0.35)', overwrite: 'auto' }); }
+    b.addEventListener('pointermove', segue);
+    b.addEventListener('pointerleave', solta);
+    return function () {
+      b.removeEventListener('pointermove', segue);
+      b.removeEventListener('pointerleave', solta);
+      b.classList.remove('magnetico');
+      b.style.removeProperty('--mx'); b.style.removeProperty('--my');
+    };
+  }
+
+  // scrollspy: o link do menu da seção que está no meio da tela ganha .is-ativo
+  function scrollspy() {
+    var links = {}, atual = null;
+    document.querySelectorAll('.menu > a[href^="#"]:not(.btn)').forEach(function (a) { links[a.hash.slice(1)] = a; });
+    function marca(id) {
+      if (id === atual) return;
+      atual = id;
+      Object.keys(links).forEach(function (k) {
+        links[k].classList.toggle('is-ativo', k === id);
+        if (k === id) links[k].setAttribute('aria-current', 'true'); else links[k].removeAttribute('aria-current');
+      });
+    }
+    document.querySelectorAll('main section[id]').forEach(function (s) {
+      ST.create({
+        trigger: s, start: 'top center', end: 'bottom center',
+        onToggle: function (self) { if (self.isActive) marca(s.id); else if (atual === s.id) marca(null); }
+      });
+    });
+  }
+
+  // pin e rolagem de lado só valem acima de 900 px: quem precisar registra aqui
+  AG.noLargo = function (fn) { largos.push(fn); if (ctxLargo) ctxLargo.add(fn); };
+
+  if (!G || !ST || still) semAnima();
+  else {
+    ligado = true;
+    G.registerPlugin(ST);
+    if (SPLIT) G.registerPlugin(SPLIT);
+    var mm = AG.mm = G.matchMedia();
+    mm.add({ mexe: '(prefers-reduced-motion: no-preference)', calmo: '(prefers-reduced-motion: reduce)' }, function (ctx) {
+      if (!ctx.conditions.mexe) { semAnima(); return; }
+      var esta = mov = { ctx: ctx, feitos: new WeakSet(), limpa: [] };
+      var lenis = null, raf = null;
+      if (window.Lenis) {
+        // dentro da gaveta, da foto ampliada e do menu aberto, a roda rola o próprio painel
+        lenis = AG.lenis = new window.Lenis({
+          prevent: function (n) { return n.classList.contains('gaveta') || n.classList.contains('luz') || n.classList.contains('topo--aberto'); }
+        });
+        lenis.on('scroll', ST.update);
+        raf = function (t) { lenis.raf(t * 1000); };
+        G.ticker.add(raf);
+        G.ticker.lagSmoothing(0);
+        if (topo && topo.classList.contains('topo--aberto')) lenis.stop();
+      }
+      prepara(document);
+      document.querySelectorAll('[data-count]').forEach(conta);
+      semAnima();
+      return function () {
+        esta.limpa.forEach(function (f) { f(); });
+        if (mov === esta) mov = null;
+        if (lenis) { G.ticker.remove(raf); G.ticker.lagSmoothing(500, 33); lenis.destroy(); AG.lenis = null; }
+      };
+    });
+    mm.add('(hover: hover) and (prefers-reduced-motion: no-preference)', function () {
+      var desfaz = [];
+      document.querySelectorAll('.btn--pri.btn--lg, .menu > .btn--pri').forEach(function (b) { desfaz.push(magnetico(b)); });
+      return function () { desfaz.forEach(function (f) { f(); }); };
+    });
+    mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', function (ctx) {
+      ctxLargo = ctx;
+      largos.forEach(function (fn) { ctx.add(fn); });
+      return function () { ctxLargo = null; };
+    });
+    scrollspy();
+  }
+  if (still) AG.revelar();
+
+  // links do menu: com o Lenis, a rolagem até a seção é a dele, descontando a altura do topo
+  document.addEventListener('click', function (e) {
+    if (!AG.lenis || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.classList.contains('pular') || a.hash.length < 2) return;
+    var alvo = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+    if (!alvo) return;
+    e.preventDefault();
+    var teclado = e.detail === 0;
+    // destino em número: com o elemento, o Lenis já desconta o scroll-padding-top do CSS (topo + 16 px)
+    var y = alvo.getBoundingClientRect().top + AG.lenis.animatedScroll - (topo ? topo.offsetHeight : 0);
+    AG.lenis.scrollTo(y, {
+      force: true,
+      onComplete: function () {
+        // pelo teclado, o foco vai junto para a seção (como no salto do navegador)
+        if (!teclado) return;
+        if (!alvo.hasAttribute('tabindex')) alvo.setAttribute('tabindex', '-1');
+        alvo.focus({ preventScroll: true });
+      }
+    });
+    if (location.hash !== a.hash) history.pushState(null, '', a.hash);
+  });
 
   /* ---------- fundos que se mexem só com o hero à vista ---------- */
   if (hero && 'IntersectionObserver' in window) {
@@ -158,7 +371,7 @@
   AG.faq = function (el, itens) {
     if (!el || !itens) return;
     el.innerHTML = itens.map(function (f, i) {
-      return '<details class="faq__item rev" style="--i:' + i + '"><summary>' + AG.esc(f.p) +
+      return '<details class="faq__item rev"><summary>' + AG.esc(f.p) +
         '<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="faq__r"><p>' +
         AG.txt(f.r, '[resposta da Agrega]') + '</p></div></details>';
     }).join('');

@@ -13,7 +13,7 @@
   AG.dados('../data/completo.json?v=1').then(function (d) {
     COMBOS = d.combos;
     document.querySelector('[data-render="combos"]').innerHTML = d.combos.map(function (c, i) {
-      return '<article class="combo rev" style="--i:' + i + '"><h3 class="h3">' + esc(c.titulo) + '</h3>' +
+      return '<article class="combo rev"><h3 class="h3">' + esc(c.titulo) + '</h3>' +
         '<div class="combo__parte combo__parte--mkt"><span class="selo selo--mkt">Marketing</span><p>' + esc(c.marketing) + '</p></div>' +
         '<div class="combo__parte combo__parte--prt"><span class="selo selo--prt">Print</span><p>' + esc(c.print) + '</p></div>' +
         (c.preco ? '<p class="combo__preco">' + esc(c.preco) + '</p>' : '') +

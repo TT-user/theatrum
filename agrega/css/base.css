@@ -152,10 +152,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .theatrum small { font-size: 11px; font-weight: 400; letter-spacing: .04em; text-transform: none; color: #A39B8D; }
 @media (max-width: 1100px) { .theatrum { padding: 4px; bottom: 16px; } .theatrum span { display: none; } }
 
-/* ---------- entrada de seção: uma vez só ---------- */
-/* sem JavaScript (sem a classe .js) tudo já aparece */
-.js .rev { opacity: 0; transform: translateY(16px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); transition-delay: calc(var(--i, 0) * 60ms); }
-.js .rev.ok, .still .rev { opacity: 1; transform: none; }
+/* ---------- entrada de seção: GSAP + SplitText, no comum.js ---------- */
+/* .anima vem do <head> da Marketing e da Print e só esconde até o GSAP assumir; sem ele, tudo aparece.
+   Opacidade e não visibility: escondido assim, continua no Tab e no leitor de tela */
+.anima :is(.rev, .faixa-cta__txt, [data-count]) { opacity: 0; }
+/* máscara de cada linha do título: folga para acento e descendente (o g, o ç) sem mudar a altura */
+.linha-mask { padding-block: .1em .16em; margin-block: -.1em -.16em; }
+/* botão magnético: o GSAP mexe nestas variáveis; translate soma com o transform do hover */
+.magnetico { translate: var(--mx, 0px) var(--my, 0px); }
+/* seção que recebe o foco depois de um link do menu pelo teclado */
+section[tabindex="-1"]:focus { outline: 0; }
 
 /* ---------- transição entre páginas (seção 5.5 e 9) ---------- */
 @view-transition { navigation: auto; }
@@ -174,6 +180,5 @@ html:active-view-transition-type(to-marketing)::view-transition-new(root) { anim
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
-  .js .rev { opacity: 1; transform: none; }
 }
 .still *, .still *::before, .still *::after { animation: none !important; transition: none !important; }

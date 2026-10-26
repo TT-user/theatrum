@@ -16,19 +16,19 @@
       var img = p.foto
         ? '<img src="../' + esc(p.foto) + '" alt="' + esc(p.nome) + '" loading="lazy" width="400" height="300">'
         : '<img src="../assets/ilustra/' + esc(p.arte) + '.svg?v=1" alt="" loading="lazy" width="400" height="300">';
-      return '<li class="produto rev" style="--i:' + (i % 4) + '"><div class="produto__arte">' + img + '</div>' +
+      return '<li class="produto rev"><div class="produto__arte">' + img + '</div>' +
         '<div class="produto__corpo"><span class="produto__ico">' + ico(p.icone) + '</span>' +
         '<h3 class="h3">' + esc(p.nome) + '</h3><p>' + esc(p.texto) + (p.pendente ? ' ' + txt(p.pendente) : '') + '</p>' +
         '<a class="btn btn--pri produto__btn" href="' + AG.wa('print', 'Olá, Agrega Print! Quero um orçamento: ' + p.nome + '.') + '" data-orcar="' + esc(p.id) + '">Orçar</a></div></li>';
     }).join('');
 
     if ((el = $('[data-render="passos"]'))) el.innerHTML = d.passos.map(function (p, i) {
-      return '<li class="passo rev" style="--i:' + i + '"><span class="passo__n">' + n2(i) + '</span>' +
+      return '<li class="passo rev"><span class="passo__n">' + n2(i) + '</span>' +
         '<h3 class="h3">' + esc(p.titulo) + '</h3><p>' + (p.texto ? esc(p.texto) + ' ' : '') + (p.pendente ? txt(p.pendente) : '') + '</p></li>';
     }).join('');
 
     if ((el = $('[data-render="porque"]'))) el.innerHTML = d.porque.map(function (p, i) {
-      return '<li class="rev" style="--i:' + i + '"><span class="porque__ico">' + ico(p.icone) + '</span>' +
+      return '<li class="rev"><span class="porque__ico">' + ico(p.icone) + '</span>' +
         '<h3 class="h3">' + esc(p.titulo) + '</h3><p>' + esc(p.texto) + (p.pendente ? ' ' + txt(p.pendente) : '') + '</p></li>';
     }).join('');
 
@@ -168,7 +168,7 @@
     var r = id && form.querySelector('[name=produto][value="' + id + '"]');
     if (r) r.checked = true;
     gaveta.hidden = false;
-    document.body.style.overflow = 'hidden';
+    AG.travar(true);
     requestAnimationFrame(function () { gaveta.classList.add('gaveta--aberta'); });
     vaiPara(r ? 2 : 1);
     if (!r) { var pri = form.querySelector('[name=produto]'); if (pri) pri.focus({ preventScroll: true }); }
@@ -176,7 +176,7 @@
   }
   function fecha() {
     gaveta.classList.remove('gaveta--aberta');
-    document.body.style.overflow = '';
+    AG.travar(false);
     fechando = setTimeout(function () { gaveta.hidden = true; }, AG.calmo() ? 0 : 320);
     if (origem && origem.focus) origem.focus({ preventScroll: true });
   }

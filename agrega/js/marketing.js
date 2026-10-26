@@ -9,31 +9,31 @@
     var el;
 
     if ((el = $('[data-render="servicos"]'))) el.innerHTML = d.servicos.map(function (s, i) {
-      return '<li class="servico rev" style="--i:' + (i % 3) + '"><span class="servico__n">' + n2(i) + '</span>' +
+      return '<li class="servico rev"><span class="servico__n">' + n2(i) + '</span>' +
         '<h3 class="h3">' + esc(s.titulo) + '</h3><p>' + esc(s.texto) + (s.pendente ? ' ' + txt(s.pendente) : '') + '</p>' +
         '<p class="servico__quem"><span>quem cuida</span>' + esc(s.quem) + '</p></li>';
     }).join('');
 
     if ((el = $('[data-render="metodo"]'))) el.innerHTML = d.metodo.map(function (p, i) {
-      return '<li class="passo rev" style="--i:' + i + '"><span class="passo__n">' + n2(i) + '</span>' +
+      return '<li class="passo rev"><span class="passo__n">' + n2(i) + '</span>' +
         '<h3 class="h3">' + esc(p.titulo) + '</h3><p>' + esc(p.texto) + '</p></li>';
     }).join('');
 
     if ((el = $('[data-render="clientes"]'))) el.innerHTML = d.clientes.map(function (c, i) {
       return c && c.logo
-        ? '<li class="logos__item rev" style="--i:' + i + '"><img src="../assets/img/clientes/' + esc(c.logo) + '" alt="' + esc(c.nome) + '" loading="lazy"></li>'
-        : '<li class="logos__item logos__item--vazio rev" style="--i:' + i + '"><span class="ph">[logo do cliente]</span></li>';
+        ? '<li class="logos__item rev"><img src="../assets/img/clientes/' + esc(c.logo) + '" alt="' + esc(c.nome) + '" loading="lazy"></li>'
+        : '<li class="logos__item logos__item--vazio rev"><span class="ph">[logo do cliente]</span></li>';
     }).join('');
 
     if ((el = $('[data-render="cases"]'))) el.innerHTML = d.cases.map(function (c, i) {
-      return '<article class="case rev" style="--i:' + i + '"><p class="case__marca">' + txt(c.marca, '[cliente, com autorização]') + '</p>' +
+      return '<article class="case rev"><p class="case__marca">' + txt(c.marca, '[cliente, com autorização]') + '</p>' +
         '<dl><div><dt>Desafio</dt><dd>' + txt(c.desafio, '[o que o cliente precisava]') + '</dd></div>' +
         '<div><dt>O que foi feito</dt><dd>' + txt(c.feito, '[estratégia, conteúdo, anúncios]') + '</dd></div>' +
         '<div class="case__res"><dt>Resultado</dt><dd>' + txt(c.resultado, '[resultado em número, com a fonte]') + '</dd></div></dl></article>';
     }).join('');
 
     if ((el = $('[data-render="depoimentos"]'))) el.innerHTML = d.depoimentos.map(function (t, i) {
-      return '<figure class="depo rev" style="--i:' + i + '"><span class="depo__aspas" aria-hidden="true">“</span>' +
+      return '<figure class="depo rev"><span class="depo__aspas" aria-hidden="true">“</span>' +
         '<blockquote><p>' + esc(t.texto) + '</p></blockquote>' +
         '<figcaption><strong>' + esc(t.nome) + '</strong><span>' + esc(t.fonte) + ' <span class="ph">[autorização pendente]</span></span></figcaption></figure>';
     }).join('');
@@ -41,7 +41,7 @@
     if ((el = $('[data-render="time"]'))) el.innerHTML = d.time.map(function (p, i) {
       var nome = esc(p.nome) + ('sobrenome' in p ? ' <span class="ph">' + esc(p.sobrenome || '[sobrenome]') + '</span>' : '');
       // card limpo: foto, nome e cargo; o que a pessoa faz fica só para leitor de tela
-      return '<li class="pessoa rev" style="--i:' + (i % 5) + '">' +
+      return '<li class="pessoa rev">' +
         '<div class="pessoa__moldura"><span class="pessoa__aro" aria-hidden="true"></span>' +
         '<div class="pessoa__recorte"><img src="../assets/img/time/' + esc(p.foto) + '-redondo.webp" alt="' + esc(p.nome) + ', ' + esc(p.cargo) + ' da Agrega" width="480" height="480" loading="lazy"></div></div>' +
         '<h3 class="pessoa__nome">' + nome + '</h3>' +
@@ -49,7 +49,7 @@
         '<p class="sr-only">' + esc(p.texto) + '</p></li>';
     }).join('') +
       // o décimo lugar da grade fecha a conta: convite para a reunião
-      '<li class="pessoa pessoa--convite rev" style="--i:4"><svg class="pessoa__selo" viewBox="0 0 200 200" aria-hidden="true"><use href="#ag-mkt"/></svg>' +
+      '<li class="pessoa pessoa--convite rev"><svg class="pessoa__selo" viewBox="0 0 200 200" aria-hidden="true"><use href="#ag-mkt"/></svg>' +
       '<div class="pessoa__convite"><p class="pessoa__chamada">Quer esse time cuidando da sua marca?</p><a class="btn btn--tinta" href="#contato">Agendar reunião</a></div></li>';
 
     AG.faq($('[data-render="faq"]'), d.faq);

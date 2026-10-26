@@ -1038,8 +1038,24 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   JavaScript os botões vão direto ao WhatsApp. Projeto Completo vai para a Marketing até definirem
   (`whatsappProjetoCompleto`). Eventos da seção 10 no código (`AG.track`), desligados
   (`rastrear: false`). No computador, a última linha do hero começa depois da marca d'água
-  (`body:has(.theatrum)`, some sozinho no site final). Lighthouse mobile local: Performance 97-98,
-  Acessibilidade 100 (SEO baixo é o noindex). Cache no `.htaccess` da pasta: CSS e JS por 30 dias com
+  (`body:has(.theatrum)`, some sozinho no site final).
+  **Animação (25/10/2026, a pedido; exceção à regra de não usar biblioteca, que vale para a home):**
+  Marketing e Print carregam do jsDelivr o GSAP 3.15.0 (com ScrollTrigger e SplitText) e o Lenis
+  1.3.26, em versão fixa e com `integrity` (trocou a versão, refaça o hash), ~55 KB comprimidos; o CSS
+  do Lenis entra sem travar a pintura. Projeto Completo e privacidade não carregam. Tudo no
+  `comum.js`: Lenis ligado ao ScrollTrigger; entradas no lugar do antigo `.rev` com
+  IntersectionObserver (o `h2` sobe linha a linha com máscara do SplitText, o resto com fade e 24 px,
+  cards em lote pelo `ScrollTrigger.batch`; o que já ficou para trás num salto aparece na hora);
+  contadores do hero (`data-count`, vírgula decimal); CTAs amarelos principais magnéticos (até 8 px,
+  só com `hover: hover`); scrollspy do menu (`.is-ativo`, sublinhado amarelo); links do menu pelo
+  `lenis.scrollTo`, parando logo abaixo do topo. Esconde só com opacidade, nunca `visibility`, para o
+  que não entrou continuar no Tab e no leitor de tela. O `<head>` põe `.anima` antes do primeiro quadro
+  e o GSAP tira; com o CDN fora, a classe sai no `DOMContentLoaded`. Com movimento reduzido ou
+  `?still=1`, sem Lenis e sem animação. Pin e rolagem lateral só acima de 900 px, por
+  `AG.noLargo(fn)` (nenhuma seção usa ainda). Menu do celular e gaveta travam a rolagem por
+  `AG.travar()`, que para o Lenis junto. Lighthouse mobile local: Performance 94-95 (era 97-98 antes
+  da animação; LCP simulado de 2,4 para 2,9 s), Acessibilidade 100 (SEO baixo é o noindex). No
+  celular o texto do hero sobe ~25 px quando a Poppins chega (já era assim antes). Cache no `.htaccess` da pasta: CSS e JS por 30 dias com
   `?v=` (mudou, sobe o número), JSON por 1 hora, imagem por 30 dias sem versão (trocou, muda o nome).
   Mensagens de WhatsApp por origem (reunião, endereço, flutuante, rodapé), também no `href` estático
   para funcionar sem JavaScript. Mesmo padrão: `.htaccess` e meta com noindex, faixa de
