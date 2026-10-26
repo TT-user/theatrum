@@ -23,7 +23,7 @@
     }).join('');
 
     if ((el = $('[data-render="passos"]'))) el.innerHTML = d.passos.map(function (p, i) {
-      return '<li class="passo rev"><span class="passo__n">' + n2(i) + '</span>' +
+      return '<li class="passo"><span class="passo__n">' + n2(i) + '</span>' +
         '<h3 class="h3">' + esc(p.titulo) + '</h3><p>' + (p.texto ? esc(p.texto) + ' ' : '') + (p.pendente ? txt(p.pendente) : '') + '</p></li>';
     }).join('');
 

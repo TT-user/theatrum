@@ -125,7 +125,12 @@
     setTimeout(ok, 1500);
   });
   var ligado = false, refrescando = 0;
-  function refresca() { if (ligado) { clearTimeout(refrescando); refrescando = setTimeout(function () { ST.refresh(); }, 120); } }
+  function refresca() {
+    if (!ligado) return;
+    clearTimeout(refrescando);
+    // o pin da trilha nasce depois dos gatilhos de baixo: ordena para todos contarem o espaço dele
+    refrescando = setTimeout(function () { if (ST.sort) ST.sort(); ST.refresh(); }, 120);
+  }
 
   // peças de um bloco com título, na ordem do documento (o que só embrulha o h2 é aberto)
   function partes(el) {
@@ -191,6 +196,7 @@
   AG.revelar = function (raizEl) {
     if (still) (raizEl || document).querySelectorAll('img[loading=lazy]').forEach(function (i) { i.loading = 'eager'; });
     if (mov) mov.ctx.add(function () { prepara(raizEl); });
+    if (trilhas) trilhas.ctx.add(montaTrilhas);
     refresca(); // a página cresceu: os gatilhos de baixo mudam de lugar
   };
 
@@ -239,6 +245,9 @@
     };
   }
 
+  // a seção presa pelo ScrollTrigger mora dentro de um .pin-spacer, que tem a altura dela mais a do pin
+  function caixa(el) { var pai = el.parentNode; return pai && pai.classList && pai.classList.contains('pin-spacer') ? pai : el; }
+
   // scrollspy: o link do menu da seção que está no meio da tela ganha .is-ativo
   function scrollspy() {
     var links = {}, atual = null;
@@ -253,9 +262,68 @@
     }
     document.querySelectorAll('main section[id]').forEach(function (s) {
       ST.create({
-        trigger: s, start: 'top center', end: 'bottom center',
+        // seção presa (passos): o fim soma o tempo do pin, para o item seguir aceso enquanto ela está fixa
+        trigger: s, start: 'top center',
+        end: function () {
+          var r = s.getBoundingClientRect().bottom + scrollY - innerHeight / 2;
+          var pin = ST.getAll().filter(function (t) { return t.pin === s; })[0];
+          return pin ? r + pin.end - pin.start : r;
+        },
         onToggle: function (self) { if (self.isActive) marca(s.id); else if (atual === s.id) marca(null); }
       });
+    });
+  }
+
+  /* trilha dos passos (Método na Marketing, Como funciona na Print): a linha tracejada se desenha com a
+     rolagem e cada círculo acende quando ela chega nele. Acima de 900 px a seção fica presa por uma tela
+     (e ocupa a tela, senão sobraria faixa vazia); abaixo, sem pin, a linha desce na vertical. Sem
+     movimento, o CSS já mostra tudo aceso. */
+  var trilhas = null;
+  function trilha(ol, largo) {
+    var itens = [].slice.call(ol.querySelectorAll('.passo'));
+    var secao = ol.closest('section');
+    var marcos = [];
+    function mede() {
+      // onde cada círculo fica ao longo da linha (0 = começo, 1 = fim), lido do próprio CSS da linha
+      var cs = getComputedStyle(ol, '::after'), r = ol.getBoundingClientRect();
+      var ini = parseFloat(largo ? cs.left : cs.top) || 0, fimL = parseFloat(largo ? cs.right : cs.bottom) || 0;
+      var tam = (largo ? r.width : r.height) - ini - fimL;
+      marcos = itens.map(function (li) {
+        var c = li.querySelector('.passo__n').getBoundingClientRect();
+        var meio = largo ? c.left + c.width / 2 - r.left : c.top + c.height / 2 - r.top;
+        return tam > 0 ? (meio - ini) / tam : 0;
+      });
+    }
+    function acende(p) {
+      itens.forEach(function (li, i) { li.classList.toggle('aceso', p >= marcos[i] - .01); });
+    }
+    ol.classList.add('trilha');
+    var pin = null;
+    if (largo && secao) {
+      secao.classList.add('trilha-pin');
+      pin = ST.create({ trigger: secao, start: 'top top', end: function () { return '+=' + innerHeight; }, pin: true, refreshPriority: 1 });
+    }
+    mede();
+    G.fromTo(ol, { '--traco': 0 }, {
+      '--traco': 1, ease: 'none',
+      scrollTrigger: pin
+        ? { trigger: secao, start: 'top top', end: function () { return pin.end; }, scrub: .5, refreshPriority: 1, onRefresh: mede }
+        : { trigger: ol, start: 'top 70%', end: 'bottom 70%', scrub: .5, onRefresh: mede },
+      onUpdate: function () { acende(this.progress()); }
+    });
+    acende(0);
+    trilhas.desfaz.push(function () {
+      ol.classList.remove('trilha');
+      ol.style.removeProperty('--traco');
+      itens.forEach(function (li) { li.classList.remove('aceso'); });
+      if (secao) secao.classList.remove('trilha-pin');
+    });
+  }
+  function montaTrilhas() {
+    document.querySelectorAll('.passos').forEach(function (ol) {
+      if (trilhas.feitas.has(ol) || !ol.querySelector('.passo')) return;
+      trilhas.feitas.add(ol);
+      trilha(ol, trilhas.largo);
     });
   }
 
@@ -302,6 +370,12 @@
       largos.forEach(function (fn) { ctx.add(fn); });
       return function () { ctxLargo = null; };
     });
+    mm.add({ largo: '(min-width: 901px) and (prefers-reduced-motion: no-preference)', estreito: '(max-width: 900px) and (prefers-reduced-motion: no-preference)' }, function (ctx) {
+      var esta = trilhas = { ctx: ctx, largo: !!ctx.conditions.largo, feitas: new WeakSet(), desfaz: [] };
+      montaTrilhas();
+      refresca();
+      return function () { esta.desfaz.forEach(function (f) { f(); }); if (trilhas === esta) trilhas = null; };
+    });
     scrollspy();
   }
   if (still) AG.revelar();
@@ -315,8 +389,9 @@
     if (!alvo) return;
     e.preventDefault();
     var teclado = e.detail === 0;
-    // destino em número: com o elemento, o Lenis já desconta o scroll-padding-top do CSS (topo + 16 px)
-    var y = alvo.getBoundingClientRect().top + AG.lenis.animatedScroll - (topo ? topo.offsetHeight : 0);
+    // destino em número: com o elemento, o Lenis já desconta o scroll-padding-top do CSS (topo + 16 px).
+    // Seção presa (trilha dos passos): mira o começo do pin, para a linha começar do 01
+    var y = caixa(alvo).getBoundingClientRect().top + AG.lenis.animatedScroll - (topo ? topo.offsetHeight : 0);
     AG.lenis.scrollTo(y, {
       force: true,
       onComplete: function () {

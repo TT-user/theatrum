@@ -156,8 +156,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* .anima vem do <head> da Marketing e da Print e só esconde até o GSAP assumir; sem ele, tudo aparece.
    Opacidade e não visibility: escondido assim, continua no Tab e no leitor de tela */
 .anima :is(.rev, .faixa-cta__txt, [data-count]) { opacity: 0; }
-/* máscara de cada linha do título: folga para acento e descendente (o g, o ç) sem mudar a altura */
-.linha-mask { padding-block: .1em .16em; margin-block: -.1em -.16em; }
+/* máscara de cada linha do título: folga embaixo para o g e o ç. Só embaixo: margem negativa em cima e
+   embaixo se junta entre linhas vizinhas e o título cresce alguns px enquanto está quebrado */
+.linha-mask { padding-bottom: .16em; margin-bottom: -.16em; }
 /* botão magnético: o GSAP mexe nestas variáveis; translate soma com o transform do hover */
 .magnetico { translate: var(--mx, 0px) var(--my, 0px); }
 /* seção que recebe o foco depois de um link do menu pelo teclado */

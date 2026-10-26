@@ -15,7 +15,7 @@
     }).join('');
 
     if ((el = $('[data-render="metodo"]'))) el.innerHTML = d.metodo.map(function (p, i) {
-      return '<li class="passo rev"><span class="passo__n">' + n2(i) + '</span>' +
+      return '<li class="passo"><span class="passo__n">' + n2(i) + '</span>' +
         '<h3 class="h3">' + esc(p.titulo) + '</h3><p>' + esc(p.texto) + '</p></li>';
     }).join('');
 

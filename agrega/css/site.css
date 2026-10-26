@@ -216,18 +216,33 @@
 @media (max-width: 1000px) { .servicos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .servicos { grid-template-columns: minmax(0, 1fr); gap: 14px; } .servico { padding: 22px 20px; } .servico__n { font-size: 2rem; } }
 
-/* passos (Marketing e Print): número grande e linha tracejada ligando */
-.passos { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-.passos::before { content: ""; position: absolute; left: 28px; right: 10%; top: 28px; border-top: 2px dashed rgba(255, 255, 255, .2); }
+/* passos (Marketing e Print): círculos numerados ligados por uma linha tracejada, do 01 ao último.
+   ::before é o trilho apagado; ::after é a linha acesa, que a trilha do comum.js desenha pela rolagem
+   (--traco de 0 a 1, por clip-path, que não estica o tracejado). Sem a classe .trilha (sem JS, movimento
+   reduzido, ?still=1), tudo aparece aceso. */
+.passos { --traco: 1; position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.passos::before, .passos::after { content: ""; position: absolute; z-index: 0; left: 28px; right: calc((100% - 72px) / 4 - 28px); top: 28px; border-top: 2px dashed rgba(255, 255, 255, .2); }
+.passos::after { border-color: var(--agrega-yellow); clip-path: inset(-2px calc((1 - var(--traco)) * 100%) -2px 0); }
 .claro .passos::before { border-color: #C5CFEE; }
-.passo { position: relative; display: flex; flex-direction: column; gap: 10px; }
-.passo__n { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font: 700 1.15rem/1 var(--titulo); background: var(--surface); border: 2px solid var(--agrega-yellow); color: var(--agrega-yellow); margin-bottom: 8px; }
-.claro .passo__n { background: var(--prt-700); border-color: var(--prt-700); color: var(--white); }
+.claro .passos::after { border-color: var(--prt-700); }
+.passo { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
+.passo__n { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font: 700 1.15rem/1 var(--titulo); background: var(--surface); border: 2px solid var(--agrega-yellow); color: var(--agrega-yellow); margin-bottom: 8px; scale: 1.1; transition: scale 500ms var(--ease-brand), border-color 400ms var(--ease-out), color 400ms var(--ease-out), background-color 400ms var(--ease-out); }
+.claro .passo__n { background: var(--prt-700); border-color: var(--agrega-yellow); color: var(--agrega-yellow); }
 .passo p { color: var(--text-muted); }
+/* trilha ligada: o passo fica apagado até a linha chegar nele */
+.trilha .passo :is(.h3, p) { transition: opacity 500ms var(--ease-out), translate 600ms var(--ease-out); }
+.trilha .passo.aceso p { transition-delay: 90ms; }
+.trilha .passo:not(.aceso) .passo__n { scale: 1; border-color: rgba(255, 255, 255, .22); color: rgba(255, 255, 255, .5); }
+.claro .trilha .passo:not(.aceso) .passo__n { background: var(--white); border-color: #C5CFEE; color: var(--prt-700); }
+.trilha .passo:not(.aceso) :is(.h3, p) { opacity: 0; translate: 0 18px; }
+/* presa por uma tela no computador: a seção ocupa a tela, com o conteúdo no meio */
+.trilha-pin { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
 @media (max-width: 900px) {
   .passos { grid-template-columns: minmax(0, 1fr); gap: 22px; }
-  .passos::before { left: 27px; right: auto; top: 28px; bottom: 28px; border-top: 0; border-left: 2px dashed rgba(255, 255, 255, .2); }
-  .claro .passos::before { border-color: #C5CFEE; }
+  .passos::before, .passos::after { left: 27px; right: auto; top: 28px; bottom: 28px; border-top: 0; border-left: 2px dashed rgba(255, 255, 255, .2); }
+  .passos::after { border-left-color: var(--agrega-yellow); clip-path: inset(0 -2px calc((1 - var(--traco)) * 100%) -2px); }
+  .claro .passos::before { border-left-color: #C5CFEE; }
+  .claro .passos::after { border-left-color: var(--prt-700); }
   .passo { display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 18px; row-gap: 4px; }
   .passo__n { grid-row: span 2; margin: 0; }
   .passo .h3 { align-self: end; }

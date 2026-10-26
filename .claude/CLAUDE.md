@@ -1052,7 +1052,14 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   que não entrou continuar no Tab e no leitor de tela. O `<head>` põe `.anima` antes do primeiro quadro
   e o GSAP tira; com o CDN fora, a classe sai no `DOMContentLoaded`. Com movimento reduzido ou
   `?still=1`, sem Lenis e sem animação. Pin e rolagem lateral só acima de 900 px, por
-  `AG.noLargo(fn)` (nenhuma seção usa ainda). Menu do celular e gaveta travam a rolagem por
+  `AG.noLargo(fn)` ou um `mm.add` próprio. **Trilha dos passos** (Método na Marketing, Como funciona
+  na Print, desde 26/10/2026): a linha tracejada do 01 ao 04 se desenha com a rolagem (scrub, por
+  `clip-path` na `::after` da `.passos`, que não estica o tracejado) e cada círculo acende (borda e
+  número amarelos, escala 1,1) quando ela chega nele, com título e texto subindo. Acima de 900 px a
+  seção fica presa por uma tela e, enquanto presa, ocupa a tela com o conteúdo no meio
+  (`.trilha-pin`; menor que a tela, sobraria faixa vazia). Abaixo, sem pin, a linha desce na
+  vertical. Sem movimento, tudo aceso. Os links do menu para essa seção miram o começo do pin, e o
+  scrollspy soma o tempo do pin ao fim dela. Menu do celular e gaveta travam a rolagem por
   `AG.travar()`, que para o Lenis junto. Lighthouse mobile local: Performance 94-95 (era 97-98 antes
   da animação; LCP simulado de 2,4 para 2,9 s), Acessibilidade 100 (SEO baixo é o noindex). No
   celular o texto do hero sobe ~25 px quando a Poppins chega (já era assim antes). Cache no `.htaccess` da pasta: CSS e JS por 30 dias com
