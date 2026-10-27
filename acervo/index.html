@@ -174,11 +174,12 @@
       dom: fora ? pasta.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'usetheatrum.com.br/' + pasta,
     };
   };
-  /* Projeto conceito (marca fictícia): capa da vitrine da home, ?de=acervo faz a barra da demo voltar para cá */
+  /* Projeto conceito (marca fictícia): capa da vitrine da home (ou extra.capa, para a que não está nela),
+     ?de=acervo faz a barra da demo voltar para cá */
   const demo = (seg, caminho, nome, tipo, faz, dom, extra) => ({
     seg, nome, tipo, faz, dom, extra, real: false,
     href: '../' + caminho + '/?de=acervo',
-    img: '../assets/img/vitrine/home/' + caminho.split('/').pop(),
+    img: extra && extra.capa ? extra.capa : '../assets/img/vitrine/home/' + caminho.split('/').pop(),
   });
 
   const SITES = [
@@ -240,6 +241,7 @@
     real('servicos', 'engmais', 'Eng+', 'Consultoria ambiental e segurança do trabalho', 'Dores do Rio Preto, ES', 'Um caminho para o produtor e outro para a empresa'),
     real('servicos', 'agrega', 'Agrega', 'Agência de marketing e gráfica', 'Espera Feliz, MG', 'Portal dividido entre as duas marcas e orçamento em três passos'),
     real('servicos', 'bruno-chaves', 'Bruno Chaves', 'Chaveiro', '', 'Ligar agora sempre à vista e pedido de chave de carro'),
+    demo('servicos', 'negocios/demos/aceno', 'Aceno', 'Agência de marketing e gráfica', 'Portal dividido, time e vitrine de vídeos feitos por IA', 'aceno.com.br', { capa: 'img/aceno' }),
     demo('servicos', 'negocios/demos/vereda', 'Vereda', 'Consultoria ambiental', 'Dois caminhos e diagnóstico de regularização', 'veredaambiental.com.br'),
     demo('servicos', 'solar/demos/caparao-solar', 'Caparaó Solar', 'Energia solar', 'Calculadora que dimensiona a usina e o retorno', 'caparaosolar.com.br'),
   ];

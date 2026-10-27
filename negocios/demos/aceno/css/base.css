@@ -1,0 +1,185 @@
+/* Aceno: base compartilhada pelo portal e pelos dois sites.
+   Tokens da especificação (seções 4.1 a 4.4), fontes servidas daqui e os componentes comuns. */
+
+@font-face { font-family: 'Poppins'; font-weight: 300; font-style: normal; font-display: swap; src: url(../fonts/poppins-300.woff2) format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 600; font-style: normal; font-display: swap; src: url(../fonts/poppins-600.woff2) format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 700; font-style: normal; font-display: swap; src: url(../fonts/poppins-700.woff2) format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 800; font-style: normal; font-display: swap; src: url(../fonts/poppins-800.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 400 600; font-style: normal; font-display: swap; src: url(../fonts/inter.woff2) format('woff2'); }
+
+:root {
+  /* o fio que une as duas marcas */
+  --acento: #FFC220;
+  --acento-hover: #FFD45C;
+  --acento-press: #E6A800;
+  --ink: #0A1413;
+  --white: #FFFFFF;
+
+  /* Aceno Marketing */
+  --mkt-950: #071412;
+  --mkt-900: #0A2622;
+  --mkt-700: #174741;
+  --mkt-500: #1E786C;
+  --mkt-300: #8FCBC3;
+  --mkt-muted: #BED6D3;
+  --mkt-gradient: radial-gradient(120% 90% at 0% 0%, #1E786C 0%, #0F3631 45%, #071412 100%);
+
+  /* Aceno Print */
+  --prt-950: #270C05;
+  --prt-900: #451407;
+  --prt-700: #8F2E15;
+  --prt-500: #D22A00;
+  --prt-100: #FFECE8;
+  --prt-50: #FCF6F4;
+  --prt-text: #280E08;
+  --prt-muted: #6E4C44;
+  --prt-dots: radial-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px) 0 0 / 18px 18px;
+
+  --titulo: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  /* espaçamento base 4 */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+  --secao: clamp(4rem, 2rem + 6vw, 8rem);
+  /* tela inteira: margem proporcional à largura e conteúdo de borda a borda (só monitor ultralargo ganha teto) */
+  --gutter: clamp(24px, 3.4vw, 96px);
+  --container: min(100vw - 2 * var(--gutter), 2600px);
+  --r-sm: 8px; --r-card: 14px; --r-lg: 24px; --r-pill: 999px;
+  --sombra: 0 1px 2px rgba(40, 14, 8, .06), 0 8px 24px rgba(40, 14, 8, .08);
+  --topo: max(72px, 4.5rem);
+
+  /* movimento */
+  --ease-brand: cubic-bezier(.77, 0, .18, 1);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --dur-fast: 160ms;
+  --dur-base: 320ms;
+  --dur-slow: 650ms;
+}
+@media (max-width: 767px) { :root { --gutter: 16px; --topo: 64px; } }
+
+[data-brand="marketing"] {
+  --bg: var(--mkt-950); --surface: var(--mkt-900);
+  --brand: var(--mkt-700); --brand-accent: var(--mkt-500);
+  --text: var(--white); --text-muted: var(--mkt-muted);
+  --accent: var(--acento);
+}
+[data-brand="print"] {
+  --bg: var(--white); --surface: var(--prt-50);
+  --brand: var(--prt-700); --brand-accent: var(--prt-500);
+  --text: var(--prt-text); --text-muted: var(--prt-muted);
+  --accent: var(--acento);
+}
+[data-brand="portal"] { --bg: var(--ink); --surface: #121D1C; --text: var(--white); --text-muted: #C8D8D6; --accent: var(--acento); }
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+/* a base cresce com a tela a partir de ~1430 px (16 px em 1440, 18 em 1920, 21 em 2560): tudo em rem acompanha */
+html { font-size: clamp(100%, .42vw + 10px, 137.5%); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--topo) + 16px); }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 1rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 4px; border-radius: 4px; }
+/* amarelo sobre branco não aparece (1,5:1): nas áreas claras da Print o foco fica azul */
+.claro :focus-visible { outline-color: var(--prt-700); }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.wrap { width: min(var(--container), 100% - 2 * var(--gutter)); margin-inline: auto; }
+
+/* ---------- tipografia ---------- */
+.display, .h1, .h2, .h3 { font-family: var(--titulo); }
+.display { font-weight: 800; font-size: clamp(2.75rem, 2rem + 4vw, 5.5rem); line-height: .95; letter-spacing: -.03em; }
+.h1 { font-weight: 700; font-size: clamp(2.25rem, 1.6rem + 3vw, 4rem); line-height: 1.02; letter-spacing: -.02em; }
+.h2 { font-weight: 700; font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem); line-height: 1.1; letter-spacing: -.01em; }
+.h3 { font-weight: 600; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); line-height: 1.25; }
+.lead { font-size: clamp(1.0625rem, 1rem + .3vw, 1.25rem); line-height: 1.6; color: var(--text-muted); }
+.eyebrow { font: 600 .75rem/1.4 var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--text-muted); }
+.small { font: 500 .875rem/1.5 var(--sans); }
+.amarelo { color: var(--acento); }
+
+/* placeholder: dado que o cliente ainda vai confirmar */
+.ph { background: #FFE45C; color: #3A2F00; padding: 0 .35em; border-radius: 4px; font: 500 .88em/1.5 var(--sans); letter-spacing: 0; text-transform: none; font-style: normal; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* ---------- botões ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: max(48px, 3rem); padding: 0 1.4rem; border-radius: var(--r-pill); border: 1.5px solid transparent; font: 600 1rem/1.2 var(--titulo); text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast); }
+.btn svg { width: 20px; height: 20px; flex: none; display: block; }
+.btn--lg { min-height: max(52px, 3.3rem); padding: 0 1.75rem; }
+.btn--cheio { width: 100%; }
+.btn--pri { background: var(--acento); color: var(--ink); }
+.btn--pri:hover { background: var(--acento-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255, 194, 32, .35); }
+.btn--pri:active { background: var(--acento-press); transform: none; box-shadow: none; }
+.btn--sec { border-color: rgba(255, 255, 255, .3); color: var(--white); }
+.btn--sec:hover { background: rgba(255, 255, 255, .08); }
+.claro .btn--sec { border-color: var(--prt-700); color: var(--prt-700); }
+.claro .btn--sec:hover { background: var(--prt-100); }
+.btn--tinta { background: var(--ink); color: var(--white); }
+.btn--tinta:hover { background: #1C2E2C; transform: translateY(-1px); }
+.btn--zap { background: #25D366; color: #0B2E17; }
+.btn--zap:hover { background: #3BE07A; transform: translateY(-1px); }
+
+/* PillCTA: pílula escura com o círculo amarelo da seta, como nas artes da Print */
+.pill-cta { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 18px 6px 6px; border-radius: var(--r-pill); background: rgba(39, 12, 5, .55); border: 1px solid rgba(255, 255, 255, .14); color: var(--white); font: 500 .95rem/1 var(--sans); text-decoration: none; cursor: pointer; transition: background-color var(--dur-fast); }
+.pill-cta:hover { background: rgba(39, 12, 5, .8); }
+.pill-cta__seta { width: 28px; height: 28px; border-radius: 50%; background: var(--acento); color: var(--ink); display: grid; place-items: center; flex: none; }
+.pill-cta__seta svg { width: 16px; height: 16px; }
+.pill-cta b { color: var(--acento); font-weight: 600; }
+
+.chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 14px; border-radius: var(--r-pill); border: 1px solid rgba(255, 255, 255, .2); font: 500 .875rem/1 var(--sans); white-space: nowrap; }
+.claro .chip { border-color: var(--prt-100); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ícones Lucide do sprite */
+.ico { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- marca: selo + nome ---------- */
+.marca { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+.marca__selo { width: max(44px, 2.75rem); height: max(44px, 2.75rem); border-radius: 50%; flex: none; }
+.marca__nome { font: 700 1.05rem/1 var(--titulo); letter-spacing: -.01em; display: flex; flex-direction: column; gap: 3px; }
+.marca__nome small { font: 300 .78rem/1 var(--titulo); letter-spacing: .02em; opacity: .8; }
+
+/* ---------- faixa de prévia e marca d'água da Theatrum ---------- */
+.previa { position: relative; z-index: 60; background: #000; color: #CAD6D4; font: 400 13px/1.4 var(--sans); text-align: center; padding: 7px 16px; }
+.previa a { color: var(--acento); }
+.previa .ph { font-size: 12px; }
+.theatrum { position: fixed; left: 16px; bottom: 22px; z-index: 70; display: flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(11, 10, 8, .9); border: 1px solid rgba(227, 179, 65, .35); color: #E3B341; text-decoration: none; box-shadow: 0 10px 26px -10px rgba(0, 0, 0, .55); transition: transform .2s, border-color .2s; }
+.theatrum:hover { transform: translateY(-2px); border-color: #E3B341; }
+.theatrum img { width: 34px; height: 34px; border-radius: 50%; }
+.theatrum span { display: flex; flex-direction: column; font: 500 14px/1.15 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.theatrum small { font-size: 11px; font-weight: 400; letter-spacing: .04em; text-transform: none; color: #A39B8D; }
+@media (max-width: 1100px) { .theatrum { padding: 4px; bottom: 16px; } .theatrum span { display: none; } }
+
+/* ---------- entrada de seção: GSAP + SplitText, no comum.js ---------- */
+/* .anima vem do <head> da Marketing e da Print e só esconde até o GSAP assumir; sem ele, tudo aparece.
+   Opacidade e não visibility: escondido assim, continua no Tab e no leitor de tela */
+.anima :is(.rev, .faixa-cta__txt, [data-count]) { opacity: 0; }
+/* máscara de cada linha do título: folga embaixo para o g e o ç. Só embaixo: margem negativa em cima e
+   embaixo se junta entre linhas vizinhas e o título cresce alguns px enquanto está quebrado */
+.linha-mask { padding-bottom: .16em; margin-bottom: -.16em; }
+/* botão magnético: o GSAP mexe nestas variáveis; translate soma com o transform do hover */
+.magnetico { translate: var(--mx, 0px) var(--my, 0px); }
+/* seção que recebe o foco depois de um link do menu pelo teclado */
+section[tabindex="-1"]:focus { outline: 0; }
+
+/* ---------- transição entre páginas (seção 5.5 e 9) ---------- */
+@view-transition { navigation: auto; }
+::view-transition-group(brand-stage), ::view-transition-group(brand-logo) { animation-duration: var(--dur-slow); animation-timing-function: var(--ease-brand); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 260ms; }
+/* troca de lado pela chave do topo: a Print entra pela direita, a Marketing pela esquerda */
+html:active-view-transition-type(to-print)::view-transition-old(root) { animation: ag-sai-esq var(--dur-slow) var(--ease-brand) both; }
+html:active-view-transition-type(to-print)::view-transition-new(root) { animation: ag-entra-dir var(--dur-slow) var(--ease-brand) both; }
+html:active-view-transition-type(to-marketing)::view-transition-old(root) { animation: ag-sai-dir var(--dur-slow) var(--ease-brand) both; }
+html:active-view-transition-type(to-marketing)::view-transition-new(root) { animation: ag-entra-esq var(--dur-slow) var(--ease-brand) both; }
+@keyframes ag-sai-esq { to { transform: translateX(-30%); opacity: 0; } }
+@keyframes ag-sai-dir { to { transform: translateX(30%); opacity: 0; } }
+@keyframes ag-entra-dir { from { transform: translateX(100%); } }
+@keyframes ag-entra-esq { from { transform: translateX(-100%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
+}
+.still *, .still *::before, .still *::after { animation: none !important; transition: none !important; }

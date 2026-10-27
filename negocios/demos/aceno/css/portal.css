@@ -1,0 +1,149 @@
+/* Portal dividido (seção 5). Marketing mora à esquerda, Print à direita.
+   Uma variável só (--split) move a divisória, o selo, o convite do topo e a pílula de baixo:
+   assim os quatro andam juntos, sem descompasso no meio da animação. */
+@property --split { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+
+html, body { height: 100%; }
+.portal-corpo { display: flex; flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; background: var(--ink); }
+
+.portal { --split: 50%; position: relative; flex: 1; min-height: 0; display: flex; overflow: hidden; transition: --split var(--dur-slow) var(--ease-brand) 120ms; }
+.portal:has(.side--mkt:is(:hover, :focus-visible)) { --split: 61.98%; transition-delay: 0s; }
+.portal:has(.side--prt:is(:hover, :focus-visible)) { --split: 38.02%; transition-delay: 0s; }
+#portal[data-entering="mkt"] { --split: 100%; transition-delay: 0s; }
+#portal[data-entering="prt"] { --split: 0%; transition-delay: 0s; }
+/* linha divisória */
+.portal::before { content: ""; position: absolute; z-index: 4; top: 0; bottom: 0; left: var(--split); width: 1px; background: rgba(255, 255, 255, .2); pointer-events: none; }
+
+/* ---------- cada metade ---------- */
+.side { position: relative; isolation: isolate; display: flex; min-width: 0; min-height: 0; overflow: hidden; color: var(--white); text-decoration: none; outline-offset: -6px; }
+.side--mkt { flex: 0 0 var(--split); }
+.side--prt { flex: 1 1 0; }
+.side:focus-visible { outline: 3px solid var(--acento); }
+
+.side__fundo { position: absolute; inset: 0; z-index: -2; display: block; overflow: hidden; }
+.side--mkt .side__fundo { background: var(--mkt-gradient); }
+.side--prt .side__fundo { background: var(--prt-dots), linear-gradient(160deg, #A0351B 0%, #8F2E15 48%, #76240F 100%); }
+/* letras "aceno" gigantes, deitadas e cortadas pela borda esquerda */
+.side__letras { position: absolute; left: -69vh; top: 50%; width: 150vh; max-width: none; height: auto; fill: #fff; opacity: .06; transform: translateY(-50%) rotate(90deg); animation: ag-deriva 60s ease-in-out infinite alternate; }
+@keyframes ag-deriva { from { translate: 0 -8vh; } to { translate: 0 8vh; } }
+/* anel amarelo cortado pela borda direita, como nas artes; aberto, para o giro aparecer.
+   Fica só na faixa à direita do texto: amarelo atrás do título amarelo some com ele */
+.side__anel { position: absolute; right: -55vh; top: 50%; width: 83vh; height: 83vh; margin-top: -41.5vh; fill: none; stroke: var(--acento); stroke-width: 15; stroke-dasharray: 380 123; stroke-linecap: butt; animation: ag-gira 90s linear infinite; }
+@keyframes ag-gira { to { rotate: 360deg; } }
+
+/* camada de mídia: só aparece no lado em foco, só no computador */
+.side__midia { position: absolute; inset: 0; z-index: -1; display: block; opacity: 0; transition: opacity var(--dur-slow) var(--ease-out); pointer-events: none; }
+.side--mkt .side__midia img { position: absolute; right: 0; top: 0; height: 100%; width: 70%; object-fit: cover; opacity: .38; mix-blend-mode: luminosity; -webkit-mask-image: linear-gradient(to left, #000 35%, transparent 95%); mask-image: linear-gradient(to left, #000 35%, transparent 95%); }
+.voa { position: absolute; filter: drop-shadow(0 18px 24px rgba(39, 12, 5, .45)); translate: calc(var(--mx, 0) * 12px * var(--p)) calc(var(--my, 0) * 12px * var(--p)); transition: translate 400ms var(--ease-out); }
+.voa--cartao { width: clamp(150px, 15vw, 230px); right: 9%; top: 18%; rotate: -12deg; }
+.voa--adesivo { width: clamp(80px, 8vw, 120px); right: 24%; top: 60%; rotate: 8deg; }
+.voa--acrilico { width: clamp(110px, 11vw, 165px); right: 6%; bottom: 14%; rotate: 6deg; }
+
+/* sombra que escurece o lado que recua */
+.side::after { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(0, 0, 0, .25); opacity: 0; transition: opacity var(--dur-slow) var(--ease-brand); pointer-events: none; }
+
+.side__in { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; padding: 32px clamp(32px, 5vw, 80px); }
+.side__logo { flex: none; }
+.side--prt .side__logo { align-self: flex-end; text-align: right; }
+.side--prt .side__logo .marca__nome { align-items: flex-end; }
+/* largura fixa (em vw): o texto não refaz as linhas enquanto a metade cresce */
+.side__txt { display: flex; flex-direction: column; align-items: flex-start; width: min(46rem, 31vw); margin-block: auto; padding-top: 8vh; }
+.side__eyebrow { color: rgba(255, 255, 255, .72); display: block; margin-bottom: 18px; transition: opacity var(--dur-base); }
+.side__titulo { font: 800 clamp(2rem, 1.2rem + 3vw, 4.5rem)/.98 var(--titulo); letter-spacing: -.03em; transition: opacity var(--dur-base); text-wrap: balance; }
+.side--prt .side__titulo { color: var(--acento); }
+.side__sub { display: block; margin-top: 20px; font-size: clamp(1rem, .95rem + .25vw, 1.15rem); line-height: 1.6; color: rgba(255, 255, 255, .82); transition: opacity var(--dur-base); }
+.side--mkt .side__sub { color: var(--mkt-muted); }
+
+/* chips em repouso; no foco viram a lista completa, no mesmo lugar (sem empurrar nada) */
+.side__troca { position: relative; display: block; width: 100%; min-height: 92px; margin-top: 26px; transition: opacity var(--dur-base); }
+.side__troca .chips { transition: opacity var(--dur-base); }
+.side__lista { position: absolute; inset: 0 0 auto 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; font: 500 .95rem/1.35 var(--sans); }
+.side__lista span { position: relative; padding-left: 16px; opacity: 0; translate: 0 6px; transition: opacity var(--dur-base) var(--ease-out), translate var(--dur-base) var(--ease-out); }
+.side__lista span::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--acento); }
+
+.side__cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 12px 0; font: 600 1.05rem/1 var(--titulo); border-bottom: 2px solid var(--acento); transition: opacity var(--dur-base), gap var(--dur-base); }
+.side__cta .ico { width: 20px; height: 20px; }
+.side__cta-curto { display: none; }
+.side:hover .side__cta { gap: 16px; }
+
+/* ---------- estados (tabela 5.4) ---------- */
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .side--mkt .side__midia,
+.portal:has(.side--prt:is(:hover, :focus-visible)) .side--prt .side__midia { opacity: 1; }
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .side--mkt .chips,
+.portal:has(.side--prt:is(:hover, :focus-visible)) .side--prt .chips { opacity: 0; }
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .side--mkt .side__lista span,
+.portal:has(.side--prt:is(:hover, :focus-visible)) .side--prt .side__lista span { opacity: 1; translate: 0 0; transition-delay: calc(var(--i) * 40ms + 120ms); }
+/* o outro lado recua */
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .side--prt :is(.side__sub, .side__troca, .side__cta),
+.portal:has(.side--prt:is(:hover, :focus-visible)) .side--mkt :is(.side__sub, .side__troca, .side__cta) { opacity: 0; }
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .side--prt :is(.side__eyebrow, .side__titulo),
+.portal:has(.side--prt:is(:hover, :focus-visible)) .side--mkt :is(.side__eyebrow, .side__titulo) { opacity: .55; }
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .side--prt::after,
+.portal:has(.side--prt:is(:hover, :focus-visible)) .side--mkt::after { opacity: 1; }
+
+/* ---------- selo central: o rabinho do balão aponta para o lado em foco ---------- */
+.hinge { position: absolute; z-index: 6; left: var(--split); top: 50%; width: 96px; height: 96px; translate: -50% -50%; pointer-events: none; transition: scale var(--dur-slow) var(--ease-brand), opacity var(--dur-base); }
+.hinge svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 10px 26px rgba(0, 0, 0, .45)); }
+.hinge__bolha { fill: var(--acento); transform-box: view-box; transform-origin: 50% 50%; transition: rotate var(--dur-base) var(--ease-brand); }
+.portal:has(.side--mkt:is(:hover, :focus-visible)) .hinge__bolha { rotate: 90deg; }
+.portal:has(.side--prt:is(:hover, :focus-visible)) .hinge__bolha { rotate: -90deg; }
+#portal[data-entering="mkt"] .hinge__bolha { rotate: 90deg; }
+#portal[data-entering="prt"] .hinge__bolha { rotate: -90deg; }
+
+/* convite do topo e pílula de baixo, sempre sobre a divisória */
+.portal__prompt { position: absolute; z-index: 5; top: 30px; left: var(--split); translate: -50% 0; margin: 0; padding: 6px 14px; border-radius: var(--r-pill); background: rgba(10, 20, 19, .88); font: 500 .9rem/1.2 var(--sans); color: rgba(255, 255, 255, .8); white-space: nowrap; pointer-events: none; transition: opacity var(--dur-base); }
+.portal__both { position: absolute; z-index: 5; bottom: max(28px, env(safe-area-inset-bottom)); left: var(--split); translate: -50% 0; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 6px 6px 6px 20px; border-radius: var(--r-pill); background: rgba(10, 20, 19, .6); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, .2); color: var(--white); font: 500 .95rem/1.2 var(--sans); text-decoration: none; white-space: nowrap; transition: background-color var(--dur-fast), color var(--dur-fast), opacity var(--dur-base); }
+.portal__both b { font-weight: 600; }
+.portal__both-seta { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--acento); color: var(--ink); transition: background-color var(--dur-fast); }
+.portal__both-seta .ico { width: 18px; height: 18px; }
+.portal__both:hover { background: var(--acento); color: var(--ink); }
+.portal__both:hover .portal__both-seta { background: var(--ink); color: var(--acento); }
+.portal__both-curto { display: none; }
+
+/* ---------- clique: o lado escolhido toma a tela ---------- */
+#portal[data-entering="mkt"] .hinge, #portal[data-entering="prt"] .hinge { scale: 0; }
+#portal[data-entering="mkt"] :is(.portal__prompt, .portal__both),
+#portal[data-entering="prt"] :is(.portal__prompt, .portal__both) { opacity: 0; }
+#portal[data-entering="mkt"] .side--prt .side__in { translate: 40% 0; opacity: 0; transition: translate var(--dur-slow) var(--ease-brand), opacity var(--dur-base); }
+#portal[data-entering="prt"] .side--mkt .side__in { translate: -40% 0; opacity: 0; transition: translate var(--dur-slow) var(--ease-brand), opacity var(--dur-base); }
+/* o fundo e o logo do lado escolhido continuam no topo da página seguinte */
+#portal[data-entering="mkt"] .side--mkt .side__fundo, #portal[data-entering="prt"] .side--prt .side__fundo { view-transition-name: brand-stage; }
+#portal[data-entering="mkt"] .side--mkt .marca__selo, #portal[data-entering="prt"] .side--prt .marca__selo { view-transition-name: brand-logo; }
+
+/* ---------- celular: empilhado ---------- */
+@media (max-width: 767px) {
+  .portal { flex-direction: column; }
+  .portal::before { top: var(--split); bottom: auto; left: 0; right: 0; width: auto; height: 1px; }
+  .side--mkt { flex: 0 0 var(--split); }
+  .side__in { padding: 20px 20px 22px; }
+  .side--prt .side__in { padding-bottom: 84px; }
+  .side__txt { width: 100%; padding-top: 0; margin-block: auto 0; }
+  .side--mkt .side__txt { margin-bottom: 26px; }
+  .side__eyebrow { margin-bottom: 10px; font-size: .7rem; }
+  .side__titulo { font-size: clamp(1.9rem, 8.4vw, 2.6rem); }
+  .side__sub, .side__lista { display: none; }
+  .side__troca { min-height: 0; margin-top: 16px; }
+  .side__cta { margin-top: 12px; padding: 8px 0; }
+  .side__cta-longo { display: none; }
+  .side__cta-curto { display: inline; }
+  .side__midia { display: none; }
+  .side__letras { width: 150vw; left: -70vw; }
+  .side__anel { width: 260px; height: 260px; margin: 0; top: auto; right: -180px; bottom: -110px; }
+  .marca__selo { width: 40px; height: 40px; }
+  .hinge { left: 50%; top: var(--split); width: 64px; height: 64px; }
+  /* em pé, o rabinho descansa de lado e aponta para cima ou para baixo no toque */
+  .hinge__bolha { rotate: -90deg; }
+  #portal[data-entering="mkt"] .hinge__bolha { rotate: 180deg; }
+  #portal[data-entering="prt"] .hinge__bolha { rotate: 0deg; }
+  .portal__prompt { display: none; }
+  .portal__both { left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); padding-left: 16px; }
+  .portal__both-longo { display: none; }
+  .portal__both-curto { display: inline; }
+  #portal[data-entering="mkt"] .side--prt .side__in { translate: 0 40%; }
+  #portal[data-entering="prt"] .side--mkt .side__in { translate: 0 -40%; }
+}
+/* celular deitado: sem chips */
+@media (max-height: 560px) { .side__troca { display: none; } .side__txt { padding-top: 0; } .portal__prompt { top: 14px; } }
+@media (max-height: 560px) and (min-width: 768px) { .side__sub { display: none; } }
+
+@media (prefers-reduced-motion: reduce) { .side__letras, .side__anel { animation: none; } }

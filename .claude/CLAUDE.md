@@ -86,9 +86,15 @@ A home travava ao abrir e engasgava ao rolar. Depois do conserto ela abria com
 DOM interativo em 2,1 s em 4G lento com CPU 4x. Medição de 10/10/2026 (servidor
 local com gzip, terceiros de medição bloqueados, mediana de 3): DOM interativo
 0,8 s, LCP 1,4 s, mas **~200 KB transferidos ao abrir** (o "10 KB" de antes não
-se confirmou) e **2 tarefas longas (~290 ms) ao rolar**, que já existiam antes
-da vitrine. As duas passam do teto e estão por investigar. Qualquer
-mudança daqui para frente respeita isto:
+se confirmou) e **2 tarefas longas (~290 ms) ao rolar**. Medição de 26/10/2026,
+depois da repaginada (celular 412 px, CPU 4x, terceiros bloqueados, texto
+medido comprimido, antes e depois na mesma régua): o HTML caiu de 88 para
+49 KB comprimido e a página de 21.000 para 13.500 px de altura; DOM
+interativo 0,9 s; ao rolar, de 0 a 2 tarefas longas de 64 a 71 ms (antes,
+1 de 103 a 129 ms) e 1,5% de quadros lentos. Ao abrir ainda vão ~340 KB, e
+o grosso são as fontes do Google (126 KB, quatro famílias) e as imagens da
+estátua e das primeiras telas da vitrine (~130 KB): continua acima do teto.
+Qualquer mudança daqui para frente respeita isto:
 
 | | teto |
 |---|---|
@@ -108,7 +114,7 @@ que não pode ser removida.
 ### A página é trilíngue — leia antes de escrever qualquer copy
 
 Português, inglês e, desde 18/10/2026, espanhol (para México e Espanha:
-"tú", espanhol neutro, preço continua em real). Há ~310 elementos com
+"tú", espanhol neutro, preço continua em real). Há ~200 elementos com
 `data-en` e `data-es` lado a lado, e o seletor de idioma (três bandeiras:
 Brasil, EUA e Espanha, SVG em `<symbol>` no topo do `<body>`, no topo e no
 menu do celular) troca o idioma **reescrevendo o `innerHTML`** de cada um.
@@ -151,9 +157,10 @@ atrapalhava a leitura. Com o Plus Jakarta, letter-spacing de título fica entre
 -.005em e -.012em; mais que isso as letras encostam.
 
 Leitura antes de estilo: corpo e lead em 16 a 18 px, menu em Inter 14,5 px sem
-caixa-alta espaçada. O menu da home tem oito links (o último é Blog) e vira
-hambúrguer abaixo de 1340 px: com menos que isso o CTA sai da tela. Link novo
-no menu, meça de novo.
+caixa-alta espaçada. O menu da home tem sete links (Trabalhos, Serviços,
+Como funciona, Calculadora, Investimento, FAQ, Blog) e vira hambúrguer em
+1320 px ou menos: abaixo de ~1290 px o CTA vai para a margem (medido em
+português e espanhol em 26/10/2026). Link novo no menu, meça de novo.
 
 Rótulos de seção: minúsculo de verdade (sem `text-transform`), mono, no formato
 `[nn] nome da seção`.
@@ -180,137 +187,64 @@ pede contato oferece um degrau mais baixo ao lado.
 
 ### Ordem das seções
 
-A estrutura segue a de theds.com.br (hero com card de entrada à direita,
-letreiro, serviços numerados, cases, como funciona, FAQ, "vamos conversar",
-rodapé em colunas), adaptada à escada de compromisso.
+Repaginada em 26/10/2026 no molde da Agrega Marketing
+(`/agrega/marketing/`), a pedido: menos seções, só as que convertem.
+Cabeçalho de seção com título à esquerda e lead à direita, serviços
+numerados, trilha que se desenha na rolagem, FAQ em caixas e CTA final em
+faixa dourada. Sem biblioteca de animação (a regra da home continua):
+IntersectionObserver, CSS e um ouvinte de rolagem só na trilha. Fundo
+alternando `--bg` e `--bg-2` (classe `.alt`); as seções claras (`.light`)
+saíram.
 
 ```
-[01] hero (+ letreiro)                 [02] trabalhos
-[03] não é só um site                  [04] para quem fazemos
-[05] o que fazemos                     [06] dores e soluções
-[07] demonstração                      [08] a calculadora
-[09] investimento                      [10] quem faz
-[11] como funciona                     [12] FAQ
-[13] CTA final ("vamos conversar")
+[01] hero (+ letreiro dourado)         [02] trabalhos
+[03] o que fazemos                     [04] como funciona
+[05] a calculadora                     [06] investimento
+[07] quem faz                          [08] FAQ
+[09] CTA final ("vamos conversar")
 ```
 
-Reordenada em 13/10/2026, depois de uma revisão do site lido como cliente:
-a prova (trabalhos) vem logo depois do hero, e o preço só depois da
-demonstração e da calculadora, em seção própria. A ordem segue ver que
-funciona, ver que é para você, entender o que recebe, ver o próprio número,
-ver o preço, conhecer quem faz. A seção `[09] entregas` está escondida e o
-rótulo dela repete o `[09]`: quando ela voltar, renumere.
+A ordem segue ver que funciona, entender o que recebe, saber que vê antes
+de pagar, ver o próprio número, ver o preço, conhecer quem faz. Saíram em
+26/10/2026, por repetirem outra seção ou alongarem sem converter: "não é só
+um site" (os quatro pontos viraram o texto do card 01 do `[03]`), "para quem
+fazemos" (os segmentos estão nos selos do `[02]`), "dores e soluções" (as
+abas de Google, tráfego e atendimento), a demonstração interativa (`#sistema`,
+o caminho de um cliente em cinco etapas; a vitrine já é a demonstração
+rodando), a seção `entregas` que estava escondida, o letreiro de marcas
+(`#marcas`) embaixo da vitrine, o bloco "é para você se / não é para você se" do investimento, o
+card de entrada do hero, o card do raio-x de 70% e o botão flutuante de
+WhatsApp do celular (ficava escondido atrás da barra do celular). Tudo isso
+está no git antes do commit da repaginada. Os logos de `assets/img/marcas/`
+continuam no repositório.
 
 Palavra "sistema" ficou só onde é sistema mesmo (aplicativos e sistemas web,
-o plano Sob medida). Para falar da oferta, é site, Google e anúncio: o CTA
-final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
+o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
 
 - **Hero:** título à esquerda com a palavra de destaque em serif itálico
-  dourado, botões "Fazer diagnóstico gratuito" (WhatsApp) e "Ver projetos"
-  (`#trabalhos`, logo abaixo) e três selos (prévia antes de pagar, no ar em 7 a
-  10 dias úteis, tudo no seu nome: o que o site faz fica para o `[03]`); à direita um card (topo dourado, base escura)
-  com três degraus: calculadora, planos e preços, e WhatsApp. Atrás do card,
-  colada na direita e na altura da tela, a estátua de gravura de óculos
-  dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e 119 KB): vem sobre
-  preto e entra com `mix-blend-mode:screen`, então o preto some e o fundo do
-  hero continua o mesmo. No computador o card desce (`align-self:end`) para
-  o rosto ficar à vista; abaixo de 980 px ela fica a 22% atrás do texto,
-  espelhada (olhando para o texto), com 62svh de altura e colada na direita.
-  Por baixo de tudo, um vidro líquido sutil: fundo, grade e estátua ficam em
-  `.hero-fundo`, que passa pelo filtro SVG `#hx-vidro` (ondulação larga,
-  `scale` 16, `color-interpolation-filters="sRGB"`, senão o fundo escuro
-  escurece e aparece um arco avermelhado); `.hero-vidro` só põe o brilho do
-  topo. Estático de propósito: nada dentro de `.hero-fundo` pode animar,
-  porque cada quadro refaria o filtro na tela inteira. `backdrop-filter`
-  foi testado e deixava defeito de cor. Desde 13/10/2026, relâmpagos no
-  fundo, em `.hero-raio`, camada própria fora do `.hero-fundo`, atrás do
-  texto: uma descarga a cada 4 a 10 s, com o raio desenhado em SVG na hora
-  (sem imagem) e um clarão em degradê, só a opacidade anima. No computador
-  cai atrás da estátua (64 a 94% da largura), longe do título; no celular
-  vai a 40% da intensidade porque passa atrás do texto. No máximo dois
-  piscos por descarga (abaixo de 3 por segundo, por fotossensibilidade).
-  Só roda com o hero à vista e a aba aberta; desligado com
-  `prefers-reduced-motion` e `?still=1`.
-- **`[03]` não é só um site (`#nao-e-so-um-site`):** quatro cards claros
-  (rápido no celular, pronto para anúncio, texto que vende, cada contato
-  avisado); "tudo no seu nome" saiu em 13/10/2026 porque já está no hero e no
-  FAQ. O lead é o "no longo prazo" da antiga aba Site do `[06]` (o site é o
-  único canal inteiramente seu). Sem CTA próprio. Sem jargão de ferramenta: o
-  card de anúncio diz "você sabe qual anúncio, busca ou post trouxe cada
-  contato", não GTM, GA4 e Pixel.
-- **`[04]` para quem fazemos (`#para-quem`):** um card por nicho (advogados,
-  clínicas, engenharia e arquitetura, consultorias, imobiliárias) mais o de
-  reformulação. Cada card abre o WhatsApp com o nicho na mensagem e, onde há
-  demo, tem "ver exemplo". Quando as páginas de nicho existirem, o card leva
-  para elas.
-- **`[05]` o que fazemos (`#servicos`):** título "O que a gente constrói, e o
-  que leva cliente até lá" (não mais "tudo o que o seu negócio precisa").
-  Três grupos em ordem de peso.
-  "Para construir": três cards grandes e escuros (sites e landing pages, lojas
-  virtuais, aplicativos e sistemas web). "Para trazer cliente": quatro cards
-  brancos (Google Meu Negócio, tráfego pago, IA no WhatsApp, reativação); os
-  dois primeiros têm "ver por quê" com `data-aba`, que abre a aba certa no
-  `[06]`, logo abaixo. Por último, uma faixa tracejada e discreta de social media, marcada
-  "complemento".
-- **`[06]` dores e soluções (`#problema`):** abas por canal que traz cliente
-  (Google Meu Negócio, tráfego pago, atendimento). A aba Site saiu em
-  13/10/2026: repetia o `[03]` ponto por ponto. Cada painel põe "mal configurado:
-  o prejuízo" ao lado de "bem configurado: o benefício" e fecha com "no longo
-  prazo". Os botões das abas têm `data-en`, mas o estado mora no próprio botão;
-  sem JS (e em `?still=1`) os três painéis aparecem empilhados. O id
-  `#solucao` continua dentro dela.
-- **`[09]` investimento (`#investimento`):** seção própria desde 13/10/2026,
-  com fundo `--bg-2` para não emendar com a calculadora (os estilos `.inv` e
-  `.pl-*` continuam no bloco do `[06]`). Desde 16/10/2026, condição de
-  lançamento para os 10 primeiros clientes. **Todo preço da home sai do
-  `data/precos.json`** (núcleo `window.TheatrumPrecos`, script "PREÇOS: um
-  lugar só" antes do `[07]`; o `PADRAO` de lá é o mesmo JSON com zero vagas,
-  para o primeiro desenho e para falha no fetch; o JSON só baixa quando o
-  `[07]` ou o `[09]` chegam perto). O Matheus só mexe em `vagasPreenchidas`
-  (passo a passo em `docs/como-atualizar-vagas.md`): de 0 a 2 vale o preço de
-  lançamento (Essencial R$ 990, Completo R$ 1.500 no Pix, 50% no início e 50% na
-  entrega, ou R$ 1.800 em 3x de R$ 600 no cartão, desde 20/10/2026; Sob medida a
-  partir de R$ 2.500, manutenção R$ 97/mês), de 3 a 9 o intermediário
-  (R$ 1.200, R$ 1.800, R$ 2.500, R$ 97), e em 10 voltam os cheios sem risco (R$ 1.500, R$ 2.500, a partir de
-  R$ 4.900, R$ 197). O intermediário do Sob medida (R$ 2.500) não foi
-  definido pelo Matheus: é o mesmo do lançamento até ele decidir. Cheio em
-  `<del>`, novo em `<strong>`, com texto só para leitor de tela. No celular
-  o Completo vem primeiro. Embaixo dos cards, só a faixa da manutenção
-  (fidelidade de 12 meses). A faixa com o contador de vagas e a escada de
-  preço, o "Por que esse preço?", a letra miúda (prazo, rodadas, fora do
-  escopo) e a linha da gestão de tráfego saíram em 16/10/2026, a pedido;
-  a gestão de tráfego segue no `[07]`. Tudo que tem número é
-  desenhado pelo script do fim da seção (objeto `TX`, sem `data-en`); o HTML
-  é o estado com zero vagas. O selo do Completo é "recomendado", não "mais
-  escolhido": com zero cliente seria prova social inventada (o pedido de
-  16/10/2026 dizia "Mais escolhido"; ficou "recomendado"). Cada card abre o
-  WhatsApp citando plano e preço e dispara `plano_click`.
-  Desde 20/10/2026 o preço da faixa é o do Pix (50% no início, 50% na
-  entrega) e cada plano tem também o total no cartão em 3x, Pix + 20%
-  arredondado (`precoCartaoLancamento`, `...Intermediario`, `...Cheio`):
-  Essencial 1.200 / 1.440 / 1.800, Completo 1.800 / 2.160 / 3.000, Sob
-  medida 3.000 / 3.000 / 5.880. O card mostra o selo "economize R$ X no
-  Pix" (diferença entre os dois). A manutenção mensal fica fora disso.
-  Mudou valor de plano (não só as vagas)? Mude também o `PADRAO` e o HTML
-  estático do `[09]`, que é o que aparece sem JS ou se o fetch falhar.
-  Desde 18/10/2026 a moeda segue o idioma: real em português, dólar em
-  inglês, euro em espanhol, **com os mesmos números** (R$ 990, US$ 990,
-  990 €). Sem câmbio, a pedido: só o `fmt()` do núcleo troca o símbolo e o
-  formato. Os R$ 697 da gestão de tráfego seguem a mesma regra
-  (`data-pr-px="trafego"`), e a calculadora mostra a moeda do idioma.
-  A mensagem de WhatsApp dos planos continua em português e em reais.
-- **`[10]` quem faz (`#quem-faz`):** foto e texto do Matheus e, desde
-  18/10/2026, o bloco "Um time de agentes de IA. Uma pessoa orquestrando."
-  (`#qfTime`): o Matheus no topo ("orquestra e aprova") ligado por um trilho
-  a cinco agentes de `.claude/agents/` com nome de cliente (sites e
-  sistemas = `previa-de-cliente`, demonstrações, Google e tráfego, marketing
-  e criativos = `criativos`, revisão = `revisor`). O de proposta comercial
-  saiu em 18/10/2026, a pedido: não mostrar. Não há agente de marketing
-  próprio; não invente card de agente que não existe. Agente novo ou
-  removido lá, mude aqui. Um ponto dourado corre no trilho só com o bloco à vista,
-  nunca com menos movimento ou `?still=1`.
-- **`[02]` trabalhos:** logo depois do hero desde 13/10/2026 (antes era o
-  `[08]`). Desde 13/10/2026, os vinte e seis sites em quatro
+  dourado, botões "Fazer diagnóstico gratuito" (WhatsApp, degrau 4) e "Ver
+  quanto eu perco por mês" (calculadora, degrau 2) e quatro números com
+  origem, cada um com barra dourada: 26 sites no ar para abrir e testar
+  (contador que sobe de 0; são os da vitrine, logo abaixo), 7 a 10 dias
+  úteis, R$ 0 antes de ver a prévia (US$ 0 e 0 € nos outros idiomas) e 100%
+  no seu nome. À direita, colada na borda e na altura da tela, a estátua de
+  gravura de óculos dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e
+  119 KB): vem sobre preto e entra com `mix-blend-mode:screen`; abaixo de
+  980 px fica a 20% atrás do texto, espelhada, com 62svh de altura. Na frente
+  dela, só no computador, um terminal de enfeite ("$ deploy seu-negocio /
+  site no ar / pronto para anúncio / contato avisado no whatsapp"). O vidro
+  líquido (filtro SVG `#hx-vidro`) saiu na repaginada. Relâmpagos no fundo,
+  em `.hero-raio` (precisa ser filho direto do `header.hero`): uma descarga a
+  cada 4 a 10 s, raio desenhado em SVG na hora e clarão em degradê, só a
+  opacidade anima; no computador cai atrás da estátua, no celular vai a 40%
+  porque passa atrás do texto. No máximo dois piscos por descarga
+  (fotossensibilidade). Só com o hero à vista e a aba aberta; desligado com
+  `prefers-reduced-motion` e `?still=1`. No pé do hero, o letreiro dourado
+  (`#letreiro`) com os serviços, parado fora da tela. **No computador o hero
+  inteiro, letreiro incluído, cabe na primeira tela** (medido em 1920x1080,
+  1536x864, 1440x900, 1366x768 e 1280x720): espaços e título vão em `vh`, e
+  abaixo de 800 px de altura uma regra aperta botões, números e letreiro.
+- **`[02]` trabalhos:** logo depois do hero. Os vinte e seis sites em quatro
   blocos (2x2 no computador, empilhados no celular), como espaço de anúncio:
   cada bloco passa um site por vez (troca em degradê, cada bloco defasado
   1,3 s do anterior) com "site para {tipo}", nome e selo "demonstração" ou
@@ -326,42 +260,101 @@ final e o FAQ ainda vendiam "o seu sistema", da oferta antiga.
   continua no ar). Imagens em `assets/img/vitrine/home/` a 480 e
   800 px por srcset (redução do `*-desktop.webp`, WebP q72); cada bloco só
   baixa a atual e a próxima quando ele mesmo chega perto da tela, e só troca
-  à vista. Nada baixa ao abrir a página. Para no mouse; setas nas laterais
-  da tela e bolinhas grandes (a atual vira pílula dourada) trocam na mão;
-  sem rotação com `prefers-reduced-motion` e `?still=1`. Acima dos blocos,
-  os tipos de negócio desses sites numa linha só de selos amarelos,
-  centralizada (no celular ela rola de lado dentro dela mesma), sem botão
-  (o `/portfolio/` está desativado). Embaixo dos blocos, desde 12/10/2026,
-  um letreiro com os logos das 25 demos (`#marcas`, título centralizado
-  "as marcas desses sites"; o selo "inventadas para demonstração" saiu em
-  13/10/2026 a pedido, mas nunca chame de "parceiras": são marcas
-  fictícias, e o lead da seção já diz "marcas inventadas"). Cada logo foi recortado do cabeçalho da própria demo
-  e passado para um tom creme, em `assets/img/marcas/`: exibido entre 20
-  e 40 px de altura (mais baixo quanto mais largo) e salvo a 2x disso
-  (cerca de 80 KB no total, só baixa quando a seção chega perto). Para fora da
-  tela, no mouse e no foco do teclado; sem movimento e em `?still=1`
-  vira grade parada. Logo de demo mudou, refaça o recorte dela. Links das telas levam
-  `?de=home`.
-- **`[07]` demonstração (`#sistema`):** desde 11/10/2026, um sistema só que
-  apresenta a proposta inteira, no lugar das 11 demos soltas de antes (que
-  ainda tinham "faturamento crescendo" e "painel de metas", da oferta
-  antiga). O visitante escolhe o nicho (os cinco do `[04]`) e acompanha um
-  cliente fictício em cinco etapas: te encontram (Google e mapa), chegam no
-  site, chamam no WhatsApp, não esfriam (retomada e reativação) e você
-  acompanha (painel, tudo no seu nome). Ao lado de cada tela, "o que a
-  Theatrum entrega aqui" com o preço daquela parte; **mudou preço no `[09]`,
-  vem do `data/precos.json` pelo `precosPX()`.** Embaixo, a proposta em três linhas (Completo,
-  manutenção, R$ 697/mês + verba; as duas primeiras desenhadas pelo mesmo núcleo), o CTA de WhatsApp e o degrau mais baixo
-  (calculadora). Textos nos objetos `PX_N` e `PX_T`, redesenho na troca de
-  idioma. A troca de etapa é a própria barra de progresso (animação CSS):
-  pausa fora da tela e com aba escondida, e nada mais a para: desde
-  13/10/2026 o mouse em cima não pausa e o clique numa etapa só pula para
-  ela, e a passagem segue sozinha dali. Selo "exemplo" no topo: os nomes e conversas são
-  ilustração, não prova social.
-- Destaque em título (`.lm`) é serif itálico dourado (`#8A6412` nas seções
-  claras), não mais marca-texto.
-- O modo QA `?still=1` desliga animações e o `content-visibility`, para print
-  da página inteira no Chrome headless.
+  à vista. Para no mouse; setas nas laterais da tela e bolinhas grandes (a
+  atual vira pílula dourada) trocam na mão; sem rotação com
+  `prefers-reduced-motion` e `?still=1`. Acima dos blocos, os tipos de
+  negócio desses sites numa linha só de selos amarelos, centralizada (no
+  celular ela rola de lado dentro dela mesma). Nunca chame as marcas das
+  demos de "parceiras": são fictícias, e o lead da seção diz "marcas
+  inventadas". Links das telas levam `?de=home`.
+- **`[03]` o que fazemos (`#servicos`):** título "O que a gente constrói, e o
+  que leva cliente até lá". Seis cards numerados (número em Instrument
+  Serif dourado), em ordem de peso: 01 sites e landing pages (rápido no
+  celular, texto escrito por nós, pronto para anúncio, aviso de cada contato,
+  ou a reformulação), 02 lojas virtuais e 03 aplicativos e sistemas web, os
+  três com fundo dourado e "para construir" no pé; 04 Google Meu Negócio, 05
+  tráfego pago e 06 IA no WhatsApp e reativação, com "para trazer cliente".
+  Embaixo, a faixa tracejada de social media, marcada "complemento", e o CTA
+  com a calculadora ao lado.
+- **`[04]` como funciona (`#como-funciona`):** diagnóstico, prévia antes de
+  fechar, ajustes e publicação em 7 a 10 dias úteis, anúncio rodando. A linha
+  dourada entre os círculos cresce com a rolagem (`--p` de 0 a 1 no `#passos`)
+  e cada círculo acende quando ela chega nele; na vertical (até 900 px) ela
+  para no centro do último círculo (`--fim`, medido pelo script). O ouvinte
+  de rolagem só existe com a seção à vista. Sem movimento e em `?still=1`,
+  tudo aceso. CTA "Começar pelo diagnóstico" com a calculadora ao lado.
+- **`[05]` calculadora (`#calculadora`):** a mesma de antes, componente com
+  estado (objeto `T`, sem `data-en`). Monta quando chega perto da tela; em
+  `?still=1`, já na abertura.
+- **`[06]` investimento (`#investimento`):** desde 16/10/2026, condição de
+  lançamento para os 10 primeiros clientes. **Todo preço da home sai do
+  `data/precos.json`** (núcleo `window.TheatrumPrecos`, script "PREÇOS: um
+  lugar só" antes do `[05]`; o `PADRAO` de lá é o mesmo JSON com zero vagas,
+  para o primeiro desenho e para falha no fetch; o JSON só baixa quando o
+  `[06]` chega perto). O Matheus só mexe em `vagasPreenchidas`
+  (passo a passo em `docs/como-atualizar-vagas.md`): de 0 a 2 vale o preço de
+  lançamento (Essencial R$ 990, Completo R$ 1.500 no Pix, 50% no início e 50% na
+  entrega, ou R$ 1.800 em 3x de R$ 600 no cartão, desde 20/10/2026; Sob medida a
+  partir de R$ 2.500, manutenção R$ 97/mês), de 3 a 9 o intermediário
+  (R$ 1.200, R$ 1.800, R$ 2.500, R$ 97), e em 10 voltam os cheios sem risco (R$ 1.500, R$ 2.500, a partir de
+  R$ 4.900, R$ 197). O intermediário do Sob medida (R$ 2.500) não foi
+  definido pelo Matheus: é o mesmo do lançamento até ele decidir. Cheio em
+  `<del>`, novo em `<strong>`, com texto só para leitor de tela. No celular
+  o Completo vem primeiro. Embaixo dos cards, lado a lado, o que é mensal:
+  manutenção (fidelidade de 12 meses) e, desde 26/10/2026, a gestão de
+  tráfego (R$ 697/mês + verba na conta do cliente; antes ela aparecia na
+  demonstração, que saiu). O "é para você se / não é para você se" saiu na
+  repaginada. Tudo que tem número é desenhado pelo script do fim da seção
+  (objeto `TX`, sem `data-en`); o HTML é o estado com zero vagas. O selo do
+  Completo é "recomendado", não "mais escolhido": com zero cliente seria
+  prova social inventada. Cada card abre o WhatsApp citando plano e preço e
+  dispara `plano_click`.
+  Desde 20/10/2026 o preço da faixa é o do Pix (50% no início, 50% na
+  entrega) e cada plano tem também o total no cartão em 3x, Pix + 20%
+  arredondado (`precoCartaoLancamento`, `...Intermediario`, `...Cheio`):
+  Essencial 1.200 / 1.440 / 1.800, Completo 1.800 / 2.160 / 3.000, Sob
+  medida 3.000 / 3.000 / 5.880. O card mostra o selo "economize R$ X no
+  Pix" (diferença entre os dois). A manutenção mensal fica fora disso.
+  Mudou valor de plano (não só as vagas)? Mude também o `PADRAO` e o HTML
+  estático do `[06]`, que é o que aparece sem JS ou se o fetch falhar.
+  Desde 18/10/2026 a moeda segue o idioma: real em português, dólar em
+  inglês, euro em espanhol, **com os mesmos números** (R$ 990, US$ 990,
+  990 €). Sem câmbio, a pedido: só o `fmt()` do núcleo troca o símbolo e o
+  formato. Os R$ 697 da gestão de tráfego seguem a mesma regra
+  (`data-pr-px="trafego"`, preenchido pelo script do `[06]`), e a calculadora
+  mostra a moeda do idioma. A mensagem de WhatsApp dos planos continua em
+  português e em reais.
+- **`[07]` quem faz (`#quem-faz`):** no molde do "time" da Agrega. O Matheus
+  num card alto (foto redonda, "fundador · orquestra e aprova", dois
+  parágrafos e o CNPJ) e, ao lado, cinco agentes de `.claude/agents/` com
+  nome de cliente (sites e sistemas = `previa-de-cliente`, demonstrações,
+  Google e tráfego, marketing e criativos = `criativos`, revisão =
+  `revisor`). O de proposta comercial saiu em 18/10/2026, a pedido: não
+  mostrar. Não há agente de marketing próprio; não invente card de agente
+  que não existe. Agente novo ou removido lá, mude aqui. O último card é o
+  convite dourado ("Quer esse time no seu negócio?"), com o WhatsApp e a
+  calculadora.
+- **`[08]` FAQ (`#faq`):** nove perguntas, só as que decidem a compra (site
+  de R$ 300, textos, prazo, resultado, já me decepcionei, domínio e saída,
+  já tenho site, minha cidade, social media). Embaixo, "Ficou alguma
+  dúvida?" com o WhatsApp e a calculadora.
+- **`[09]` CTA final (`#diagnostico`):** faixa dourada. À esquerda o
+  diagnóstico no WhatsApp e a calculadora; à direita o raio-x por escrito
+  (degrau 3: nome do negócio e WhatsApp), pelo `TheatrumLeads.enviar` do
+  `js/leads.js`, com `lead_callback` e honeypot. Sem envio, a caixa vira um
+  link de WhatsApp com o recado escrito. Textos de resposta no objeto `RX`.
+- No celular, a barra fixa de baixo (Calcular e WhatsApp) aparece depois da
+  primeira tela.
+- Destaque em título (`.lm`) é serif itálico dourado. Título de seção entra
+  por trás de uma máscara (`.rv-t`, `clip-path`); o script observa o bloco
+  pai, porque o Chrome desconta o `clip-path` do próprio elemento e o título
+  nunca "entraria".
+- Os CTAs principais (`.ima`) seguem o mouse alguns pixels, só com mouse de
+  verdade e sem movimento reduzido.
+- O modo QA `?still=1` desliga animações e o `content-visibility`, baixa
+  todas as imagens e monta a calculadora, para print da página inteira no
+  Chrome headless. Página acima de 16.384 px de altura (a do celular tem
+  ~17.000) sai repetida no print inteiro do Chrome: fotografe em fatias.
 
 ### Regras de copy da marca
 
@@ -383,14 +376,14 @@ diferente conforme de onde a pessoa clicou:
 | Origem | Mensagem |
 |---|---|
 | hero (botão principal) | "Vim do site da Theatrum. Quero o diagnóstico gratuito." |
-| hero (card) | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
-| para quem fazemos | "Vim do site da Theatrum. Tenho {nicho} e quero um site que traga cliente." (reformulação: "Já tenho site, mas ele não traz cliente. Quero uma reformulação.") |
+| topo, menu do celular, barra do celular e "Falar no WhatsApp" do investimento | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
 | o que fazemos | "Vim do site da Theatrum. Quero um site ou sistema para o meu negócio." |
+| como funciona | "Vim do site da Theatrum. Quero começar pelo diagnóstico gratuito." |
 | calculadora | "Vim do site. A calculadora deu R$ {N} por mês. Quero o plano." |
-| demonstração | "Vi as demonstrações no site e quero isso rodando no meu negócio." |
-| entregas | "Vi os sites que vocês entregaram. Quero um diagnóstico." |
+| quem faz | "Vim do site da Theatrum. Quero falar com o Matheus sobre o meu negócio." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
+| CTA final, raio-x por escrito sem envio | "Vim do site. Meu negócio é {negócio}. Quero o raio-x por escrito." |
 | investimento (cards) | "Olá! Vi a condição de lançamento e quero o plano {plano} ({preço}) (no Completo: "R$ 1.500 no Pix ou 3x de R$ 600 no cartão")" (depois das 10 vagas: "Olá! Vim do site da Theatrum e quero o plano...") |
 | blog (topo, menu e rodapé) | "Vim do blog da Theatrum. Quero o diagnóstico gratuito." |
 | blog (CTA do artigo) | "Vim do blog da Theatrum, do artigo "{título}". Quero o diagnóstico gratuito." |
@@ -421,12 +414,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   nunca para quem já enviou formulário (`localStorage` `theatrum-lead` =
   `enviado`). Pede só o e-mail para "3 melhorias para o site da sua
   empresa". O antigo pop-up do raio-x em 24 h saiu.
-- **Card do raio-x de 70% (home), "Não quer falar agora?":** usa o mesmo envio
-  (`TheatrumLeads.enviar`) e não aparece mais depois que o pop-up de saída
-  abriu. Desde 13/10/2026 não fica preso no canto: sai sozinho quando a
-  pessoa rola mais de uma tela sem tocar nele e quando chega no CTA final ou
-  no rodapé (cobria a coluna de contato). Quem clica num campo fica com ele
-  até fechar. Saiu uma vez, não volta na visita.
+- **Raio-x por escrito no CTA final da home, "Não quer falar agora?"** (desde
+  26/10/2026, no lugar do card que aparecia a 70% da página): usa o mesmo
+  envio (`TheatrumLeads.enviar`, origem `cta-final-raiox`) e dispara
+  `lead_callback`. Sem envio, vira um link de WhatsApp com o recado escrito.
 - **Promessas publicadas, valem assim que a chave entrar:** o "me chame"
   diz "vou te chamar no WhatsApp em poucos minutos (horário comercial)";
   o diagnóstico por e-mail e as 3 melhorias do pop-up dizem que chegam no
@@ -452,7 +443,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   próprio (`Desktop/littletrees`), fora deste site.
 - `/acervo/` — **acervo privado, com senha, desde 24/10/2026:** todos os sites numa página
   só, para o Matheus mostrar pessoalmente: as prévias de cliente (no ar e desativadas), a
-  Little Trees e a TM Sports (sites no ar fora daqui) e as 26 demonstrações, em nove segmentos
+  Little Trees e a TM Sports (sites no ar fora daqui) e as 27 demonstrações (as 26 da vitrine da home e a Aceno), em nove segmentos
   (academias, saúde, nutrição, pousadas, imóveis, planejados, lojas, agro, serviços), com
   filtro por segmento e por "negócio real" ou "projeto conceito". Lista no `SITES` do
   `acervo/index.html`; capa das prévias em `acervo/img/<pasta>-{480,800}.webp` (primeira tela
@@ -1126,7 +1117,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 | `/nutricao/demos/` | 6 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
-| `/negocios/demos/` | 7 | negócios locais |
+| `/negocios/demos/` | 8 | negócios locais |
 
 A Maré Mansa (`/imoveis/demos/mare-mansa/`, desde 11/10/2026) é a prévia da
 Antonio's refeita do mesmo jeito: nome, logo, paleta (azul atlântico e dourado
@@ -1146,10 +1137,10 @@ a linha fictícia Lume, com os frascos desenhados pelo próprio main.js. Paleta
 de vinho para verde-musgo. Links de Instagram e podcast caem no aviso de
 demonstração.
 
-As sete de `/negocios/demos/` são as prévias de cliente refeitas como
+As oito de `/negocios/demos/` são as prévias de cliente refeitas como
 marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
 Alta (do Recanto), Campo Vivo (da Inovar), Lívia Amaral (da Gabriela
-Carolina), Clã Valente (do Felipe Fornari) e Arco (da Doctors). Nome, cidade, cores, logo,
+Carolina), Clã Valente (do Felipe Fornari), Arco (da Doctors) e Aceno (da Agrega). Nome, cidade, cores, logo,
 fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
 vazios e não sobra placeholder. As prévias originais continuam intactas
 nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e
@@ -1177,6 +1168,32 @@ Z-Image-Turbo no AI Horde (anônimo, fila de 10 a 15 min); Higgsfield e
 Gemini estavam sem saldo. O nome do cliente não aparece em arquivo público
 da demo. Avaliações e FAQ preenchidos com texto fictício, mapa mostra só a
 cidade, Instagram é texto.
+
+A Aceno (`/negocios/demos/aceno/`, desde 26/10/2026) é o `/agrega/` refeito,
+a pedido: agência de marketing e gráfica fictícias em Pouso Alegre, MG, com o
+mesmo portal dividido, as mesmas páginas (`marketing/`, `print/`,
+`projeto-completo/`, `privacidade/`) e a mesma animação. O "a" em balão da
+Agrega ficou, a pedido; o anel, o logo da gráfica e o fundo dizem "aceno"
+(`interno/clientes/agrega/demo-aceno/sprite.py`). Paleta trocada pelo
+`cores.py` de lá: o roxo vira verde-petróleo (mesma claridade) e o azul vira
+terracota com a mesma luminância de cada tom da Agrega, para os contrastes
+continuarem os de lá; o amarelo fica. **Todas as fotos são geradas por IA**
+(os nove do time, escritório, produtos, galeria e os quadros da vitrine), e a
+faixa do topo e o rodapé dizem isso. Saíram do FLUX.1-schnell, duas pelo
+Space do Hugging Face (sem conta, a cota acaba em duas) e o resto pelo AI
+Horde anônimo (o Cloudflare de lá devolve 403 sem `User-Agent`); prompts em
+`gerar.py`, fila em `horde.py`. Os vídeos da vitrine são cada quadro com zoom
+lento de ida e volta (`vitrine.py`, Pillow e o `videos.sh` da Agrega). Os
+clientes são o letreiro com os logos do `#marcas` da home (as marcas das
+outras demos), a pedido; os dois casos usam a Cozinha Viva e a Maré Mansa.
+Endereço só com bairro e cidade, telefones `(35) 90000-000x`, Instagram em
+texto. O QR de avaliação do rodapé leva à própria demo e o clique mostra o
+aviso (`data-demo-msg`). O envio dos formulários também cai no aviso
+(`demo: true` no `config.js`). O `_demo.js` de `/negocios/demos/` passou a
+calcular os caminhos a partir do próprio arquivo, e não da página, porque a
+Aceno tem subpáginas, e guarda o `?de=` na aba para a volta funcionar depois
+de trocar de página. Está no acervo, com capa própria em `acervo/img/aceno-*`;
+não está na vitrine da home.
 
 A Beatriz Lemos e a Lara Mendonça (`/nutricao/demos/beatriz-lemos/` e
 `lara-mendonca/`, desde 13/10/2026) são prévias de nutricionistas reais
@@ -1263,12 +1280,13 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   (`data-blog-cta`), pelo `TheatrumLeads.evento`, com a mesma regra de
   consentimento. O compartilhar no WhatsApp leva `data-compartilhar`, que o
   `leads.js` deixa passar sem modal nem evento.
-- `plano_click` (`data-plano` nos cards do `[09]`, com o plano e o `data-origem`
+- `plano_click` (`data-plano` nos cards do `[06]`, com o plano e o `data-origem`
   do botão), pelo `TheatrumLeads.evento`, só com consentimento.
-- `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos três
-  "Ver quanto eu perco por mês" da home).
+- `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, em todo
+  link da home que leva à calculadora: hero, serviços, como funciona,
+  investimento, quem faz, FAQ e CTA final).
 - `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu
-  o antigo `clique_whatsapp`), `lead_callback` ("me chame" e card do raio-x)
+  o antigo `clique_whatsapp`), `lead_callback` ("me chame" e raio-x por escrito do CTA final)
   e `lead_email` (diagnóstico por e-mail e pop-up de saída). Vão para GA4 e
   UET **só para quem aceitou cookies**.
 - Fora esses eventos, o consentimento só controla o UET. GTM, gtag e Google
@@ -1279,15 +1297,18 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 ## Pendências de conteúdo
 
 1. Preços de `/us/` e de `/moveis-planejados/` (as duas desativadas) ainda são os da oferta anterior.
-2. Autorização por escrito dos clientes antes de pôr nome, print e link na
-   seção `[09] entregas`.
+2. Autorização por escrito dos clientes antes de pôr nome, print e link de
+   cliente real na home (a seção escondida `entregas` saiu em 26/10/2026; o
+   código dela está no git antes da repaginada).
 3. (resolvida em 10/10/2026: chave do Web3Forms no `js/leads.js`, formulários ligados.)
 4. Política de contrato. Desde 16/10/2026 a manutenção da condição de
-   lançamento tem fidelidade de 12 meses, publicada no `[09]`. A pergunta "Fico preso em contrato?" saiu do FAQ
+   lançamento tem fidelidade de 12 meses, publicada no `[06]`. A pergunta "Fico preso em contrato?" saiu do FAQ
    em 13/10/2026 porque a resposta publicada era o lembrete interno
    "CONFIRMAR COM O MATHEUS"; volta quando a política existir (há um
    comentário no lugar dela no `index.html`).
 5. Link real do LinkedIn (saiu do rodapé enquanto era `#`).
-6. Home acima do orçamento de performance (medição de 10/10/2026): ~200 KB
-   ao abrir (só o HTML em gzip tem 68 KB) e 2 tarefas longas de ~290 ms ao
-   rolar. Já era assim antes da vitrine de trabalhos; falta achar a origem.
+6. Home acima do orçamento de performance ao abrir: ~340 KB na medição de
+   26/10/2026, quase tudo fontes do Google (126 KB) e imagens (~130 KB). O
+   HTML caiu para 49 KB comprimido na repaginada e as tarefas longas ao
+   rolar ficaram em 0 a 2, de até 71 ms com CPU 4x. Próximo passo: servir as
+   fontes daqui, com subconjunto, como nas prévias de cliente.

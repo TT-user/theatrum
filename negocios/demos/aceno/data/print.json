@@ -1,0 +1,53 @@
+{
+  "_leia": "Textos da Aceno Print, gráfica fictícia da demonstração. 'foto' é o caminho sem a largura: o site usa <foto>-480.webp e <foto>-800.webp (galeria: -480 e -1000). Todas as fotos foram geradas por IA (na pasta interna de trabalho da demo). 'categoria' tem de ser uma das 'categorias'. Na galeria, a 1ª, a 4ª, a 9ª e a 10ª foto ficam altas (fecham a grade sem buraco): assunto vertical nelas.",
+
+  "produtos": [
+    { "id": "cartoes", "nome": "Cartões de visita", "icone": "contact", "foto": "assets/img/print/cartoes", "texto": "Modelos prontos ou layout exclusivo, em vários papéis, gramaturas e acabamentos." },
+    { "id": "panfletos", "nome": "Panfletos e flyers", "icone": "file-text", "foto": "assets/img/print/panfletos", "texto": "Divulgação impressa com cor fiel, do A6 ao A4, em couché ou papel reciclado." },
+    { "id": "banners", "nome": "Banners em lona", "icone": "flag", "foto": "assets/img/print/banners", "texto": "Para fachada, evento e ponto de venda, com ilhós, bastão ou estrutura roll-up." },
+    { "id": "adesivos", "nome": "Adesivos personalizados", "icone": "sticker", "foto": "assets/img/print/adesivos", "texto": "Para vitrine, veículo, embalagem e o que mais a sua marca precisar." },
+    { "id": "grande-formato", "nome": "Grande formato", "icone": "store", "foto": "assets/img/print/grande-formato", "texto": "Fachadas, painéis e envelopamento impressos em alta resolução." },
+    { "id": "rotulos", "nome": "Rótulos e etiquetas", "icone": "tag", "foto": "assets/img/print/rotulos", "texto": "Rótulos para café, alimentos, cosméticos e produtos artesanais, em bobina ou folha." },
+    { "id": "laser", "nome": "Corte a laser CO₂", "icone": "zap", "foto": "assets/img/print/laser", "texto": "Corte e gravação em MDF e acrílico: placas, letreiros, brindes e peças sob medida." },
+    { "id": "corte-eletronico", "nome": "Corte eletrônico", "icone": "scissors", "foto": "assets/img/print/corte", "texto": "Recorte de vinil para letras, logos e adesivos com contorno." }
+  ],
+
+  "passos": [
+    { "titulo": "Orçamento", "texto": "Você conta o que precisa pelo WhatsApp e recebe o valor no mesmo dia." },
+    { "titulo": "Arte", "texto": "Envia a sua ou a gente cria; você aprova antes de imprimir." },
+    { "titulo": "Produção", "texto": "Imprimimos, cortamos e damos acabamento." },
+    { "titulo": "Retirada ou entrega", "texto": "Retire no balcão ou receba em Pouso Alegre e região." }
+  ],
+
+  "porque": [
+    { "titulo": "Cor fiel", "texto": "Prova de cor antes da tiragem grande: o que você aprova é o que sai.", "icone": "gem" },
+    { "titulo": "Prazo cumprido", "texto": "Cartões e panfletos em até 3 dias úteis, com data combinada no orçamento.", "icone": "zap" },
+    { "titulo": "Atendimento pelo WhatsApp", "texto": "Orçamento, aprovação da arte e aviso de pronto, tudo na mesma conversa.", "icone": "handshake" },
+    { "titulo": "Arte sob medida", "texto": "Não tem arte? O time de criação da Aceno faz para você.", "icone": "palette" }
+  ],
+
+  "categorias": ["Cartões", "Banners", "Adesivos", "Fachadas", "Laser", "Rótulos"],
+
+  "trabalhos": [
+    {"src": "assets/img/trabalhos/banners-1", "alt": "Roll-up na entrada de um evento", "categoria": "Banners"},
+    {"src": "assets/img/trabalhos/cartoes-1", "alt": "Cartões de visita com hot stamping dourado", "categoria": "Cartões"},
+    {"src": "assets/img/trabalhos/adesivos-1", "alt": "Adesivo aplicado em vitrine", "categoria": "Adesivos"},
+    {"src": "assets/img/trabalhos/laser-1", "alt": "Painel decorativo em MDF cortado a laser", "categoria": "Laser"},
+    {"src": "assets/img/trabalhos/rotulos-1", "alt": "Rótulos de mel e geleia artesanais", "categoria": "Rótulos"},
+    {"src": "assets/img/trabalhos/fachadas-1", "alt": "Fachada de cafeteria com placa luminosa", "categoria": "Fachadas"},
+    {"src": "assets/img/trabalhos/rotulos-2", "alt": "Rótulos de cerveja artesanal e cosméticos", "categoria": "Rótulos"},
+    {"src": "assets/img/trabalhos/adesivos-2", "alt": "Envelopamento de van de entregas", "categoria": "Adesivos"},
+    {"src": "assets/img/trabalhos/fachadas-2", "alt": "Painel de fachada de boutique", "categoria": "Fachadas"},
+    {"src": "assets/img/trabalhos/cartoes-2", "alt": "Cartões em papel algodão", "categoria": "Cartões"},
+    {"src": "assets/img/trabalhos/banners-2", "alt": "Lona de inauguração na fachada", "categoria": "Banners"},
+    {"src": "assets/img/trabalhos/laser-2", "alt": "Placas e chaveiros em acrílico gravados a laser", "categoria": "Laser"}
+  ],
+
+  "faq": [
+    { "p": "Qual o prazo de produção?", "r": "Cartões e panfletos em até 3 dias úteis; banners e adesivos em até 2. Rótulos, grande formato e laser têm o prazo combinado no orçamento." },
+    { "p": "Vocês criam a arte?", "r": "Sim. Temos modelos prontos ou criamos um layout exclusivo; o valor da criação vem separado no orçamento." },
+    { "p": "Em que formato envio minha arte?", "r": "PDF em alta resolução, em CMYK, com 3 mm de sangria e fontes convertidas em curva. Se tiver dúvida, mande o que tem que a gente confere." },
+    { "p": "Fazem entrega?", "r": "Sim, em Pouso Alegre e cidades vizinhas, com frete combinado no orçamento. Ou retire no balcão." },
+    { "p": "Quais as formas de pagamento?", "r": "Pix, cartão de débito e crédito em até 3x e boleto para empresas com cadastro." }
+  ]
+}

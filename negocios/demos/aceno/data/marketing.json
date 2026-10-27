@@ -1,0 +1,86 @@
+{
+  "_leia": "Textos da Aceno Marketing, agência fictícia da demonstração. Time, depoimentos, casos e vídeos são inventados; os retratos e os quadros dos vídeos foram gerados por IA (na pasta interna de trabalho da demo). Clientes: os logos das marcas fictícias das demos da Theatrum (o letreiro #marcas da home), em assets/img/clientes/.",
+
+  "servicos": [
+    { "titulo": "Estratégia e posicionamento", "texto": "Diagnóstico do seu negócio e um plano claro do que comunicar, para quem e onde.", "quem": "Direção" },
+    { "titulo": "Social media e conteúdo", "texto": "Calendário, roteiros, criativos e gestão das redes com a cara da sua marca.", "quem": "Comunicação e social media" },
+    { "titulo": "Tráfego pago", "texto": "Campanhas no Meta Ads e no Google Ads que levam as pessoas certas até o seu WhatsApp, site ou loja.", "quem": "Tráfego" },
+    { "titulo": "Performance e métricas", "texto": "Leitura dos números, relatório mensal e ajustes contínuos para cada real investido render mais.", "quem": "Performance" },
+    { "titulo": "Produção de vídeo", "texto": "Captação e edição com time próprio de videomakers: reels, institucionais e anúncios.", "quem": "Editores e videomakers" },
+    { "titulo": "Podcast e eventos", "texto": "Gravação de podcast no nosso estúdio e cobertura de eventos para gerar autoridade.", "quem": "Comunicação e vídeo" }
+  ],
+
+  "metodo": [
+    { "titulo": "Diagnóstico", "texto": "Entendemos o negócio, o público e o que já foi feito." },
+    { "titulo": "Estratégia", "texto": "Plano de conteúdo, canais e metas." },
+    { "titulo": "Produção", "texto": "Roteiros, captação, edição e criativos." },
+    { "titulo": "Performance", "texto": "Anúncios no ar, leitura de métricas e ajustes contínuos." }
+  ],
+
+  "clientes": [
+    { "nome": "Vista Imóveis", "logo": "vista-imoveis.webp", "w": 200, "h": 23 },
+    { "nome": "Ateliê Verga", "logo": "atelie-verga.webp", "w": 158, "h": 28 },
+    { "nome": "Marina Bastos", "logo": "nutri-infantil.webp", "w": 151, "h": 29 },
+    { "nome": "Prumo", "logo": "prumo.webp", "w": 117, "h": 36 },
+    { "nome": "Seis Panos", "logo": "seis-panos.webp", "w": 195, "h": 24 },
+    { "nome": "Vértice", "logo": "vertice.webp", "w": 146, "h": 30 },
+    { "nome": "Casa Nobre", "logo": "casa-nobre.webp", "w": 244, "h": 21 },
+    { "nome": "Renata Salles", "logo": "nutri-emagrecimento.webp", "w": 146, "h": 31 },
+    { "nome": "Pedra Alta", "logo": "pedra-alta.webp", "w": 146, "h": 30 },
+    { "nome": "Lara Mendonça", "logo": "lara-mendonca.webp", "w": 126, "h": 30 },
+    { "nome": "Maré Mansa", "logo": "mare-mansa.webp", "w": 152, "h": 30 },
+    { "nome": "Cerne", "logo": "cerne.webp", "w": 118, "h": 37 },
+    { "nome": "Camila Prado", "logo": "nutri-clinica.webp", "w": 174, "h": 26 },
+    { "nome": "Vereda", "logo": "vereda.webp", "w": 201, "h": 24 },
+    { "nome": "Reserva Aurora", "logo": "reserva-aurora.webp", "w": 211, "h": 22 },
+    { "nome": "Cozinha Viva", "logo": "cozinha-viva.webp", "w": 190, "h": 25 },
+    { "nome": "Lívia Amaral", "logo": "livia-amaral.webp", "w": 123, "h": 36 },
+    { "nome": "Clã Valente", "logo": "cla-valente.webp", "w": 117, "h": 36 },
+    { "nome": "Arco Odontologia", "logo": "arco.webp", "w": 117, "h": 27 },
+    { "nome": "Bruno Tavares", "logo": "bruno-tavares.webp", "w": 175, "h": 26 },
+    { "nome": "Morattá", "logo": "moratta.webp", "w": 186, "h": 25 },
+    { "nome": "Campo Vivo", "logo": "campo-vivo.webp", "w": 136, "h": 33 },
+    { "nome": "Medida Certa", "logo": "medida-certa.webp", "w": 209, "h": 22 },
+    { "nome": "Beatriz Lemos", "logo": "beatriz-lemos.webp", "w": 157, "h": 34 }
+  ],
+
+  "cases": [
+    { "marca": "Cozinha Viva", "desafio": "Muita curtida no Instagram e pouco orçamento: ninguém sabia de onde vinha cliente.", "feito": "Três reels por semana com as cozinhas entregues e campanha no Meta Ads levando direto para o WhatsApp.", "resultado": "62 pedidos de orçamento em 90 dias, a R$ 18 por conversa (relatório do Meta Ads)." },
+    { "marca": "Maré Mansa", "desafio": "Lançar uma carteira nova de imóveis com verba curta e concorrência grande.", "feito": "Vídeo de cada imóvel, página por bairro e Google Ads só nas buscas de quem quer comprar.", "resultado": "214 contatos em 2 meses, 31 visitas agendadas (painel do Google Ads e CRM da imobiliária)." }
+  ],
+
+  "depoimentos": [
+    { "texto": "Em três meses a agenda encheu. O melhor é que eles explicam o relatório sem enrolação, eu sei o que cada real fez.", "nome": "Renata S.", "fonte": "Avaliação no Google" },
+    { "texto": "O time veio gravar na loja, editou tudo na mesma semana e o reel da inauguração foi o post mais visto que a gente já teve.", "nome": "Marcos T.", "fonte": "Avaliação no Google" },
+    { "texto": "Atendimento rápido, gente que conhece a cidade e cumpre o combinado. Fechamos marketing e os impressos com eles.", "nome": "Patrícia L.", "fonte": "Avaliação no Google" }
+  ],
+
+  "time": [
+    { "nome": "Helena Duarte", "cargo": "CEO", "texto": "Direção geral, estratégia de crescimento e comercial.", "foto": "helena" },
+    { "nome": "Rafael Moura", "cargo": "Head de Comunicação", "texto": "Supervisão de conteúdos, criativos, vídeos e atendimento.", "foto": "rafael" },
+    { "nome": "Camila Rocha", "cargo": "Head de Performance", "texto": "Estratégia de performance, análise de métricas e relatórios.", "foto": "camila" },
+    { "nome": "Thiago Nunes", "cargo": "Head Comercial", "texto": "Prospecção, propostas e fechamento de contratos.", "foto": "thiago" },
+    { "nome": "Bianca Lopes", "cargo": "Head de Tráfego", "texto": "Criação, otimização e supervisão de campanhas.", "foto": "bianca" },
+    { "nome": "Diego Santana", "cargo": "Editor / Videomaker", "texto": "Captação, edição de vídeo e suporte criativo.", "foto": "diego" },
+    { "nome": "Marina Coelho", "cargo": "Editora / Videomaker", "texto": "Edição de vídeo, motion e captação em eventos.", "foto": "marina" },
+    { "nome": "Igor Matos", "cargo": "Editor / Videomaker", "texto": "Captação, edição e produção do podcast.", "foto": "igor" },
+    { "nome": "Júlia Viana", "cargo": "Social media / Tráfego", "texto": "Social media, tráfego e suporte ao atendimento.", "foto": "julia" }
+  ],
+
+  "_videos": "Vitrine de vídeos (#conteudo-aceno, js/vitrine.js). Cada vídeo é um quadro gerado por IA com zoom lento (script na pasta interna de trabalho da demo), em assets/video/<arquivo>.mp4, <arquivo>-m.mp4 e <arquivo>.webp.",
+  "videos": [
+    { "tipo": "Reel", "formato": "vertical", "titulo": "Café da Praça: a latte art que virou fila", "arquivo": "reel-cafe" },
+    { "tipo": "Podcast", "formato": "horizontal", "titulo": "Aceno Cast #12: quanto investir no primeiro anúncio", "arquivo": "podcast-estudio" },
+    { "tipo": "Evento", "formato": "vertical", "titulo": "Inauguração da loja Alma Verde", "arquivo": "evento-inauguracao" },
+    { "tipo": "Reel", "formato": "vertical", "titulo": "Bistrô Fogo Lento: o prato da semana", "arquivo": "reel-cozinha" },
+    { "tipo": "Evento", "formato": "horizontal", "titulo": "Encontro de Empresários do Sul de Minas", "arquivo": "evento-palestra" },
+    { "tipo": "Podcast", "formato": "vertical", "titulo": "Aceno Cast #9: marca pessoal na área da saúde", "arquivo": "podcast-convidada" },
+    { "tipo": "Reel", "formato": "vertical", "titulo": "Studio Forma: aula experimental", "arquivo": "reel-treino" }
+  ],
+
+  "faq": [
+    { "p": "Vocês atendem fora de Pouso Alegre?", "r": "Sim. A maior parte dos clientes é do Sul de Minas, mas estratégia, tráfego e relatórios funcionam a distância. Gravação fora da região é combinada no orçamento." },
+    { "p": "Existe contrato mínimo?", "r": "O contrato é de 3 meses, o tempo de a estratégia rodar e os anúncios aprenderem. Depois disso, é mês a mês." },
+    { "p": "Preciso investir em anúncios para começar?", "r": "Não. Dá para começar só com conteúdo. Na reunião a gente mostra quanto faria sentido investir no seu caso e o que esperar de cada valor." }
+  ]
+}

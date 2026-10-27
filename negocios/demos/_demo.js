@@ -10,6 +10,8 @@
    inventados, para ninguém procurar a empresa.
 
    O parâmetro ?de= é o sinal de origem, posto nos links da vitrine.
+   Ele fica guardado na aba, para a demo com várias páginas (Aceno)
+   continuar voltando para o mesmo lugar depois de trocar de página.
    ?limpo=1 esconde a barra (screenshots).
    ============================================================ */
 (function () {
@@ -18,7 +20,18 @@
   var BUSCA = new URLSearchParams(location.search);
   if (BUSCA.has('limpo')) return;
 
+  /* caminhos a partir deste arquivo (negocios/demos/_demo.js), e não da página:
+     a demo pode ter subpáginas (aceno/marketing/). Sem currentScript, o de sempre. */
+  var EU = document.currentScript && document.currentScript.src;
+  function daqui(rel, antigo) { return EU ? new URL(rel, EU).href : antigo; }
+  var RAIZ = daqui('../../', '../../../');
+
   var origem = BUSCA.get('de');
+  try {
+    if (origem) sessionStorage.setItem('thtr-de', origem);
+    else if (document.referrer && new URL(document.referrer).pathname.indexOf('/negocios/demos/') === 0)
+      origem = sessionStorage.getItem('thtr-de');
+  } catch (e) {}
   if (!origem && document.referrer) {
     try {
       var de = new URL(document.referrer);
@@ -33,12 +46,12 @@
   var EN = origem === 'us' || !!(window.Idioma && window.Idioma.en);
   /* o destino depende só de onde a pessoa veio; o idioma muda só o texto */
   var VOLTA = origem === 'us'
-    ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
+    ? { raiz: RAIZ + 'us/', cta: RAIZ + 'us/#pricing' }
     : origem === 'acervo'
-    ? { raiz: '../../../acervo/', cta: '../../../#diagnostico' }
+    ? { raiz: RAIZ + 'acervo/', cta: RAIZ + '#diagnostico' }
     : origem === 'portfolio'
-    ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
-    : { raiz: '../../../', cta: '../../../#diagnostico' };
+    ? { raiz: RAIZ + 'portfolio/', cta: RAIZ + '#diagnostico' }
+    : { raiz: RAIZ, cta: RAIZ + '#diagnostico' };
 
   var TXT = EN
     ? { voltar: '&larr; Back to Theatrum',
@@ -54,7 +67,7 @@
      As páginas ficam em negocios/demos/<demo>/, o arquivo fica um
      nível acima da pasta demos/, como nas outras áreas. */
   var protecao = document.createElement('script');
-  protecao.src = '../../_protecao.js';
+  protecao.src = daqui('../_protecao.js', '../../_protecao.js');
   (document.head || document.documentElement).appendChild(protecao);
 
   var css = document.createElement('style');
@@ -93,6 +106,8 @@
      Ninguém pode ser levado a um WhatsApp real a partir de um
      negócio fictício. */
   var CONTATO = /^(tel:|mailto:|sms:|https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com))/i;
+  var AVISO = EN ? 'On a real site this button opens the business WhatsApp with the message already written.'
+                 : 'Num site real, este botão abre o WhatsApp da empresa com a mensagem já escrita.';
 
   /* Exceção: link de ajuda pública que precisa funcionar mesmo numa demo,
      como o "ligue 188 (CVV)". Marcado com data-demo-livre no HTML. */
@@ -131,10 +146,9 @@
       'border-radius:14px;padding:16px 20px;font:500 14px/1.5 Inter,system-ui,sans-serif;' +
       'color:#C4C0B6;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);opacity:0;' +
       'pointer-events:none;transition:opacity .22s ease,transform .22s ease';
-    toast.innerHTML = '<b style="display:block;color:#D9A441;font-size:12px;letter-spacing:.16em;' +
-      'text-transform:uppercase;margin-bottom:6px">' + (EN ? 'Demonstration' : 'Demonstração') + '</b>' +
-      (EN ? 'On a real site this button opens the business WhatsApp with the message already written.'
-          : 'Num site real, este botão abre o WhatsApp da empresa com a mensagem já escrita.');
+    var TITULO = '<b style="display:block;color:#D9A441;font-size:12px;letter-spacing:.16em;' +
+      'text-transform:uppercase;margin-bottom:6px">' + (EN ? 'Demonstration' : 'Demonstração') + '</b>';
+    toast.innerHTML = TITULO + AVISO;
     document.body.appendChild(toast);
 
     var t;
@@ -143,6 +157,8 @@
       if (!a) return;
       if (a.dataset.thtrDemo === '1' || a.getAttribute('href') === '#demo-cta') {
         e.preventDefault();
+        /* data-demo-msg: link que não é WhatsApp (o QR de avaliação, por exemplo) explica o próprio caso */
+        toast.innerHTML = TITULO + (a.dataset.demoMsg || AVISO);
         toast.style.opacity = '1';
         toast.style.transform = 'translate(-50%,0)';
         clearTimeout(t);
