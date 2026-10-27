@@ -96,7 +96,7 @@ ${CSS}
 const NAV = [
   ['/#trabalhos', 'Trabalhos'],
   ['/#servicos', 'Serviços'],
-  ['/#sistema', 'Demonstração'],
+  ['/#como-funciona', 'Como funciona'],
   ['/#investimento', 'Investimento'],
   ['/blog/', 'Blog'],
   ['/#faq', 'FAQ'],
@@ -134,9 +134,9 @@ function rodape() {
         <li><a href="/#servicos">Sites e landing pages</a></li>
         <li><a href="/#servicos">Lojas virtuais</a></li>
         <li><a href="/#servicos">Aplicativos e sistemas</a></li>
-        <li><a href="/#problema">Google Meu Negócio</a></li>
-        <li><a href="/#problema">Tráfego pago</a></li>
-        <li><a href="/#sistema">IA no WhatsApp</a></li>
+        <li><a href="/#servicos">Google Meu Negócio</a></li>
+        <li><a href="/#servicos">Tráfego pago</a></li>
+        <li><a href="/#servicos">IA no WhatsApp</a></li>
       </ul>
     </div>
     <div>

@@ -89,11 +89,13 @@ local com gzip, terceiros de medição bloqueados, mediana de 3): DOM interativo
 se confirmou) e **2 tarefas longas (~290 ms) ao rolar**. Medição de 26/10/2026,
 depois da repaginada (celular 412 px, CPU 4x, terceiros bloqueados, texto
 medido comprimido, antes e depois na mesma régua): o HTML caiu de 88 para
-49 KB comprimido e a página de 21.000 para 13.500 px de altura; DOM
-interativo 0,9 s; ao rolar, de 0 a 2 tarefas longas de 64 a 71 ms (antes,
-1 de 103 a 129 ms) e 1,5% de quadros lentos. Ao abrir ainda vão ~340 KB, e
-o grosso são as fontes do Google (126 KB, quatro famílias) e as imagens da
-estátua e das primeiras telas da vitrine (~130 KB): continua acima do teto.
+49 KB comprimido e a página de 28.300 para 16.900 px de altura no celular
+(17.400 para 10.400 no computador, medido com `?still=1`); DOM interativo
+0,9 s; ao rolar, de 0 a 2 tarefas longas de 64 a 71 ms (antes, 1 de 103 a
+129 ms) e 1,5% de quadros lentos. Ao abrir ainda vão ~300 KB, e o grosso
+são as fontes do Google (126 KB, quatro famílias) e a estátua: continua
+acima do teto. A vitrine não baixa nada na abertura (`rootMargin` de 200 px:
+o hero ocupa a tela inteira e ela começa logo abaixo da dobra).
 Qualquer mudança daqui para frente respeita isto:
 
 | | teto |
@@ -344,7 +346,7 @@ o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
   `js/leads.js`, com `lead_callback` e honeypot. Sem envio, a caixa vira um
   link de WhatsApp com o recado escrito. Textos de resposta no objeto `RX`.
 - No celular, a barra fixa de baixo (Calcular e WhatsApp) aparece depois da
-  primeira tela.
+  primeira tela; escondida, fica `inert` (fora do alcance do teclado).
 - Destaque em título (`.lm`) é serif itálico dourado. Título de seção entra
   por trás de uma máscara (`.rv-t`, `clip-path`); o script observa o bloco
   pai, porque o Chrome desconta o `clip-path` do próprio elemento e o título
@@ -376,7 +378,7 @@ diferente conforme de onde a pessoa clicou:
 | Origem | Mensagem |
 |---|---|
 | hero (botão principal) | "Vim do site da Theatrum. Quero o diagnóstico gratuito." |
-| topo, menu do celular, barra do celular e "Falar no WhatsApp" do investimento | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
+| topo, menu do celular, barra do celular, "Falar no WhatsApp" do investimento e rodapé | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
 | o que fazemos | "Vim do site da Theatrum. Quero um site ou sistema para o meu negócio." |
 | como funciona | "Vim do site da Theatrum. Quero começar pelo diagnóstico gratuito." |
 | calculadora | "Vim do site. A calculadora deu R$ {N} por mês. Quero o plano." |
@@ -421,7 +423,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - **Promessas publicadas, valem assim que a chave entrar:** o "me chame"
   diz "vou te chamar no WhatsApp em poucos minutos (horário comercial)";
   o diagnóstico por e-mail e as 3 melhorias do pop-up dizem que chegam no
-  e-mail. Cada lead precisa ser atendido nesse ritmo.
+  e-mail; o raio-x por escrito do CTA final da home diz "Vou mandar o raio-x
+  para esse número". Cada lead precisa ser atendido nesse ritmo.
 - Textos num objeto JS, não em `data-en`; a caixa abre no idioma da página.
 
 ---
@@ -1282,9 +1285,10 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   `leads.js` deixa passar sem modal nem evento.
 - `plano_click` (`data-plano` nos cards do `[06]`, com o plano e o `data-origem`
   do botão), pelo `TheatrumLeads.evento`, só com consentimento.
-- `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, em todo
-  link da home que leva à calculadora: hero, serviços, como funciona,
-  investimento, quem faz, FAQ e CTA final).
+- `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos
+  botões e links "ver quanto eu perco" da home: hero, serviços, como
+  funciona, investimento, quem faz, FAQ e CTA final; o "Calculadora" do menu
+  e o "Calcular" da barra do celular não contam).
 - `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu
   o antigo `clique_whatsapp`), `lead_callback` ("me chame" e raio-x por escrito do CTA final)
   e `lead_email` (diagnóstico por e-mail e pop-up de saída). Vão para GA4 e
