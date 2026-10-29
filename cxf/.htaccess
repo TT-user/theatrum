@@ -3,6 +3,18 @@
   Header set X-Robots-Tag "noindex, nofollow"
 </IfModule>
 
+# DESATIVADA em 28/10/2026: quem abre o link vai para a home da Theatrum; só quem entrou no
+# /acervo/ (cookie com a chave da senha) continua vendo. Para reativar, apague este bloco.
+# Trocou a senha do acervo, troque o valor aqui também (no theatrum, procure por theatrum_acervo).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)theatrum_acervo=9a41d2e1276d2343473ecd807d9db0b8dbb222f4ec7353f470c4beafd1a6d703(;|$)
+  RewriteRule ^ https://usetheatrum.com.br/ [R=302,L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+  Require all denied
+</IfModule>
+
 # URLs sem .html, como no Firebase Hosting (cleanUrls). /kits e a pasta kits/ convivem: sem o
 # DirectorySlash Off, o Apache mandaria /cxf/kits para /cxf/kits/ (pasta sem índice).
 DirectorySlash Off

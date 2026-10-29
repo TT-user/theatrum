@@ -445,7 +445,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   site dele no ar, `littletrees-indol.vercel.app`, cujo código mora em repositório
   próprio (`Desktop/littletrees`), fora deste site.
 - `/acervo/` — **acervo privado, com senha, desde 24/10/2026:** todos os sites numa página
-  só, para o Matheus mostrar pessoalmente: as prévias de cliente (no ar e desativadas), a
+  só, para o Matheus mostrar pessoalmente: as prévias de cliente (todas desativadas), a
   Little Trees e a TM Sports (sites no ar fora daqui) e as 27 demonstrações (as 26 da vitrine da home e a Aceno), em nove segmentos
   (academias, saúde, nutrição, pousadas, imóveis, planejados, lojas, agro, serviços), com
   filtro por segmento e por "negócio real" ou "projeto conceito". Lista no `SITES` do
@@ -456,7 +456,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   SHA-256 de `theatrum-acervo:` + senha. A senha não está no repositório; o Matheus tem.
   **As pastas desativadas deixam passar o mesmo cookie** (uma `RewriteCond` no bloco
   DESATIVADA): o público continua indo para a home e quem entrou no acervo vê a prévia. Trocou
-  a senha, troque o valor em todos os `.htaccess` (procure por `theatrum_acervo`).
+  a senha, troque o valor em todos os `.htaccess` (procure por `theatrum_acervo`) e no
+  `scripts/previa.mjs` do `cxf-loja`, que gera o `.htaccess` da `/cxf/`.
+  **Desde 28/10/2026 todas as prévias de cliente real estão desativadas**, a pedido: quem já
+  recebeu o link cai na home, elas só abrem pelo acervo e, das prévias, o público vê só as
+  versões de marca fictícia da vitrine. Não foi preciso trocar o endereço das pastas: o link fecha para quem não
+  tem o cookie. Por isso, no navegador do Matheus (que entrou no acervo) o link antigo continua
+  abrindo; para ver o que o cliente vê, use uma janela anônima.
   Prévia nova: card no `SITES` e capa em `acervo/img/`; desativou uma, ponha a `RewriteCond`
   no bloco dela. As demos abertas com `?de=acervo` voltam para cá pela barra. Sem UET, noindex,
   fora do sitemap e de qualquer menu. **O repositório no GitHub é público:** quem lê o
@@ -705,6 +711,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   marca d'água com `utm_campaign=nerd-club`. Brief, prints e pendências em
   `interno/clientes/nerd-club/`, fora do git. A foto da fachada veio
   de um print que o Matheus mandou junto com o brief.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/ths/` — prévia do site da THS Engenharia e Construtora (projeto, administração e execução
   de obras, Manhuaçu, MG), feita para prospecção em 14/10/2026 a partir do Instagram
@@ -869,6 +877,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v2.jpg` (HTML de origem em
   `interno/clientes/cantodospassaros/og/`). Prints e pendências em `interno/clientes/cantodospassaros/`,
   fora do git.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/zini/` — prévia do site da Zini Body Center (academia: musculação, CrossZini, personal, nutrição,
   moda fitness e Espaço Kids, R. Dom Carloto, 36, Centro de Espera Feliz, MG), desde 20/10/2026, a
@@ -897,6 +907,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=zini`, OG em `og-image-v2.jpg` (HTML em `interno/clientes/zini/og/`). Prints e
   pendências em `interno/clientes/zini/`, fora do git.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/o2fitness/` — prévia do site da O2 Fitness Academia (musculação, R. José Grillo, 140, Centro de
   Espera Feliz, MG, a mesma cidade da Zini), desde 21/10/2026, feita a partir do `/zini/` com o perfil
@@ -916,6 +928,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v2.jpg` (HTML em
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/rar/` — prévia do site da RAR Academia (musculação, cardio, plano família e loja de suplementos
   na recepção, Rod. Abílio Manoel de Lima, km 7, Encantada, Garopaba, SC), desde 22/10/2026, feita
@@ -940,6 +954,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=rar`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/rar/og/`). Prints e
   pendências em `interno/clientes/rar/`, fora do git.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/megaacademia/` — prévia do site da Mega Academia (musculação e ginástica desde 2011, Av. Campos
   Novos, São Vicente, Itajaí, SC), desde 22/10/2026, feita a partir do `/o2fitness/` com o perfil do
@@ -965,6 +981,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `utm_campaign=megaacademia`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/megaacademia/og/`).
   Fotos, avaliações extraídas, preços da proposta e pendências em `interno/clientes/megaacademia/`,
   fora do git.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
+  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - `/cxf/` — prévia da loja da CXF Café Especial (café especial; **não é corretora**), para mostrar ao
   cliente. **Desde 23/10/2026 é gerada pelo repositório da loja**, `Desktop/cxf-loja` (privado, Tipo E:
@@ -980,6 +998,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   - **Home:** a história "Do pé à xícara", os aromas, a sacola e o seletor de moagem. O checkout
     ainda não existe; o andamento está em `cxf-loja/docs/progresso.md`.
   - **Auditoria:** `interno/clientes/cxf/auditoria-caminho-b.md`.
+
+  **Fora do ar desde 28/10/2026:** o `.htaccess` manda para a home e só abre pelo acervo. O
+  bloco "DESATIVADA" vem do `scripts/previa.mjs` do `cxf-loja`: para reativar, apague lá e rode
+  o script de novo.
 
 - `/agrega/` — prévia de duas empresas irmãs de Espera Feliz, MG, num domínio só, desde 24/10/2026,
   a partir de uma especificação em 13 seções (`interno/clientes/agrega/agrega-site.md`) e de prints do
@@ -1080,6 +1102,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   (`og-portal-v1.jpg`, `og-marketing-v1.jpg`, `og-print-v1.jpg`, HTML em
   `interno/clientes/agrega/og/`). Fontes de cada dado e pendências em
   `interno/clientes/agrega/README.md`, fora do git.
+  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home (portal e todas as
+  páginas); os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
 
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
