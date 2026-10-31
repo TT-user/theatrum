@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0B0A08"/>
+<script>document.documentElement.classList.add('js')</script>
+<title>Theatrum | O site que leva o cliente até o seu WhatsApp</title>
+<meta name="description" content="Site e landing page prontos para anúncio, que mandam o cliente para o seu WhatsApp já dizendo o que quer. Veja a simulação, calcule o retorno e receba a prévia antes de pagar."/>
+<meta name="robots" content="noindex, follow"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png"/>
+<link rel="apple-touch-icon" href="../assets/img/logo-180.png"/>
+<link rel="canonical" href="https://usetheatrum.com.br/site-que-vende/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://usetheatrum.com.br/site-que-vende/"/>
+<meta property="og:title" content="O site que leva o cliente até o seu WhatsApp | Theatrum"/>
+<meta property="og:description" content="Veja o seu site indo ao ar, o cliente chegando no WhatsApp e quanto isso devolve por mês. Prévia antes de pagar."/>
+<meta property="og:image" content="https://usetheatrum.com.br/site-que-vende/og-v1.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://usetheatrum.com.br/site-que-vende/og-v1.jpg"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2LNND3QDPM');
+  gtag('config', 'AW-18362682320');
+  /* medição entra depois da página, como na home: no primeiro gesto ou quando o
+     navegador fica ocioso. Até lá gtag() só empilha em dataLayer. */
+  (function(){
+    var subiu = false;
+    function sobe(){
+      if (subiu) return; subiu = true;
+      dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      [ "https://www.googletagmanager.com/gtm.js?id=GTM-N247ZTJ5",
+        "https://www.googletagmanager.com/gtag/js?id=G-2LNND3QDPM" ]
+      .forEach(function(src){
+        var j = document.createElement("script");
+        j.async = true; j.src = src;
+        document.head.appendChild(j);
+      });
+    }
+    ["pointerdown","touchstart","keydown","scroll"].forEach(function(ev){
+      addEventListener(ev, sobe, { once: true, passive: true });
+    });
+    addEventListener("load", function(){
+      if (window.requestIdleCallback) requestIdleCallback(sobe, { timeout: 6000 });
+      else setTimeout(sobe, 3000);
+    });
+  })();
+</script>
+<!-- Microsoft Ads UET (tag 187278315) + consentimento, igual à home -->
+<script>
+  window.uetq = window.uetq || [];
+  window.uetq.push('consent', 'default', {'ad_storage': 'denied'});
+  try { if (localStorage.getItem('theatrum-cookies') === 'aceito') window.uetq.push('consent', 'update', {'ad_storage': 'granted'}); } catch (e) {}
+  (function () {
+    var subiu = false;
+    function uet() {
+      if (subiu) return; subiu = true;
+      (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"187278315", enableAutoSpaFix: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","https://bat.bing.com/bat.js","uetq");
+    }
+    ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
+      addEventListener(ev, uet, { once: true, passive: true });
+    });
+    addEventListener("load", function () {
+      if (window.requestIdleCallback) requestIdleCallback(uet, { timeout: 6000 });
+      else setTimeout(uet, 3000);
+    });
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  /* Tokens da home (conferidos no :root de lá) + as cores do WhatsApp no tema escuro,
+     usadas só dentro dos celulares das simulações. */
+  :root{
+    --bg:#0B0A08; --bg-2:#100E0B; --card:#1A1815;
+    --accent:#E3B341; --accent-soft:#F0D488; --accent2:#8E1F2F;
+    --cream:#F6F1E7; --white:#FFFFFF; --muted:#A39B8D; --ink:#141210; --danger:#D64545;
+    --ok:#3DDC84;
+    --line:rgba(255,255,255,.10);
+    --font-display:'Plus Jakarta Sans',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --font-script:'Instrument Serif',serif;
+    --gutter:clamp(20px,5vw,72px);
+    --wrap:1240px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --wa-bg:#0B141A; --wa-barra:#202C33; --wa-in:#202C33; --wa-out:#005C4B; --wa-verde:#00A884;
+    --wa-txt:#E9EDEF; --wa-mudo:#8696A0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--white);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;text-rendering:optimizeLegibility}
+  body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  input,textarea{-webkit-user-select:text;user-select:text}
+  img{-webkit-user-drag:none}
+  [hidden]{display:none!important}
+  .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .ic{width:1em;height:1em;flex-shrink:0;fill:currentColor}
+
+  /* ============ NAV FIXA ============ */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    gap:24px;padding:20px var(--gutter);border-bottom:1px solid transparent;transition:background .4s ease,padding .4s ease,border-color .4s ease}
+  .site-nav.is-scrolled{background:rgba(11,10,8,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    padding:11px var(--gutter);border-bottom-color:rgba(255,255,255,.08)}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
+  .brand-chip{width:50px;height:50px;border-radius:14px;border:1px solid rgba(255,255,255,.14);overflow:hidden;background:#000;transition:width .35s var(--ease),height .35s var(--ease)}
+  .brand-chip img{width:100%;height:100%;object-fit:cover;display:block}
+  .brand b{font-family:var(--font-display);font-weight:700;font-size:19px}
+  .site-nav.is-scrolled .brand-chip{width:42px;height:42px}
+  .nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+  .nav-links a{font:500 14.5px/1 var(--font-body);color:#D8D0C2;text-decoration:none;position:relative;padding:6px 0;transition:color .3s;white-space:nowrap}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;border-radius:2px;background:var(--accent);transition:width .3s var(--ease)}
+  .nav-links a:hover,.nav-links a.is-active{color:var(--white)}
+  .nav-links a:hover::after,.nav-links a.is-active::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .nav-cta{display:inline-flex;align-items:center;gap:9px;font:700 14.5px/1 var(--font-body);color:var(--ink);text-decoration:none;background:var(--accent);
+    border-radius:99px;padding:13px 20px;transition:background .25s ease;white-space:nowrap}
+  .nav-cta:hover{background:var(--accent-soft)}
+  .nav-cta .ic{font-size:17px}
+  .nav-burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;cursor:pointer;position:relative;padding:0}
+  .nav-burger span{position:absolute;left:12px;right:12px;height:1.5px;background:var(--white);border-radius:1px;transition:transform .3s var(--ease),opacity .3s}
+  .nav-burger span:nth-child(1){top:16px}
+  .nav-burger span:nth-child(2){top:21.5px}
+  .nav-burger span:nth-child(3){top:27px}
+  .nav-burger.is-open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .nav-burger.is-open span:nth-child(2){opacity:0}
+  .nav-burger.is-open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+  .mobile-menu{position:fixed;inset:0;z-index:999;background:rgba(7,6,5,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .35s ease,transform .35s ease,visibility 0s .35s}
+  .mobile-menu.is-open{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease}
+  .mobile-menu a{font:600 clamp(1.4rem,6.5vw,2rem)/1.2 var(--font-display);color:var(--white);text-decoration:none;padding:10px 0}
+  .mobile-menu .mm-cta{margin-top:22px;font:700 16px/1 var(--font-body);color:var(--ink);background:var(--accent);border-radius:99px;padding:17px 32px}
+  /* seis links e o CTA: abaixo de ~1160 px (medido em 30/10/2026) o menu encosta no CTA */
+  @media(max-width:1180px){ .nav-links{display:none} .nav-burger{display:block} }
+
+  /* ============ BOTÕES ============ */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;font:700 16px/1.2 var(--font-body);
+    border-radius:99px;padding:18px 30px;min-height:58px;position:relative;cursor:pointer;border:0;
+    transition:transform .35s var(--ease),box-shadow .35s,border-color .3s,color .3s,background .3s}
+  .btn .ic{font-size:20px}
+  .btn-primary{background:var(--accent);color:var(--ink);box-shadow:0 18px 44px -16px rgba(227,179,65,.5)}
+  .btn-primary:hover{background:var(--accent-soft);box-shadow:0 26px 56px -16px rgba(227,179,65,.6)}
+  .btn-secondary{color:var(--white);border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.02)}
+  .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+  .btn-ink{background:var(--ink);color:var(--accent);box-shadow:0 22px 50px -20px rgba(20,18,16,.6)}
+  .btn-ink:hover{color:var(--accent-soft)}
+  .btn-arrow{width:22px;height:14px;overflow:visible;flex-shrink:0}
+  .btn-arrow path{stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .btn-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);flex-shrink:0}
+  .ima{transition:transform .35s var(--ease),box-shadow .35s,background .3s,color .3s}
+  .btn:active{transform:scale(.98)}
+  .link-sec{font:600 15.5px/1.4 var(--font-body);color:var(--white);text-decoration:underline;text-decoration-color:rgba(227,179,65,.6);
+    text-underline-offset:5px;text-decoration-thickness:1.5px;transition:color .25s,text-decoration-color .25s}
+  .link-sec:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:44px}
+
+  /* ============ [01] HERO ============
+     Centralizado: uma pergunta grande, um botão principal e o degrau
+     mais baixo ao lado. Embaixo, o palco: o site no ar, o anúncio no Google e o celular
+     recebendo os pedidos. Só se mexe com o hero à vista. */
+  .hero{position:relative;overflow:hidden;isolation:isolate;text-align:center;padding:clamp(108px,13.5vh,160px) var(--gutter) 0}
+  .hero-bg{position:absolute;inset:0;z-index:-2;pointer-events:none;background:
+    radial-gradient(50% 42% at 50% 8%,rgba(227,179,65,.16) 0%,transparent 70%),
+    radial-gradient(40% 40% at 8% 90%,rgba(142,31,47,.18) 0%,transparent 70%),
+    radial-gradient(40% 40% at 94% 70%,rgba(227,179,65,.08) 0%,transparent 70%),
+    linear-gradient(180deg,#15120D 0%,var(--bg) 70%)}
+  /* grade de cruzinhas, apagando nas bordas */
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 13v8M13 17h8' stroke='%23ffffff' stroke-opacity='.09' stroke-width='1.2'/%3E%3C/svg%3E");
+    -webkit-mask-image:radial-gradient(75% 60% at 50% 30%,#000 0%,transparent 80%);mask-image:radial-gradient(75% 60% at 50% 30%,#000 0%,transparent 80%)}
+  .hx-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 13px;border-radius:99px;border:1px solid rgba(227,179,65,.35);
+    background:rgba(227,179,65,.07);font:600 12.5px/1.35 var(--font-mono);color:var(--accent-soft);animation:rise .8s var(--ease) .05s both}
+  .pulso{position:relative;width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0}
+  .pulso::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--ok);opacity:0;animation:pulso 2.2s ease-out infinite}
+  .hero.fora .pulso::after{animation-play-state:paused}
+  .vagas .pulso::after,.rp-vivo .pulso::after{animation-iteration-count:5}
+  @keyframes pulso{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+  .hx-title{font:800 clamp(2.3rem,min(5vw,6.6vh),4.5rem)/1.05 var(--font-display);letter-spacing:-.012em;max-width:18.5ch;margin:22px auto 0;text-wrap:balance;
+    animation:rise .9s var(--ease) .12s both}
+  .ouro{display:block;font-family:var(--font-script);font-style:italic;font-weight:400;font-size:1.1em;letter-spacing:-.005em;line-height:.98;
+    background:linear-gradient(100deg,#F6DE9A 0%,#E3B341 42%,#D3892C 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .08em .06em 0}
+  .hx-sub{max-width:58ch;margin:clamp(16px,2.6vh,24px) auto 0;font-size:clamp(1.05rem,1.3vw,1.2rem);line-height:1.65;color:rgba(255,255,255,.8);animation:rise .9s var(--ease) .22s both}
+  .hx-sub b{color:var(--white);font-weight:600}
+  .hero .ctas{justify-content:center;margin-top:clamp(22px,3.4vh,32px);animation:rise .9s var(--ease) .32s both}
+  .hx-mini{margin-top:16px;font:500 12px/1.5 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);animation:rise .9s var(--ease) .4s both}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+  /* palco do hero */
+  .palco{position:relative;max-width:1100px;height:clamp(400px,44vw,560px);margin:clamp(40px,6vh,64px) auto 0;text-align:left;animation:rise 1s var(--ease) .5s both}
+  .palco::after{content:"";position:absolute;left:-12%;right:-12%;bottom:0;height:150px;background:linear-gradient(transparent,var(--bg) 85%);z-index:3;pointer-events:none}
+  .pc-br{position:absolute;left:7%;right:17%;top:0;bottom:-40px}
+  .pc-br .br{height:100%;box-shadow:0 -10px 90px -30px rgba(227,179,65,.35),0 40px 90px rgba(0,0,0,.55)}
+  .pc-br .br-quadro{aspect-ratio:auto;height:calc(100% - 34px)}
+  .pc-google{position:absolute;left:0;top:16%;z-index:4;width:min(290px,32%);background:#fff;color:#202124;border-radius:14px;padding:14px 16px;
+    box-shadow:0 26px 60px -16px rgba(0,0,0,.7);font-family:Arial,var(--font-body);transform:rotate(-2deg)}
+  .pc-google .pg-rot{display:flex;align-items:center;gap:6px;font:700 11px/1 var(--font-mono);color:#5F6368;letter-spacing:.04em}
+  .pc-google .pg-rot .ic{color:#5F6368;font-size:13px}
+  .pc-google small{display:block;margin-top:10px;font-size:11.5px;color:#202124}
+  .pc-google small b{font-weight:700}
+  .pc-google strong{display:block;margin-top:4px;font:400 15.5px/1.3 Arial,sans-serif;color:#1a0dab}
+  .pc-google p{margin-top:4px;font-size:12px;line-height:1.45;color:#4D5156}
+  .pc-cel{position:absolute;right:1%;top:4%;z-index:5}
+  .pc-kpi{position:absolute;left:3%;bottom:22%;z-index:5;display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;
+    background:rgba(20,18,16,.9);border:1px solid rgba(227,179,65,.4);box-shadow:0 24px 50px -16px rgba(0,0,0,.7);backdrop-filter:blur(8px)}
+  .pc-kpi strong{font:800 34px/1 var(--font-display);color:var(--accent);min-width:1.4em;text-align:center}
+  .pc-kpi strong.sobe{animation:sobe .5s var(--ease)}
+  @keyframes sobe{0%{transform:translateY(8px);opacity:.2}100%{transform:none;opacity:1}}
+  .pc-kpi span{font:600 13.5px/1.35 var(--font-body);color:var(--white)}
+  .pc-kpi small{display:block;font:500 10.5px/1.4 var(--font-mono);color:var(--muted);margin-top:3px}
+
+  /* ============ JANELA DE NAVEGADOR (hero, simulação, trabalhos) ============ */
+  .br{display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#12110E;box-shadow:0 30px 70px -20px rgba(0,0,0,.7)}
+  .br-barra{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:#262420;border-bottom:1px solid rgba(255,255,255,.05)}
+  .br-barra i{width:9px;height:9px;border-radius:50%;background:#E0524B;flex-shrink:0}
+  .br-barra i:nth-child(2){background:#E5B842}
+  .br-barra i:nth-child(3){background:#4DB861}
+  .br-barra b{display:flex;align-items:center;justify-content:center;gap:6px;flex:1;min-width:0;margin-left:8px;background:rgba(255,255,255,.06);border-radius:6px;padding:4px 10px;
+    font:500 11px/1.2 var(--font-mono);color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .br-barra b .ic{font-size:10px;color:#6EE7A8}
+  .br-quadro{position:relative;display:block;aspect-ratio:16/10;background:linear-gradient(160deg,#1B1916,#12110E);overflow:hidden}
+  .br-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+
+  /* ============ CELULAR COM WHATSAPP ============
+     Um desenho só, em 300 x 620, escalado com zoom (--s) onde precisa ser menor:
+     o zoom muda também o espaço que ele ocupa, o transform não. */
+  .cel{--s:1;zoom:var(--s);position:relative;width:300px;height:620px;border-radius:46px;background:#0A0A0A;padding:10px;flex-shrink:0;text-align:left;
+    box-shadow:inset 0 0 0 1.5px #2E2A25,0 0 0 1px rgba(255,255,255,.06),0 40px 90px -24px rgba(0,0,0,.75)}
+  .cel::before{content:"";position:absolute;top:19px;left:50%;width:90px;height:25px;margin-left:-45px;border-radius:20px;background:#000;z-index:6}
+  .cel-tela{position:relative;height:100%;border-radius:36px;overflow:hidden;background:var(--wa-bg);display:flex;flex-direction:column;color:var(--wa-txt)}
+  .cel-status{height:42px;flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 7px;font:600 12.5px/1 var(--font-body);color:var(--wa-txt);background:var(--wa-barra)}
+  .cel-status .bat{width:22px;height:11px;border-radius:3px;border:1.5px solid rgba(233,237,239,.8);position:relative}
+  .cel-status .bat::after{content:"";position:absolute;inset:1.5px 4px 1.5px 1.5px;border-radius:1px;background:var(--wa-txt)}
+  .wa-topo{display:flex;align-items:center;gap:10px;padding:6px 12px 10px 8px;background:var(--wa-barra);flex-shrink:0}
+  .wa-volta{font:400 26px/1 var(--font-body);color:var(--wa-txt);margin-top:-3px}
+  .av{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--c,#6B7C85);color:#fff;font:700 15px/1 var(--font-body);flex-shrink:0;overflow:hidden}
+  .av img{width:100%;height:100%;object-fit:cover}
+  .wa-quem{min-width:0;flex:1}
+  .wa-quem b{display:block;font:600 15px/1.2 var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wa-status{display:block;font:400 12px/1.3 var(--font-body);color:var(--wa-mudo);margin-top:1px}
+  .wa-status.dig{color:#25D366}
+  .wa-corpo{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:10px 9px 8px;
+    background-color:var(--wa-bg);background-image:radial-gradient(rgba(255,255,255,.035) 1.2px,transparent 1.3px);background-size:16px 16px}
+  .wa-pe{display:flex;align-items:center;gap:7px;padding:6px 8px 16px;background:var(--wa-bg);flex-shrink:0}
+  .wa-campo{flex:1;height:40px;border-radius:20px;background:var(--wa-barra);color:var(--wa-mudo);font:400 14px/40px var(--font-body);padding:0 16px}
+  .wa-mic{width:40px;height:40px;border-radius:50%;background:var(--wa-verde);display:grid;place-items:center;flex-shrink:0}
+  .wa-mic svg{width:18px;height:18px;fill:#0B141A}
+  .msg{position:relative;max-width:84%;padding:6px 9px 5px;border-radius:9px;font:400 13.5px/1.4 var(--font-body);color:var(--wa-txt);
+    animation:msgIn .32s var(--ease) both;flex-shrink:0;overflow-wrap:anywhere}
+  .msg b{font-weight:700}
+  .msg.in{align-self:flex-start;background:var(--wa-in);border-top-left-radius:2px}
+  .msg.out{align-self:flex-end;background:var(--wa-out);border-top-right-radius:2px}
+  .msg.sis{align-self:center;max-width:92%;background:#182229;color:#B6C2C9;font-size:11.5px;line-height:1.35;border-radius:8px;padding:5px 10px;text-align:center}
+  .msg.sis::before{content:"\25CF";color:var(--accent);margin-right:6px;font-size:9px;vertical-align:1px}
+  .msg .h{float:right;margin:6px 0 -4px 10px;font-size:10.5px;line-height:1;color:rgba(233,237,239,.6)}
+  .msg .vv{font-style:normal;color:#53BDEB;letter-spacing:-.18em;margin-left:3px}
+  .msg.dig{padding:11px 13px;display:flex;gap:4px}
+  .msg.dig i{width:7px;height:7px;border-radius:50%;background:var(--wa-mudo);animation:ponto 1s infinite}
+  .msg.dig i:nth-child(2){animation-delay:.15s}
+  .msg.dig i:nth-child(3){animation-delay:.3s}
+  .msg .foto{display:grid;place-items:center;width:178px;height:104px;margin:-2px -5px 6px;border-radius:6px;color:rgba(255,255,255,.55);
+    background:linear-gradient(135deg,#5B4636,#2B211A 60%),#3a2d22;font:600 11px/1.3 var(--font-mono)}
+  .msg .foto svg{width:26px;height:26px;fill:rgba(255,255,255,.5);margin-bottom:4px}
+  @keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes ponto{0%,60%,100%{opacity:.35;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+
+  /* celular mostrando um site (print da demo, rolando) */
+  .cel-site .cel-tela{background:#fff}
+  .cel-site .cel-status{background:#111;color:#fff}
+  .cel-rola{position:relative;flex:1;min-height:0;overflow:hidden}
+  .cel-rola img{display:block;width:100%;height:auto}
+  .toque{position:absolute;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;z-index:3;pointer-events:none;
+    background:rgba(227,179,65,.25);box-shadow:0 0 0 2px var(--accent);animation:toque 1.8s ease-out infinite}
+  .fora .toque{animation-play-state:paused}
+  @media(prefers-reduced-motion:reduce){ .toque{animation:none!important} }
+  @keyframes toque{0%{transform:scale(.55);opacity:1}70%{transform:scale(1.25);opacity:.15}100%{transform:scale(1.3);opacity:0}}
+
+  /* lista de conversas (celular do hero) */
+  .wa-cab{position:relative;z-index:2;padding:10px 16px 6px;background:var(--wa-bg);flex-shrink:0}
+  .wa-cab b{display:block;font:700 23px/1.1 var(--font-body)}
+  .wa-chips{display:flex;gap:6px;margin-top:10px}
+  .wa-chips span{padding:6px 11px;border-radius:99px;background:#1F2C33;font:500 12px/1 var(--font-body);color:var(--wa-mudo)}
+  .wa-chips span.on{background:#103529;color:#D9FDD3}
+  .wa-lista{list-style:none;position:relative;flex:1;min-height:0;overflow:hidden;transition:transform .5s var(--ease)}
+  .wa-lista li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:center;height:68px;padding:0 14px}
+  .wa-lista .av{width:46px;height:46px;font-size:17px}
+  .wa-lista li > div{min-width:0;border-bottom:1px solid rgba(134,150,160,.14);height:100%;display:flex;flex-direction:column;justify-content:center;gap:4px}
+  .wa-lista p{display:flex;align-items:center;gap:6px;min-width:0}
+  .wa-lista p b{flex:1;min-width:0;font:600 14.5px/1.2 var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wa-lista time{font:400 11.5px/1 var(--font-body);color:var(--wa-mudo)}
+  .wa-lista li.nova time{color:#25D366}
+  .wa-lista .pvw{flex:1;min-width:0;font:400 13px/1.2 var(--font-body);color:var(--wa-mudo);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wa-lista .tg{font:700 9px/1 var(--font-mono);color:var(--ink);background:var(--accent);border-radius:4px;padding:3px 5px;flex-shrink:0;text-transform:uppercase}
+  .wa-lista i{display:grid;place-items:center;min-width:20px;height:20px;border-radius:99px;background:#25D366;color:#0B141A;font:700 11px/1 var(--font-body);font-style:normal}
+  .wa-toast{position:absolute;top:50px;left:9px;right:9px;z-index:5;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:18px;
+    background:rgba(38,52,60,.97);box-shadow:0 14px 30px rgba(0,0,0,.5);transform:translateY(-140%);opacity:0;transition:transform .45s var(--ease),opacity .45s}
+  .wa-toast.on{transform:none;opacity:1}
+  .wa-toast .av{width:34px;height:34px;font-size:14px}
+  .wa-toast div{min-width:0}
+  .wa-toast b{display:block;font:600 12.5px/1.25 var(--font-body)}
+  .wa-toast span{display:block;font:400 12px/1.3 var(--font-body);color:#C9D2D7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* ============ BASE DAS SEÇÕES ============ */
+  .sec{position:relative;padding:clamp(84px,10vw,124px) var(--gutter)}
+  .sec.alt{background:var(--bg-2)}
+  .sec-inner{max-width:var(--wrap);margin:0 auto}
+  /* só desenha o que está perto da tela; por isso há a correção de âncora no fim da página */
+  .sec{content-visibility:auto;contain-intrinsic-size:auto 1000px}
+  @media(max-width:900px){ .sec{contain-intrinsic-size:auto 1300px} }
+  .eyebrow{display:flex;align-items:center;gap:14px;font:500 14px/1.4 var(--font-mono);letter-spacing:.02em;color:var(--muted)}
+  .eyebrow-bar{width:44px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);flex-shrink:0}
+  .eyebrow-tag{color:var(--accent);font-weight:700;flex-shrink:0}
+  .cab{display:grid}
+  .cab--lado{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:20px clamp(32px,6vw,96px)}
+  .cab--centro{justify-items:center;text-align:center}
+  .cab--centro .eyebrow{justify-content:center}
+  .cab--centro .eyebrow-bar:last-child{background:linear-gradient(270deg,var(--accent),transparent)}
+  .sec h2{font:800 clamp(2rem,4.2vw,3.5rem)/1.08 var(--font-display);letter-spacing:-.012em;margin-top:20px;max-width:20ch;text-wrap:balance}
+  .lead{font-size:clamp(1.05rem,1.3vw,1.18rem);line-height:1.68;color:#D6CEC0;max-width:56ch}
+  .cab .lead{margin-top:22px}
+  .cab--lado .lead{margin-top:0;padding-bottom:6px}
+  .lead b{color:var(--white)}
+  .lm{font-family:var(--font-script);font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;line-height:.9;color:var(--accent)}
+  @media(max-width:900px){ .cab--lado{grid-template-columns:1fr} .cab--lado .lead{margin-top:22px} }
+  .nota-sim{font:500 12px/1.5 var(--font-mono);color:var(--muted);letter-spacing:.02em}
+
+  /* entradas: sobe com fade; título sobe por trás de uma máscara */
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+  .rv.in{opacity:1;transform:none}
+  .rv-t{clip-path:inset(0 0 100% 0);transform:translateY(.45em);transition:clip-path 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+  .rv-t.in{clip-path:inset(-20% -5% -25% -5%);transform:none}
+
+  /* ============ [02] O PROBLEMA ============ */
+  .dados{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:52px}
+  .dado{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:36px 28px 24px}
+  .dado strong{font:800 clamp(3.2rem,5.4vw,4.4rem)/1 var(--font-display);letter-spacing:-.02em;color:var(--white)}
+  .dado strong em{font-style:normal;color:var(--accent)}
+  .dado h3{margin-top:16px;font:700 17.5px/1.4 var(--font-display);max-width:26ch}
+  .dado p{margin-top:12px;font-size:15.5px;line-height:1.6;color:#C2B9AA;max-width:34ch}
+  .dado cite{margin-top:auto;padding-top:22px;font:500 11.5px/1.5 var(--font-mono);font-style:normal;color:#8a8172}
+  .problema-fecho{max-width:780px;margin:48px auto 0;text-align:center;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.75;color:#BDB4A5}
+  .problema-fecho b{color:var(--white);font-weight:600}
+  /* print da notícia do Google: recorte de papel levemente torto, com grifo amarelo */
+  .noticia{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,72px);align-items:center;margin:52px 0 0}
+  .nt-print{position:relative;display:block;text-decoration:none;color:inherit;transform:rotate(-1.6deg);transition:transform .45s var(--ease),opacity .8s var(--ease)}
+  .nt-print.rv{transform:rotate(-1.6deg) translateY(30px)}
+  .nt-print.rv.in{transform:rotate(-1.6deg)}
+  @media(hover:hover){ .nt-print.rv.in:hover{transform:rotate(-.6deg) translateY(-4px)} }
+  .nt-print .br{background:#fff;box-shadow:0 44px 90px -34px rgba(0,0,0,.85),0 0 0 7px rgba(227,179,65,.08)}
+  .nt-print img{display:block;width:100%;height:auto}
+  .nt-selo{position:absolute;right:-12px;top:62px;padding:8px 13px;border-radius:99px;background:#FFE16A;color:var(--ink);font:700 12px/1 var(--font-mono);
+    transform:rotate(5deg);box-shadow:0 12px 26px -8px rgba(0,0,0,.6)}
+  .nt-rot{font:600 12.5px/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  .nt-txt h3{margin-top:12px;font:800 clamp(1.25rem,2vw,1.6rem)/1.3 var(--font-display);letter-spacing:-.005em}
+  .nt-cit{list-style:none;margin-top:24px;display:grid;gap:14px}
+  .nt-cit li{padding:14px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line);border-left:3px solid #FFE16A}
+  .nt-cit strong{display:block;font:800 clamp(1.3rem,2vw,1.6rem)/1.2 var(--font-display);color:var(--accent)}
+  .nt-cit span{display:block;margin-top:4px;font-size:15.5px;line-height:1.5;color:#D6CEC0}
+  .nt-nos{margin-top:22px;font-size:16.5px;line-height:1.65;color:#C9C0B1}
+  .nt-nos b{color:var(--white);font-weight:600}
+  .nt-fonte{margin-top:16px;font:500 12px/1.6 var(--font-mono);color:#8a8172}
+  .nt-fonte a{color:var(--accent-soft)}
+  @media(max-width:900px){ .noticia{grid-template-columns:1fr} .nt-print,.nt-print.rv.in{transform:rotate(-1deg)} .nt-print.rv{transform:rotate(-1deg) translateY(30px)} .nt-selo{right:-4px} }
+  .faixa{background:var(--card);border-block:1px solid var(--line);padding:46px var(--gutter)}
+  .faixa ul{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;text-align:center}
+  .faixa strong{display:block;font:800 clamp(2.2rem,3.6vw,3rem)/1 var(--font-display);color:var(--accent);white-space:nowrap}
+  .faixa span{display:block;margin-top:10px;font-size:15px;line-height:1.45;color:#BDB4A5}
+  @media(max-width:900px){ .dados{grid-template-columns:1fr;max-width:560px;margin-inline:auto} .faixa ul{grid-template-columns:1fr 1fr;gap:30px 18px} }
+
+  /* ============ [03] SIMULAÇÃO: DO PRIMEIRO OI AO PRIMEIRO CLIENTE ============
+     Cinco cenas num palco só. O relógio é a barrinha dourada do passo ativo: quando a
+     animação dela termina, entra a cena seguinte. Pausar (botão, fora da tela ou aba
+     escondida) é só pausar essa animação. */
+  .sim{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;margin-top:52px;align-items:stretch}
+  .sim-passos{list-style:none;display:grid;gap:8px;align-content:start}
+  .sim-passos button{position:relative;overflow:hidden;width:100%;display:grid;grid-template-columns:44px minmax(0,1fr);gap:3px 14px;align-items:center;text-align:left;
+    padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:transparent;color:var(--white);cursor:pointer;font-family:var(--font-body);
+    transition:background .3s,border-color .3s}
+  .sim-passos button:hover{border-color:rgba(227,179,65,.4)}
+  .sim-passos .n{grid-row:span 2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1.5px solid rgba(227,179,65,.45);
+    font:700 14px/1 var(--font-mono);color:var(--accent);transition:background .3s,color .3s,border-color .3s}
+  .sim-passos b{font:700 16px/1.25 var(--font-display)}
+  .sim-passos small{font:500 11.5px/1.3 var(--font-mono);color:var(--muted)}
+  .sim-passos .d{grid-column:2;display:none;margin-top:6px;font-size:14px;line-height:1.55;color:#C9C0B1}
+  .sim-passos .barra{position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+  .sim-passos button[aria-current="step"]{background:var(--card);border-color:rgba(227,179,65,.55)}
+  .sim-passos button[aria-current="step"] .n,.sim-passos button.feito .n{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .sim-passos button[aria-current="step"] .d{display:block}
+  .sim-passos button[aria-current="step"] .barra{animation:enche var(--dur,8s) linear forwards}
+  .sim.parado .barra,.sim.parado .cena *{animation-play-state:paused!important}
+  @keyframes enche{to{transform:scaleX(1)}}
+  .sim-palco{position:relative;min-height:580px;border-radius:24px;border:1px solid var(--line);overflow:hidden;
+    background:radial-gradient(60% 60% at 70% 20%,rgba(227,179,65,.08),transparent 70%),radial-gradient(50% 50% at 10% 100%,rgba(142,31,47,.12),transparent 70%),#0E0C0A}
+  .sim-palco::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 13v8M13 17h8' stroke='%23ffffff' stroke-opacity='.05' stroke-width='1.2'/%3E%3C/svg%3E")}
+  .cena{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:28px;padding:24px 30px 56px;
+    opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s .45s}
+  .cena.on{opacity:1;visibility:visible;transition:opacity .45s ease}
+  /* cada peça da cena entra no seu tempo (--t), contado de quando a cena acende */
+  .js .cena .q{opacity:0}
+  .cena.on .q{animation:qIn .55s var(--ease) var(--t,0s) both}
+  @keyframes qIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .sim-pe{position:absolute;left:20px;right:16px;bottom:14px;z-index:8;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .sim-pe .nota-sim{color:#8a8172}
+  .sim-play{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:rgba(11,10,8,.7);
+    color:var(--white);font:600 13px/1 var(--font-body);cursor:pointer}
+  .sim-play:hover{border-color:var(--accent)}
+  .sim-play svg{width:12px;height:12px;fill:currentColor}
+  .sim-legenda{display:none}
+  .sim-cta{margin-top:40px}
+
+  /* cartões que aparecem ao lado do celular nas cenas */
+  .cartao{width:300px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 22px 20px;box-shadow:0 30px 60px -24px rgba(0,0,0,.7)}
+  .cartao .rot{font:600 11.5px/1.3 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .rx-lista{list-style:none;margin-top:14px;display:grid;gap:12px}
+  .rx-lista li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;font-size:14px;line-height:1.45;color:#D8CFC0}
+  .rx-lista li::before{content:"\00D7";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(214,69,69,.16);color:#F08A8A;font:700 14px/1 var(--font-body)}
+  .rx-lista li.ok{color:var(--white);font-weight:600;padding-top:12px;border-top:1px dashed var(--line)}
+  .rx-lista li.ok::before{content:"\2713";background:var(--accent);color:var(--ink);font-size:12px}
+  .selo-ok{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:99px;background:var(--accent);color:var(--ink);
+    font:700 13px/1 var(--font-body);box-shadow:0 14px 34px -10px rgba(227,179,65,.6);white-space:nowrap}
+
+  /* cena 2: prévia */
+  .s2{position:relative;display:flex;align-items:flex-end}
+  .s2-br{width:min(540px,52vw)}
+  .esq{position:absolute;inset:0;display:flex;flex-direction:column;gap:4%;padding:5% 6%}
+  .esq span{display:block;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.06) 100%);background-size:200% 100%}
+  .cena.on .esq span{animation:brilho 1.2s linear infinite}
+  .esq .e0{height:5%;width:100%}
+  .esq .e1{height:9%;width:52%;margin-top:6%}
+  .esq .e2{height:9%;width:38%}
+  .esq .e3{height:3.5%;width:60%;margin-top:2%}
+  .esq .e4{height:3.5%;width:48%}
+  .esq .e5{height:9%;width:22%;border-radius:99px;margin-top:3%}
+  @keyframes brilho{to{background-position:-200% 0}}
+  .s2-img{clip-path:inset(0 0 100% 0)}
+  .cena.on .s2-img{animation:revela 1.8s cubic-bezier(.6,.1,.3,1) .7s forwards}
+  @keyframes revela{to{clip-path:inset(0 0 0 0)}}
+  .s2-scan{position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);box-shadow:0 0 18px 4px rgba(227,179,65,.6);opacity:0;z-index:2}
+  .cena.on .s2-scan{animation:scan 1.8s cubic-bezier(.6,.1,.3,1) .7s both}
+  @keyframes scan{0%{top:0;opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+  .s2-cel{margin:0 0 -26px -64px;z-index:2}
+  .cena.on .s2-cel .cel-rola img{animation:rolaSite 4.6s ease-in-out 2.4s both}
+  @keyframes rolaSite{to{transform:translateY(-46%)}}
+  .nota-c{position:absolute;z-index:4;max-width:250px;padding:10px 13px;border-radius:14px;font:500 13px/1.4 var(--font-body);box-shadow:0 16px 40px -12px rgba(0,0,0,.6)}
+  .nota-c b{font-weight:700}
+  .nota-c.n1{top:52px;left:-56px;max-width:230px;background:var(--cream);color:var(--ink);border-bottom-left-radius:4px}
+  .nota-c.n2{top:126px;left:-24px;background:#1F1C18;color:var(--white);border:1px solid rgba(227,179,65,.5);border-top-left-radius:4px}
+  .s2 .selo-ok{position:absolute;left:16px;bottom:16px;z-index:4}
+
+  /* cena 3: publicação */
+  .term{width:min(430px,100%);border-radius:14px;border:1px solid rgba(227,179,65,.35);background:linear-gradient(145deg,#1F1C18,#0E0D0B);padding:12px 20px 18px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+  .term-barra{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+  .term-barra i{width:9px;height:9px;border-radius:50%;background:#E0524B}
+  .term-barra i:nth-child(2){background:#E5B842}
+  .term-barra i:nth-child(3){background:#4DB861}
+  .term-barra b{margin-left:10px;font:500 11px/1 var(--font-mono);color:var(--muted)}
+  .term code{display:block;font:500 13px/2.05 var(--font-mono);color:rgba(255,255,255,.65);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .term code b{color:var(--accent)}
+  .term code.ok{color:#6EE7A8}
+  .term code.ouro{color:var(--accent);font-weight:700}
+  .term-prog{height:4px;border-radius:99px;background:rgba(255,255,255,.08);margin:10px 0 4px;overflow:hidden}
+  .term-prog span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#6EE7A8);transform-origin:left;transform:scaleX(0)}
+  .cena.on .term-prog span{animation:enche 3.4s linear .3s forwards}
+  .gauge-card{width:240px;text-align:center}
+  .gauge-w{position:relative;width:136px;height:136px;margin:4px auto 0}
+  .gauge{width:136px;height:136px;transform:rotate(-90deg)}
+  .gauge circle{fill:none;stroke-width:10}
+  .g-fundo{stroke:rgba(12,206,107,.14)}
+  .g-arco{stroke:#0CCE6B;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7}
+  .cena.on .g-arco{animation:gauge 2.2s var(--ease) 1.2s forwards}
+  @keyframes gauge{to{stroke-dashoffset:9.8}}
+  .gauge-w strong{position:absolute;inset:0;display:grid;place-items:center;font:800 38px/1 var(--font-display);color:#0CCE6B}
+  .gauge-card p{margin-top:12px;font:600 14px/1.4 var(--font-body)}
+  .gauge-card p small{display:block;font:500 11px/1.4 var(--font-mono);color:var(--muted);margin-top:2px}
+  .url-pill{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:9px 13px;border-radius:99px;background:rgba(12,206,107,.1);
+    border:1px solid rgba(12,206,107,.4);font:600 12px/1 var(--font-mono);color:#B9F5D4;white-space:nowrap}
+  .url-pill b{color:#0CCE6B}
+  .url-pill i{width:7px;height:7px;border-radius:50%;background:#0CCE6B;box-shadow:0 0 8px #0CCE6B}
+
+  /* cena 4: Google */
+  .busca{position:relative;width:min(600px,100%);background:#fff;color:#202124;border-radius:16px;padding:18px 20px 20px;font-family:Arial,var(--font-body);
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.7)}
+  .bu-topo{display:flex;align-items:center;gap:14px}
+  .bu-g{font:700 21px/1 var(--font-body);color:#5F6368;letter-spacing:-.02em}
+  .bu-campo{flex:1;min-width:0;display:flex;align-items:center;gap:10px;height:42px;border-radius:99px;border:1px solid #DFE1E5;padding:0 16px;
+    box-shadow:0 1px 6px rgba(32,33,36,.16);font-size:14.5px;color:#202124}
+  .bu-campo svg{width:16px;height:16px;fill:#9AA0A6;flex-shrink:0}
+  .bu-txt{display:inline-block;max-width:0;white-space:nowrap;overflow:hidden;vertical-align:bottom}
+  .cena.on .bu-txt{animation:digita 1.5s steps(30,end) .3s forwards}
+  @keyframes digita{to{max-width:31ch}}
+  .bu-cur{width:1.5px;height:18px;background:#1a73e8}
+  .cena.on .bu-cur{animation:pisca 1s steps(1) infinite}
+  @keyframes pisca{50%{opacity:0}}
+  .bu-res{margin-top:16px;display:grid;gap:14px}
+  .bu-pat{font:700 12px/1 Arial,sans-serif}
+  .bu-site{display:flex;align-items:center;gap:9px;margin-top:9px;font:13px/1.2 Arial,sans-serif}
+  .bu-site small{display:block;color:#4D5156;font-size:12px}
+  .bu-fav{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#2B1D15;color:#E8A25B;font:700 10px/1 var(--font-mono);flex-shrink:0}
+  .bu-ad h4{margin-top:6px;font:400 19px/1.3 Arial,sans-serif;color:#1a0dab}
+  .bu-desc{margin-top:4px;font:13.5px/1.5 Arial,sans-serif;color:#4D5156}
+  .bu-links{display:flex;gap:18px;margin-top:6px;font-size:13.5px;color:#1a0dab}
+  .bu-mapa{display:grid;grid-template-columns:132px minmax(0,1fr);gap:14px;border:1px solid #DADCE0;border-radius:12px;overflow:hidden}
+  .bu-mapa svg{display:block;width:132px;height:100%;min-height:104px}
+  .bu-local{padding:10px 12px 12px 0;font:13px/1.45 Arial,sans-serif;color:#4D5156}
+  .bu-local b{display:block;color:#202124;font-size:15px}
+  .bu-local .ab{color:#188038}
+  .bu-local p{display:flex;gap:6px;margin-top:6px}
+  .bu-local p span{padding:4px 10px;border:1px solid #DADCE0;border-radius:99px;color:#1a73e8;font-size:12px}
+  .bu-org i{display:block;height:10px;border-radius:5px;background:#F1F3F4;margin-top:9px}
+  .bu-org i:nth-child(1){width:42%;margin-top:0}
+  .bu-org i:nth-child(2){width:88%}
+  .bu-org i:nth-child(3){width:64%}
+  .bu-mouse{position:absolute;left:78%;top:92%;width:22px;height:22px;z-index:3;opacity:0}
+  .bu-mouse svg{width:22px;height:22px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+  .cena.on .bu-mouse{animation:mouse 1.3s var(--ease) 3.7s forwards}
+  @keyframes mouse{0%{opacity:0}20%{opacity:1}100%{opacity:1;left:44%;top:31%}}
+  .bu-clique{position:absolute;left:44%;top:31%;width:44px;height:44px;margin:-14px 0 0 -14px;border-radius:50%;border:2px solid #1a73e8;opacity:0;z-index:2}
+  .cena.on .bu-clique{animation:clique .7s ease-out 5.1s both}
+  @keyframes clique{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.4)}}
+  .bu-chip{position:absolute;right:6%;top:9%;z-index:4}
+
+  /* cena 5: o primeiro cliente */
+  .trilha{list-style:none;margin-top:16px}
+  .trilha li{position:relative;padding:0 0 18px 30px}
+  .trilha li::before{content:"";position:absolute;left:0;top:3px;width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);background:var(--card)}
+  .trilha li::after{content:"";position:absolute;left:7px;top:20px;bottom:2px;width:2px;background:rgba(227,179,65,.3)}
+  .trilha li:last-child{padding-bottom:0}
+  .trilha li:last-child::after{display:none}
+  .trilha li:last-child::before{background:var(--accent)}
+  .trilha b{display:block;font:700 14.5px/1.3 var(--font-display)}
+  .trilha span{display:block;margin-top:3px;font-size:13px;line-height:1.4;color:var(--muted)}
+  .c5 .selo-ok{margin-top:18px}
+
+  @media(max-width:1100px){
+    .sim{grid-template-columns:1fr}
+    .sim-passos{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+    .sim-passos button{grid-template-columns:1fr;justify-items:center;text-align:center;padding:12px 6px 14px;gap:6px}
+    .sim-passos .n{grid-row:auto;width:38px;height:38px}
+    .sim-passos b{font-size:13.5px}
+    .sim-passos small,.sim-passos button[aria-current="step"] .d{display:none}
+    .sim-legenda{display:block;margin-top:16px;padding:18px 20px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+    .sim-legenda b{display:block;font:800 18px/1.25 var(--font-display)}
+    .sim-legenda span{display:block;margin-top:6px;font-size:15px;line-height:1.55;color:#C9C0B1}
+  }
+  @media(max-width:760px){
+    .sim-passos b{display:none}
+    .sim-palco{min-height:520px}
+    .cena{padding:20px 14px 58px;flex-direction:column;gap:16px}
+    .c1 .cartao,.c5 .cartao{display:none}
+    .cena .cel{--s:.68!important}
+    .s2{flex-direction:column;align-items:center}
+    .s2-br{width:100%}
+    .cena .s2-cel{--s:.42!important;margin:-120px 0 0 auto}
+    .nota-c{font-size:12px;max-width:190px}
+    .nota-c.n1{top:40px;left:-4px}
+    .nota-c.n2{top:104px;left:auto;right:-4px}
+    .s2 .selo-ok{left:0;bottom:-34px}
+    .term code{font-size:11.5px}
+    .gauge-card{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px}
+    .gauge-w,.gauge{width:84px;height:84px;margin:0}
+    .gauge-w strong{font-size:24px}
+    .gauge-card p{margin-top:0}
+    .gauge-card .url-pill{display:none}
+    .busca{padding:14px}
+    .bu-g{display:none}
+    .bu-ad h4{font-size:16px}
+    .bu-mapa{grid-template-columns:96px minmax(0,1fr)}
+    .bu-mapa svg{width:96px}
+    .bu-chip{right:0;left:0;top:auto;bottom:66px;width:max-content;margin:0 auto}
+  }
+
+  /* ============ [04] NO SEU WHATSAPP ============ */
+  .cv-abas{display:flex;gap:8px;margin-top:44px;overflow-x:auto;scrollbar-width:none;padding:2px}
+  .cv-abas::-webkit-scrollbar{display:none}
+  .cv-abas button{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:99px;border:1px solid var(--line);
+    background:transparent;color:#D8D0C2;font:600 14.5px/1 var(--font-body);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+  .cv-abas button:hover{border-color:rgba(227,179,65,.5)}
+  .cv-abas button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .cv{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-top:36px}
+  .cv-rot{display:flex;align-items:center;gap:10px;margin-bottom:16px;font:600 13px/1.35 var(--font-mono);color:var(--muted)}
+  .cv-rot b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--ink);font-size:12px;flex-shrink:0}
+  .cv-antes .cv-rot b{background:rgba(214,69,69,.2);color:#F08A8A}
+  .cv-origem .cel{--s:.62}
+  .cv-site{margin-top:14px;font:500 12px/1.4 var(--font-mono);color:#8a8172;text-align:center}
+  .cv-res{display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;margin-top:16px;font:700 14px/1.3 var(--font-body);color:var(--accent);
+    opacity:0;transition:opacity .4s}
+  .cv-res.on{opacity:1}
+  .cv-res::before{content:"\2713";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--ink);font-size:12px}
+  .cv-antes{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 24px 22px}
+  .ca-chat{display:flex;flex-direction:column;gap:6px;padding:14px 12px;border-radius:14px;background:var(--wa-bg)}
+  .ca-chat .msg{animation:none;opacity:.85}
+  .ca-perda{display:flex;align-items:center;gap:8px;margin-top:14px;font:600 13px/1.4 var(--font-mono);color:#F08A8A}
+  .ca-perda::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--danger)}
+  .ca-muda{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
+  .ca-muda p{font:700 15px/1.3 var(--font-display)}
+  .ca-muda ul{list-style:none;margin-top:12px;display:grid;gap:10px}
+  .ca-muda li{position:relative;padding-left:26px;font-size:15px;line-height:1.5;color:#D8CFC0}
+  .ca-muda li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .cv-nota{margin-top:18px}
+  @media(max-width:1100px){ .cv{grid-template-columns:auto minmax(0,1fr)} .cv-origem{display:none} }
+  @media(max-width:760px){
+    .cv{grid-template-columns:1fr;justify-items:center}
+    .cv-zap .cel{--s:.9}
+    .cv-antes{width:100%}
+  }
+
+  /* ============ [05] O RETORNO ============ */
+  .ret{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:22px;margin-top:52px;align-items:start}
+  .ret-form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 26px 24px}
+  .ret-tipos{border:0}
+  .ret-tipos legend{font:600 12.5px/1.3 var(--font-mono);color:var(--muted);margin-bottom:12px}
+  .ret-tipos div{display:flex;flex-wrap:wrap;gap:8px}
+  .ret-tipos button{min-height:40px;padding:0 15px;border-radius:99px;border:1px solid var(--line);background:transparent;color:#D8D0C2;font:600 13.5px/1 var(--font-body);cursor:pointer;
+    transition:background .2s,color .2s,border-color .2s}
+  .ret-tipos button:hover{border-color:rgba(227,179,65,.5)}
+  .ret-tipos button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .ret-q{margin-top:22px}
+  .ret-q label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font:600 15px/1.35 var(--font-body);color:var(--white)}
+  .ret-q output{font:800 17px/1 var(--font-display);color:var(--accent);white-space:nowrap}
+  .ret-q small{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:#8a8172}
+  input[type=range]{-webkit-appearance:none;appearance:none;display:block;width:100%;height:34px;margin-top:6px;background:transparent;cursor:pointer;--v:50%}
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--accent) var(--v),rgba(255,255,255,.12) var(--v))}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;background:var(--cream);border:4px solid var(--accent);box-shadow:0 3px 10px rgba(0,0,0,.45)}
+  input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:rgba(255,255,255,.12)}
+  input[type=range]::-moz-range-progress{height:6px;border-radius:99px;background:var(--accent)}
+  input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--cream);border:4px solid var(--accent)}
+  input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+  .ret-moeda{display:flex;align-items:center;margin-top:8px;height:52px;border-radius:12px;border:1px solid var(--line);background:#12100D;overflow:hidden}
+  .ret-moeda:focus-within{border-color:var(--accent)}
+  .ret-moeda span{padding:0 4px 0 16px;font:700 16px/1 var(--font-body);color:var(--muted)}
+  .ret-moeda input{flex:1;min-width:0;height:100%;border:0;background:transparent;color:var(--white);font:700 17px/1 var(--font-body);padding:0 14px 0 6px;outline:none}
+  .ret-check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:start;margin-top:24px;padding-top:20px;border-top:1px dashed var(--line);cursor:pointer;
+    font-size:14.5px;line-height:1.5;color:#D8CFC0}
+  .ret-check input{width:22px;height:22px;margin-top:1px;accent-color:var(--accent);cursor:pointer}
+  .ret-check b{color:var(--white)}
+  .ret-painel{position:relative;border-radius:22px;overflow:hidden;border:1px solid rgba(227,179,65,.3);background:linear-gradient(180deg,#16130F,#0E0C0A);
+    box-shadow:0 40px 90px -40px rgba(227,179,65,.3)}
+  .rp-topo{display:flex;align-items:center;gap:12px;padding:12px 18px;background:#1B1814;border-bottom:1px solid var(--line)}
+  .rp-topo .pts{display:flex;gap:6px}
+  .rp-topo .pts i{width:9px;height:9px;border-radius:50%;background:#E0524B}
+  .rp-topo .pts i:nth-child(2){background:#E5B842}
+  .rp-topo .pts i:nth-child(3){background:#4DB861}
+  .rp-topo b{flex:1;font:500 12px/1 var(--font-mono);color:var(--muted)}
+  .rp-vivo{display:inline-flex;align-items:center;gap:7px;font:600 11px/1 var(--font-mono);color:#B9F5D4;padding:6px 10px;border-radius:99px;background:rgba(61,220,132,.1)}
+  .rp-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+  .rp-kpis > div{padding:18px 18px 16px;border-right:1px solid var(--line)}
+  .rp-kpis > div:last-child{border-right:0}
+  .rp-kpis span{display:block;font:500 12px/1.35 var(--font-body);color:var(--muted)}
+  .rp-kpis strong{display:block;margin-top:8px;font:800 clamp(1.5rem,2.4vw,2rem)/1 var(--font-display);color:var(--white);white-space:nowrap}
+  .rp-kpis .dest strong{color:var(--accent)}
+  .rp-meio{display:grid;grid-template-columns:minmax(0,1fr) 200px}
+  .rp-graf{position:relative;padding:16px 10px 10px 8px;margin:0}
+  .rp-graf figcaption{padding:0 10px 6px;font:600 12.5px/1.35 var(--font-body);color:#D8CFC0}
+  .rp-graf figcaption span{display:inline-flex;align-items:center;gap:6px;margin-left:12px;font:500 11.5px/1 var(--font-mono);color:var(--muted)}
+  .rp-graf figcaption span::before{content:"";width:16px;height:2px;background:var(--cream)}
+  .rp-svg svg{display:block;width:100%;height:auto;overflow:visible}
+  .rp-svg .grade{stroke:rgba(255,255,255,.08);stroke-width:1}
+  .rp-svg .tick{fill:#8a8172;font:500 11px var(--font-mono)}
+  .rp-svg .mes{fill:#8a8172;font:500 11px var(--font-mono);text-anchor:middle}
+  .rp-svg .fio{stroke:var(--ok);stroke-width:1;stroke-dasharray:3 3}
+  .rp-svg .barra{fill:var(--accent)}
+  .rp-svg .barra.antes{fill:rgba(227,179,65,.42)}
+  .rp-svg .custo{fill:none;stroke:var(--cream);stroke-width:2;stroke-linejoin:round}
+  .rp-svg .ponto{fill:var(--cream);stroke:#0E0C0A;stroke-width:2}
+  .rp-svg .rotulo{fill:var(--white);font:700 12px var(--font-body)}
+  .rp-svg .rotulo.verde{fill:var(--ok)}
+  .rp-svg .marca{fill:var(--ok);stroke:#0E0C0A;stroke-width:2}
+  .rp-svg .alvo{fill:transparent;cursor:crosshair;outline:none}
+  .rp-svg .alvo:focus-visible{fill:rgba(227,179,65,.08);stroke:var(--accent);stroke-width:1}
+  .rp-svg .alvo:hover{fill:rgba(255,255,255,.03)}
+  .rp-dica{position:absolute;z-index:3;min-width:190px;padding:10px 12px;border-radius:12px;background:#24201B;border:1px solid rgba(227,179,65,.4);
+    box-shadow:0 16px 30px rgba(0,0,0,.5);font:500 12.5px/1.5 var(--font-body);color:#D8CFC0;pointer-events:none;transform:translateX(-50%)}
+  .rp-dica b{display:block;color:var(--white);font-weight:700;margin-bottom:2px}
+  .rp-dica i{font-style:normal;color:var(--accent);font-weight:700}
+  .rp-feed{border-left:1px solid var(--line);padding:16px 14px;overflow:hidden}
+  .rp-feed p{font:600 12px/1.3 var(--font-mono);color:var(--muted);display:flex;align-items:center;gap:8px}
+  .rp-feed p i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .rp-feed ul{list-style:none;margin-top:12px;display:grid;gap:8px;max-height:262px;overflow:hidden}
+  .rp-feed li{padding:9px 10px;border-radius:12px;background:#1F1C18;border:1px solid rgba(255,255,255,.06);font:400 12.5px/1.35 var(--font-body);color:#D8CFC0;animation:msgIn .4s var(--ease) both}
+  .rp-feed li b{display:block;color:var(--white);font-weight:600}
+  .rp-feed li small{display:block;margin-top:2px;font:500 10.5px/1.3 var(--font-mono);color:var(--accent)}
+  .rp-fim{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+  .rp-fim p{padding:16px 18px;font-size:14px;line-height:1.45;color:#C9C0B1}
+  .rp-fim p:first-child{border-right:1px solid var(--line)}
+  .rp-fim b{display:block;font:800 18px/1.25 var(--font-display);color:var(--white)}
+  .rp-fim .bom b{color:var(--ok)}
+  .rp-tabela{border-top:1px solid var(--line)}
+  .rp-tabela summary{cursor:pointer;padding:13px 18px;font:600 13px/1.3 var(--font-mono);color:var(--muted);list-style:none}
+  .rp-tabela summary::-webkit-details-marker{display:none}
+  .rp-tabela summary::before{content:"+ ";color:var(--accent)}
+  .rp-tabela[open] summary::before{content:"\2212 "}
+  .rp-tabela table{width:100%;border-collapse:collapse;font:500 13px/1.3 var(--font-body);font-variant-numeric:tabular-nums}
+  .rp-tabela th,.rp-tabela td{padding:7px 18px;text-align:right;border-top:1px solid rgba(255,255,255,.05);color:#D8CFC0}
+  .rp-tabela th:first-child,.rp-tabela td:first-child{text-align:left}
+  .rp-tabela th{font:600 11.5px/1.3 var(--font-mono);color:var(--muted)}
+  .tab-rola{overflow-x:auto}
+  @media(max-width:640px){ .rp-tabela th,.rp-tabela td{padding:7px 10px;font-size:12px} }
+  .ret-nota{margin-top:20px;max-width:90ch;font-size:13.5px;line-height:1.6;color:#8a8172}
+  @media(max-width:1100px){ .ret{grid-template-columns:1fr} }
+  @media(max-width:640px){
+    .ret-form{padding:22px 18px}
+    .rp-kpis{grid-template-columns:1fr 1fr}
+    .rp-kpis .dest{grid-column:1/-1;border-top:1px solid var(--line)}
+    .rp-kpis > div:nth-child(2){border-right:0}
+    .rp-meio{grid-template-columns:1fr}
+    .rp-feed{border-left:0;border-top:1px solid var(--line)}
+    .rp-feed ul{max-height:150px}
+    .rp-fim{grid-template-columns:1fr}
+    .rp-fim p:first-child{border-right:0;border-bottom:1px solid var(--line)}
+    .rp-topo b{display:none}
+  }
+
+  /* ============ [06] O QUE FAZEMOS ============ */
+  .sv-lista{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:52px}
+  .sv{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 24px 24px;
+    transition:opacity .8s var(--ease),transform .8s var(--ease),translate .35s var(--ease),border-color .35s,box-shadow .35s;
+    transition-delay:var(--d,0s),var(--d,0s),0s,0s,0s}
+  .sv--obra{background:linear-gradient(155deg,#25211B 0%,#171512 70%);border-color:rgba(227,179,65,.3)}
+  @media(hover:hover){ .sv:hover{translate:0 -4px;border-color:rgba(227,179,65,.55);box-shadow:0 24px 50px -28px rgba(227,179,65,.4)} }
+  .sv-ico{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:rgba(227,179,65,.12);color:var(--accent)}
+  .sv-ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .sv-n{float:right;font:400 2.6rem/.8 var(--font-script);color:rgba(227,179,65,.6)}
+  .sv h3{margin-top:20px;font:800 clamp(1.2rem,1.5vw,1.35rem)/1.25 var(--font-display);letter-spacing:-.005em}
+  .sv > p{margin-top:10px;font-size:15.5px;line-height:1.6;color:#C9C0B1}
+  .sv ul{list-style:none;margin-top:18px;display:grid;gap:9px}
+  .sv li{position:relative;padding-left:26px;font-size:14.5px;line-height:1.45;color:#D8CFC0}
+  .sv li::before{content:"";position:absolute;left:0;top:1px;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--accent);
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9' fill='none' stroke='%23E3B341' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat}
+  .sv-pe{margin-top:auto;padding-top:22px}
+  .sv-pe .btn{width:100%;min-height:50px;padding:14px 18px;font-size:15px}
+  .sv-pe span{display:block;padding-left:12px;border-left:2px solid var(--accent);font:700 14.5px/1.3 var(--font-body);color:var(--white)}
+  .sv-pe small{display:block;font:500 11px/1.4 var(--font-mono);letter-spacing:.06em;color:var(--muted);margin-bottom:3px}
+  .sv-pe .btn + span{margin-top:16px}
+  .sv-extra{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:16px;padding:18px 24px;border-radius:18px;border:1px dashed rgba(255,255,255,.18)}
+  .sv-extra div{flex:1;min-width:240px}
+  .sv-extra b{display:block;font:700 16px/1.3 var(--font-display)}
+  .sv-extra p{margin-top:4px;font-size:15px;line-height:1.55;color:var(--muted)}
+  .sv-extra small{font:500 12.5px/1 var(--font-mono);color:var(--muted);border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:7px 11px;white-space:nowrap}
+  @media(max-width:1100px){ .sv-lista{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media(max-width:640px){ .sv-lista{grid-template-columns:1fr} }
+
+  /* ============ [07] É PARA VOCÊ? ============ */
+  .pv-grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:52px;max-width:1040px;margin-inline:auto}
+  .pv{border-radius:22px;padding:30px 30px 28px;border:1px solid}
+  .pv.sim-pv{background:linear-gradient(160deg,rgba(61,220,132,.07),rgba(26,24,21,.6) 60%);border-color:rgba(61,220,132,.28)}
+  .pv.nao-pv{background:linear-gradient(160deg,rgba(214,69,69,.08),rgba(26,24,21,.6) 60%);border-color:rgba(214,69,69,.3)}
+  .pv h3{display:flex;align-items:center;gap:12px;font:800 21px/1.2 var(--font-display)}
+  .pv h3 i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;font:800 16px/1 var(--font-body);font-style:normal}
+  .sim-pv h3 i{background:var(--ok);color:#0B1A10}
+  .nao-pv h3 i{background:var(--danger);color:#fff}
+  .pv ul{list-style:none;margin-top:22px;display:grid;gap:15px}
+  .pv li{position:relative;padding-left:32px;font-size:16px;line-height:1.55;color:#DDD5C7}
+  .pv li::before{position:absolute;left:0;top:1px;display:grid;place-items:center;width:21px;height:21px;border-radius:50%;font:800 12px/1 var(--font-body)}
+  .sim-pv li::before{content:"\2713";border:1.5px solid var(--ok);color:var(--ok)}
+  .nao-pv li::before{content:"\00D7";color:#F08A8A;font-size:19px}
+  .pv-cta{justify-content:center}
+  @media(max-width:800px){ .pv-grade{grid-template-columns:1fr} .pv{padding:24px 22px} }
+
+  /* ============ [08] TRABALHOS ============ */
+  .tb-grade{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:52px}
+  .tb a{display:block;text-decoration:none;color:inherit}
+  .tb .br{transition:border-color .3s,transform .3s}
+  .tb a:hover .br{border-color:rgba(227,179,65,.5);transform:translateY(-3px)}
+  .tb-abrir{position:absolute;right:12px;bottom:12px;z-index:2;padding:8px 12px;border-radius:99px;background:rgba(11,10,8,.82);color:var(--white);
+    font:600 13px/1 var(--font-body);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
+  .tb a:hover .tb-abrir,.tb a:focus-visible .tb-abrir{opacity:1;transform:none}
+  .tb-leg{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:14px}
+  .tb-leg b{display:block;font:800 17px/1.25 var(--font-display)}
+  .tb-leg span{display:block;margin-top:4px;font-size:14px;color:var(--muted)}
+  .tb-leg em{flex-shrink:0;font:600 11px/1 var(--font-mono);font-style:normal;color:var(--accent);border:1px solid rgba(227,179,65,.4);border-radius:99px;padding:6px 9px}
+  .tb-leg em.real{background:var(--accent);color:var(--ink)}
+  .tb-mais{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:36px;padding:22px 26px;border-radius:18px;background:var(--card);border:1px solid var(--line)}
+  .tb-mais p{font-size:16px;line-height:1.5;color:#D8CFC0}
+  .tb-mais p b{color:var(--white)}
+  @media(max-width:1000px){ .tb-grade{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media(max-width:620px){
+    .tb-grade{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding:4px var(--gutter) 8px;scroll-padding-inline:var(--gutter)}
+    .tb-grade::-webkit-scrollbar{display:none}
+    .tb{flex:0 0 84%;scroll-snap-align:start}
+  }
+
+  /* ============ [09] INVESTIMENTO (mesmos cartões da home) ============ */
+  .vagas{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,340px);gap:12px 32px;align-items:center;margin-top:44px;padding:20px 24px;border-radius:18px;
+    background:linear-gradient(100deg,rgba(227,179,65,.12),rgba(227,179,65,.03));border:1px solid rgba(227,179,65,.35)}
+  .vagas b{display:flex;align-items:center;gap:10px;font:800 18px/1.3 var(--font-display)}
+  .vagas p span{display:block;margin-top:4px;font-size:14.5px;line-height:1.5;color:#C9C0B1}
+  .vg-trilho{position:relative;height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+  .vg-trilho i{position:absolute;inset:0;transform-origin:left;transform:scaleX(var(--f,0));background:var(--accent);border-radius:99px;transition:transform .8s var(--ease)}
+  .vg-num{display:flex;justify-content:space-between;margin-top:8px;font:500 11.5px/1 var(--font-mono);color:var(--muted)}
+  .pl-grid{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+  .pl-card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px 26px 26px}
+  .pl-dest{border-color:rgba(227,179,65,.65);background:linear-gradient(165deg,#2A2418 0%,var(--card) 55%);box-shadow:0 28px 70px -34px rgba(227,179,65,.55)}
+  .pl-selo{position:absolute;top:-13px;left:24px;background:var(--accent);color:var(--ink);border-radius:99px;padding:7px 13px;font:700 12px/1 var(--font-mono)}
+  .pl-card h4{font:800 23px/1.2 var(--font-display);letter-spacing:-.005em}
+  .pl-para{margin-top:8px;font-size:15px;line-height:1.55;color:var(--muted)}
+  .pl-valor{margin-top:20px;padding-bottom:20px;border-bottom:1px dashed var(--line);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+  .pl-valor span,.pl-valor small{font:500 14px/1.3 var(--font-body);color:#C9C0B1}
+  .pl-valor small{flex-basis:100%}
+  .pl-valor strong{font:800 clamp(2rem,3vw,2.5rem)/1 var(--font-display);color:var(--accent);letter-spacing:-.01em}
+  .pl-valor .pl-de{flex-basis:100%;font:500 15px/1.2 var(--font-body);color:var(--muted)}
+  .pl-valor .pl-pg{flex-basis:100%}
+  .pl-valor .pl-eco{display:inline-block;margin:2px 0 4px;padding:4px 10px;border-radius:99px;background:rgba(227,179,65,.14);border:1px solid rgba(227,179,65,.35);
+    color:var(--accent);font:600 13px/1.2 var(--font-body);font-style:normal}
+  .pl-valor del{color:inherit;text-decoration:line-through;text-decoration-thickness:1.5px}
+  .pl-card ul{list-style:none;margin-top:20px;display:grid;gap:10px}
+  .pl-card li{position:relative;padding-left:24px;font-size:15.5px;line-height:1.5;color:#D8CFC0}
+  .pl-card li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .pl-acao{margin-top:auto;padding-top:26px}
+  .pl-acao .btn{width:100%}
+  .pl-mes{margin-top:18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .pl-mes > div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 26px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px}
+  .pl-mes h4{font:800 19px/1.2 var(--font-display)}
+  .pl-mes .pl-valor{margin-top:6px;padding:0;border:0}
+  .pl-mes .pl-valor strong{font-size:1.65rem}
+  .pl-mes-t{font-size:15px;line-height:1.6;color:#C9C0B1}
+  @media(max-width:1080px){ .pl-mes{grid-template-columns:1fr} }
+  @media(max-width:980px){ .pl-grid{grid-template-columns:1fr;gap:26px} .pl-dest{order:-1} }
+  @media(max-width:700px){ .vagas{grid-template-columns:1fr} }
+  @media(max-width:560px){ .pl-mes > div{grid-template-columns:1fr} }
+
+  /* ============ [10] QUEM FAZ ============ */
+  .qf{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;margin-top:52px}
+  .qf-eu{display:grid;grid-template-columns:150px minmax(0,1fr);gap:4px 28px;align-content:start;background:linear-gradient(165deg,#2A2418 0%,var(--card) 60%);
+    border:1px solid rgba(227,179,65,.4);border-radius:22px;padding:30px 28px}
+  .qf-foto{grid-row:span 5;width:150px;height:150px;border-radius:50%;object-fit:cover;background:#1F1C18;box-shadow:0 0 0 2px var(--accent),0 0 0 9px rgba(227,179,65,.12)}
+  .qf-eu h3{font:800 26px/1.15 var(--font-display)}
+  .qf-papel{font:600 12.5px/1.4 var(--font-mono);color:var(--accent);margin-top:6px}
+  .qf-eu p.t{margin-top:14px;font-size:15.5px;line-height:1.65;color:#D0C8BA}
+  .qf-eu p b{color:var(--white)}
+  .qf-cnpj{margin-top:16px;font:400 12px/1.6 var(--font-mono);color:#8a8172}
+  .qf-lado{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .qf-ponto{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 22px}
+  .qf-ponto svg{width:28px;height:28px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .qf-ponto b{display:block;margin-top:14px;font:800 17px/1.25 var(--font-display)}
+  .qf-ponto span{display:block;margin-top:6px;font-size:14.5px;line-height:1.55;color:#BDB4A5}
+  .qf-cta{display:flex;flex-direction:column;justify-content:space-between;gap:16px;background:var(--accent);color:var(--ink);border-radius:20px;padding:22px}
+  .qf-cta p{font:800 clamp(1.2rem,1.6vw,1.4rem)/1.2 var(--font-display)}
+  .qf-cta .btn{min-height:50px;padding:14px 20px;font-size:15px;align-self:flex-start}
+  .qf-cta a.sec-l{font:600 14px/1.3 var(--font-body);color:var(--ink)}
+  @media(max-width:1000px){ .qf{grid-template-columns:1fr} }
+  @media(max-width:600px){
+    .qf-eu{grid-template-columns:1fr;padding:24px 22px}
+    .qf-foto{grid-row:auto;width:116px;height:116px;margin-bottom:18px}
+    .qf-lado{grid-template-columns:1fr}
+  }
+
+  /* ============ [11] FAQ ============ */
+  #faq .sec-inner{max-width:900px}
+  .faq{margin-top:48px;display:grid;gap:12px}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;transition:border-color .3s}
+  .faq details[open]{border-color:rgba(227,179,65,.4)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;
+    font:700 clamp(1.02rem,1.5vw,1.15rem)/1.4 var(--font-display);transition:color .3s}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:hover{color:var(--accent)}
+  .faq summary .pl{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+    font:500 19px/1 var(--font-body);color:var(--accent);transition:transform .35s var(--ease),background .3s}
+  .faq details[open] summary .pl{transform:rotate(45deg);background:rgba(227,179,65,.12)}
+  .faq .ans{padding:0 24px 24px;font-size:16.5px;line-height:1.7;color:#CFC6B7;max-width:68ch}
+  .faq .ans b{color:var(--white)}
+  .faq-fim{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 24px;margin-top:36px;text-align:center}
+  .faq-fim p{font:600 16px/1.4 var(--font-body);color:var(--muted);flex-basis:100%}
+
+  /* ============ [12] CTA FINAL ============ */
+  .final{position:relative;overflow:hidden;background:var(--accent);color:var(--ink);padding:clamp(80px,10vw,124px) var(--gutter)}
+  .final::before{content:"";position:absolute;top:-40%;left:-10%;width:70vw;height:70vw;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,255,255,.32),transparent 70%)}
+  .final-in{position:relative;max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(36px,6vw,96px);align-items:center}
+  .final .eyebrow{color:rgba(20,18,16,.72)}
+  .final .eyebrow-tag{color:var(--ink)}
+  .final .eyebrow-bar{background:linear-gradient(90deg,var(--ink),transparent)}
+  .final h2{font:800 clamp(2.3rem,5vw,4.2rem)/1.04 var(--font-display);letter-spacing:-.012em;margin-top:20px;max-width:15ch;text-wrap:balance}
+  .final .lead{color:rgba(20,18,16,.78);margin-top:22px;font-weight:500}
+  .final .ctas{margin-top:34px}
+  .final .btn-ink{font-size:17px;padding:20px 34px;min-height:64px}
+  .final .link-sec{color:var(--ink);text-decoration-color:rgba(20,18,16,.45)}
+  .final-mini{margin-top:22px;font:600 12px/1.5 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(20,18,16,.7)}
+  .raiox{background:rgba(255,255,255,.42);border:1px solid rgba(20,18,16,.12);border-radius:22px;padding:30px 28px}
+  .raiox h3{font:800 22px/1.2 var(--font-display)}
+  .raiox > p{margin-top:8px;font-size:15.5px;line-height:1.55;color:rgba(20,18,16,.75)}
+  .raiox form{margin-top:20px;display:grid;gap:14px}
+  .raiox label{display:grid;gap:7px;font:700 14px/1.2 var(--font-body)}
+  .raiox input:not([type=checkbox]){width:100%;min-height:54px;padding:0 16px;border-radius:12px;border:1px solid rgba(20,18,16,.18);background:#fff;color:var(--ink);font:500 16px/1 var(--font-body);outline:none}
+  .raiox input:focus-visible{border-color:var(--ink);box-shadow:0 0 0 3px rgba(20,18,16,.15)}
+  .raiox .btn{width:100%;margin-top:4px}
+  .raiox-ok{margin-top:18px;font:700 16px/1.5 var(--font-body)}
+  .raiox-ok a{color:var(--ink)}
+  .raiox-erro{font:600 14px/1.4 var(--font-body);color:#7A1220}
+  .raiox .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  @media(max-width:900px){ .final-in{grid-template-columns:1fr} }
+  @media(max-width:600px){ .final .ctas{flex-direction:column;align-items:stretch} .final .btn-ink{width:100%;font-size:15.5px;padding:18px;gap:10px} .raiox{padding:24px 20px} }
+
+  /* ============ RODAPÉ ============ */
+  footer{background:#070605;padding:72px var(--gutter) 30px;border-top:1px solid var(--line)}
+  .ft{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+  footer .brand-chip{width:48px;height:48px}
+  footer .brand b{font-size:17px}
+  .ft-sobre p{margin-top:18px;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.55);max-width:38ch}
+  .ft h4{font:700 12px/1 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+  .ft ul{list-style:none;display:grid;gap:2px}
+  .ft ul a{display:inline-block;padding:7px 0;font-size:14.5px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .25s}
+  .ft ul a:hover{color:var(--accent)}
+  .ft-base{max-width:var(--wrap);margin:48px auto 0;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;
+    font:400 11.5px/1.6 var(--font-mono);letter-spacing:.04em;color:#8a8172}
+  @media(max-width:900px){ .ft{grid-template-columns:1fr 1fr} .ft-sobre{grid-column:1/-1} }
+  @media(max-width:480px){ .ft{grid-template-columns:1fr} }
+
+  /* ============ WHATSAPP FIXO (computador) E BARRA DO CELULAR ============ */
+  .wa-fixo{position:fixed;right:24px;bottom:24px;z-index:950;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:var(--accent);color:var(--ink);
+    box-shadow:0 16px 36px -10px rgba(227,179,65,.6),0 0 0 6px rgba(227,179,65,.12);text-decoration:none;
+    opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:opacity .3s,transform .3s var(--ease),background .25s}
+  .wa-fixo.is-on{opacity:1;transform:none;pointer-events:auto}
+  .wa-fixo:hover{background:var(--accent-soft)}
+  .wa-fixo .ic{font-size:30px}
+  .barra-mob{position:fixed;left:0;right:0;bottom:0;z-index:960;display:none;gap:10px;padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    background:var(--bg-2);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .28s ease}
+  .barra-mob.is-on{transform:none}
+  .barra-mob a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:99px;text-decoration:none;font:700 15px/1 var(--font-body)}
+  .barra-mob .bm-wa{background:var(--accent);color:var(--ink)}
+  .barra-mob .bm-sim{border:1px solid var(--line);color:var(--cream)}
+  .barra-mob .ic{font-size:19px}
+
+  /* ============ HERO NO CELULAR ============ */
+  @media(max-width:900px){
+    .pc-google{display:none}
+    .pc-br{left:0;right:20%}
+    .pc-cel .cel{--s:.66!important}
+    .pc-kpi{left:2%;bottom:24%}
+  }
+  @media(max-width:760px){
+    .nav-cta{display:none}
+    .site-nav{padding:14px 5vw}
+    .site-nav.is-scrolled{padding:9px 5vw}
+    .brand-chip{width:44px;height:44px}
+    .wa-fixo{display:none}
+    .barra-mob{display:flex}
+    footer{padding-bottom:96px}
+  }
+  @media(max-width:600px){
+    .hero{padding-top:108px}
+    .hx-pill{font-size:10.5px;letter-spacing:-.01em;padding:8px 12px 8px 10px;gap:8px}
+    .hero .ctas{flex-direction:column;align-items:stretch;gap:12px}
+    .hero .ctas .btn{width:100%}
+    .palco{height:430px;margin-top:36px}
+    .pc-br{right:16%;bottom:-20px}
+    .pc-br .br-quadro img{object-position:12% top}
+    .pc-cel{right:-2%;top:12%}
+    .pc-cel .cel{--s:.56!important}
+    .pc-kpi{bottom:auto;top:46%;left:0;max-width:56%;padding:10px 12px;gap:10px}
+    .pc-kpi strong{font-size:26px;min-width:1em}
+    .pc-kpi span{font-size:12px}
+    .pc-kpi small{font-size:9.5px}
+    .ctas{flex-direction:column;align-items:stretch}
+    .ctas .btn{width:100%}
+    .ctas .link-sec{text-align:center}
+  }
+
+  /* ============ foco (teclado) e movimento reduzido ============ */
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .btn:focus-visible,.nav-cta:focus-visible{outline-offset:4px;border-radius:99px}
+  .final :focus-visible,.qf-cta :focus-visible{outline-color:var(--ink)}
+  .faq summary:focus-visible{outline-offset:-2px;border-radius:16px}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition:none!important}
+    .rv,.rv-t{opacity:1;transform:none;clip-path:none}
+  }
+</style>
+<noscript><style>.rv,.rv-t{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N247ZTJ5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ícones: WhatsApp (Simple Icons, CC0), cadeado, lupa, câmera, microfone, play e pausa -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-cadeado" viewBox="0 0 24 24"><path d="M6 10V8a6 6 0 1 1 12 0v2h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1zm2 0h8V8a4 4 0 1 0-8 0z"/></symbol>
+  <symbol id="i-lupa" viewBox="0 0 24 24"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M9 4h6l1.5 2H20a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3.5zm3 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3zm7 9a7 7 0 0 1-6 6.9V21h-2v-3.1A7 7 0 0 1 5 11h2a5 5 0 0 0 10 0z"/></symbol>
+  <symbol id="i-pausa" viewBox="0 0 12 12"><path d="M2 1h3v10H2zM7 1h3v10H7z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 12 12"><path d="M2.5 1 11 6l-8.5 5z"/></symbol>
+</svg>
+
+<!-- ============ NAV FIXA ============ -->
+<nav class="site-nav" id="siteNav" aria-label="Principal">
+  <a class="brand" href="#top">
+    <span class="brand-chip"><img src="../assets/img/logo.webp" width="192" height="192" decoding="async" alt="Theatrum"/></span>
+    <b>Theatrum</b>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#retorno">Retorno</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#trabalhos">Trabalhos</a></li>
+    <li><a href="#investimento">Investimento</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="nav-cta" data-origem="lp-topo" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Diagnóstico gratuito</a>
+    <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#como-funciona">Como funciona</a>
+  <a href="#retorno">Retorno</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#trabalhos">Trabalhos</a>
+  <a href="#investimento">Investimento</a>
+  <a href="#faq">FAQ</a>
+  <a class="mm-cta" data-origem="lp-menu" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Diagnóstico gratuito</a>
+</div>
+
+<!-- ============ [01] HERO ============
+     A pílula de cima diz quantas vagas da condição de lançamento restam (data/precos.json).
+     O palco é ilustração: a Cozinha Viva é uma das demos da vitrine (marca inventada), e
+     os pedidos que chegam no celular também. -->
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <p class="hx-pill"><span class="pulso" aria-hidden="true"></span><span id="hxVagas">Preço de lançamento para os 10 primeiros clientes</span></p>
+  <h1 class="hx-title">Agora mesmo, alguém procura o que você vende. <span class="ouro">O seu site leva essa pessoa até o seu WhatsApp?</span></h1>
+  <p class="hx-sub">A Theatrum cria o seu site ou landing page, coloca no ar e deixa <b>pronto para anúncio</b>. Cada contato chega no seu WhatsApp já dizendo o que quer. E você vê a prévia antes de pagar.</p>
+  <div class="ctas">
+    <a class="btn btn-primary ima" data-origem="lp-hero" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Quero meu diagnóstico gratuito</a>
+    <a class="btn btn-secondary" href="#retorno" data-uet-diagnostico><span class="btn-dot"></span>Simular o retorno do meu site</a>
+  </div>
+  <p class="hx-mini">responde em minutos, em horário comercial · direto no whatsapp</p>
+
+  <div class="palco" id="palco" aria-hidden="true">
+    <div class="pc-br">
+      <div class="br">
+        <div class="br-barra"><i></i><i></i><i></i><b><svg class="ic"><use href="#i-cadeado"/></svg>cozinhaviva.com.br</b></div>
+        <div class="br-quadro"><img src="../assets/img/vitrine/home/cozinha-viva-800.webp" srcset="../assets/img/vitrine/home/cozinha-viva-480.webp 480w, ../assets/img/vitrine/home/cozinha-viva-800.webp 800w" sizes="(max-width: 900px) 80vw, 800px" width="800" height="500" alt="" decoding="async" fetchpriority="high"></div>
+      </div>
+    </div>
+    <div class="pc-google">
+      <p class="pg-rot"><svg class="ic"><use href="#i-lupa"/></svg>cozinha planejada juiz de fora</p>
+      <small><b>Patrocinado</b> · cozinhaviva.com.br</small>
+      <strong>Cozinha planejada em Juiz de Fora | Cozinha Viva</strong>
+      <p>Projeto por quem já foi cozinheira. Agende uma conversa pelo WhatsApp.</p>
+    </div>
+    <div class="pc-kpi"><strong id="pcKpi">4</strong><span>pedidos de orçamento hoje<small>simulação · marca inventada</small></span></div>
+    <div class="pc-cel">
+      <div class="cel" style="--s:.86">
+        <div class="cel-tela">
+          <div class="cel-status" style="background:var(--wa-bg)"><span>9:41</span><span class="bat"></span></div>
+          <div class="wa-cab"><b>Conversas</b><div class="wa-chips"><span>Todas</span><span class="on">Do site</span><span>Não lidas</span></div></div>
+          <ul class="wa-lista" id="pcLista"></ul>
+          <div class="wa-toast" id="pcToast"><span class="av" style="--c:#C0583A">R</span><div><b>Novo contato pelo site</b><span></span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ [02] O PROBLEMA ============
+     Primeiro o print da notícia do Blog do Google Brasil (21/05/2025), com grifo nosso e
+     link; depois três números com a fonte no cartão, conferidos em 30/10/2026.
+     76%: Google/Purchased Digital Diary, maio de 2016 (thinkwithgoogle.com/data/mobile-near-me-searches).
+     53%: Google, The Need for Mobile Speed, 2016 (thinkwithgoogle.com, mobile-site-load-time-statistics).
+     65%: Super Panorama Mobile Time/Opinion Box, junho de 2026 (64,8% na tela inicial; mobiletime.com.br). -->
+<section class="sec" id="problema">
+  <div class="sec-inner">
+    <div class="cab cab--centro">
+      <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[02]</span>o problema<span class="eyebrow-bar"></span></p>
+      <h2 class="rv-t" style="--d:.06s;max-width:22ch">O seu cliente está no Google. <span class="lm">A questão é onde ele vai parar.</span></h2>
+    </div>
+    <figure class="noticia">
+      <a class="nt-print rv" href="https://blog.google/intl/pt-br/novidades/tecnologia/oportunidades-busca-do-google/" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b><svg class="ic"><use href="#i-cadeado"/></svg>blog.google/intl/pt-br</b></span><img src="img/noticia-google-560.webp" srcset="img/noticia-google-560.webp 560w, img/noticia-google-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 580px" width="1100" height="1033" alt="Print da notícia do Blog do Google Brasil de 21 de maio de 2025, Mais oportunidades para que consumidores descubram seu negócio na busca do Google, com trechos grifados: mais de 5 trilhões de pesquisas por ano e as pessoas recorrendo à Busca para descobrir marcas, produtos e serviços." loading="lazy" decoding="async"></span>
+        <span class="nt-selo" aria-hidden="true">grifo nosso</span>
+      </a>
+      <figcaption class="nt-txt rv" style="--d:.1s">
+        <p class="nt-rot">o que o próprio Google publicou</p>
+        <h3>“Mais oportunidades para que consumidores descubram seu negócio na busca do Google”</h3>
+        <ul class="nt-cit">
+          <li><strong>+ de 5 trilhões</strong><span>de pesquisas no Google por ano, nas palavras do próprio Google.</span></li>
+          <li><strong>“as pessoas recorrem à Busca</strong><span>para descobrir novas marcas e produtos.”</span></li>
+        </ul>
+        <p class="nt-nos">Quem pesquisa já está escolhendo. <b>Se o Google mostra o seu negócio e o site abre rápido, com o botão do WhatsApp à vista, a pesquisa vira conversa.</b> Se não mostra, vira cliente de outro.</p>
+        <p class="nt-fonte">Blog do Google Brasil, 21 de maio de 2025 · <a href="https://blog.google/intl/pt-br/novidades/tecnologia/oportunidades-busca-do-google/" target="_blank" rel="noopener">ler a notícia completa ↗</a></p>
+      </figcaption>
+    </figure>
+    <div class="dados">
+      <article class="dado rv" style="--d:.04s">
+        <strong><span data-count="76">76</span><em>%</em></strong>
+        <h3>de quem procura algo perto pelo celular visita um negócio em até um dia</h3>
+        <p>Quem procura já decidiu comprar. Se você não aparece, ele vai no concorrente ainda hoje.</p>
+        <cite>Fonte: Google, Purchased Digital Diary, 2016</cite>
+      </article>
+      <article class="dado rv" style="--d:.12s">
+        <strong><span data-count="53">53</span><em>%</em></strong>
+        <h3>das visitas no celular são abandonadas quando o site demora mais de 3 segundos</h3>
+        <p>O site lento perde o cliente antes de ele ver o seu trabalho. E o clique do anúncio já foi pago.</p>
+        <cite>Fonte: Google, The Need for Mobile Speed, 2016</cite>
+      </article>
+      <article class="dado rv" style="--d:.2s">
+        <strong><span data-count="65">65</span><em>%</em></strong>
+        <h3>dos celulares no Brasil têm o WhatsApp na tela inicial</h3>
+        <p>É ali que o seu cliente decide. Se a conversa começa com “oi, quanto custa?”, ela esfria.</p>
+        <cite>Fonte: Super Panorama Mobile Time/Opinion Box, junho de 2026</cite>
+      </article>
+    </div>
+    <p class="problema-fecho rv">São três vazamentos, um atrás do outro: não aparecer na hora da busca, um site que demora ou confunde e uma conversa que começa do zero. <b>Cada um tem conserto, e você vê o conserto montado antes de pagar.</b></p>
+  </div>
+</section>
+
+<!-- números com origem: os 27 sites estão na vitrine da home; prazo, prévia e
+     titularidade são as condições publicadas no "como funciona" e no FAQ -->
+<div class="faixa">
+  <ul>
+    <li class="rv"><strong data-count="27">27</strong><span>sites no ar para você abrir e testar</span></li>
+    <li class="rv" style="--d:.08s"><strong>7 a 10</strong><span>dias úteis até o seu ficar no ar</span></li>
+    <li class="rv" style="--d:.16s"><strong>R$ 0</strong><span>antes de ver a prévia do seu site</span></li>
+    <li class="rv" style="--d:.24s"><strong>100%</strong><span>no seu nome: domínio e contas</span></li>
+  </ul>
+</div>
+
+<!-- ============ [03] COMO FUNCIONA: a simulação do site indo ao ar ============
+     Componente com estado. Cinco cenas; a barrinha do passo ativo é o relógio (ver o CSS).
+     Cena 1 e 5 são conversas tocadas pelo motor de conversa (script "CONVERSA"). -->
+<section class="sec alt" id="como-funciona">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[03]</span>como funciona</p>
+        <h2 class="rv-t" style="--d:.06s">Do primeiro oi <span class="lm">ao primeiro cliente.</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">Assista ao caminho inteiro em menos de um minuto. Você só paga <b>depois de ver a prévia</b> do seu site.</p>
+    </div>
+
+    <div class="sim rv" id="sim" style="--d:.1s">
+      <ol class="sim-passos">
+        <li><button type="button" data-p="0"><span class="n">01</span><b>Diagnóstico</b><small>gratuito · no whatsapp</small><span class="d">Você manda o Instagram ou o site. Eu devolvo, por escrito, onde você perde cliente hoje.</span><span class="barra" aria-hidden="true"></span></button></li>
+        <li><button type="button" data-p="1"><span class="n">02</span><b>Prévia do site</b><small>antes de pagar</small><span class="d">Você vê o site com a cara da sua empresa e pede os ajustes. Só fecha se gostar.</span><span class="barra" aria-hidden="true"></span></button></li>
+        <li><button type="button" data-p="2"><span class="n">03</span><b>Publicação</b><small>7 a 10 dias úteis</small><span class="d">Domínio no seu nome, site rápido no celular e o anúncio medido desde o primeiro clique.</span><span class="barra" aria-hidden="true"></span></button></li>
+        <li><button type="button" data-p="3"><span class="n">04</span><b>Google e anúncio</b><small>gente chegando</small><span class="d">Quem procura o que você vende encontra você no mapa e no anúncio, e cai no seu site.</span><span class="barra" aria-hidden="true"></span></button></li>
+        <li><button type="button" data-p="4"><span class="n">05</span><b>Primeiro cliente</b><small>avisado no whatsapp</small><span class="d">O contato chega dizendo o que quer, com a origem anotada. Você só responde.</span><span class="barra" aria-hidden="true"></span></button></li>
+      </ol>
+
+      <div>
+        <div class="sim-palco">
+          <!-- cena 1: diagnóstico -->
+          <div aria-hidden="true" class="cena c1">
+            <div class="cel" style="--s:.8">
+              <div class="cel-tela">
+                <div class="cel-status"><span>9:41</span><span class="bat"></span></div>
+                <div class="wa-topo"><span class="wa-volta">‹</span><span class="av"><img src="../assets/img/logo.webp" width="36" height="36" alt="" loading="lazy" decoding="async"></span><div class="wa-quem"><b>Matheus · Theatrum</b><small class="wa-status" data-base="online">online</small></div></div>
+                <div class="wa-corpo"></div>
+                <div class="wa-pe"><span class="wa-campo">Mensagem</span><span class="wa-mic"><svg><use href="#i-mic"/></svg></span></div>
+              </div>
+            </div>
+            <div class="cartao q" style="--t:5.2s">
+              <p class="rot">raio-x · cozinha viva</p>
+              <ul class="rx-lista">
+                <li class="q" style="--t:5.5s">O anúncio leva para o Instagram, não para um site</li>
+                <li class="q" style="--t:5.9s">Google Meu Negócio sem fotos e sem horário</li>
+                <li class="q" style="--t:6.3s">“Quanto custa?” respondido 3 horas depois</li>
+                <li class="ok q" style="--t:6.9s">Os três têm conserto. Próximo passo: a prévia.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- cena 2: prévia -->
+          <div aria-hidden="true" class="cena c2">
+            <div class="s2">
+              <div class="br s2-br">
+                <div class="br-barra"><i></i><i></i><i></i><b>previa.usetheatrum.com.br/cozinha-viva</b></div>
+                <div class="br-quadro">
+                  <div class="esq"><span class="e0"></span><span class="e1"></span><span class="e2"></span><span class="e3"></span><span class="e4"></span><span class="e5"></span></div>
+                  <img class="s2-img" src="../assets/img/vitrine/home/cozinha-viva-800.webp" srcset="../assets/img/vitrine/home/cozinha-viva-480.webp 480w, ../assets/img/vitrine/home/cozinha-viva-800.webp 800w" sizes="(max-width: 760px) 90vw, 540px" width="800" height="500" alt="" loading="lazy" decoding="async">
+                  <span class="s2-scan"></span>
+                </div>
+              </div>
+              <div class="cel cel-site s2-cel q" style="--s:.5;--t:1.3s">
+                <div class="cel-tela"><div class="cel-status"><span>9:41</span><span class="bat"></span></div>
+                  <div class="cel-rola"><img src="img/cel-cozinha-viva-300.webp" srcset="img/cel-cozinha-viva-300.webp 300w, img/cel-cozinha-viva-560.webp 560w" sizes="150px" width="300" height="1200" alt="" loading="lazy" decoding="async"></div></div>
+              </div>
+              <p class="nota-c n1 q" style="--t:3s"><b>Você:</b> pode escrever “atendimento com hora marcada”?</p>
+              <p class="nota-c n2 q" style="--t:4.3s"><b>Theatrum:</b> feito ✓ já está no topo.</p>
+              <p class="selo-ok q" style="--t:5.4s">✓ prévia aprovada antes de pagar</p>
+            </div>
+          </div>
+          <!-- cena 3: publicação -->
+          <div aria-hidden="true" class="cena c3">
+            <div class="term q">
+              <div class="term-barra"><i></i><i></i><i></i><b>publicação</b></div>
+              <code class="q" style="--t:.3s"><b>$</b> publicar cozinhaviva.com.br</code>
+              <code class="ok q" style="--t:1s">✓ domínio conectado, no seu nome</code>
+              <code class="ok q" style="--t:1.7s">✓ cadeado de segurança (https) ativo</code>
+              <code class="ok q" style="--t:2.4s">✓ GA4, GTM e Pixel medindo o anúncio</code>
+              <code class="ok q" style="--t:3.1s">✓ aviso de contato ligado no WhatsApp</code>
+              <div class="term-prog"><span></span></div>
+              <code class="ouro q" style="--t:3.8s">● site no ar</code>
+            </div>
+            <div class="cartao gauge-card q" style="--t:.8s">
+              <div class="gauge-w">
+                <svg class="gauge" viewBox="0 0 120 120"><circle class="g-fundo" cx="60" cy="60" r="52"/><circle class="g-arco" cx="60" cy="60" r="52"/></svg>
+                <strong data-conta="97">97</strong>
+              </div>
+              <p>velocidade no celular<small>nota do Lighthouse, de 0 a 100</small></p>
+              <p class="url-pill q" style="--t:4s"><i></i>cozinhaviva.com.br <b>no ar</b></p>
+            </div>
+          </div>
+          <!-- cena 4: Google e anúncio -->
+          <div aria-hidden="true" class="cena c4">
+            <div class="busca q">
+              <div class="bu-topo"><span class="bu-g">Google</span><div class="bu-campo"><svg><use href="#i-lupa"/></svg><span class="bu-txt">cozinha planejada juiz de fora</span><i class="bu-cur"></i></div></div>
+              <div class="bu-res">
+                <article class="bu-ad q" style="--t:2s">
+                  <p class="bu-pat">Patrocinado</p>
+                  <p class="bu-site"><span class="bu-fav">CV</span><span>Cozinha Viva<small>cozinhaviva.com.br</small></span></p>
+                  <h4>Cozinha planejada em Juiz de Fora | Projeto com hora marcada</h4>
+                  <p class="bu-desc">Projeto por quem já foi cozinheira. Veja os projetos e agende uma conversa pelo WhatsApp.</p>
+                  <p class="bu-links"><span>Ver projetos</span><span>Agendar conversa</span></p>
+                </article>
+                <div class="bu-mapa q" style="--t:2.6s">
+                  <svg viewBox="0 0 132 110" preserveAspectRatio="xMidYMid slice"><rect width="132" height="110" fill="#E8EAED"/><rect x="74" y="8" width="44" height="30" rx="4" fill="#CDE8C5"/><path d="M0 70 L132 52 M40 0 L58 110 M0 22 L132 34" stroke="#fff" stroke-width="7"/><path d="M90 110 L104 0" stroke="#FCE8B2" stroke-width="6"/><circle cx="62" cy="58" r="10" fill="#EA4335"/><circle cx="62" cy="58" r="4" fill="#fff"/></svg>
+                  <div class="bu-local"><b>Cozinha Viva</b><span>Móveis planejados · Bom Pastor</span><br><span class="ab">Aberto agora</span><p><span>Site</span><span>Rota</span><span>WhatsApp</span></p></div>
+                </div>
+                <div class="bu-org q" style="--t:3s"><i></i><i></i><i></i></div>
+              </div>
+              <span class="bu-mouse"><svg viewBox="0 0 24 24"><path d="M4 2l15 11.5-6.6.9 3.9 7.4-2.7 1.4-3.9-7.5L4 20z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+              <span class="bu-clique"></span>
+            </div>
+            <p class="selo-ok bu-chip q" style="--t:5.4s">+1 visita do anúncio para o site</p>
+          </div>
+          <!-- cena 5: o primeiro cliente -->
+          <div aria-hidden="true" class="cena c5">
+            <div class="cel" style="--s:.8">
+              <div class="cel-tela">
+                <div class="cel-status"><span>9:41</span><span class="bat"></span></div>
+                <div class="wa-topo"><span class="wa-volta">‹</span><span class="av" style="--c:#C0583A">R</span><div class="wa-quem"><b>Rafael</b><small class="wa-status" data-base="online">online</small></div></div>
+                <div class="wa-corpo"></div>
+                <div class="wa-pe"><span class="wa-campo">Mensagem</span><span class="wa-mic"><svg><use href="#i-mic"/></svg></span></div>
+              </div>
+            </div>
+            <div class="cartao">
+              <p class="rot q" style="--t:.2s">de onde veio esse contato</p>
+              <ol class="trilha">
+                <li class="q" style="--t:.6s"><b>Anúncio no Google</b><span>“cozinha planejada juiz de fora”</span></li>
+                <li class="q" style="--t:1.2s"><b>Site</b><span>cozinhaviva.com.br</span></li>
+                <li class="q" style="--t:1.8s"><b>Botão “Agendar uma conversa”</b><span>a mensagem já vai pronta</span></li>
+                <li class="q" style="--t:2.4s"><b>O seu WhatsApp</b><span>avisado na hora</span></li>
+              </ol>
+              <p class="selo-ok q" style="--t:6.8s">✓ primeiro cliente do anúncio</p>
+            </div>
+          </div>
+
+          <div class="sim-pe">
+            <span class="nota-sim">simulação · a Cozinha Viva é uma marca inventada</span>
+            <button type="button" class="sim-play" id="simPlay"><svg><use href="#i-pausa"/></svg><span>Pausar</span></button>
+          </div>
+        </div>
+        <p class="sim-legenda" id="simLegenda" aria-live="off"><b></b><span></span></p>
+      </div>
+    </div>
+
+    <div class="ctas sim-cta rv">
+      <a class="btn btn-primary ima" data-origem="lp-simulacao" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20come%C3%A7ar%20pelo%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener">Começar pelo diagnóstico <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+      <a class="link-sec" href="#retorno" data-uet-diagnostico>Ou simular o retorno primeiro</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [04] NO SEU WHATSAPP ============
+     Quatro conversas simuladas, uma por tipo de negócio, com as demos da vitrine (marcas
+     inventadas). À esquerda, o print do celular da demo com o toque no botão que manda a
+     mensagem; ao meio, a conversa; à direita, a mesma conversa sem o site. Textos e
+     roteiros no objeto CV do script "CONVERSAS". -->
+<section class="sec" id="whatsapp">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[04]</span>no seu whatsapp</p>
+        <h2 class="rv-t" style="--d:.06s">O cliente chega <span class="lm">dizendo o que quer.</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">O botão do site já manda a mensagem pronta: o serviço, a data, a medida, o bairro. Você responde com horário e preço, <b>não com “em que posso ajudar?”</b>.</p>
+    </div>
+
+    <div class="cv-abas rv" role="tablist" aria-label="Tipo de negócio" id="cvAbas">
+      <button type="button" role="tab" id="cvt0" aria-selected="true" aria-controls="cvPainel" data-i="0">Clínica</button>
+      <button type="button" role="tab" id="cvt1" aria-selected="false" aria-controls="cvPainel" data-i="1" tabindex="-1">Móveis planejados</button>
+      <button type="button" role="tab" id="cvt2" aria-selected="false" aria-controls="cvPainel" data-i="2" tabindex="-1">Imobiliária</button>
+      <button type="button" role="tab" id="cvt3" aria-selected="false" aria-controls="cvPainel" data-i="3" tabindex="-1">Pousada</button>
+    </div>
+
+    <div class="cv rv" id="cvPainel" role="tabpanel" aria-labelledby="cvt0">
+      <p class="sr" id="cvResumo"></p>
+      <div class="cv-origem" aria-hidden="true">
+        <p class="cv-rot"><b>1</b>A pessoa toca no botão do site</p>
+        <div class="cel cel-site">
+          <div class="cel-tela"><div class="cel-status"><span>9:41</span><span class="bat"></span></div>
+            <div class="cel-rola"><img id="cvSite" src="img/cel-arco-300.webp" srcset="img/cel-arco-300.webp 300w, img/cel-arco-560.webp 560w" sizes="186px" width="300" height="1200" alt="" loading="lazy" decoding="async"></div>
+            <span class="toque" id="cvToque" style="left:34.1%;top:64.7%"></span>
+          </div>
+        </div>
+        <p class="cv-site" id="cvSiteNome">Arco Odontologia · demonstração</p>
+      </div>
+      <div class="cv-zap" aria-hidden="true">
+        <p class="cv-rot"><b>2</b>Chega assim no seu WhatsApp</p>
+        <div class="cel" id="cvCel">
+          <div class="cel-tela">
+            <div class="cel-status"><span>9:41</span><span class="bat"></span></div>
+            <div class="wa-topo"><span class="wa-volta">‹</span><span class="av" id="cvAv" style="--c:#C2185B">J</span><div class="wa-quem"><b id="cvNome">Juliana</b><small class="wa-status" data-base="online">online</small></div></div>
+            <div class="wa-corpo"></div>
+            <div class="wa-pe"><span class="wa-campo">Mensagem</span><span class="wa-mic"><svg><use href="#i-mic"/></svg></span></div>
+          </div>
+        </div>
+        <p class="cv-res" id="cvRes"></p>
+      </div>
+      <div class="cv-antes">
+        <p class="cv-rot"><b>×</b>Sem um site que prepare a conversa</p>
+        <div class="ca-chat" id="cvAntes" aria-hidden="true"></div>
+        <p class="ca-perda">contato perdido · 3 h 38 min depois</p>
+        <div class="ca-muda">
+          <p>O que muda com o site</p>
+          <ul>
+            <li>A mensagem chega com o que a pessoa quer</li>
+            <li>Você sabe de onde ela veio: site, Google ou anúncio</li>
+            <li>Cada novo contato é avisado na hora</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="nota-sim cv-nota">conversas simuladas, com as marcas inventadas das demonstrações da vitrine</p>
+
+    <div class="ctas rv">
+      <a class="btn btn-primary ima" data-origem="lp-conversas" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20meu%20cliente%20chegando%20assim%20no%20WhatsApp." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Quero meu cliente chegando assim</a>
+      <a class="link-sec" href="#retorno" data-uet-diagnostico>Ou ver quanto isso devolve por mês</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [05] O RETORNO ============
+     Degrau 2: zero cadastro. Componente com estado (script "RETORNO"). Os valores de
+     partida de cada tipo de negócio são exemplo, e o texto diz isso. Gráfico de uma série
+     só (faturamento novo acumulado) com a linha do investimento como referência, rótulo
+     direto, dica no mouse e no teclado, e a tabela mês a mês ao lado. -->
+<section class="sec alt" id="retorno">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[05]</span>o retorno</p>
+        <h2 class="rv-t" style="--d:.06s">Quanto o seu site pode <span class="lm">devolver por mês?</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">Escolha o tipo de negócio ou ponha os seus números. A conta aparece na hora, <b>sem cadastro</b>.</p>
+    </div>
+
+    <div class="ret rv" id="ret" style="--d:.1s">
+      <form class="ret-form" id="retForm" onsubmit="return false">
+        <fieldset class="ret-tipos">
+          <legend>tipo de negócio · valores de partida de exemplo</legend>
+          <div>
+            <button type="button" data-preset="clinica" aria-pressed="true">Clínica</button>
+            <button type="button" data-preset="planejados" aria-pressed="false">Planejados</button>
+            <button type="button" data-preset="imobiliaria" aria-pressed="false">Imobiliária</button>
+            <button type="button" data-preset="pousada" aria-pressed="false">Pousada</button>
+            <button type="button" data-preset="outro" aria-pressed="false">Outro</button>
+          </div>
+        </fieldset>
+        <div class="ret-q">
+          <label for="rVis">Visitas no site por mês <output id="oVis" for="rVis">600</output></label>
+          <input type="range" id="rVis" min="100" max="5000" step="50" value="600">
+          <small>quem chega pelo Google, pelo anúncio e pelo Instagram</small>
+        </div>
+        <div class="ret-q">
+          <label for="rCham">Das visitas, quantas chamam no WhatsApp <output id="oCham" for="rCham">5%</output></label>
+          <input type="range" id="rCham" min="1" max="15" step="0.5" value="5">
+        </div>
+        <div class="ret-q">
+          <label for="rFec">Das conversas, quantas viram cliente <output id="oFec" for="rFec">35%</output></label>
+          <input type="range" id="rFec" min="1" max="60" step="1" value="35">
+        </div>
+        <div class="ret-q">
+          <label for="rTic">Quanto vale um cliente, em média</label>
+          <div class="ret-moeda"><span>R$</span><input type="text" id="rTic" inputmode="numeric" autocomplete="off" value="350"></div>
+        </div>
+        <label class="ret-check"><input type="checkbox" id="rAds" checked><span>Com anúncio pago no Google e no Meta: gestão de tráfego (<b data-pr-px="trafego">R$ 697</b>/mês) mais a verba</span></label>
+        <div class="ret-q" id="rVerbaQ">
+          <label for="rVerba">Verba de anúncio por mês</label>
+          <div class="ret-moeda"><span>R$</span><input type="text" id="rVerba" inputmode="numeric" autocomplete="off" value="600"></div>
+          <small>paga direto ao Google e ao Meta, na sua própria conta</small>
+        </div>
+      </form>
+
+      <div class="ret-painel">
+        <div class="rp-topo" aria-hidden="true"><span class="pts"><i></i><i></i><i></i></span><b>painel · seunegocio.com.br</b><span class="rp-vivo"><span class="pulso"></span>simulação</span></div>
+        <div class="rp-kpis">
+          <div><span>conversas no WhatsApp por mês</span><strong id="kConv">30</strong></div>
+          <div><span>clientes novos por mês</span><strong id="kCli">10,5</strong></div>
+          <div class="dest"><span>faturamento novo por mês</span><strong id="kFat">R$ 3.675</strong></div>
+        </div>
+        <div class="rp-meio">
+          <figure class="rp-graf">
+            <figcaption>Faturamento novo acumulado, em reais, mês a mês <span>investimento</span></figcaption>
+            <div class="rp-svg" id="rpSvg"></div>
+            <div class="rp-dica" id="rpDica" hidden></div>
+          </figure>
+          <div class="rp-feed" aria-hidden="true"><p><i></i>contatos chegando</p><ul id="rpFeed"></ul></div>
+        </div>
+        <div class="rp-fim">
+          <p id="rpVolta" class="bom"><b>O investimento volta no 2º mês</b>contando o site, a manutenção e o anúncio</p>
+          <p id="rpPaga"><b>O site se paga com 5 clientes</b>o plano Completo, na condição de lançamento</p>
+        </div>
+        <details class="rp-tabela">
+          <summary>ver os números mês a mês</summary>
+          <div class="tab-rola"><table><thead><tr><th scope="col">mês</th><th scope="col">faturamento no mês</th><th scope="col">acumulado</th><th scope="col">investimento acumulado</th></tr></thead><tbody id="rpTabela"></tbody></table></div>
+        </details>
+      </div>
+    </div>
+    <p class="ret-nota" id="retNota">Simulação com os números que você escolheu, não promessa de resultado: mostra a ordem de grandeza. É conta de faturamento, não de lucro (não desconta o custo do seu produto ou serviço). O primeiro mês conta pela metade e o segundo por três quartos, porque o anúncio leva um tempo para aprender. O investimento soma o plano Completo (<span data-rn="completo">R$ 1.500</span>), a manutenção (<span data-rn="manut">R$ 97</span>/mês) e, se marcado, a gestão de tráfego e a verba.</p>
+    <p class="sr" aria-live="polite" id="retVivo"></p>
+
+    <div class="ctas rv">
+      <a class="btn btn-primary ima" id="retCta" data-origem="lp-retorno" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20A%20simula%C3%A7%C3%A3o%20deu%20R%24%203.675%20por%20m%C3%AAs.%20Quero%20o%20diagn%C3%B3stico." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Quero conversar sobre esses números</a>
+      <a class="link-sec" href="#investimento">Ou ver os planos e preços</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [06] O QUE FAZEMOS ============
+     Quatro cartões com checklist, em ordem de peso: os dois de
+     construir primeiro, com fundo dourado. Social media só como complemento. -->
+<section class="sec" id="servicos">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[06]</span>o que fazemos</p>
+        <h2 class="rv-t" style="--d:.06s">O que a gente constrói, <span class="lm">e o que leva cliente até lá.</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">Primeiro o site, porque é nele que o cliente decide. Google, anúncio e WhatsApp <b>vêm junto</b> para levar gente até ele.</p>
+    </div>
+    <ol class="sv-lista">
+      <li class="sv sv--obra rv" style="--d:.04s">
+        <div><span class="sv-n">01</span><span class="sv-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span></div>
+        <h3>Sites e landing pages</h3>
+        <p>O site que transforma visita em conversa no WhatsApp. Ou a reformulação do que você já tem.</p>
+        <ul><li>Abre rápido no celular</li><li>Texto escrito por nós</li><li>Botão de WhatsApp com mensagem pronta</li><li>Pronto para anúncio: GA4, GTM e Pixel</li><li>Aviso de cada novo contato</li></ul>
+        <div class="sv-pe"><a class="btn btn-primary" data-origem="lp-servicos" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20um%20site%20ou%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Quero o meu site</a><span><small>para</small>construir</span></div>
+      </li>
+      <li class="sv sv--obra rv" style="--d:.1s">
+        <div><span class="sv-n">02</span><span class="sv-ico"><svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></span></div>
+        <h3>Lojas, aplicativos e sistemas</h3>
+        <p>Catálogo, sacola e pagamento no seu domínio. E o que hoje é planilha e mensagem solta vira sistema.</p>
+        <ul><li>Loja sem depender de marketplace</li><li>Orçamento, agenda e área do cliente</li><li>Simulador de reserva ou pedido pronto no WhatsApp</li></ul>
+        <div class="sv-pe"><span><small>para</small>construir</span></div>
+      </li>
+      <li class="sv rv" style="--d:.16s">
+        <div><span class="sv-n">03</span><span class="sv-ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span></div>
+        <h3>Google e tráfego pago</h3>
+        <p>Aparecer no mapa para quem procura perto e anunciar para quem ainda não te conhece.</p>
+        <ul><li>Google Meu Negócio com categoria, fotos e horário em dia</li><li>Campanha no Google e no Meta ajustada toda semana</li><li>Medida em contato e venda, não em curtida</li></ul>
+        <div class="sv-pe"><a class="btn btn-secondary" data-origem="lp-servicos-google" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20aparecer%20no%20Google%20e%20anunciar." target="_blank" rel="noopener">Quero aparecer no Google</a><span><small>para</small>trazer cliente</span></div>
+      </li>
+      <li class="sv rv" style="--d:.22s">
+        <div><span class="sv-n">04</span><span class="sv-ico"><svg viewBox="0 0 24 24"><path d="M4 18.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8z"/><path d="M8.5 9h7M8.5 12h4"/></svg></span></div>
+        <h3>IA no WhatsApp e reativação</h3>
+        <p>Responde em segundos, tira dúvida e agenda, até fora do horário. E chama de volta quem já comprou.</p>
+        <ul><li>Resposta em segundos</li><li>Agenda até fora do horário</li><li>Chama de volta quem sumiu</li></ul>
+        <div class="sv-pe"><span><small>para</small>trazer cliente</span></div>
+      </li>
+    </ol>
+    <div class="sv-extra rv">
+      <div><b>Social media para Instagram</b><p>Planejamento e posts para manter o perfil vivo. Entra como complemento: o nosso forte é o que traz cliente, não curtida.</p></div>
+      <small>complemento</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [07] É PARA VOCÊ? ============ -->
+<section class="sec alt" id="para-voce">
+  <div class="sec-inner">
+    <div class="cab cab--centro">
+      <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[07]</span>é para você?<span class="eyebrow-bar"></span></p>
+      <h2 class="rv-t" style="--d:.06s">É o <span class="lm">seu caso?</span></h2>
+    </div>
+    <div class="pv-grade">
+      <div class="pv sim-pv rv" style="--d:.04s">
+        <h3><i aria-hidden="true">✓</i>Para quem é</h3>
+        <ul>
+          <li>O seu negócio vive de contato: orçamento, agendamento, reserva ou visita</li>
+          <li>Quem pesquisa o seu serviço no Google acha outra empresa antes da sua</li>
+          <li>Você vai anunciar e quer que o clique vire conversa, não visita perdida</li>
+          <li>Você quer saber de onde veio cada cliente</li>
+          <li>Você prefere ver o site pronto antes de pagar</li>
+        </ul>
+      </div>
+      <div class="pv nao-pv rv" style="--d:.12s">
+        <h3><i aria-hidden="true">×</i>Para quem não é</h3>
+        <ul>
+          <li>Você procura só posts para o Instagram</li>
+          <li>Você quer o retorno de um ano na primeira semana de anúncio</li>
+          <li>Ninguém vai responder o WhatsApp quando o cliente chamar</li>
+          <li>Você quer um modelo pronto, sem texto escrito para o seu negócio nem medição</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ctas pv-cta rv">
+      <a class="btn btn-primary ima" data-origem="lp-para-voce" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20%C3%89%20o%20meu%20caso%2C%20quero%20o%20diagn%C3%B3stico." target="_blank" rel="noopener">É o meu caso, quero o diagnóstico <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+      <a class="link-sec" href="#retorno" data-uet-diagnostico>Ou simular o retorno antes</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [08] TRABALHOS ============
+     Seis das vinte e sete da vitrine da home, um de cada tipo. Nunca chamar as marcas
+     das demos de parceiras ou clientes: são inventadas. A Little Trees é cliente real. -->
+<section class="sec" id="trabalhos">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[08]</span>trabalhos</p>
+        <h2 class="rv-t" style="--d:.06s">Sites no ar. <span class="lm">Abra e use.</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">Demonstrações com marcas inventadas e uma loja de cliente real. Todas funcionam: <b>clique na tela para abrir o site</b>.</p>
+    </div>
+    <ul class="tb-grade">
+      <li class="tb rv" style="--d:.04s"><a href="../negocios/demos/aceno/?de=home" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b>aceno.com.br</b></span><span class="br-quadro"><img src="../assets/img/vitrine/home/aceno-480.webp" srcset="../assets/img/vitrine/home/aceno-480.webp 480w, ../assets/img/vitrine/home/aceno-800.webp 800w" sizes="(max-width: 620px) 92vw, (max-width: 1000px) 46vw, 400px" width="800" height="500" alt="Tela do site da Aceno, agência de marketing e gráfica" loading="lazy" decoding="async"><span class="tb-abrir">Abrir o site ↗</span></span></span>
+        <span class="tb-leg"><span><b>Site para agência de marketing e gráfica</b><span>Aceno</span></span><em>demonstração</em></span></a></li>
+      <li class="tb rv" style="--d:.1s"><a href="../negocios/demos/arco/?de=home" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b>arcoodontologia.com.br</b></span><span class="br-quadro"><img src="../assets/img/vitrine/home/arco-480.webp" srcset="../assets/img/vitrine/home/arco-480.webp 480w, ../assets/img/vitrine/home/arco-800.webp 800w" sizes="(max-width: 620px) 92vw, (max-width: 1000px) 46vw, 400px" width="800" height="500" alt="Tela do site da Arco Odontologia" loading="lazy" decoding="async"><span class="tb-abrir">Abrir o site ↗</span></span></span>
+        <span class="tb-leg"><span><b>Site para clínica odontológica</b><span>Arco Odontologia</span></span><em>demonstração</em></span></a></li>
+      <li class="tb rv" style="--d:.16s"><a href="../moveis-planejados/demos/cozinha-viva/?de=home" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b>cozinhaviva.com.br</b></span><span class="br-quadro"><img src="../assets/img/vitrine/home/cozinha-viva-480.webp" srcset="../assets/img/vitrine/home/cozinha-viva-480.webp 480w, ../assets/img/vitrine/home/cozinha-viva-800.webp 800w" sizes="(max-width: 620px) 92vw, (max-width: 1000px) 46vw, 400px" width="800" height="500" alt="Tela do site da Cozinha Viva" loading="lazy" decoding="async"><span class="tb-abrir">Abrir o site ↗</span></span></span>
+        <span class="tb-leg"><span><b>Site para cozinhas planejadas</b><span>Cozinha Viva</span></span><em>demonstração</em></span></a></li>
+      <li class="tb rv" style="--d:.04s"><a href="../imoveis/demos/mare-mansa/?de=home" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b>maremansaimoveis.com.br</b></span><span class="br-quadro"><img src="../assets/img/vitrine/home/mare-mansa-480.webp" srcset="../assets/img/vitrine/home/mare-mansa-480.webp 480w, ../assets/img/vitrine/home/mare-mansa-800.webp 800w" sizes="(max-width: 620px) 92vw, (max-width: 1000px) 46vw, 400px" width="800" height="500" alt="Tela do site da Maré Mansa Imóveis" loading="lazy" decoding="async"><span class="tb-abrir">Abrir o site ↗</span></span></span>
+        <span class="tb-leg"><span><b>Site para imobiliária de praia</b><span>Maré Mansa</span></span><em>demonstração</em></span></a></li>
+      <li class="tb rv" style="--d:.1s"><a href="../negocios/demos/pedra-alta/?de=home" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b>chalespedraalta.com.br</b></span><span class="br-quadro"><img src="../assets/img/vitrine/home/pedra-alta-480.webp" srcset="../assets/img/vitrine/home/pedra-alta-480.webp 480w, ../assets/img/vitrine/home/pedra-alta-800.webp 800w" sizes="(max-width: 620px) 92vw, (max-width: 1000px) 46vw, 400px" width="800" height="500" alt="Tela do site dos chalés Pedra Alta" loading="lazy" decoding="async"><span class="tb-abrir">Abrir o site ↗</span></span></span>
+        <span class="tb-leg"><span><b>Site para chalés e pousada</b><span>Pedra Alta</span></span><em>demonstração</em></span></a></li>
+      <li class="tb rv" style="--d:.16s"><a href="https://littletrees-indol.vercel.app/" target="_blank" rel="noopener">
+        <span class="br"><span class="br-barra"><i></i><i></i><i></i><b>littletrees-indol.vercel.app</b></span><span class="br-quadro"><img src="../assets/img/vitrine/home/little-trees-480.webp" srcset="../assets/img/vitrine/home/little-trees-480.webp 480w, ../assets/img/vitrine/home/little-trees-800.webp 800w" sizes="(max-width: 620px) 92vw, (max-width: 1000px) 46vw, 400px" width="800" height="500" alt="Tela da loja online Little Trees" loading="lazy" decoding="async"><span class="tb-abrir">Abrir o site ↗</span></span></span>
+        <span class="tb-leg"><span><b>Site para loja online</b><span>Little Trees</span></span><em class="real">cliente real</em></span></a></li>
+    </ul>
+    <div class="tb-mais rv">
+      <p><b>São vinte e sete no total</b>, de clínica a imobiliária, de pousada a personal trainer.</p>
+      <a class="btn btn-secondary" href="../#trabalhos"><span class="btn-dot"></span>Ver os 27 sites</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [09] INVESTIMENTO ============
+     Os mesmos três planos da home, desenhados a partir do data/precos.json pelo script
+     "PREÇOS" (o HTML abaixo é o estado com zero vagas preenchidas, para quem chega sem JS
+     ou se o fetch falhar). A barra de vagas também sai do JSON. -->
+<section class="sec alt" id="investimento">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[09]</span>investimento</p>
+        <h2 class="rv-t" style="--d:.06s">Quanto custa, <span class="lm">com o preço na mesa.</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">Três planos, conforme o tamanho do projeto. No diagnóstico gratuito a gente diz qual deles serve para o seu caso.</p>
+    </div>
+    <div class="rv" style="--d:.18s">
+      <div class="vagas" id="vagas">
+        <p><b><span class="pulso" aria-hidden="true"></span><span id="vagasTxt">Restam 10 de 10 vagas na condição de lançamento</span></b><span>Preço de lançamento para os 10 primeiros clientes. Depois, voltam os valores cheios.</span></p>
+        <div><div class="vg-trilho" role="img" aria-label="Vagas preenchidas" id="vagasTrilho"><i id="vagasBar"></i></div><p class="vg-num"><span id="vagasFeitas">0 preenchidas</span><span>10 vagas</span></p></div>
+      </div>
+      <div class="pl-grid">
+        <article class="pl-card">
+          <h4>Essencial</h4>
+          <p class="pl-para">Para começar a anunciar com uma página que leva ao seu WhatsApp.</p>
+          <p class="pl-valor" data-pr="essencial"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 1.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 990</strong><span>no Pix</span><span class="pl-pg"><i class="pl-eco">economize R$ 210 no Pix</i></span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 400 no cartão</span></p>
+          <ul><li>landing page de 1 página, até 6 seções</li><li>texto escrito por nós</li><li>botão de WhatsApp com mensagem pronta</li><li>rápida no celular</li></ul>
+          <div class="pl-acao"><a class="btn btn-secondary" data-plano="essencial" data-origem="lp-investimento-essencial" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Essencial%20(R%24%20990%20no%20Pix%20ou%203x%20de%20R%24%20400%20no%20cart%C3%A3o)." target="_blank" rel="noopener"><span class="btn-dot"></span>Quero o Essencial</a></div>
+        </article>
+        <article class="pl-card pl-dest">
+          <span class="pl-selo">recomendado</span>
+          <h4>Completo</h4>
+          <p class="pl-para">Para ser encontrado no Google e receber o contato já meio caminho andado.</p>
+          <p class="pl-valor" data-pr="completo"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 2.500</del></span><strong><span class="sr">preço de lançamento: </span>R$ 1.500</strong><span>no Pix</span><span class="pl-pg"><i class="pl-eco">economize R$ 300 no Pix</i></span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 600 no cartão</span></p>
+          <ul><li>tudo do Essencial</li><li>Google Meu Negócio configurado</li><li>1 funcionalidade: quiz de diagnóstico, aplicação rápida ou lista de pedido pelo WhatsApp</li></ul>
+          <div class="pl-acao"><a class="btn btn-primary" data-plano="completo" data-origem="lp-investimento-completo" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Completo%20(R%24%201.500%20no%20Pix%20ou%203x%20de%20R%24%20600%20no%20cart%C3%A3o)." target="_blank" rel="noopener">Quero o Completo</a></div>
+        </article>
+        <article class="pl-card">
+          <h4>Sob medida</h4>
+          <p class="pl-para">Para quem precisa de sistema junto com o site.</p>
+          <p class="pl-valor" data-pr="sobMedida"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 4.900</del></span><small>a partir de</small><strong><span class="sr">preço de lançamento: </span>R$ 2.500</strong><span>no Pix</span><span class="pl-pg"><i class="pl-eco">economize R$ 500 no Pix</i></span><span class="pl-pg">50% no início, 50% na entrega</span><span class="pl-pg">ou 3x de R$ 1.000 no cartão</span></p>
+          <ul><li>sistemas como simulador de reserva, catálogo com pedido ou agendamento</li><li>ou site com várias páginas</li><li>valor exato depois do diagnóstico</li></ul>
+          <div class="pl-acao"><a class="btn btn-secondary" data-plano="sobMedida" data-origem="lp-investimento-sob-medida" href="https://wa.me/5532984762445?text=Ol%C3%A1!%20Vi%20a%20condi%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20e%20quero%20o%20plano%20Sob%20medida%20(a%20partir%20de%20R%24%202.500%20no%20Pix%20ou%203x%20de%20R%24%201.000%20no%20cart%C3%A3o)." target="_blank" rel="noopener"><span class="btn-dot"></span>Quero o Sob medida</a></div>
+        </article>
+      </div>
+      <div class="pl-mes">
+        <div>
+          <div><h4>Manutenção</h4><p class="pl-valor" data-pr="manutencao"><span class="pl-de">de <del><span class="sr">preço cheio: </span>R$ 197/mês</del></span><strong><span class="sr">preço de lançamento: </span>R$ 97/mês</strong></p></div>
+          <p class="pl-mes-t" data-pr="manutencao-t">Para os 10 primeiros clientes, mantido enquanto o contrato estiver ativo. Inclui hospedagem, segurança, backup e até 2 ajustes por mês. Fidelidade de 12 meses.</p>
+        </div>
+        <div>
+          <div><h4>Gestão de tráfego</h4><p class="pl-valor"><strong data-pr-px="trafego">R$ 697</strong><span>por mês</span></p></div>
+          <p class="pl-mes-t">Campanha no Google e no Meta ajustada toda semana. A verba do anúncio vai à parte, na sua própria conta.</p>
+        </div>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-primary ima" href="#retorno" data-uet-diagnostico>Simular o retorno antes <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
+        <a class="btn btn-secondary" data-origem="lp-investimento" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><span class="btn-dot"></span>Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [10] QUEM FAZ ============ -->
+<section class="sec" id="quem-faz">
+  <div class="sec-inner">
+    <div class="cab cab--lado">
+      <div>
+        <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[10]</span>quem faz</p>
+        <h2 class="rv-t" style="--d:.06s">Quem vai mexer <span class="lm">no seu negócio.</span></h2>
+      </div>
+      <p class="lead rv" style="--d:.14s">Uma pessoa responde, orquestra e <b>aprova tudo antes de chegar em você</b>. Um time de agentes de IA cuida de cada parte do trabalho.</p>
+    </div>
+    <div class="qf">
+      <article class="qf-eu rv">
+        <img class="qf-foto" src="../assets/img/matheus.webp" width="400" height="400" alt="Matheus, fundador da Theatrum" loading="lazy" decoding="async">
+        <h3>Matheus</h3>
+        <p class="qf-papel">fundador · orquestra e aprova</p>
+        <p class="t">Antes de escrever código eu assentei piso e trabalhei em obra. Sei o que é depender de indicação e ver um mês fraco chegar com as contas iguais às do mês bom.</p>
+        <p class="t">Sou formado em Sistemas de Informação. <b>Quem responde no WhatsApp sou eu.</b></p>
+        <p class="qf-cnpj">Theatrum · CNPJ 61.978.753/0001-60</p>
+      </article>
+      <div class="qf-lado">
+        <div class="qf-ponto rv" style="--d:.06s"><svg viewBox="0 0 24 24"><path d="M4 18.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8z"/><path d="M8.5 9h7M8.5 12h4"/></svg><b>Você fala com quem faz</b><span>Sem atendente no meio. A conversa do diagnóstico, da prévia e dos ajustes é comigo.</span></div>
+        <div class="qf-ponto rv" style="--d:.12s"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><b>Um agente de IA em cada parte</b><span>Prévia, Google, anúncio, criativos e revisão. Eu aprovo tudo antes de chegar em você.</span></div>
+        <div class="qf-ponto rv" style="--d:.18s"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>Tudo no seu nome</b><span>Domínio, hospedagem e contas de anúncio. Se quiser sair, você leva tudo.</span></div>
+        <div class="qf-cta rv" style="--d:.24s">
+          <p>Quer esse time no seu negócio?</p>
+          <div>
+            <a class="btn btn-ink" data-origem="lp-quem-faz" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20falar%20com%20o%20Matheus%20sobre%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Falar com o Matheus</a>
+            <p style="margin-top:12px"><a class="sec-l" href="#retorno" data-uet-diagnostico>ou simular o retorno primeiro</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [11] FAQ ============ -->
+<section class="sec alt" id="faq">
+  <div class="sec-inner">
+    <div class="cab cab--centro">
+      <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[11]</span>perguntas diretas<span class="eyebrow-bar"></span></p>
+      <h2 class="rv-t" style="--d:.06s;max-width:22ch">O que todo dono de negócio pergunta <span class="lm">antes de fechar.</span></h2>
+    </div>
+    <div class="faq rv" style="--d:.12s">
+      <details><summary>Por que não usar um site pronto de R$ 300? <span class="pl">+</span></summary>
+        <div class="ans">Porque o que transforma visita em cliente não vem no modelo pronto: <b>velocidade no celular, texto que vende, rastreamento do anúncio e aviso de cada contato</b>. Sem isso, você paga o anúncio e não sabe o que voltou.</div></details>
+      <details><summary>Preciso escrever os textos? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> A gente escreve tudo a partir de uma conversa com você, com foco em conversão. Você só revisa e aprova.</div></details>
+      <details><summary>Em quanto tempo fica pronto? <span class="pl">+</span></summary>
+        <div class="ans">Em <b>7 a 10 dias úteis</b> depois de recebermos o conteúdo (logo, fotos e informações do negócio). A prévia vem antes disso, para você ver antes de fechar.</div></details>
+      <details><summary>Em quanto tempo vejo resultado? <span class="pl">+</span></summary>
+        <div class="ans">Os primeiros contatos começam a chegar assim que os anúncios rodam. A tração cresce mês a mês, conforme a campanha aprende o que funciona para o seu negócio. Quem promete milagre na primeira semana de anúncio está vendendo curtida, não resultado.</div></details>
+      <details><summary>A simulação de retorno é uma promessa? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> É a conta feita com os números que você escolheu, para mostrar a ordem de grandeza. O resultado de verdade depende do seu preço, da sua resposta no WhatsApp e de quanto você investe em anúncio. No diagnóstico a gente olha os seus números reais.</div></details>
+      <details><summary>Já contratei agência ou freelancer e me decepcionei. Por que seria diferente? <span class="pl">+</span></summary>
+        <div class="ans">Porque provavelmente entregaram post bonito e relatório de curtida. Aqui cada entrega existe para trazer cliente: <b>site, Google, anúncio e atendimento</b>. E você vê o seu site antes de pagar.</div></details>
+      <details><summary>O domínio e as contas ficam em nome de quem? E se eu quiser sair? <span class="pl">+</span></summary>
+        <div class="ans">No seu. <b>Domínio, hospedagem, Google, Meta e contas de anúncio ficam no seu nome, sempre.</b> Se quiser sair, você leva tudo: site, domínio, contas e histórico.</div></details>
+      <details><summary>E se eu já tiver site? <span class="pl">+</span></summary>
+        <div class="ans">Aí é <b>reformulação de site</b>. A gente audita o que existe, aproveita o que funciona e refaz o que perde cliente, deixando pronto para anúncio. O diagnóstico diz o que fica e o que sai, com o motivo.</div></details>
+    </div>
+    <div class="faq-fim rv">
+      <p>Ficou alguma dúvida?</p>
+      <a class="btn btn-secondary" data-origem="lp-faq" href="https://wa.me/5532984762445?text=Tenho%20uma%20d%C3%BAvida%20antes%20do%20diagn%C3%B3stico%3A" target="_blank" rel="noopener"><span class="btn-dot"></span>Perguntar no WhatsApp</a>
+      <a class="link-sec" href="#retorno" data-uet-diagnostico>ou simular o retorno do meu site</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [12] CTA FINAL ============
+     Faixa dourada da home: degrau 4 (diagnóstico) e 2 (simulação) à esquerda, e o 3, o
+     raio-x por escrito, à direita, pelo mesmo envio do js/leads.js. -->
+<section class="final" id="diagnostico">
+  <div class="final-in">
+    <div>
+      <p class="eyebrow rv"><span class="eyebrow-bar"></span><span class="eyebrow-tag">[12]</span>vamos conversar</p>
+      <h2 class="rv-t" style="--d:.06s">Vamos fazer o seu site trazer cliente?</h2>
+      <p class="lead rv" style="--d:.14s">O diagnóstico gratuito mostra onde o seu negócio perde cliente hoje e o que o site, o Google e o anúncio fariam com cada ponto. Sem compromisso, sem enrolação.</p>
+      <div class="ctas rv" style="--d:.2s">
+        <a class="btn btn-ink ima" data-origem="lp-final" href="https://wa.me/5532984762445?text=Quero%20meu%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Quero meu diagnóstico gratuito</a>
+        <a class="link-sec" href="#retorno" data-uet-diagnostico>Ou simular o retorno do meu site</a>
+      </div>
+      <p class="final-mini rv" style="--d:.26s">responde em minutos, em horário comercial · direto no whatsapp</p>
+    </div>
+    <div class="raiox rv" style="--d:.2s" id="raiox">
+      <h3>Não quer falar agora?</h3>
+      <p>Eu te mando o raio-x do seu negócio por escrito, no WhatsApp.</p>
+      <form id="raioxForm" novalidate>
+        <label><span>Nome do seu negócio</span><input type="text" name="negocio" required autocomplete="organization"></label>
+        <label><span>Seu WhatsApp</span><input type="tel" name="zap" required autocomplete="tel" inputmode="tel"></label>
+        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true">
+        <p class="raiox-erro" id="raioxErro" role="alert" hidden></p>
+        <button class="btn btn-ink" type="submit">Quero o raio-x por escrito</button>
+      </form>
+      <p class="raiox-ok" id="raioxOk" role="status" hidden></p>
+    </div>
+  </div>
+</section>
+
+<a class="wa-fixo" id="waFixo" data-origem="lp-flutuante" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></a>
+<div class="barra-mob" id="barraMob" aria-hidden="true" inert>
+  <a class="bm-sim" href="#retorno">Simular retorno</a>
+  <a class="bm-wa" data-origem="lp-barra" target="_blank" rel="noopener" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio."><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+</div>
+
+<footer>
+  <div class="ft">
+    <div class="ft-sobre">
+      <a class="brand" href="#top"><span class="brand-chip"><img src="../assets/img/logo.webp" width="192" height="192" decoding="async" loading="lazy" alt="Theatrum"/></span><b>Theatrum</b></a>
+      <p>Sites, lojas, aplicativos e sistemas sob medida, com Google e tráfego pago para trazer cliente. Para negócios no Brasil e no exterior.</p>
+    </div>
+    <div>
+      <h4>Nesta página</h4>
+      <ul>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#retorno">Simular o retorno</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#investimento">Investimento</a></li>
+        <li><a href="#faq">Perguntas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Theatrum</h4>
+      <ul>
+        <li><a href="../">Página inicial</a></li>
+        <li><a href="../#trabalhos">Os 27 sites</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../privacidade/">Privacidade</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <ul>
+        <li><a data-origem="lp-rodape" href="https://wa.me/5532984762445?text=Vim%20da%20p%C3%A1gina%20da%20Theatrum.%20Quero%20o%20raio-x%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/theatrum.br/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#top">Voltar ao topo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-base"><span>Theatrum · sites, lojas, aplicativos, Google e tráfego pago. © 2026.</span><span>Responsável: Matheus Ananias de Souza · CNPJ 61.978.753/0001-60</span></div>
+</footer>
+
+<script>
+/* ============================================================
+   BASE: modo QA, movimento, número do WhatsApp e ajudantes
+   ============================================================ */
+const STILL = new URLSearchParams(location.search).has('still');
+const PARADO = STILL || matchMedia('(prefers-reduced-motion: reduce)').matches;
+const WA_NUM = '5532984762445';
+const waLink = (msg) => 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(msg);
+const reais = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+/* chama dentro()/fora() conforme o elemento entra e sai da tela (com folga) */
+function aoVer(el, dentro, fora, margem){
+  if (!el) return;
+  if (!('IntersectionObserver' in window)) { dentro(); return; }
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? dentro() : (fora && fora())),
+    { rootMargin: margem || '0px', threshold: 0 }).observe(el);
+}
+
+if (STILL) {
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:0s!important;animation-duration:.01s!important;animation-iteration-count:1!important;transition:none!important}'
+    + '.rv,.rv-t{opacity:1!important;transform:none!important;clip-path:none!important}.sec{content-visibility:visible!important}'
+    + '.barra-mob,.wa-fixo{display:none!important}.toque{animation:none!important}';
+  document.head.appendChild(st);
+  document.querySelectorAll('img[loading="lazy"]').forEach(i => { i.loading = 'eager'; });
+}
+</script>
+
+<script>
+/* ============================================================
+   PREÇOS: um lugar só (cópia do núcleo da home, só em português)
+   Todo preço desta página sai do data/precos.json. O PADRAO é o mesmo
+   arquivo com zero vagas: serve para o primeiro desenho e para falha
+   no fetch. O JSON é pequeno e baixa logo, porque a pílula do topo
+   mostra as vagas que restam.
+   ============================================================ */
+(function(){
+  const PADRAO = {
+    vagasTotal:10, vagasPreenchidas:0,
+    faixas:[{de:1,ate:3,preco:'precoLancamento'},{de:4,ate:10,preco:'precoIntermediario'},{de:11,ate:null,preco:'precoCheio'}],
+    planos:{
+      essencial:{precoCheio:1500,precoLancamento:990,precoIntermediario:1200,parcelas:3,precoCartaoCheio:1800,precoCartaoLancamento:1200,precoCartaoIntermediario:1440},
+      completo:{precoCheio:2500,precoLancamento:1500,precoIntermediario:1800,parcelas:3,precoCartaoCheio:3000,precoCartaoLancamento:1800,precoCartaoIntermediario:2160},
+      sobMedida:{precoCheio:4900,precoLancamento:2500,precoIntermediario:2500,aPartirDe:true,parcelas:3,precoCartaoCheio:5880,precoCartaoLancamento:3000,precoCartaoIntermediario:3000},
+      manutencao:{precoCheio:197,precoLancamento:97,precoIntermediario:97,mensal:true}
+    }
+  };
+  let dados = PADRAO;
+  const ouvintes = [];
+  function estado(){
+    const total = dados.vagasTotal, feitas = Math.max(0, Math.min(total, dados.vagasPreenchidas | 0));
+    const prox = feitas + 1;
+    let fx = dados.faixas.findIndex(f => prox >= f.de && (f.ate == null || prox <= f.ate));
+    if (fx < 0) fx = dados.faixas.length - 1;
+    const chave = feitas >= total ? 'precoCheio' : dados.faixas[fx].preco;
+    const lanc = chave !== 'precoCheio';
+    const planos = {};
+    Object.keys(dados.planos).forEach(id => {
+      const p = dados.planos[id];
+      planos[id] = { atual:p[chave], cheio:p.precoCheio, riscado: lanc && p[chave] < p.precoCheio,
+                     cartao:p[chave.replace('preco', 'precoCartao')] || 0,
+                     parcelas:p.parcelas || 0, aPartirDe:!!p.aPartirDe, mensal:!!p.mensal };
+    });
+    return { lanc, total, feitas, restantes:total - feitas, planos };
+  }
+  /* "R$ 1.500"; partes = parcelas, e centavos só quando há */
+  function fmt(n, partes){
+    let v = n;
+    if (partes) v = Math.round(v / partes * 100) / 100;
+    const cent = Math.round(v * 100) % 100 !== 0;
+    return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits:cent ? 2 : 0, maximumFractionDigits:cent ? 2 : 0 });
+  }
+  const avisa = () => { const e = estado(); ouvintes.forEach(fn => { try { fn(e); } catch(err){} }); };
+  window.TheatrumPrecos = { estado, fmt, aoMudar(fn){ ouvintes.push(fn); fn(estado()); } };
+  fetch('../data/precos.json', { cache:'no-cache' })
+    .then(r => r.ok ? r.json() : null)
+    .then(j => { if (j && j.planos && j.faixas) { dados = j; avisa(); } })
+    .catch(() => {});
+})();
+
+/* [09] investimento, pílula do topo e barra de vagas */
+(function(){
+  const P = window.TheatrumPrecos, sec = document.getElementById('investimento');
+  const NOME = { essencial:'Essencial', completo:'Completo', sobMedida:'Sob medida' };
+  function valor(p){
+    const suf = p.mensal ? '/mês' : '';
+    let h = '';
+    if (p.riscado) h += '<span class="pl-de">de <del><span class="sr">preço cheio: </span>' + P.fmt(p.cheio) + suf + '</del></span>';
+    if (p.aPartirDe) h += '<small>a partir de</small>';
+    h += '<strong>' + (p.riscado ? '<span class="sr">preço de lançamento: </span>' : '') + P.fmt(p.atual) + suf + '</strong>';
+    if (p.cartao) h += '<span>no Pix</span>'
+      + (p.cartao > p.atual ? '<span class="pl-pg"><i class="pl-eco">economize ' + P.fmt(p.cartao - p.atual) + ' no Pix</i></span>' : '')
+      + '<span class="pl-pg">50% no início, 50% na entrega</span>';
+    if (p.parcelas) h += '<span' + (p.cartao ? ' class="pl-pg"' : '') + '>ou ' + p.parcelas + 'x de ' + P.fmt(p.cartao || p.atual, p.parcelas) + (p.cartao ? ' no cartão' : '') + '</span>';
+    return h;
+  }
+  P.aoMudar(e => {
+    ['essencial', 'completo', 'sobMedida', 'manutencao'].forEach(id => {
+      const el = sec.querySelector('[data-pr="' + id + '"]');
+      if (el && e.planos[id]) el.innerHTML = valor(e.planos[id]);
+    });
+    const mt = sec.querySelector('[data-pr="manutencao-t"]');
+    if (mt) mt.textContent = (e.lanc ? 'Para os ' + e.total + ' primeiros clientes, mantido enquanto o contrato estiver ativo. ' : '')
+      + 'Inclui hospedagem, segurança, backup e até 2 ajustes por mês.' + (e.lanc ? ' Fidelidade de 12 meses.' : '');
+    sec.querySelectorAll('[data-plano]').forEach(a => {
+      const id = a.dataset.plano, p = e.planos[id];
+      if (!p) return;
+      const preco = (p.aPartirDe ? 'a partir de ' : '') + P.fmt(p.atual)
+        + (p.cartao ? ' no Pix ou ' + p.parcelas + 'x de ' + P.fmt(p.cartao, p.parcelas) + ' no cartão' : '');
+      a.href = waLink((e.lanc ? 'Olá! Vi a condição de lançamento e quero o plano ' : 'Olá! Vim do site da Theatrum e quero o plano ') + NOME[id] + ' (' + preco + ').');
+    });
+    /* vagas: só existem na condição de lançamento */
+    const pil = document.getElementById('hxVagas'), vagas = document.getElementById('vagas');
+    if (e.lanc) {
+      const r = e.restantes;
+      pil.textContent = (r === 1 ? 'Resta 1 de ' : 'Restam ' + r + ' de ') + e.total + ' vagas no preço de lançamento';
+      document.getElementById('vagasTxt').textContent = (r === 1 ? 'Resta 1 vaga' : 'Restam ' + r + ' vagas') + ' de ' + e.total + ' na condição de lançamento';
+      document.getElementById('vagasBar').style.setProperty('--f', (e.feitas / e.total).toFixed(3));
+      document.getElementById('vagasFeitas').textContent = e.feitas + (e.feitas === 1 ? ' preenchida' : ' preenchidas');
+      document.getElementById('vagasTrilho').setAttribute('aria-label', e.feitas + ' de ' + e.total + ' vagas preenchidas');
+    } else {
+      pil.textContent = 'Diagnóstico gratuito, sem compromisso';
+      vagas.hidden = true;
+    }
+  });
+  /* plano_click (GA4 e UET), além do whatsapp_click do leads.js; só com consentimento */
+  document.addEventListener('click', ev => {
+    const a = ev.target && ev.target.closest ? ev.target.closest('[data-plano]') : null;
+    if (a && window.TheatrumLeads) window.TheatrumLeads.evento('plano_click', { plano:a.dataset.plano, origem:a.dataset.origem });
+  }, true);
+})();
+</script>
+
+<script>
+/* ============================================================
+   CONVERSA: o motor dos celulares de WhatsApp
+   roteiro = [{ de:'c' (contraparte, à esquerda) | 'e' (eu, à direita) | 's' (aviso),
+                t:'texto com *negrito* e \n', h:'09:12', pausa:ms antes, dig:ms digitando }]
+   A contraparte "digita" antes de cada mensagem (no topo e numa bolha). Com
+   movimento reduzido ou ?still=1, a conversa aparece inteira de uma vez.
+   ============================================================ */
+function Conversa(cel){
+  const corpo = cel.querySelector('.wa-corpo'), status = cel.querySelector('.wa-status');
+  let timers = [];
+  const base = () => (status && status.dataset.base) || 'online';
+  function para(){ timers.forEach(clearTimeout); timers = []; const d = corpo.querySelector('.dig'); if (d) d.remove(); if (status) { status.textContent = base(); status.classList.remove('dig'); } }
+  function bolha(p){
+    const b = document.createElement('div');
+    b.className = 'msg ' + (p.de === 'c' ? 'in' : p.de === 'e' ? 'out' : 'sis');
+    let h = (p.foto ? '<span class="foto"><span><svg><use href="#i-camera"/></svg><br>foto do espaço</span></span>' : '')
+      + p.t.replace(/\*([^*]+)\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+    if (p.de !== 's') h += '<span class="h">' + (p.h || '') + (p.de === 'e' ? '<i class="vv">✓✓</i>' : '') + '</span>';
+    b.innerHTML = h;
+    corpo.appendChild(b);
+    while (corpo.children.length > 10) corpo.firstElementChild.remove();
+  }
+  function toca(roteiro, fim){
+    para();
+    corpo.innerHTML = '';
+    if (PARADO) { roteiro.forEach(bolha); if (fim) fim(); return; }
+    let t = 250;
+    roteiro.forEach(p => {
+      t += p.pausa != null ? p.pausa : 550;
+      if (p.de === 'c') {
+        const dig = p.dig != null ? p.dig : Math.min(1500, Math.max(650, p.t.length * 13));
+        timers.push(setTimeout(() => {
+          if (status) { status.textContent = 'digitando…'; status.classList.add('dig'); }
+          const d = document.createElement('div'); d.className = 'msg in dig'; d.innerHTML = '<i></i><i></i><i></i>'; corpo.appendChild(d);
+        }, t));
+        t += dig;
+      }
+      timers.push(setTimeout(() => {
+        const d = corpo.querySelector('.dig'); if (d) d.remove();
+        if (status) { status.textContent = base(); status.classList.remove('dig'); }
+        bolha(p);
+      }, t));
+    });
+    if (fim) timers.push(setTimeout(fim, t + 400));
+  }
+  function tudo(roteiro){ para(); corpo.innerHTML = ''; roteiro.forEach(bolha); }
+  return { toca, para, tudo };
+}
+</script>
+
+<script>
+/* ============================================================
+   HERO: o celular recebe os pedidos de orçamento da Cozinha Viva
+   Um pedido a cada ~3 s, só com o hero à vista e a aba aberta. Para
+   depois de doze (nada de animação sem fim).
+   ============================================================ */
+(function(){
+  const lista = document.getElementById('pcLista'), toast = document.getElementById('pcToast'), kpi = document.getElementById('pcKpi');
+  const hero = document.querySelector('.hero');
+  if (!lista) return;
+  const POOL = [
+    ['Rafael', '#C0583A', 'Cozinha em L, 3,20 m. Para dezembro', 'site'],
+    ['Ana', '#7E57C2', 'Cozinha com ilha, apartamento de 70 m²', 'anúncio'],
+    ['Diego', '#2E7D32', 'Vi o projeto do Bom Pastor. Fazem igual?', 'site'],
+    ['Fernanda', '#AD1457', 'Quero agendar a conversa de sábado', 'site'],
+    ['Lucas', '#1565C0', 'Reforma de cozinha antiga, 2,80 m', 'anúncio'],
+    ['Carla', '#6D4C41', 'Medida: 4 m reta. Bairro Cascatinha', 'site'],
+    ['Bruno', '#00838F', 'Cozinha americana. Quanto tempo leva?', 'anúncio'],
+    ['Renata', '#C62828', 'Quero o projeto antes de mudar', 'site'],
+  ];
+  let i = 0, n = 0, min = 8 * 60 + 52, timer = 0, visivel = false, chegaram = 0;
+  const hhmm = () => String(Math.floor(min / 60)).padStart(2, '0') + ':' + String(min % 60).padStart(2, '0');
+  const item = (p, nova) => '<li' + (nova ? ' class="nova"' : '') + '><span class="av" style="--c:' + p[1] + '">' + p[0][0] + '</span><div><p><b>' + p[0]
+    + '</b><time>' + hhmm() + '</time></p><p><span class="tg">' + p[3] + '</span><span class="pvw">' + p[2] + '</span>' + (nova ? '<i>1</i>' : '') + '</p></div></li>';
+  /* começa com quatro pedidos da manhã, já lidos */
+  for (let k = 0; k < 4; k++) { min += 9 + k * 4; lista.insertAdjacentHTML('afterbegin', item(POOL[i++ % POOL.length], false)); n++; }
+  kpi.textContent = n;
+  if (PARADO) return;
+  function chega(){
+    const p = POOL[i++ % POOL.length];
+    min += 7 + Math.floor(Math.random() * 16);
+    lista.querySelectorAll('li.nova').forEach(li => { li.classList.remove('nova'); const b = li.querySelector('i'); if (b) b.remove(); });
+    lista.insertAdjacentHTML('afterbegin', item(p, true));
+    lista.style.transition = 'none'; lista.style.transform = 'translateY(-68px)';
+    void lista.offsetHeight;
+    lista.style.transition = ''; lista.style.transform = '';
+    while (lista.children.length > 8) lista.lastElementChild.remove();
+    const av = toast.querySelector('.av'); av.textContent = p[0][0]; av.style.setProperty('--c', p[1]);
+    toast.querySelector('span:last-child').textContent = p[0] + ': ' + p[2];
+    toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 2300);
+    kpi.textContent = ++n; kpi.classList.remove('sobe'); void kpi.offsetWidth; kpi.classList.add('sobe');
+    chegaram++;
+    agenda(3200);
+  }
+  function agenda(ms){ clearTimeout(timer); if (visivel && !document.hidden && chegaram < 12) timer = setTimeout(chega, ms); }
+  aoVer(hero, () => { visivel = true; hero.classList.remove('fora'); agenda(1800); }, () => { visivel = false; hero.classList.add('fora'); clearTimeout(timer); });
+  document.addEventListener('visibilitychange', () => document.hidden ? clearTimeout(timer) : agenda(1500));
+})();
+</script>
+
+<script>
+/* ============================================================
+   [03] SIMULAÇÃO: do primeiro oi ao primeiro cliente
+   A barrinha dourada do passo ativo é o relógio: quando a animação
+   dela acaba (animationend), entra a cena seguinte. Pausar é só
+   pausar a animação (.parado). Volta ao começo depois da quinta.
+   ============================================================ */
+(function(){
+  const sim = document.getElementById('sim');
+  if (!sim) return;
+  const passos = [...sim.querySelectorAll('.sim-passos button')];
+  const cenas = [...sim.querySelectorAll('.cena')];
+  const play = document.getElementById('simPlay'), leg = document.getElementById('simLegenda');
+  const DUR = [9000, 7600, 7000, 7400, 9600];
+  const c1 = Conversa(cenas[0].querySelector('.cel')), c5 = Conversa(cenas[4].querySelector('.cel'));
+  const ROT1 = [
+    { de:'e', t:'Oi! Vim do site. Tenho uma loja de cozinha planejada em Juiz de Fora.', h:'09:02', pausa:300 },
+    { de:'c', t:'Oi! Aqui é o Matheus. Me manda o seu Instagram ou site que eu faço o raio-x agora.', h:'09:03', dig:1200 },
+    { de:'e', t:'@cozinhaviva', h:'09:03', pausa:600 },
+    { de:'c', t:'Pronto. Achei três pontos onde você perde cliente hoje 👉', h:'09:05', dig:1100 },
+  ];
+  const ROT5 = [
+    { de:'s', t:'Mensagem pronta do botão “Agendar uma conversa” do site', pausa:200 },
+    { de:'c', t:'Oi! Vim pelo site. Quero orçar uma *cozinha planejada*.\n*Medida:* 3,20 m em L\n*Bairro:* São Mateus\n*Para quando:* dezembro', h:'10:14', dig:1300 },
+    { de:'e', t:'Oi, Rafael! Consigo ir medir na quinta, às 10h. Fica bom?', h:'10:15', pausa:900 },
+    { de:'c', t:'Fica ótimo! Até quinta.', h:'10:16', dig:900 },
+  ];
+  /* o 97 da nota de velocidade sobe junto com o arco */
+  function conta(el){
+    const alvo = +el.dataset.conta;
+    if (PARADO) { el.textContent = alvo; return; }
+    el.textContent = '0';
+    const t0 = performance.now() + 1200, dur = 2200;
+    (function passo(t){
+      const p = Math.max(0, Math.min(1, (t - t0) / dur));
+      el.textContent = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+      if (p < 1 && cenas[2].classList.contains('on')) requestAnimationFrame(passo); else el.textContent = alvo;
+    })(performance.now());
+  }
+  const entra = [() => c1.toca(ROT1), null, (c) => c.querySelectorAll('[data-conta]').forEach(conta), null, () => c5.toca(ROT5)];
+  let atual = -1, visivel = false, pausado = false;
+  function relogio(){ sim.classList.toggle('parado', !visivel || pausado || document.hidden); }
+  function vai(i, manual){
+    atual = i;
+    leg.setAttribute('aria-live', manual ? 'polite' : 'off');
+    passos.forEach((b, k) => {
+      b.style.setProperty('--dur', DUR[k] + 'ms');
+      b.classList.toggle('feito', k < i);
+      b.removeAttribute('aria-current');
+    });
+    void sim.offsetWidth;   /* reinicia a barrinha mesmo voltando ao mesmo passo */
+    passos[i].setAttribute('aria-current', 'step');
+    cenas.forEach((c, k) => {
+      c.classList.remove('on');
+      if (k === i) { void c.offsetWidth; c.classList.add('on'); if (entra[k]) entra[k](c); }
+    });
+    if (i !== 0) c1.para();
+    if (i !== 4) c5.para();
+    leg.querySelector('b').textContent = passos[i].querySelector('b').textContent;
+    leg.querySelector('span').textContent = passos[i].querySelector('.d').textContent;
+  }
+  passos.forEach((b, k) => { b.setAttribute('aria-label', 'Passo ' + (k + 1) + ': ' + b.querySelector('b').textContent); b.addEventListener('click', () => vai(k, true)); });
+  passos.forEach(b => b.querySelector('.barra').addEventListener('animationend', () => { if (!PARADO) vai((atual + 1) % cenas.length); }));
+  play.addEventListener('click', () => {
+    pausado = !pausado;
+    play.querySelector('use').setAttribute('href', pausado ? '#i-play' : '#i-pausa');
+    if (pausado) { if (atual === 0) c1.tudo(ROT1); if (atual === 4) c5.tudo(ROT5); }
+    play.querySelector('span').textContent = pausado ? 'Continuar' : 'Pausar';
+    relogio();
+  });
+  if (PARADO) { play.hidden = true; vai(0); return; }
+  sim.classList.add('parado');
+  aoVer(sim, () => { visivel = true; if (atual < 0) vai(0); relogio(); }, () => { visivel = false; relogio(); });
+  document.addEventListener('visibilitychange', relogio);
+})();
+</script>
+
+<script>
+/* ============================================================
+   [04] CONVERSAS: quatro tipos de negócio
+   As marcas são as demos da vitrine. x/y: onde fica o botão que manda a
+   mensagem, em % da tela do celular (medido no print de 390 px, com a
+   barra de status de 26 px por cima). Gira sozinho até a pessoa escolher
+   uma aba; com a seção fora da tela, para.
+   ============================================================ */
+(function(){
+  const painel = document.getElementById('cvPainel');
+  if (!painel) return;
+  const CV = [
+    { site:'arco', nomeSite:'Arco Odontologia · demonstração', x:'34.1%', y:'64.7%', nome:'Juliana', cor:'#C2185B',
+      antes:'quanto custa implante?', res:'Avaliação agendada em 4 mensagens',
+      resumo:'Conversa simulada: a paciente chega pelo botão Agendar avaliação pedindo avaliação de implante na sexta à tarde, e a clínica confirma sexta às 15h.',
+      rot:[
+        { de:'s', t:'Mensagem pronta do botão “Agendar avaliação” do site', pausa:200 },
+        { de:'c', t:'Olá! Vim pelo site da Arco e quero agendar uma *avaliação de implante*.\n*Melhor horário:* sexta à tarde\n*Primeira consulta:* sim', h:'09:12', dig:1300 },
+        { de:'e', t:'Oi, Juliana! Sexta tenho 15h ou 16h30. Qual fica melhor?', h:'09:13', pausa:900 },
+        { de:'c', t:'15h, por favor', h:'09:13', dig:700 },
+        { de:'e', t:'Confirmado: sexta, 15h, com a Dra. Helena. Vou te mandar a localização 📍', h:'09:14', pausa:800 },
+      ] },
+    { site:'cozinha-viva', nomeSite:'Cozinha Viva · demonstração', x:'35.9%', y:'71%', nome:'Ana', cor:'#7E57C2',
+      antes:'quanto custa uma cozinha?', res:'Medição marcada em 4 mensagens',
+      resumo:'Conversa simulada: a cliente chega pelo botão Agendar uma conversa pedindo cozinha com ilha num apartamento de 70 metros quadrados, manda a foto do espaço e a loja marca a medição.',
+      rot:[
+        { de:'s', t:'Mensagem pronta do botão “Agendar uma conversa” do site', pausa:200 },
+        { de:'c', t:'Oi! Vim pelo site. Quero orçar uma *cozinha com ilha*.\n*Apartamento:* 70 m²\n*Bairro:* Cascatinha\n*Para quando:* março', h:'14:20', dig:1300 },
+        { de:'e', t:'Oi, Ana! Consigo ir medir na terça, às 9h. Pode me mandar uma foto do espaço?', h:'14:21', pausa:900 },
+        { de:'c', t:'Tá aí. A parede da esquerda tem janela.', h:'14:23', dig:900, foto:true },
+        { de:'e', t:'Anotado. Terça, 9h, medição confirmada ✅', h:'14:23', pausa:800 },
+      ] },
+    { site:'mare-mansa', nomeSite:'Maré Mansa Imóveis · demonstração', x:'50%', y:'93.3%', nome:'Paula', cor:'#1565C0',
+      antes:'esse apê ainda tá disponível?', res:'Visita agendada em 4 mensagens',
+      resumo:'Conversa simulada: a cliente chega pelo site citando o código do imóvel e a simulação de financiamento, e a corretora marca a visita para sábado às 10h.',
+      rot:[
+        { de:'s', t:'Mensagem pronta da página do imóvel MM-014', pausa:200 },
+        { de:'c', t:'Olá! Vi no site o imóvel *MM-014*, apartamento de 2 quartos no Recreio.\n*Quero:* agendar visita\n*Simulei:* financiamento em 30 anos', h:'18:40', dig:1300 },
+        { de:'e', t:'Oi, Paula! Ele está disponível. Sábado às 10h ou domingo às 11h?', h:'18:42', pausa:900 },
+        { de:'c', t:'Sábado, 10h', h:'18:42', dig:700 },
+        { de:'e', t:'Visita marcada ✅ Te mando o endereço e levo a simulação impressa.', h:'18:43', pausa:800 },
+      ] },
+    { site:'pedra-alta', nomeSite:'Chalés Pedra Alta · demonstração', x:'50%', y:'94%', nome:'Marcos', cor:'#2E7D32',
+      antes:'tem vaga pro feriado?', res:'Reserva fechada em 4 mensagens',
+      resumo:'Conversa simulada: o casal chega pelo botão Ver disponibilidade com as datas, o número de hóspedes e a ocasião, e a pousada separa a reserva.',
+      rot:[
+        { de:'s', t:'Mensagem pronta do “Ver disponibilidade” do site', pausa:200 },
+        { de:'c', t:'Oi! Vim pelo site e quero reservar um chalé.\n*Check-in:* 14/11\n*Check-out:* 16/11\n*Hóspedes:* 2 adultos\n*Ocasião:* aniversário de casamento', h:'21:05', dig:1300 },
+        { de:'e', t:'Que data especial! O chalé está livre nas duas noites. Quer que a gente prepare uma surpresa na chegada?', h:'21:07', pausa:900 },
+        { de:'c', t:'Quero sim!', h:'21:07', dig:600 },
+        { de:'e', t:'Reserva separada ✅ Te mando os dados do Pix para o sinal.', h:'21:08', pausa:800 },
+      ] },
+  ];
+  const abas = [...document.querySelectorAll('#cvAbas [role=tab]')];
+  const conv = Conversa(document.getElementById('cvCel'));
+  const el = (id) => document.getElementById(id);
+  let atual = 0, auto = !PARADO, visivel = false, timer = 0;
+  function antes(c){
+    el('cvAntes').innerHTML =
+      '<div class="msg in">oi<span class="h">14:02</span></div>' +
+      '<div class="msg in">' + c.antes + '<span class="h">14:02</span></div>' +
+      '<div class="msg out">Oi! Tudo bem? Em que posso ajudar? 😊<span class="h">17:40<i class="vv">✓✓</i></span></div>' +
+      '<div class="msg in">já resolvi, obrigado<span class="h">17:52</span></div>';
+  }
+  function mostra(i, foco){
+    atual = i; clearTimeout(timer);
+    const c = CV[i];
+    abas.forEach((b, k) => { b.setAttribute('aria-selected', String(k === i)); b.tabIndex = k === i ? 0 : -1; });
+    painel.setAttribute('aria-labelledby', abas[i].id);
+    if (foco) abas[i].focus();
+    const img = el('cvSite');
+    img.srcset = 'img/cel-' + c.site + '-300.webp 300w, img/cel-' + c.site + '-560.webp 560w';
+    img.src = 'img/cel-' + c.site + '-300.webp';
+    el('cvToque').style.left = c.x; el('cvToque').style.top = c.y;
+    el('cvSiteNome').textContent = c.nomeSite;
+    el('cvNome').textContent = c.nome;
+    el('cvAv').textContent = c.nome[0]; el('cvAv').style.setProperty('--c', c.cor);
+    el('cvResumo').textContent = c.resumo;
+    antes(c);
+    const res = el('cvRes'); res.textContent = c.res; res.classList.remove('on');
+    conv.toca(c.rot, () => {
+      res.classList.add('on');
+      if (auto && visivel) timer = setTimeout(() => mostra((atual + 1) % CV.length), 4200);
+    });
+  }
+  abas.forEach((b, k) => {
+    b.addEventListener('click', () => { auto = false; mostra(k); });
+    b.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); auto = false; mostra((atual + d + CV.length) % CV.length, true); }
+    });
+  });
+  antes(CV[0]); el('cvResumo').textContent = CV[0].resumo;
+  if (PARADO) { mostra(0); return; }
+  let tocou = false;
+  aoVer(painel, () => { visivel = true; painel.classList.remove('fora'); if (!tocou) { tocou = true; mostra(atual); } else if (auto) mostra(atual); },
+               () => { visivel = false; painel.classList.add('fora'); clearTimeout(timer); });
+})();
+</script>
+
+<script>
+/* ============================================================
+   [05] RETORNO: o simulador
+   Conta: conversas = visitas × chamam; clientes = conversas × fecham;
+   faturamento = clientes × valor. Mês 1 conta 50%, mês 2, 75% (o anúncio
+   aprende), depois 100%. Investimento = plano Completo + manutenção por
+   mês + (gestão + verba, se marcado). Preços do data/precos.json.
+   Nada daqui é guardado: é número de quem está do outro lado.
+   ============================================================ */
+(function(){
+  const raiz = document.getElementById('ret');
+  if (!raiz) return;
+  const P = window.TheatrumPrecos, GESTAO = 697, RAMPA = [.5, .75];
+  /* valores de partida, de exemplo: o texto da seção diz isso */
+  const PRESETS = {
+    clinica:     { vis:600,  cham:5, fec:35, tic:350,   feed:['Avaliação de implante','Limpeza e clareamento','Consulta para o filho','Aparelho invisível','Primeira consulta'] },
+    planejados:  { vis:400,  cham:4, fec:10, tic:14000, feed:['Cozinha em L, 3,20 m','Closet do casal','Cozinha com ilha','Home office','Banheiro planejado'] },
+    imobiliaria: { vis:1000, cham:3, fec:3,  tic:15000, feed:['Visita ao MM-014','Avaliar meu apartamento','Alugar 2 quartos','Simular financiamento','Casa com quintal'] },
+    pousada:     { vis:900,  cham:5, fec:30, tic:1100,  feed:['Chalé de 14 a 16/11','Feriado de dezembro','Lua de mel em janeiro','Fim de semana, 2 adultos','Réveillon'] },
+    outro:       { vis:500,  cham:5, fec:25, tic:500,   feed:['Pedido de orçamento','Agendar um horário','Tirar uma dúvida','Quero o plano','Vim pelo anúncio'] },
+  };
+  const NOMES = ['Juliana','Rafael','Paula','Marcos','Ana','Diego','Fernanda','Lucas','Carla','Bruno','Renata','Tiago'];
+  const $ = (id) => document.getElementById(id);
+  const vis = $('rVis'), cham = $('rCham'), fec = $('rFec'), tic = $('rTic'), ads = $('rAds'), verba = $('rVerba');
+  const botoes = [...raiz.querySelectorAll('[data-preset]')];
+  let preset = 'clinica';
+  const num = (inp) => +String(inp.value).replace(/\D/g, '') || 0;
+  const dec = (v) => v.toLocaleString('pt-BR', { maximumFractionDigits: v < 100 ? 1 : 0 });
+  function compacto(v){
+    if (v >= 1e6) return 'R$ ' + (v / 1e6).toLocaleString('pt-BR', { maximumFractionDigits:1 }) + ' mi';
+    if (v >= 1e3) return 'R$ ' + (v / 1e3).toLocaleString('pt-BR', { maximumFractionDigits: v < 1e4 ? 1 : 0 }) + ' mil';
+    return 'R$ ' + Math.round(v);
+  }
+  function aplica(nome){
+    const p = PRESETS[nome]; preset = nome;
+    vis.value = p.vis; cham.value = p.cham; fec.value = p.fec;
+    tic.value = p.tic.toLocaleString('pt-BR');
+    botoes.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.preset === nome)));
+  }
+  function conta(){
+    const e = P.estado(), site = e.planos.completo.atual, manut = e.planos.manutencao.atual;
+    const conv = num(vis) * (+cham.value / 100), cli = conv * (+fec.value / 100), fat = cli * num(tic);
+    const mensal = manut + (ads.checked ? GESTAO + num(verba) : 0);
+    const meses = [];
+    let acum = 0;
+    for (let m = 1; m <= 12; m++) {
+      const noMes = fat * (RAMPA[m - 1] != null ? RAMPA[m - 1] : 1);
+      acum += noMes;
+      meses.push({ m, noMes, acum, custo: site + mensal * m });
+    }
+    const volta = meses.find(x => x.acum >= x.custo);
+    return { conv, cli, fat, site, manut, mensal, meses, volta: volta ? volta.m : 0, pagaCom: num(tic) ? Math.ceil(site / num(tic)) : 0 };
+  }
+
+  /* ---------- gráfico: SVG desenhado uma vez, valores animados ---------- */
+  const ESTREITO = innerWidth < 640;
+  const W = ESTREITO ? 360 : 520, H = ESTREITO ? 250 : 270, ML = 56, MR = 10, MT = 26, MB = 24, PW = W - ML - MR, PH = H - MT - MB;
+  const slot = PW / 12, bw = Math.min(30, slot - 8);
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', 'Gráfico do faturamento novo acumulado e do investimento acumulado nos 12 meses. Os números estão na tabela logo abaixo.');
+  const mk = (tag, attrs, pai) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); (pai || svg).appendChild(n); return n; };
+  const grades = [], ticks = [];
+  for (let g = 0; g <= 4; g++) {
+    const y = MT + PH - PH * g / 4;
+    grades.push(mk('line', { class:'grade', x1:ML, x2:W - MR, y1:y, y2:y }));
+    ticks.push(mk('text', { class:'tick', x:ML - 8, y:y + 3.5, 'text-anchor':'end' }));
+  }
+  const barras = [], alvos = [];
+  for (let m = 0; m < 12; m++) {
+    const cx = ML + slot * m + slot / 2;
+    barras.push(mk('path', { class:'barra' }));
+    mk('text', { class:'mes', x:cx, y:H - 8 }).textContent = m + 1;
+  }
+  const linha = mk('polyline', { class:'custo' });
+  const marca = mk('circle', { class:'marca', r:6 });
+  const rotFat = mk('text', { class:'rotulo', 'text-anchor':'end' });
+  const fio = mk('line', { class:'fio' });
+  const rotVolta = mk('text', { class:'rotulo verde', 'text-anchor':'middle' });
+  for (let m = 0; m < 12; m++) {
+    alvos.push(mk('rect', { class:'alvo', x:ML + slot * m, y:MT, width:slot, height:PH }));
+  }
+  $('rpSvg').appendChild(svg);
+
+  function passoBom(v){
+    const bruto = v / 4, p = Math.pow(10, Math.floor(Math.log10(bruto || 1)));
+    const f = bruto / p;
+    return ([1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find(c => f <= c) || 10) * p;
+  }
+  let vis0 = null;   /* o que está desenhado agora: { acum[], custo[], max } */
+  function desenha(d){
+    const max = d.max, y = (v) => MT + PH - PH * Math.min(1, v / max);
+    ticks.forEach((t, g) => { t.textContent = g === 0 ? '0' : compacto(max * g / 4).replace('R$ ', ''); });
+    d.acum.forEach((v, m) => {
+      const x = ML + slot * m + (slot - bw) / 2, top = y(v), base = MT + PH, r = Math.min(4, Math.max(0, base - top));
+      barras[m].setAttribute('d', 'M' + x + ' ' + base + 'V' + (top + r) + 'Q' + x + ' ' + top + ' ' + (x + r) + ' ' + top
+        + 'H' + (x + bw - r) + 'Q' + (x + bw) + ' ' + top + ' ' + (x + bw) + ' ' + (top + r) + 'V' + base + 'Z');
+      barras[m].classList.toggle('antes', d.volta === 0 || m + 1 < d.volta);
+    });
+    linha.setAttribute('points', d.custo.map((v, m) => (ML + slot * m + slot / 2) + ',' + y(v)).join(' '));
+    const ult = 11, xu = ML + slot * ult + slot / 2;
+    rotFat.setAttribute('x', xu + bw / 2 + 2); rotFat.setAttribute('y', Math.max(MT + 12, y(d.acum[ult]) - 8));
+    rotFat.textContent = compacto(d.acum[ult]);
+    if (d.volta) {
+      const xv = ML + slot * (d.volta - 1) + slot / 2, yv = y(d.custo[d.volta - 1]);
+      marca.setAttribute('cx', xv); marca.setAttribute('cy', yv); marca.style.display = '';
+      fio.setAttribute('x1', xv); fio.setAttribute('x2', xv); fio.setAttribute('y1', MT - 4); fio.setAttribute('y2', yv - 7); fio.style.display = '';
+      rotVolta.setAttribute('x', Math.max(ML + 44, Math.min(xv, W - MR - 70))); rotVolta.setAttribute('y', MT - 10);
+      rotVolta.textContent = 'volta no mês ' + d.volta;
+    } else { marca.style.display = 'none'; fio.style.display = 'none'; rotVolta.textContent = ''; }
+  }
+  function alvoDe(r){
+    const acum = r.meses.map(x => x.acum), custo = r.meses.map(x => x.custo);
+    return { acum, custo, max: passoBom(Math.max(acum[11], custo[11]) * 1.08) * 4, volta: r.volta };
+  }
+  let anim = 0;
+  function anima(destino, dur, escalonado){
+    cancelAnimationFrame(anim);
+    const de = vis0 || { acum: Array(12).fill(0), custo: destino.custo.map(() => destino.custo[0]), max: destino.max, volta: destino.volta };
+    if (PARADO || !dur) { vis0 = destino; desenha(destino); return; }
+    const t0 = performance.now();
+    (function q(t){
+      const lin = Math.min(1, (t - t0) / dur), e = (p) => 1 - Math.pow(1 - p, 3);
+      const fr = (m) => escalonado ? e(Math.max(0, Math.min(1, (lin * dur - m * 90) / (dur - 11 * 90)))) : e(lin);
+      const atual = {
+        acum: destino.acum.map((v, m) => de.acum[m] + (v - de.acum[m]) * fr(m)),
+        custo: destino.custo.map((v, m) => de.custo[m] + (v - de.custo[m]) * e(lin)),
+        max: de.max + (destino.max - de.max) * e(lin), volta: destino.volta
+      };
+      desenha(atual); vis0 = atual;
+      if (lin < 1) anim = requestAnimationFrame(q); else { vis0 = destino; desenha(destino); }
+    })(t0);
+  }
+  /* números dos cartões sobem até o valor */
+  function sobe(el, para, fmt){
+    if (PARADO) { el.textContent = fmt(para); el.dataset.v = para; return; }
+    const de = +(el.dataset.v || 0), t0 = performance.now(), dur = 600;
+    el.dataset.v = para;
+    (function q(t){ const p = Math.min(1, (t - t0) / dur), v = de + (para - de) * (1 - Math.pow(1 - p, 3)); el.textContent = fmt(v); if (p < 1) requestAnimationFrame(q); })(t0);
+  }
+
+  /* ---------- dica no mouse e no teclado ---------- */
+  const dica = $('rpDica'), graf = raiz.querySelector('.rp-graf');
+  let ultimo = null;
+  function mostraDica(m){
+    if (!ultimo) return;
+    const x = ultimo.meses[m], pago = x.acum >= x.custo;
+    dica.innerHTML = '<b>Mês ' + (m + 1) + '</b>faturamento no mês: ' + reais(x.noMes) + '<br>acumulado: <i>' + reais(x.acum) + '</i><br>investimento: ' + reais(x.custo)
+      + '<br>' + (pago ? '✓ já voltou' : 'ainda não voltou');
+    const rs = svg.getBoundingClientRect(), rg = graf.getBoundingClientRect(), k = rs.width / W;
+    let left = rs.left - rg.left + (ML + slot * m + slot / 2) * k;
+    left = Math.max(100, Math.min(left, rg.width - 100));
+    dica.style.left = left + 'px'; dica.style.top = (rs.top - rg.top + MT * k + 4) + 'px';
+    dica.hidden = false;
+  }
+  alvos.forEach((a, m) => {
+    a.addEventListener('pointerenter', () => mostraDica(m));
+    a.addEventListener('focus', () => mostraDica(m));
+    a.addEventListener('pointerleave', () => { dica.hidden = true; });
+    a.addEventListener('blur', () => { dica.hidden = true; });
+  });
+
+  /* ---------- contatos chegando (1 mês = 20 s) ---------- */
+  const feed = $('rpFeed');
+  let feedT = 0, feedVis = false, nNome = 0, nItem = 0;
+  function chegaContato(){
+    const p = PRESETS[preset] || PRESETS.outro;
+    const origem = ads.checked && nItem % 3 !== 2 ? 'anúncio → site' : 'Google → site';
+    feed.insertAdjacentHTML('afterbegin', '<li><b>' + NOMES[nNome++ % NOMES.length] + '</b>' + p.feed[nItem++ % p.feed.length] + '<small>via ' + origem + '</small></li>');
+    while (feed.children.length > 5) feed.lastElementChild.remove();
+  }
+  function ritmo(){
+    clearTimeout(feedT);
+    if (!feedVis || document.hidden || PARADO) return;
+    const conv = ultimo ? ultimo.conv : 30;
+    feedT = setTimeout(() => { chegaContato(); ritmo(); }, Math.max(700, Math.min(5000, 20000 / Math.max(conv, 1))));
+  }
+  for (let k = 0; k < 3; k++) chegaContato();
+
+  /* ---------- tudo junto ---------- */
+  let montado = false;
+  function atualiza(primeira){
+    const r = conta(); ultimo = r;
+    $('oVis').textContent = num(vis).toLocaleString('pt-BR');
+    $('oCham').textContent = String(+cham.value).replace('.', ',') + '%';
+    $('oFec').textContent = fec.value + '%';
+    [vis, cham, fec].forEach(i => i.style.setProperty('--v', ((i.value - i.min) / (i.max - i.min) * 100) + '%'));
+    $('rVerbaQ').hidden = !ads.checked;
+    sobe($('kConv'), r.conv, v => dec(Math.round(v * 10) / 10));
+    sobe($('kCli'), r.cli, v => dec(Math.round(v * 10) / 10));
+    sobe($('kFat'), r.fat, reais);
+    anima(alvoDe(r), primeira ? 1700 : 480, primeira);
+    const volta = $('rpVolta'), paga = $('rpPaga');
+    volta.classList.toggle('bom', !!r.volta);
+    volta.innerHTML = r.volta ? '<b>O investimento volta no ' + (r.volta === 1 ? '1º mês' : r.volta + 'º mês') + '</b>contando o site, a manutenção' + (ads.checked ? ' e o anúncio' : '')
+      : '<b>Com esses números, não volta em 12 meses</b>vale olhar no diagnóstico o que muda a conta';
+    paga.innerHTML = r.pagaCom ? '<b>O site se paga com ' + r.pagaCom + (r.pagaCom === 1 ? ' cliente' : ' clientes') + '</b>o plano Completo, a ' + P.fmt(r.site)
+      : '<b>Diga quanto vale um cliente</b>para ver com quantos o site se paga';
+    $('rpTabela').innerHTML = r.meses.map(x => '<tr><td>' + x.m + '</td><td>' + reais(x.noMes) + '</td><td>' + reais(x.acum) + '</td><td>' + reais(x.custo) + '</td></tr>').join('');
+    raiz.parentNode.querySelectorAll('[data-rn="completo"]').forEach(el => { el.textContent = P.fmt(r.site); });
+    raiz.parentNode.querySelectorAll('[data-rn="manut"]').forEach(el => { el.textContent = P.fmt(r.manut); });
+    $('retCta').href = waLink('Vim da página da Theatrum. A simulação deu ' + reais(r.fat) + ' por mês. Quero o diagnóstico.');
+    clearTimeout(atualiza.t);
+    atualiza.t = setTimeout(() => {
+      $('retVivo').textContent = 'Resultado: ' + dec(Math.round(r.conv)) + ' conversas, ' + dec(Math.round(r.cli * 10) / 10) + ' clientes e ' + reais(r.fat) + ' por mês. '
+        + (r.volta ? 'O investimento volta no mês ' + r.volta + '.' : 'O investimento não volta em 12 meses.');
+    }, 900);
+    ritmo();
+  }
+  const mexeu = () => { botoes.forEach(b => b.setAttribute('aria-pressed', 'false')); if (montado) atualiza(); };
+  [vis, cham, fec].forEach(i => i.addEventListener('input', mexeu));
+  [tic, verba].forEach(i => i.addEventListener('input', () => {
+    const so = i.value.replace(/\D/g, '').slice(0, 8);
+    i.value = so ? (+so).toLocaleString('pt-BR') : '';
+    mexeu();
+  }));
+  ads.addEventListener('change', () => { if (montado) atualiza(); });
+  botoes.forEach(b => b.addEventListener('click', () => { aplica(b.dataset.preset); feed.innerHTML = ''; nItem = 0; for (let k = 0; k < 3; k++) chegaContato(); if (montado) atualiza(); }));
+  aplica('clinica');
+  P.aoMudar(() => { if (montado) atualiza(); });
+  document.querySelectorAll('[data-pr-px="trafego"]').forEach(el => { el.textContent = P.fmt(GESTAO); });
+
+  /* monta e toca os 12 meses quando o painel aparece (em ?still=1, na abertura) */
+  const painel = raiz.querySelector('.ret-painel');
+  if (STILL) { montado = true; atualiza(); }
+  else aoVer(painel, () => {
+    feedVis = true;
+    if (!montado) { montado = true; atualiza(true); } else ritmo();
+  }, () => { feedVis = false; clearTimeout(feedT); }, '0px 0px -15% 0px');
+  document.addEventListener('visibilitychange', ritmo);
+  if (!montado) { const r = conta(); ultimo = r; desenha({ acum:Array(12).fill(0), custo:r.meses.map(x => x.custo), max:alvoDe(r).max, volta:0 }); }
+})();
+</script>
+
+<script>
+/* ============================================================
+   PÁGINA: menu, entradas, contadores, botões, barra do celular,
+   raio-x por escrito e proteção (como na home)
+   ============================================================ */
+(function(){
+  const nav = document.getElementById('siteNav');
+  const marca = () => nav.classList.toggle('is-scrolled', scrollY > 30);
+  addEventListener('scroll', marca, { passive:true }); marca();
+
+  const burger = document.getElementById('navBurger'), menu = document.getElementById('mobileMenu');
+  const fecha = () => { burger.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); menu.classList.remove('is-open'); document.body.style.overflow = ''; };
+  burger.addEventListener('click', () => {
+    const abre = !menu.classList.contains('is-open');
+    burger.classList.toggle('is-open', abre); burger.setAttribute('aria-expanded', String(abre));
+    menu.classList.toggle('is-open', abre); document.body.style.overflow = abre ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', fecha));
+  addEventListener('keydown', e => { if (e.key === 'Escape') fecha(); });
+
+  /* destaca no menu a seção visível */
+  const links = [...document.querySelectorAll('.nav-links a')];
+  const navIo = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin:'-45% 0px -45% 0px' });
+  ['top','como-funciona','whatsapp','retorno','servicos','para-voce','trabalhos','investimento','quem-faz','faq'].forEach(id => { const s = document.getElementById(id); if (s) navIo.observe(s); });
+
+  /* entradas: .rv sobe com fade; .rv-t entra pela máscara, observando o pai
+     (o Chrome desconta o clip-path do próprio elemento) */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    (e.target.rvAlvos || [e.target]).forEach(el => el.classList.add('in'));
+    io.unobserve(e.target);
+  }), { threshold:.12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  document.querySelectorAll('.rv-t').forEach(el => { const pai = el.parentElement; if (!pai.rvAlvos) { pai.rvAlvos = []; io.observe(pai); } pai.rvAlvos.push(el); });
+
+  /* contadores: sobem de 0 quando aparecem */
+  if (!PARADO) document.querySelectorAll('[data-count]').forEach(el => {
+    const alvo = +el.dataset.count;
+    el.textContent = '0';
+    const cio = new IntersectionObserver(es => {
+      if (!es[0].isIntersecting) return;
+      cio.disconnect();
+      const t0 = performance.now(), dur = 1300;
+      (function q(t){ const p = Math.min(1, (t - t0) / dur); el.textContent = Math.round(alvo * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(q); })(t0);
+    }, { threshold:.5 });
+    cio.observe(el);
+  });
+
+  /* botão magnético: só com mouse de verdade */
+  if (!PARADO && matchMedia('(hover: hover) and (pointer: fine)').matches) document.querySelectorAll('.ima').forEach(b => {
+    b.addEventListener('pointermove', e => {
+      const r = b.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      b.style.transform = 'translate(' + (x * 12).toFixed(1) + 'px,' + (y * 10).toFixed(1) + 'px)';
+    });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+  });
+
+  /* WhatsApp fixo (computador) e barra do celular: aparecem depois da primeira tela.
+     Escondidos, ficam fora do alcance do teclado. */
+  const barra = document.getElementById('barraMob'), fixo = document.getElementById('waFixo');
+  if (!STILL) {
+    const mostra = () => {
+      const on = scrollY > innerHeight * .9;
+      barra.classList.toggle('is-on', on); barra.setAttribute('aria-hidden', String(!on)); barra.inert = !on;
+      fixo.classList.toggle('is-on', on); fixo.tabIndex = on ? 0 : -1;
+    };
+    addEventListener('scroll', mostra, { passive:true }); mostra();
+  }
+
+  /* raio-x por escrito (degrau 3), mesmo envio do js/leads.js. Só confirma o que de
+     fato aconteceu: sem envio, a saída é o WhatsApp com o recado escrito. */
+  const form = document.getElementById('raioxForm');
+  if (form) {
+    const ok = document.getElementById('raioxOk'), erro = document.getElementById('raioxErro');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (form.botcheck.checked) return;
+      const negocio = form.negocio.value.trim(), zap = form.zap.value.trim();
+      if (!negocio || zap.replace(/\D/g, '').length < 8) { erro.textContent = 'Escreva o nome do negócio e o seu WhatsApp.'; erro.hidden = false; return; }
+      erro.hidden = true;
+      const bt = form.querySelector('button'), rot = bt.innerHTML;
+      bt.disabled = true; bt.textContent = 'Enviando…';
+      const origem = 'lp-raiox';
+      let foi = false;
+      if (window.TheatrumLeads) {
+        foi = await window.TheatrumLeads.enviar({ tipo:'Raio-x por escrito (página site-que-vende)', empresa:negocio, whatsapp:zap, origem });
+        if (foi) window.TheatrumLeads.evento('lead_callback', { origem });
+      }
+      bt.disabled = false; bt.innerHTML = rot;
+      form.hidden = true;
+      if (foi) ok.textContent = 'Anotado. Vou mandar o raio-x para esse número.';
+      else ok.innerHTML = '<a target="_blank" rel="noopener" data-wa-direto href="' + waLink('Vim da página da Theatrum. Meu negócio é ' + negocio + '. Quero o raio-x por escrito.') + '">Não consegui enviar agora. Toque aqui para mandar pelo WhatsApp →</a>';
+      ok.hidden = false;
+    });
+  }
+
+  /* proteção de conteúdo: sem copiar (formulário continua editável). O zoom fica livre: é acessibilidade */
+  ['copy','cut','dragstart','contextmenu'].forEach(ev => document.addEventListener(ev, e => { if (!(e.target.closest && e.target.closest('input,textarea'))) e.preventDefault(); }));
+  document.addEventListener('keydown', e => {
+    if (!(e.ctrlKey || e.metaKey) || (e.target.closest && e.target.closest('input,textarea'))) return;
+    if (['c','x','a'].indexOf(e.key.toLowerCase()) > -1) e.preventDefault();
+  });
+})();
+</script>
+<script>
+/* ---------- âncora certa com content-visibility (igual à home) ----------
+   As seções fora da tela usam content-visibility:auto e o navegador rola por
+   altura estimada; depois que a altura assenta, rola de novo. Não remover. */
+(function(){
+  var NAV = 76;
+  function corrige(alvo){
+    var n = 0, ult = -1;
+    (function ajusta(){
+      var topo = alvo.getBoundingClientRect().top;
+      if (Math.abs(topo - NAV) < 8 || n++ > 6 || Math.round(topo) === ult) return;
+      ult = Math.round(topo);
+      scrollBy({ top: topo - NAV, behavior: 'instant' });
+      requestAnimationFrame(function(){ setTimeout(ajusta, 90); });
+    })();
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1), alvo = id && document.getElementById(id);
+    if (!alvo) return;
+    e.preventDefault();
+    alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    var u = -1, q = 0, t = setInterval(function(){
+      if (Math.abs(scrollY - u) < 2) q++; else q = 0;
+      u = scrollY;
+      if (q > 3) { clearInterval(t); corrige(alvo); }
+    }, 80);
+    setTimeout(function(){ clearInterval(t); }, 4000);
+  });
+  if (location.hash.length > 1) addEventListener('load', function(){
+    var alvo = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (alvo) setTimeout(function(){ corrige(alvo); }, 150);
+  });
+})();
+</script>
+<script src="/js/consentimento.js" defer></script>
+<script src="/js/uet-eventos.js" defer></script>
+<script src="/js/leads.js?v=2" defer></script>
+</body>
+</html>

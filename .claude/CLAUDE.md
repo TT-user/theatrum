@@ -389,6 +389,7 @@ diferente conforme de onde a pessoa clicou:
 | investimento (cards) | "Olá! Vi a condição de lançamento e quero o plano {plano} ({preço}) (no Completo: "R$ 1.500 no Pix ou 3x de R$ 600 no cartão")" (depois das 10 vagas: "Olá! Vim do site da Theatrum e quero o plano...") |
 | blog (topo, menu e rodapé) | "Vim do blog da Theatrum. Quero o diagnóstico gratuito." |
 | blog (CTA do artigo) | "Vim do blog da Theatrum, do artigo "{título}". Quero o diagnóstico gratuito." |
+| página `/site-que-vende/` (botões `lp-*`) | as da home trocando "Vim do site da Theatrum" por "Vim da página da Theatrum"; conversas: "...Quero o meu cliente chegando assim no WhatsApp."; retorno: "Vim da página da Theatrum. A simulação deu R$ {N} por mês. Quero o diagnóstico."; Google: "...Quero aparecer no Google e anunciar."; é o seu caso: "...É o meu caso, quero o diagnóstico."; raio-x sem envio: "Vim da página da Theatrum. Meu negócio é {negócio}. Quero o raio-x por escrito."; planos, FAQ e CTA final iguais aos da home |
 
 ### WhatsApp no computador, formulários e pop-up de saída (`js/leads.js`)
 
@@ -1135,6 +1136,44 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   mudar, atualize. Sem promessa de faturamento, de propósito (FAQ "Quanto eu vou faturar?"). No
   lançamento: tirar faixa e noindex, entrar no sitemap.
 
+- `/site-que-vende/` — página de conversão a partir de uma referência de agência que o Matheus
+  mandou, com as ideias e os textos da Theatrum, desde 30/10/2026, a pedido. Só a estrutura
+  veio de lá: texto parecido com o deles foi reescrito, e o nome deles não aparece no código. **Fora do índice** (`noindex, follow`), do sitemap e
+  de todo menu enquanto o Matheus decide se ela vira a home ou a página dos anúncios; tem GTM,
+  gtag, UET, `consentimento.js`, `uet-eventos.js` e `leads.js` como a home. Arquivo único (CSS e
+  JS embutidos), só em português. Doze seções: hero centralizado (pílula com as vagas que restam,
+  do `data/precos.json`; palco com a Cozinha Viva no navegador, o anúncio no Google e um celular
+  recebendo pedidos, um a cada ~3 s, só à vista, parando depois de doze), `[02]` o problema: primeiro o print da notícia do Blog
+  do Google Brasil de 21/05/2025 ("Mais oportunidades para que consumidores descubram seu
+  negócio na busca do Google", `img/noticia-google-{560,1100}.webp`, com grifo nosso em amarelo e
+  link para a notícia; só citações literais), depois **com a fonte no cartão** (76%: Google, Purchased Digital Diary, 2016; 53%: Google,
+  The Need for Mobile Speed, 2016; 65% com o WhatsApp na tela inicial: Super Panorama Mobile
+  Time/Opinion Box, junho de 2026; conferidos em 30/10/2026) e a faixa 27 / 7 a 10 / R$ 0 /
+  100%, `[03]` a simulação do site indo ao ar (cinco cenas: diagnóstico no WhatsApp com o raio-x,
+  prévia montando, publicação com a nota 97 do Lighthouse, busca no Google com anúncio e mapa,
+  primeiro cliente com a trilha de origem; a barrinha do passo ativo é o relógio, o
+  `animationend` dela troca a cena, e pausar é pausar a animação), `[04]` quatro conversas de
+  WhatsApp com as demos (Arco, Cozinha Viva, Maré Mansa, Pedra Alta: o toque no botão do print
+  de celular da demo, a conversa com a mensagem pronta e, ao lado, a mesma conversa sem site;
+  roteiros no objeto `CV`), `[05]` simulador de retorno (tipo de negócio com valores de partida
+  de exemplo, visitas, quantos chamam, quantos fecham, valor do cliente, anúncio com a gestão e
+  a verba; painel com conversas, clientes e faturamento por mês, gráfico de 12 meses com a linha
+  do investimento, mês em que o investimento volta, com quantos clientes o site se paga,
+  contatos chegando e a tabela mês a mês; o mês 1 conta 50% e o 2, 75%; é conta de faturamento,
+  não de lucro, e a nota da seção diz isso), `[06]` serviços em quatro cartões com checklist,
+  `[07]` é o seu caso / não é, `[08]` seis trabalhos (carrossel de arrastar no celular), `[09]`
+  investimento igual ao da home, com a barra de vagas, `[10]` quem faz, `[11]` FAQ (oito, com
+  "A simulação de retorno é uma promessa?") e `[12]` a faixa dourada com o raio-x por escrito
+  (origem `lp-raiox`). WhatsApp fixo no computador e barra (Simular retorno + WhatsApp) no
+  celular depois da primeira tela. Um motor de conversa só (`Conversa()`); o celular é desenhado
+  em 300 x 620 e escalado com `zoom` (`--s`). Prints de celular das demos em
+  `site-que-vende/img/cel-*-{300,560}.webp` (390 px de largura, com `?limpo=1`); og em
+  `og-v1.jpg`, origem em `scripts/og/site-que-vende.html`. Preço mudou? O núcleo de preços é
+  cópia do da home: mude o `PADRAO` e o HTML estático do `[09]` daqui também. `?still=1` e
+  movimento reduzido mostram tudo parado. Aqui o zoom fica livre (sem `user-scalable=no` nem
+  bloqueio de Ctrl +/-), diferente da home; a proteção contra cópia continua. Em 30/10/2026: 14.400 px de altura no computador e
+  23.300 no celular.
+
 ### As demonstrações, uma pasta por área
 
 | Pasta | Demos | Área |
@@ -1296,7 +1335,7 @@ quando não houver mais nada apontando para lá.
 ### Microsoft Ads (UET) e consentimento
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
-`/privacidade/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
+`/privacidade/`, `/site-que-vende/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
 `/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia`, `/cxf`, `/agrega` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
@@ -1312,7 +1351,7 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 - `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos
   botões e links "ver quanto eu perco" da home: hero, serviços, como
   funciona, investimento, quem faz, FAQ e CTA final; o "Calculadora" do menu
-  e o "Calcular" da barra do celular não contam).
+  e o "Calcular" da barra do celular não contam) Em `/site-que-vende/`, os links "simular o retorno" (fora a barra do celular).
 - `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu
   o antigo `clique_whatsapp`), `lead_callback` ("me chame" e raio-x por escrito do CTA final)
   e `lead_email` (diagnóstico por e-mail e pop-up de saída). Vão para GA4 e
