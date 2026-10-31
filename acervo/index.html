@@ -162,16 +162,17 @@
     { id: 'servicos',   nome: 'Advocacia, engenharia e serviços' },
   ];
 
-  /* Prévia de negócio real: pasta na raiz do site (ou link externo), capa em img/.
-     Os desativados para o público abrem daqui porque o cookie do acervo passa
-     pelo .htaccess deles. */
+  /* Prévia de negócio real: pasta dentro do acervo (desde 29/10/2026; o endereço antigo,
+     na raiz, manda para a home), ou link externo; capa em img/. Prévia nova, ainda no ar
+     na raiz enquanto o cliente decide, entra com { raiz: true } até ser movida para cá. */
   const real = (seg, pasta, nome, tipo, lugar, faz, extra) => {
     const fora = pasta.indexOf('http') === 0;   /* site do cliente em outro endereço */
+    const raiz = extra && extra.raiz;
     return {
       seg, nome, tipo, lugar, faz, extra, real: true,
-      href: fora ? pasta : '../' + pasta + '/',
+      href: fora ? pasta : (raiz ? '../' : '') + pasta + '/',
       img: extra && extra.capa ? extra.capa : 'img/' + pasta,
-      dom: fora ? pasta.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'usetheatrum.com.br/' + pasta,
+      dom: fora ? pasta.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'usetheatrum.com.br/' + (raiz ? '' : 'acervo/') + pasta,
     };
   };
   /* Projeto conceito (marca fictícia): capa da vitrine da home (ou extra.capa, para a que não está nela),

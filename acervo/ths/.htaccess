@@ -1,0 +1,16 @@
+# Prévia de cliente: não indexar (vale se a pasta for servida pela Hostinger)
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# Desativada para o público em 20/10/2026. Desde 29/10/2026 mora no acervo (o endereço antigo,
+# na raiz, manda para a home). Este .htaccess tem RewriteEngine próprio, e aí as regras do
+# /acervo/ não valem aqui: sem o cookie da senha, mostra a tela de senha do acervo.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)theatrum_acervo=9a41d2e1276d2343473ecd807d9db0b8dbb222f4ec7353f470c4beafd1a6d703(;|$)
+  RewriteRule ^ /acervo/entrar.html [L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+  Require all denied
+</IfModule>

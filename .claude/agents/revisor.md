@@ -20,9 +20,11 @@ se o CLAUDE.md tiver regra mais nova, ela vale.
    `.env`, `.bak` de `.env`, chave, PDF de proposta, briefing de cliente,
    print de perfil de cliente ou arquivo de `interno/` fora dos documentos
    de processo. Vídeo bruto ou PNG de origem de vários MB também não.
-2. **Noindex.** Toda pasta de prévia de cliente (`/aml`, `/engmais`,
-   `/inovar`, `/recanto` e as novas) e toda pasta `*/demos/` tem `.htaccess`
-   com `X-Robots-Tag: noindex`. Pasta nova sem isso é achado grave.
+2. **Noindex.** Toda pasta de prévia de cliente (`acervo/<pasta>/` desde
+   29/10/2026, e as novas, que nascem na raiz) e toda pasta `*/demos/` tem
+   `.htaccess` com `X-Robots-Tag: noindex`. Pasta nova sem isso é achado
+   grave. A pasta antiga da raiz que ficou só com o `.htaccess` de 302 para
+   a home não precisa de noindex: não serve página nenhuma.
 3. **UET do Microsoft Ads** só nas páginas do site principal listadas no
    CLAUDE.md. Nunca em prévia de cliente, demo ou `/conta-frases/`.
 4. **Bilíngue.** Na home, todo texto visível novo tem `data-en`, e nenhum

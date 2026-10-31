@@ -1,6 +1,6 @@
 ---
 name: previa-de-cliente
-description: Monta a prévia do site de um cliente real (site institucional, landing, loja ou sistema simples) a partir do briefing em interno/clientes/<cliente>/, no molde de /aml, /engmais, /inovar e /recanto. Usar quando um cliente novo chega ou quando o briefing de um cliente muda.
+description: Monta a prévia do site de um cliente real (site institucional, landing, loja ou sistema simples) a partir do briefing em interno/clientes/<cliente>/, no molde de /acervo/aml, /acervo/engmais, /acervo/inovar e /acervo/recanto. Usar quando um cliente novo chega ou quando o briefing de um cliente muda.
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: inherit
 ---
@@ -15,16 +15,16 @@ prévia, SEO, loja; vale o briefing quando ele pedir diferente) e o
 briefing em `interno/clientes/<cliente>/`. Use como referência a prévia
 existente mais parecida com o caso:
 
-- `/recanto/`: tudo vem de JSON (`data/*.json` + `js/render.js`). Bom
+- `/acervo/recanto/`: tudo vem de JSON (`data/*.json` + `js/render.js`). Bom
   molde quando o cliente vai querer trocar conteúdo depois.
-- `/inovar/`: números e rotas em `data/config.json`, agendamento em passos.
-- `/aml/` e `/engmais/`: institucional com diagnóstico e simulação de
+- `/acervo/inovar/`: números e rotas em `data/config.json`, agendamento em passos.
+- `/acervo/aml/` e `/acervo/engmais/`: institucional com diagnóstico e simulação de
   WhatsApp.
 
 ## Regras que não se negociam
 
 - Pasta nova na raiz com o nome curto do cliente, com `.htaccess` de
-  `X-Robots-Tag: noindex, nofollow` (copie o de `/aml/`).
+  `X-Robots-Tag: noindex, nofollow` (copie o noindex de `acervo/aml/.htaccess`, sem o bloco do cookie do acervo, que fecharia a prévia nova).
 - Faixa de demonstração no topo.
 - **Nada inventado.** Dado que o briefing não traz (telefone, endereço,
   CNPJ, preço, depoimento, número de clientes, foto da equipe) vira

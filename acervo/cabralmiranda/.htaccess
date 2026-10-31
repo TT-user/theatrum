@@ -1,0 +1,35 @@
+# Prévia de cliente: não indexar (vale se a pasta for servida pela Hostinger)
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# Desativada para o público em 20/10/2026. Desde 29/10/2026 mora no acervo (o endereço antigo,
+# na raiz, manda para a home). Este .htaccess tem RewriteEngine próprio, e aí as regras do
+# /acervo/ não valem aqui: sem o cookie da senha, mostra a tela de senha do acervo.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)theatrum_acervo=9a41d2e1276d2343473ecd807d9db0b8dbb222f4ec7353f470c4beafd1a6d703(;|$)
+  RewriteRule ^ /acervo/entrar.html [L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+  Require all denied
+</IfModule>
+
+# Cache: CSS, JS e JSON levam ?v= no endereço (mudou, sobe o número). Imagens não:
+# trocou uma foto, troque também o nome do arquivo, senão quem já visitou vê a antiga.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType text/javascript "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  # JSON curto de propósito: é o que o escritório edita (áreas, triagem, documentos, dúvidas), e tem que aparecer logo
+  ExpiresByType application/json "access plus 1 hour"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>

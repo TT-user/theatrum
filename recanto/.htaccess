@@ -1,14 +1,8 @@
-# Demo de cliente: não indexar (vale se a pasta for servida pela Hostinger)
-<IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex, nofollow"
-</IfModule>
-
-# DESATIVADA em 06/10/2026: os arquivos ficam aqui, mas quem abre o link vai
-# para a home. Para reativar, apague este bloco.
+# A prévia saiu daqui em 29/10/2026 e mora em /acervo/recanto/, com senha. Este é o
+# endereço que foi mandado ao cliente: agora leva todo mundo para a home,
+# inclusive quem entrou no acervo. Os arquivos estão em acervo/recanto/.
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  # quem entrou no /acervo/ (cookie com a chave da senha) continua vendo
-  RewriteCond %{HTTP_COOKIE} !(^|;\s*)theatrum_acervo=9a41d2e1276d2343473ecd807d9db0b8dbb222f4ec7353f470c4beafd1a6d703(;|$)
   RewriteRule ^ https://usetheatrum.com.br/ [R=302,L]
 </IfModule>
 <IfModule !mod_rewrite.c>

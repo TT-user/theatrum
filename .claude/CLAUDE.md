@@ -190,7 +190,7 @@ pede contato oferece um degrau mais baixo ao lado.
 ### Ordem das seções
 
 Repaginada em 26/10/2026 no molde da Agrega Marketing
-(`/agrega/marketing/`), a pedido: menos seções, só as que convertem.
+(`/acervo/agrega/marketing/`), a pedido: menos seções, só as que convertem.
 Cabeçalho de seção com título à esquerda e lead à direita, serviços
 numerados, trilha que se desenha na rolagem, FAQ em caixas e CTA final em
 faixa dourada. Sem biblioteca de animação (a regra da home continua):
@@ -446,7 +446,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   site dele no ar, `littletrees-indol.vercel.app`, cujo código mora em repositório
   próprio (`Desktop/littletrees`), fora deste site.
 - `/acervo/` — **acervo privado, com senha, desde 24/10/2026:** todos os sites numa página
-  só, para o Matheus mostrar pessoalmente: as prévias de cliente (todas desativadas), a
+  só, para o Matheus mostrar pessoalmente: as prévias de cliente (todas aqui dentro desde 29/10/2026), a
   Little Trees e a TM Sports (sites no ar fora daqui) e as 27 demonstrações (as 26 da vitrine da home e a Aceno), em nove segmentos
   (academias, saúde, nutrição, pousadas, imóveis, planejados, lojas, agro, serviços), com
   filtro por segmento e por "negócio real" ou "projeto conceito". Lista no `SITES` do
@@ -455,17 +455,22 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   vitrine da home. O `.htaccess` da pasta devolve o `entrar.html` para qualquer endereço dela
   sem o cookie `theatrum_acervo`, que o `entrar.html` grava (um ano, domínio inteiro) com o
   SHA-256 de `theatrum-acervo:` + senha. A senha não está no repositório; o Matheus tem.
-  **As pastas desativadas deixam passar o mesmo cookie** (uma `RewriteCond` no bloco
-  DESATIVADA): o público continua indo para a home e quem entrou no acervo vê a prévia. Trocou
-  a senha, troque o valor em todos os `.htaccess` (procure por `theatrum_acervo`) e no
-  `scripts/previa.mjs` do `cxf-loja`, que gera o `.htaccess` da `/cxf/`.
-  **Desde 28/10/2026 todas as prévias de cliente real estão desativadas**, a pedido: quem já
-  recebeu o link cai na home, elas só abrem pelo acervo e, das prévias, o público vê só as
-  versões de marca fictícia da vitrine. Não foi preciso trocar o endereço das pastas: o link fecha para quem não
-  tem o cookie. Por isso, no navegador do Matheus (que entrou no acervo) o link antigo continua
-  abrindo; para ver o que o cliente vê, use uma janela anônima.
-  Prévia nova: card no `SITES` e capa em `acervo/img/`; desativou uma, ponha a `RewriteCond`
-  no bloco dela. As demos abertas com `?de=acervo` voltam para cá pela barra. Sem UET, noindex,
+  **Desde 29/10/2026 as prévias de cliente moram aqui dentro** (`acervo/<pasta>/`), a pedido:
+  o endereço antigo, na raiz, ficou só com um `.htaccess` que manda todo mundo para a home,
+  inclusive quem entrou no acervo, e o link que o cliente recebeu morreu de vez. (Em 28/10 elas
+  só tinham sido fechadas pelo cookie, mas o link antigo continuava abrindo no navegador do
+  Matheus, e ele pediu o endereço trocado.) Cada prévia tem `.htaccess` com `RewriteEngine`
+  próprio, que anula a regra do acervo nela: por isso cada uma repete a condição do cookie e,
+  sem ele, mostra o `entrar.html`. Trocou a senha, troque o valor em todos os `.htaccess`
+  (procure por `theatrum_acervo`) e no `scripts/previa.mjs` do `cxf-loja`, que gera a
+  `acervo/cxf/`. Das prévias, o público vê só as versões de marca fictícia da vitrine.
+  **Prévia nova** nasce na raiz (`<pasta>/`) enquanto o cliente decide e entra no `SITES` com
+  `{ raiz: true }`; capa em `acervo/img/`. Quando sair do ar: `git mv <pasta> acervo/<pasta>`;
+  nas URLs absolutas (og, canonical, schema), `usetheatrum.com.br/<pasta>/` vira
+  `usetheatrum.com.br/acervo/<pasta>/`; o `.htaccess` dela ganha o bloco do cookie de uma
+  prévia do acervo; em `<pasta>/` fica só o `.htaccess` que manda para a home (copie o de
+  `rar/`); sai o `{ raiz: true }`; e os scripts de `interno/clientes/<pasta>/` que gravam
+  na pasta passam a apontar para `acervo/<pasta>/`. As demos abertas com `?de=acervo` voltam para cá pela barra. Sem UET, noindex,
   fora do sitemap e de qualquer menu. **O repositório no GitHub é público:** quem lê o
   repositório vê o código de todos os sites e o valor do cookie; a senha só fecha a porta para
   quem chega pelo link.
@@ -483,22 +488,20 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `?de=`, devolve para a home. Saiu do rodapé da home e do blog e do sitemap.
   Para reativar, apague o bloco "DESATIVADA" e volte o link do rodapé e a
   linha em `PAGINAS_SITE` do `scripts/blog/build.mjs`.
-- `/aml/` — prévia do site da AML (medicina e segurança do trabalho, Cataguases,
+- `/acervo/aml/` — prévia do site da AML (medicina e segurança do trabalho, Cataguases,
   Leopoldina e Muriaé), feita para vender o projeto. Cliente real, então leva
   `.htaccess` com noindex e os dados que faltam aparecem como placeholder
   amarelo, nunca inventados. Briefing, README de pendências e `netlify.toml`
   ficam em `interno/clientes/aml/`, fora do git.
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
   A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
-- `/engmais/` — prévia do site da Eng+ (consultoria ambiental e segurança do
+- `/acervo/engmais/` — prévia do site da Eng+ (consultoria ambiental e segurança do
   trabalho, Dores do Rio Preto, ES e MG), no mesmo molde da AML: noindex,
   placeholder amarelo, diagnóstico em dois caminhos (produtor e empresa) e
   simulação de WhatsApp. Pendências em `interno/clientes/engmais/README.md`, fora do git.
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
   A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
-- `/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
+- `/acervo/recanto/` — demo do site do Chalés Recanto Alto Caparaó (chalés A-frame,
   refúgio romântico), para vender o projeto. Mesmo padrão da AML: `.htaccess`
   com noindex, faixa de demonstração no topo e placeholder amarelo para todo
   dado que falta (qualquer texto entre colchetes nos JSON vira placeholder).
@@ -513,11 +516,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   já estão no JSON como `oculto`. A cliente não quer pagamento nem sistema de
   reserva: `#reservar` ("Monte sua estadia") vai virar um simulador que manda o
   pedido pronto para o WhatsApp dela (próxima etapa do briefing v2).
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
   A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
 
-- `/inovar/` — demo do site da Inovar Agroveterinária (agropecuária, farmácia e
+- `/acervo/inovar/` — demo do site da Inovar Agroveterinária (agropecuária, farmácia e
   clínica veterinária, lojas em Dores do Rio Preto e Guaçuí, ES). Mesmo padrão:
   `.htaccess` com noindex, faixa de demonstração e placeholder amarelo. Produtos
   só informativos (categorias + "perguntar no WhatsApp"): o cliente pediu para
@@ -526,11 +528,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   rotas em `data/config.json`; calendário em `data/calendario.json`, todo
   marcado para revisão dos veterinários. Pendências em `interno/clientes/inovar/README.md`,
   não commitada.
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
   A versão de portfólio, com marca fictícia, está em `/negocios/demos/`.
 
-- `/armazem/` — demo do sistema de gestão do Armazém Gerais Caparaó (romaneio,
+- `/acervo/armazem/` — demo do sistema de gestão do Armazém Gerais Caparaó (romaneio,
   estoque, caderno de RV, pendências, relação de pagamentos), para vender o
   projeto. É sistema, não site: roda no navegador em ES modules sem build, com
   dados no `localStorage` e seed fictício; PDF pela impressão do navegador.
@@ -540,18 +541,16 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   O sistema de verdade (React + Vite + Supabase, especificação de 03/10/2026) está em repositório
   próprio, `Desktop/armazem-caparao`, fora deste site: o modo demonstração dele leva um Postgres
   inteiro para o navegador (~5,5 MB) e não serve como link de venda. Pendências em `interno/clientes/armazem-caparao/README.md`.
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/armazem-caparao/` — prévia do site institucional do mesmo cliente (o sistema é `/armazem/`),
+- `/acervo/armazem-caparao/` — prévia do site institucional do mesmo cliente (o sistema é `/acervo/armazem/`),
   inspirada na estrutura da atlanticacoffee.com, mas para mercado interno: três caminhos (vender,
   guardar, comprar café), serviços tirados da operação real e placeholder amarelo para tudo que
   depende da entrevista. Contatos do cartão são reais; endereço, números e história não. `.htaccess`
   com noindex, sem UET. O roteiro da entrevista é um artifact privado no claude.ai (link em
   `interno/clientes/armazem-caparao/README.md`), que guarda as respostas para preencher a prévia.
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
-- `/gabriela-carolina/` — prévia do site da Gabi (Gabriela Carolina: psicanálise, comportamento e
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+- `/acervo/gabriela-carolina/` — prévia do site da Gabi (Gabriela Carolina: psicanálise, comportamento e
   Reiki, atendimento online; vende também os sprays e florais da Myano). Feita fora daqui e trazida
   em 05/10/2026. Mesmo padrão das outras prévias: `.htaccess` e meta com noindex, faixa de
   demonstração, sem UET, placeholder amarelo. Atendimentos, "Por onde começar?" (assistente de 5
@@ -562,17 +561,15 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   A versão de portfólio, com marca fictícia, é a Lívia Amaral, em `/negocios/demos/livia-amaral/`.
   O `css/style.css` daqui tem um `@media (min-width: 600px) {` sem fechar (linha 340) que deixa
   metade da página sem estilo abaixo de 600 px; corrigido na Lívia em 11/10/2026, não aqui.
-  **Fora do ar desde 11/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
-- `/bia-de-luca/` — prévia de redesenho do biadeluca.com.br (terapeuta vibracional quântica e
+  **Fora do ar desde 11/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+- `/acervo/bia-de-luca/` — prévia de redesenho do biadeluca.com.br (terapeuta vibracional quântica e
   palestrante, São Paulo, atende a distância), feita para prospecção em 05/10/2026. Conteúdo e
   fotos tirados do site atual dela, sem nada inventado; promessas de saúde suavizadas e aviso de
   terapia complementar. Mesmo padrão: `.htaccess` e meta com noindex, faixa de demonstração, sem
   UET, placeholder amarelo. "Por onde começar" e florais clicáveis montam a mensagem do WhatsApp.
   Pendências e argumentos de venda em `interno/clientes/bia-de-luca/README.md`, fora do git.
-  **Fora do ar desde 06/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
-- `/antonios/` — prévia do site da Antonio's Corretagem de Imóveis (Recreio dos Bandeirantes, RJ,
+  **Fora do ar desde 06/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+- `/acervo/antonios/` — prévia do site da Antonio's Corretagem de Imóveis (Recreio dos Bandeirantes, RJ,
   CNPJ ativo há 18+ anos), feita para prospecção em 06/10/2026 no molde da demo Vista Imóveis,
   mas clara (areia, azul-petróleo, coral). Vídeo do hero montado em ffmpeg a partir de três fotos
   do Wikimedia Commons (Recreio, Barra, Rio do alto), com crédito no rodapé; o vídeo só carrega
@@ -582,9 +579,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   ainda é o fixo do CNPJ (`ZAP` no topo do `js/main.js`). Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET. Pendências em `interno/clientes/antonios/README.md`.
   A versão de portfólio, com marca fictícia, é a Maré Mansa, em `/imoveis/demos/mare-mansa/`.
-  **Fora do ar desde 11/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
-- `/doctors/` — prévia do site da Doctors Odontologia Especializada (Arapiraca Garden Shopping,
+  **Fora do ar desde 11/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+- `/acervo/doctors/` — prévia do site da Doctors Odontologia Especializada (Arapiraca Garden Shopping,
   Arapiraca, AL), feita para prospecção em 12/10/2026 com as fotos da clínica e os cards da equipe
   que eles mesmos publicam (sete dentistas com CRO e a gerente). Paleta e tipografia (Jost) tiradas
   do banner deles: creme, dourado e grafite. Hero com a foto numa moldura em "D" (a marca deles),
@@ -606,9 +602,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `index.html`. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem
   UET. Fotos originais e pendências em `interno/clientes/doctors/`, fora do git.
   A versão de portfólio, com marca fictícia, é a Arco, em `/negocios/demos/arco/`.
-  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
-- `/fornari/` — prévia da landing do Felipe Fornari (Team Fornari: treinador com consultoria
+  **Fora do ar desde 20/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+- `/acervo/fornari/` — prévia da landing do Felipe Fornari (Team Fornari: treinador com consultoria
   online e presencial, sócio da Espaço Saúde em Caparaó, MG; presencial em Caparaó e Alto Caparaó), feita para prospecção em
   12/10/2026. Substitui o caminho bio → Linktree → Google Forms de 50 perguntas: o seguidor vê os
   resultados e faz uma aplicação de 7 perguntas (`js/aplicacao.js`, regras do plano no topo) que
@@ -646,16 +641,15 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   recortadas de print, brancas em fundo transparente, em `assets/img/`: no topo só a Team
   Fornari; o monograma fica só no ícone da aba e na página de links (só o "FPe" do centro). Cartas e números vêm de `data/resultados.json`
   e `data/config.json`, com `null` virando placeholder. `ZAP` vazio no `js/main.js` e no
-  `links/`. `/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
+  `links/`. `/acervo/fornari/links/` substitui o Linktree. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de demonstração, sem UET, marca d'água com `utm_campaign=fornari` (`fornari-links` no `/links/`).
   CSS, JS e os `fetch` dos JSON com `?v=`: mudou um deles, sobe o número (o navegador
   segurava o `resultados.json` antigo e o carrossel aparecia com as cartas de exemplo). Pendências
   em `interno/clientes/fornari/README.md`, fora do git.
   Saiu do ar em 13/10/2026 e voltou no mesmo dia, a pedido.
-  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 20/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
   A versão de portfólio, com marca fictícia, é o Clã Valente, em `/negocios/demos/cla-valente/`.
-- `/nerd-club/` — prévia do site da Nerd Club (loja de games, oficina de videogame e
+- `/acervo/nerd-club/` — prévia do site da Nerd Club (loja de games, oficina de videogame e
   colecionáveis na Várzea, Teresópolis, RJ) com a InCubo (impressão 3D, marca parceira),
   para prospecção, desde 14/10/2026. O brief do cliente pedia Astro + Tailwind + Vercel;
   ficou estático no molde da casa, Astro só se ele fechar com domínio próprio. Conceito
@@ -712,10 +706,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   marca d'água com `utm_campaign=nerd-club`. Brief, prints e pendências em
   `interno/clientes/nerd-club/`, fora do git. A foto da fachada veio
   de um print que o Matheus mandou junto com o brief.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/ths/` — prévia do site da THS Engenharia e Construtora (projeto, administração e execução
+- `/acervo/ths/` — prévia do site da THS Engenharia e Construtora (projeto, administração e execução
   de obras, Manhuaçu, MG), feita para prospecção em 14/10/2026 a partir do Instagram
   (@engenhariaths: serviços e endereço na bio), do letreiro e do Linktree (WhatsApp, e-mail,
   Facebook). `og:image` em JPG (`assets/og.jpg`) por causa do WhatsApp. Base clara desde
@@ -749,10 +742,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   logo, ampliados 2x: baixa resolução, pedir os originais para o site oficial. Mesmo padrão:
   `.htaccess` e meta com noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água
   com `utm_campaign=ths`. Prints e pendências em `interno/clientes/ths/`, fora do git.
-  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 20/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/vilaserena/` — prévia do site das Cabanas Vila Serena (cabanas A-frame em construção em
+- `/acervo/vilaserena/` — prévia do site das Cabanas Vila Serena (cabanas A-frame em construção em
   Alto Caparaó, MG, na mesma cidade do Recanto), desde 16/10/2026, a partir de um briefing em
   quatro etapas. **Divisão e visual copiados da demo Maré Mansa** (`/imoveis/demos/mare-mansa/`),
   a pedido: Fraunces, Inter e rótulo mono, hero com dois botões (o card branco de busca da Maré Mansa saiu: na Vila só repetia a lista de espera), faixa de fatos, cards
@@ -783,10 +775,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   pulsando, a pedido. O WhatsApp mora no `ZAP` do `main.js` e nos links do HTML, não no `info.json`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=vilaserena`. Renders
   originais e pendências em `interno/clientes/vila-serena/`, fora do git.
-  **Fora do ar desde 19/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 19/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/esteticaef/` — prévia do site da Clínica Estética Facial e Corporal (Centro de Espera Feliz,
+- `/acervo/esteticaef/` — prévia do site da Clínica Estética Facial e Corporal (Centro de Espera Feliz,
   MG; Grazi Santana no facial, Amanda Simiqueli no corporal; eleita a melhor clínica de estética
   da cidade em 2025), desde 16/10/2026, a partir de um briefing em quatro prompts. Estrutura da
   Arco/Doctors (hero com foto em arco e chip da equipe, letreiro, faixa de confiança,
@@ -811,10 +802,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   noindex, faixa de prévia, sem UET, placeholder amarelo, marca d'água com
   `utm_campaign=esteticaef`. Fotos originais e pendências em `interno/clientes/esteticaef/`,
   fora do git.
-  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 20/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/bruno-chaves/` — prévia do site do Bruno Chaves (chaveiro, DDD 32, primo do Matheus),
+- `/acervo/bruno-chaves/` — prévia do site do Bruno Chaves (chaveiro, DDD 32, primo do Matheus),
   desde 18/10/2026, a partir do cartão, da fachada e de fotos de chave de carro entregue
   (Toro, Ram, Civic, Ford), que são as únicas imagens: ~300 px, pedir as originais. Página
   única pensada para a emergência no celular: barra fixa embaixo com "Ligar agora" (amarelo,
@@ -826,14 +816,13 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `#FFD21F`, vermelho `#E23B1E` só em fundo e ícone, preto), Bebas Neue e Inter servidas
   daqui. Cidade, endereço, horário, plantão, tempo de chegada, CNPJ, pagamento, mapa e áreas
   ficam em `js/config.js` (null vira placeholder). A barra fixa fica à vista desde o topo, não só depois da primeira tela como pede o padrão: na emergência a pessoa liga na hora. Logo provisório em SVG (o mascote do
-  cartão não foi redesenhado). Sem `js/leads.js`, mesmo motivo da `/esteticaef/`. Mesmo
+  cartão não foi redesenhado). Sem `js/leads.js`, mesmo motivo da `/acervo/esteticaef/`. Mesmo
   padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=bruno-chaves`, OG em `og-image-v2.jpg`. Pendências em
   `interno/clientes/bruno-chaves/README.md`, fora do git.
-  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 20/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/cabralmiranda/` — prévia do site do Cabral & Miranda (escritório de advocacia de duas sócias,
+- `/acervo/cabralmiranda/` — prévia do site do Cabral & Miranda (escritório de advocacia de duas sócias,
   Lorraine Cabral da Cunha e Alda Miranda, Rua Ernesto Grillo, 54, Centro de Espera Feliz, MG),
   desde 18/10/2026, a partir de um briefing em quatro prompts e do print do Instagram. **É
   publicidade de advocacia (Provimento 205/2021):** sem preço, "consulta gratuita", promessa de
@@ -850,13 +839,12 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   não há foto individual, e cards e triagem mostram as iniciais num losango. As três fotos são
   recortes do print, ampliados 2x. No computador, modal próprio de três opções (me chamem, e-mail,
   QR), com Web3Forms do escritório em `CM.web3formsKey`; sem chave, mostra o aviso de prévia. Sem
-  `js/leads.js` da Theatrum, mesmo motivo da `/esteticaef/`. Mesmo padrão: `.htaccess` e meta com
+  `js/leads.js` da Theatrum, mesmo motivo da `/acervo/esteticaef/`. Mesmo padrão: `.htaccess` e meta com
   noindex, faixa de prévia, sem UET, marca d'água com `utm_campaign=cabralmiranda`, OG em
   `og-image-v2.jpg`. Briefing, print e pendências em `interno/clientes/cabralmiranda/`, fora do git.
-  **Fora do ar desde 20/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 20/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/cantodospassaros/` — prévia do site da Pousada Canto dos Pássaros (chalés de madeira e tijolinho,
+- `/acervo/cantodospassaros/` — prévia do site da Pousada Canto dos Pássaros (chalés de madeira e tijolinho,
   café da manhã incluso, Rodovia Afonso Cláudio km 4, Aracê, Domingos Martins, ES, região de Pedra Azul),
   desde 20/10/2026, a partir do Instagram (@pousadacantodospassaros.es) e de prints dos stories. Cada
   chalé tem nome de pássaro (Sabiá, João de Barro, Canário, Colibri, pelas plaquinhas); o card leva um
@@ -878,10 +866,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   d'água com `utm_campaign=cantodospassaros`, OG em `og-image-v2.jpg` (HTML de origem em
   `interno/clientes/cantodospassaros/og/`). Prints e pendências em `interno/clientes/cantodospassaros/`,
   fora do git.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/zini/` — prévia do site da Zini Body Center (academia: musculação, CrossZini, personal, nutrição,
+- `/acervo/zini/` — prévia do site da Zini Body Center (academia: musculação, CrossZini, personal, nutrição,
   moda fitness e Espaço Kids, R. Dom Carloto, 36, Centro de Espera Feliz, MG), desde 20/10/2026, a
   partir do perfil do Google, do Linktree, do Instagram do @crosszini e de prints dos stories. WhatsApp
   (32) 9849-7151 é o destino do `wa.me/message` do "Fale com a Zini" (conta comercial
@@ -908,11 +895,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=zini`, OG em `og-image-v2.jpg` (HTML em `interno/clientes/zini/og/`). Prints e
   pendências em `interno/clientes/zini/`, fora do git.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/o2fitness/` — prévia do site da O2 Fitness Academia (musculação, R. José Grillo, 140, Centro de
-  Espera Feliz, MG, a mesma cidade da Zini), desde 21/10/2026, feita a partir do `/zini/` com o perfil
+- `/acervo/o2fitness/` — prévia do site da O2 Fitness Academia (musculação, R. José Grillo, 140, Centro de
+  Espera Feliz, MG, a mesma cidade da Zini), desde 21/10/2026, feita a partir do `/acervo/zini/` com o perfil
   do Google, a bio do Instagram (@o2_fitness_academia) e 11 fotos que o Matheus mandou. Mesma
   estrutura e motor da Zini, com o amarelo trocado pelo verde-limão do logo (`#8FCF56`) e a luz azul
   pela luz verde dos pilares do salão. Todas as imagens são fotos reais (sem selo de projeto). O
@@ -929,12 +915,11 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   de prévia, sem UET, marca d'água com `utm_campaign=o2fitness`, OG em `og-image-v2.jpg` (HTML em
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/rar/` — prévia do site da RAR Academia (musculação, cardio, plano família e loja de suplementos
+- `/acervo/rar/` — prévia do site da RAR Academia (musculação, cardio, plano família e loja de suplementos
   na recepção, Rod. Abílio Manoel de Lima, km 7, Encantada, Garopaba, SC), desde 22/10/2026, feita
-  a partir do `/zini/` com o perfil do Google, a bio e o Linktree do @rar.academia e 18 prints que o
+  a partir do `/acervo/zini/` com o perfil do Google, a bio e o Linktree do @rar.academia e 18 prints que o
   Matheus mandou. Amarelo dos stories (`#FCD345`) e, no lugar da luz azul da Zini, o LED amarelo em
   zigue-zague do teto deles (`#zigue`, SVG parado). Título do hero é a frase da parede da recepção
   ("Se for para sofrer, que seja na RAR"); o superlativo da bio ("a melhor academia de Garopaba")
@@ -955,11 +940,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   direto. Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, marca d'água com
   `utm_campaign=rar`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/rar/og/`). Prints e
   pendências em `interno/clientes/rar/`, fora do git.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/megaacademia/` — prévia do site da Mega Academia (musculação e ginástica desde 2011, Av. Campos
-  Novos, São Vicente, Itajaí, SC), desde 22/10/2026, feita a partir do `/o2fitness/` com o perfil do
+- `/acervo/megaacademia/` — prévia do site da Mega Academia (musculação e ginástica desde 2011, Av. Campos
+  Novos, São Vicente, Itajaí, SC), desde 22/10/2026, feita a partir do `/acervo/o2fitness/` com o perfil do
   Google, a bio do @megaacademiaitajai, três flyers de preço e fotos que o Matheus mandou. Preto com
   o laranja e o ouro do anel do logo (`#F59A23`, `#FFC94A`; texto pequeno sobre claro em
   `#8F4500`); títulos sobre escuro com o degradê ouro e laranja dos flyers. Logo redesenhado em SVG
@@ -982,33 +966,32 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `utm_campaign=megaacademia`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/megaacademia/og/`).
   Fotos, avaliações extraídas, preços da proposta e pendências em `interno/clientes/megaacademia/`,
   fora do git.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home;
-  os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
-- `/cxf/` — prévia da loja da CXF Café Especial (café especial; **não é corretora**), para mostrar ao
+- `/acervo/cxf/` — prévia da loja da CXF Café Especial (café especial; **não é corretora**), para mostrar ao
   cliente. **Desde 23/10/2026 é gerada pelo repositório da loja**, `Desktop/cxf-loja` (privado, Tipo E:
   Firebase, Mercado Pago, Brevo): `node scripts/previa.mjs` lá constrói a loja e grava aqui, com os
-  caminhos prefixados em `/cxf/`, faixa de prévia, marca d'água (`utm_campaign=cxf`), noindex,
+  caminhos prefixados em `/acervo/cxf/`, faixa de prévia, marca d'água (`utm_campaign=cxf`), noindex,
   `js/protecao.js` e um `.htaccess` (URLs sem .html, 404 da loja). **Não edite os arquivos desta
   pasta:** mude no `cxf-loja` e rode o script de novo. A prévia antiga (Tipo W, pedido no WhatsApp)
   está em `cxf-loja/_legado/previa/`. Conteúdo, em 23/10/2026:
   - **Catálogo:** um café só (Torra Tradicional, grãos selecionados, 250 g) e kits por quantidade
     (2, 4, 8 e 20 pacotes), com preços em placeholder.
   - **Fotos de produto:** saem das embalagens fictícias que o Matheus mandou.
-  - **Fotos de ambiente:** dez do Wikimedia Commons, com créditos na página `/cxf/creditos`.
+  - **Fotos de ambiente:** dez do Wikimedia Commons, com créditos na página `/acervo/cxf/creditos`.
   - **Home:** a história "Do pé à xícara", os aromas, a sacola e o seletor de moagem. O checkout
     ainda não existe; o andamento está em `cxf-loja/docs/progresso.md`.
   - **Auditoria:** `interno/clientes/cxf/auditoria-caminho-b.md`.
 
-  **Fora do ar desde 28/10/2026:** o `.htaccess` manda para a home e só abre pelo acervo. O
-  bloco "DESATIVADA" vem do `scripts/previa.mjs` do `cxf-loja`: para reativar, apague lá e rode
-  o script de novo.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha, e o endereço
+  antigo manda para a home. O `previa.mjs` grava em `acervo/cxf/` com base `/acervo/cxf/`, e
+  o `.htaccess` de lá, com a condição do cookie, também sai dele.
 
-- `/agrega/` — prévia de duas empresas irmãs de Espera Feliz, MG, num domínio só, desde 24/10/2026,
+- `/acervo/agrega/` — prévia de duas empresas irmãs de Espera Feliz, MG, num domínio só, desde 24/10/2026,
   a partir de uma especificação em 13 seções (`interno/clientes/agrega/agrega-site.md`) e de prints do
   Instagram: a **Agrega Marketing** (@somosagrega, agência, objetivo agendar reunião) e a **Agrega
   Print** (@agrega.print, gráfica express, objetivo orçamento). Estático no molde da casa (a
-  especificação pedia Astro, como a Nerd Club). Cinco páginas: portal dividido em `/agrega/`
+  especificação pedia Astro, como a Nerd Club). Cinco páginas: portal dividido em `/acervo/agrega/`
   (Marketing à esquerda em roxo, Print à direita em azul; no hover o lado cresce a 62% e mostra a
   lista e a mídia, no clique toma a tela e navega em ~450 ms; uma variável `--split` com `@property`
   move metades, divisória, selo e pílula juntos; o rabinho do balão do selo amarelo aponta para o
@@ -1103,8 +1086,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   (`og-portal-v1.jpg`, `og-marketing-v1.jpg`, `og-print-v1.jpg`, HTML em
   `interno/clientes/agrega/og/`). Fontes de cada dado e pendências em
   `interno/clientes/agrega/README.md`, fora do git.
-  **Fora do ar desde 28/10/2026:** o `.htaccess` da pasta manda para a home (portal e todas as
-  páginas); os arquivos continuam aqui. Para reativar, apague o bloco "DESATIVADA" dele.
+  **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
 
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais
@@ -1118,7 +1100,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   apontam também para o Canal do Aluno (Google Form) que ela já usa.
 
 - **Proteção do conteúdo nos sites de cliente (desde 21/10/2026):** todas as prévias acima, menos
-  o `/armazem/` (sistema), carregam `js/protecao.js` no `<head>`, cópia do `antonios/js/protecao.js`.
+  o `/acervo/armazem/` (sistema), carregam `js/protecao.js` no `<head>`, cópia do `acervo/antonios/js/protecao.js`.
   Regra e limites em `.claude/padrao-sites.md` (seção 1B).
 
 - `/os/` — landing de venda do **TheatrumOS**, desde 19/10/2026: infoproduto da própria Theatrum
@@ -1213,7 +1195,7 @@ nas pastas dos clientes. As fotos vêm do Wikimedia Commons, com autor e
 licença no rodapé de cada demo: tirar o crédito quebra a licença.
 
 O Clã Valente (`/negocios/demos/cla-valente/`, desde 13/10/2026) é o
-`/fornari/` refeito: o treinador Caio Valente, da Forja Academia, em Juiz de
+`/acervo/fornari/` refeito: o treinador Caio Valente, da Forja Academia, em Juiz de
 Fora; paleta trocada do verde para laranja de brasa. Ninguém real aparece:
 o hero é uma mão com halter (Nenad Stojkovic, CC BY 2.0) e "quem vai te
 treinar" mostra halteres (CC0), sem rosto no papel do treinador. Os doze
@@ -1224,7 +1206,7 @@ Instagram, mapa e e-mail são texto, não link; o WhatsApp cai no `_demo.js`.
 A página de links (`links/`) não carrega o `_demo.js`: tem barra própria.
 
 A Arco Odontologia (`/negocios/demos/arco/`, desde 13/10/2026) é o
-`/doctors/` refeito: clínica no fictício Shopping Jardins do Vale, em
+`/acervo/doctors/` refeito: clínica no fictício Shopping Jardins do Vale, em
 Petrolina, PE; paleta trocada do dourado para verde-azulado e areia, e a
 moldura em "D" (marca da Doctors) virou um arco. **Todas as fotos são
 geradas por IA**, pessoas e ambientes, e o rodapé diz isso: os sete
@@ -1235,7 +1217,7 @@ Gemini estavam sem saldo. O nome do cliente não aparece em arquivo público
 da demo. Avaliações e FAQ preenchidos com texto fictício, mapa mostra só a
 cidade, Instagram é texto.
 
-A Aceno (`/negocios/demos/aceno/`, desde 26/10/2026) é o `/agrega/` refeito,
+A Aceno (`/negocios/demos/aceno/`, desde 26/10/2026) é o `/acervo/agrega/` refeito,
 a pedido: agência de marketing e gráfica fictícias em Pouso Alegre, MG, com o
 mesmo portal dividido, as mesmas páginas (`marketing/`, `print/`,
 `projeto-completo/`, `privacidade/`) e a mesma animação. O "a" em balão da
@@ -1335,8 +1317,7 @@ quando não houver mais nada apontando para lá.
 ### Microsoft Ads (UET) e consentimento
 
 Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
-`/privacidade/`, `/site-que-vende/` e blog. **Nunca** nas prévias de cliente (`/aml`, `/engmais`,
-`/inovar`, `/recanto`, `/gabriela-carolina`, `/bia-de-luca`, `/antonios`, `/doctors`, `/fornari`, `/nerd-club`, `/ths`, `/vilaserena`, `/esteticaef`, `/bruno-chaves`, `/cabralmiranda`, `/cantodospassaros`, `/zini`, `/o2fitness`, `/rar`, `/megaacademia`, `/cxf`, `/agrega` e as que vierem), nos `*/demos/` nem em `/conta-frases/`.
+`/privacidade/`, `/site-que-vende/` e blog. **Nunca** nas prévias de cliente (todas em `/acervo/<pasta>/` desde 29/10/2026, e as novas na raiz), nos `*/demos/` nem em `/conta-frases/`.
 
 - No `<head>`: `consent default` com `ad_storage` negado, `update` para quem
   já aceitou (`localStorage` `theatrum-cookies` = `aceito`) e o snippet

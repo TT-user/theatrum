@@ -1,6 +1,6 @@
 # Padrão Theatrum — regras para todo site de cliente
 
-> Vale para todo site de cliente deste repositório (as pastas `aml/`, `inovar/`, `recanto/`, `fornari/`... na raiz). Mora em `.claude/padrao-sites.md`, e não na raiz, porque a raiz é servida no domínio; o `.claude/CLAUDE.md` importa este arquivo, então o Claude Code lê as regras em toda conversa sem precisar repetir nos prompts.
+> Vale para todo site de cliente deste repositório (cada um numa pasta na raiz enquanto a prévia está no ar; quando sai do ar, a pasta vai para `acervo/`, como `acervo/aml/` e `acervo/fornari/`). Mora em `.claude/padrao-sites.md`, e não na raiz, porque a raiz é servida no domínio; o `.claude/CLAUDE.md` importa este arquivo, então o Claude Code lê as regras em toda conversa sem precisar repetir nos prompts.
 > Quando um briefing pedir algo diferente destas regras, vale o briefing para aquele cliente.
 > **v3 (18/10/2026):** acrescenta os padrões de conversão da página (seção 4A), os sites com várias páginas (1A) e a loja com sacola (seção 9).
 > **v4 (20/10/2026), depois da prévia da Canto dos Pássaros:** WhatsApp direto, sem modal (seção 4); QR de avaliação no rodapé (4A); fonte para cada fato (5); imagens e fontes já no limite (2); testes de fechamento (8); armadilhas conhecidas (10).
@@ -35,11 +35,11 @@
 
 ### 1B. Proteção do conteúdo (desde 21/10/2026, a pedido do Matheus)
 - **Todo site de cliente, prévia ou final, carrega `<slug>/js/protecao.js`**, no `<head>`: `<script src="js/protecao.js?v=1" defer></script>` (em subpágina, com `../`). Uma cópia por site, porque o site precisa funcionar sozinho no domínio do cliente.
-- O arquivo é sempre a cópia do `antonios/js/protecao.js` (o mesmo motor dos `_protecao.js` das demos). Mudou o motor, copie de novo para todos os sites.
+- O arquivo é sempre a cópia do `acervo/antonios/js/protecao.js` (o mesmo motor dos `_protecao.js` das demos). Mudou o motor, copie de novo para todos os sites.
 - O que faz: texto sem seleção nem cópia, sem menu do botão direito, sem arrastar imagem, e bloqueia F12, Ctrl+Shift+I/J/C, Cmd+Option+I/J/C, Ctrl+U e Ctrl+S. Campos de formulário continuam selecionáveis e editáveis.
 - O que não faz: impedir a inspeção de verdade. Pelo menu do navegador, com o JavaScript desligado ou por `curl`, o código continua visível. É atrito para o curioso, não barreira; não prometa ao cliente que o site "não pode ser copiado".
 - `data-selecao="livre"` na tag libera seleção e cópia (mantém o resto). Use se o cliente pedir que o visitante copie telefone, endereço ou e-mail.
-- Fica de fora: sistema de gestão (`/armazem/`), onde quem usa precisa copiar dado.
+- Fica de fora: sistema de gestão (`/acervo/armazem/`), onde quem usa precisa copiar dado.
 - Teste de fechamento: `getComputedStyle(h1).userSelect` igual a `none` e o campo de formulário igual a `text`.
 
 ## 2. Mobile e performance
@@ -141,19 +141,19 @@
   - Termina num produto, num plano ou num profissional, com o botão de ação.
   - Na home ele é um link discreto ("Não sei qual escolher"), e o quiz tem página própria.
 - **Captura em troca de benefício:** um cupom, um checklist ou uma lista de espera que "chega pelo WhatsApp". A pessoa deixa o nome e o WhatsApp; o site manda pelo Web3Forms e abre o WhatsApp com o pedido do cupom. Não use pop-up que abre sozinho na entrada: mostre o convite depois de 40% de rolagem ou na saída (no computador), no máximo uma vez a cada 7 dias.
-- **Página "Fale conosco" (`contato/`)** quando o cliente atende público e quer receber elogio, sugestão e reclamação (academia, clínica, loja): canais oficiais, formulário com tipo da mensagem, envio anônimo opcional, aceite de LGPD e protocolo gerado na hora. Modelo pronto em `o2fitness/contato/` (`js/contato.js` e `css/contato.css` servem para qualquer site, lendo o `window.SITE` do `config.js`).
+- **Página "Fale conosco" (`contato/`)** quando o cliente atende público e quer receber elogio, sugestão e reclamação (academia, clínica, loja): canais oficiais, formulário com tipo da mensagem, envio anônimo opcional, aceite de LGPD e protocolo gerado na hora. Modelo pronto em `acervo/o2fitness/contato/` (`js/contato.js` e `css/contato.css` servem para qualquer site, lendo o `window.SITE` do `config.js`).
 - **Tour 360° do Google** (quando o perfil do Maps tiver photosphere ou tour virtual): o tour entra na página sem chave de API.
   - O iframe é `https://www.google.com/maps/embed?pb=!4v<timestamp>!6m8!1m7!1s<ik>!2m2!1d<lat>!2d<lng>!3f<direção>!4f0!5f0.78`.
   - O `<ik>` é o parâmetro `ik=` do link do photosphere (base64 que começa com `CAoS`), sem decodificar.
   - Carrega só no clique, sobre uma foto com o botão "Abrir o tour 360°", como o mapa.
-  - O endereço fica no `config.js` (`tour360`). Modelo em `rar/`.
+  - O endereço fica no `config.js` (`tour360`). Modelo em `acervo/rar/`.
 - **Card do mapa com a foto da fachada:** a imagem que fica no lugar do mapa até o clique é a fachada do cliente, com o pino vermelho na porta e o botão "Ver no mapa". Sem fachada, use a recepção.
 - **Loja de produtos da recepção** (suplemento, roupa, bebida), quando o negócio vende no balcão:
   - Os cards ficam com o selo "exemplo" e marca e preço em placeholder até chegar a lista real.
   - A sacola guarda os itens no `localStorage`.
   - O pedido sai mastigado no WhatsApp, com "quando passa na recepção" para a retirada.
   - Os produtos são desenhados em SVG pelo próprio JS: nada de foto de banco nem marca de terceiro.
-  - Modelo em `rar/` (`data/suplementos.json`). Suplemento não leva promessa de saúde ou resultado na descrição (Anvisa).
+  - Modelo em `acervo/rar/` (`data/suplementos.json`). Suplemento não leva promessa de saúde ou resultado na descrição (Anvisa).
 - **Dúvida no lugar da dúvida:**
   - Cada página de produto ou serviço tem um botão "Tenho dúvida sobre esse <item>", que abre o WhatsApp citando o item.
   - O carrinho e a página do produto repetem as 4 ou 5 dúvidas mais comuns, com link para a resposta completa no FAQ (âncora).

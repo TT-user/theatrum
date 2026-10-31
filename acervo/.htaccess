@@ -1,10 +1,13 @@
-# Acervo privado: todos os sites (prévias de cliente, no ar e desativadas, e as
-# demonstrações) numa página só, para o Matheus mostrar pessoalmente.
+# Acervo privado: todos os sites (prévias de cliente e demonstrações) numa página
+# só, para o Matheus mostrar pessoalmente. Desde 29/10/2026 as prévias de cliente
+# moram aqui dentro (acervo/<pasta>/); o endereço antigo, na raiz, manda para a home.
 #
 # Só abre com o cookie theatrum_acervo, que o entrar.html grava depois da senha.
 # Sem ele, qualquer endereço desta pasta (página, imagens) devolve o entrar.html.
+# As prévias têm .htaccess com RewriteEngine próprio, que anula esta regra nelas:
+# por isso cada uma repete a condição do cookie.
 # O valor é o SHA-256 de "theatrum-acervo:" + senha. Trocou a senha, troque o
-# valor aqui e nas pastas desativadas (procure por theatrum_acervo).
+# valor aqui, nas prévias (procure por theatrum_acervo) e no previa.mjs do cxf-loja.
 <IfModule mod_headers.c>
   Header always set X-Robots-Tag "noindex, nofollow"
   # nada daqui fica no CDN da Hostinger: senão a página aberta por quem tem a
