@@ -878,7 +878,8 @@
   .final .eyebrow-bar{background:linear-gradient(90deg,var(--ink),transparent)}
   .final h2{font:800 clamp(2.3rem,5vw,4.2rem)/1.04 var(--font-display);letter-spacing:-.012em;margin-top:20px;max-width:15ch;text-wrap:balance}
   .final .lead{color:rgba(20,18,16,.78);margin-top:22px;font-weight:500}
-  .final .ctas{margin-top:34px}
+  /* botão e link empilhados, o link centralizado embaixo do botão (lado a lado eles quebravam de qualquer jeito) */
+  .final .ctas{display:inline-flex;flex-direction:column;align-items:center;gap:16px;margin-top:34px}
   .final .btn-ink{font-size:17px;padding:20px 34px;min-height:64px}
   .final .link-sec{color:var(--ink);text-decoration-color:rgba(20,18,16,.45)}
   .final-mini{margin-top:22px;font:600 12px/1.5 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(20,18,16,.7)}
@@ -895,7 +896,7 @@
   .raiox-erro{font:600 14px/1.4 var(--font-body);color:#7A1220}
   .raiox .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   @media(max-width:900px){ .final-in{grid-template-columns:1fr} }
-  @media(max-width:600px){ .final .ctas{flex-direction:column;align-items:stretch} .final .btn-ink{width:100%;font-size:15.5px;padding:18px;gap:10px} .raiox{padding:24px 20px} }
+  @media(max-width:600px){ .final .ctas{display:flex;flex-direction:column;align-items:stretch} .final .btn-ink{width:100%;font-size:15.5px;padding:18px;gap:10px} .raiox{padding:24px 20px} }
 
   /* ============ RODAPÉ ============ */
   footer{background:#070605;padding:72px var(--gutter) 30px;border-top:1px solid var(--line)}
