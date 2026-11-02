@@ -1,0 +1,41 @@
+{
+  "_leia": [
+    "aviso: a linha fina no topo do site. Deixe \"\" para esconder. 'link' é o id da viagem (data/viagens.json) que o aviso abre.",
+    "jaPassaram: destinos que já estiveram na agenda (story Agenda 2026, destaques do Instagram e avaliações do Google). As viagens de data/viagens.json que já passaram entram aqui sozinhas.",
+    "creditos: as fotos dos destinos são do Wikimedia Commons, ilustrativas. Tirar o crédito quebra a licença."
+  ],
+  "aviso": { "texto": "Porto Seguro na Semana Santa: ainda temos vagas para 20 a 27 de março de 2027.", "link": "porto-seguro-semana-santa-2027" },
+  "jaPassaram": [
+    "Serenata Italiana, ES",
+    "Foz do Iguaçu, PR",
+    "Alto Caparaó, MG",
+    "Jericoacoara e Lençóis Maranhenses",
+    "Barretos, Festa do Peão",
+    "Capitólio, MG",
+    "Guarapari, ES",
+    "Diamantina, MG",
+    "Cabo Frio, RJ",
+    "João Pessoa e Natal",
+    "Parque Minas Beach",
+    "China Park, ES",
+    "Paraty, RJ",
+    "Nova Friburgo, RJ",
+    "Rota das Emoções",
+    "Ilha Grande, RJ",
+    "Fortaleza, CE"
+  ],
+  "creditos": [
+    { "lugar": "Alter do Chão", "autor": "idobi", "licenca": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Alter_do_Ch%C3%A3o_487a.jpg" },
+    { "lugar": "Cidade Histórica, Porto Seguro", "autor": "Amanda Coutinho", "licenca": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Home_-_Cidade_Hist%C3%B3rica_-_Porto_Seguro_-_Bahia_(50948834138).jpg" },
+    { "lugar": "Memorial da Epopeia, Porto Seguro", "autor": "Márcio Filho, MTur Destinos", "licenca": "domínio público", "url": "https://commons.wikimedia.org/wiki/File:MARCIO_FILHO_MEMORIAL_EPOPEIA_PORTO_SEGURO_BAHIA_(26106417957).jpg" },
+    { "lugar": "Elevador Lacerda, Salvador", "autor": "Priscila Nobrega Cecilio", "licenca": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Elevador_Lacerda_-_Priscila_Nobrega_Cecilio-1.jpg" },
+    { "lugar": "Praia de Pajuçara, Maceió", "autor": "Marinelson Almeida", "licenca": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Praia_de_Paju%C3%A7ara_-_Macei%C3%B3_-_Alagoas_(13125463894).jpg" },
+    { "lugar": "Praia das Dunas, Cabo Frio", "autor": "Arielom10", "licenca": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Vista_da_Praia_das_Dunas,_Cabo_Frio_em_2015.jpg" },
+    { "lugar": "Morro de São Paulo", "autor": "Paulo SP", "licenca": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Morro_de_S%C3%A3o_Paulo,_Cairu,_Bahia_-_2025-07-30_-_DSCN8963.jpg" },
+    { "lugar": "Navio de cruzeiro", "autor": "Arild Vågen", "licenca": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Birka_June_2013.jpg" },
+    { "lugar": "Guarapari", "autor": "Rosanetur", "licenca": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Guarapari_-_ES._Aerial_view_of_the_city_of_Guarapari_and_its_beaches,_in_Esp%C3%ADrito_Santo,_Brazil.jpg" },
+    { "lugar": "Natal Luz, Gramado", "autor": "Larissa Fraga", "licenca": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Natal_Luz_-_Gramado_-_Show_de_acendimento_-_panoramio_(10).jpg" },
+    { "lugar": "Cascata do Caracol, Canela", "autor": "Dalton Scavassa", "licenca": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Cascata_Caracol_-_Canela_RS.jpg" },
+    { "lugar": "Monte Verde", "autor": "CivArmy", "licenca": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Monte_Verde_district,_Camanducaia,_Brazil.jpg" }
+  ]
+}

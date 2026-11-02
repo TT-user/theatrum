@@ -448,7 +448,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - `/acervo/` — **acervo privado, com senha, desde 24/10/2026:** todos os sites numa página
   só, para o Matheus mostrar pessoalmente: as prévias de cliente (todas aqui dentro desde 29/10/2026), a
   Little Trees e a TM Sports (sites no ar fora daqui) e as 27 demonstrações (as 26 da vitrine da home e a Aceno), em nove segmentos
-  (academias, saúde, nutrição, pousadas, imóveis, planejados, lojas, agro, serviços), com
+  (academias, saúde, nutrição, pousadas e viagens, imóveis, planejados, lojas, agro, serviços), com
   filtro por segmento e por "negócio real" ou "projeto conceito". Lista no `SITES` do
   `acervo/index.html`; capa das prévias em `acervo/img/<pasta>-{480,800}.webp` (primeira tela
   em 1280x800 com `?still=1`, sem a marca d'água, WebP q72), e as demos usam as capas da
@@ -1087,6 +1087,34 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `interno/clientes/agrega/og/`). Fontes de cada dado e pendências em
   `interno/clientes/agrega/README.md`, fora do git.
   **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+
+- `/viajecomcirene/` — prévia do site da Agência Viaje com Cirene (excursões de ônibus, pacotes com
+  aéreo e cruzeiro; Av. Cap. Antônio Carlos de Souza, 529, Santa Maria, Carangola, MG; perfil do Google
+  "EXCURSÃO CIRENE FREITAS - CARANGOLA", 4,9 em 50), desde 02/11/2026, **na raiz enquanto a cliente
+  decide** (no `SITES` do acervo com `{ raiz: true }`). Feita a partir dos stories dos destaques "Agenda
+  2027" e "Agenda 2026", da bio e do perfil do Google. A estrutura (agenda em cards, "esgotada" vira lista
+  de espera, nota do Google) veio do site de uma agência concorrente na mesma cidade, a pedido (nome no
+  README interno, fora daqui porque o repositório é público); texto e desenho são outros. Cores dos stories e do logo (marinho `#03244F`, turquesa `#087C81`
+  nas caixas de preço, laranja `#F29A2E`), Montserrat nos títulos e Poppins no texto, servidas daqui; o
+  hexágono dos posts é o motivo (fotos do hero, rótulos, números). Emblema redesenhado em SVG
+  (`#vc-emblema`, sem o "AGÊNCIA" em arco, que some pequeno); o `<svg>` que usa o símbolo não leva
+  `viewBox`, senão o desenho sai deslocado. **Tudo das viagens vem do `data/viagens.json`**: datas, o que
+  inclui, transporte, `status` (`aberta`, `vagas`, `encerrada`) e preço só com o que o story diz
+  (`aVista`, `parcelado`, `valorParcela`, `descontoAVista`, `porPessoa`). A viagem cujo `fim` passou sai
+  sozinha da agenda e vai para "Por onde a agenda já passou" (junto do `jaPassaram` do `info.json`);
+  `?hoje=AAAA-MM-DD` finge outra data. Hero com o passe de embarque da próxima saída (calculado), fatos e
+  letreiro; cards ou agenda em lista (como o story), com filtro por transporte e mês; gaveta de cada
+  viagem (`#v-<id>` abre direto) em que pessoas, pagamento e nome montam a mensagem, com o total só onde o
+  story diz "por pessoa", "Tenho dúvida" e "Mandar para quem vai comigo" (`wa.me/?text=` com o link).
+  "Para onde eu vou?" em quatro perguntas indica até três viagens e manda tudo para a Cirene. No celular,
+  cards e avaliações em carrossel de arrastar. Avaliações: 4 das 5 que o Google mostra sem login, texto
+  igual e sobrenome abreviado (a de 4 estrelas que critica Ilha Grande ficou de fora). Fotos dos destinos
+  do Wikimedia Commons, ilustrativas, créditos no rodapé. Valores com o aviso de confirmar; CNPJ,
+  Cadastur, embarque, sinal e regra de criança em placeholder. QR de avaliação no rodapé, Place ID
+  `ChIJO_UThcx7uwARChzzsBh075Q`, conferido no Chrome em 02/11/2026. Sem `js/leads.js`, WhatsApp direto.
+  Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, `js/protecao.js`, marca d'água
+  com `utm_campaign=viajecomcirene`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/viajecomcirene/og/`).
+  Fontes de cada fato e pendências em `interno/clientes/viajecomcirene/README.md`, fora do git.
 
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
   elogio, sugestão, reclamação, dúvida e contato comercial, no menu e no rodapé delas. Canais

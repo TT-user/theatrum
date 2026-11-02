@@ -1,0 +1,44 @@
+{
+  "_leia": [
+    "Avaliações do perfil do Google 'EXCURSÃO CIRENE FREITAS - CARANGOLA', texto igual ao original, sobrenome abreviado. Extraídas em 02/11/2026; sem login o Google mostra só 5 de 50. 'quando' é o que o Google mostrava em 02/11/2026; o site não exibe, porque a data relativa envelhece.",
+    "Antes do site oficial, pedir autorização a cada pessoa. 'curto' é o trecho que aparece no card; o botão 'Ler tudo' mostra o 'texto' inteiro.",
+    "assuntos: os temas que o próprio Google destaca nas avaliações, com quantas vezes aparecem."
+  ],
+  "assuntos": [
+    { "nome": "organizado", "n": 12 },
+    { "nome": "equipe", "n": 5 },
+    { "nome": "simpatia", "n": 4 },
+    { "nome": "atenção", "n": 3 },
+    { "nome": "roteiro", "n": 2 },
+    { "nome": "alegria", "n": 2 },
+    { "nome": "segurança", "n": 2 }
+  ],
+  "avaliacoes": [
+    {
+      "nome": "Novais",
+      "quando": "há 3 meses",
+      "estrelas": 5,
+      "curto": "A dedicação da proprietária, Cirene, faz toda a diferença. Ela acompanha pessoalmente todas as viagens, demonstrando carinho, responsabilidade e um compromisso admirável com o bem-estar de cada passageiro.",
+      "texto": "Viajar com a Cirene, de Freitas, na agência \"Viaje com Cirene\" de Carangola, é muito mais do que fazer um passeio: é viver uma experiência inesquecível. A dedicação da proprietária, Cirene, faz toda a diferença. Ela acompanha pessoalmente todas as viagens, demonstrando carinho, responsabilidade e um compromisso admirável com o bem-estar de cada passageiro.\n\nToda a equipe é extremamente atenciosa, educada e prestativa, cuidando de cada detalhe para que todos se sintam seguros, confortáveis e bem acolhidos durante todo o roteiro. É perceptível o cuidado com a organização, a pontualidade e a qualidade da estrutura oferecida, sempre proporcionando viagens muito bem planejadas e agradáveis.\n\nOutro diferencial é o carinho com que valorizam os clientes, promovendo sorteios de brindes e até viagens para os passageiros, tornando cada excursão ainda mais especial e divertida.\n\nAcompanhar os grupos de perto, com simpatia, atenção e respeito, demonstra o profissionalismo e a paixão que a Cirene e sua equipe têm pelo que fazem. Recomendo de olhos fechados para quem busca segurança, organização, conforto e um atendimento verdadeiramente humano. Parabéns pelo excelente trabalho e por proporcionarem momentos tão especiais a tantas pessoas!"
+    },
+    {
+      "nome": "Roze S.",
+      "quando": "há 3 meses",
+      "estrelas": 5,
+      "curto": "A Cirene acompanha pessoalmente as excursões, transmitindo segurança, atenção e cuidado com cada viajante. Os roteiros são muito bem organizados, com excelente pontualidade, conforto e planejamento.",
+      "texto": "Viajar com a Viaje com Cirene, de Carangola, é sinônimo de tranquilidade, organização e momentos inesquecíveis. Desde o primeiro contato, percebe-se o compromisso da empresa em oferecer um atendimento diferenciado e uma experiência de alta qualidade.\n\nA Cirene acompanha pessoalmente as excursões, transmitindo segurança, atenção e cuidado com cada viajante. Sua dedicação e simpatia fazem com que todos se sintam acolhidos, criando um ambiente agradável durante toda a viagem.\n\nA equipe também merece destaque pela educação, cordialidade e profissionalismo, sempre pronta para atender às necessidades dos passageiros. Os roteiros são muito bem organizados, com excelente pontualidade, conforto e planejamento, garantindo que cada passeio seja aproveitado ao máximo.\n\nOutro ponto que encanta é a forma como os clientes são valorizados. Os sorteios de brindes e até de viagens tornam cada excursão ainda mais alegre e demonstram o reconhecimento da empresa pela confiança de seus passageiros.\n\nRecomendo a Viaje com Cirene a todos que procuram uma agência séria, comprometida e apaixonada pelo que faz. Mais do que transportar pessoas para um destino, a equipe proporciona experiências marcantes, com segurança, conforto e um atendimento acolhedor que faz toda a diferença. Parabéns pelo excelente trabalho!"
+    },
+    {
+      "nome": "Nathana A.",
+      "quando": "há 1 ano",
+      "estrelas": 5,
+      "texto": "Acabamos de voltar de ILHA GRANDE, passeio incrível, não é minha primeira vez com a Cirene, super indico e já aguardo as próximas."
+    },
+    {
+      "nome": "Emilly V.",
+      "quando": "há 1 ano",
+      "estrelas": 5,
+      "texto": "fomos com ela para fortaleza-CE! e foi uma experiência única. mto bom"
+    }
+  ]
+}

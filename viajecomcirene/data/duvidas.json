@@ -1,0 +1,48 @@
+{
+  "_leia": [
+    "Uma dúvida por bloco. 'id' vira a âncora (#duvida-<id>), usada nos atalhos do rodapé.",
+    "Texto entre [colchetes] aparece em amarelo: é o que a agência ainda precisa responder."
+  ],
+  "duvidas": [
+    {
+      "id": "como-reservar",
+      "p": "Como faço para reservar uma viagem?",
+      "r": "Escolha a viagem aqui no site e toque em \"Quero reservar\": a mensagem vai pronta para o WhatsApp da agência, (32) 99810-4140, com a viagem, a data e quantas pessoas vão. A Cirene confirma a vaga e explica o pagamento. [Como a vaga fica garantida: sinal, contrato, prazo]"
+    },
+    {
+      "id": "parcelar",
+      "p": "Dá para parcelar?",
+      "r": "Sim. Cada viagem mostra as condições que a agência publicou: à vista com desconto, parcelado ou em até 6x no cartão, conforme o roteiro. [Formas de pagamento aceitas: Pix, dinheiro, cartão, boleto]"
+    },
+    {
+      "id": "preco-por-pessoa",
+      "p": "O valor é por pessoa?",
+      "r": "Nas viagens em que o card diz \"por pessoa\", sim, com o tipo de quarto ao lado (duplo ou triplo). [Confirmar nas outras viagens, e o valor para quem viaja sozinho]"
+    },
+    {
+      "id": "embarque",
+      "p": "De onde sai o ônibus?",
+      "r": "[Ponto e horário de embarque das viagens de ônibus, e se há embarque em outras cidades da região]. Alter do Chão sai de Confins; no Maceió, um ônibus semi-leito leva até o aeroporto. [Aeroporto de saída do Maceió]"
+    },
+    {
+      "id": "criancas",
+      "p": "Criança paga?",
+      "r": "[Regra para crianças: idade que não paga, desconto e documentos]"
+    },
+    {
+      "id": "seguro",
+      "p": "O seguro viagem está incluso?",
+      "r": "Na maioria dos roteiros, sim: ele aparece na lista \"O que inclui\" de cada viagem. Quando não aparece, pergunte no WhatsApp."
+    },
+    {
+      "id": "lista-de-espera",
+      "p": "E se as vagas acabarem?",
+      "r": "Toque em \"Lista de espera\" no card da viagem: a mensagem vai pronta para a Cirene, com a viagem e a data. [Confirmar como a lista de espera funciona]"
+    },
+    {
+      "id": "documentos-cruzeiro",
+      "p": "Que documento levo no cruzeiro?",
+      "r": "O roteiro passa pelo Uruguai e pela Argentina. [REVISAR COM O CLIENTE: documento aceito (RG em bom estado ou passaporte) e autorização para menores]"
+    }
+  ]
+}
