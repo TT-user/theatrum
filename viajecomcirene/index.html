@@ -3,6 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Idioma: ?lang= vence a escolha gravada. Em espanhol a página fica escondida até o main.js traduzir.
+    (function () { try {
+      var q = /[?&]lang=(pt|es)\b/.exec(location.search), l = q ? q[1] : localStorage.getItem('vc-idioma');
+      if (q) localStorage.setItem('vc-idioma', q[1]);
+      if (l === 'es') {
+        var h = document.documentElement; h.lang = 'es'; h.classList.add('traduzindo');
+        var k = document.createElement('link'); k.rel = 'preload'; k.as = 'script'; k.href = 'js/es.js?v=3'; document.head.appendChild(k);
+        setTimeout(function () { h.classList.remove('traduzindo'); }, 3000);
+      }
+    } catch (e) {} })();
+  </script>
   <title>Viaje com Cirene | Agência de viagens e excursões em Carangola, MG</title>
   <meta name="description" content="Agência de viagens em Carangola, MG: excursões de ônibus, pacotes com aéreo e cruzeiro. Salvador, Maceió, Alter do Chão, Porto Seguro, Cabo Frio e mais, com datas, roteiros e valores publicados pela agência.">
   <meta name="theme-color" content="#03244F">
@@ -14,18 +26,18 @@
   <meta property="og:url" content="https://usetheatrum.com.br/viajecomcirene/">
   <meta property="og:title" content="Viaje com Cirene | Agência de viagens em Carangola, MG">
   <meta property="og:description" content="Salvador, Maceió, Alter do Chão, Porto Seguro, Cabo Frio, Morro de São Paulo e cruzeiro. Veja datas, roteiros e valores e reserve direto com a Cirene.">
-  <meta property="og:image" content="https://usetheatrum.com.br/viajecomcirene/og-image-v1.jpg">
+  <meta property="og:image" content="https://usetheatrum.com.br/viajecomcirene/og-image-v2.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/jpeg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://usetheatrum.com.br/viajecomcirene/og-image-v1.jpg">
+  <meta name="twitter:image" content="https://usetheatrum.com.br/viajecomcirene/og-image-v2.jpg">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/img/hex-maceio-360.webp" imagesrcset="assets/img/hex-maceio-360.webp 360w, assets/img/hex-maceio-640.webp 640w" imagesizes="(min-width: 1001px) 22vw, 60vw">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="preload" as="image" media="(min-width: 1001px)" href="assets/img/grupo-beto-carrero-360.webp" imagesrcset="assets/img/grupo-beto-carrero-360.webp 360w, assets/img/grupo-beto-carrero-640.webp 640w" imagesizes="(min-width: 1001px) 22vw, 60vw">
+  <link rel="stylesheet" href="css/style.css?v=9">
 
   <script type="application/ld+json">
   {
@@ -36,7 +48,7 @@
     "description": "Agência de viagens em Carangola, MG: excursões de ônibus, pacotes com aéreo e cruzeiro.",
     "slogan": "Conectando você ao Brasil",
     "url": "https://usetheatrum.com.br/viajecomcirene/",
-    "image": "https://usetheatrum.com.br/viajecomcirene/og-image-v1.jpg",
+    "image": "https://usetheatrum.com.br/viajecomcirene/og-image-v2.jpg",
     "telephone": "+55-32-99810-4140",
     "address": {
       "@type": "PostalAddress",
@@ -115,6 +127,7 @@
         <a href="#contato">Contato</a>
         <a class="btn btn--zap menu__zap" data-zap="Olá, Cirene! Vim pelo site da agência e quero saber das próximas viagens."><svg aria-hidden="true"><use href="#i-zap"/></svg>Falar com a Cirene</a>
       </nav>
+      <div class="idioma" role="group" aria-label="Idioma"><button type="button" data-lang="pt" aria-pressed="true" lang="pt-BR" aria-label="PT, Português">PT</button><button type="button" data-lang="es" aria-pressed="false" lang="es" aria-label="ES, Español">ES</button></div>
       <a class="btn btn--zap topo__cta" data-zap="Olá, Cirene! Vim pelo site da agência e quero saber das próximas viagens."><svg aria-hidden="true"><use href="#i-zap"/></svg>Falar com a Cirene</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir o menu"><span></span><span></span><span></span></button>
     </div>
@@ -133,16 +146,18 @@
           <p class="hero__lead">Excursões de ônibus, pacotes com aéreo e cruzeiro, com a agenda inteira num lugar só: datas, roteiros e valores publicados pela agência.<span class="hero__lead2"> E você fala direto com a Cirene.</span></p>
           <div class="hero__btns">
             <a class="btn btn--laranja btn--g" href="#viagens">Ver as próximas viagens<svg aria-hidden="true"><use href="#i-seta"/></svg></a>
-            <a class="btn btn--vidro btn--g" data-zap="Olá, Cirene! Vim pelo site da agência e quero saber das próximas viagens."><svg aria-hidden="true"><use href="#i-zap"/></svg>Falar com a Cirene</a>
+            <a class="btn btn--vidro btn--g" data-zap="Olá, Cirene! Vim pelo site da agência e quero saber das próximas viagens."><img class="btn__rosto" src="assets/img/cirene-rosto-96.webp" width="96" height="96" alt="">Falar com a Cirene</a>
           </div>
         </div>
 
-        <div class="hero__vitrine" aria-hidden="true">
-          <span class="hex hex--contorno hex--c1"></span>
-          <span class="hex hex--contorno hex--c2"></span>
-          <figure class="hex hex--g"><img src="assets/img/hex-maceio-360.webp" srcset="assets/img/hex-maceio-360.webp 360w, assets/img/hex-maceio-640.webp 640w" sizes="(min-width: 1001px) 22vw, 60vw" width="640" height="640" alt="" fetchpriority="high"></figure>
-          <figure class="hex hex--a"><img src="assets/img/hex-salvador-360.webp" srcset="assets/img/hex-salvador-360.webp 360w, assets/img/hex-salvador-640.webp 640w" sizes="14vw" width="640" height="640" alt=""></figure>
-          <figure class="hex hex--b"><img src="assets/img/hex-alter-360.webp" srcset="assets/img/hex-alter-360.webp 360w, assets/img/hex-alter-640.webp 640w" sizes="12vw" width="640" height="640" alt=""></figure>
+        <div class="hero__vitrine">
+          <span class="hex hex--contorno hex--c1" aria-hidden="true"></span>
+          <span class="hex hex--contorno hex--c2" aria-hidden="true"></span>
+          <!-- Foto mandada pelo Matheus em 02/11/2026: a Cirene (de azul) com um grupo no Beto Carrero World -->
+          <figure class="hex hex--g"><img src="assets/img/grupo-beto-carrero-360.webp" srcset="assets/img/grupo-beto-carrero-360.webp 360w, assets/img/grupo-beto-carrero-640.webp 640w" sizes="(min-width: 1001px) 22vw, 60vw" width="640" height="554" alt="A Cirene, de azul, com um grupo de passageiros diante do castelo do Beto Carrero World" loading="lazy" fetchpriority="high"></figure>
+          <figure class="hex hex--a" aria-hidden="true"><img src="assets/img/hex-salvador-360.webp" srcset="assets/img/hex-salvador-360.webp 360w, assets/img/hex-salvador-640.webp 640w" sizes="14vw" width="640" height="640" alt="" loading="lazy"></figure>
+          <figure class="hex hex--b" aria-hidden="true"><img src="assets/img/hex-maceio-360.webp" srcset="assets/img/hex-maceio-360.webp 360w, assets/img/hex-maceio-640.webp 640w" sizes="12vw" width="640" height="640" alt="" loading="lazy"></figure>
+          <p class="hero__legenda" aria-hidden="true">A Cirene, de azul, com um grupo no Beto Carrero World</p>
         </div>
 
         <!-- Próxima saída: o main.js troca pela próxima viagem do data/viagens.json -->
@@ -202,6 +217,15 @@
         <p class="sr" id="v-status" role="status"></p>
         <div class="agenda" id="agenda" hidden></div>
         <noscript><p class="vazio">Para ver as viagens, fale com a agência no WhatsApp: (32) 99810-4140.</p></noscript>
+
+        <aside class="exterior">
+          <svg class="exterior__ico" aria-hidden="true"><use href="#i-navio"/></svg>
+          <div>
+            <h3>Viagens para fora do Brasil</h3>
+            <p><span id="exterior-txt">Na agenda, o cruzeiro de março de 2027 para no Uruguai e na Argentina.</span> <span class="ph">[Outros destinos fora do Brasil, como Chile e Argentina por terra ou de avião: confirmar com a agência]</span></p>
+          </div>
+          <a class="btn btn--zap" data-zap="Olá, Cirene! Vim pelo site e quero saber das viagens para fora do Brasil."><svg aria-hidden="true"><use href="#i-zap"/></svg>Perguntar no WhatsApp</a>
+        </aside>
 
         <p class="nota-valores"><span class="ph">[Valores tirados dos stories da agência: confirmar se seguem valendo]</span> Fotos dos destinos ilustrativas.</p>
       </div>
@@ -264,8 +288,9 @@
     <section class="secao secao--areia onda" id="a-cirene">
       <div class="wrap cirene">
         <div class="cirene__foto">
-          <div class="hex hex--foto"><span class="ph">[Foto da Cirene com um grupo de viagem]</span></div>
-          <svg class="cirene__emblema" aria-hidden="true"><use href="#vc-emblema"/></svg>
+          <span class="hex hex--fundo" aria-hidden="true"></span>
+          <!-- Avatar do Instagram dela, mandado pelo Matheus em 02/11/2026 (o CSS arredonda e esconde o anel azul) -->
+          <img class="cirene__retrato" src="assets/img/cirene-retrato-480.webp" srcset="assets/img/cirene-retrato-300.webp 300w, assets/img/cirene-retrato-480.webp 480w" sizes="(min-width: 1001px) 440px, 300px" width="480" height="480" alt="Cirene Freitas, de uniforme da agência, sorrindo" loading="lazy">
         </div>
         <div class="cirene__texto">
           <p class="rotulo">Quem leva você</p>
@@ -445,6 +470,6 @@
   </a>
 
   <script src="js/config.js?v=1"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>

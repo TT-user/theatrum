@@ -1,0 +1,168 @@
+{
+  "_leia": [
+    "Textos das viagens em espanhol, pela id de data/viagens.json. Só texto: datas, preços, status e fotos ficam lá.",
+    "Viagem nova em data/viagens.json sem bloco aqui aparece em português na versão em espanhol."
+  ],
+  "viagens": {
+    "gramado-natal-luz-2026": {
+      "titulo": "Gramado Natal Luz",
+      "lugar": "Sierra Gaúcha, Rio Grande do Sul",
+      "subtitulo": "El Natal Luz en la Sierra Gaúcha",
+      "transporteTexto": "[transporte]",
+      "fotoAlt": "Iglesia de Gramado iluminada para el Natal Luz"
+    },
+    "sul-natal-luz-2026": {
+      "titulo": "Sur completo y Natal Luz",
+      "lugar": "Región Sur de Brasil",
+      "subtitulo": "Itinerario por el Sur con el Natal Luz [ciudades por confirmar]",
+      "transporteTexto": "[transporte]",
+      "fotoAlt": "Cascada del Caracol, en Canela, rodeada de bosque"
+    },
+    "guarapari-2026-12": {
+      "lugar": "Espírito Santo",
+      "subtitulo": "La costa preferida de la gente de Minas Gerais",
+      "transporteTexto": "Bus cómodo",
+      "inclui": [
+        "Transporte en bus cómodo",
+        "Alojamiento en el Hotel Quatro Estações, frente a la Praia do Morro",
+        "Desayuno todos los días",
+        "Un desayuno extra al llegar al hotel",
+        "Piscina en la terraza del hotel"
+      ],
+      "fotoAlt": "Vista aérea de Guarapari, con edificios, playas y el mar verde"
+    },
+    "monte-verde-2026": {
+      "lugar": "Minas Gerais",
+      "subtitulo": "Navidad en la Montaña",
+      "transporteTexto": "[transporte]",
+      "fotoAlt": "Callejón de tiendas coloridas en Monte Verde"
+    },
+    "salvador-2027": {
+      "titulo": "Salvador y la Ilha dos Frades",
+      "lugar": "Bahía",
+      "subtitulo": "Centro histórico, goleta y la Bahía de Todos los Santos",
+      "transporteTexto": "Bus cama",
+      "inclui": [
+        "Transporte en bus cama",
+        "5 noches en el Rede Andrade Barra",
+        "Desayuno incluido",
+        "City tour por el centro de Salvador",
+        "Almuerzo el día del city tour",
+        "Paseo en goleta",
+        "Traslado a los paseos",
+        "Guía acreditado",
+        "Seguro de viaje",
+        "Regalo de viaje"
+      ],
+      "fotoAlt": "Elevador Lacerda frente a la Bahía de Todos los Santos, en Salvador"
+    },
+    "maceio-2027": {
+      "lugar": "Alagoas",
+      "subtitulo": "El paraíso de las aguas",
+      "transporteTexto": "Vuelo de ida y vuelta",
+      "inclui": [
+        "Bus semicama hasta el aeropuerto",
+        "Pasajes aéreos de ida y vuelta",
+        "5 noches de hotel",
+        "Traslados aeropuerto, hotel y paseos",
+        "Guía de turismo local",
+        "Paseo a Maragogi",
+        "Paseo a la Praia do Gunga y a Barra de São Miguel",
+        "Seguro de viaje",
+        "Regalo de la agencia"
+      ],
+      "fotoAlt": "Cocoteros inclinados sobre la arena de la Praia de Pajuçara, en Maceió"
+    },
+    "alter-do-chao-2027": {
+      "lugar": "Santarém, Pará",
+      "subtitulo": "El Caribe de la Amazonía",
+      "transporteTexto": "Vuelo desde Confins (Belo Horizonte)",
+      "inclui": [
+        "Pasaje aéreo desde Confins",
+        "Traslado de ida y vuelta entre el aeropuerto de Santarém y Alter",
+        "6 noches con desayuno",
+        "Paseo al Lago Verde",
+        "Paseo a la Praia de Pindobal",
+        "Tour por Santarém",
+        "2 almuerzos",
+        "Guía acompañante",
+        "Seguro de viaje",
+        "Regalo de viaje"
+      ],
+      "fotoAlt": "Barcos coloridos en la arena blanca de Alter do Chão, junto al río Tapajós"
+    },
+    "porto-seguro-2027-02": {
+      "lugar": "Bahía",
+      "subtitulo": "La alegría y el encanto de Bahía",
+      "transporteTexto": "Bus cama",
+      "inclui": [
+        "Transporte en bus cama",
+        "Alojamiento en hotel frente al mar (Hotel Sued's Segundo Sol)",
+        "Cena con postre",
+        "Desayuno",
+        "Luau con música en vivo",
+        "Seguro de viaje",
+        "Paseo Toa-Toa y Axé Moi",
+        "Tour por el Centro Histórico"
+      ],
+      "fotoAlt": "Casa colonial de puerta azul entre cocoteros en la Ciudad Histórica de Porto Seguro"
+    },
+    "cabo-frio-2027": {
+      "lugar": "Río de Janeiro",
+      "subtitulo": "La costa preferida de la gente de Minas Gerais",
+      "transporteTexto": "Bus semicama",
+      "inclui": [
+        "Transporte en bus semicama",
+        "Alojamiento en el Hotel Malibu, frente a la playa",
+        "Café extra al llegar",
+        "Café todos los días",
+        "Almuerzo y postre en el hotel durante tres días",
+        "Café colonial por la noche"
+      ],
+      "fotoAlt": "Dunas blancas y mar azul en la Praia das Dunas, en Cabo Frio"
+    },
+    "morro-de-sao-paulo-2027": {
+      "lugar": "Bahía",
+      "subtitulo": "El paraíso tropical de Bahía",
+      "transporteTexto": "Bus cama master",
+      "inclui": [
+        "Transporte en bus cama master",
+        "4 noches en Morro de São Paulo",
+        "Desayuno todos los días",
+        "Traslado Valença - Morro",
+        "Tasa de entrada a Morro de São Paulo",
+        "Seguro de viaje",
+        "Regalo para el viajero"
+      ],
+      "fotoAlt": "Cocotero inclinado sobre la playa de Morro de São Paulo"
+    },
+    "cruzeiro-2027": {
+      "destino": "Crucero",
+      "titulo": "Crucero por Sudamérica",
+      "lugar": "Brasil, Uruguay y Argentina",
+      "subtitulo": "Navega por Sudamérica",
+      "transporteTexto": "Barco de crucero",
+      "paradas": ["Ilhabela, São Paulo", "Balneário Camboriú, Santa Catarina", "Punta del Este, Uruguay", "Buenos Aires, Argentina"],
+      "paises": ["Uruguay", "Argentina"],
+      "fotoAlt": "Barco de crucero blanco navegando en mar calmo"
+    },
+    "porto-seguro-semana-santa-2027": {
+      "titulo": "Porto Seguro en Semana Santa",
+      "lugar": "Bahía",
+      "subtitulo": "2.ª fecha en 2027",
+      "selo": "Semana Santa",
+      "transporteTexto": "Bus cama",
+      "inclui": [
+        "Transporte en bus cama",
+        "Alojamiento en hotel frente al mar",
+        "Cena con postre [confirmar]",
+        "Desayuno [confirmar]",
+        "Luau con música en vivo",
+        "Seguro de viaje",
+        "Paseo Toa-Toa y Axé Moi",
+        "Tour por el Centro Histórico"
+      ],
+      "fotoAlt": "Réplica de carabela en el Memorial de la Epopeya del Descubrimiento, en Porto Seguro"
+    }
+  }
+}

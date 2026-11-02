@@ -1,0 +1,48 @@
+{
+  "_leia": [
+    "Dúvidas em espanhol, com as mesmas 'id' de data/duvidas.json (os atalhos do rodapé apontam para elas).",
+    "Mudou uma resposta em português, mude aqui também."
+  ],
+  "duvidas": [
+    {
+      "id": "como-reservar",
+      "p": "¿Cómo reservo un viaje?",
+      "r": "Elige el viaje aquí en el sitio y toca \"Quiero reservar\": el mensaje llega listo al WhatsApp de la agencia, +55 32 99810-4140, con el viaje, la fecha y cuántas personas van. Cirene confirma el cupo y explica el pago. [Cómo se asegura el cupo: seña, contrato, plazo]"
+    },
+    {
+      "id": "parcelar",
+      "p": "¿Se puede pagar en cuotas?",
+      "r": "Sí. Cada viaje muestra las condiciones que publicó la agencia: al contado con descuento, en cuotas o hasta en 6 cuotas con tarjeta, según el itinerario. Los precios están en reales brasileños (R$). [Formas de pago aceptadas: Pix, efectivo, tarjeta, boleto; si acepta tarjetas del exterior]"
+    },
+    {
+      "id": "preco-por-pessoa",
+      "p": "¿El precio es por persona?",
+      "r": "En los viajes en que la tarjeta dice \"por persona\", sí, con el tipo de habitación al lado (doble o triple). [Confirmar en los demás viajes, y el precio para quien viaja solo]"
+    },
+    {
+      "id": "embarque",
+      "p": "¿De dónde sale el bus?",
+      "r": "[Punto y horario de embarque de los viajes en bus, y si hay embarque en otras ciudades de la región]. Alter do Chão sale de Confins (Belo Horizonte); en Maceió, un bus semicama lleva hasta el aeropuerto. [Aeropuerto de salida de Maceió]"
+    },
+    {
+      "id": "criancas",
+      "p": "¿Los niños pagan?",
+      "r": "[Regla para niños: edad que no paga, descuento y documentos]"
+    },
+    {
+      "id": "seguro",
+      "p": "¿El seguro de viaje está incluido?",
+      "r": "En la mayoría de los itinerarios, sí: aparece en la lista \"Qué incluye\" de cada viaje. Cuando no aparece, pregunta por WhatsApp."
+    },
+    {
+      "id": "lista-de-espera",
+      "p": "¿Y si se agotan los cupos?",
+      "r": "Toca \"Lista de espera\" en la tarjeta del viaje: el mensaje le llega listo a Cirene, con el viaje y la fecha. [Confirmar cómo funciona la lista de espera]"
+    },
+    {
+      "id": "documentos-cruzeiro",
+      "p": "¿Qué documento llevo en el crucero?",
+      "r": "El itinerario pasa por Uruguay y Argentina. [REVISAR CON EL CLIENTE: documento aceptado (cédula de identidad en buen estado o pasaporte) y autorización para menores]"
+    }
+  ]
+}

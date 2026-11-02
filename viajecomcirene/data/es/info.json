@@ -1,0 +1,26 @@
+{
+  "_leia": [
+    "Aviso do topo e 'Por onde a agenda já passou' em espanhol. O resto (créditos, link do aviso) fica em data/info.json.",
+    "Os estados vão por extenso: em espanhol, 'ES' se lê como Espanha."
+  ],
+  "aviso": { "texto": "Porto Seguro en Semana Santa: aún hay cupos del 20 al 27 de marzo de 2027.", "link": "porto-seguro-semana-santa-2027" },
+  "jaPassaram": [
+    "Serenata Italiana, Espírito Santo",
+    "Foz do Iguaçu, Paraná",
+    "Alto Caparaó, Minas Gerais",
+    "Jericoacoara y Lençóis Maranhenses",
+    "Barretos, Fiesta del Peón",
+    "Capitólio, Minas Gerais",
+    "Guarapari, Espírito Santo",
+    "Diamantina, Minas Gerais",
+    "Cabo Frio, Río de Janeiro",
+    "João Pessoa y Natal",
+    "Parque Minas Beach",
+    "China Park, Espírito Santo",
+    "Paraty, Río de Janeiro",
+    "Nova Friburgo, Río de Janeiro",
+    "Ruta de las Emociones",
+    "Ilha Grande, Río de Janeiro",
+    "Fortaleza, Ceará"
+  ]
+}

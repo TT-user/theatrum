@@ -1102,18 +1102,30 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   inclui, transporte, `status` (`aberta`, `vagas`, `encerrada`) e preço só com o que o story diz
   (`aVista`, `parcelado`, `valorParcela`, `descontoAVista`, `porPessoa`). A viagem cujo `fim` passou sai
   sozinha da agenda e vai para "Por onde a agenda já passou" (junto do `jaPassaram` do `info.json`);
-  `?hoje=AAAA-MM-DD` finge outra data. Hero com o passe de embarque da próxima saída (calculado), fatos e
+  `?hoje=AAAA-MM-DD` finge outra data. Hero com a foto da Cirene com um grupo no Beto Carrero World num
+  hexágono (mandada pelo Matheus; autorização de quem aparece no grupo pendente, e a foto também está na
+  `og-image-v2.jpg`), o passe de embarque da próxima saída (a primeira viagem futura), fatos e
   letreiro; cards ou agenda em lista (como o story), com filtro por transporte e mês; gaveta de cada
   viagem (`#v-<id>` abre direto) em que pessoas, pagamento e nome montam a mensagem, com o total só onde o
   story diz "por pessoa", "Tenho dúvida" e "Mandar para quem vai comigo" (`wa.me/?text=` com o link).
   "Para onde eu vou?" em quatro perguntas indica até três viagens e manda tudo para a Cirene. No celular,
-  cards e avaliações em carrossel de arrastar. Avaliações: 4 das 5 que o Google mostra sem login, texto
+  cards e avaliações em carrossel de arrastar. O retrato dela (avatar do Instagram) fica em "Quem leva você" e o
+  rosto, pequeno, no botão "Falar com a Cirene". **Espanhol desde 02/11/2026, a pedido:** seletor PT · ES no topo
+  (grava em `localStorage` `vc-idioma` e recarrega com `?lang=`; o `<head>` esconde a página até o `main.js`
+  traduzir). Textos fixos e do JS passam por `t()`, com o dicionário em `js/es.js` (chave = frase em português:
+  mudou um texto, mude a chave lá); textos das viagens, dúvidas e aviso em `data/es/`, pela id; preço e data só
+  em `data/viagens.json`; aviso e "já passou" em `data/es/info.json`. O `es.js` só baixa em espanhol, e se
+  um JSON de `data/es/` falhar a página cai no português. Preço segue em real e as mensagens do WhatsApp saem
+  em espanhol; avaliações no original, e a citação da Novais em "Quem leva você" vai traduzida e marcada assim.
+  Filtro e faixa "Fora do Brasil" (tag `exterior` e `paises` no JSON; a faixa se monta das viagens que ainda
+  vão sair): hoje só o cruzeiro; Chile e outros em placeholder até a Cirene confirmar. Menu sanduíche abaixo de 1300 px (com o seletor, os links quebravam em
+  1280). Avaliações: 4 das 5 que o Google mostra sem login, texto
   igual e sobrenome abreviado (a de 4 estrelas que critica Ilha Grande ficou de fora). Fotos dos destinos
   do Wikimedia Commons, ilustrativas, créditos no rodapé. Valores com o aviso de confirmar; CNPJ,
   Cadastur, embarque, sinal e regra de criança em placeholder. QR de avaliação no rodapé, Place ID
   `ChIJO_UThcx7uwARChzzsBh075Q`, conferido no Chrome em 02/11/2026. Sem `js/leads.js`, WhatsApp direto.
   Mesmo padrão: `.htaccess` e meta com noindex, faixa de prévia, sem UET, `js/protecao.js`, marca d'água
-  com `utm_campaign=viajecomcirene`, OG em `og-image-v1.jpg` (HTML em `interno/clientes/viajecomcirene/og/`).
+  com `utm_campaign=viajecomcirene`, OG em `og-image-v2.jpg`, com a foto do grupo (HTML em `interno/clientes/viajecomcirene/og/`).
   Fontes de cada fato e pendências em `interno/clientes/viajecomcirene/README.md`, fora do git.
 
 - **Página "Fale conosco" (`contato/`), na O2, na Zini, na RAR e na Mega, desde 21/10/2026:** canal oficial de
