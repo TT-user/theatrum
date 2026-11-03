@@ -8,7 +8,7 @@
  *
  * Vai para o UET sempre e para o GA4 com a regra do evento() do
  * /js/leads.js: quem aceitou cookies, ou todo mundo nas páginas com o modo
- * de consentimento do Google no <head> (hoje só /site-que-vende/). Até
+ * de consentimento do Google no <head> (home e /site-que-vende/). Até
  * 03/11/2026 não ia para o GA4, e o evento nunca aparecia lá para virar
  * evento-chave.
  *

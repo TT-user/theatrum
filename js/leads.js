@@ -19,7 +19,7 @@
  *
  * Eventos (GA4 e UET), só para quem aceitou cookies, menos nas páginas com
  * o modo de consentimento do Google no <head> (window.theatrumConsentimentoGoogle,
- * hoje só /site-que-vende/): lá vão de todo mundo, e sem o "Aceitar" o
+ * home e /site-que-vende/): lá vão de todo mundo, e sem o "Aceitar" o
  * Google e o UET recebem o evento sem cookie de anúncio.
  *   whatsapp_click  qualquer abertura de WhatsApp (substitui o antigo
  *                   clique_whatsapp); no computador, o clique no WhatsApp

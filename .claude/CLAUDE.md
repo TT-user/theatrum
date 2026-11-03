@@ -373,7 +373,11 @@ o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
 ### Mensagens do WhatsApp por origem do clique
 
 Todo botão usa link `wa.me` direto, nunca widget de terceiro, e leva mensagem
-diferente conforme de onde a pessoa clicou:
+diferente conforme de onde a pessoa clicou. Na home e em `/site-que-vende/`,
+quem veio do Google (gclid, gbraid, wbraid ou `utm_source=google`, guardados
+na aba) manda a mensagem com " (G)" no fim, posto pelo `js/conversoes.js` na
+hora do toque (ver "Microsoft Ads (UET) e consentimento"); a tabela mostra a
+mensagem sem ele:
 
 | Origem | Mensagem |
 |---|---|
@@ -420,7 +424,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 - **Raio-x por escrito no CTA final da home, "Não quer falar agora?"** (desde
   26/10/2026, no lugar do card que aparecia a 70% da página): usa o mesmo
   envio (`TheatrumLeads.enviar`, origem `cta-final-raiox`) e dispara
-  `lead_callback`. Sem envio, vira um link de WhatsApp com o recado escrito.
+  `lead_callback` e, desde 03/11/2026, a conversão "Raio-x por escrito" do
+  Google Ads. Sem envio, vira um link de WhatsApp com o recado escrito.
 - **Promessas publicadas, valem assim que a chave entrar:** o "me chame"
   diz "vou te chamar no WhatsApp em poucos minutos (horário comercial)";
   o diagnóstico por e-mail e as 3 melhorias do pop-up dizem que chegam no
@@ -1162,8 +1167,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   mandou, com as ideias e os textos da Theatrum, desde 30/10/2026, a pedido. Só a estrutura
   veio de lá: texto parecido com o deles foi reescrito, e o nome deles não aparece no código. **Fora do índice** (`noindex, follow`), do sitemap e
   de todo menu enquanto o Matheus decide se ela vira a home ou a página dos anúncios; tem GTM,
-  gtag, UET, `consentimento.js`, `uet-eventos.js` e `leads.js` como a home e, só ela, o modo de
-  consentimento do Google e a medição das seções (ver "Microsoft Ads (UET) e consentimento").
+  gtag, UET, `consentimento.js`, `uet-eventos.js`, `conversoes.js` e `leads.js` e o modo de
+  consentimento do Google como a home e, só ela, a medição das seções (ver "Microsoft Ads (UET)
+  e consentimento").
   Arquivo único (CSS e
   JS embutidos), só em português. Doze seções: hero centralizado (pílula com as vagas que restam,
   do `data/precos.json`; palco com a Cozinha Viva no navegador, o anúncio no Google e um celular
@@ -1385,8 +1391,25 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   é o teto de quem pode ter escaneado o QR), `lead_callback` ("me chame" e
   raio-x por escrito do CTA final) e `lead_email` (diagnóstico por e-mail e
   pop-up de saída). Vão para GA4 e UET **só para quem aceitou cookies**, menos
-  em `/site-que-vende/`.
-- **`/site-que-vende/`, desde 03/11/2026, para os anúncios do Google:** o
+  na home e em `/site-que-vende/`.
+- **Conversões do Google Ads (`js/conversoes.js`), só na home e em
+  `/site-que-vende/`, desde 03/11/2026:** tag direta, com rótulo, não importada
+  do GA4. "WhatsApp" (`AW-18362682320/vTbRCOuvx7EdENCXgbRE`, R$ 30): todo
+  clique em `wa.me` ou `api.whatsapp.com`, por delegação no documento; no
+  computador conta o clique que abre o modal, e os links de dentro do modal
+  (`.tl-caixa`) não contam de novo. Link que abrisse na mesma aba esperaria o
+  Google até 1 s (hoje todos abrem em aba nova). "Raio-x por escrito"
+  (`AW-18362682320/SRGmCOivx7EdENCXgbRE`, R$ 60): `TheatrumConversao.raiox()`,
+  chamado pela página só depois de o Web3Forms confirmar o envio, uma vez por
+  visita (`sessionStorage` `theatrum-conversao-raiox`). O mesmo script guarda
+  a origem do Google na aba (`sessionStorage` `theatrum-origem-google`) e põe o
+  " (G)" no `text=` dos links de WhatsApp (e do WhatsApp Web do modal) na hora
+  do toque, sem duplicar. Ele precisa carregar **antes** do `leads.js`: os dois
+  ouvem o clique na captura, e o modal tem de receber o link já marcado. Não
+  importe `whatsapp_click` nem `lead_callback` do GA4 como conversão principal:
+  contaria em dobro.
+- **Modo de consentimento do Google na home e em `/site-que-vende/`** (na
+  página dos anúncios desde 03/11/2026, na home desde o mesmo dia): o
   `<head>` tem o modo de consentimento do Google antes do `config`
   (`ad_storage`, `ad_user_data` e `ad_personalization` negados até o "Aceitar",
   `analytics_storage` liberado como no resto do site) e marca
@@ -1395,20 +1418,20 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   aceitou entra sem cookie de anúncio; o "Aceitar" do `consentimento.js` faz o
   `update` do Google. Não tire o bloco do `<head>`: sem ele, a tag do Google
   volta a gravar cookie de anúncio antes do "Aceitar" e as conversões voltam a
-  sair só de quem aceitou. A página mede também, só no GA4 e sem ser conversão (bloco
+  sair só de quem aceitou. A `/site-que-vende/` mede também, só no GA4 e sem ser conversão (bloco
   "MEDIÇÃO" no fim do HTML): `secao_vista` (`secao`, uma vez por seção, quando
   chega a 60% da tela), `simulador_usado` (`tipo`), `conversa_escolhida`
   (`negocio`, só clique ou seta da pessoa), `faq_aberta` (`pergunta`) e
-  `trabalho_aberto` (`site`). A política de privacidade diz as duas coisas. A
-  conversão no Google Ads vem do GA4 importado; o GTM está vazio (conferido em
-  03/11/2026), então não há tag de conversão em dobro. Passo a passo das contas
-  em `interno/marketing/ads/google/site-que-vende/campanha.md`.
+  `trabalho_aberto` (`site`). A política de privacidade diz tudo isso, e o (G).
+  O GTM `GTM-N247ZTJ5` carrega, mas está vazio (conferido em 03/11/2026). Passo
+  a passo das contas em `interno/marketing/ads/google/site-que-vende/campanha.md`.
 - Fora esses eventos, o consentimento só controla o UET. GTM, gtag e Google
-  Ads continuam rodando sem pedir; em `/site-que-vende/` também, mas sem cookie
-  de anúncio até o "Aceitar".
-- `consentimento.js`, `uet-eventos.js` e `leads.js` vão com `?v=` (o servidor
-  guarda JS por 7 dias): mudou um deles, suba o número na home, na
-  privacidade e em `/site-que-vende/`. O blog (`scripts/blog/modelos.mjs`)
+  Ads continuam rodando sem pedir; na home e em `/site-que-vende/` também, mas
+  sem cookie de anúncio até o "Aceitar".
+- `consentimento.js`, `uet-eventos.js`, `conversoes.js` e `leads.js` vão com `?v=` (o servidor
+  guarda JS por 7 dias): mudou um deles, suba o número em toda página que o
+  carrega (home, privacidade e `/site-que-vende/`; o `conversoes.js` só nas duas
+  que não são a privacidade). O blog (`scripts/blog/modelos.mjs`)
   ainda pede os endereços antigos e só recebe a versão nova quando o cache de
   quem já visitou vence; acerte lá no próximo build.
 

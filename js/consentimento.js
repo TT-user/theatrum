@@ -75,7 +75,7 @@
       if (valor === 'aceito') {
         window.uetq = window.uetq || [];
         window.uetq.push('consent', 'update', { 'ad_storage': 'granted' });
-        /* nas páginas com o modo de consentimento do Google no <head> (hoje só
+        /* nas páginas com o modo de consentimento do Google no <head> (home e
            /site-que-vende/); nas outras não muda nada */
         if (typeof window.gtag === 'function')
           window.gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });

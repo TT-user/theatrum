@@ -17,6 +17,16 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* modo de consentimento do Google, antes de qualquer config (desde 03/11/2026,
+     igual a /site-que-vende/): cookie de anuncio so depois do "Aceitar"
+     (js/consentimento.js faz o update). A medicao de visitas segue como antes.
+     Com isto, os eventos de contato e as conversoes saem de todo mundo, e o
+     Google e o UET decidem o que guardam: ver evento() no js/leads.js e o
+     js/conversoes.js. Nao tire: sem este bloco, a tag do Google volta a gravar
+     cookie de anuncio antes do "Aceitar". */
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+  try { if (localStorage.getItem('theatrum-cookies') === 'aceito') gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' }); } catch (e) {}
+  window.theatrumConsentimentoGoogle = true;
   gtag('js', new Date());
   gtag('config', 'G-2LNND3QDPM');
   gtag('config', 'AW-18362682320');
@@ -1654,7 +1664,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
 
   /* plano_click (GA4 e UET), além do whatsapp_click do leads.js. O evento()
-     de lá só manda para quem aceitou cookies. */
+     de lá manda de todo mundo aqui (modo de consentimento do Google no <head>). */
   document.addEventListener('click', ev => {
     const a = ev.target && ev.target.closest ? ev.target.closest('[data-plano]') : null;
     if (a && window.TheatrumLeads) window.TheatrumLeads.evento('plano_click', { plano:a.dataset.plano, origem:a.dataset.origem });
@@ -2089,6 +2099,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         foi = await window.TheatrumLeads.enviar({ tipo:T.tipo, empresa:negocio, whatsapp:zap, origem });
         if (foi) window.TheatrumLeads.evento('lead_callback', { origem });
       }
+      if (foi && window.TheatrumConversao) window.TheatrumConversao.raiox();   /* Google Ads, só com envio confirmado */
       bt.disabled = false; bt.innerHTML = rot;
       form.hidden = true;
       if (foi) ok.textContent = T.ok;
@@ -2194,6 +2205,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script src="/js/consentimento.js?v=2" defer></script>
 <script src="/js/uet-eventos.js?v=2" defer></script>
+<script src="/js/conversoes.js?v=1" defer></script>
 <script src="/js/leads.js?v=3" defer></script>
 </body>
 </html>
