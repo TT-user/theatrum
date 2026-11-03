@@ -1115,7 +1115,10 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   story diz "por pessoa", "Tenho dúvida" e "Mandar para quem vai comigo" (`wa.me/?text=` com o link).
   "Para onde eu vou?" em quatro perguntas indica até três viagens e manda tudo para a Cirene. No celular,
   cards e avaliações em carrossel de arrastar. O retrato dela (avatar do Instagram) fica em "Quem leva você" e o
-  rosto, pequeno, no botão "Falar com a Cirene". **Espanhol desde 02/11/2026, a pedido:** seletor PT · ES no topo
+  rosto, pequeno, no botão "Falar com a Cirene". **Espanhol feito em 02/11/2026 e escondido em 03/11/2026, a
+  pedido:** `var ESPANHOL = false` no script do `<head>` põe a classe `so-pt`, que esconde o seletor e deixa o
+  site só em português (`?lang=es` e a escolha gravada são ignorados, e o `es.js` nem baixa); `true` volta tudo,
+  como descrito a seguir. Seletor PT · ES no topo
   (grava em `localStorage` `vc-idioma` e recarrega com `?lang=`; o `<head>` esconde a página até o `main.js`
   traduzir). Textos fixos e do JS passam por `t()`, com o dicionário em `js/es.js` (chave = frase em português:
   mudou um texto, mude a chave lá); textos das viagens, dúvidas e aviso em `data/es/`, pela id; preço e data só

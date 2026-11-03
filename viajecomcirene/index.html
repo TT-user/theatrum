@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     // Idioma: ?lang= vence a escolha gravada. Em espanhol a página fica escondida até o main.js traduzir.
+    // ESPANHOL = false esconde o seletor PT · ES e deixa o site só em português (a tradução continua no
+    // js/es.js e em data/es/). Desligado em 03/11/2026, a pedido; true volta tudo.
+    var ESPANHOL = false;
     (function () { try {
+      if (!ESPANHOL) { document.documentElement.classList.add('so-pt'); return; }
       var q = /[?&]lang=(pt|es)\b/.exec(location.search), l = q ? q[1] : localStorage.getItem('vc-idioma');
       if (q) localStorage.setItem('vc-idioma', q[1]);
       if (l === 'es') {
@@ -37,7 +41,7 @@
   <link rel="preload" href="fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" media="(min-width: 1001px)" href="assets/img/grupo-beto-carrero-360.webp" imagesrcset="assets/img/grupo-beto-carrero-360.webp 360w, assets/img/grupo-beto-carrero-640.webp 640w" imagesizes="(min-width: 1001px) 22vw, 60vw">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=11">
 
   <script type="application/ld+json">
   {
