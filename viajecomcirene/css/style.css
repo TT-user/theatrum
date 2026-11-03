@@ -322,9 +322,9 @@ h2 em, h1 em { font-style: normal; color: var(--turquesa-esc); }
 .cirene__cita { margin: 26px 0 0; padding: 22px 24px; background: #fff; border-radius: var(--r); border-left: 5px solid var(--laranja); box-shadow: var(--sombra); }
 .cirene__cita p { font: 600 18px/1.5 var(--sans); color: var(--marinho); }
 .cirene__cita cite { display: block; margin-top: 10px; font: 600 13px/1 var(--titulo); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: var(--turquesa-esc); }
-.porque { grid-area: porque; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.porque { grid-area: porque; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .porque li { background: #fff; border-radius: var(--r); padding: 22px; border: 1px solid var(--linha); }
-/* título e texto na mesma altura nos quatro, mesmo quando um título quebra em duas linhas */
+/* título e texto na mesma altura nos três, mesmo quando um título quebra em duas linhas */
 @media (min-width: 641px) { .porque li { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; align-content: start; } .porque h3 { align-self: end; } }
 .porque svg { width: 34px; height: 34px; color: var(--turquesa-esc); margin-bottom: 12px; }
 .porque h3 { font-size: 17.5px; color: var(--marinho); margin-bottom: 6px; }
@@ -546,7 +546,6 @@ h2 em, h1 em { font-style: normal; color: var(--turquesa-esc); }
   .passos::before { display: none; }
   .cirene { grid-template-columns: minmax(0, 1fr); grid-template-areas: "texto" "foto" "porque" "passaram"; }
   .cirene__foto { max-width: 460px; }
-  .porque { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nota { justify-self: start; }
   .duvidas { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .duvidas__cab { position: static; }

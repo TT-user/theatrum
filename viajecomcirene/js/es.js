@@ -85,8 +85,6 @@ window.VC_ES = {
     'Transporte, hospedagem, refeições e passeios listados nos roteiros publicados, antes de você fechar.': 'Transporte, alojamiento, comidas y paseos detallados en los itinerarios publicados, antes de que cierres.',
     'Mimos de viagem': 'Detalles de viaje',
     'Brinde do viajante em vários roteiros e sorteio de brindes durante a viagem.': 'Regalo para el viajero en varios itinerarios y sorteo de regalos durante el viaje.',
-    'Feita por empreendedoras': 'Hecha por emprendedoras',
-    'Como a agência se apresenta no Google, onde também diz acolher a comunidade LGBTQ+.': 'Así se presenta la agencia en Google, donde también dice recibir con gusto a la comunidad LGBTQ+.',
     'Por onde a agenda já passou': 'Por dónde ya pasó la agenda',
     'Quem já viajou': 'Quien ya viajó',
     'O que os passageiros dizem no': 'Lo que dicen los pasajeros en',

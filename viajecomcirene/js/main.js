@@ -8,7 +8,7 @@
   'use strict';
   // Em espanhol, o dicionário (js/es.js) baixa antes; se falhar, a página fica em português
   if (document.documentElement.lang === 'es' && !window.VC_ES) {
-    var s = document.createElement('script'); s.src = 'js/es.js?v=3'; s.onload = s.onerror = inicia; document.head.appendChild(s);
+    var s = document.createElement('script'); s.src = 'js/es.js?v=4'; s.onload = s.onerror = inicia; document.head.appendChild(s);
   } else inicia();
   function inicia() {
   var V = 3;
