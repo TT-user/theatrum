@@ -1162,7 +1162,9 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   mandou, com as ideias e os textos da Theatrum, desde 30/10/2026, a pedido. Só a estrutura
   veio de lá: texto parecido com o deles foi reescrito, e o nome deles não aparece no código. **Fora do índice** (`noindex, follow`), do sitemap e
   de todo menu enquanto o Matheus decide se ela vira a home ou a página dos anúncios; tem GTM,
-  gtag, UET, `consentimento.js`, `uet-eventos.js` e `leads.js` como a home. Arquivo único (CSS e
+  gtag, UET, `consentimento.js`, `uet-eventos.js` e `leads.js` como a home e, só ela, o modo de
+  consentimento do Google e a medição das seções (ver "Microsoft Ads (UET) e consentimento").
+  Arquivo único (CSS e
   JS embutidos), só em português. Doze seções: hero centralizado (pílula com as vagas que restam,
   do `data/precos.json`; palco com a Cozinha Viva no navegador, o anúncio no Google e um celular
   recebendo pedidos, um a cada ~3 s, só à vista, parando depois de doze), `[02]` o problema: primeiro o print da notícia do Blog
@@ -1368,17 +1370,47 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
   consentimento. O compartilhar no WhatsApp leva `data-compartilhar`, que o
   `leads.js` deixa passar sem modal nem evento.
 - `plano_click` (`data-plano` nos cards do `[06]`, com o plano e o `data-origem`
-  do botão), pelo `TheatrumLeads.evento`, só com consentimento.
+  do botão), pelo `TheatrumLeads.evento`, com a mesma regra de consentimento.
 - `js/uet-eventos.js`: `diagnostico_click` (`data-uet-diagnostico`, nos
   botões e links "ver quanto eu perco" da home: hero, serviços, como
   funciona, investimento, quem faz, FAQ e CTA final; o "Calculadora" do menu
-  e o "Calcular" da barra do celular não contam) Em `/site-que-vende/`, os links "simular o retorno" (fora a barra do celular).
+  e o "Calcular" da barra do celular não contam) Em `/site-que-vende/`, os links "simular o retorno" (fora a barra do celular),
+  cada um com `data-origem`. Vai para o UET sempre e, desde 03/11/2026, também
+  para o GA4, com a regra de consentimento do `leads.js` (antes nunca chegava
+  lá e não dava para marcar como evento-chave).
 - `js/leads.js`: `whatsapp_click` (qualquer abertura de WhatsApp; substituiu
-  o antigo `clique_whatsapp`), `lead_callback` ("me chame" e raio-x por escrito do CTA final)
-  e `lead_email` (diagnóstico por e-mail e pop-up de saída). Vão para GA4 e
-  UET **só para quem aceitou cookies**.
+  o antigo `clique_whatsapp`; no computador, o clique no WhatsApp Web ou no
+  app dentro do modal, com a origem do botão que abriu o modal, desde
+  03/11/2026), `whatsapp_modal` (o modal do computador abriu; não é conversão,
+  é o teto de quem pode ter escaneado o QR), `lead_callback` ("me chame" e
+  raio-x por escrito do CTA final) e `lead_email` (diagnóstico por e-mail e
+  pop-up de saída). Vão para GA4 e UET **só para quem aceitou cookies**, menos
+  em `/site-que-vende/`.
+- **`/site-que-vende/`, desde 03/11/2026, para os anúncios do Google:** o
+  `<head>` tem o modo de consentimento do Google antes do `config`
+  (`ad_storage`, `ad_user_data` e `ad_personalization` negados até o "Aceitar",
+  `analytics_storage` liberado como no resto do site) e marca
+  `window.theatrumConsentimentoGoogle`. Com essa marca, o `evento()` do
+  `leads.js` e o `uet-eventos.js` mandam os eventos de todo mundo, e quem não
+  aceitou entra sem cookie de anúncio; o "Aceitar" do `consentimento.js` faz o
+  `update` do Google. Não tire o bloco do `<head>`: sem ele, a tag do Google
+  volta a gravar cookie de anúncio antes do "Aceitar" e as conversões voltam a
+  sair só de quem aceitou. A página mede também, só no GA4 e sem ser conversão (bloco
+  "MEDIÇÃO" no fim do HTML): `secao_vista` (`secao`, uma vez por seção, quando
+  chega a 60% da tela), `simulador_usado` (`tipo`), `conversa_escolhida`
+  (`negocio`, só clique ou seta da pessoa), `faq_aberta` (`pergunta`) e
+  `trabalho_aberto` (`site`). A política de privacidade diz as duas coisas. A
+  conversão no Google Ads vem do GA4 importado; o GTM está vazio (conferido em
+  03/11/2026), então não há tag de conversão em dobro. Passo a passo das contas
+  em `interno/marketing/ads/google/site-que-vende/campanha.md`.
 - Fora esses eventos, o consentimento só controla o UET. GTM, gtag e Google
-  Ads continuam rodando sem pedir.
+  Ads continuam rodando sem pedir; em `/site-que-vende/` também, mas sem cookie
+  de anúncio até o "Aceitar".
+- `consentimento.js`, `uet-eventos.js` e `leads.js` vão com `?v=` (o servidor
+  guarda JS por 7 dias): mudou um deles, suba o número na home, na
+  privacidade e em `/site-que-vende/`. O blog (`scripts/blog/modelos.mjs`)
+  ainda pede os endereços antigos e só recebe a versão nova quando o cache de
+  quem já visitou vence; acerte lá no próximo build.
 
 ---
 

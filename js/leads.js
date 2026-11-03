@@ -17,9 +17,16 @@
  * chave, a tela diz que não enviou e oferece o WhatsApp com os dados já
  * escritos. Nunca "recebido" que não aconteceu.
  *
- * Eventos (GA4 e UET), só para quem aceitou cookies:
+ * Eventos (GA4 e UET), só para quem aceitou cookies, menos nas páginas com
+ * o modo de consentimento do Google no <head> (window.theatrumConsentimentoGoogle,
+ * hoje só /site-que-vende/): lá vão de todo mundo, e sem o "Aceitar" o
+ * Google e o UET recebem o evento sem cookie de anúncio.
  *   whatsapp_click  qualquer abertura de WhatsApp (substitui o antigo
- *                   clique_whatsapp)
+ *                   clique_whatsapp); no computador, o clique no WhatsApp
+ *                   Web ou no app dentro do modal, com a origem do botão
+ *                   que abriu o modal
+ *   whatsapp_modal  o modal do computador abriu (não é conversão: quem
+ *                   escaneia o QR não deixa rastro, e este é o teto)
  *   lead_callback   enviou o "me chame"
  *   lead_email      enviou o diagnóstico por e-mail (ou o e-mail do
  *                   pop-up de saída)
@@ -48,9 +55,9 @@
   function le(tipo, chave) { try { return window[tipo].getItem(chave); } catch (e) { return null; } }
   function jaEnviou() { return le('localStorage', LEAD) === 'enviado' || le('sessionStorage', 'theatrum-raiox') === 'enviado'; }
 
-  /* ---------- eventos: só com consentimento ---------- */
+  /* ---------- eventos: só com consentimento (ver o cabeçalho) ---------- */
   function evento(nome, params) {
-    if (le('localStorage', 'theatrum-cookies') !== 'aceito') return;
+    if (!window.theatrumConsentimentoGoogle && le('localStorage', 'theatrum-cookies') !== 'aceito') return;
     params = params || {};
     if (typeof window.gtag === 'function') window.gtag('event', nome, params);
     window.uetq = window.uetq || [];
@@ -393,8 +400,8 @@
         '<div class="tl-op" data-op="c"><h3>' + L.cT + '</h3><small>' + L.cS + '</small>' +
           '<div class="tl-qr"><div class="tl-qr-img" aria-hidden="true"></div><div class="tl-qr-txt">' +
             '<p>' + L.cQ + '</p>' +
-            '<a class="tl-web" href="' + esc(web) + '" target="_blank" rel="noopener" data-wa-direto>' + L.cWeb + '</a>' +
-            '<a class="tl-app" href="' + esc(app) + '" target="_blank" rel="noopener" data-wa-direto>' + L.cApp + '</a>' +
+            '<a class="tl-web" href="' + esc(web) + '" target="_blank" rel="noopener" data-wa-direto="' + esc(origem) + '">' + L.cWeb + '</a>' +
+            '<a class="tl-app" href="' + esc(app) + '" target="_blank" rel="noopener" data-wa-direto="' + esc(origem) + '">' + L.cApp + '</a>' +
           '</div></div></div>' +
       '</div>';
     var m = abreCaixa(html, 'tlTitulo');
@@ -446,7 +453,7 @@
   document.addEventListener('click', function (e) {
     var el = e.target && e.target.closest ? e.target.closest('a, button') : null;
     if (!el) return;
-    if (el.hasAttribute('data-wa-direto')) { evento('whatsapp_click', { origem: 'modal-computador' }); return; }
+    if (el.hasAttribute('data-wa-direto')) { evento('whatsapp_click', { origem: el.getAttribute('data-wa-direto') || 'modal-computador' }); return; }
     if (el.hasAttribute('data-compartilhar')) return;   /* compartilhar artigo do blog: não é contato */
     var href = el.getAttribute('href') || '';
     var ehWa = /(^|\/\/|\.)wa\.me\/|api\.whatsapp\.com/i.test(href);
@@ -454,6 +461,7 @@
     var simples = e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey;
     if (ehWa && simples && computador()) {
       e.preventDefault();
+      if (!aberta) evento('whatsapp_modal', { origem: origemDe(el) });
       abrirModal(el.href, origemDe(el));
       return;
     }
