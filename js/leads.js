@@ -338,6 +338,8 @@
       bt.disabled = true; bt.textContent = L.enviando;
       enviar(d).then(function (foi) {
         if (foi) {
+          /* conversão do Google Ads (js/conversoes.js, só na home e em /site-que-vende/), antes de tudo */
+          if (window.TheatrumConversao && window.TheatrumConversao.formulario) window.TheatrumConversao.formulario(form);
           evento(eventoNome, { origem: origem });
           form.innerHTML = '<p class="tl-ok" role="status">' + ok + '</p>';
           return;

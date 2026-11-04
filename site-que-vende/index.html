@@ -2494,9 +2494,10 @@ function Conversa(cel){
       let foi = false;
       if (window.TheatrumLeads) {
         foi = await window.TheatrumLeads.enviar({ tipo:'Raio-x por escrito (página site-que-vende)', empresa:negocio, whatsapp:zap, origem });
+        /* conversão do Google Ads logo depois do envio confirmado, antes de tudo */
+        if (foi && window.TheatrumConversao) window.TheatrumConversao.formulario(form);
         if (foi) window.TheatrumLeads.evento('lead_callback', { origem });
       }
-      if (foi && window.TheatrumConversao) window.TheatrumConversao.raiox();   /* Google Ads, só com envio confirmado */
       bt.disabled = false; bt.innerHTML = rot;
       form.hidden = true;
       if (foi) ok.textContent = 'Anotado. Vou mandar o raio-x para esse número.';
@@ -2614,7 +2615,7 @@ function Conversa(cel){
 </script>
 <script src="/js/consentimento.js?v=2" defer></script>
 <script src="/js/uet-eventos.js?v=2" defer></script>
-<script src="/js/conversoes.js?v=1" defer></script>
-<script src="/js/leads.js?v=3" defer></script>
+<script src="/js/conversoes.js?v=2" defer></script>
+<script src="/js/leads.js?v=4" defer></script>
 </body>
 </html>

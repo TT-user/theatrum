@@ -1398,13 +1398,23 @@ Só no site principal: home, `/portfolio/`, `/us/`, `/moveis-planejados/`,
 - **Conversões do Google Ads (`js/conversoes.js`), só na home e em
   `/site-que-vende/`, desde 03/11/2026:** tag direta, com rótulo, não importada
   do GA4. "WhatsApp" (`AW-18362682320/vTbRCOuvx7EdENCXgbRE`, R$ 30): todo
-  clique em `wa.me` ou `api.whatsapp.com`, por delegação no documento; no
-  computador conta o clique que abre o modal, e os links de dentro do modal
-  (`.tl-caixa`) não contam de novo. Link que abrisse na mesma aba esperaria o
-  Google até 1 s (hoje todos abrem em aba nova). "Raio-x por escrito"
-  (`AW-18362682320/SRGmCOivx7EdENCXgbRE`, R$ 60): `TheatrumConversao.raiox()`,
-  chamado pela página só depois de o Web3Forms confirmar o envio, uma vez por
-  visita (`sessionStorage` `theatrum-conversao-raiox`). O mesmo script guarda
+  clique que abre o WhatsApp (`wa.me`, `api.whatsapp.com` e, no modal, o
+  WhatsApp Web), por delegação no documento. No computador, o clique que só
+  abre o modal não conta: lá dentro a pessoa ainda escolhe entre o WhatsApp e
+  o formulário, e cada modal (`.tl-caixa`, marcado com `data-conversao`) conta
+  uma conversão só, a do que ela fez primeiro, para o mesmo lead não contar
+  duas vezes (desde 03/11/2026, depois do teste no Tag Assistant). Quem
+  escaneia o QR não deixa rastro; o (G) na conversa é a contagem. Link que
+  abrisse na mesma aba esperaria o Google até 1 s (hoje todos abrem em aba
+  nova). "Raio-x por escrito" (`AW-18362682320/SRGmCOivx7EdENCXgbRE`, R$ 60):
+  `TheatrumConversao.formulario(form)`, chamado logo depois de o Web3Forms
+  confirmar o envio, antes do evento do GA4 e da mensagem de sucesso, uma vez
+  por visita (`sessionStorage` `theatrum-conversao-raiox`). Vale para o raio-x
+  por escrito do `[09]` e para os três formulários do `leads.js` (diagnóstico
+  por e-mail e "me chamem" do modal, pop-up de saída), que o chamam no
+  `ligaForm`; no blog e na privacidade o `conversoes.js` não carrega e a
+  chamada não faz nada. Nenhum formulário abre o WhatsApp sozinho depois do
+  envio. O mesmo script guarda
   a origem do Google na aba (`sessionStorage` `theatrum-origem-google`) e põe o
   " (G)" no `text=` dos links de WhatsApp (e do WhatsApp Web do modal) na hora
   do toque, sem duplicar. Ele precisa carregar **antes** do `leads.js`: os dois
