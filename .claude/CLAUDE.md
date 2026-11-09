@@ -468,7 +468,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   próprio, que anula a regra do acervo nela: por isso cada uma repete a condição do cookie e,
   sem ele, mostra o `entrar.html`. Trocou a senha, troque o valor em todos os `.htaccess`
   (procure por `theatrum_acervo`) e no `scripts/previa.mjs` do `cxf-loja`, que gera a
-  `acervo/cxf/`. Das prévias, o público vê só as versões de marca fictícia da vitrine.
+  `acervo/cxf/`. Das prévias, o público vê só as versões de marca fictícia da vitrine,
+  com uma exceção: a cópia aberta da O2 em `/exemplo-academia-v3q9/` (ver a O2, abaixo).
   **Prévia nova** nasce na raiz (`<pasta>/`) enquanto o cliente decide e entra no `SITES` com
   `{ raiz: true }`; capa em `acervo/img/`. Quando sair do ar: `git mv <pasta> acervo/<pasta>`;
   nas URLs absolutas (og, canonical, schema), `usetheatrum.com.br/<pasta>/` vira
@@ -921,6 +922,15 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   `interno/clientes/o2fitness/og/`). Fotos originais e pendências em `interno/clientes/o2fitness/`,
   fora do git.
   **Fora do ar desde 28/10/2026.** Desde 29/10/2026 mora no acervo, com senha (ver `/acervo/`), e o endereço antigo manda para a home.
+
+- `/exemplo-academia-v3q9/` — **cópia aberta, sem senha, da `/acervo/o2fitness/`**, desde 09/11/2026,
+  para mandar como exemplo a academias na prospecção (a primeira foi a IronGym, de Belo Horizonte).
+  O sufixo só dificulta adivinhar o endereço: o repositório é público. Igual à O2, com três
+  diferenças: o `.htaccess` não tem a condição do cookie, as URLs absolutas (og, canonical, schema)
+  apontam para a pasta nova, para a prévia aparecer no WhatsApp, e a marca d'água leva
+  `utm_campaign=exemplo-academia`. A faixa continua dizendo que é uma demonstração para a O2.
+  Noindex, fora do sitemap, do acervo e de todo menu. Mexeu na O2, a cópia não acompanha. Para
+  fechar, apague a pasta.
 
 - `/acervo/rar/` — prévia do site da RAR Academia (musculação, cardio, plano família e loja de suplementos
   na recepção, Rod. Abílio Manoel de Lima, km 7, Encantada, Garopaba, SC), desde 22/10/2026, feita
