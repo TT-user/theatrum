@@ -1,0 +1,41 @@
+{
+  "_leia": "Objetivos da seção [04] (\"Onde a sua marca precisa chegar?\"). Cada um vira um botão na lista e um cartão de combinação. 'inclui' são os serviços que entram. O WhatsApp do botão do cartão cita o 'titulo'.",
+  "objetivos": [
+    {
+      "titulo": "Aparecer para quem já está procurando",
+      "tag": "Seu serviço é bom. O problema é que pouca gente chega até ele.",
+      "texto": "A gente põe sua marca onde a busca acontece e prepara a página que recebe essa visita. Quem procura, acha. Quem acha, entende o que você faz em poucos segundos.",
+      "inclui": ["Site institucional", "Landing page", "Google Meu Negócio", "SEO local", "Anúncios no Google e no Instagram"]
+    },
+    {
+      "titulo": "Cobrar o que vale, sem pedir desculpa",
+      "tag": "Antes da conversa, a sua marca já disse quanto você vale.",
+      "texto": "Nome, identidade e materiais falando a mesma língua, do cartão à fachada. Quando a percepção chega antes da proposta, a negociação começa em outro patamar.",
+      "inclui": ["Posicionamento", "Identidade visual", "Naming", "Papelaria", "Catálogos e apresentações"]
+    },
+    {
+      "titulo": "Postar com ritmo, não com culpa",
+      "tag": "Ideia você tem. O que falta é constância.",
+      "texto": "Linha editorial, calendário e produção de foto e vídeo num ritmo que a sua rotina aguenta. A marca aparece toda semana e é lembrada quando a decisão chega.",
+      "inclui": ["Gestão de redes sociais", "Produção de vídeo", "Fotografia de marca", "Roteiros para reels"]
+    },
+    {
+      "titulo": "Converter melhor quem já chegou",
+      "tag": "Tem gente chegando. Ela só não está virando cliente.",
+      "texto": "Revisamos o caminho inteiro: do anúncio à página, da página ao WhatsApp, do WhatsApp à proposta. Cada etapa com uma mensagem clara e um próximo passo.",
+      "inclui": ["Landing page", "Roteiro de atendimento no WhatsApp", "Apresentação comercial", "E-mail marketing"]
+    },
+    {
+      "titulo": "Lançar sem improviso",
+      "tag": "Produto novo merece estreia, não post solto.",
+      "texto": "Nome, embalagem, campanha e calendário de lançamento pensados juntos, com data marcada e material pronto antes do primeiro anúncio.",
+      "inclui": ["Naming", "Embalagem", "Campanha de lançamento", "Filme de 30 s", "Plano de mídia"]
+    },
+    {
+      "titulo": "Abrir um espaço que as pessoas lembram",
+      "tag": "Quem entra precisa sentir a marca antes de ler a placa.",
+      "texto": "Fachada, letreiro, sinalização e ambientação desenhados com a identidade, junto com o arquiteto da obra. O espaço vira o melhor post da sua marca.",
+      "inclui": ["Projeto de sinalização", "Fachada e letreiro", "Ambientação de marca", "Uniformes e materiais"]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "_leia": "Artigos da seção [06]. 'corpo' é uma lista de blocos: texto simples vira parágrafo, texto começando com '## ' vira subtítulo. 'capa' escolhe o desenho do quadro (gota, anel ou meia).",
+  "posts": [
+    {
+      "cat": "Branding", "capa": "gota", "data": "12 de outubro de 2026", "leitura": "3 min",
+      "titulo": "Identidade visual: o que é essencial e o que é enfeite",
+      "resumo": "Logo é só a porta de entrada. Antes de pedir o seu, vale saber o que vem junto e o que dá para deixar para depois.",
+      "corpo": [
+        "Quando alguém pede uma identidade visual, quase sempre está pensando no logo. Ele importa, mas sozinho resolve pouco: o que faz uma marca ser reconhecida é o conjunto aplicado do mesmo jeito em todo lugar.",
+        "## O essencial",
+        "Logo em versão horizontal e reduzida, duas ou três cores com os códigos anotados, uma fonte para título e outra para texto e um exemplo pronto de cada peça que você usa toda semana: post, cartão, proposta. Com isso, qualquer pessoa da equipe produz sem desfigurar a marca.",
+        "## O que pode esperar",
+        "Mascote, padrão gráfico para estampa, manual de oitenta páginas e logo animado. São ótimos, mas só fazem sentido quando o básico já está sendo usado com disciplina.",
+        "## Um teste simples",
+        "Cubra o logo de três posts seus e mostre para alguém. Se a pessoa ainda souber de quem é, a identidade está funcionando."
+      ]
+    },
+    {
+      "cat": "Mídia social", "capa": "anel", "data": "28 de setembro de 2026", "leitura": "3 min",
+      "titulo": "Quantas vezes por semana a sua marca precisa postar?",
+      "resumo": "A resposta honesta é: o tanto que você consegue manter por um ano inteiro. Ritmo vence volume.",
+      "corpo": [
+        "Postar todo dia por três semanas e sumir por dois meses ensina ao seu público que a sua marca é imprevisível. Três posts por semana durante um ano fazem mais pela lembrança do que qualquer maratona.",
+        "## Comece pelo que você aguenta",
+        "Olhe para a sua rotina e para a equipe que você tem hoje. Se só dá para produzir dois conteúdos bons por semana, esse é o seu ritmo. Aumentar depois é fácil; diminuir parece abandono.",
+        "## Divida por tipo, não por data",
+        "Separe o que você posta em três ou quatro tipos fixos: bastidor, prova de trabalho, dúvida de cliente e oferta, por exemplo. Fica mais fácil ter ideia quando a pergunta é \"qual bastidor eu mostro esta semana?\" e não \"o que eu posto hoje?\".",
+        "## Meça o que importa",
+        "Curtida conta pouco. Acompanhe quantas pessoas chamam no direct ou no WhatsApp depois de um post. É esse número que diz se o ritmo está funcionando."
+      ]
+    },
+    {
+      "cat": "Site, Saúde", "capa": "meia", "data": "9 de setembro de 2026", "leitura": "4 min",
+      "titulo": "Site de clínica: o que o paciente procura antes de marcar",
+      "resumo": "Quem chega pelo Google quer resolver três dúvidas em menos de um minuto. Se o site não responde, ele volta para a busca.",
+      "corpo": [
+        "O paciente que encontra a sua clínica no Google ainda não decidiu. Ele abriu três ou quatro sites ao mesmo tempo e vai ficar com o que responder mais rápido às dúvidas dele.",
+        "## Onde fica e como chego",
+        "Endereço, mapa e estacionamento logo no começo, não escondidos no rodapé. Parece óbvio, e é a informação que mais falta.",
+        "## Atende o meu caso?",
+        "Liste os tratamentos com as palavras que o paciente usa, não só com o nome técnico. Quem procura \"mancha no rosto\" nem sempre sabe que precisa de \"tratamento de melasma\".",
+        "## Como eu marco?",
+        "Um botão de agendamento ou de WhatsApp sempre à vista, com a mensagem já escrita. Cada passo a mais entre a dúvida e a conversa é um paciente a menos.",
+        "E vale lembrar: publicidade de saúde tem regras próprias do conselho de cada profissão. Antes de publicar antes e depois ou depoimento, confira o que vale para a sua área."
+      ]
+    }
+  ]
+}

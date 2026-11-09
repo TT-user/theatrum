@@ -459,8 +459,8 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
   próprio (`Desktop/littletrees`), fora deste site.
 - `/projetos/` — **todos os sites da Theatrum numa página, aberta para quem tem o link, desde
   09/11/2026** (até então era o `/acervo/`, com senha): as prévias de negócio real, a Little Trees e a
-  TM Sports (sites no ar fora daqui) e as 27 demonstrações (as 26 da vitrine da home e a Caparaó
-  Solar), em nove segmentos (academias, saúde, nutrição, pousadas e viagens, imóveis, planejados,
+  TM Sports (sites no ar fora daqui) e as 28 demonstrações (as 26 da vitrine da home, a Caparaó
+  Solar e a Anil, que ainda não entrou na vitrine), em nove segmentos (academias, saúde, nutrição, pousadas e viagens, imóveis, planejados,
   lojas, agro, serviços), com filtro por segmento e por "negócio real" ou "projeto conceito". Cada
   negócio real leva também o selo "prévia" ou "site no ar": a página não chama de cliente quem só
   recebeu prévia. Noindex, sem UET, fora do sitemap e de qualquer menu; no rodapé, "Quero um site
@@ -1261,7 +1261,7 @@ Carregado em todas as páginas do site principal (as mesmas do UET). Desde
 | `/nutricao/demos/` | 6 | nutrição |
 | `/lojas/demos/` | 1 | loja online |
 | `/solar/demos/` | 1 | energia solar (no portfólio, dentro de "negócios locais") |
-| `/negocios/demos/` | 8 | negócios locais |
+| `/negocios/demos/` | 9 | negócios locais |
 
 A Maré Mansa (`/imoveis/demos/mare-mansa/`, desde 11/10/2026) é a prévia da
 Antonio's refeita do mesmo jeito: nome, logo, paleta (azul atlântico e dourado
@@ -1281,8 +1281,8 @@ a linha fictícia Lume, com os frascos desenhados pelo próprio main.js. Paleta
 de vinho para verde-musgo. Links de Instagram e podcast caem no aviso de
 demonstração.
 
-As oito de `/negocios/demos/` são as prévias de cliente refeitas como
-marca fictícia, para o portfólio: Prumo (da AML), Vereda (da Eng+), Pedra
+Oito das nove de `/negocios/demos/` são as prévias de cliente refeitas como
+marca fictícia, para o portfólio (a nona, a Anil, nasceu de uma referência de fora): Prumo (da AML), Vereda (da Eng+), Pedra
 Alta (do Recanto), Campo Vivo (da Inovar), Lívia Amaral (da Gabriela
 Carolina), Clã Valente (do Felipe Fornari), Arco (da Doctors) e Aceno (da Agrega). Nome, cidade, cores, logo,
 fotos, telefones, depoimentos e números foram trocados; os WhatsApps ficam
@@ -1339,6 +1339,38 @@ Aceno tem subpáginas, e guarda o `?de=` na aba para a volta funcionar depois
 de trocar de página. Desde 28/10/2026 é o primeiro site do primeiro bloco da
 vitrine da home, a pedido (capa do portal em `assets/img/vitrine/aceno-desktop.webp`
 e `home/aceno-{480,800}.webp`), e a `/projetos/` usa a mesma capa.
+
+A Anil (`/negocios/demos/anil/`, desde 09/11/2026) é uma agência de branding
+fictícia no Setor Marista, em Goiânia, feita a pedido no molde do site de uma
+agência de branding real que o Matheus mandou: a estrutura veio de lá; texto,
+marca, cores, fotos e clientes são outros, e o nome da agência real fica só no
+README interno (o repositório é público). Página única (`index.html`,
+`css/style.css`, `js/main.js`), Outfit servida daqui (33 KB, variável de 300 a
+800). Logo: "anil" em Outfit 700 convertido em contorno, com uma gota de tinta
+no lugar do pingo do i (`#anil` no sprite do HTML; a gota pega a cor de
+`--gota`). Cores: fundo `#ECEBE8`, grafite `#1C1B21`, anil `#3528D4` (texto e
+botão sobre o claro) e lilás `#A49CFF` (sobre o escuro e na bola dos botões).
+Seções: hero com o vídeo do estúdio e o nome gigante por cima, manifesto,
+projetos (nove clientes fictícios com filtro por categoria, seis à vista e
+"Ver todos"; cada um abre numa janela com desafio, o que fizemos e entregas, e
+a Cajá abre o filme), "Onde a sua marca precisa chegar?" (seis objetivos com a
+combinação de serviços de cada um; no celular o cartão abre dentro da lista),
+faixa com parallax, blog (três artigos que abrem numa janela), faixa "Anil
+Saúde", "Uma agência pequena de propósito" e o convite com o orçamento em
+quatro campos, que não envia nada (a tela final diz isso). Projetos, objetivos
+e artigos vêm de `data/*.json`. **Todas as fotos e vídeos são gerados por IA**
+(FLUX.1-schnell no AI Horde anônimo), e a faixa do topo e o rodapé dizem isso;
+os logos dos clientes fictícios (Íris, Brisa, Pequi, Torra Cerrado, Quadra,
+Cora, Cajá, Nômade e Boreal) foram desenhados em HTML por cima das fotos e
+gravados nas capas WebP, e o logo da Anil na parede da recepção também. Os vídeos são as cenas com zoom
+lento e fusão entre elas, em loop sem corte: `hero.mp4` (1,5 MB),
+`hero-m.mp4` (0,7 MB, abaixo de 760 px) e `caja.mp4` (0,7 MB). O do hero só
+carrega depois do `load`, nunca com movimento reduzido, economia de dados ou
+`?still=1`, e pausa fora da tela. Scripts (fotos, logo, capas, vídeos,
+conversão e o teste com Playwright) em `interno/demos-em-producao/anil/`, fora
+do git, com o passo a passo no README de lá. Não entrou na vitrine da home: a
+capa já está pronta em `assets/img/vitrine/anil-desktop.webp` e
+`home/anil-{480,800}.webp`, e a `/projetos/` usa a mesma.
 
 A Beatriz Lemos e a Lara Mendonça (`/nutricao/demos/beatriz-lemos/` e
 `lara-mendonca/`, desde 13/10/2026) são prévias de nutricionistas reais

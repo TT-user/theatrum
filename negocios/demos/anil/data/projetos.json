@@ -1,0 +1,79 @@
+{
+  "_leia": "Projetos da grade [03], na ordem em que aparecem. Tudo é fictício (clientes, cidades, anos e textos). 'capa' é o nome do arquivo em assets/img/projetos/ (-480, -800 e -1100.webp). 'video' abre no lugar da capa quando o projeto é aberto. 'cats' precisa usar os nomes de 'categorias'.",
+  "categorias": ["Embalagem", "Identidade visual", "Mídia social", "Naming", "Sinalização", "Site", "Vídeo e foto"],
+  "visiveis": 6,
+  "projetos": [
+    {
+      "id": "iris", "cliente": "Íris Dermatologia", "onde": "Goiânia, GO · 2025", "cats": ["Identidade visual"], "capa": "iris",
+      "alt": "Retrato de uma dermatologista de blazer preto com o logo da Íris Dermatologia em branco",
+      "resumo": "Uma marca tão calma quanto a consulta.",
+      "desafio": "A clínica crescia por indicação, mas a marca antiga parecia de farmácia de bairro. Paciente novo chegava esperando pouco e saía surpreso com o atendimento.",
+      "fizemos": "Partimos da íris, a parte do olho que se ajusta à luz, para desenhar um símbolo de anéis finos. Tipografia leve, muito respiro e uma paleta de grafite e tom de pele que funciona do receituário à fachada.",
+      "entregas": ["Posicionamento e tom de voz", "Logo e símbolo", "Paleta e tipografia", "Papelaria e receituário", "Modelos para redes sociais"]
+    },
+    {
+      "id": "brisa", "cliente": "Ateliê Brisa", "onde": "Brasília, DF · 2025", "cats": ["Mídia social", "Vídeo e foto"], "capa": "brisa",
+      "alt": "Celular com o perfil do Ateliê Brisa e posts de moda em linho ao redor",
+      "resumo": "Um perfil que vende linho sem gritar liquidação.",
+      "desafio": "A marca postava só foto de peça no cabide e dependia de cupom para vender. O perfil tinha seguidores, mas pouca conversa no direct.",
+      "fizemos": "Ensaio de campanha, linha editorial com três tipos de post (coleção, bastidor do ateliê e cuidado com a peça) e um calendário mensal com as datas da marca, não as do varejo.",
+      "entregas": ["Linha editorial", "Ensaio de campanha", "Modelos de post e stories", "Calendário mensal", "Gestão do perfil"]
+    },
+    {
+      "id": "pequi", "cliente": "Pequi Cozinha do Cerrado", "onde": "Goiânia, GO · 2024", "cats": ["Sinalização", "Identidade visual"], "capa": "pequi",
+      "alt": "Letreiro de latão da Pequi Cozinha do Cerrado numa parede de pedra iluminada",
+      "resumo": "Letreiro de latão numa parede de pedra.",
+      "desafio": "Restaurante novo numa rua cheia de bares. Precisava ser achado à noite e render foto do lado de dentro.",
+      "fizemos": "Logo com o pequi cortado ao meio, letreiro em latão escovado com luz rasante na parede de pedra, placa de fachada, cardápio e sinalização de banheiro e cozinha no mesmo desenho.",
+      "entregas": ["Logo", "Letreiro interno", "Placa de fachada", "Cardápio", "Sinalização interna"]
+    },
+    {
+      "id": "torra", "cliente": "Torra Cerrado", "onde": "Patrocínio, MG · 2024", "cats": ["Embalagem", "Identidade visual"], "capa": "torra",
+      "alt": "Três embalagens de café da Torra Cerrado, em terracota, creme e marrom, com grãos na frente",
+      "resumo": "Três cafés, três cores, uma família.",
+      "desafio": "O produtor vendia café especial em saco genérico, com etiqueta impressa em casa. Na prateleira do empório, sumia ao lado das marcas grandes.",
+      "fizemos": "Sistema de embalagem com uma cor por perfil de torra, rótulo que conta a fazenda, a altitude e as notas de sabor, e um selo de lote que o produtor carimba à mão.",
+      "entregas": ["Logo", "Sistema de rótulos", "Embalagens de 250 g e 1 kg", "Selo de lote", "Material de ponto de venda"]
+    },
+    {
+      "id": "quadra", "cliente": "Quadra Arquitetura", "onde": "Brasília, DF · 2025", "cats": ["Site"], "capa": "quadra",
+      "alt": "Notebook e celular mostrando o site da Quadra Arquitetura com a foto de uma casa de concreto e madeira",
+      "resumo": "Um site que mostra a casa antes do texto.",
+      "desafio": "O escritório mandava PDF de portfólio pelo WhatsApp. Cada orçamento começava com \"manda umas fotos aí\".",
+      "fizemos": "Site com os projetos em foto grande, filtro por tipo de obra, página de cada casa com planta e ficha técnica e um formulário que já pergunta terreno, metragem e prazo.",
+      "entregas": ["Arquitetura do site", "Design e desenvolvimento", "Textos", "SEO local", "Formulário de briefing"]
+    },
+    {
+      "id": "cora", "cliente": "Instituto Cora", "onde": "Anápolis, GO · 2024", "cats": ["Identidade visual", "Sinalização", "Naming"], "capa": "cora",
+      "alt": "Recepção clara do Instituto Cora com o logo no painel de madeira atrás do balcão",
+      "resumo": "Saúde da mulher, sem o rosa óbvio.",
+      "desafio": "Três médicas abrindo um instituto juntas, cada uma com o próprio nome conhecido na cidade. A marca precisava ser maior que as três sem apagar nenhuma.",
+      "fizemos": "Nome curto, que vem de coração, símbolo de três arcos que se encontram e uma paleta de sálvia e argila. Da recepção ao jaleco, tudo no mesmo tom.",
+      "entregas": ["Naming", "Identidade visual", "Sinalização da recepção", "Uniformes", "Kit de boas-vindas"]
+    },
+    {
+      "id": "caja", "cliente": "Cajá Sucos", "onde": "Goiânia, GO · 2025", "cats": ["Vídeo e foto"], "capa": "caja", "video": "caja",
+      "alt": "Três garrafas de suco amarelo com cajás e folhas em fundo amarelo, quadro do filme de lançamento",
+      "resumo": "Filme de lançamento em uma diária de estúdio.",
+      "desafio": "Lançar uma linha de sucos prensados a frio com orçamento de uma diária de estúdio, e com material para as redes e para o painel de LED do shopping.",
+      "fizemos": "Roteiro de 30 segundos, foto e vídeo no mesmo set e cortes em 9:16, 1:1 e 16:9 a partir da mesma captação.",
+      "entregas": ["Roteiro", "Captação de vídeo e foto", "Filme de 30 s", "Cortes para redes", "Versão para painel de LED"]
+    },
+    {
+      "id": "nomade", "cliente": "Nômade", "onde": "Pirenópolis, GO · 2024", "cats": ["Naming"], "capa": "nomade",
+      "alt": "Quadro com o nome Nômade escolhido e os nomes descartados riscados ao lado",
+      "resumo": "De 212 nomes a um.",
+      "desafio": "Um casarão em Pirenópolis ia virar hostel e coworking ao mesmo tempo. O nome tinha de servir para o mochileiro de fim de semana e para quem trabalha de lá por um mês.",
+      "fizemos": "Três rodadas de nomes, checagem de domínio e de marca no INPI, teste de pronúncia com gente de fora e um logo que lembra placa de estrada.",
+      "entregas": ["Naming", "Checagem de domínio e registro", "Logo", "Placa de fachada"]
+    },
+    {
+      "id": "boreal", "cliente": "Boreal Imóveis", "onde": "Uberlândia, MG · 2023", "cats": ["Identidade visual"], "capa": "boreal",
+      "alt": "Papelaria da Boreal Imóveis em azul-marinho: cartões de visita, papel timbrado e envelope",
+      "resumo": "Papelaria de quem vende casa de alto padrão.",
+      "desafio": "Imobiliária de 20 anos com o logo desenhado pelo fundador num programa de planilha. A segunda geração queria vender imóveis de alto padrão sem perder quem já era cliente.",
+      "fizemos": "Redesenho que manteve a estrela do logo antigo, tipografia nova, papelaria completa e um padrão de placa de venda que se reconhece de longe.",
+      "entregas": ["Redesenho de logo", "Papelaria", "Placas de venda", "Assinatura de e-mail", "Modelos de anúncio"]
+    }
+  ]
+}
