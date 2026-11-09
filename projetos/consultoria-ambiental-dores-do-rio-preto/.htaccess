@@ -1,0 +1,7 @@
+# Demo de cliente: não indexar (vale se a pasta for servida pela Hostinger)
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# Aberta para quem tem o link desde 09/11/2026, em /projetos/consultoria-ambiental-dores-do-rio-preto/ (endereço sem o nome
+# do negócio). O endereço antigo, na raiz, continua mandando para a home.

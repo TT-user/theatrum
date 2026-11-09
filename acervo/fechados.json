@@ -1,0 +1,13 @@
+{
+  "_leia": "Prévias que continuam com senha desde 09/11/2026: têm antes e depois, depoimentos ou avaliações com nome de cliente que ainda esperam autorização. A página /projetos/ só busca este arquivo quando o navegador tem o cookie do acervo, e o .htaccess desta pasta só o entrega com a senha certa. Saiu a autorização? Mova a pasta para projetos/<tipo>-<cidade>/ (como as outras) e troque a linha daqui por uma real(...) no SITES de projetos/index.html. Capa em acervo/img/<pasta>-{480,800}.webp. Prévia que ainda está na raiz enquanto o cliente decide, mas tem material que espera autorização, entra aqui com \"raiz\": true: abre pelo próprio link, sem senha, mas só aparece na lista para quem tem a chave.",
+  "sites": [
+    {"seg": "academias", "pasta": "o2fitness", "nome": "O2 Fitness", "tipo": "Academia", "lugar": "Espera Feliz, MG", "faz": "Por onde começar em quatro perguntas e página Fale conosco"},
+    {"seg": "academias", "pasta": "megaacademia", "nome": "Mega Academia", "tipo": "Academia", "lugar": "Itajaí, SC", "faz": "Aulas coletivas e por onde começar em cinco perguntas"},
+    {"seg": "academias", "pasta": "fornari", "nome": "Team Fornari", "tipo": "Treinador online e presencial", "lugar": "Alto Caparaó, MG", "faz": "Antes e depois em carrossel e aplicação em sete perguntas"},
+    {"seg": "saude", "pasta": "gabriela-carolina", "nome": "Gabriela Carolina", "tipo": "Psicanálise e Reiki", "lugar": "Atendimento online", "faz": "Por onde começar em cinco perguntas e depoimentos"},
+    {"seg": "saude", "pasta": "bia-de-luca", "nome": "Bia De Luca", "tipo": "Terapeuta e palestrante", "lugar": "São Paulo, SP", "faz": "Por onde começar e florais que montam a mensagem"},
+    {"seg": "hospedagem", "pasta": "viajecomcirene", "raiz": true, "nome": "Viaje com Cirene", "tipo": "Agência de viagens", "lugar": "Carangola, MG", "faz": "Agenda de viagens com reserva mastigada e \"Para onde eu vou?\""},
+    {"seg": "lojas", "pasta": "nerd-club", "nome": "Nerd Club", "tipo": "Games, oficina e impressão 3D", "lugar": "Teresópolis, RJ", "faz": "Tema fliperama, moedas secretas e diagnóstico da oficina"},
+    {"seg": "servicos", "pasta": "agrega", "nome": "Agrega", "tipo": "Agência de marketing e gráfica", "lugar": "Espera Feliz, MG", "faz": "Portal dividido entre as duas marcas e orçamento em três passos"}
+  ]
+}

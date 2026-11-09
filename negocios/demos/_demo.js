@@ -47,8 +47,8 @@
   /* o destino depende só de onde a pessoa veio; o idioma muda só o texto */
   var VOLTA = origem === 'us'
     ? { raiz: RAIZ + 'us/', cta: RAIZ + 'us/#pricing' }
-    : origem === 'acervo'
-    ? { raiz: RAIZ + 'acervo/', cta: RAIZ + '#diagnostico' }
+    : (origem === 'projetos' || origem === 'acervo')
+    ? { raiz: RAIZ + 'projetos/', cta: RAIZ + '#diagnostico' }
     : origem === 'portfolio'
     ? { raiz: RAIZ + 'portfolio/', cta: RAIZ + '#diagnostico' }
     : { raiz: RAIZ, cta: RAIZ + '#diagnostico' };

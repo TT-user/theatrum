@@ -1,6 +1,6 @@
 ---
 name: previa-de-cliente
-description: Monta a prévia do site de um cliente real (site institucional, landing, loja ou sistema simples) a partir do briefing em interno/clientes/<cliente>/, no molde de /acervo/aml, /acervo/engmais, /acervo/inovar e /acervo/recanto. Usar quando um cliente novo chega ou quando o briefing de um cliente muda.
+description: Monta a prévia do site de um cliente real (site institucional, landing, loja ou sistema simples) a partir do briefing em interno/clientes/<cliente>/, no molde de /projetos/medicina-do-trabalho-cataguases (AML), /projetos/consultoria-ambiental-dores-do-rio-preto (Eng+), /projetos/agroveterinaria-dores-do-rio-preto (Inovar) e /projetos/chales-alto-caparao (Recanto). Usar quando um cliente novo chega ou quando o briefing de um cliente muda.
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: inherit
 ---
@@ -15,16 +15,16 @@ prévia, SEO, loja; vale o briefing quando ele pedir diferente) e o
 briefing em `interno/clientes/<cliente>/`. Use como referência a prévia
 existente mais parecida com o caso:
 
-- `/acervo/recanto/`: tudo vem de JSON (`data/*.json` + `js/render.js`). Bom
+- `/projetos/chales-alto-caparao/`: tudo vem de JSON (`data/*.json` + `js/render.js`). Bom
   molde quando o cliente vai querer trocar conteúdo depois.
-- `/acervo/inovar/`: números e rotas em `data/config.json`, agendamento em passos.
-- `/acervo/aml/` e `/acervo/engmais/`: institucional com diagnóstico e simulação de
+- `/projetos/agroveterinaria-dores-do-rio-preto/`: números e rotas em `data/config.json`, agendamento em passos.
+- `/projetos/medicina-do-trabalho-cataguases/` e `/projetos/consultoria-ambiental-dores-do-rio-preto/`: institucional com diagnóstico e simulação de
   WhatsApp.
 
 ## Regras que não se negociam
 
 - Pasta nova na raiz com o nome curto do cliente, com `.htaccess` de
-  `X-Robots-Tag: noindex, nofollow` (copie o noindex de `acervo/aml/.htaccess`, sem o bloco do cookie do acervo, que fecharia a prévia nova).
+  `X-Robots-Tag: noindex, nofollow` (copie o noindex de `projetos/medicina-do-trabalho-cataguases/.htaccess`; nunca o de uma prévia de `acervo/`, que traz o bloco do cookie e fecharia a prévia nova).
 - Faixa de demonstração no topo.
 - **Nada inventado.** Dado que o briefing não traz (telefone, endereço,
   CNPJ, preço, depoimento, número de clientes, foto da equipe) vira

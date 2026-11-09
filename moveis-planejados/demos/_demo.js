@@ -42,8 +42,8 @@
     : origem === 'us'
     ? { raiz: '../../../us/', cta: '../../../us/#pricing' }
 
-    : origem === 'acervo'
-    ? { raiz: '../../../acervo/', cta: '../../../#diagnostico' }
+    : (origem === 'projetos' || origem === 'acervo')
+    ? { raiz: '../../../projetos/', cta: '../../../#diagnostico' }
     : origem === 'portfolio'
     ? { raiz: '../../../portfolio/', cta: '../../../#diagnostico' }
     : { raiz: '../../../',    cta: '../../../#diagnostico' };

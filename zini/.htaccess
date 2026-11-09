@@ -1,6 +1,6 @@
-# A prévia saiu daqui em 29/10/2026 e mora em /acervo/zini/, com senha. Este é o
-# endereço que foi mandado ao cliente: agora leva todo mundo para a home,
-# inclusive quem entrou no acervo. Os arquivos estão em acervo/zini/.
+# A prévia saiu daqui em 29/10/2026 (de 29/10 a 09/11/2026 ficou no acervo, com senha) e,
+# desde 09/11/2026, mora em /projetos/academia-espera-feliz/, aberta para quem tem o link. Este é o
+# endereço que foi mandado ao cliente: continua levando todo mundo para a home.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteRule ^ https://usetheatrum.com.br/ [R=302,L]

@@ -1,0 +1,7 @@
+# Projetos: a lista de todos os sites e as prévias de negócio real abertas (projetos/<tipo>-<cidade>/),
+# desde 09/11/2026, para quem tem o link. Fora do sitemap e de todo menu, e nada daqui no Google:
+# são prévias de negócios de verdade e não podem competir na busca com o site deles.
+# Cada prévia tem o próprio .htaccess, com o noindex repetido (vale também se ela sair daqui).
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
