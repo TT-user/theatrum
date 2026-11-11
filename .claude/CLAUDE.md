@@ -223,8 +223,17 @@ continuam no repositório.
 Palavra "sistema" ficou só onde é sistema mesmo (aplicativos e sistemas web,
 o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
 
-- **Hero:** título à esquerda com a palavra de destaque em serif itálico
-  dourado, botões "Fazer diagnóstico gratuito" (WhatsApp, degrau 4) e "Ver
+- **Hero:** desde 11/11/2026 abre com conexão e dor, não com o produto
+  (auditoria pelo Método FG de vendas: conexão, valor, apresentação
+  enganchada, desafio). Título à esquerda "Indicação é ótima. Até o mês em
+  que ela *não vem.*", tirado da história do Matheus no `[07]`, com o
+  destaque em serif itálico dourado (o ponto entra no destaque, como nos
+  `.lm`); o subtítulo diz o que é: "Sites e landing pages que levam quem
+  procura no Google direto para o seu WhatsApp, prontos para anúncio. Para
+  o cliente novo te achar mesmo no mês em que ninguém indica." A meta
+  description saiu do "GTM, GA4 e Pixel do Meta" pelo mesmo motivo e diz
+  "Você vê a prévia do seu site antes de pagar".
+  Botões "Fazer diagnóstico gratuito" (WhatsApp, degrau 4) e "Ver
   quanto eu perco por mês" (calculadora, degrau 2) e quatro números com
   origem, cada um com barra dourada: 27 sites no ar para abrir e testar
   (contador que sobe de 0; são os da vitrine, logo abaixo), 7 a 10 dias
@@ -233,8 +242,19 @@ o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
   gravura de óculos dourados (`assets/img/hero/estatua-{480,816}.webp`, 40 e
   119 KB): vem sobre preto e entra com `mix-blend-mode:screen`; abaixo de
   980 px fica a 20% atrás do texto, espelhada, com 62svh de altura. Na frente
-  dela, só no computador, um terminal de enfeite ("$ deploy seu-negocio /
-  site no ar / pronto para anúncio / contato avisado no whatsapp"). O vidro
+  dela, o cartão do Matheus (`.hx-eu`, foto `assets/img/matheus-128.webp`,
+  2 KB): "Antes do código, assentei piso. Sei o que é depender de indicação.
+  Quem te responde no WhatsApp sou eu." É a frase do card do `[07]`,
+  encurtada: mudou lá, mude aqui (os dois lados têm comentário). "Te
+  responde", e não "responde no seu WhatsApp": logo acima, "o seu WhatsApp"
+  é o do negócio do visitante, e o cartão pareceria prometer atender os
+  clientes dele. Entrou no lugar do terminal de enfeite ("$ deploy
+  seu-negocio"), que falava a língua de programador. No HTML o cartão fica
+  no texto, logo depois dos botões (a ordem de leitura é a do celular); no
+  computador ele vai para a coluna da estátua por `position:absolute` no
+  `.hero-in`, com o `left` tirado da conta das colunas (`--hgap`: mudou
+  `1.25fr/.75fr` ou o vão, mude a conta). No celular os números ficam no pé
+  da primeira tela, cortados (412x900), ou abaixo dela (375x667). O vidro
   líquido (filtro SVG `#hx-vidro`) saiu na repaginada. Relâmpagos no fundo,
   em `.hero-raio` (precisa ser filho direto do `header.hero`): uma descarga a
   cada 4 a 10 s, raio desenhado em SVG na hora e clarão em degradê, só a

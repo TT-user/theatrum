@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="theme-color" content="#0B0A08"/>
 <title>Theatrum | Sites e landing pages que trazem cliente para o seu WhatsApp</title>
-<meta name="description" content="Sites e landing pages prontos para anúncio: rápidos no celular, com texto que vende, GTM, GA4 e Pixel do Meta configurados e aviso de cada novo contato no seu WhatsApp. Diagnóstico gratuito."/>
+<meta name="description" content="Sites e landing pages que levam quem procura no Google até o seu WhatsApp, prontos para anúncio. Você vê a prévia do seu site antes de pagar. Diagnóstico gratuito."/>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png"/>
 <link rel="apple-touch-icon" href="assets/img/logo-180.png"/>
 <link rel="canonical" href="https://usetheatrum.com.br/"/>
@@ -243,19 +243,21 @@
   .prova li{display:flex;align-items:baseline;gap:10px;padding-left:14px;border-left:2px solid var(--accent)}
   .prova strong{font:800 1.55rem/1 var(--font-display);color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
   .prova span{font-size:15px;line-height:1.35;color:rgba(255,255,255,.76)}
-  /* terminal de enfeite ao lado da estátua (só no computador) */
-  .hero-arte{position:relative;align-self:stretch;min-height:360px}
-  .hx-term{position:absolute;left:0;bottom:8%;width:min(290px,100%);border-radius:14px;border:1px solid rgba(227,179,65,.4);
-    background:linear-gradient(145deg,rgba(31,28,24,.94),rgba(14,13,11,.94));box-shadow:0 30px 60px rgba(0,0,0,.45);padding:12px 16px 16px;
-    transform:rotate(-2.5deg);animation:hxIn 1s var(--ease) .5s both}
-  .hx-dots{display:flex;gap:6px;margin-bottom:10px}
-  .hx-dots i{width:8px;height:8px;border-radius:50%;background:#E0524B}
-  .hx-dots i:nth-child(2){background:#E5B842}
-  .hx-dots i:nth-child(3){background:#4DB861}
-  .hx-term code{display:block;font:500 12.5px/1.9 var(--font-mono);color:rgba(255,255,255,.62);white-space:nowrap}
-  .hx-term code b{color:var(--accent)}
-  .hx-term code.ok{color:#6EE7A8}
-  @keyframes hxIn{from{opacity:0;transform:translateY(24px) rotate(-2.5deg)}to{opacity:1;transform:rotate(-2.5deg)}}
+  .hx-l{display:block}
+  /* cartão do Matheus ao lado da estátua: a conexão vem antes da apresentação. No HTML ele
+     mora no texto, depois dos botões; no computador vai para a segunda coluna da grade
+     (começa em 62,5% da largura + 3/8 do vão, pela conta do 1.25fr/.75fr) */
+  .hero-in{--hgap:clamp(32px,5vw,72px);gap:var(--hgap);position:relative}
+  .hx-eu{position:absolute;left:calc(62.5% + var(--hgap)*.375);bottom:calc(clamp(32px,5vh,64px) + 6.5%);
+    width:min(340px,calc(37.5% - var(--hgap)*.375));display:grid;grid-template-columns:56px minmax(0,1fr);gap:2px 14px;align-items:center;
+    border-radius:16px;border:1px solid rgba(227,179,65,.4);background:linear-gradient(145deg,rgba(31,28,24,.95),rgba(14,13,11,.95));
+    box-shadow:0 30px 60px rgba(0,0,0,.45);padding:16px 18px 18px;transform:rotate(-2deg);animation:hxIn 1s var(--ease) .5s both}
+  .hx-eu img{grid-row:span 2;width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);background:#1F1C18}
+  .hx-eu-nome{align-self:end;font:800 1.08rem/1.2 var(--font-display);color:var(--white)}
+  .hx-eu-papel{align-self:start;font:500 12.5px/1.4 var(--font-mono);color:rgba(255,255,255,.6)}
+  .hx-eu-fala{grid-column:1/-1;margin-top:12px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.8)}
+  .hx-eu-fala strong{display:block;margin-top:4px;color:var(--accent-soft);font-weight:600}
+  @keyframes hxIn{from{opacity:0;transform:translateY(24px) rotate(-2deg)}to{opacity:1;transform:rotate(-2deg)}}
   @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
   /* letreiro dourado colado no pé do hero; só anda com ele à vista */
@@ -278,7 +280,11 @@
   }
   @media(max-width:980px){
     .hero-in{grid-template-columns:1fr;padding-top:118px}
-    .hero-arte{display:none}
+    /* o cartão fica no fluxo, entre os botões e os números */
+    .hx-eu{position:static;width:auto;max-width:440px;margin-top:28px;transform:none;animation:rise .9s var(--ease) .44s both;
+      grid-template-columns:44px minmax(0,1fr);gap:0 12px;padding:14px 16px;box-shadow:none;background:rgba(20,18,15,.82)}
+    .hx-eu img{width:44px;height:44px}
+    .hx-eu-fala{margin-top:10px;font-size:14.5px;line-height:1.5}
     .hero-estatua{height:62svh;max-height:100%;max-width:80%;opacity:.2;transform:scaleX(-1);
       -webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 26%),linear-gradient(0deg,transparent 0%,#000 18%);
       mask-image:linear-gradient(270deg,transparent 0%,#000 26%),linear-gradient(0deg,transparent 0%,#000 18%)}
@@ -605,7 +611,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ [01] HERO ============
      Texto à esquerda com os dois primeiros degraus (diagnóstico no WhatsApp e
      calculadora) e quatro números verificáveis; à direita, a estátua de gravura e
-     um terminal de enfeite. No pé, o letreiro dourado. Fora as entradas, só os
+     o cartão do Matheus (conexão antes da apresentação, desde 11/11/2026: o
+     título fala da dor do dono, não do produto). No celular o cartão vai entre os
+     botões e os números. No pé, o letreiro dourado. Fora as entradas, só os
      relâmpagos de .hero-raio se mexem, e param fora da tela. -->
 <header class="hero" id="top">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -615,11 +623,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-in">
     <div class="hero-txt">
       <p class="hx-eyebrow" data-en="<b>[01]</b> websites · landing pages · ads · whatsapp" data-es="<b>[01]</b> sitios · landing pages · anuncios · whatsapp"><b>[01]</b> sites · landing pages · anúncios · whatsapp</p>
-      <h1 class="hx-title" data-en='Websites and landing pages that turn a visitor into a <em class="hx-em">client</em> on your WhatsApp.' data-es='Sitios y landing pages que convierten al visitante en <em class="hx-em">cliente</em> en tu WhatsApp.'>Sites e landing pages que transformam visitante em <em class="hx-em">cliente</em> no seu WhatsApp.</h1>
-      <p class="hx-sub" data-en="We build it, launch it and leave it <b>ready for ads</b>: fast on mobile, with copy that sells and an alert for every new contact. You take care of the business." data-es="Lo construimos, lo publicamos y lo dejamos <b>listo para anunciar</b>: rápido en el celular, con textos que venden y aviso de cada nuevo contacto. Tú te ocupas del negocio.">Criamos, colocamos no ar e deixamos <b>pronto para anúncio</b>: rápido no celular, com texto que vende e aviso de cada novo contato. Você cuida do negócio.</p>
+      <h1 class="hx-title" data-en='<span class="hx-l">Referrals are great.</span> Until the month they <em class="hx-em">don&#39;t come.</em>' data-es='<span class="hx-l">El boca a boca es genial.</span> Hasta el mes en que <em class="hx-em">no llega.</em>'><span class="hx-l">Indicação é ótima.</span> Até o mês em que ela <em class="hx-em">não vem.</em></h1>
+      <p class="hx-sub" data-en="Websites and landing pages that take people searching on Google straight to your WhatsApp, <b>ready for ads</b>. So new clients can find you even in the month nobody refers you." data-es="Sitios y landing pages que llevan a quien busca en Google directo a tu WhatsApp, <b>listos para anunciar</b>. Para que el cliente nuevo te encuentre incluso el mes en que nadie te recomienda.">Sites e landing pages que levam quem procura no Google direto para o seu WhatsApp, <b>prontos para anúncio</b>. Para o cliente novo te achar mesmo no mês em que ninguém indica.</p>
       <div class="ctas">
         <a class="btn btn-primary ima" href="https://wa.me/5532984762445?text=Vim%20do%20site%20da%20Theatrum.%20Quero%20o%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener" data-en='Get a free diagnosis <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>' data-es='Hacer diagnóstico gratuito <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg>'>Fazer diagnóstico gratuito <svg class="btn-arrow" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 7 H21 M15 1.5 L21.5 7 L15 12.5"/></svg></a>
         <a class="btn btn-secondary" href="#calculadora" data-uet-diagnostico data-en="See how much I lose per month" data-es="Ver cuánto pierdo por mes">Ver quanto eu perco por mês</a>
+      </div>
+      <!-- cartão do Matheus: no HTML depois dos botões, para o leitor de tela ler na
+           mesma ordem do celular; no computador ele vai para a coluna da estátua
+           (position:absolute no .hero-in). A frase é a do card do [07], encurtada:
+           mudou lá, mude aqui. "Te responde", não "responde no seu WhatsApp": logo
+           acima, "o seu WhatsApp" é o do negócio do visitante. -->
+      <div class="hx-eu">
+        <img src="assets/img/matheus-128.webp" width="128" height="128" alt="" decoding="async">
+        <p class="hx-eu-nome">Matheus</p>
+        <p class="hx-eu-papel" data-en="founder of Theatrum" data-es="fundador de Theatrum">fundador da Theatrum</p>
+        <p class="hx-eu-fala" data-en="Before code, I laid floors. I know what it is to depend on referrals. <strong>I&#39;m the one who answers you on WhatsApp.</strong>" data-es="Antes del código, coloqué pisos. Sé lo que es depender de recomendaciones. <strong>Quien te responde en WhatsApp soy yo.</strong>">Antes do código, assentei piso. Sei o que é depender de indicação. <strong>Quem te responde no WhatsApp sou eu.</strong></p>
       </div>
       <!-- números com origem: os 27 sites estão na vitrine logo abaixo; prazo, prévia
            e titularidade são as condições publicadas no "como funciona" e no FAQ -->
@@ -631,15 +650,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
 
-    <div class="hero-arte" aria-hidden="true">
-      <div class="hx-term">
-        <span class="hx-dots"><i></i><i></i><i></i></span>
-        <code data-en="<b>$</b> deploy your-business" data-es="<b>$</b> deploy tu-negocio"><b>$</b> deploy seu-negocio</code>
-        <code class="ok" data-en="✓ site live" data-es="✓ sitio en línea">✓ site no ar</code>
-        <code class="ok" data-en="✓ ready for ads" data-es="✓ listo para anunciar">✓ pronto para anúncio</code>
-        <code class="ok" data-en="✓ contact flagged on whatsapp" data-es="✓ contacto avisado en whatsapp">✓ contato avisado no whatsapp</code>
-      </div>
-    </div>
   </div>
 
   <div class="letreiro" id="letreiro" aria-hidden="true">
@@ -1693,6 +1703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img class="qf-foto" src="assets/img/matheus.webp" width="400" height="400" alt="Matheus, fundador da Theatrum" loading="lazy" decoding="async" onerror="this.removeAttribute('src')">
         <h3>Matheus</h3>
         <p class="qf-papel" data-en="founder · orchestrates and approves" data-es="fundador · orquesta y aprueba">fundador · orquestra e aprova</p>
+        <!-- a frase do piso e da indicação está encurtada no cartão do hero (.hx-eu): mudou aqui, mude lá -->
         <p data-en="Before I wrote code I laid floors and worked on building sites. I know what it is to depend on referrals and to watch a slow month arrive with the same bills as a good one." data-es="Antes de escribir código coloqué pisos y trabajé en obra. Sé lo que es depender de recomendaciones y ver llegar un mes flojo con las mismas cuentas de un mes bueno.">Antes de escrever código eu assentei piso e trabalhei em obra. Sei o que é depender de indicação e ver um mês fraco chegar com as contas iguais às do mês bom.</p>
         <p data-en="I have a degree in Information Systems. <b>The person replying on WhatsApp is me.</b>" data-es="Soy egresado de Sistemas de Información. <b>Quien responde en el WhatsApp soy yo.</b>">Sou formado em Sistemas de Informação. <b>Quem responde no WhatsApp sou eu.</b></p>
         <p class="qf-cnpj">Theatrum · CNPJ 61.978.753/0001-60</p>
@@ -1902,8 +1913,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       es: 'Theatrum | Sitios y landing pages que traen clientes a tu WhatsApp' };
     const I18N_DESC = {
       pt: document.querySelector('meta[name="description"]').content,
-      en: 'Websites and landing pages ready for ads: fast on mobile, with copy that sells, GTM, GA4 and the Meta Pixel set up and an alert for every new contact on your WhatsApp. Free diagnosis.',
-      es: 'Sitios y landing pages listos para anunciar: rápidos en el celular, con textos que venden, GTM, GA4 y el Pixel de Meta configurados y aviso de cada nuevo contacto en tu WhatsApp. Diagnóstico gratuito.'
+      en: 'Websites and landing pages that take people searching on Google to your WhatsApp, ready for ads. You see the preview of your site before you pay. Free diagnosis.',
+      es: 'Sitios y landing pages que llevan a quien busca en Google a tu WhatsApp, listos para anunciar. Ves la vista previa de tu sitio antes de pagar. Diagnóstico gratuito.'
     };
     const LANGS = ['pt', 'en', 'es'];
     const HTML_LANG = { pt: 'pt-BR', en: 'en', es: 'es' };
