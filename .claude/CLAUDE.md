@@ -247,9 +247,10 @@ o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
   119 KB): vem sobre preto e entra com `mix-blend-mode:screen`; abaixo de
   980 px fica a 20% atrás do texto, espelhada, com 62svh de altura. Na frente
   dela, o cartão do Matheus (`.hx-eu`, foto `assets/img/matheus-128.webp`,
-  2 KB): "Antes do código, assentei piso. Sei o que é depender de indicação.
+  2 KB): "Eu também já dependi de indicação. Sei como pesa o mês fraco.
   Quem te responde no WhatsApp sou eu." É a frase do card do `[07]`,
-  encurtada: mudou lá, mude aqui (os dois lados têm comentário). "Te
+  resumida: mudou lá, mude aqui (os dois lados têm comentário). Até
+  12/11/2026 dizia "Antes do código, assentei piso"; saiu a pedido. "Te
   responde", e não "responde no seu WhatsApp": logo acima, "o seu WhatsApp"
   é o do negócio do visitante, e o cartão pareceria prometer atender os
   clientes dele. Entrou no lugar do terminal de enfeite ("$ deploy
