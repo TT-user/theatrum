@@ -159,8 +159,8 @@ atrapalhava a leitura. Com o Plus Jakarta, letter-spacing de título fica entre
 -.005em e -.012em; mais que isso as letras encostam.
 
 Leitura antes de estilo: corpo e lead em 16 a 18 px, menu em Inter 14,5 px sem
-caixa-alta espaçada. O menu da home tem sete links (Trabalhos, Serviços,
-Como funciona, Calculadora, Investimento, FAQ, Blog) e vira hambúrguer em
+caixa-alta espaçada. O menu da home tem sete links, na ordem da página
+(Trabalhos, Calculadora, Serviços, Como funciona, Investimento, FAQ, Blog), e vira hambúrguer em
 1320 px ou menos: abaixo de ~1290 px o CTA vai para a margem (medido em
 português e espanhol em 26/10/2026). Link novo no menu, meça de novo.
 
@@ -200,16 +200,20 @@ saíram.
 
 ```
 [01] hero (+ letreiro dourado)         [02] trabalhos
-[03] o que fazemos                     [04] como funciona
-[05] a calculadora                     [06] investimento
+[03] a calculadora                     [04] o que fazemos
+[05] como funciona                     [06] investimento
 [07] quem faz                          [08] FAQ
 [09] CTA final ("vamos conversar")
 ```
 
-A ordem segue ver que funciona, entender o que recebe, saber que vê antes
-de pagar, ver o próprio número, ver o preço, conhecer quem faz. Saíram em
+A ordem segue ver que funciona, ver o próprio buraco, ver o que fecha cada
+buraco, saber que vê antes de pagar, ver o preço, conhecer quem faz. Desde
+11/11/2026 a calculadora vem antes de "o que fazemos" (era a `[05]`), pelo
+Método FG de vendas: conexão e dor antes da apresentação, e a apresentação
+"enganchada" na dor que a pessoa acabou de ver. Fundo: `[02]` escuro,
+`[03]` `.alt`, `[04]` escuro, `[05]` `.alt`. Saíram em
 26/10/2026, por repetirem outra seção ou alongarem sem converter: "não é só
-um site" (os quatro pontos viraram o texto do card 01 do `[03]`), "para quem
+um site" (os quatro pontos viraram o texto do card 01 do `[04]`), "para quem
 fazemos" (os segmentos estão nos selos do `[02]`), "dores e soluções" (as
 abas de Google, tráfego e atendimento), a demonstração interativa (`#sistema`,
 o caminho de um cliente em cinco etapas; a vitrine já é a demonstração
@@ -296,7 +300,25 @@ o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
   1280 px. Nunca chame as marcas das
   demos de "parceiras": são fictícias, e o lead da seção diz "marcas
   inventadas". Links das telas levam `?de=home`.
-- **`[03]` o que fazemos (`#servicos`):** título "O que a gente constrói, e o
+- **`[03]` calculadora (`#calculadora`):** componente com estado (objeto
+  `T`, sem `data-en`). Quatro perguntas e três linhas de perda ("o cliente
+  esfria", "ninguém te acha", "ninguém volta"). Desde 11/11/2026 cada linha
+  diz "o que resolve" (aviso de cada contato e IA no WhatsApp; site rápido,
+  Google Meu Negócio e anúncio; chamar de volta quem já comprou: o mesmo que
+  os cards do `[04]` oferecem), a linha que mais pesa ganha o selo "o que
+  mais pesa" e o valor em dourado, o botão diz "Quero ver como fechar esses
+  R$ X/mês" e a mensagem do WhatsApp cita essa linha (ver a tabela abaixo):
+  a conversa começa pela dor, não pelo plano. Com tudo zerado, nenhuma linha
+  ganha selo. Com as constantes do `F` de hoje, o selo depende só da 4ª
+  pergunta: "ninguém te acha" (35%) ganha sempre, menos com "no dia seguinte
+  ou mais" (45%), quando ganha "o cliente esfria"; "ninguém volta" (20%)
+  nunca ganha. A nota do resultado declara essas porcentagens como
+  suposições da Theatrum, não pesquisa (regra do número com origem), e é
+  montada a partir do `F`: recalibrou o `F`, a nota acompanha sozinha. Os
+  links de calculadora do `[04]` e do `[05]` não dizem mais "antes" (a
+  calculadora agora fica acima deles). Monta quando chega perto da tela; em
+  `?still=1`, já na abertura.
+- **`[04]` o que fazemos (`#servicos`):** título "O que a gente constrói, e o
   que leva cliente até lá". Seis cards numerados (número em Instrument
   Serif dourado), em ordem de peso: 01 sites e landing pages (rápido no
   celular, texto escrito por nós, pronto para anúncio, aviso de cada contato,
@@ -305,20 +327,17 @@ o plano Sob medida). Para falar da oferta, é site, Google e anúncio.
   tráfego pago e 06 IA no WhatsApp e reativação, com "para trazer cliente".
   Embaixo, a faixa tracejada de social media, marcada "complemento", e o CTA
   com a calculadora ao lado.
-- **`[04]` como funciona (`#como-funciona`):** diagnóstico, prévia antes de
+- **`[05]` como funciona (`#como-funciona`):** diagnóstico, prévia antes de
   fechar, ajustes e publicação em 7 a 10 dias úteis, anúncio rodando. A linha
   dourada entre os círculos cresce com a rolagem (`--p` de 0 a 1 no `#passos`)
   e cada círculo acende quando ela chega nele; na vertical (até 900 px) ela
   para no centro do último círculo (`--fim`, medido pelo script). O ouvinte
   de rolagem só existe com a seção à vista. Sem movimento e em `?still=1`,
   tudo aceso. CTA "Começar pelo diagnóstico" com a calculadora ao lado.
-- **`[05]` calculadora (`#calculadora`):** a mesma de antes, componente com
-  estado (objeto `T`, sem `data-en`). Monta quando chega perto da tela; em
-  `?still=1`, já na abertura.
 - **`[06]` investimento (`#investimento`):** desde 16/10/2026, condição de
   lançamento para os 10 primeiros clientes. **Todo preço da home sai do
   `data/precos.json`** (núcleo `window.TheatrumPrecos`, script "PREÇOS: um
-  lugar só" antes do `[05]`; o `PADRAO` de lá é o mesmo JSON com zero vagas,
+  lugar só" entre o `[05]` e o `[06]`; o `PADRAO` de lá é o mesmo JSON com zero vagas,
   para o primeiro desenho e para falha no fetch; o JSON só baixa quando o
   `[06]` chega perto). O Matheus só mexe em `vagasPreenchidas`
   (passo a passo em `docs/como-atualizar-vagas.md`): de 0 a 2 vale o preço de
@@ -412,7 +431,7 @@ mensagem sem ele:
 | topo, menu do celular, barra do celular, "Falar no WhatsApp" do investimento e rodapé | "Vim do site da Theatrum. Quero o raio-x do meu negócio." |
 | o que fazemos | "Vim do site da Theatrum. Quero um site ou sistema para o meu negócio." |
 | como funciona | "Vim do site da Theatrum. Quero começar pelo diagnóstico gratuito." |
-| calculadora | "Vim do site. A calculadora deu R$ {N} por mês. Quero o plano." |
+| calculadora | "Vim do site. A calculadora deu R$ {N} por mês, e o que mais pesa é "{linha}". Quero entender como fechar isso." ({linha} = "o cliente esfria", "ninguém te acha" ou "ninguém volta"; com tudo zerado: "Vim do site. A calculadora deu R$ 0 por mês. Quero entender o meu caso.") |
 | quem faz | "Vim do site da Theatrum. Quero falar com o Matheus sobre o meu negócio." |
 | FAQ | "Tenho uma dúvida antes do diagnóstico:" |
 | CTA final | "Quero meu diagnóstico gratuito." |
